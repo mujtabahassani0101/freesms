@@ -1,6 +1,6 @@
 # Native menu loading diagnosis
 
-Run 41499977813, application source `56b553e`, invokes the actual recovered main-menu click handlers with an isolated native LocalDB clone, preserving each handler's parameters. Each worker has a ten-second limit. The UI timer confirms responsiveness; native messages and modal pickers are recorded separately.
+Run 41501113977, application source `51f5bc5`, invokes the actual recovered main-menu click handlers with an isolated native LocalDB clone, preserving each handler's parameters. Each worker has a ten-second limit. The UI timer confirms responsiveness; native messages and modal pickers are recorded separately.
 
 The current `summary.log` records 77 routes: 70 loaded and responsive; 7 awaiting modal interaction; no failures or timeouts. Five compatibility messages correspond to disciplinary schemas absent from the supplied seed; two other routes open their original registration dialogs. A compatibility message does not mean that the unavailable feature was implemented or verified.
 

@@ -6,6 +6,9 @@ PASS checkbox write-through
 PASS sorted row identity
 PASS unbound combo values support original numeric IDs
 PASS bound combo identity
+PASS combo does not publish a row object before ValueMember is configured
+PASS initial combo selection publishes only the typed database ID
+PASS combo rebinding does not publish transient empty selections
 PASS Afghan calendar roundtrip with Persian digits
 PASS date picker value and event
 PASS load RPX 1.rpx
@@ -126,10 +129,11 @@ PASS native report CStdKarnameTajamoee2ByChart.rpt.xml
 PASS native report CStdKarnameTajamoee3ByChart.rpt.xml
 PASS long subreport continues beyond its original placeholder
 PASS report background boxes cannot cover chart values
+PASS oversized page headers reject pagination instead of generating pages forever
 PASS self-contained package uses only .NET 10 frameworks
 PASS release contains no old UI or report runtime
 PASS .NET 10 x86 ReadyToRun: FreeSMS.dll
 PASS .NET 10 x86 ReadyToRun: FreeSms.Core.dll
 PASS .NET 10 x86 ReadyToRun: FreeSms.NativeControls.dll
 PASS .NET 10 x86 ReadyToRun: FreeSms.Reports.dll
-SUCCESS 134
+SUCCESS 138

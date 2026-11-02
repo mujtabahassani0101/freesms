@@ -2,7 +2,7 @@
 
 The active solution, application, controls and reporting engine target .NET 10. Earlier Python/container and Framework results in this directory are historical.
 
-Windows Server 2025 run [41499961538](https://github.com/mujtabahassani0101/freesms/actions/runs/41499961538), source commit `56b553e`, passed:
+Windows Server 2025 run [41501113977](https://github.com/mujtabahassani0101/freesms/actions/runs/41501113977), source commit `51f5bc5`, passed:
 
 - 18 LocalDB integration/service checks and 40 report expression, lookup, pivot-reference, formatting and XLSX checks.
 - 138 native checks: control adapter contracts, 7 RPX layouts, all 98 migrated report templates with disconnected sample data, long-subreport pagination, print/image consistency at 300 DPI, chart visibility over background boxes, and package validation.
