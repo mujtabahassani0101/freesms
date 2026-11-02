@@ -22,12 +22,12 @@ internal static class LayoutExporter
             new XDocument(xml).Save(Path.Combine(directory, report.ResourceName + ".xml"));
         }
     }
-    private static XElement ExportReport(ReportDocument report)
+    private static XElement ExportReport(ReportDocument report, bool isSubreport = false)
     {
         var xml = new XElement("report");
         var print = new XElement("print");
-        Simple(print, report.PrintOptions, "PaperOrientation", "PaperSize", "PaperSource");
-        Simple(print, report.PrintOptions.PageMargins, "leftMargin", "rightMargin", "topMargin", "bottomMargin");
+        if (!isSubreport) Simple(print, report.PrintOptions, "PaperOrientation", "PaperSize", "PaperSource");
+        if (!isSubreport) Simple(print, report.PrintOptions.PageMargins, "leftMargin", "rightMargin", "topMargin", "bottomMargin");
         xml.Add(print);
         var formulas = new XElement("formulas");
         foreach (FormulaFieldDefinition formula in report.DataDefinition.FormulaFields)
@@ -74,7 +74,7 @@ internal static class LayoutExporter
                 if (sub != null)
                 {
                     obj.SetAttributeValue("subreport", sub.SubreportName);
-                    using (var child = sub.OpenSubreport(sub.SubreportName)) obj.Add(ExportReport(child));
+                    using (var child = sub.OpenSubreport(sub.SubreportName)) obj.Add(ExportReport(child, true));
                 }
                 node.Add(obj);
             }

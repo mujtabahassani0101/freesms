@@ -119,7 +119,12 @@ jobs:
       - name: Build all recovered original Windows code
         shell: pwsh
         run: ./scripts/build-original-windows.ps1
-      - name: Verify the original forms and vendor controls
+      - name: Verify native controls and RPX renderer
+        shell: pwsh
+        run: |
+          dotnet run --project dotnet/FreeSms.NativeChecks/FreeSms.NativeChecks.csproj -c Release -- . 2>&1 | Tee-Object validation/native-controls-checks.log
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - name: Verify the original forms and native controls
         shell: pwsh
         run: |
           $app = Join-Path $PWD 'dist/FreeSMS-Original-Net10/school_Af.exe'
@@ -131,6 +136,15 @@ jobs:
             exit 1
           }
           Get-Content dist/FreeSMS-Original-Net10/original-forms-verification.txt
+      - name: Verify .NET 10 initialization and original login
+        if: ${{ !cancelled() }}
+        shell: pwsh
+        run: |
+          $app = Join-Path $PWD 'dist/FreeSMS-Original-Net10/school_Af.exe'
+          $process = Start-Process $app -ArgumentList '--verify-native-startup' -PassThru
+          if (-not $process.WaitForExit(180000)) { $process.Kill(); throw 'Native startup timed out.' }
+          if ($process.ExitCode -ne 0) { Get-Content dist/FreeSMS-Original-Net10/original-runtime-error.txt; exit 1 }
+          Get-Content dist/FreeSMS-Original-Net10/native-startup-verification.txt
       - name: Install native legacy reporting runtime
         if: ${{ !cancelled() }}
         shell: pwsh
@@ -167,6 +181,9 @@ jobs:
             dist/FreeSMS-Original-Net10/report-host/error.txt
             dist/FreeSMS-Original-Net10/report-host/portable-layouts/
             validation/crystal-install.log
+            validation/native-controls-checks.log
+            validation/native-controls/
+            dist/FreeSMS-Original-Net10/startup-*.png
           retention-days: 7
       - name: Upload original application build
         if: always()

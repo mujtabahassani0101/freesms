@@ -24,12 +24,6 @@
     <ProjectReference Include="../FreeSms.Core/FreeSms.Core.csproj" />
     <ProjectReference Include="../FreeSms.NativeControls/FreeSms.NativeControls.csproj" />
     <PackageReference Include="System.Data.OleDb" Version="10.0.14" />
-    <Reference Include="ActiveReports.Viewer3">
-      <HintPath>../../vendor/legacy/ActiveReports.Viewer3.dll</HintPath>
-    </Reference>
-    <Reference Include="DataDynamics.ActiveReports.ToolBoxClassLib">
-      <HintPath>../../vendor/legacy/DataDynamics.ActiveReports.ToolBoxClassLib.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Office.Interop.Excel">
       <HintPath>../../vendor/legacy/Microsoft.Office.Interop.Excel.dll</HintPath>
     </Reference>
@@ -38,15 +32,6 @@
     </Reference>
     <Reference Include="office">
       <HintPath>../../vendor/legacy/office.dll</HintPath>
-    </Reference>
-    <Reference Include="ActiveReports3">
-      <HintPath>../../vendor/legacy/ActiveReports3.DLL</HintPath>
-    </Reference>
-    <Reference Include="ActiveReports.Design3">
-      <HintPath>../../vendor/legacy/ActiveReports.Design3.DLL</HintPath>
-    </Reference>
-    <Reference Include="ActiveReports.Interop">
-      <HintPath>../../vendor/legacy/ActiveReports.Interop.DLL</HintPath>
     </Reference>
     <EmbeddedResource Include="school_Af.Rpt.CrListstd_books10.rpt" LogicalName="school_Af.Rpt.CrListstd_books10.rpt" />
     <EmbeddedResource Include="school_Af.Rpt.CrListBooksRengMark1.rpt" LogicalName="school_Af.Rpt.CrListBooksRengMark1.rpt" />

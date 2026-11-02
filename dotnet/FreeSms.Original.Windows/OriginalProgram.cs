@@ -39,13 +39,29 @@ internal static class OriginalProgram
     [STAThread]
     public static int Main(string[] args)
     {
-        bool checking = args.Contains("--verify-original-forms");
+        bool checking = args.Contains("--verify-original-forms") || args.Contains("--verify-native-startup");
         try
         {
             Application.SetCompatibleTextRenderingDefault(false);
+            Application.SetUnhandledExceptionMode(UnhandledExceptionMode.ThrowException);
             OriginalFonts.Initialize();
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
-            if (checking)
+            if (args.Contains("--preview"))
+            {
+                KeylessRuntime.Enable();
+                Application.EnableVisualStyles();
+                using (var original = new asdb3())
+                using (var image = new System.Drawing.Bitmap(original.Width, original.Height))
+                using (var preview = new Form { Text = "پیش‌نمایش فرم اصلی — بدون بانک", ClientSize = original.Size, AutoScroll = true })
+                {
+                    original.CreateControl();
+                    original.DrawToBitmap(image, new System.Drawing.Rectangle(System.Drawing.Point.Empty, image.Size));
+                    preview.Controls.Add(new PictureBox { Image = image, SizeMode = PictureBoxSizeMode.AutoSize });
+                    Application.Run(preview);
+                }
+                return 0;
+            }
+            if (args.Contains("--verify-original-forms"))
             {
                 KeylessRuntime.Enable();
                 Application.EnableVisualStyles();
@@ -83,6 +99,32 @@ internal static class OriginalProgram
                 return 0;
             }
             OriginalRuntime.Initialize();
+            if (args.Contains("--verify-native-startup"))
+            {
+                bool seenLogin = false;
+                using (var timer = new Timer { Interval = 3000 })
+                {
+                    timer.Tick += (sender, eventArgs) =>
+                    {
+                        timer.Stop();
+                        var windows = Application.OpenForms.Cast<Form>().ToArray();
+                        seenLogin = windows.Any(form => form is asda3);
+                        foreach (var form in windows.Where(form => form is asda3 || form is asdb3))
+                            using (var image = new System.Drawing.Bitmap(form.Width, form.Height))
+                            {
+                                form.DrawToBitmap(image, new System.Drawing.Rectangle(System.Drawing.Point.Empty, image.Size));
+                                image.Save(Path.Combine(AppContext.BaseDirectory, "startup-" + form.GetType().Name + ".png"));
+                            }
+                        foreach (var form in windows.Reverse()) form.Close();
+                        Application.Exit();
+                    };
+                    timer.Start();
+                    asdbx.RunOriginal();
+                }
+                if (!seenLogin) throw new InvalidOperationException("Original login did not open after native database initialization.");
+                File.WriteAllText(Path.Combine(AppContext.BaseDirectory, "native-startup-verification.txt"), "SUCCESS: .NET 10 native database and original account login opened. Authentication was not bypassed.");
+                return 0;
+            }
             asdbx.RunOriginal();
             return 0;
         }
