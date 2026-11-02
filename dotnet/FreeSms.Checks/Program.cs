@@ -177,6 +177,21 @@ try
                 var exam = entities.Save("exams", new() { ["Name"] = "آزمون .NET", ["NumExam"] = 30000, ["DateFrom"] = "1410/01/01", ["DateTo"] = "1410/01/02" });
                 Require(entities.List("exams").Any(r => r.Int("id") == exam)); entities.Delete("exams", exam);
             });
+            Check("A rejected student deletion rolls back prior enrolment and image deletes", () =>
+            {
+                db.Execute("CREATE TABLE native_check_delete_guard (xStudent int NOT NULL REFERENCES tStudent(id))");
+                try
+                {
+                    db.Execute("INSERT INTO native_check_delete_guard(xStudent) VALUES(@p0)", [student]);
+                    bool rejected = false;
+                    try { school.DeleteStudent(student); }
+                    catch (Microsoft.Data.SqlClient.SqlException error) when (error.Number == 547) { rejected = true; }
+                    Require(rejected && school.Student(student) is not null);
+                    Require(school.StudentImage(student)!.SequenceEqual(image));
+                    Require(Convert.ToInt32(db.Scalar("SELECT COUNT(*) FROM tYear_Student WHERE xStudent=@p0 AND xYear=1410", [student])) == 1);
+                }
+                finally { db.Execute("DROP TABLE native_check_delete_guard"); }
+            });
             Check("Deleting a student removes their image and enrolment", () =>
             {
                 school.DeleteStudent(student); Require(school.Student(student) is null && school.StudentImage(student) is null);

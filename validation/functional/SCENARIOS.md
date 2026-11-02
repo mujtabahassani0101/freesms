@@ -18,6 +18,12 @@ Expected dialogs are acknowledged only when their actual message text matches. N
 
 Open the original school form through its main menu handler. Change province, district, manager and school name, including Persian text and apostrophes. Click Save and acknowledge the exact success message. Query every persisted field. Open the school form again and verify every textbox reloads the committed value.
 
+## Student deletion (`FreeSMS.exe --verify-business-actions`)
+
+Seed a dedicated year, class and student in the worker's guarded disposable database. Open the original student list through the main menu. Select the fixture by database identity; click Delete and acknowledge the first warning. Decline the final warning and cancel the deletion panel; verify enrolment remains. Repeat the two confirmations with Yes; require the selected student and enrolment to disappear and the count of unrelated students to remain unchanged. The operation must work when the optional disciplinary table is absent.
+
+The native database integration suite separately adds a temporary foreign key that rejects the final student delete. Require the earlier enrolment and image deletes to roll back. Drop the test guard in a `finally` block before checking successful deletion. This specifically tests atomicity after earlier statements have already executed.
+
 ## Other sections
 
 Student registration, marks, attendance, fees/payments, user permissions, imports/exports, backup/restore and remaining reports still require their own complete scenarios and verified evidence. Their current action inventory status remains unverified. See PLAN.md for the full scope; do not infer coverage from the three scenarios above.

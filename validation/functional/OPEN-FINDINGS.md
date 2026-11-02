@@ -1,0 +1,14 @@
+# Open findings and scope limits
+
+The full application goal is not complete. The click inventory is a starting point, not exhaustive coverage of keyboard, editing, selection, printing or database behavior.
+
+- The binary report-layout grid and oversized button icons have native Windows regressions passing in run 41506986650 (source 2c86c76; 145 checks). Those component checks do not prove every RPX editor workflow.
+- Original report 101 successfully opened its preview in that run, but the captured page had no student data. A stronger disposable fixture now requires a named student and school header to reach the actual viewer input; it still needs Windows evidence.
+- Catalog validation in run 41508248274 found missing factories/templates for stored report names `CStdKarnameDorehByChart` (1024) and `CStdKarnameDorehByChart_byBestStd_OneMark` (1032). No matching original embedded templates/classes were found in this source tree. The next catalog log includes `tosifi` and caption to distinguish visibility under the original selector's edition filter; do not silently substitute another report or call this resolved.
+- School settings and discount UI probes timed out at modal messages in run 41508248274. Dialog matching/response diagnostics have been added. No workflow pass has been established by those timeouts.
+- Discount comment insertion/update concatenated raw text into SQL; apostrophes could break the command. Source 2e8bef9 parameterizes these values while preserving existing name normalization. Full UI verification remains pending.
+- Original student deletion issued multiple independent deletes before referencing the absent `tDisciplinaryStudent` table. The new implementation calls the transactional native service, handles the optional table when present, and includes a late foreign-key rejection regression plus original-button confirmation tests. Windows evidence is still required.
+- Backup/restore code still contains hardcoded `school_af_kbr` names and concatenated backup file paths (for example asda9.cs, asdbl.cs, asdao.cs and asda7.cs). This is a source finding requiring tests with the configured catalog, quoted paths, invalid backups and verified restored records. It has not been repaired by the student deletion or report changes.
+- Visible disciplinary menus still require schemas/procedures missing from the supplied Afghan database. Existing compatibility messages do not count as functional implementation.
+
+Student registration/editing, marks, attendance, payments, non-admin authentication/permissions, imports/exports and remaining report workflows are not proven complete. Keep the requirements in PLAN.md and the unverified action inventory intact.

@@ -119,6 +119,8 @@ public sealed class SchoolService(Database database, Session session)
     public void DeleteStudent(int id) => Db.Transaction((c, t) =>
     {
         Db.Execute("UPDATE tExam SET procc=0 WHERE id IN(SELECT Xtest FROM tMarkDoreh WHERE xStudent=@p0)", [id], c, t);
+        if (Db.Scalar("SELECT OBJECT_ID(N'dbo.tDisciplinaryStudent',N'U')", connection: c, transaction: t) is not null)
+            Db.Execute("DELETE FROM dbo.tDisciplinaryStudent WHERE xStudent=@p0", [id], c, t);
         foreach (var table in new[] { "tPaymentStudent", "tMark", "tMarkDoreh", "tMarkAgo", "tHazeriAgo", "tEnzebat", "tComnentKarname", "tComnentStd", "tStudentImg", "tYear_Student" })
             Db.Execute("DELETE FROM " + Database.Identifier(table) + " WHERE xStudent=@p0", [id], c, t);
         return Db.Execute("DELETE FROM tStudent WHERE id=@p0", [id], c, t);

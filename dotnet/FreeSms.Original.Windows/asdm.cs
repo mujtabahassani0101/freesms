@@ -1,4 +1,5 @@
 using System;
+using FreeSms.Core;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
@@ -815,18 +816,9 @@ public class asdm : Form
 					}
 					return;
 				case 0:
-					asdcb.d(asdab.e(), CommandType.Text, "UPDATE tExam SET procc = 0 WHERE (id IN(SELECT Xtest  FROM tMarkDoreh WHERE     (xStudent =" + av.SelectedItems[0].GetRow().Cells["id"].Value.ToString() + ")))");
-					asdcb.d(asdab.e(), CommandType.Text, "delete from tPaymentStudent where xStudent=" + av.SelectedItems[0].GetRow().Cells["id"].Value.ToString());
-					asdcb.d(asdab.e(), CommandType.Text, "delete from tMark where xStudent=" + av.SelectedItems[0].GetRow().Cells["id"].Value.ToString());
-					asdcb.d(asdab.e(), CommandType.Text, "delete from tMarkDoreh where xStudent=" + av.SelectedItems[0].GetRow().Cells["id"].Value.ToString());
-					asdcb.d(asdab.e(), CommandType.Text, "delete from tMarkAgo where xStudent=" + av.SelectedItems[0].GetRow().Cells["id"].Value.ToString());
-					asdcb.d(asdab.e(), CommandType.Text, "delete from tComnentKarname where xStudent=" + av.SelectedItems[0].GetRow().Cells["id"].Value.ToString());
-					asdcb.d(asdab.e(), CommandType.Text, "delete from tEnzebat where xStudent=" + av.SelectedItems[0].GetRow().Cells["id"].Value.ToString());
-					asdcb.d(asdab.e(), CommandType.Text, "delete from tDisciplinaryStudent where xStudent=" + av.SelectedItems[0].GetRow().Cells["id"].Value.ToString());
-					asdcb.d(asdab.e(), CommandType.Text, "delete from tStudentImg where xStudent=" + av.SelectedItems[0].GetRow().Cells["id"].Value.ToString());
-					asdcb.d(asdab.e(), CommandType.Text, "delete from tComnentStd where xStudent=" + av.SelectedItems[0].GetRow().Cells["id"].Value.ToString());
-					asdcb.d(asdab.e(), CommandType.Text, "delete from tYear_Student where xStudent=" + av.SelectedItems[0].GetRow().Cells["id"].Value.ToString());
-					asdcb.d(asdab.e(), CommandType.Text, "delete from tstudent where id=" + av.SelectedItems[0].GetRow().Cells["id"].Value.ToString());
+                    int studentId = Convert.ToInt32(av.SelectedItems[0].GetRow().Cells["id"].Value);
+                    var school = new SchoolService(new Database(OriginalRuntime.ConnectionString), new Session(int.Parse(asdaj.__field_a)));
+                    school.DeleteStudent(studentId);
 					y.Visible = false;
 					b();
 					num = 2;

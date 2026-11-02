@@ -16,9 +16,9 @@ internal static class OriginalWorkflowChecks
     private static T Field<T>(Form form, string name) => (T)form.GetType().GetField(name, BindingFlags.Instance | BindingFlags.NonPublic).GetValue(form);
     private static void Click(Form form, string name) => Field<UIButton>(form, name).PerformClick();
     private static void Require(bool condition, string message) { if (!condition) throw new InvalidOperationException(message); }
-    private static void Select(Form form, int id)
+    private static void Select(Form form, int id, string field = "m_b")
     {
-        var grid = Field<GridEX>(form, "m_b");
+        var grid = Field<GridEX>(form, field);
         for (int i = 0; i < grid.RowCount; i++)
             if (Convert.ToInt32(grid.GetRow(i).Cells["id"].Value) == id) { grid.Row = i; return; }
         throw new InvalidOperationException("Saved row was not reloaded into the original grid.");
@@ -50,6 +50,7 @@ internal static class OriginalWorkflowChecks
         diagnostic = log;
         if (scenario == "discount") Discount(form, db, log);
         else if (scenario == "school") School(form, db, log);
+        else if (scenario == "student-delete") StudentDelete(form, db, log);
         else throw new ArgumentException("Unknown workflow scenario: " + scenario);
     }
     private static void Discount(Form form, Database db, Action<string> log)
@@ -84,6 +85,25 @@ internal static class OriginalWorkflowChecks
         Dialog(() => Click(form,"m_e"), "آيا از حذف تخفیف مطمئن هستيد؟", 6);
         Require(Convert.ToInt32(db.Scalar("SELECT COUNT(*) FROM tTakhfif")) == before, "Confirmed deletion did not remove exactly the new record.");
         log("PASS deletion respects No/Yes and removes only the selected record");
+    }
+    private static void StudentDelete(Form form, Database db, Action<string> log)
+    {
+        int id = Convert.ToInt32(db.Scalar("SELECT id FROM tStudent WHERE Code=5991001"));
+        int before = Convert.ToInt32(db.Scalar("SELECT COUNT(*) FROM tStudent"));
+        Require(id > 0, "Student deletion fixture was not created.");
+        Select(form,id,"av");
+        Dialog(() => Click(form,"m_g"), "آيا از حذف شاگرد مطمئن هستيد؟",6);
+        string warning = "با حذف شاگرد کلیه اطلاعات مربوط به او حذف خواهد شد\n\nآیا از حذف شاگرد اطمینان دارید؟";
+        Dialog(() => Click(form,"ai"), warning,7);
+        Require(Convert.ToInt32(db.Scalar("SELECT COUNT(*) FROM tYear_Student WHERE xStudent=@p0",new object[]{id})) == 1,"Declining deletion removed enrolment.");
+        Click(form,"ad");
+        log("PASS declining student deletion and cancelling panel preserve enrolment");
+        Dialog(() => Click(form,"m_g"), "آيا از حذف شاگرد مطمئن هستيد؟",6);
+        Dialog(() => Click(form,"ai"), warning,6);
+        Require(Convert.ToInt32(db.Scalar("SELECT COUNT(*) FROM tStudent WHERE id=@p0",new object[]{id})) == 0,"Student delete button did not remove the selected student.");
+        Require(Convert.ToInt32(db.Scalar("SELECT COUNT(*) FROM tYear_Student WHERE xStudent=@p0",new object[]{id})) == 0,"Student delete left enrolment behind.");
+        Require(Convert.ToInt32(db.Scalar("SELECT COUNT(*) FROM tStudent")) == before-1,"Student delete modified unrelated records.");
+        log("PASS original student deletion buttons complete against the supplied database edition");
     }
     private static void School(Form form, Database db, Action<string> log)
     {

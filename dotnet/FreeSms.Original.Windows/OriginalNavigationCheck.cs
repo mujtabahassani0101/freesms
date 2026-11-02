@@ -54,6 +54,7 @@ internal static class OriginalNavigationCheck
             KeylessRuntime.Enable();
             asdab.__field_d = builder.InitialCatalog;
             var database = new Database(builder.ConnectionString);
+            if (workflow == "student-delete") OriginalWorkflowChecks.PrepareReportFixture(database);
             asdaj.__field_a = Convert.ToString(database.Scalar("SELECT xYear FROM tDefYear"));
             // Test-only context; connection guard above excludes the user's database.
             asdaj.l = "1"; asdaj.m = "";
@@ -264,14 +265,14 @@ internal static class OriginalNavigationCheck
             var targets = main.A("controls").Where(control => catalog.Target(main, control) is var target && target.HasValue && target.Value.S("class") != "asdb3" && target.Value.S("class") != "asda3")
                 .GroupBy(control => control.S("click")).Select(group => group.First()).OrderBy(control => control.S("name")).ToArray();
             if (reportActions) targets = targets.Where(control => catalog.Target(main, control).Value.S("class") == "asda0").ToArray();
-            if (businessActions) targets = targets.Where(control => new[] { "asdh", "asdac" }.Contains(catalog.Target(main, control).Value.S("class"))).ToArray();
-            if (businessActions && targets.Select(control => catalog.Target(main,control).Value.S("class")).Distinct().Count() != 2)
-                throw new InvalidOperationException("Both school and discount workflow routes are required.");
+            if (businessActions) targets = targets.Where(control => new[] { "asdh", "asdac", "asdm" }.Contains(catalog.Target(main, control).Value.S("class"))).ToArray();
+            if (businessActions && targets.Select(control => catalog.Target(main,control).Value.S("class")).Distinct().Count() != 3)
+                throw new InvalidOperationException("School, discount and student deletion workflow routes are required.");
             if (targets.Length == 0) throw new InvalidOperationException("No verification routes were discovered.");
             int passed = 0, interaction = 0;
             foreach (var control in targets)
             {
-                string route = control.S("variable") + (businessActions ? "_workflow_" + (catalog.Target(main, control).Value.S("class") == "asdh" ? "discount" : "school") : reportActions ? "_report_101" : "");
+                string route = control.S("variable") + (businessActions ? "_workflow_" + (catalog.Target(main, control).Value.S("class") == "asdh" ? "discount" : catalog.Target(main, control).Value.S("class") == "asdm" ? "student-delete" : "school") : reportActions ? "_report_101" : "");
                 var target = catalog.Target(main, control).Value;
                 var start = new ProcessStartInfo(Environment.ProcessPath) { UseShellExecute = false, CreateNoWindow = true };
                 start.ArgumentList.Add("--verify-navigation-form"); start.ArgumentList.Add(route);
