@@ -1,2 +1,1 @@
-1cb9f93d6b41ba163ad3239bd993dd6a4e6e533b894ba0b0a69b4f71ed7fdbd4  FreeSMS-Windows-Source.zip
-c56af3dbe239b421333df773eb37efb5199b36ebd2b6e0dafb91df53a9c2c545  FreeSMS-Net10-Windows-x64.zip
+aa537e0be9c0afb2455c7feb4f68e30c2ebf678f5253a5d8a8048358dd1376c9  FreeSMS-Windows-Source.zip
