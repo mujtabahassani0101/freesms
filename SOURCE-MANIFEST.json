@@ -1,6 +1,6 @@
 {
   "format": 3,
-  "source_commit": "f46aafa9e4a776d1a053ea03caebe7c8659df43b",
+  "source_commit": "38cab69f7cac73a3b133d1122f3aedd99a35b970",
   "target": "Windows x64: self-contained x86 .NET 10 application, controls and reports",
   "files": [
     {
@@ -30,8 +30,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 7381,
-      "sha256": "5f1df4241fb958ab63a065f8116e977bdad63484298b078a6fab3b9f759aba3c"
+      "bytes": 7031,
+      "sha256": "15776e0d16eea77ae20c78a3bb4965fa13fcfddcfe56d48dddcd5d80258e3ecb"
     },
     {
       "path": "analysis/ShamsiDate.cs",
@@ -8545,8 +8545,8 @@
     },
     {
       "path": "validation/README-native.md",
-      "bytes": 1825,
-      "sha256": "5b6673cd5334d9679778f4c64b963d10cf300193fdfaeb28afc8c827cafd23d5"
+      "bytes": 1680,
+      "sha256": "eb1dad871ebd32575c00741b0b324bc200c7c4c215980cf6179c6a31436cca5d"
     },
     {
       "path": "validation/RESULTS.md",
