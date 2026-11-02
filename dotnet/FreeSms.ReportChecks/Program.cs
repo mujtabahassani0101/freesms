@@ -58,4 +58,18 @@ Check(Equals(Eval("isnull({d.comment})", 1), true), "database null detection");
 Check(Equals(Eval("'الف' + ' ' + {d.comment}"), "الف نام"), "Persian text concatenation");
 Check(Equals(Eval("mid('1405/08/11', 6, 2)"), "08"), "one-based date substring");
 Check(Equals(Eval("if false then 'الف' else if {d.mark}>0 then 'ب' else 'پ'"), "ب"), "nested conditions");
+string workbook = Path.Combine(Path.GetTempPath(), "FreeSms-report-" + Guid.NewGuid().ToString("N") + ".xlsx");
+try
+{
+    var exportData = new DataSet(); exportData.Tables.Add(data.Copy());
+    var exportInput = new ReportInput { Data = exportData };
+    ReportWorkbook.Save(workbook, new ReportModel(XElement.Parse("<report type='نمرات'/>")), exportInput);
+    using var archive = System.IO.Compression.ZipFile.OpenRead(workbook);
+    XNamespace ns = "http://schemas.openxmlformats.org/spreadsheetml/2006/main";
+    using var stream = archive.GetEntry("xl/worksheets/sheet1.xml")!.Open();
+    var sheet = XDocument.Load(stream);
+    Check(sheet.Descendants(ns + "row").Count() == 4 && sheet.Descendants(ns + "v").Any(v => v.Value == "19.995"), "Excel export preserves every record and decimal value");
+    Check(sheet.Descendants(ns + "t").Any(t => t.Value == "نام") && !sheet.Descendants(ns + "f").Any(), "Excel export preserves Persian text without generated formulas");
+}
+finally { File.Delete(workbook); }
 Console.WriteLine("SUCCESS " + count);

@@ -3,6 +3,11 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+    inputs:
+      persist_evidence:
+        description: Commit selected synthetic report previews and verification logs
+        type: boolean
+        default: false
 permissions:
   contents: read
 concurrency:
@@ -41,6 +46,8 @@ jobs:
             validation/report-formulas-checks.log
           retention-days: 7
   original:
+    permissions:
+      contents: write
     name: Native .NET 10 original application
     runs-on: windows-2025
     timeout-minutes: 20
@@ -99,3 +106,25 @@ jobs:
           name: FreeSMS-Net10-Windows-x86
           path: dist/FreeSMS-Net10/
           retention-days: 7
+      - name: Save selected review evidence when requested
+        if: ${{ success() && github.event_name == 'workflow_dispatch' && inputs.persist_evidence }}
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force validation/previews | Out-Null
+          Copy-Item dist/FreeSMS-Net10/original-forms/asdb3.png validation/previews/main.png -Force
+          Copy-Item dist/FreeSMS-Net10/original-forms/asdk.png validation/previews/designer.png -Force
+          foreach ($name in @('CR_AF_StdKarnameDorehByChart_term1.rpt','CrAvgClassBooks_1.rpt','CrListBooksRengMark2.rpt','CrRptStdBalance.rpt','long-subreport-last')) {
+            Copy-Item "validation/native-controls/$name.png" validation/previews/ -Force
+          }
+          Copy-Item dist/FreeSMS-Net10/original-forms-verification.txt validation/net10-forms-verification.txt -Force
+          Copy-Item dist/FreeSMS-Net10/native-startup-verification.txt validation/net10-startup-verification.txt -Force
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add validation/previews validation/net10-forms-verification.txt validation/net10-startup-verification.txt validation/native-controls-checks.log
+          git diff --cached --quiet
+          if ($LASTEXITCODE -eq 1) {
+            git commit -m 'Record native Windows verification previews'
+            if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+            git push origin HEAD:main
+            if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          }

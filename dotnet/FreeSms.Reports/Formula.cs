@@ -17,6 +17,7 @@ public sealed class FormulaContext
     private readonly HashSet<string> evaluating = new(StringComparer.OrdinalIgnoreCase);
     public object? Field(string name)
     {
+        name = name.Trim();
         if (name.StartsWith('@'))
         {
             name = name[1..];

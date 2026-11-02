@@ -12,12 +12,14 @@ internal static class ReportFixtures
             .Concat(template.Descendants("source").Select(x => (string?)x.Attribute("formula") ?? ""))
             .Concat(template.Descendants("group").Select(x => (string?)x.Attribute("field") ?? ""))
             .Concat(template.Descendants("sort").Select(x => (string?)x.Attribute("field") ?? ""));
-        foreach (var field in expressions.SelectMany(s => Regex.Matches(s, @"\{([^@?#}][^}]*)\}").Select(m => m.Groups[1].Value.Split('.').Last())).Distinct(StringComparer.OrdinalIgnoreCase))
+        foreach (var field in expressions.SelectMany(s => Regex.Matches(s, @"\{([^@?#}][^}]*)\}").Select(m => m.Groups[1].Value.Trim().Split('.').Last())).Distinct(StringComparer.OrdinalIgnoreCase))
             if (!table.Columns.Contains(field)) table.Columns.Add(field, typeof(object));
+        foreach (var field in template.Element("database")?.Descendants("field") ?? [])
+            if (!table.Columns.Contains((string)field.Attribute("name")!)) table.Columns.Add((string)field.Attribute("name")!, typeof(object));
         for (int index = 0; index < count; index++)
         {
             var row = table.NewRow();
-            foreach (DataColumn column in table.Columns) row[column] = 1m;
+            foreach (DataColumn column in table.Columns) row[column] = column.ColumnName.Equals("notShowBalance", StringComparison.OrdinalIgnoreCase) ? false : 1m;
             table.Rows.Add(row);
         }
         var data = new DataSet(); data.Tables.Add(table);

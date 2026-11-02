@@ -75,14 +75,23 @@ public sealed class ReportModel
                     if (total == null) throw new InvalidDataException("Missing report running total: " + name);
                     var records = rows.Take(row == null ? 0 : rows.ToList().IndexOf(row) + 1);
                     var group = (string?)total.Attribute("group");
-                    if (group != null) { var key = Evaluate(group, context!); records = records.Where(r => Equals(Evaluate(group, Context(input, r, rows)), key)); }
+                    var resetField = (string?)total.Attribute("reset-field");
+                    if (group != null || resetField != null)
+                    {
+                        var fields = group == null ? new[] { resetField! } : Groups.Take(Array.FindIndex(Groups, g => g.Equals(group, StringComparison.OrdinalIgnoreCase)) + 1).DefaultIfEmpty(group).ToArray();
+                        var keys = fields.Select(field => Evaluate(field, context!)).ToArray();
+                        var prefix = records.ToArray();
+                        int start = Array.FindLastIndex(prefix, r => fields.Where((field, i) => !Equals(Evaluate(field, Context(input, r, rows)), keys[i])).Any()) + 1;
+                        records = prefix.Skip(start);
+                    }
                     var condition = total.Element("EvaluationCondition")?.Value;
                     if (!string.IsNullOrWhiteSpace(condition)) records = records.Where(r => Formula.Boolean(Evaluate(condition, Context(input, r, rows))));
                     var values = records.ToArray();
                     var field = (string?)total.Attribute("field");
                     string operation = total.Element("Operation")?.Value ?? "Count";
-                    if (operation.Contains("Count", StringComparison.OrdinalIgnoreCase) || field == null) return values.Length;
-                    var numbers = values.Select(r => Convert.ToDecimal(Evaluate(field, Context(input, r, rows)) ?? 0, System.Globalization.CultureInfo.InvariantCulture)).ToArray();
+                    var entries = field == null ? values.Select(_ => (object?)1).ToArray() : values.Select(r => Evaluate(field, Context(input, r, rows))).Where(v => v != null).ToArray();
+                    if (operation.Contains("Count", StringComparison.OrdinalIgnoreCase) || field == null) return entries.Length;
+                    var numbers = entries.Select(value => Convert.ToDecimal(value, System.Globalization.CultureInfo.InvariantCulture)).ToArray();
                     return operation.Contains("Average", StringComparison.OrdinalIgnoreCase) ? numbers.Length == 0 ? 0 : numbers.Average() : numbers.Sum();
                 }
                 throw new InvalidDataException("Unsupported report special value: " + name);
@@ -94,6 +103,8 @@ public sealed class ReportModel
     {
         var table = input.Data?.Tables.Cast<DataTable>().FirstOrDefault();
         var rows = table?.Rows.Cast<DataRow>().ToArray() ?? [];
+        string selection = Xml.Element("record-selection")?.Value ?? "";
+        if (!string.IsNullOrWhiteSpace(selection)) rows = rows.Where(row => Formula.Boolean(Evaluate(selection, Context(input, row, rows)))).ToArray();
         IOrderedEnumerable<DataRow>? sorted = null;
         foreach (var sort in Xml.Element("sorts")?.Elements("sort") ?? [])
         {

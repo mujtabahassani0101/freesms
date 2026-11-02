@@ -21,6 +21,8 @@ internal static class LayoutExporter
             var xml = ExportReport(report);
             xml.SetAttributeValue("type", type.FullName);
             new XDocument(xml).Save(Path.Combine(directory, report.ResourceName + ".xml"));
+            if (xml.Descendants("object").Any(o => o.Element("Kind")?.Value == "CrossTabObject"))
+                ReferenceExporter.Export(report, Path.Combine(directory, "..", "reference"));
         }
     }
     private static XElement ExportReport(ReportDocument report, bool isSubreport = false)
@@ -168,6 +170,10 @@ internal static class LayoutExporter
                         if (item is R.ISCRPictureObject picture)
                         {
                             obj.SetAttributeValue("picture-type", picture.PictureType);
+                            obj.SetAttributeValue("original-width", picture.OriginalWidth);
+                            obj.SetAttributeValue("original-height", picture.OriginalHeight);
+                            obj.SetAttributeValue("x-scaling", picture.XScaling);
+                            obj.SetAttributeValue("y-scaling", picture.YScaling);
                             if (picture.PictureData != null)
                                 obj.Add(new XElement("picture", Convert.ToBase64String(picture.PictureData.ByteArray)));
                         }

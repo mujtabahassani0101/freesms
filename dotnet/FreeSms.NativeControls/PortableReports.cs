@@ -295,7 +295,7 @@ namespace FreeSms.NativeControls
         {
             var chart = obj.Element("chart");
             if (chart == null) throw new InvalidDataException("The migrated chart definition is missing: " + obj.Element("Name")?.Value);
-            var scope = model.Scope(input, band.Row, rows, model.GroupLevel(band.Section));
+            var scope = (Kind(band.Section).StartsWith("Group", StringComparison.Ordinal) ? model.Scope(input, band.Row, rows, model.GroupLevel(band.Section)) : rows);
             var categories = chart.Elements("category").Select(x => x.Value).ToArray();
             var series = chart.Elements("series").Select(x => x.Value).ToArray();
             if (categories.Length == 0 || series.Length == 0) throw new InvalidDataException("The migrated chart has no category or values.");
@@ -325,7 +325,7 @@ namespace FreeSms.NativeControls
             bool rooms = model.Name.Contains("AmarHozeh", StringComparison.OrdinalIgnoreCase);
             string rowField = rooms ? "hozeh" : ranges ? "book" : "Class";
             string columnField = rooms ? "Paye" : ranges ? "status" : "book";
-            var scope = model.Scope(input, band.Row, rows, model.GroupLevel(band.Section));
+            var scope = (Kind(band.Section).StartsWith("Group", StringComparison.Ordinal) ? model.Scope(input, band.Row, rows, model.GroupLevel(band.Section)) : rows);
             string Read(string field, DataRow row) => Formula.Text(model.Evaluate("{@" + field + "}", model.Context(input, row, scope)));
             var rowKeys = scope.Select(r => Read(rowField, r)).Distinct().ToArray();
             var columns = scope.Select(r => Read(columnField, r)).Distinct().ToArray();
@@ -359,17 +359,25 @@ namespace FreeSms.NativeControls
         private readonly ToolStripButton print;
         private readonly ToolStripButton export;
         private PortableReportDocument document;
+        private ReportModel model;
+        private ReportInput input;
         public bool ShowPrint { get => print.Visible; set => print.Visible = value; }
         public bool ShowExport { get => export.Visible; set => export.Visible = value; }
         public PortableReportViewer()
         {
             print = new ToolStripButton("چاپ / PDF", null, (s,e) => { if (document == null) return; using var dialog = new PrintDialog { Document = document, UseEXDialog = true }; if (dialog.ShowDialog(FindForm()) == DialogResult.OK) document.Print(); });
-            export = new ToolStripButton("ذخیرهٔ تصویر", null, (s,e) =>
+            export = new ToolStripButton("خروجی Excel / تصویر", null, (s,e) =>
             {
                 if (document == null) return;
-                using var dialog = new SaveFileDialog { Filter = "PNG|*.png", FileName = "report.png" };
-                if (dialog.ShowDialog(FindForm()) == DialogResult.OK)
-                    for (int i = 0; i < document.PageCount; i++)
+                using var dialog = new SaveFileDialog { Filter = "Excel workbook|*.xlsx|PNG images|*.png", FileName = "report.xlsx" };
+                if (dialog.ShowDialog(FindForm()) != DialogResult.OK) return;
+                if (dialog.FilterIndex == 1)
+                {
+                    string temporary = dialog.FileName + "." + Guid.NewGuid().ToString("N") + ".tmp";
+                    try { ReportWorkbook.Save(temporary, model, input); File.Move(temporary, dialog.FileName, true); }
+                    finally { if (File.Exists(temporary)) File.Delete(temporary); }
+                }
+                else for (int i = 0; i < document.PageCount; i++)
                         document.SavePageImage(Path.Combine(Path.GetDirectoryName(dialog.FileName), Path.GetFileNameWithoutExtension(dialog.FileName) + (document.PageCount == 1 ? "" : "-" + (i + 1)) + ".png"), i, 200);
             });
             strip.Items.Add(print); strip.Items.Add(export);
@@ -381,6 +389,7 @@ namespace FreeSms.NativeControls
         public void Open(ReportModel model, ReportInput input)
         {
             preview.Document = null; document?.Dispose();
+            this.model = model; this.input = input;
             document = new PortableReportDocument(model, input); preview.Document = document; preview.InvalidatePreview();
         }
         protected override void Dispose(bool disposing) { if (disposing) document?.Dispose(); base.Dispose(disposing); }
