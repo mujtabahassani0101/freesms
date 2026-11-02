@@ -358,6 +358,7 @@ namespace FreeSms.NativeControls
         private PortableReportDocument document;
         private ReportModel model;
         private ReportInput input;
+        public int ReportPageCount => document?.PageCount ?? 0;
         public bool ShowPrint { get => print.Visible; set => print.Visible = value; }
         public bool ShowExport { get => export.Visible; set => export.Visible = value; }
         public PortableReportViewer()

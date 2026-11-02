@@ -23,6 +23,9 @@ internal static class OriginalNavigationCheck
     }
     internal static int Worker(string route)
     {
+        int marker = route.IndexOf("_report_", StringComparison.Ordinal);
+        string reportId = marker < 0 ? null : route.Substring(marker + 8);
+        string routeVariable = marker < 0 ? route : route.Substring(0, marker);
         var builder = new SqlConnectionStringBuilder(Environment.GetEnvironmentVariable(WorkerConnection) ?? "");
         if (!builder.InitialCatalog.StartsWith("free_sms_ui_", StringComparison.Ordinal) || builder.ApplicationName != "FreeSMS.NavigationCheck" || !builder.DataSource.StartsWith(@"np:\\.\pipe\LOCALDB#", StringComparison.OrdinalIgnoreCase))
             throw new InvalidOperationException("Navigation probes require their isolated test database.");
@@ -34,7 +37,7 @@ internal static class OriginalNavigationCheck
         {
             var catalog = new FormCatalog(AppContext.BaseDirectory);
             var definition = catalog.ByName["frmMain"];
-            var control = definition.A("controls").Single(item => item.S("variable") == route);
+            var control = definition.A("controls").Single(item => item.S("variable") == routeVariable);
             var target = catalog.Target(definition, control) ?? throw new ArgumentException("Not a navigation route.");
             string className = target.S("class");
             if (className == "asdb3" || className == "asda3") throw new ArgumentException("Not a navigation destination.");
@@ -56,7 +59,7 @@ internal static class OriginalNavigationCheck
             File.AppendAllText(workerLog, "CONSTRUCT" + Environment.NewLine);
             using var main = new asdb3(); // Do not show the main form or invoke its login Load handler.
             using var timer = new Timer { Interval = 300 };
-            bool started = false;
+            bool started = false, previewClicked = false;
             timer.Tick += (sender, e) =>
             {
                 if (!started)
@@ -68,6 +71,34 @@ internal static class OriginalNavigationCheck
                     return;
                 }
                 var windows = Application.OpenForms.Cast<Form>().Where(form => form.Visible).ToArray();
+                if (reportId != null)
+                {
+                    var selector = windows.FirstOrDefault(form => form.GetType().Name == className);
+                    if (!previewClicked && selector != null)
+                    {
+                        previewClicked = true;
+                        PrepareReportPreview(selector, reportId);
+                        File.AppendAllText(workerLog, "CLICK actual report preview button, report=" + reportId + Environment.NewLine);
+                        Field<Janus.Windows.EditControls.UIButton>(selector, "m_c").PerformClick();
+                        return;
+                    }
+                    var viewers = windows.SelectMany(Descendants).OfType<FreeSms.NativeControls.PortableReportViewer>().ToArray();
+                    if (viewers.Any(viewer => viewer.ReportPageCount > 0))
+                    {
+                        var viewer = viewers.First(viewer => viewer.ReportPageCount > 0);
+                        using var image = new System.Drawing.Bitmap(viewer.Width, viewer.Height);
+                        viewer.DrawToBitmap(image, new System.Drawing.Rectangle(System.Drawing.Point.Empty, image.Size));
+                        image.Save(Path.Combine(directory, route + ".png"));
+                        File.AppendAllText(workerLog, "SUCCESS actual report controller and preview; pages=" + viewer.ReportPageCount + Environment.NewLine);
+                        Environment.Exit(0);
+                    }
+                    if (HasNativeDialog())
+                    {
+                        File.AppendAllText(workerLog, "FAILED unexpected modal during report preview" + Environment.NewLine);
+                        Environment.Exit(1);
+                    }
+                    return;
+                }
                 if (windows.Any(form => form.GetType().Name == className))
                 {
                     File.AppendAllText(workerLog, "SUCCESS loaded, shown and UI timer responded" + Environment.NewLine);
@@ -107,14 +138,47 @@ internal static class OriginalNavigationCheck
         }, IntPtr.Zero);
         return found;
     }
-    internal static int Run()
+    private static T Field<T>(Form form, string name) => (T)form.GetType().GetField(name, BindingFlags.Instance | BindingFlags.NonPublic).GetValue(form);
+    private static System.Collections.Generic.IEnumerable<Control> Descendants(Control parent)
+    {
+        foreach (Control child in parent.Controls)
+        {
+            yield return child;
+            foreach (var nested in Descendants(child)) yield return nested;
+        }
+    }
+    private static void PrepareReportPreview(Form selector, string reportId)
+    {
+        var reports = Field<Janus.Windows.GridEX.GridEX>(selector, "m_b");
+        int selected = -1;
+        for (int i = 0; i < reports.RowCount; i++)
+            if (Convert.ToString(reports.GetRow(i).Cells["id"].Value) == reportId) { selected = i; break; }
+        if (selected < 0) throw new InvalidOperationException("Required report not available: " + reportId);
+        reports.Row = selected;
+        var classes = Field<Janus.Windows.GridEX.GridEX>(selector, "m_e");
+        if (classes.RowCount == 0) throw new InvalidOperationException("Report fixture has no classes.");
+        for (int i = 0; i < classes.RowCount; i++) classes.GetRow(i).Cells["Selector"].Value = i == 0;
+        var exams = Field<Janus.Windows.GridEX.GridEX>(selector, "m_f");
+        string term = Convert.ToString(reports.GetRow(selected).Cells["term"].Value);
+        int count = Convert.ToInt32(reports.GetRow(selected).Cells["countExam"].Value);
+        int chosen = 0;
+        for (int i = 0; i < exams.RowCount; i++)
+        {
+            bool pick = chosen < Math.Max(1, count) && (term.Length == 0 || term == Convert.ToString(exams.GetRow(i).Cells["term"].Value));
+            exams.GetRow(i).Cells["Selector"].Value = pick;
+            if (pick) chosen++;
+        }
+        if (chosen == 0) throw new InvalidOperationException("Report fixture has no compatible exam.");
+        File.AppendAllText(workerLog, "PREPARED classes=1 exams=" + chosen + " term=" + term + Environment.NewLine);
+    }
+    internal static int Run(bool reportActions = false)
     {
         string suffix = Guid.NewGuid().ToString("N");
         string instance = "FreeSmsUiCheck_" + suffix;
         var options = new DatabaseOptions(Path.Combine(Path.GetTempPath(), instance), instance, "free_sms_ui_" + suffix);
         string directory = Path.Combine(AppContext.BaseDirectory, "navigation-checks");
         Directory.CreateDirectory(directory);
-        string summary = Path.Combine(directory, "summary.log");
+        string summary = Path.Combine(directory, reportActions ? "report-actions-summary.log" : "summary.log");
         File.WriteAllText(summary, "Isolated native form Load/Shown responsiveness checks" + Environment.NewLine);
         try
         {
@@ -125,16 +189,18 @@ internal static class OriginalNavigationCheck
             var main = catalog.ByName["frmMain"];
             var targets = main.A("controls").Where(control => catalog.Target(main, control) is var target && target.HasValue && target.Value.S("class") != "asdb3" && target.Value.S("class") != "asda3")
                 .GroupBy(control => control.S("click")).Select(group => group.First()).OrderBy(control => control.S("name")).ToArray();
+            if (reportActions) targets = targets.Where(control => catalog.Target(main, control).Value.S("class") == "asda0").ToArray();
+            if (targets.Length == 0) throw new InvalidOperationException("No verification routes were discovered.");
             int passed = 0, interaction = 0;
             foreach (var control in targets)
             {
-                string route = control.S("variable");
+                string route = control.S("variable") + (reportActions ? "_report_101" : "");
                 var target = catalog.Target(main, control).Value;
                 var start = new ProcessStartInfo(Environment.ProcessPath) { UseShellExecute = false, CreateNoWindow = true };
                 start.ArgumentList.Add("--verify-navigation-form"); start.ArgumentList.Add(route);
                 start.Environment[WorkerConnection] = connection.ConnectionString;
                 using var process = Process.Start(start);
-                bool finished = process.WaitForExit(10000);
+                bool finished = process.WaitForExit(reportActions ? 60000 : 10000);
                 if (!finished) { process.Kill(true); process.WaitForExit(); }
                 bool success = finished && process.ExitCode == 0;
                 bool waiting = finished && process.ExitCode == 2;

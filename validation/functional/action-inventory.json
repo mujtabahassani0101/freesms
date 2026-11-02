@@ -1,0 +1,5586 @@
+{
+  "scope": "Every recovered click action; opening a form or a responsive modal is not proof of a business workflow. Add scenarios for selection/editing, keyboard actions, database effects, reports, files and error recovery.",
+  "forms": 89,
+  "controls": 2313,
+  "click_actions": 446,
+  "actions": [
+    {
+      "id": "asda0.m_c",
+      "form_class": "asda0",
+      "form": "frmRpt",
+      "form_caption": "گزارشات",
+      "control": "btnview",
+      "caption": "نمایش گزارش",
+      "handler": "l",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asda0.m_d",
+      "form_class": "asda0",
+      "form": "frmRpt",
+      "form_caption": "گزارشات",
+      "control": "btnClose",
+      "caption": "بستن",
+      "handler": "k",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asda0.m_e",
+      "form_class": "asda0",
+      "form": "frmRpt",
+      "form_caption": "گزارشات",
+      "control": "gClass",
+      "caption": null,
+      "handler": "b",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asda0.m_f",
+      "form_class": "asda0",
+      "form": "frmRpt",
+      "form_caption": "گزارشات",
+      "control": "gExam",
+      "caption": null,
+      "handler": "c",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asda0.y",
+      "form_class": "asda0",
+      "form": "frmRpt",
+      "form_caption": "گزارشات",
+      "control": "btnCancel",
+      "caption": "انصراف",
+      "handler": "f",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asda0.z",
+      "form_class": "asda0",
+      "form": "frmRpt",
+      "form_caption": "گزارشات",
+      "control": "btnAcp",
+      "caption": "تایید",
+      "handler": "h",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asda1.o",
+      "form_class": "asda1",
+      "form": "frmHozeh",
+      "form_caption": "تعریف حوزه امتحانی",
+      "control": "btnDelete",
+      "caption": "حذف",
+      "handler": "a",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asda1.n",
+      "form_class": "asda1",
+      "form": "frmHozeh",
+      "form_caption": "تعریف حوزه امتحانی",
+      "control": "btnNew",
+      "caption": "جدید",
+      "handler": "g",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asda1.m",
+      "form_class": "asda1",
+      "form": "frmHozeh",
+      "form_caption": "تعریف حوزه امتحانی",
+      "control": "btnEdit",
+      "caption": "اصلاح",
+      "handler": "d",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asda1.q",
+      "form_class": "asda1",
+      "form": "frmHozeh",
+      "form_caption": "تعریف حوزه امتحانی",
+      "control": "btnClose",
+      "caption": "بستن",
+      "handler": "b",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asda1.i",
+      "form_class": "asda1",
+      "form": "frmHozeh",
+      "form_caption": "تعریف حوزه امتحانی",
+      "control": "btnCancel",
+      "caption": "انصراف",
+      "handler": "f",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asda1.j",
+      "form_class": "asda1",
+      "form": "frmHozeh",
+      "form_caption": "تعریف حوزه امتحانی",
+      "control": "btnAcp",
+      "caption": "تایید",
+      "handler": "e",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asda2.p",
+      "form_class": "asda2",
+      "form": "frmCommentKoll",
+      "form_caption": "ثبت نمرات دوره",
+      "control": "btnMarkAll",
+      "caption": "ثبت",
+      "handler": "a",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asda2.l",
+      "form_class": "asda2",
+      "form": "frmCommentKoll",
+      "form_caption": "ثبت نمرات دوره",
+      "control": "btnSaveMark",
+      "caption": "ثبت توضیحات",
+      "handler": "b",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asda2.m_c",
+      "form_class": "asda2",
+      "form": "frmCommentKoll",
+      "form_caption": "ثبت نمرات دوره",
+      "control": "btnClose",
+      "caption": "بستن",
+      "handler": "c",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asda3.n",
+      "form_class": "asda3",
+      "form": "frmLogin",
+      "form_caption": "ورود به برنامه",
+      "control": "btnCancel",
+      "caption": "انصراف",
+      "handler": "a",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asda3.o",
+      "form_class": "asda3",
+      "form": "frmLogin",
+      "form_caption": "ورود به برنامه",
+      "control": "btnAcp",
+      "caption": "تایید",
+      "handler": "b",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asda3.p",
+      "form_class": "asda3",
+      "form": "frmLogin",
+      "form_caption": "ورود به برنامه",
+      "control": "btnChangPass",
+      "caption": "تغییر کلمه عبور",
+      "handler": "c",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asda3.m_c",
+      "form_class": "asda3",
+      "form": "frmLogin",
+      "form_caption": "ورود به برنامه",
+      "control": "uiButton1",
+      "caption": "ورود",
+      "handler": "d",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asda3.m_b",
+      "form_class": "asda3",
+      "form": "frmLogin",
+      "form_caption": "ورود به برنامه",
+      "control": "uiButton2",
+      "caption": "خروج",
+      "handler": "f",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asda4.r",
+      "form_class": "asda4",
+      "form": "frmCommentAdd",
+      "form_caption": "لیست پرداخت های شاگرد",
+      "control": "btnPrint",
+      "caption": "چاپ",
+      "handler": "a",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asda4.g",
+      "form_class": "asda4",
+      "form": "frmCommentAdd",
+      "form_caption": "لیست پرداخت های شاگرد",
+      "control": "btnDelete",
+      "caption": "حذف",
+      "handler": "b",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asda4.i",
+      "form_class": "asda4",
+      "form": "frmCommentAdd",
+      "form_caption": "لیست پرداخت های شاگرد",
+      "control": "btnClose",
+      "caption": "بستن",
+      "handler": "c",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asda4.h",
+      "form_class": "asda4",
+      "form": "frmCommentAdd",
+      "form_caption": "لیست پرداخت های شاگرد",
+      "control": "btnNew",
+      "caption": "ثبت یادداشت جدید(F1)",
+      "handler": "e",
+      "targets": [
+        "asdbb"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asda4.j",
+      "form_class": "asda4",
+      "form": "frmCommentAdd",
+      "form_caption": "لیست پرداخت های شاگرد",
+      "control": "btnEdit",
+      "caption": "اصلاح",
+      "handler": "d",
+      "targets": [
+        "asdbb"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asda5.aj",
+      "form_class": "asda5",
+      "form": "frmPaymentAdd",
+      "form_caption": "لیست پرداخت های شاگرد",
+      "control": "btnComment",
+      "caption": "یادداشت های دانش آموز",
+      "handler": "d",
+      "targets": [
+        "asda4"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asda5.ag",
+      "form_class": "asda5",
+      "form": "frmPaymentAdd",
+      "form_caption": "لیست پرداخت های شاگرد",
+      "control": "btnPrint",
+      "caption": "چاپ",
+      "handler": "f",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asda5.m_i",
+      "form_class": "asda5",
+      "form": "frmPaymentAdd",
+      "form_caption": "لیست پرداخت های شاگرد",
+      "control": "btnDelete",
+      "caption": "حذف",
+      "handler": "n",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asda5.m_k",
+      "form_class": "asda5",
+      "form": "frmPaymentAdd",
+      "form_caption": "لیست پرداخت های شاگرد",
+      "control": "btnClose",
+      "caption": "بستن",
+      "handler": "q",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asda5.m_j",
+      "form_class": "asda5",
+      "form": "frmPaymentAdd",
+      "form_caption": "لیست پرداخت های شاگرد",
+      "control": "btnNew",
+      "caption": "ثبت مورد جدید(F1)",
+      "handler": "s",
+      "targets": [
+        "asdae"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asda5.u",
+      "form_class": "asda5",
+      "form": "frmPaymentAdd",
+      "form_caption": "لیست پرداخت های شاگرد",
+      "control": "btnEdit",
+      "caption": "اصلاح",
+      "handler": "r",
+      "targets": [
+        "asdae"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asda6.m",
+      "form_class": "asda6",
+      "form": "frmSetAcpTerm",
+      "form_caption": "ثبت نتایج شاگردان",
+      "control": "btnCopygClass",
+      "caption": "درخواست نتیجه پیشنهادی سیستم",
+      "handler": "f",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asda6.l",
+      "form_class": "asda6",
+      "form": "frmSetAcpTerm",
+      "form_caption": "ثبت نتایج شاگردان",
+      "control": "btnSaveMark",
+      "caption": "ثبت نتایج(F5)",
+      "handler": "g",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asda6.m_j",
+      "form_class": "asda6",
+      "form": "frmSetAcpTerm",
+      "form_caption": "ثبت نتایج شاگردان",
+      "control": "lYear",
+      "caption": null,
+      "handler": "e",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asda6.m_f",
+      "form_class": "asda6",
+      "form": "frmSetAcpTerm",
+      "form_caption": "ثبت نتایج شاگردان",
+      "control": "btnClose",
+      "caption": "بستن",
+      "handler": "i",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asda7.g",
+      "form_class": "asda7",
+      "form": "frmSetMark100",
+      "form_caption": "مشخصات مکتب",
+      "control": "btnAcp",
+      "caption": "ثبت",
+      "handler": "a",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asda7.f",
+      "form_class": "asda7",
+      "form": "frmSetMark100",
+      "form_caption": "مشخصات مکتب",
+      "control": "btnClose",
+      "caption": "بستن",
+      "handler": "b",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asda8.o",
+      "form_class": "asda8",
+      "form": "frmbackColor",
+      "form_caption": "تعریف دوره",
+      "control": "btnAcp",
+      "caption": "ثبت",
+      "handler": "c",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asda8.m_e",
+      "form_class": "asda8",
+      "form": "frmbackColor",
+      "form_caption": "تعریف دوره",
+      "control": "btnClose",
+      "caption": "خروج",
+      "handler": "b",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asda8.m_d",
+      "form_class": "asda8",
+      "form": "frmbackColor",
+      "form_caption": "تعریف دوره",
+      "control": "btnNew",
+      "caption": "انتخاب رنگ ",
+      "handler": "d",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asda9.o",
+      "form_class": "asda9",
+      "form": "frmbackUp",
+      "form_caption": "پیشتیبان",
+      "control": "uiButton5",
+      "caption": "خروج",
+      "handler": "b",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asda9.k",
+      "form_class": "asda9",
+      "form": "frmbackUp",
+      "form_caption": "پیشتیبان",
+      "control": "btnRestor",
+      "caption": "بازگردانی نسخه پشتیبان",
+      "handler": "c",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asda9.m",
+      "form_class": "asda9",
+      "form": "frmbackUp",
+      "form_caption": "پیشتیبان",
+      "control": "uiButton4",
+      "caption": "انتخاب مسير",
+      "handler": "d",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asda9.m_d",
+      "form_class": "asda9",
+      "form": "frmbackUp",
+      "form_caption": "پیشتیبان",
+      "control": "btnBackup",
+      "caption": "تهيه نسخه پشتيبان",
+      "handler": "e",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asda9.m_f",
+      "form_class": "asda9",
+      "form": "frmbackUp",
+      "form_caption": "پیشتیبان",
+      "control": "uiButton1",
+      "caption": "انتخاب مسير",
+      "handler": "f",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdaa.k",
+      "form_class": "asdaa",
+      "form": "frmYearMaghtaCountDay",
+      "form_caption": "مدیریت صنوف",
+      "control": "btnCancel",
+      "caption": "انصراف",
+      "handler": "a",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdaa.j",
+      "form_class": "asdaa",
+      "form": "frmYearMaghtaCountDay",
+      "form_caption": "مدیریت صنوف",
+      "control": "btnAcp",
+      "caption": "تایید",
+      "handler": "c",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdaa.i",
+      "form_class": "asdaa",
+      "form": "frmYearMaghtaCountDay",
+      "form_caption": "مدیریت صنوف",
+      "control": "btnClose",
+      "caption": "خروج",
+      "handler": "b",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdaa.m_f",
+      "form_class": "asdaa",
+      "form": "frmYearMaghtaCountDay",
+      "form_caption": "مدیریت صنوف",
+      "control": "btnNew",
+      "caption": "جدید",
+      "handler": "e",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdaa.g",
+      "form_class": "asdaa",
+      "form": "frmYearMaghtaCountDay",
+      "form_caption": "مدیریت صنوف",
+      "control": "btnEdit",
+      "caption": "اصلاح",
+      "handler": "d",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdac.f",
+      "form_class": "asdac",
+      "form": "frmSchool",
+      "form_caption": "مشخصات مکتب",
+      "control": "btnAcp",
+      "caption": "ثبت",
+      "handler": "c",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdac.m_e",
+      "form_class": "asdac",
+      "form": "frmSchool",
+      "form_caption": "مشخصات مکتب",
+      "control": "btnClose",
+      "caption": "بستن",
+      "handler": "d",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdad.m",
+      "form_class": "asdad",
+      "form": "frmDisciplinaryCases2",
+      "form_caption": "تعریف حوزه امتحانی",
+      "control": "btnDelete",
+      "caption": "حذف",
+      "handler": "a",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdad.l",
+      "form_class": "asdad",
+      "form": "frmDisciplinaryCases2",
+      "form_caption": "تعریف حوزه امتحانی",
+      "control": "btnNew",
+      "caption": "جدید",
+      "handler": "g",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdad.k",
+      "form_class": "asdad",
+      "form": "frmDisciplinaryCases2",
+      "form_caption": "تعریف حوزه امتحانی",
+      "control": "btnEdit",
+      "caption": "اصلاح",
+      "handler": "d",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdad.o",
+      "form_class": "asdad",
+      "form": "frmDisciplinaryCases2",
+      "form_caption": "تعریف حوزه امتحانی",
+      "control": "btnClose",
+      "caption": "بستن",
+      "handler": "b",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdad.m_g",
+      "form_class": "asdad",
+      "form": "frmDisciplinaryCases2",
+      "form_caption": "تعریف حوزه امتحانی",
+      "control": "btnCancel",
+      "caption": "انصراف",
+      "handler": "f",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdad.m_h",
+      "form_class": "asdad",
+      "form": "frmDisciplinaryCases2",
+      "form_caption": "تعریف حوزه امتحانی",
+      "control": "btnAcp",
+      "caption": "تایید",
+      "handler": "e",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdae.j",
+      "form_class": "asdae",
+      "form": "frmPaymentInsertUpdate",
+      "form_caption": "لیست پرداخت های شاگرد",
+      "control": "btnCancel",
+      "caption": "انصراف(Esc)",
+      "handler": "e",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdae.k",
+      "form_class": "asdae",
+      "form": "frmPaymentInsertUpdate",
+      "form_caption": "لیست پرداخت های شاگرد",
+      "control": "btnAcp",
+      "caption": "ثبت(F3)",
+      "handler": "f",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdaf.j",
+      "form_class": "asdaf",
+      "form": "frmCommentListSelectDate",
+      "form_caption": "انتخاب تاریخ",
+      "control": "btnAcp",
+      "caption": "نمایش",
+      "handler": "a",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdag.h",
+      "form_class": "asdag",
+      "form": "frmTosifConfig",
+      "form_caption": "لیست تخفیف ها",
+      "control": "btnAcp",
+      "caption": "تایید",
+      "handler": "e",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdag.n",
+      "form_class": "asdag",
+      "form": "frmTosifConfig",
+      "form_caption": "لیست تخفیف ها",
+      "control": "btnCancel",
+      "caption": "انصراف",
+      "handler": "c",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdag.m_e",
+      "form_class": "asdag",
+      "form": "frmTosifConfig",
+      "form_caption": "لیست تخفیف ها",
+      "control": "btnEdit",
+      "caption": "اصلاح",
+      "handler": "f",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdag.m_g",
+      "form_class": "asdag",
+      "form": "frmTosifConfig",
+      "form_caption": "لیست تخفیف ها",
+      "control": "btnClose",
+      "caption": "خروج",
+      "handler": "d",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdah.a5",
+      "form_class": "asdah",
+      "form": "frmImportSarbargFile",
+      "form_caption": "سربرگ",
+      "control": "btnSelectFile",
+      "caption": "انتخاب فایل الگو",
+      "handler": "a",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdah.m_q",
+      "form_class": "asdah",
+      "form": "frmImportSarbargFile",
+      "form_caption": "سربرگ",
+      "control": "btnNew",
+      "caption": "ذخیره الگو در نرم افزار",
+      "handler": "p",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdah.w",
+      "form_class": "asdah",
+      "form": "frmImportSarbargFile",
+      "form_caption": "سربرگ",
+      "control": "btnView",
+      "caption": "پیش نمایش",
+      "handler": "r",
+      "targets": [
+        "asdbp"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdah.z",
+      "form_class": "asdah",
+      "form": "frmImportSarbargFile",
+      "form_caption": "سربرگ",
+      "control": "btnCancel1",
+      "caption": null,
+      "handler": "g",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdah.ab",
+      "form_class": "asdah",
+      "form": "frmImportSarbargFile",
+      "form_caption": "سربرگ",
+      "control": "btnCancel6",
+      "caption": null,
+      "handler": "b",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdah.ac",
+      "form_class": "asdah",
+      "form": "frmImportSarbargFile",
+      "form_caption": "سربرگ",
+      "control": "btnCancel5",
+      "caption": null,
+      "handler": "c",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdah.ad",
+      "form_class": "asdah",
+      "form": "frmImportSarbargFile",
+      "form_caption": "سربرگ",
+      "control": "btnCancel4",
+      "caption": null,
+      "handler": "d",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdah.ae",
+      "form_class": "asdah",
+      "form": "frmImportSarbargFile",
+      "form_caption": "سربرگ",
+      "control": "btnCancel3",
+      "caption": null,
+      "handler": "e",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdah.af",
+      "form_class": "asdah",
+      "form": "frmImportSarbargFile",
+      "form_caption": "سربرگ",
+      "control": "btnCancel2",
+      "caption": null,
+      "handler": "f",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdah.aj",
+      "form_class": "asdah",
+      "form": "frmImportSarbargFile",
+      "form_caption": "سربرگ",
+      "control": "btnSelectPage6",
+      "caption": "صفحه 6",
+      "handler": "h",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdah.ak",
+      "form_class": "asdah",
+      "form": "frmImportSarbargFile",
+      "form_caption": "سربرگ",
+      "control": "btnSelectPage5",
+      "caption": "صفحه 5",
+      "handler": "i",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdah.al",
+      "form_class": "asdah",
+      "form": "frmImportSarbargFile",
+      "form_caption": "سربرگ",
+      "control": "btnSelectPage4",
+      "caption": "صفحه 4",
+      "handler": "j",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdah.an",
+      "form_class": "asdah",
+      "form": "frmImportSarbargFile",
+      "form_caption": "سربرگ",
+      "control": "btnSelectPage3",
+      "caption": "صفحه 3",
+      "handler": "k",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdah.ap",
+      "form_class": "asdah",
+      "form": "frmImportSarbargFile",
+      "form_caption": "سربرگ",
+      "control": "btnSelectPage2",
+      "caption": "صفحه 2",
+      "handler": "l",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdah.au",
+      "form_class": "asdah",
+      "form": "frmImportSarbargFile",
+      "form_caption": "سربرگ",
+      "control": "btnSelectPage1",
+      "caption": "انتخاب فایل",
+      "handler": "q",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdah.x",
+      "form_class": "asdah",
+      "form": "frmImportSarbargFile",
+      "form_caption": "سربرگ",
+      "control": "btnClose",
+      "caption": "بستن",
+      "handler": "m",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdah.m_s",
+      "form_class": "asdah",
+      "form": "frmImportSarbargFile",
+      "form_caption": "سربرگ",
+      "control": "btnCancel",
+      "caption": "انصراف",
+      "handler": "o",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdah.m_t",
+      "form_class": "asdah",
+      "form": "frmImportSarbargFile",
+      "form_caption": "سربرگ",
+      "control": "btnAcp",
+      "caption": "تایید",
+      "handler": "n",
+      "targets": [
+        "asdt"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdai.bf",
+      "form_class": "asdai",
+      "form": "frmlistStdSearch",
+      "form_caption": "لیست شاگردان",
+      "control": "btnComment",
+      "caption": "یادداشت",
+      "handler": "d",
+      "targets": [
+        "asda4"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdai.a0",
+      "form_class": "asdai",
+      "form": "frmlistStdSearch",
+      "form_caption": "لیست شاگردان",
+      "control": "btnXls",
+      "caption": "دریافت فایل اکسل",
+      "handler": "g",
+      "targets": [
+        "asdbe"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdai.ay",
+      "form_class": "asdai",
+      "form": "frmlistStdSearch",
+      "form_caption": "لیست شاگردان",
+      "control": "btnEdit",
+      "caption": "اصلاح مورد انتخابی",
+      "handler": "h",
+      "targets": [
+        "asdat"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdai.t",
+      "form_class": "asdai",
+      "form": "frmlistStdSearch",
+      "form_caption": "لیست شاگردان",
+      "control": "btnClose",
+      "caption": "بستن",
+      "handler": "o",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdai.m_m",
+      "form_class": "asdai",
+      "form": "frmlistStdSearch",
+      "form_caption": "لیست شاگردان",
+      "control": "btnNoSearch",
+      "caption": "حذف جستجو",
+      "handler": "m",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdak.o",
+      "form_class": "asdak",
+      "form": "frmMarkEntrySelect",
+      "form_caption": "انتخاب دوره",
+      "control": "btnStart",
+      "caption": "ورود نمرات",
+      "handler": "a",
+      "targets": [
+        "asdbd"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdak.m_c",
+      "form_class": "asdak",
+      "form": "frmMarkEntrySelect",
+      "form_caption": "انتخاب دوره",
+      "control": "btnClose",
+      "caption": "بستن",
+      "handler": "c",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdal.m_b",
+      "form_class": "asdal",
+      "form": "frmsarbarg",
+      "form_caption": "سربرگ",
+      "control": "btnCreate",
+      "caption": "پیش نمایش ",
+      "handler": "n",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdal.m_c",
+      "form_class": "asdal",
+      "form": "frmsarbarg",
+      "form_caption": "سربرگ",
+      "control": "button2",
+      "caption": "ویرایش گزارش",
+      "handler": "m",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdal.m_d",
+      "form_class": "asdal",
+      "form": "frmsarbarg",
+      "form_caption": "سربرگ",
+      "control": "button3",
+      "caption": "نمايش گزارش",
+      "handler": "l",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdal.m_f",
+      "form_class": "asdal",
+      "form": "frmsarbarg",
+      "form_caption": "سربرگ",
+      "control": "btnAcp",
+      "caption": "ثبت تغییرات",
+      "handler": "j",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdal.ac",
+      "form_class": "asdal",
+      "form": "frmsarbarg",
+      "form_caption": "سربرگ",
+      "control": "btnAcpCaption",
+      "caption": "ثبت محتوا",
+      "handler": "d",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdal.m_h",
+      "form_class": "asdal",
+      "form": "frmsarbarg",
+      "form_caption": "سربرگ",
+      "control": "button1",
+      "caption": "خروج",
+      "handler": "i",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdam.m_c",
+      "form_class": "asdam",
+      "form": "frmRptLable",
+      "form_caption": "گزارشات",
+      "control": "btnview",
+      "caption": "نمایش گزارش",
+      "handler": "b",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdam.d",
+      "form_class": "asdam",
+      "form": "frmRptLable",
+      "form_caption": "گزارشات",
+      "control": "btnClose",
+      "caption": "بستن",
+      "handler": "a",
+      "targets": [
+        "asda"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdao.m_d",
+      "form_class": "asdao",
+      "form": "FrmEmpty",
+      "form_caption": "خالی کردن بانک اطلاعاتی",
+      "control": "uiButton2",
+      "caption": "خروج",
+      "handler": "h",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdao.m_c",
+      "form_class": "asdao",
+      "form": "FrmEmpty",
+      "form_caption": "خالی کردن بانک اطلاعاتی",
+      "control": "btnEmpty",
+      "caption": "حذف",
+      "handler": "c",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdap.m_c",
+      "form_class": "asdap",
+      "form": "frmRptChart",
+      "form_caption": "گزارشات نموداری",
+      "control": "btnview",
+      "caption": "نمایش گزارش",
+      "handler": "e",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdap.m_d",
+      "form_class": "asdap",
+      "form": "frmRptChart",
+      "form_caption": "گزارشات نموداری",
+      "control": "btnClose",
+      "caption": "بستن",
+      "handler": "d",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdaq.s",
+      "form_class": "asdaq",
+      "form": "frmHazeriAgo",
+      "form_caption": "ثبت نمرات دوره",
+      "control": "btnMarkAll",
+      "caption": "کپی کردن سال و تعداد روز برای همه",
+      "handler": "a",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdaq.p",
+      "form_class": "asdaq",
+      "form": "frmHazeriAgo",
+      "form_caption": "ثبت نمرات دوره",
+      "control": "btnAcp",
+      "caption": "ثبت (F5)",
+      "handler": "b",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdaq.k",
+      "form_class": "asdaq",
+      "form": "frmHazeriAgo",
+      "form_caption": "ثبت نمرات دوره",
+      "control": "btnClose",
+      "caption": "بستن",
+      "handler": "d",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdar.u",
+      "form_class": "asdar",
+      "form": "frmPaymentList",
+      "form_caption": "لیست پرداخت های شاگرد",
+      "control": "btnview",
+      "caption": "نمایش گزارش",
+      "handler": "b",
+      "targets": [
+        "asda"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdar.s",
+      "form_class": "asdar",
+      "form": "frmPaymentList",
+      "form_caption": "لیست پرداخت های شاگرد",
+      "control": "btnXls",
+      "caption": "دریافت فایل اکسل",
+      "handler": "c",
+      "targets": [
+        "asdbe"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdar.q",
+      "form_class": "asdar",
+      "form": "frmPaymentList",
+      "form_caption": "لیست پرداخت های شاگرد",
+      "control": "btnSelectDate",
+      "caption": "انتخاب تاریخ",
+      "handler": "d",
+      "targets": [
+        "asdbs"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdar.m_c",
+      "form_class": "asdar",
+      "form": "frmPaymentList",
+      "form_caption": "لیست پرداخت های شاگرد",
+      "control": "btnClose",
+      "caption": "بستن",
+      "handler": "g",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdar.p",
+      "form_class": "asdar",
+      "form": "frmPaymentList",
+      "form_caption": "لیست پرداخت های شاگرد",
+      "control": "btnNew",
+      "caption": "ثبت مورد جدید",
+      "handler": "i",
+      "targets": [
+        "asda5"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdar.m_i",
+      "form_class": "asdar",
+      "form": "frmPaymentList",
+      "form_caption": "لیست پرداخت های شاگرد",
+      "control": "btnEdit",
+      "caption": "اصلاح مورد انتخابی",
+      "handler": "h",
+      "targets": [
+        "asdae"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdas.m_f",
+      "form_class": "asdas",
+      "form": "frmRptDis",
+      "form_caption": "گزارش موارد انضباطی",
+      "control": "btnview",
+      "caption": "نمایش گزارش",
+      "handler": "e",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdas.g",
+      "form_class": "asdas",
+      "form": "frmRptDis",
+      "form_caption": "گزارش موارد انضباطی",
+      "control": "btnClose",
+      "caption": "بستن",
+      "handler": "d",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdat.m_g",
+      "form_class": "asdat",
+      "form": "frmSabtenam",
+      "form_caption": "ثبت نام ",
+      "control": "uiButton1",
+      "caption": "بستن",
+      "handler": "av",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdat.cn",
+      "form_class": "asdat",
+      "form": "frmSabtenam",
+      "form_caption": "ثبت نام ",
+      "control": "btnEnableItem",
+      "caption": "فعال و غیر فعال کردن آیتم های ثبت نام",
+      "handler": "k",
+      "targets": [
+        "asdbt"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdat.cf",
+      "form_class": "asdat",
+      "form": "frmSabtenam",
+      "form_caption": "ثبت نام ",
+      "control": "btnPrevious",
+      "caption": "(pageUp) قبلی  ",
+      "handler": "q",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdat.cg",
+      "form_class": "asdat",
+      "form": "frmSabtenam",
+      "form_caption": "ثبت نام ",
+      "control": "btnNext",
+      "caption": "(pageDown) بعدی  ",
+      "handler": "r",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdat.m_n",
+      "form_class": "asdat",
+      "form": "frmSabtenam",
+      "form_caption": "ثبت نام ",
+      "control": "btnDeletePic",
+      "caption": "حذف عکس",
+      "handler": "at",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdat.m_o",
+      "form_class": "asdat",
+      "form": "frmSabtenam",
+      "form_caption": "ثبت نام ",
+      "control": "btnPic",
+      "caption": "انتخاب عکس",
+      "handler": "au",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdau.m",
+      "form_class": "asdau",
+      "form": "frmActivStdSarbarg",
+      "form_caption": "ثبت نمرات دوره",
+      "control": "btnAcp",
+      "caption": "ثبت (F5)",
+      "handler": "a",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdau.i",
+      "form_class": "asdau",
+      "form": "frmActivStdSarbarg",
+      "form_caption": "ثبت نمرات دوره",
+      "control": "btnClose",
+      "caption": "بستن",
+      "handler": "c",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdav.g",
+      "form_class": "asdav",
+      "form": "frmSetDefYear",
+      "form_caption": "سال تعلیمی پیش فرض",
+      "control": "btnAcp",
+      "caption": "ثبت",
+      "handler": "a",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdav.f",
+      "form_class": "asdav",
+      "form": "frmSetDefYear",
+      "form_caption": "سال تعلیمی پیش فرض",
+      "control": "btnClose",
+      "caption": "بستن",
+      "handler": "b",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdaz.g",
+      "form_class": "asdaz",
+      "form": "frmshaghe",
+      "form_caption": "ثبت نمرات دوره",
+      "control": "btnClose",
+      "caption": "بستن",
+      "handler": "b",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdb.m_i",
+      "form_class": "asdb",
+      "form": "frmlistHozeh",
+      "form_caption": "اختصاص شماره چوکی اتوماتیک",
+      "control": "btnCancel",
+      "caption": "انصراف",
+      "handler": "g",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdb.j",
+      "form_class": "asdb",
+      "form": "frmlistHozeh",
+      "form_caption": "اختصاص شماره چوکی اتوماتیک",
+      "control": "btnAcpPaye",
+      "caption": "تایید",
+      "handler": "f",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdb.ab",
+      "form_class": "asdb",
+      "form": "frmlistHozeh",
+      "form_caption": "اختصاص شماره چوکی اتوماتیک",
+      "control": "btnDeleteStdFromhozeh",
+      "caption": "حذف شاگردان از حوزه برای اختصاص مجدد",
+      "handler": "b",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdb.aa",
+      "form_class": "asdb",
+      "form": "frmlistHozeh",
+      "form_caption": "اختصاص شماره چوکی اتوماتیک",
+      "control": "btnSelectByClass",
+      "caption": "انتخاب شاگردان بر اساس صنف",
+      "handler": "c",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdb.l",
+      "form_class": "asdb",
+      "form": "frmlistHozeh",
+      "form_caption": "اختصاص شماره چوکی اتوماتیک",
+      "control": "btnNew",
+      "caption": "انتخاب شاگردان بر اساس پایه",
+      "handler": "h",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdb.n",
+      "form_class": "asdb",
+      "form": "frmlistHozeh",
+      "form_caption": "اختصاص شماره چوکی اتوماتیک",
+      "control": "btnClose",
+      "caption": "بستن",
+      "handler": "e",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdb.ae",
+      "form_class": "asdb",
+      "form": "frmlistHozeh",
+      "form_caption": "اختصاص شماره چوکی اتوماتیک",
+      "control": "btnSort",
+      "caption": "اولویت صنف ها",
+      "handler": "a",
+      "targets": [
+        "asdr"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdb0.x",
+      "form_class": "asdb0",
+      "form": "frmSendSmsMark",
+      "form_caption": "دریافت فایل اکسل نمرات برای ارسال پیامک",
+      "control": "btnProcc",
+      "caption": "ایجاد فایل",
+      "handler": "d",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdb0.w",
+      "form_class": "asdb0",
+      "form": "frmSendSmsMark",
+      "form_caption": "دریافت فایل اکسل نمرات برای ارسال پیامک",
+      "control": "btnselectPath",
+      "caption": "انتخاب مسير",
+      "handler": "e",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdb0.m_e",
+      "form_class": "asdb0",
+      "form": "frmSendSmsMark",
+      "form_caption": "دریافت فایل اکسل نمرات برای ارسال پیامک",
+      "control": "uiButton2",
+      "caption": "خروج",
+      "handler": "f",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdb1.ak",
+      "form_class": "asdb1",
+      "form": "frmSendSmsMarkTelegram",
+      "form_caption": "دریافت فایل اکسل نمرات برای ارسال پیامک",
+      "control": "btnSendTest",
+      "caption": "ارسال نمونه",
+      "handler": "a",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdb1.v",
+      "form_class": "asdb1",
+      "form": "frmSendSmsMarkTelegram",
+      "form_caption": "دریافت فایل اکسل نمرات برای ارسال پیامک",
+      "control": "btnProcc",
+      "caption": "ارسال به تلگرام",
+      "handler": "e",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdb1.m_e",
+      "form_class": "asdb1",
+      "form": "frmSendSmsMarkTelegram",
+      "form_caption": "دریافت فایل اکسل نمرات برای ارسال پیامک",
+      "control": "uiButton2",
+      "caption": "خروج",
+      "handler": "f",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdb2.m_c",
+      "form_class": "asdb2",
+      "form": "frmRptAFLsit",
+      "form_caption": "گزارش",
+      "control": "btnview",
+      "caption": "نمایش گزارش",
+      "handler": "d",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdb2.m_d",
+      "form_class": "asdb2",
+      "form": "frmRptAFLsit",
+      "form_caption": "گزارش",
+      "control": "btnClose",
+      "caption": "بستن",
+      "handler": "c",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdb3.b6",
+      "form_class": "asdb3",
+      "form": "frmMain",
+      "form_caption": "SMS نرم افزار ",
+      "control": "toolfrmSchool",
+      "caption": "مشخصات مکتب",
+      "handler": "y",
+      "targets": [
+        "asdac"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdb3.m_w",
+      "form_class": "asdb3",
+      "form": "frmMain",
+      "form_caption": "SMS نرم افزار ",
+      "control": "toolfrmPaye",
+      "caption": "پایه ها",
+      "handler": "bk",
+      "targets": [
+        "asdcd"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdb3.m_bl",
+      "form_class": "asdb3",
+      "form": "frmMain",
+      "form_caption": "SMS نرم افزار ",
+      "control": "toolYearMaghtaCountDay",
+      "caption": "ایام سال تعلیمی",
+      "handler": "aq",
+      "targets": [
+        "asdaa"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdb3.b1",
+      "form_class": "asdb3",
+      "form": "frmMain",
+      "form_caption": "SMS نرم افزار ",
+      "control": "toolfrmTosifConfig",
+      "caption": "تنظیمات درجه بندی",
+      "handler": "ac",
+      "targets": [
+        "asdag"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdb3.m_l",
+      "form_class": "asdb3",
+      "form": "frmMain",
+      "form_caption": "SMS نرم افزار ",
+      "control": "toolfrmCls",
+      "caption": "مدیریت صنوف",
+      "handler": "bu",
+      "targets": [
+        "asdc"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdb3.m_k",
+      "form_class": "asdb3",
+      "form": "frmMain",
+      "form_caption": "SMS نرم افزار ",
+      "control": "toolfrBook",
+      "caption": "دروس",
+      "handler": "bv",
+      "targets": [
+        "asdca"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdb3.m_j",
+      "form_class": "asdb3",
+      "form": "frmMain",
+      "form_caption": "SMS نرم افزار ",
+      "control": "toolfrmTeacher",
+      "caption": "لیست معلمان",
+      "handler": "bp",
+      "targets": [
+        "asdbi"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdb3.m_r",
+      "form_class": "asdb3",
+      "form": "frmMain",
+      "form_caption": "SMS نرم افزار ",
+      "control": "toolfrmTchClass",
+      "caption": "معلم-درس",
+      "handler": "bo",
+      "targets": [
+        "asdj"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdb3.m_bt",
+      "form_class": "asdb3",
+      "form": "frmMain",
+      "form_caption": "SMS نرم افزار ",
+      "control": "toolDriver",
+      "caption": "لیست رانندگان",
+      "handler": "ah",
+      "targets": [
+        "asdl"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdb3.b2",
+      "form_class": "asdb3",
+      "form": "frmMain",
+      "form_caption": "SMS نرم افزار ",
+      "control": "toolOst",
+      "caption": "لیست ولسوالی ها",
+      "handler": "ab",
+      "targets": [
+        "asdo"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdb3.dg",
+      "form_class": "asdb3",
+      "form": "frmMain",
+      "form_caption": "SMS نرم افزار ",
+      "control": "toolfrmUser",
+      "caption": "مدیریت کاربران",
+      "handler": "o",
+      "targets": [
+        "asdi"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdb3.d7",
+      "form_class": "asdb3",
+      "form": "frmMain",
+      "form_caption": "SMS نرم افزار ",
+      "control": "toolSetMark100",
+      "caption": "ورود نمره سالانه از 100 برای کل دانش آموزان",
+      "handler": "a",
+      "targets": [
+        "asda7"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdb3.m_e",
+      "form_class": "asdb3",
+      "form": "frmMain",
+      "form_caption": "SMS نرم افزار ",
+      "control": "toolStd",
+      "caption": "لیست شاگردان و ثبت نام",
+      "handler": "bt",
+      "targets": [
+        "asdm"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdb3.m_bv",
+      "form_class": "asdb3",
+      "form": "frmMain",
+      "form_caption": "SMS نرم افزار ",
+      "control": "toolImportStd",
+      "caption": "ثبت دانش آموزان از فایل اکسل",
+      "handler": "af",
+      "targets": [
+        "asdb7"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdb3.m_bm",
+      "form_class": "asdb3",
+      "form": "frmMain",
+      "form_caption": "SMS نرم افزار ",
+      "control": "toolHazeri1",
+      "caption": "ثبت تعداد حاضری چهار و نیم ماهه",
+      "handler": "ap",
+      "targets": [
+        "asdp"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdb3.m_bn",
+      "form_class": "asdb3",
+      "form": "frmMain",
+      "form_caption": "SMS نرم افزار ",
+      "control": "toolHazeri2",
+      "caption": "ثبت تعداد حاضری سالانه",
+      "handler": "ao",
+      "targets": [
+        "asdp"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdb3.m_bu",
+      "form_class": "asdb3",
+      "form": "frmMain",
+      "form_caption": "SMS نرم افزار ",
+      "control": "toolDriverStd",
+      "caption": "اختصاص راننده به دانش آموز",
+      "handler": "ag",
+      "targets": [
+        "asdf"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdb3.m_bw",
+      "form_class": "asdb3",
+      "form": "frmMain",
+      "form_caption": "SMS نرم افزار ",
+      "control": "toolfrmlistStdSearch",
+      "caption": "خروجی دانش آموزان بر اساس فیلتر دلخواه",
+      "handler": "ae",
+      "targets": [
+        "asdai"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdb3.m_bp",
+      "form_class": "asdb3",
+      "form": "frmMain",
+      "form_caption": "SMS نرم افزار ",
+      "control": "toolfrmRptAFLsit",
+      "caption": "گزارشات",
+      "handler": "al",
+      "targets": [
+        "asdb2"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdb3.d3",
+      "form_class": "asdb3",
+      "form": "frmMain",
+      "form_caption": "SMS نرم افزار ",
+      "control": "toolfrmCommentList2",
+      "caption": "لیست یادداشت های ثبت شده برای دانش آموزان",
+      "handler": "e",
+      "targets": [
+        "asdw"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdb3.d8",
+      "form_class": "asdb3",
+      "form": "frmMain",
+      "form_caption": "SMS نرم افزار ",
+      "control": "toolTakhfif",
+      "caption": "تعریف تخفیف",
+      "handler": "am",
+      "targets": [
+        "asdh"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdb3.m_bq",
+      "form_class": "asdb3",
+      "form": "frmMain",
+      "form_caption": "SMS نرم افزار ",
+      "control": "toolPaymentAdd",
+      "caption": "مدیرت پرداخت ها",
+      "handler": "ak",
+      "targets": [
+        "asda5"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdb3.b3",
+      "form_class": "asdb3",
+      "form": "frmMain",
+      "form_caption": "SMS نرم افزار ",
+      "control": "toolfrmPaymentList",
+      "caption": "لیست کلیه پرداخت ها",
+      "handler": "aa",
+      "targets": [
+        "asdar"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdb3.m_bs",
+      "form_class": "asdb3",
+      "form": "frmMain",
+      "form_caption": "SMS نرم افزار ",
+      "control": "toolRptBalance",
+      "caption": "دعوت پرداخت فیس بر اساس فصل",
+      "handler": "ai",
+      "targets": [
+        "asdbo"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdb3.m_br",
+      "form_class": "asdb3",
+      "form": "frmMain",
+      "form_caption": "SMS نرم افزار ",
+      "control": "toolRptPayment",
+      "caption": "گزارشات",
+      "handler": "aj",
+      "targets": [
+        "asdbf"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdb3.dm",
+      "form_class": "asdb3",
+      "form": "frmMain",
+      "form_caption": "SMS نرم افزار ",
+      "control": "toolfrmCommentList",
+      "caption": "لیست یادداشت های ثبت شده برای دانش آموزان",
+      "handler": "l",
+      "targets": [
+        "asdw"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdb3.m_ab",
+      "form_class": "asdb3",
+      "form": "frmMain",
+      "form_caption": "SMS نرم افزار ",
+      "control": "toolStripMenuItem6",
+      "caption": "تعریف دوره",
+      "handler": "bs",
+      "targets": [
+        "asdbq"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdb3.m_ac",
+      "form_class": "asdb3",
+      "form": "frmMain",
+      "form_caption": "SMS نرم افزار ",
+      "control": "toolStripMenuItem7",
+      "caption": "ورود نمرات",
+      "handler": "br",
+      "targets": [
+        "asdak"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdb3.m_a4",
+      "form_class": "asdb3",
+      "form": "frmMain",
+      "form_caption": "SMS نرم افزار ",
+      "control": "toolMarkEntryOne",
+      "caption": "ورود و اصلاح نمرات فردی",
+      "handler": "a1",
+      "targets": [
+        "asdby"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdb3.by",
+      "form_class": "asdb3",
+      "form": "frmMain",
+      "form_caption": "SMS نرم افزار ",
+      "control": "toolCreateXlsToMarkEntry",
+      "caption": "دریافت اکسل خام شاگردان برای ورود نمره",
+      "handler": "bd",
+      "targets": [
+        "asdg"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdb3.bz",
+      "form_class": "asdb3",
+      "form": "frmMain",
+      "form_caption": "SMS نرم افزار ",
+      "control": "toolImportMark",
+      "caption": "ورود نمرات دوره از فایل اکسل",
+      "handler": "ad",
+      "targets": [
+        "asdv"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdb3.b4",
+      "form_class": "asdb3",
+      "form": "frmMain",
+      "form_caption": "SMS نرم افزار ",
+      "control": "toolfrmSummaryResults",
+      "caption": "ثبت خلص نتایج هر صنف",
+      "handler": "z",
+      "targets": [
+        "asdba"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdb3.b7",
+      "form_class": "asdb3",
+      "form": "frmMain",
+      "form_caption": "SMS نرم افزار ",
+      "control": "toolCommentKoll6",
+      "caption": "ثبت توضیحات جدول نتایج",
+      "handler": "x",
+      "targets": [
+        "asdx"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdb3.c8",
+      "form_class": "asdb3",
+      "form": "frmMain",
+      "form_caption": "SMS نرم افزار ",
+      "control": "toolfrmSetAcpTerm1",
+      "caption": "ثبت نتیجه چهار و نیم ماهه",
+      "handler": "r",
+      "targets": [
+        "asda6"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdb3.da",
+      "form_class": "asdb3",
+      "form": "frmMain",
+      "form_caption": "SMS نرم افزار ",
+      "control": "toolfrmSetAcpTerm3",
+      "caption": "ثبت نتیجه نهایی",
+      "handler": "q",
+      "targets": [
+        "asda6"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdb3.cb",
+      "form_class": "asdb3",
+      "form": "frmMain",
+      "form_caption": "SMS نرم افزار ",
+      "control": "toolfrmSetgTerm1",
+      "caption": "درجه چهار و نیم ماهه",
+      "handler": "w",
+      "targets": [
+        "asdb8"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdb3.cd",
+      "form_class": "asdb3",
+      "form": "frmMain",
+      "form_caption": "SMS نرم افزار ",
+      "control": "toolfrmSetgTerm3",
+      "caption": "درجه نهایی",
+      "handler": "v",
+      "targets": [
+        "asdb8"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdb3.c2",
+      "form_class": "asdb3",
+      "form": "frmMain",
+      "form_caption": "SMS نرم افزار ",
+      "control": "toolfrmMarkEntryAgo",
+      "caption": "ثبت نمرات سنوات قبل صنف دوازدهم",
+      "handler": "u",
+      "targets": [
+        "asdbh"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdb3.c3",
+      "form_class": "asdb3",
+      "form": "frmMain",
+      "form_caption": "SMS نرم افزار ",
+      "control": "toolfrmHazeriAgo10",
+      "caption": "ثبت حاضری سال دهم",
+      "handler": "t",
+      "targets": [
+        "asdaq"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdb3.c4",
+      "form_class": "asdb3",
+      "form": "frmMain",
+      "form_caption": "SMS نرم افزار ",
+      "control": "toolfrmHazeriAgo11",
+      "caption": "ثبت حاضری سال یازدهم",
+      "handler": "s",
+      "targets": [
+        "asdaq"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdb3.m_ad",
+      "form_class": "asdb3",
+      "form": "frmMain",
+      "form_caption": "SMS نرم افزار ",
+      "control": "toolRpt",
+      "caption": " گزارشات",
+      "handler": "bq",
+      "targets": [
+        "asda0"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdb3.m_ae",
+      "form_class": "asdb3",
+      "form": "frmMain",
+      "form_caption": "SMS نرم افزار ",
+      "control": "toolRptChart",
+      "caption": "گزارشات نموداری",
+      "handler": "be",
+      "targets": [
+        "asdap"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdb3.m_ba",
+      "form_class": "asdb3",
+      "form": "frmMain",
+      "form_caption": "SMS نرم افزار ",
+      "control": "toolRptSelectStd",
+      "caption": "چاپ اطلاع نامه بر اساس شاگرد",
+      "handler": "aw",
+      "targets": [
+        "asdbw"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdb3.m_ah",
+      "form_class": "asdb3",
+      "form": "frmMain",
+      "form_caption": "SMS نرم افزار ",
+      "control": "toolSms",
+      "caption": "دریافت فایل اکسل نمرات برای ارسال پیامک به اولیا",
+      "handler": "bf",
+      "targets": [
+        "asdb0"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdb3.m_ag",
+      "form_class": "asdb3",
+      "form": "frmMain",
+      "form_caption": "SMS نرم افزار ",
+      "control": "toolfrmExportMarkToSite",
+      "caption": "ارسال نمرات به سایت",
+      "handler": "bg",
+      "targets": [
+        "asdcc"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdb3.m_bg",
+      "form_class": "asdb3",
+      "form": "frmMain",
+      "form_caption": "SMS نرم افزار ",
+      "control": "toolfrmSendSmsMark_armaghan",
+      "caption": "ارسال نمرات از طریق پیامک ",
+      "handler": "av",
+      "targets": [
+        "asdce"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdb3.m_a6",
+      "form_class": "asdb3",
+      "form": "frmMain",
+      "form_caption": "SMS نرم افزار ",
+      "control": "toolDisciplinaryCases1",
+      "caption": "تعریف مورد انضباطی",
+      "handler": "a0",
+      "targets": [
+        "asdbm"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdb3.m_a7",
+      "form_class": "asdb3",
+      "form": "frmMain",
+      "form_caption": "SMS نرم افزار ",
+      "control": "toolDisciplinaryCases2",
+      "caption": "تعریف موارد تشویقی",
+      "handler": "az",
+      "targets": [
+        "asdad"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdb3.m_bh",
+      "form_class": "asdb3",
+      "form": "frmMain",
+      "form_caption": "SMS نرم افزار ",
+      "control": "toolDisciplinaryCases3",
+      "caption": "تعریف اخطارهای آموزشی",
+      "handler": "au",
+      "targets": [
+        "asdq"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdb3.m_a8",
+      "form_class": "asdb3",
+      "form": "frmMain",
+      "form_caption": "SMS نرم افزار ",
+      "control": "toolfrmDisciplinaryAddAbsent",
+      "caption": "ثبت غیبت و تاخیر روزانه",
+      "handler": "ay",
+      "targets": [
+        "asdbn"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdb3.m_a9",
+      "form_class": "asdb3",
+      "form": "frmMain",
+      "form_caption": "SMS نرم افزار ",
+      "control": "toolfrmDisciplinaryAdd",
+      "caption": "ثبت موارد انضباطی و تشویقی",
+      "handler": "ax",
+      "targets": [
+        "asdn"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdb3.m_bi",
+      "form_class": "asdb3",
+      "form": "frmMain",
+      "form_caption": "SMS نرم افزار ",
+      "control": "toolRptDis",
+      "caption": "گزارشات",
+      "handler": "at",
+      "targets": [
+        "asdas"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdb3.do",
+      "form_class": "asdb3",
+      "form": "frmMain",
+      "form_caption": "SMS نرم افزار ",
+      "control": "toolRptDynamic1",
+      "caption": "طراحی سربرگ امتحانی",
+      "handler": "k",
+      "targets": [
+        "asdt"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdb3.dq",
+      "form_class": "asdb3",
+      "form": "frmMain",
+      "form_caption": "SMS نرم افزار ",
+      "control": "toolRptDynamic5",
+      "caption": "طراحی سربرگ امتحانی چند صفحه ای",
+      "handler": "j",
+      "targets": [
+        "asdt"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdb3.ds",
+      "form_class": "asdb3",
+      "form": "frmMain",
+      "form_caption": "SMS نرم افزار ",
+      "control": "toolRptDynamic2",
+      "caption": "طراحی دعوت نامه و ...",
+      "handler": "i",
+      "targets": [
+        "asdt"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdb3.du",
+      "form_class": "asdb3",
+      "form": "frmMain",
+      "form_caption": "SMS نرم افزار ",
+      "control": "toolRptDynamic3",
+      "caption": "طراحی فرم(تعهدنامه انضباطی و ...)",
+      "handler": "h",
+      "targets": [
+        "asdt"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdb3.dw",
+      "form_class": "asdb3",
+      "form": "frmMain",
+      "form_caption": "SMS نرم افزار ",
+      "control": "toolRptDynamic4",
+      "caption": "طراحی کارت دانش آموزی و ...",
+      "handler": "g",
+      "targets": [
+        "asdt"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdb3.dy",
+      "form_class": "asdb3",
+      "form": "frmMain",
+      "form_caption": "SMS نرم افزار ",
+      "control": "toolRptDynamic6",
+      "caption": "طراحی کارت تبریک تولد",
+      "handler": "f",
+      "targets": [
+        "asdt"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdb3.d5",
+      "form_class": "asdb3",
+      "form": "frmMain",
+      "form_caption": "SMS نرم افزار ",
+      "control": "toolfrmActivStdSarbarg",
+      "caption": "فعال / غیرفعال کردن چاپ دانش آموزان در طراحی",
+      "handler": "b",
+      "targets": [
+        "asdau"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdb3.d0",
+      "form_class": "asdb3",
+      "form": "frmMain",
+      "form_caption": "SMS نرم افزار ",
+      "control": "toolfrmImportSarbargFile",
+      "caption": "دریافت الگوهایی طراحی شده سایر مکتب ها",
+      "handler": "c",
+      "targets": [
+        "asdah"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdb3.d1",
+      "form_class": "asdb3",
+      "form": "frmMain",
+      "form_caption": "SMS نرم افزار ",
+      "control": "toolSarbargReg",
+      "caption": "عملیات فعال سازی",
+      "handler": "d",
+      "targets": [
+        "asdbk"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdb3.m_as",
+      "form_class": "asdb3",
+      "form": "frmMain",
+      "form_caption": "SMS نرم افزار ",
+      "control": "toolHelpLable",
+      "caption": "راهنمای استفاده ",
+      "handler": "a7",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdb3.m_ap",
+      "form_class": "asdb3",
+      "form": "frmMain",
+      "form_caption": "SMS نرم افزار ",
+      "control": "toolHoze",
+      "caption": "تعریف حوزه های امتحانی",
+      "handler": "ba",
+      "targets": [
+        "asda1"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdb3.m_aq",
+      "form_class": "asdb3",
+      "form": "frmMain",
+      "form_caption": "SMS نرم افزار ",
+      "control": "toolStripMenuItem8",
+      "caption": "اختصاص شماره چوکی اتوماتیک",
+      "handler": "a9",
+      "targets": [
+        "asdb"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdb3.m_ar",
+      "form_class": "asdb3",
+      "form": "frmMain",
+      "form_caption": "SMS نرم افزار ",
+      "control": "toolRptLable",
+      "caption": "مشاهده گزارشات",
+      "handler": "a8",
+      "targets": [
+        "asdam"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdb3.m_au",
+      "form_class": "asdb3",
+      "form": "frmMain",
+      "form_caption": "SMS نرم افزار ",
+      "control": "toolTelegramConfig",
+      "caption": "تنظیمات تلگرام",
+      "handler": "a5",
+      "targets": [
+        "asdb6"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdb3.m_aw",
+      "form_class": "asdb3",
+      "form": "frmMain",
+      "form_caption": "SMS نرم افزار ",
+      "control": "toollistTelegramMessage",
+      "caption": "لیست پیام های ارسال شده",
+      "handler": "a4",
+      "targets": [
+        "asdbj"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdb3.m_av",
+      "form_class": "asdb3",
+      "form": "frmMain",
+      "form_caption": "SMS نرم افزار ",
+      "control": "toolSendMarkToTelegram",
+      "caption": "ارسال نمرات به تلگرام اولیا",
+      "handler": "a6",
+      "targets": [
+        "asdb1"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdb3.m_bk",
+      "form_class": "asdb3",
+      "form": "frmMain",
+      "form_caption": "SMS نرم افزار ",
+      "control": "toolfrmBackColor",
+      "caption": "تنظیم رنگ پس زمینه صفحات",
+      "handler": "ar",
+      "targets": [
+        "asda8"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdb3.m_ay",
+      "form_class": "asdb3",
+      "form": "frmMain",
+      "form_caption": "SMS نرم افزار ",
+      "control": "toolfrmExpotMarkToXls",
+      "caption": "دریافت خروجی اکسل نمرات دوره",
+      "handler": "a3",
+      "targets": [
+        "asdb5"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdb3.m_a0",
+      "form_class": "asdb3",
+      "form": "frmMain",
+      "form_caption": "SMS نرم افزار ",
+      "control": "toolCommentKoll",
+      "caption": "توضیحات زیر اطلاع نامه-فردی و گروهی",
+      "handler": "bb",
+      "targets": [
+        "asdx"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdb3.m_a2",
+      "form_class": "asdb3",
+      "form": "frmMain",
+      "form_caption": "SMS نرم افزار ",
+      "control": "toolSarbarg",
+      "caption": "چاپ مشخصات شاگرد در برگه های امتحانی و ...",
+      "handler": "a2",
+      "targets": [
+        "asdal"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdb3.m_aj",
+      "form_class": "asdb3",
+      "form": "frmMain",
+      "form_caption": "SMS نرم افزار ",
+      "control": "toolBackUp",
+      "caption": "پشتیبان گیری",
+      "handler": "bm",
+      "targets": [
+        "asda9"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdb3.df",
+      "form_class": "asdb3",
+      "form": "frmMain",
+      "form_caption": "SMS نرم افزار ",
+      "control": "toolfrmSetDefYear",
+      "caption": "سال تعلیمی پیش فرض",
+      "handler": "p",
+      "targets": [
+        "asdav"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdb3.m_al",
+      "form_class": "asdb3",
+      "form": "frmMain",
+      "form_caption": "SMS نرم افزار ",
+      "control": "toolNewYear",
+      "caption": "انتقال شاگردان به پایه بالاتر",
+      "handler": "bc",
+      "targets": [
+        "asdbz"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdb3.m_h",
+      "form_class": "asdb3",
+      "form": "frmMain",
+      "form_caption": "SMS نرم افزار ",
+      "control": "toolEmpty",
+      "caption": "خالی کردن بانک",
+      "handler": "bl",
+      "targets": [
+        "asdao"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdb3.dk",
+      "form_class": "asdb3",
+      "form": "frmMain",
+      "form_caption": "SMS نرم افزار ",
+      "control": "toolfrmRegisterPak0",
+      "caption": "فعال سازی امکان شبکه",
+      "handler": "m",
+      "targets": [
+        "asdbk"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdb3.m_y",
+      "form_class": "asdb3",
+      "form": "frmMain",
+      "form_caption": "SMS نرم افزار ",
+      "control": "helpword",
+      "caption": "فرمت word",
+      "handler": "bj",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdb3.m_z",
+      "form_class": "asdb3",
+      "form": "frmMain",
+      "form_caption": "SMS نرم افزار ",
+      "control": "helpPdf",
+      "caption": "فرمت pdf",
+      "handler": "bi",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdb3.m_q",
+      "form_class": "asdb3",
+      "form": "frmMain",
+      "form_caption": "SMS نرم افزار ",
+      "control": "toolStripMenuItem5",
+      "caption": "خروج",
+      "handler": "bn",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdb3.dh",
+      "form_class": "asdb3",
+      "form": "frmMain",
+      "form_caption": "SMS نرم افزار ",
+      "control": "btnPer",
+      "caption": "مشاهده سطح دسترسی  کاربر",
+      "handler": "n",
+      "targets": [
+        "asds"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdb4.e",
+      "form_class": "asdb4",
+      "form": "frmAtach",
+      "form_caption": "بارگزاری",
+      "control": "uiButton1",
+      "caption": "بارگذاری",
+      "handler": "a",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdb4.d",
+      "form_class": "asdb4",
+      "form": "frmAtach",
+      "form_caption": "بارگزاری",
+      "control": "btnExit",
+      "caption": "خروج",
+      "handler": "b",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdb5.k",
+      "form_class": "asdb5",
+      "form": "frmExpotMarkToXls",
+      "form_caption": "دریافت فایل اکسل نمرات",
+      "control": "btnselectPath",
+      "caption": "انتخاب مسير",
+      "handler": "c",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdb5.m_e",
+      "form_class": "asdb5",
+      "form": "frmExpotMarkToXls",
+      "form_caption": "دریافت فایل اکسل نمرات",
+      "control": "btnProcc",
+      "caption": "ایجاد فایل",
+      "handler": "d",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdb5.m_d",
+      "form_class": "asdb5",
+      "form": "frmExpotMarkToXls",
+      "form_caption": "دریافت فایل اکسل نمرات",
+      "control": "uiButton2",
+      "caption": "خروج",
+      "handler": "e",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdb6.m_b",
+      "form_class": "asdb6",
+      "form": "frmTelegramConfig",
+      "form_caption": "تنظیمات ربات تلگرام",
+      "control": "btnClose",
+      "caption": "بستن",
+      "handler": "b",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdb6.e",
+      "form_class": "asdb6",
+      "form": "frmTelegramConfig",
+      "form_caption": "تنظیمات ربات تلگرام",
+      "control": "btnAcp",
+      "caption": "ثبت",
+      "handler": "a",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdb7.g",
+      "form_class": "asdb7",
+      "form": "frmImportStd",
+      "form_caption": "ثبت شاگردان از فایل اکسل",
+      "control": "BtnNew",
+      "caption": "انتخاب فایل اکسل",
+      "handler": "c",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdb7.f",
+      "form_class": "asdb7",
+      "form": "frmImportStd",
+      "form_caption": "ثبت شاگردان از فایل اکسل",
+      "control": "btnAcp",
+      "caption": "ثبت",
+      "handler": "b",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdb7.m_d",
+      "form_class": "asdb7",
+      "form": "frmImportStd",
+      "form_caption": "ثبت شاگردان از فایل اکسل",
+      "control": "btnClose",
+      "caption": "بستن",
+      "handler": "d",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdb8.t",
+      "form_class": "asdb8",
+      "form": "frmSetgTerm",
+      "form_caption": "ثبت نمرات دوره",
+      "control": "btnCopygClass",
+      "caption": "درخواست درجه پیشنهادی سیستم",
+      "handler": "a",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdb8.s",
+      "form_class": "asdb8",
+      "form": "frmSetgTerm",
+      "form_caption": "ثبت نمرات دوره",
+      "control": "btnSaveMark",
+      "caption": "ثبت درجه(F5)",
+      "handler": "b",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdb8.m",
+      "form_class": "asdb8",
+      "form": "frmSetgTerm",
+      "form_caption": "ثبت نمرات دوره",
+      "control": "btnClose",
+      "caption": "بستن",
+      "handler": "d",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdba.l",
+      "form_class": "asdba",
+      "form": "frmSummaryResults",
+      "form_caption": "خلص نتایج",
+      "control": "btnAcp",
+      "caption": "ثبت (F5)",
+      "handler": "c",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdba.g",
+      "form_class": "asdba",
+      "form": "frmSummaryResults",
+      "form_caption": "خلص نتایج",
+      "control": "btnClose",
+      "caption": "بستن",
+      "handler": "e",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdbb.n",
+      "form_class": "asdbb",
+      "form": "frmCommentInsertUpdate",
+      "form_caption": "لیست پرداخت های شاگرد",
+      "control": "btnCancel",
+      "caption": "انصراف(Esc)",
+      "handler": "g",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdbb.o",
+      "form_class": "asdbb",
+      "form": "frmCommentInsertUpdate",
+      "form_caption": "لیست پرداخت های شاگرد",
+      "control": "btnAcp",
+      "caption": "ثبت(F3)",
+      "handler": "h",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdbd.i",
+      "form_class": "asdbd",
+      "form": "frmMarkEntry",
+      "form_caption": "ثبت نمرات دوره",
+      "control": "btnMarkAll",
+      "caption": "ثبت",
+      "handler": "b",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdbd.m",
+      "form_class": "asdbd",
+      "form": "frmMarkEntry",
+      "form_caption": "ثبت نمرات دوره",
+      "control": "btnSaveMark",
+      "caption": "ثبت نمرات(F5)",
+      "handler": "d",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdbd.aa",
+      "form_class": "asdbd",
+      "form": "frmMarkEntry",
+      "form_caption": "ثبت نمرات دوره",
+      "control": "btnClose",
+      "caption": "بستن",
+      "handler": "e",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdbf.m_c",
+      "form_class": "asdbf",
+      "form": "frmRptPayment",
+      "form_caption": "گزارش",
+      "control": "btnview",
+      "caption": "نمایش گزارش",
+      "handler": "d",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdbf.m_d",
+      "form_class": "asdbf",
+      "form": "frmRptPayment",
+      "form_caption": "گزارش",
+      "control": "btnClose",
+      "caption": "بستن",
+      "handler": "c",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdbh.m_l",
+      "form_class": "asdbh",
+      "form": "frmMarkEntryAgo",
+      "form_caption": "اطلاعات داوطلبان",
+      "control": "btnPrevious",
+      "caption": "(pageUp)    قبلی  ",
+      "handler": "h",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdbh.o",
+      "form_class": "asdbh",
+      "form": "frmMarkEntryAgo",
+      "form_caption": "اطلاعات داوطلبان",
+      "control": "btnAcptest",
+      "caption": "(F5)تائيد",
+      "handler": "g",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdbh.m_m",
+      "form_class": "asdbh",
+      "form": "frmMarkEntryAgo",
+      "form_caption": "اطلاعات داوطلبان",
+      "control": "btnNext",
+      "caption": "(pageDown)    بعدی  ",
+      "handler": "i",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdbh.p",
+      "form_class": "asdbh",
+      "form": "frmMarkEntryAgo",
+      "form_caption": "اطلاعات داوطلبان",
+      "control": "btnCancel",
+      "caption": "(Esc)انصراف",
+      "handler": "m",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdbh.m_d",
+      "form_class": "asdbh",
+      "form": "frmMarkEntryAgo",
+      "form_caption": "اطلاعات داوطلبان",
+      "control": "uiButton2",
+      "caption": "خروج",
+      "handler": "l",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdbh.m_c",
+      "form_class": "asdbh",
+      "form": "frmMarkEntryAgo",
+      "form_caption": "اطلاعات داوطلبان",
+      "control": "btnNew",
+      "caption": "(F2)ورود نمرات",
+      "handler": "j",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdbh.m_j",
+      "form_class": "asdbh",
+      "form": "frmMarkEntryAgo",
+      "form_caption": "اطلاعات داوطلبان",
+      "control": "btnSearch",
+      "caption": "جستجو اسم(F3)",
+      "handler": "k",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdbi.m_g",
+      "form_class": "asdbi",
+      "form": "frmTeacher",
+      "form_caption": "اطلاعات معلمان",
+      "control": "btnCansel",
+      "caption": "انصراف",
+      "handler": "j",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdbi.o",
+      "form_class": "asdbi",
+      "form": "frmTeacher",
+      "form_caption": "اطلاعات معلمان",
+      "control": "btnAccept",
+      "caption": "تائيد",
+      "handler": "l",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdbi.s",
+      "form_class": "asdbi",
+      "form": "frmTeacher",
+      "form_caption": "اطلاعات معلمان",
+      "control": "uiButton1",
+      "caption": "خروج",
+      "handler": "g",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdbi.r",
+      "form_class": "asdbi",
+      "form": "frmTeacher",
+      "form_caption": "اطلاعات معلمان",
+      "control": "btnPrint",
+      "caption": "چاپ",
+      "handler": "h",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdbi.m_c",
+      "form_class": "asdbi",
+      "form": "frmTeacher",
+      "form_caption": "اطلاعات معلمان",
+      "control": "btnDelete",
+      "caption": "حذف",
+      "handler": "i",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdbi.m_d",
+      "form_class": "asdbi",
+      "form": "frmTeacher",
+      "form_caption": "اطلاعات معلمان",
+      "control": "btnNew",
+      "caption": "جديد",
+      "handler": "m",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdbi.m_e",
+      "form_class": "asdbi",
+      "form": "frmTeacher",
+      "form_caption": "اطلاعات معلمان",
+      "control": "btnEdit",
+      "caption": "اصلاح",
+      "handler": "k",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdbi.m_h",
+      "form_class": "asdbi",
+      "form": "frmTeacher",
+      "form_caption": "اطلاعات معلمان",
+      "control": "gteacher",
+      "caption": null,
+      "handler": "c",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdbj.ao",
+      "form_class": "asdbj",
+      "form": "frmlistTelegramMessage",
+      "form_caption": "لیست شاگردان",
+      "control": "btnCancelViewMessage",
+      "caption": "بستن",
+      "handler": "a",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdbj.v",
+      "form_class": "asdbj",
+      "form": "frmlistTelegramMessage",
+      "form_caption": "لیست شاگردان",
+      "control": "btnViewMessage",
+      "caption": "مشاهده پیام",
+      "handler": "b",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdbj.u",
+      "form_class": "asdbj",
+      "form": "frmlistTelegramMessage",
+      "form_caption": "لیست شاگردان",
+      "control": "btnClose",
+      "caption": "خروج",
+      "handler": "e",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdbj.o",
+      "form_class": "asdbj",
+      "form": "frmlistTelegramMessage",
+      "form_caption": "لیست شاگردان",
+      "control": "btnNoSearch",
+      "caption": "حذف فیلترهای جستجو",
+      "handler": "h",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdbk.i",
+      "form_class": "asdbk",
+      "form": "frmRegisterPak",
+      "form_caption": "پیشتیبان",
+      "control": "uiButton5",
+      "caption": "خروج",
+      "handler": "b",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdbk.f",
+      "form_class": "asdbk",
+      "form": "frmRegisterPak",
+      "form_caption": "پیشتیبان",
+      "control": "btnRestor",
+      "caption": "فعال سازی",
+      "handler": "c",
+      "targets": [
+        "asdu"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdbk.h",
+      "form_class": "asdbk",
+      "form": "frmRegisterPak",
+      "form_caption": "پیشتیبان",
+      "control": "uiButton4",
+      "caption": "انتخاب فایل فعال سازی",
+      "handler": "d",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdbl.j",
+      "form_class": "asdbl",
+      "form": "frmbackUpClosing",
+      "form_caption": "پیشتیبان",
+      "control": "uiButton5",
+      "caption": "خروج",
+      "handler": "b",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdbl.m_d",
+      "form_class": "asdbl",
+      "form": "frmbackUpClosing",
+      "form_caption": "پیشتیبان",
+      "control": "btnBackup",
+      "caption": "تهيه نسخه پشتيبان",
+      "handler": "c",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdbl.f",
+      "form_class": "asdbl",
+      "form": "frmbackUpClosing",
+      "form_caption": "پیشتیبان",
+      "control": "uiButton1",
+      "caption": "انتخاب مسير",
+      "handler": "d",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdbm.m",
+      "form_class": "asdbm",
+      "form": "frmDisciplinaryCases",
+      "form_caption": "تعریف موارد انضباطی",
+      "control": "btnDelete",
+      "caption": "حذف",
+      "handler": "a",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdbm.l",
+      "form_class": "asdbm",
+      "form": "frmDisciplinaryCases",
+      "form_caption": "تعریف موارد انضباطی",
+      "control": "btnNew",
+      "caption": "جدید",
+      "handler": "g",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdbm.k",
+      "form_class": "asdbm",
+      "form": "frmDisciplinaryCases",
+      "form_caption": "تعریف موارد انضباطی",
+      "control": "btnEdit",
+      "caption": "اصلاح",
+      "handler": "d",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdbm.o",
+      "form_class": "asdbm",
+      "form": "frmDisciplinaryCases",
+      "form_caption": "تعریف موارد انضباطی",
+      "control": "btnClose",
+      "caption": "بستن",
+      "handler": "b",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdbm.m_g",
+      "form_class": "asdbm",
+      "form": "frmDisciplinaryCases",
+      "form_caption": "تعریف موارد انضباطی",
+      "control": "btnCancel",
+      "caption": "انصراف",
+      "handler": "f",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdbm.m_h",
+      "form_class": "asdbm",
+      "form": "frmDisciplinaryCases",
+      "form_caption": "تعریف موارد انضباطی",
+      "control": "btnAcp",
+      "caption": "تایید",
+      "handler": "e",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdbn.g",
+      "form_class": "asdbn",
+      "form": "frmDisciplinaryAddAbsentSelectDate",
+      "form_caption": "انتخاب تاریخ برای ثبت غیبت و تاخیر",
+      "control": "btnStart",
+      "caption": "ورود غیبت و تاخیر",
+      "handler": "a",
+      "targets": [
+        "asdbu"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdbn.c",
+      "form_class": "asdbn",
+      "form": "frmDisciplinaryAddAbsentSelectDate",
+      "form_caption": "انتخاب تاریخ برای ثبت غیبت و تاخیر",
+      "control": "btnClose",
+      "caption": "بستن",
+      "handler": "b",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdbo.ac",
+      "form_class": "asdbo",
+      "form": "frmRptBalance",
+      "form_caption": "ثبت نمرات دوره",
+      "control": "btnNotShowBalance",
+      "caption": "تنظیم عدم نمایش شاگرد در دعوت نامه",
+      "handler": "a",
+      "targets": [
+        "asdbr"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdbo.aa",
+      "form_class": "asdbo",
+      "form": "frmRptBalance",
+      "form_caption": "ثبت نمرات دوره",
+      "control": "uiButton1",
+      "caption": "نمایش لیست دانش آموزان بدهکار",
+      "handler": "d",
+      "targets": [
+        "asda"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdbo.q",
+      "form_class": "asdbo",
+      "form": "frmRptBalance",
+      "form_caption": "ثبت نمرات دوره",
+      "control": "btnview",
+      "caption": "نمایش دعوت نامه",
+      "handler": "e",
+      "targets": [
+        "asda"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdbo.m_e",
+      "form_class": "asdbo",
+      "form": "frmRptBalance",
+      "form_caption": "ثبت نمرات دوره",
+      "control": "btnClose",
+      "caption": "بستن",
+      "handler": "f",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdbq.m",
+      "form_class": "asdbq",
+      "form": "frmExam",
+      "form_caption": "تعریف دوره",
+      "control": "btnCancel",
+      "caption": "انصراف",
+      "handler": "b",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdbq.k",
+      "form_class": "asdbq",
+      "form": "frmExam",
+      "form_caption": "تعریف دوره",
+      "control": "btnAcp",
+      "caption": "تایید",
+      "handler": "d",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdbq.m_f",
+      "form_class": "asdbq",
+      "form": "frmExam",
+      "form_caption": "تعریف دوره",
+      "control": "btnDelete",
+      "caption": "حذف",
+      "handler": "a",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdbq.j",
+      "form_class": "asdbq",
+      "form": "frmExam",
+      "form_caption": "تعریف دوره",
+      "control": "btnClose",
+      "caption": "خروج",
+      "handler": "c",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdbq.m_g",
+      "form_class": "asdbq",
+      "form": "frmExam",
+      "form_caption": "تعریف دوره",
+      "control": "btnNew",
+      "caption": "جدید",
+      "handler": "f",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdbq.h",
+      "form_class": "asdbq",
+      "form": "frmExam",
+      "form_caption": "تعریف دوره",
+      "control": "btnEdit",
+      "caption": "اصلاح",
+      "handler": "e",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdbr.m_c",
+      "form_class": "asdbr",
+      "form": "frmSelectStdNotShowBalance",
+      "form_caption": "تنظیم عدم نمایش شاگرد در دعوت نامه بدهکاران",
+      "control": "btnClose",
+      "caption": "بستن",
+      "handler": "f",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdbr.p",
+      "form_class": "asdbr",
+      "form": "frmSelectStdNotShowBalance",
+      "form_caption": "تنظیم عدم نمایش شاگرد در دعوت نامه بدهکاران",
+      "control": "btnDelete",
+      "caption": "حذف مورد انتخابی از لیست",
+      "handler": "d",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdbr.q",
+      "form_class": "asdbr",
+      "form": "frmSelectStdNotShowBalance",
+      "form_caption": "تنظیم عدم نمایش شاگرد در دعوت نامه بدهکاران",
+      "control": "btnNew",
+      "caption": "اضافه کردن به لیست(+)",
+      "handler": "e",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdbs.l",
+      "form_class": "asdbs",
+      "form": "frmPaymentListSelectDate",
+      "form_caption": "انتخاب تاریخ",
+      "control": "btnAcp",
+      "caption": "نمایش",
+      "handler": "a",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdbt.g",
+      "form_class": "asdbt",
+      "form": "frmSabtenamItemEnable",
+      "form_caption": "لیست دروس",
+      "control": "btnClose",
+      "caption": "بستن",
+      "handler": "a",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdbu.p",
+      "form_class": "asdbu",
+      "form": "frmDisciplinaryAddAbsent",
+      "form_caption": "لیست شاگردان",
+      "control": "btnSave",
+      "caption": "(F5) ثبت  ",
+      "handler": "g",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdbu.o",
+      "form_class": "asdbu",
+      "form": "frmDisciplinaryAddAbsent",
+      "form_caption": "لیست شاگردان",
+      "control": "btnNoSearch",
+      "caption": "حذف جستجو",
+      "handler": "i",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdbw.m_d",
+      "form_class": "asdbw",
+      "form": "frmRptSelectStd",
+      "form_caption": "گزارشات",
+      "control": "btnview",
+      "caption": "نمایش گزارش",
+      "handler": "m",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdbw.m_f",
+      "form_class": "asdbw",
+      "form": "frmRptSelectStd",
+      "form_caption": "گزارشات",
+      "control": "gExam",
+      "caption": null,
+      "handler": "h",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdbw.u",
+      "form_class": "asdbw",
+      "form": "frmRptSelectStd",
+      "form_caption": "گزارشات",
+      "control": "btnCancel",
+      "caption": "انصراف",
+      "handler": "i",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdbw.v",
+      "form_class": "asdbw",
+      "form": "frmRptSelectStd",
+      "form_caption": "گزارشات",
+      "control": "btnAcp",
+      "caption": "تایید",
+      "handler": "k",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdbw.an",
+      "form_class": "asdbw",
+      "form": "frmRptSelectStd",
+      "form_caption": "گزارشات",
+      "control": "btnFree",
+      "caption": "خالی کرد کل لیست نمایش",
+      "handler": "c",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdbw.al",
+      "form_class": "asdbw",
+      "form": "frmRptSelectStd",
+      "form_caption": "گزارشات",
+      "control": "btnDelete",
+      "caption": "حذف مورد انتخابی از لیست نمایش",
+      "handler": "f",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdbw.am",
+      "form_class": "asdbw",
+      "form": "frmRptSelectStd",
+      "form_caption": "گزارشات",
+      "control": "btnNew",
+      "caption": "اضافه به لیست نمایش(+)",
+      "handler": "g",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdbw.m_e",
+      "form_class": "asdbw",
+      "form": "frmRptSelectStd",
+      "form_caption": "گزارشات",
+      "control": "btnClose",
+      "caption": "بستن",
+      "handler": "l",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdby.m_l",
+      "form_class": "asdby",
+      "form": "frmMarkEntry2",
+      "form_caption": "اطلاعات داوطلبان",
+      "control": "btnPrevious",
+      "caption": "(pageUp)    قبلی  ",
+      "handler": "h",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdby.o",
+      "form_class": "asdby",
+      "form": "frmMarkEntry2",
+      "form_caption": "اطلاعات داوطلبان",
+      "control": "btnAcptest",
+      "caption": "(F5)تائيد",
+      "handler": "g",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdby.m_m",
+      "form_class": "asdby",
+      "form": "frmMarkEntry2",
+      "form_caption": "اطلاعات داوطلبان",
+      "control": "btnNext",
+      "caption": "(pageDown)    بعدی  ",
+      "handler": "i",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdby.p",
+      "form_class": "asdby",
+      "form": "frmMarkEntry2",
+      "form_caption": "اطلاعات داوطلبان",
+      "control": "btnCancel",
+      "caption": "(Esc)انصراف",
+      "handler": "m",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdby.m_d",
+      "form_class": "asdby",
+      "form": "frmMarkEntry2",
+      "form_caption": "اطلاعات داوطلبان",
+      "control": "uiButton2",
+      "caption": "خروج",
+      "handler": "l",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdby.m_c",
+      "form_class": "asdby",
+      "form": "frmMarkEntry2",
+      "form_caption": "اطلاعات داوطلبان",
+      "control": "btnNew",
+      "caption": "(F2)ورود نمرات",
+      "handler": "j",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdby.m_j",
+      "form_class": "asdby",
+      "form": "frmMarkEntry2",
+      "form_caption": "اطلاعات داوطلبان",
+      "control": "btnSearch",
+      "caption": "جستجو اسم(F3)",
+      "handler": "k",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdbz.m_d",
+      "form_class": "asdbz",
+      "form": "frmYear_Student",
+      "form_caption": "انتقال به پایه بالاتر",
+      "control": "btnAcpstdGroup",
+      "caption": "انتقال موارد انتخابی به صنف جدید",
+      "handler": "b",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdbz.t",
+      "form_class": "asdbz",
+      "form": "frmYear_Student",
+      "form_caption": "انتقال به پایه بالاتر",
+      "control": "btnClose",
+      "caption": "بستن",
+      "handler": "h",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdc.n",
+      "form_class": "asdc",
+      "form": "frmCls",
+      "form_caption": "مدیریت صنوف",
+      "control": "btnCancel",
+      "caption": "انصراف",
+      "handler": "c",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdc.k",
+      "form_class": "asdc",
+      "form": "frmCls",
+      "form_caption": "مدیریت صنوف",
+      "control": "btnAcp",
+      "caption": "تایید",
+      "handler": "e",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdc.s",
+      "form_class": "asdc",
+      "form": "frmCls",
+      "form_caption": "مدیریت صنوف",
+      "control": "btnPrint",
+      "caption": "چاپ",
+      "handler": "a",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdc.m_f",
+      "form_class": "asdc",
+      "form": "frmCls",
+      "form_caption": "مدیریت صنوف",
+      "control": "btnDelete",
+      "caption": "حذف",
+      "handler": "b",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdc.j",
+      "form_class": "asdc",
+      "form": "frmCls",
+      "form_caption": "مدیریت صنوف",
+      "control": "btnClose",
+      "caption": "خروج",
+      "handler": "d",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdc.m_g",
+      "form_class": "asdc",
+      "form": "frmCls",
+      "form_caption": "مدیریت صنوف",
+      "control": "btnNew",
+      "caption": "جدید",
+      "handler": "g",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdc.m_h",
+      "form_class": "asdc",
+      "form": "frmCls",
+      "form_caption": "مدیریت صنوف",
+      "control": "btnEdit",
+      "caption": "اصلاح",
+      "handler": "f",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdca.j",
+      "form_class": "asdca",
+      "form": "frmbook",
+      "form_caption": "لیست دروس",
+      "control": "uiButton2",
+      "caption": "خروج",
+      "handler": "g",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdca.r",
+      "form_class": "asdca",
+      "form": "frmbook",
+      "form_caption": "لیست دروس",
+      "control": "btnCancel",
+      "caption": "انصراف",
+      "handler": "d",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdca.s",
+      "form_class": "asdca",
+      "form": "frmbook",
+      "form_caption": "لیست دروس",
+      "control": "btnAcp",
+      "caption": "تائيد",
+      "handler": "e",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdca.v",
+      "form_class": "asdca",
+      "form": "frmbook",
+      "form_caption": "لیست دروس",
+      "control": "btnDelete",
+      "caption": "حذف",
+      "handler": "c",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdca.w",
+      "form_class": "asdca",
+      "form": "frmbook",
+      "form_caption": "لیست دروس",
+      "control": "btnNew",
+      "caption": "جديد",
+      "handler": "i",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdca.x",
+      "form_class": "asdca",
+      "form": "frmbook",
+      "form_caption": "لیست دروس",
+      "control": "btnEdit",
+      "caption": "اصلاح",
+      "handler": "f",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdcc.m_g",
+      "form_class": "asdcc",
+      "form": "frmExportMarkToSite",
+      "form_caption": "ارسال نمرات به سایت",
+      "control": "btnCancel",
+      "caption": "انصراف",
+      "handler": "d",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdcc.m_h",
+      "form_class": "asdcc",
+      "form": "frmExportMarkToSite",
+      "form_caption": "ارسال نمرات به سایت",
+      "control": "btnAcp",
+      "caption": "تایید",
+      "handler": "f",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdcc.t",
+      "form_class": "asdcc",
+      "form": "frmExportMarkToSite",
+      "form_caption": "ارسال نمرات به سایت",
+      "control": "btnContinue",
+      "caption": "ادامه ارسال",
+      "handler": "c",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdcc.j",
+      "form_class": "asdcc",
+      "form": "frmExportMarkToSite",
+      "form_caption": "ارسال نمرات به سایت",
+      "control": "btnClose",
+      "caption": "خروج",
+      "handler": "e",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdcc.k",
+      "form_class": "asdcc",
+      "form": "frmExportMarkToSite",
+      "form_caption": "ارسال نمرات به سایت",
+      "control": "btnNew",
+      "caption": "ارسال جدید",
+      "handler": "g",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdcd.i",
+      "form_class": "asdcd",
+      "form": "frmPaye",
+      "form_caption": "لیست پایه ها",
+      "control": "btnClose",
+      "caption": "خروج",
+      "handler": "c",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdcd.m",
+      "form_class": "asdcd",
+      "form": "frmPaye",
+      "form_caption": "لیست پایه ها",
+      "control": "btnCancel",
+      "caption": "انصراف",
+      "handler": "b",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdcd.j",
+      "form_class": "asdcd",
+      "form": "frmPaye",
+      "form_caption": "لیست پایه ها",
+      "control": "btnAcp",
+      "caption": "تایید",
+      "handler": "d",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdcd.m_e",
+      "form_class": "asdcd",
+      "form": "frmPaye",
+      "form_caption": "لیست پایه ها",
+      "control": "btnDelete",
+      "caption": "حذف",
+      "handler": "a",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdcd.m_f",
+      "form_class": "asdcd",
+      "form": "frmPaye",
+      "form_caption": "لیست پایه ها",
+      "control": "btnNew",
+      "caption": "جدید",
+      "handler": "f",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdcd.m_g",
+      "form_class": "asdcd",
+      "form": "frmPaye",
+      "form_caption": "لیست پایه ها",
+      "control": "btnEdit",
+      "caption": "اصلاح",
+      "handler": "e",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdce.x",
+      "form_class": "asdce",
+      "form": "frmSendSmsMark",
+      "form_caption": "دریافت فایل اکسل نمرات برای ارسال پیامک",
+      "control": "btnProcc",
+      "caption": "ایجاد فایل",
+      "handler": "d",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdce.w",
+      "form_class": "asdce",
+      "form": "frmSendSmsMark",
+      "form_caption": "دریافت فایل اکسل نمرات برای ارسال پیامک",
+      "control": "btnselectPath",
+      "caption": "انتخاب مسير",
+      "handler": "e",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdce.m_e",
+      "form_class": "asdce",
+      "form": "frmSendSmsMark",
+      "form_caption": "دریافت فایل اکسل نمرات برای ارسال پیامک",
+      "control": "uiButton2",
+      "caption": "خروج",
+      "handler": "f",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asde.d",
+      "form_class": "asde",
+      "form": "frmcode_decode",
+      "form_caption": "frmcode_decode",
+      "control": "btnCode",
+      "caption": "Code",
+      "handler": "b",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asde.e",
+      "form_class": "asde",
+      "form": "frmcode_decode",
+      "form_caption": "frmcode_decode",
+      "control": "button2",
+      "caption": "btnDecode",
+      "handler": "a",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdf.ae",
+      "form_class": "asdf",
+      "form": "frmDriverStd",
+      "form_caption": "لیست پرداخت های شاگرد",
+      "control": "btnClose",
+      "caption": "بستن",
+      "handler": "b",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdf.ab",
+      "form_class": "asdf",
+      "form": "frmDriverStd",
+      "form_caption": "لیست پرداخت های شاگرد",
+      "control": "btnNext",
+      "caption": "ثبت موارد انتخاب شده",
+      "handler": "d",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdf.ac",
+      "form_class": "asdf",
+      "form": "frmDriverStd",
+      "form_caption": "لیست پرداخت های شاگرد",
+      "control": "btnPrevious",
+      "caption": "برگشت مورد انتخاب شده به لیست بدون راننده",
+      "handler": "c",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdg.m",
+      "form_class": "asdg",
+      "form": "frmCreateXlsToMarkEntry",
+      "form_caption": "ایجاد فایل اکسل شاگردان برای ورود نمره",
+      "control": "btnselectPath",
+      "caption": "انتخاب مسير",
+      "handler": "c",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdg.g",
+      "form_class": "asdg",
+      "form": "frmCreateXlsToMarkEntry",
+      "form_caption": "ایجاد فایل اکسل شاگردان برای ورود نمره",
+      "control": "btnProcc",
+      "caption": "ایجاد فایل",
+      "handler": "d",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdg.m_e",
+      "form_class": "asdg",
+      "form": "frmCreateXlsToMarkEntry",
+      "form_caption": "ایجاد فایل اکسل شاگردان برای ورود نمره",
+      "control": "uiButton2",
+      "caption": "خروج",
+      "handler": "e",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdh.i",
+      "form_class": "asdh",
+      "form": "frmTakhfif",
+      "form_caption": "لیست تخفیف ها",
+      "control": "btnClose",
+      "caption": "خروج",
+      "handler": "c",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdh.p",
+      "form_class": "asdh",
+      "form": "frmTakhfif",
+      "form_caption": "لیست تخفیف ها",
+      "control": "btnCancel",
+      "caption": "انصراف",
+      "handler": "b",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdh.j",
+      "form_class": "asdh",
+      "form": "frmTakhfif",
+      "form_caption": "لیست تخفیف ها",
+      "control": "btnAcp",
+      "caption": "تایید",
+      "handler": "d",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdh.m_e",
+      "form_class": "asdh",
+      "form": "frmTakhfif",
+      "form_caption": "لیست تخفیف ها",
+      "control": "btnDelete",
+      "caption": "حذف",
+      "handler": "a",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdh.m_f",
+      "form_class": "asdh",
+      "form": "frmTakhfif",
+      "form_caption": "لیست تخفیف ها",
+      "control": "btnNew",
+      "caption": "جدید",
+      "handler": "f",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdh.m_g",
+      "form_class": "asdh",
+      "form": "frmTakhfif",
+      "form_caption": "لیست تخفیف ها",
+      "control": "btnEdit",
+      "caption": "اصلاح",
+      "handler": "e",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdi.s",
+      "form_class": "asdi",
+      "form": "frmUser",
+      "form_caption": "اطلاعات اساتيد",
+      "control": "btnPermission",
+      "caption": "مجوزها",
+      "handler": "c",
+      "targets": [
+        "asds"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdi.r",
+      "form_class": "asdi",
+      "form": "frmUser",
+      "form_caption": "اطلاعات اساتيد",
+      "control": "uiButton2",
+      "caption": "خروج",
+      "handler": "b",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdi.m_g",
+      "form_class": "asdi",
+      "form": "frmUser",
+      "form_caption": "اطلاعات اساتيد",
+      "control": "btnCansel",
+      "caption": "انصراف",
+      "handler": "g",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdi.m",
+      "form_class": "asdi",
+      "form": "frmUser",
+      "form_caption": "اطلاعات اساتيد",
+      "control": "btnAccept",
+      "caption": "تائيد",
+      "handler": "i",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdi.q",
+      "form_class": "asdi",
+      "form": "frmUser",
+      "form_caption": "اطلاعات اساتيد",
+      "control": "uiButton1",
+      "caption": "خروج",
+      "handler": "e",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdi.m_c",
+      "form_class": "asdi",
+      "form": "frmUser",
+      "form_caption": "اطلاعات اساتيد",
+      "control": "btnDelete",
+      "caption": "حذف",
+      "handler": "f",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdi.m_d",
+      "form_class": "asdi",
+      "form": "frmUser",
+      "form_caption": "اطلاعات اساتيد",
+      "control": "btnNew",
+      "caption": "جديد",
+      "handler": "j",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdi.m_e",
+      "form_class": "asdi",
+      "form": "frmUser",
+      "form_caption": "اطلاعات اساتيد",
+      "control": "btnEdit",
+      "caption": "اصلاح",
+      "handler": "h",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdj.m_b",
+      "form_class": "asdj",
+      "form": "frmTchClass",
+      "form_caption": "معلم-صنف-درس",
+      "control": "btnClose",
+      "caption": "بستن",
+      "handler": "g",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdj.m_f",
+      "form_class": "asdj",
+      "form": "frmTchClass",
+      "form_caption": "معلم-صنف-درس",
+      "control": "btnAdd",
+      "caption": "اضافه",
+      "handler": "f",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdj.m_g",
+      "form_class": "asdj",
+      "form": "frmTchClass",
+      "form_caption": "معلم-صنف-درس",
+      "control": "btnDelete",
+      "caption": "حذف مورد انتخابی",
+      "handler": "d",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdk.n",
+      "form_class": "asdk",
+      "form": "EndUserDesignerMainForm",
+      "form_caption": "Data Dynamics ActiveReports 3.0 Report Designer",
+      "control": "btnSave",
+      "caption": "دریافت فایل الگو این طراحی برای اشتراک گزاری ",
+      "handler": "a",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdk.m",
+      "form_class": "asdk",
+      "form": "EndUserDesignerMainForm",
+      "form_caption": "Data Dynamics ActiveReports 3.0 Report Designer",
+      "control": "btnClose",
+      "caption": "بستن",
+      "handler": "b",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdk.l",
+      "form_class": "asdk",
+      "form": "EndUserDesignerMainForm",
+      "form_caption": "Data Dynamics ActiveReports 3.0 Report Designer",
+      "control": "btnAcp",
+      "caption": "ثبت تغییرات",
+      "handler": "c",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdl.m_g",
+      "form_class": "asdl",
+      "form": "frmDriver",
+      "form_caption": "اطلاعات معلمان",
+      "control": "btnCansel",
+      "caption": "انصراف",
+      "handler": "h",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdl.m_k",
+      "form_class": "asdl",
+      "form": "frmDriver",
+      "form_caption": "اطلاعات معلمان",
+      "control": "btnAccept",
+      "caption": "تائيد",
+      "handler": "j",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdl.o",
+      "form_class": "asdl",
+      "form": "frmDriver",
+      "form_caption": "اطلاعات معلمان",
+      "control": "uiButton1",
+      "caption": "خروج",
+      "handler": "e",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdl.n",
+      "form_class": "asdl",
+      "form": "frmDriver",
+      "form_caption": "اطلاعات معلمان",
+      "control": "btnPrint",
+      "caption": "چاپ",
+      "handler": "f",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdl.m_c",
+      "form_class": "asdl",
+      "form": "frmDriver",
+      "form_caption": "اطلاعات معلمان",
+      "control": "btnDelete",
+      "caption": "حذف",
+      "handler": "g",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdl.m_d",
+      "form_class": "asdl",
+      "form": "frmDriver",
+      "form_caption": "اطلاعات معلمان",
+      "control": "btnNew",
+      "caption": "جديد",
+      "handler": "k",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdl.m_e",
+      "form_class": "asdl",
+      "form": "frmDriver",
+      "form_caption": "اطلاعات معلمان",
+      "control": "btnEdit",
+      "caption": "اصلاح",
+      "handler": "i",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdl.m_h",
+      "form_class": "asdl",
+      "form": "frmDriver",
+      "form_caption": "اطلاعات معلمان",
+      "control": "gteacher",
+      "caption": null,
+      "handler": "b",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdm.ai",
+      "form_class": "asdm",
+      "form": "frmlistStd",
+      "form_caption": "لیست شاگردان",
+      "control": "btnDeleteStd",
+      "caption": "حذف شاگرد",
+      "handler": "i",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdm.ad",
+      "form_class": "asdm",
+      "form": "frmlistStd",
+      "form_caption": "لیست شاگردان",
+      "control": "btnCancelDel",
+      "caption": "انصراف",
+      "handler": "j",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdm.s",
+      "form_class": "asdm",
+      "form": "frmlistStd",
+      "form_caption": "لیست شاگردان",
+      "control": "btnNoSearch",
+      "caption": "حذف جستجو",
+      "handler": "n",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdm.aw",
+      "form_class": "asdm",
+      "form": "frmlistStd",
+      "form_caption": "لیست شاگردان",
+      "control": "btnComment",
+      "caption": "یادداشت",
+      "handler": "d",
+      "targets": [
+        "asda4"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdm.au",
+      "form_class": "asdm",
+      "form": "frmlistStd",
+      "form_caption": "لیست شاگردان",
+      "control": "btnEditlist",
+      "caption": "اصلاح لیست",
+      "handler": "e",
+      "targets": [
+        "asdat"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdm.m_g",
+      "form_class": "asdm",
+      "form": "frmlistStd",
+      "form_caption": "لیست شاگردان",
+      "control": "btnDelete",
+      "caption": "حذف",
+      "handler": "l",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdm.m_i",
+      "form_class": "asdm",
+      "form": "frmlistStd",
+      "form_caption": "لیست شاگردان",
+      "control": "btnClose",
+      "caption": "بستن",
+      "handler": "p",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdm.m_h",
+      "form_class": "asdm",
+      "form": "frmlistStd",
+      "form_caption": "لیست شاگردان",
+      "control": "btnNew",
+      "caption": "ثبت نام جدید",
+      "handler": "q",
+      "targets": [
+        "asdat"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdm.v",
+      "form_class": "asdm",
+      "form": "frmlistStd",
+      "form_caption": "لیست شاگردان",
+      "control": "btnEdit",
+      "caption": "اصلاح مورد انتخابی",
+      "handler": "f",
+      "targets": [
+        "asdat"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdn.aa",
+      "form_class": "asdn",
+      "form": "frmDisciplinaryAdd",
+      "form_caption": "لیست شاگردان",
+      "control": "btnCancel",
+      "caption": "انصراف",
+      "handler": "g",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdn.ab",
+      "form_class": "asdn",
+      "form": "frmDisciplinaryAdd",
+      "form_caption": "لیست شاگردان",
+      "control": "btnAcp",
+      "caption": "تایید",
+      "handler": "h",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdn.m_e",
+      "form_class": "asdn",
+      "form": "frmDisciplinaryAdd",
+      "form_caption": "لیست شاگردان",
+      "control": "btnDelete",
+      "caption": "حذف",
+      "handler": "k",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdn.m_g",
+      "form_class": "asdn",
+      "form": "frmDisciplinaryAdd",
+      "form_caption": "لیست شاگردان",
+      "control": "btnClose",
+      "caption": "بستن",
+      "handler": "n",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdn.m_f",
+      "form_class": "asdn",
+      "form": "frmDisciplinaryAdd",
+      "form_caption": "لیست شاگردان",
+      "control": "btnNew",
+      "caption": "ثبت مورد جدید(F1)",
+      "handler": "p",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdn.m_q",
+      "form_class": "asdn",
+      "form": "frmDisciplinaryAdd",
+      "form_caption": "لیست شاگردان",
+      "control": "btnEdit",
+      "caption": "اصلاح",
+      "handler": "o",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdo.w",
+      "form_class": "asdo",
+      "form": "frmOst",
+      "form_caption": " ولایت-ولسوالی",
+      "control": "uiButton2",
+      "caption": "خروج",
+      "handler": "c",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdo.p",
+      "form_class": "asdo",
+      "form": "frmOst",
+      "form_caption": " ولایت-ولسوالی",
+      "control": "btnCancelCty",
+      "caption": "انصراف",
+      "handler": "g",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdo.q",
+      "form_class": "asdo",
+      "form": "frmOst",
+      "form_caption": " ولایت-ولسوالی",
+      "control": "btnAcpCty",
+      "caption": "تائيد",
+      "handler": "d",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdo.m_m",
+      "form_class": "asdo",
+      "form": "frmOst",
+      "form_caption": " ولایت-ولسوالی",
+      "control": "btnDeleteCty",
+      "caption": "حذف",
+      "handler": "a",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdo.n",
+      "form_class": "asdo",
+      "form": "frmOst",
+      "form_caption": " ولایت-ولسوالی",
+      "control": "btnNewCty",
+      "caption": "جديد",
+      "handler": "h",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdo.o",
+      "form_class": "asdo",
+      "form": "frmOst",
+      "form_caption": " ولایت-ولسوالی",
+      "control": "btnEditCty",
+      "caption": "اصلاح",
+      "handler": "f",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdo.m_c",
+      "form_class": "asdo",
+      "form": "frmOst",
+      "form_caption": " ولایت-ولسوالی",
+      "control": "btnCancelOst",
+      "caption": "انصراف",
+      "handler": "k",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdo.m_d",
+      "form_class": "asdo",
+      "form": "frmOst",
+      "form_caption": " ولایت-ولسوالی",
+      "control": "btnAcpOst",
+      "caption": "تائيد",
+      "handler": "j",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdo.m_h",
+      "form_class": "asdo",
+      "form": "frmOst",
+      "form_caption": " ولایت-ولسوالی",
+      "control": "btnDelete",
+      "caption": "حذف",
+      "handler": "b",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdo.m_i",
+      "form_class": "asdo",
+      "form": "frmOst",
+      "form_caption": " ولایت-ولسوالی",
+      "control": "btnNew",
+      "caption": "جديد",
+      "handler": "l",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdo.m_j",
+      "form_class": "asdo",
+      "form": "frmOst",
+      "form_caption": " ولایت-ولسوالی",
+      "control": "btnEdit",
+      "caption": "اصلاح",
+      "handler": "i",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdp.m",
+      "form_class": "asdp",
+      "form": "frmHazeri",
+      "form_caption": "ثبت نمرات دوره",
+      "control": "btnAcp",
+      "caption": "ثبت (F5)",
+      "handler": "a",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdp.f",
+      "form_class": "asdp",
+      "form": "frmHazeri",
+      "form_caption": "ثبت نمرات دوره",
+      "control": "btnClose",
+      "caption": "بستن",
+      "handler": "c",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdq.o",
+      "form_class": "asdq",
+      "form": "frmDisciplinaryCases3",
+      "form_caption": "تعریف اخطارهای آموزشی",
+      "control": "btnDelete",
+      "caption": "حذف",
+      "handler": "a",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdq.n",
+      "form_class": "asdq",
+      "form": "frmDisciplinaryCases3",
+      "form_caption": "تعریف اخطارهای آموزشی",
+      "control": "btnNew",
+      "caption": "جدید",
+      "handler": "g",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdq.m",
+      "form_class": "asdq",
+      "form": "frmDisciplinaryCases3",
+      "form_caption": "تعریف اخطارهای آموزشی",
+      "control": "btnEdit",
+      "caption": "اصلاح",
+      "handler": "d",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdq.q",
+      "form_class": "asdq",
+      "form": "frmDisciplinaryCases3",
+      "form_caption": "تعریف اخطارهای آموزشی",
+      "control": "btnClose",
+      "caption": "بستن",
+      "handler": "b",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdq.i",
+      "form_class": "asdq",
+      "form": "frmDisciplinaryCases3",
+      "form_caption": "تعریف اخطارهای آموزشی",
+      "control": "btnCancel",
+      "caption": "انصراف",
+      "handler": "f",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdq.j",
+      "form_class": "asdq",
+      "form": "frmDisciplinaryCases3",
+      "form_caption": "تعریف اخطارهای آموزشی",
+      "control": "btnAcp",
+      "caption": "تایید",
+      "handler": "e",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdr.m_d",
+      "form_class": "asdr",
+      "form": "frmClsSort",
+      "form_caption": "لیست صنف ها",
+      "control": "btnClose",
+      "caption": "خروج",
+      "handler": "b",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdr.g",
+      "form_class": "asdr",
+      "form": "frmClsSort",
+      "form_caption": "لیست صنف ها",
+      "control": "btnAcp",
+      "caption": "ثبت اولویت",
+      "handler": "c",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asds.i",
+      "form_class": "asds",
+      "form": "frmUserPermission",
+      "form_caption": "اطلاعات اساتيد",
+      "control": "uiButton2",
+      "caption": "خروج",
+      "handler": "a",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asds.f",
+      "form_class": "asds",
+      "form": "frmUserPermission",
+      "form_caption": "اطلاعات اساتيد",
+      "control": "btnAccept",
+      "caption": "تائيد",
+      "handler": "c",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdt.a7",
+      "form_class": "asdt",
+      "form": "frmsarbarg2",
+      "form_caption": "سربرگ",
+      "control": "btnCancelSelect",
+      "caption": "اتمام",
+      "handler": "n",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdt.a6",
+      "form_class": "asdt",
+      "form": "frmsarbarg2",
+      "form_caption": "سربرگ",
+      "control": "btnAdd",
+      "caption": "اضافه کردن دانش آموز انتخاب شده به لیست زیر",
+      "handler": "q",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdt.av",
+      "form_class": "asdt",
+      "form": "frmsarbarg2",
+      "form_caption": "سربرگ",
+      "control": "btnNewStd",
+      "caption": "افزودن دانش آموز به لیست پرینت",
+      "handler": "t",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdt.ar",
+      "form_class": "asdt",
+      "form": "frmsarbarg2",
+      "form_caption": "سربرگ",
+      "control": "btnFree",
+      "caption": "خالی کردن کل لیست پرینت",
+      "handler": "o",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdt.as",
+      "form_class": "asdt",
+      "form": "frmsarbarg2",
+      "form_caption": "سربرگ",
+      "control": "btnDeleteStd",
+      "caption": "حذف مورد انتخابی از لیست پرینت",
+      "handler": "p",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdt.bl",
+      "form_class": "asdt",
+      "form": "frmsarbarg2",
+      "form_caption": "سربرگ",
+      "control": "btnCancel1",
+      "caption": null,
+      "handler": "h",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdt.bm",
+      "form_class": "asdt",
+      "form": "frmsarbarg2",
+      "form_caption": "سربرگ",
+      "control": "btnCancel6",
+      "caption": null,
+      "handler": "c",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdt.bn",
+      "form_class": "asdt",
+      "form": "frmsarbarg2",
+      "form_caption": "سربرگ",
+      "control": "btnCancel5",
+      "caption": null,
+      "handler": "d",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdt.bo",
+      "form_class": "asdt",
+      "form": "frmsarbarg2",
+      "form_caption": "سربرگ",
+      "control": "btnCancel4",
+      "caption": null,
+      "handler": "e",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdt.bp",
+      "form_class": "asdt",
+      "form": "frmsarbarg2",
+      "form_caption": "سربرگ",
+      "control": "btnCancel3",
+      "caption": null,
+      "handler": "f",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdt.bq",
+      "form_class": "asdt",
+      "form": "frmsarbarg2",
+      "form_caption": "سربرگ",
+      "control": "btnCancel2",
+      "caption": null,
+      "handler": "g",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdt.be",
+      "form_class": "asdt",
+      "form": "frmsarbarg2",
+      "form_caption": "سربرگ",
+      "control": "btnSelectPage6",
+      "caption": "صفحه 6",
+      "handler": "i",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdt.bf",
+      "form_class": "asdt",
+      "form": "frmsarbarg2",
+      "form_caption": "سربرگ",
+      "control": "btnSelectPage5",
+      "caption": "صفحه 5",
+      "handler": "j",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdt.bg",
+      "form_class": "asdt",
+      "form": "frmsarbarg2",
+      "form_caption": "سربرگ",
+      "control": "btnSelectPage4",
+      "caption": "صفحه 4",
+      "handler": "k",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdt.bi",
+      "form_class": "asdt",
+      "form": "frmsarbarg2",
+      "form_caption": "سربرگ",
+      "control": "btnSelectPage3",
+      "caption": "صفحه 3",
+      "handler": "l",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdt.bk",
+      "form_class": "asdt",
+      "form": "frmsarbarg2",
+      "form_caption": "سربرگ",
+      "control": "btnSelectPage2",
+      "caption": "صفحه 2",
+      "handler": "m",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdt.m_z",
+      "form_class": "asdt",
+      "form": "frmsarbarg2",
+      "form_caption": "سربرگ",
+      "control": "btnSelectPage1",
+      "caption": "انتخاب فایل",
+      "handler": "ac",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdt.al",
+      "form_class": "asdt",
+      "form": "frmsarbarg2",
+      "form_caption": "سربرگ",
+      "control": "btnClose",
+      "caption": "بستن",
+      "handler": "w",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdt.aj",
+      "form_class": "asdt",
+      "form": "frmsarbarg2",
+      "form_caption": "سربرگ",
+      "control": "btnView",
+      "caption": "نمایش",
+      "handler": "ad",
+      "targets": [
+        "asdbp"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdt.m_ac",
+      "form_class": "asdt",
+      "form": "frmsarbarg2",
+      "form_caption": "سربرگ",
+      "control": "btnNew",
+      "caption": "تهیه گزارش جدید از روی گزارش انتخاب شده",
+      "handler": "aa",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdt.m_ab",
+      "form_class": "asdt",
+      "form": "frmsarbarg2",
+      "form_caption": "سربرگ",
+      "control": "btnDelete",
+      "caption": "حذف گزارش انتخاب شده",
+      "handler": "ab",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdt.ak",
+      "form_class": "asdt",
+      "form": "frmsarbarg2",
+      "form_caption": "سربرگ",
+      "control": "btnEdit",
+      "caption": "ویرایش گزارش",
+      "handler": "x",
+      "targets": [
+        "asdk"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdt.m_ae",
+      "form_class": "asdt",
+      "form": "frmsarbarg2",
+      "form_caption": "سربرگ",
+      "control": "btnCancel",
+      "caption": "انصراف",
+      "handler": "z",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdt.m_af",
+      "form_class": "asdt",
+      "form": "frmsarbarg2",
+      "form_caption": "سربرگ",
+      "control": "btnAcp",
+      "caption": "تایید",
+      "handler": "y",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdu.f",
+      "form_class": "asdu",
+      "form": "frm_Year_Term",
+      "form_caption": "ورود به برنامه",
+      "control": "uiButton1",
+      "caption": "ورود",
+      "handler": "a",
+      "targets": [
+        "asdb3"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdu.m_b",
+      "form_class": "asdu",
+      "form": "frm_Year_Term",
+      "form_caption": "ورود به برنامه",
+      "control": "uiButton2",
+      "caption": "خروج",
+      "handler": "c",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdv.f",
+      "form_class": "asdv",
+      "form": "frmImportMark",
+      "form_caption": "ثبت نمرات دوره از فایل اکسل",
+      "control": "BtnNew",
+      "caption": "انتخاب فایل اکسل",
+      "handler": "d",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdv.m_e",
+      "form_class": "asdv",
+      "form": "frmImportMark",
+      "form_caption": "ثبت نمرات دوره از فایل اکسل",
+      "control": "btnAcp",
+      "caption": "ثبت",
+      "handler": "c",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdv.m_c",
+      "form_class": "asdv",
+      "form": "frmImportMark",
+      "form_caption": "ثبت نمرات دوره از فایل اکسل",
+      "control": "btnClose",
+      "caption": "بستن",
+      "handler": "e",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdw.aa",
+      "form_class": "asdw",
+      "form": "frmCommentList",
+      "form_caption": "لیست پرداخت های شاگرد",
+      "control": "btnview",
+      "caption": "نمایش گزارش",
+      "handler": "b",
+      "targets": [
+        "asda"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdw.y",
+      "form_class": "asdw",
+      "form": "frmCommentList",
+      "form_caption": "لیست پرداخت های شاگرد",
+      "control": "btnXls",
+      "caption": "دریافت فایل اکسل",
+      "handler": "c",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdw.w",
+      "form_class": "asdw",
+      "form": "frmCommentList",
+      "form_caption": "لیست پرداخت های شاگرد",
+      "control": "btnSelectDate",
+      "caption": "انتخاب تاریخ",
+      "handler": "d",
+      "targets": [
+        "asdaf"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdw.j",
+      "form_class": "asdw",
+      "form": "frmCommentList",
+      "form_caption": "لیست پرداخت های شاگرد",
+      "control": "btnClose",
+      "caption": "بستن",
+      "handler": "g",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdw.p",
+      "form_class": "asdw",
+      "form": "frmCommentList",
+      "form_caption": "لیست پرداخت های شاگرد",
+      "control": "btnEdit",
+      "caption": "اصلاح مورد انتخابی",
+      "handler": "h",
+      "targets": [
+        "asdbb"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdx.m",
+      "form_class": "asdx",
+      "form": "frmCommentKollEntrySelect",
+      "form_caption": "انتخاب دوره",
+      "control": "btnStart",
+      "caption": "ثبت توضیح",
+      "handler": "a",
+      "targets": [
+        "asda2"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdx.m_c",
+      "form_class": "asdx",
+      "form": "frmCommentKollEntrySelect",
+      "form_caption": "انتخاب دوره",
+      "control": "btnClose",
+      "caption": "بستن",
+      "handler": "c",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    }
+  ]
+}

@@ -43,6 +43,49 @@ internal static class Program
             Check((bool)table.Rows[0]["selected"], "checkbox write-through");
             ((DataGridView)grid.Controls.OfType<DataGridView>().Single()).Sort(((DataGridView)grid.Controls.OfType<DataGridView>().Single()).Columns["mark"]!, System.ComponentModel.ListSortDirection.Descending);
             Check(Convert.ToInt32(grid.GetRow(0).Cells["id"].Value) == 42, "sorted row identity");
+            using (var blobs = new GridEX { Dock = DockStyle.Fill })
+            {
+                var records = new DataTable(); records.Columns.Add("id", typeof(int)); records.Columns.Add("Rpt", typeof(byte[]));
+                byte[] layoutBytes = System.Text.Encoding.UTF8.GetBytes("<ActiveReportsLayout><Sections/></ActiveReportsLayout>");
+                records.Rows.Add(1, layoutBytes);
+                blobs.DesignTimeLayout = new GridEXLayout { LayoutString = "<GridEXLayoutData><RootTable><Columns><Column0 ID='id'><Key>id</Key></Column0></Columns></RootTable></GridEXLayoutData>" };
+                window.Controls.Add(blobs); blobs.BringToFront();
+                var native = blobs.Controls.OfType<DataGridView>().Single();
+                int errors = 0; native.DataError += (s,e) => { errors++; e.ThrowException = false; };
+                blobs.DataSource = records;
+                Check(!blobs.RootTable.Columns["Rpt"].Visible && native.Columns["Rpt"] is not DataGridViewImageColumn, "report layout bytes are hidden binary data, never inferred as images");
+                blobs.RootTable.Columns["Rpt"].Visible = true;
+                using var bitmap = new Bitmap(blobs.Width, blobs.Height); blobs.DrawToBitmap(bitmap, new Rectangle(Point.Empty, bitmap.Size));
+                Check(errors == 0 && ReferenceEquals(blobs.GetRow(0).Cells["Rpt"].Value, layoutBytes), "binary cells render without data errors and preserve the original payload");
+            }
+            using (var photos = new GridEX { Dock = DockStyle.Fill })
+            {
+                photos.DesignTimeLayout = new GridEXLayout { LayoutString = "<GridEXLayoutData><RootTable><Columns><Column0 ID='photo'><Key>photo</Key><ColumnType>BoundImage</ColumnType></Column0></Columns></RootTable></GridEXLayoutData>" };
+                var records = new DataTable(); records.Columns.Add("photo", typeof(byte[]));
+                using var picture = new Bitmap(12,12); using var stream = new MemoryStream(); picture.Save(stream, System.Drawing.Imaging.ImageFormat.Png);
+                records.Rows.Add(stream.ToArray()); records.Rows.Add(new byte[] { 1,2,3 }); records.Rows.Add(DBNull.Value);
+                window.Controls.Add(photos); photos.BringToFront();
+                var native = photos.Controls.OfType<DataGridView>().Single(); int errors = 0;
+                native.DataError += (s,e) => { errors++; e.ThrowException = false; };
+                photos.DataSource = records;
+                using var bitmap = new Bitmap(photos.Width, photos.Height); photos.DrawToBitmap(bitmap, new Rectangle(Point.Empty, bitmap.Size));
+                Check(errors == 0 && native.Rows[0].Cells[0].FormattedValue is Image, "explicit photo columns decode valid images and safely render corrupt or empty images");
+            }
+            using (var sourceIcon = new Bitmap(256, 128))
+            {
+                using (var button = new UIButton { Image = sourceIcon, ImageSize = new Size(24,24) })
+                {
+                    window.Controls.Add(button); button.CreateControl();
+                    int limit = (int)(24 * button.DeviceDpi / 96f);
+                    Check(button.Image.Width == limit && button.Image.Height == Math.Max(1,limit / 2), "button icon respects requested size and aspect ratio");
+                    button.ImageSize = new Size(16,16);
+                    Check(button.Image.Width == (int)(16 * button.DeviceDpi / 96f), "button icon responds to size changes");
+                    button.Image = null;
+                    Check(button.Image == null && sourceIcon.Width == 256, "clearing button image preserves shared resource ownership");
+                    button.Image = sourceIcon;
+                }
+                Check(sourceIcon.Width == 256, "disposing button does not dispose shared source icon");
+            }
             using var combo = new UIComboBox(); window.Controls.Add(combo);
             combo.Items.Add("اول", "1"); combo.Items.Add("دوم", "2"); combo.SelectedValue = 2;
             Check(combo.SelectedIndex == 1 && combo.SelectedItem.Value.ToString() == "2", "unbound combo values support original numeric IDs");

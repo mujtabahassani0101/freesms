@@ -227,6 +227,8 @@ namespace Janus.Windows.GridEX
         private readonly Dictionary<DataGridViewRow, GridEXRow> rows = new Dictionary<DataGridViewRow, GridEXRow>();
         private bool loading;
         private bool building;
+        private bool explicitLayout;
+        private readonly Dictionary<byte[], Image> images = new Dictionary<byte[], Image>();
         private bool groupVisible = true;
         private object source;
         private string dataMember;
@@ -375,8 +377,15 @@ namespace Janus.Windows.GridEX
                 {
                     foreach (DataColumn col in dv.Table.Columns)
                         if (!RootTable.Columns.Any(c => string.Equals(c.DataMember, col.ColumnName, StringComparison.OrdinalIgnoreCase)))
-                            RootTable.Columns.Add(col.ColumnName, col.DataType == typeof(bool) ? ColumnType.CheckBox : col.DataType == typeof(byte[]) ? ColumnType.Image : ColumnType.Text);
+                        {
+                            var column = new GridEXColumn { Key = col.ColumnName, DataMember = col.ColumnName, Caption = col.ColumnName,
+                                Type = col.DataType == typeof(bool) ? ColumnType.CheckBox : ColumnType.Text, Visible = !explicitLayout,
+                                Editable = col.DataType != typeof(byte[]) };
+                            RootTable.Columns.Add(column);
+                        }
                 }
+                foreach (var image in images.Values) image?.Dispose();
+                images.Clear();
                 binding.DataSource = table;
                 RebuildColumns(); Filter();
             }
@@ -388,6 +397,7 @@ namespace Janus.Windows.GridEX
             if (string.IsNullOrWhiteSpace(xml)) return;
             var root = XElement.Parse(xml).Element("RootTable");
             if (root == null) return;
+            explicitLayout = true;
             building = true;
             try
             {
@@ -426,6 +436,7 @@ namespace Janus.Windows.GridEX
                 {
                     DataGridViewColumn native = model.Type == ColumnType.CheckBox ? new DataGridViewCheckBoxColumn() : model.Type == ColumnType.Image ? new DataGridViewImageColumn { ImageLayout = DataGridViewImageCellLayout.Zoom } : new DataGridViewTextBoxColumn();
                     native.Name = model.Key; native.DataPropertyName = model.DataMember; native.HeaderText = model.Caption;
+                    if (native is DataGridViewImageColumn image) { image.DefaultCellStyle.NullValue = null; image.DefaultCellStyle.DataSourceNullValue = DBNull.Value; }
                     View.Columns.Add(native); ApplyColumn(model);
                 }
             }
@@ -462,6 +473,32 @@ namespace Janus.Windows.GridEX
         private void FormatCell(object sender, DataGridViewCellFormattingEventArgs e)
         {
             if (building || loading || e.RowIndex < 0 || e.ColumnIndex < 0 || e.RowIndex >= View.Rows.Count) return;
+            if (e.Value is byte[] bytes)
+            {
+                if (View.Columns[e.ColumnIndex] is DataGridViewImageColumn)
+                {
+                    if (!images.TryGetValue(bytes, out var image))
+                    {
+                        try
+                        {
+                            using var stream = new System.IO.MemoryStream(bytes, false);
+                            using var decoded = Image.FromStream(stream);
+                            float scale = Math.Min(1, 128f / Math.Max(decoded.Width, decoded.Height));
+                            image = new Bitmap(decoded, new Size(Math.Max(1, (int)(decoded.Width * scale)), Math.Max(1, (int)(decoded.Height * scale))));
+                        }
+                        catch (ArgumentException) { image = null; }
+                        // GDI+ also reports malformed encoded images as OutOfMemory.
+                        catch (OutOfMemoryException) { image = null; }
+                        catch (System.Runtime.InteropServices.ExternalException) { image = null; }
+                        images[bytes] = image;
+                    }
+                    e.Value = image;
+                }
+                else e.Value = "[فایل]";
+                e.FormattingApplied = true;
+            }
+            else if (View.Columns[e.ColumnIndex] is DataGridViewImageColumn && (e.Value == null || e.Value == DBNull.Value))
+            { e.Value = null; e.FormattingApplied = true; }
             var row = Wrap(View.Rows[e.RowIndex]);
             if (e.ColumnIndex == 0) FormattingRow?.Invoke(this, new RowLoadEventArgs(row));
             foreach (var condition in RootTable.FormatConditions)
@@ -485,7 +522,7 @@ namespace Janus.Windows.GridEX
         }
         protected override void Dispose(bool disposing)
         {
-            if (disposing) { binding.Dispose(); rows.Clear(); }
+            if (disposing) { binding.Dispose(); rows.Clear(); foreach (var image in images.Values) image?.Dispose(); images.Clear(); }
             base.Dispose(disposing);
         }
     }

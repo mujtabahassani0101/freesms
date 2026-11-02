@@ -571,6 +571,11 @@ protected override void Dispose(bool A_0)
 	public asda0()
 	{
 		f();
+        // Optional settings may be NULL or absent in an older bank. Keep a valid
+        // comparison baseline before Load reads the persisted values.
+        foreach (Control field in new Control[] { this.m_h, p, this.m_l, n, this.m_g }) field.Tag = field.Text;
+        af.Tag = af.Checked.ToString();
+        ag.Tag = ag.Checked.ToString();
 	}
 
 	private void m(object A_0, EventArgs A_1)
@@ -1273,7 +1278,7 @@ protected override void Dispose(bool A_0)
 					num = 24;
 					continue;
 				case 24:
-					if (!(p.Text != p.Tag.ToString()))
+					if (!(p.Text != Convert.ToString(p.Tag)))
 					{
 						num = 47;
 						continue;
@@ -1391,13 +1396,13 @@ protected override void Dispose(bool A_0)
 					num = 14;
 					continue;
 				case 14:
-					num5 = ((!(flag2.ToString() != ag.Tag.ToString())) ? 1 : 0);
+					num5 = ((!(flag2.ToString() != Convert.ToString(ag.Tag))) ? 1 : 0);
 					goto IL_0e33;
 				case 57:
 					num = 94;
 					continue;
 				case 94:
-					if (!(this.m_h.Text != this.m_h.Tag.ToString()))
+					if (!(this.m_h.Text != Convert.ToString(this.m_h.Tag)))
 					{
 						num = 5;
 						continue;
@@ -1436,7 +1441,7 @@ protected override void Dispose(bool A_0)
 					num = 19;
 					continue;
 				case 19:
-					if (!(this.m_g.Text != this.m_g.Tag.ToString()))
+					if (!(this.m_g.Text != Convert.ToString(this.m_g.Tag)))
 					{
 						num = 18;
 						continue;
@@ -1523,7 +1528,7 @@ protected override void Dispose(bool A_0)
 					num = 51;
 					continue;
 				case 51:
-					if (!(n.Text != n.Tag.ToString()))
+					if (!(n.Text != Convert.ToString(n.Tag)))
 					{
 						num = 4;
 						continue;
@@ -1588,7 +1593,7 @@ protected override void Dispose(bool A_0)
 					num = 67;
 					continue;
 				case 67:
-					if (!(flag2.ToString() != af.Tag.ToString()))
+					if (!(flag2.ToString() != Convert.ToString(af.Tag)))
 					{
 						num = 46;
 						continue;
@@ -1655,7 +1660,7 @@ protected override void Dispose(bool A_0)
 					num = 87;
 					continue;
 				case 87:
-					if (!(this.m_l.Text != this.m_l.Tag.ToString()))
+					if (!(this.m_l.Text != Convert.ToString(this.m_l.Tag)))
 					{
 						num = 1;
 						continue;
@@ -1779,7 +1784,7 @@ protected override void Dispose(bool A_0)
 				switch (num)
 				{
 				case 2:
-					if (!(this.m_h.Text != this.m_h.Tag.ToString()))
+					if (!(this.m_h.Text != Convert.ToString(this.m_h.Tag)))
 					{
 						num = 9;
 						continue;
@@ -1792,13 +1797,13 @@ protected override void Dispose(bool A_0)
 					num = 4;
 					continue;
 				case 4:
-					num2 = ((!(this.m_g.Text != this.m_g.Tag.ToString())) ? 1 : 0);
+					num2 = ((!(this.m_g.Text != Convert.ToString(this.m_g.Tag))) ? 1 : 0);
 					goto IL_0205;
 				case 10:
 					num = 3;
 					continue;
 				case 3:
-					if (!(this.m_l.Text != this.m_l.Tag.ToString()))
+					if (!(this.m_l.Text != Convert.ToString(this.m_l.Tag)))
 					{
 						num = 8;
 						continue;
@@ -1824,7 +1829,7 @@ protected override void Dispose(bool A_0)
 					num = 1;
 					continue;
 				case 1:
-					if (!(p.Text != p.Tag.ToString()))
+					if (!(p.Text != Convert.ToString(p.Tag)))
 					{
 						num = 10;
 						continue;
@@ -1845,7 +1850,7 @@ protected override void Dispose(bool A_0)
 					continue;
 				case 6:
 					{
-						if (!(n.Text != n.Tag.ToString()))
+						if (!(n.Text != Convert.ToString(n.Tag)))
 						{
 							num = 7;
 							continue;

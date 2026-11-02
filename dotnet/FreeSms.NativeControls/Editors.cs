@@ -29,9 +29,33 @@ namespace Janus.Windows.EditControls
     public class UIButton : Button
     {
         private readonly ToolTip tip = new ToolTip();
+        private Image sourceImage, sizedImage;
+        private Size imageSize;
         public UI.UIFormatStyle ActiveFormatStyle { get; } = new UI.UIFormatStyle();
         public ButtonStyle ButtonStyle { get; set; }
-        public Size ImageSize { get; set; }
+        public Size ImageSize { get => imageSize; set { imageSize = value; ResizeImage(); } }
+        public new Image Image
+        {
+            get => base.Image;
+            set { if (value == sizedImage && value != null) return; sourceImage = value; ResizeImage(); }
+        }
+        private void ResizeImage()
+        {
+            Image next = null;
+            if (sourceImage != null && imageSize.Width > 0 && imageSize.Height > 0)
+            {
+                float dpi = DeviceDpi / 96f;
+                var bounds = new Size(Math.Max(1, (int)(imageSize.Width * dpi)), Math.Max(1, (int)(imageSize.Height * dpi)));
+                float scale = Math.Min(bounds.Width / (float)sourceImage.Width, bounds.Height / (float)sourceImage.Height);
+                next = new Bitmap(sourceImage, new Size(Math.Max(1, (int)(sourceImage.Width * scale)), Math.Max(1, (int)(sourceImage.Height * scale))));
+            }
+            var previous = sizedImage;
+            sizedImage = next;
+            base.Image = next ?? sourceImage;
+            previous?.Dispose();
+        }
+        protected override void OnHandleCreated(EventArgs e) { base.OnHandleCreated(e); ResizeImage(); }
+        protected override void OnDpiChangedAfterParent(EventArgs e) { base.OnDpiChangedAfterParent(e); ResizeImage(); }
         public UI.VisualStyle VisualStyle { get; set; }
         public ImageHorizontalAlignment ImageHorizontalAlignment
         {
@@ -44,7 +68,7 @@ namespace Janus.Windows.EditControls
             set => TextAlign = value == TextAlignment.Far ? ContentAlignment.MiddleRight : value == TextAlignment.Near ? ContentAlignment.MiddleLeft : ContentAlignment.MiddleCenter;
         }
         public string ToolTipText { get => tip.GetToolTip(this); set => tip.SetToolTip(this, value); }
-        protected override void Dispose(bool disposing) { if (disposing) tip.Dispose(); base.Dispose(disposing); }
+        protected override void Dispose(bool disposing) { if (disposing) { tip.Dispose(); base.Image = null; sizedImage?.Dispose(); sizedImage = null; } base.Dispose(disposing); }
     }
     public class UIGroupBox : GroupBox, ISupportInitialize
     {
