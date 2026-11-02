@@ -141,9 +141,11 @@ namespace FreeSms.NativeControls
         {
             base.OnPrintPage(e);
             var state = e.Graphics.Save();
-            e.Graphics.TranslateTransform(e.MarginBounds.Left, e.MarginBounds.Top);
+            // Layout and pixel fonts use hundredths of an inch, regardless of printer DPI.
+            e.Graphics.PageUnit = GraphicsUnit.Pixel;
+            e.Graphics.TranslateTransform(e.MarginBounds.Left * e.Graphics.DpiX / 100f, e.MarginBounds.Top * e.Graphics.DpiY / 100f);
             float scale = Math.Min(1, e.MarginBounds.Width / width);
-            e.Graphics.ScaleTransform(scale, scale);
+            e.Graphics.ScaleTransform(scale * e.Graphics.DpiX / 100f, scale * e.Graphics.DpiY / 100f);
             DrawPage(e.Graphics, page++);
             e.Graphics.Restore(state);
             e.HasMorePages = page < pages.Count;

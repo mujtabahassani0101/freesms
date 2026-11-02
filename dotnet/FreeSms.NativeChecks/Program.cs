@@ -53,6 +53,7 @@ internal static class Program
             date.the_date = new DateTime(2026, 11, 2);
             Check(changes == 1 && ShamsiDate.GetShamsiDate(date.the_date) == "1405/08/11", "date picker value and event");
             window.Hide();
+            bool checkedRpxPrint = false;
             foreach (var path in Directory.GetFiles(Path.Combine(root, "original", "update", "rpt"), "*.rpx"))
             {
                 using var report = new ActiveReport3(); report.LoadLayout(path);
@@ -63,6 +64,11 @@ internal static class Program
                 report.DataSource = data; report.Run(false);
                 Check(report.Document.PageCount > 0, "paginate RPX " + Path.GetFileName(path));
                 report.Document.SavePageImage(Path.Combine(output, Path.GetFileNameWithoutExtension(path) + ".png"), 0);
+                if (!checkedRpxPrint)
+                {
+                    Check(PrintMatches(report.Document.PrintDocument, (file, dpi) => report.Document.SavePageImage(file, 0, dpi), Path.Combine(output, "rpx-print-300.png")), "RPX printer rendering matches image export at 300 DPI");
+                    checkedRpxPrint = true;
+                }
             }
             using (var designer = new DataDynamics.ActiveReports.Design.Designer())
             {
@@ -75,6 +81,7 @@ internal static class Program
                 var loaded = designer.Report.Sections.SelectMany(s => s.Controls).First();
                 Check(loaded.Text == "ذخیرهٔ ویرایش" && loaded.Left == .75f, "designer saves and reloads actual text and geometry");
             }
+            bool checkedPortablePrint = false;
             foreach (var path in Directory.GetFiles(Path.Combine(root, "dotnet", "FreeSms.Original.Windows", "portable-layouts"), "*.xml"))
             {
                 try
@@ -83,6 +90,11 @@ internal static class Program
                     using var document = new PortableReportDocument(model, ReportFixtures.Create(model.Xml));
                     Check(document.PageCount > 0, "native report " + Path.GetFileName(path));
                     document.SavePageImage(Path.Combine(output, Path.GetFileNameWithoutExtension(path) + ".png"), 0);
+                    if (!checkedPortablePrint)
+                    {
+                        Check(PrintMatches(document, (file, dpi) => document.SavePageImage(file, 0, dpi), Path.Combine(output, "portable-print-300.png")), "native printer rendering matches image export at 300 DPI");
+                        checkedPortablePrint = true;
+                    }
                 }
                 catch (Exception error) { throw new Exception(Path.GetFileName(path), error); }
             }
@@ -101,5 +113,23 @@ internal static class Program
             return 0;
         }
         catch (Exception error) { Console.Error.WriteLine(error); File.WriteAllText(Path.Combine(output, "error.txt"), error.ToString()); return 1; }
+    }
+
+    private static bool PrintMatches(System.Drawing.Printing.PrintDocument document, Action<string, int> save, string path)
+    {
+        const int dpi = 300;
+        save(path, dpi);
+        using var expected = new Bitmap(path);
+        using var actual = new Bitmap(expected.Width, expected.Height);
+        actual.SetResolution(dpi, dpi);
+        using var graphics = Graphics.FromImage(actual);
+        graphics.Clear(Color.White);
+        var bounds = new Rectangle(0, 0, (int)Math.Ceiling(actual.Width * 100d / dpi), (int)Math.Ceiling(actual.Height * 100d / dpi));
+        var args = new System.Drawing.Printing.PrintPageEventArgs(graphics, bounds, bounds, new System.Drawing.Printing.PageSettings());
+        document.GetType().GetMethod("OnPrintPage", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic)!.Invoke(document, new object[] { args });
+        for (int y = 0; y < actual.Height; y += 7)
+            for (int x = 0; x < actual.Width; x += 7)
+                if (actual.GetPixel(x, y).ToArgb() != expected.GetPixel(x, y).ToArgb()) return false;
+        return true;
     }
 }

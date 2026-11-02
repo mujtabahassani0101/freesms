@@ -272,9 +272,12 @@ namespace DataDynamics.ActiveReports.Document
             PrintDocument.BeginPrint += (s, e) => page = 0;
             PrintDocument.PrintPage += (s, e) =>
             {
-                e.Graphics.PageUnit = GraphicsUnit.Display;
-                e.Graphics.TranslateTransform(e.MarginBounds.Left, e.MarginBounds.Top);
+                var state = e.Graphics.Save();
+                e.Graphics.PageUnit = GraphicsUnit.Pixel;
+                e.Graphics.TranslateTransform(e.MarginBounds.Left * e.Graphics.DpiX / 100f, e.MarginBounds.Top * e.Graphics.DpiY / 100f);
+                e.Graphics.ScaleTransform(e.Graphics.DpiX / 100f, e.Graphics.DpiY / 100f);
                 DrawPage(e.Graphics, page++);
+                e.Graphics.Restore(state);
                 e.HasMorePages = page < Pages.Count;
             };
         }
