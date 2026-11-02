@@ -19,6 +19,7 @@ internal static class Program
         Directory.CreateDirectory(output);
         try
         {
+            OriginalFonts.InitializeFromDirectory(Path.Combine(root, "vendor", "fonts"));
             Application.SetCompatibleTextRenderingDefault(false);
             Application.EnableVisualStyles();
             int count = 0;
@@ -95,6 +96,7 @@ internal static class Program
                 Check(document.PageCount >= 4, "long subreport continues beyond its original placeholder");
                 document.SavePageImage(Path.Combine(output, "long-subreport-last.png"), document.PageCount - 1);
             }
+            PackageChecks.Verify(root, Check);
             Console.WriteLine("SUCCESS " + count);
             return 0;
         }

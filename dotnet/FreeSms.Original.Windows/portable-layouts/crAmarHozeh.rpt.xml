@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version='1.0' encoding='utf-8'?>
 <report type="school_Af.Rpt.RptLable.crAmarHozeh">
   <print>
     <PaperOrientation>DefaultPaperOrientation</PaperOrientation>
@@ -9,7 +9,7 @@
     <topMargin>-2147483648</topMargin>
     <bottomMargin>-2147483648</bottomMargin>
   </print>
-  <record-selection></record-selection>
+  <record-selection />
   <database>
     <table name="v_HozehStd">
       <field name="xStudent" type="NumberField" />
@@ -85,7 +85,7 @@
           <TopLineStyle>NoLine</TopLineStyle>
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
-      </object>
+      <pivot operation="Count" field="{@xStudent}" row-totals="true" column-totals="true" total-row="جمع پایه" total-column="جمع حوزه"><row>{@hozeh}</row><column>{@Paye}</column></pivot></object>
       <object>
         <Name>Text14</Name>
         <Kind>TextObject</Kind>

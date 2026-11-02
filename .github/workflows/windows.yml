@@ -95,6 +95,7 @@ jobs:
             dist/FreeSMS-Net10/*verification*.txt
             dist/FreeSMS-Net10/original-runtime-error.txt
             validation/native-controls-checks.log
+            validation/dotnet-release.json
             validation/native-controls/
             dist/FreeSMS-Net10/startup-*.png
             dist/FreeSMS-Net10/original-forms/
@@ -120,7 +121,7 @@ jobs:
           Copy-Item dist/FreeSMS-Net10/native-startup-verification.txt validation/net10-startup-verification.txt -Force
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add validation/previews validation/net10-forms-verification.txt validation/net10-startup-verification.txt validation/native-controls-checks.log
+          git add validation/previews validation/net10-forms-verification.txt validation/net10-startup-verification.txt validation/native-controls-checks.log validation/dotnet-release.json
           git diff --cached --quiet
           if ($LASTEXITCODE -eq 1) {
             git commit -m 'Record native Windows verification previews'

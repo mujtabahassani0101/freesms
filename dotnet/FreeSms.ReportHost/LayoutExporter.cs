@@ -20,11 +20,27 @@ internal static class LayoutExporter
         {
             var xml = ExportReport(report);
             xml.SetAttributeValue("type", type.FullName);
+            var definitions = XDocument.Load(Path.Combine(Environment.CurrentDirectory, "analysis", "report-pivots.xml"));
+            var pivot = definitions.Root.Elements("report").FirstOrDefault(r => (string)r.Attribute("name") == report.ResourceName)?.Element("pivot");
+            if (pivot != null)
+                foreach (var obj in xml.Descendants("object").Where(o => o.Element("Kind")?.Value == "CrossTabObject")) obj.Add(new XElement(pivot));
+            string previous = Path.Combine(Environment.CurrentDirectory, "dotnet", "FreeSms.Original.Windows", "portable-layouts", report.ResourceName + ".xml");
+            if (File.Exists(previous))
+            {
+                var original = XDocument.Load(previous);
+                foreach (var obj in xml.Descendants("object").Where(o => o.Element("Kind")?.Value == "PictureObject" && o.Element("picture") == null))
+                {
+                    string key = PictureKey(obj);
+                    var old = original.Descendants("object").SingleOrDefault(o => o.Element("Kind")?.Value == "PictureObject" && PictureKey(o) == key);
+                    if (old?.Element("picture") != null && (string)old.Attribute("original-width") == (string)obj.Attribute("original-width") && (string)old.Attribute("original-height") == (string)obj.Attribute("original-height")) obj.Add(new XElement(old.Element("picture")));
+                }
+            }
             new XDocument(xml).Save(Path.Combine(directory, report.ResourceName + ".xml"));
             if (xml.Descendants("object").Any(o => o.Element("Kind")?.Value == "CrossTabObject"))
                 ReferenceExporter.Export(report, Path.Combine(directory, "..", "reference"));
         }
     }
+    private static string PictureKey(XElement obj) => string.Join("/", obj.Ancestors("object").Reverse().Select(o => (string)o.Attribute("subreport"))) + ":" + obj.Element("Name")?.Value;
     private static XElement ExportReport(ReportDocument report, bool isSubreport = false)
     {
         var xml = new XElement("report");
@@ -141,14 +157,21 @@ internal static class LayoutExporter
         }
         xml.Add(summaries);
         var areas = ras.ReportDefController.ReportDefinition.Areas;
+        int headerIndex = 0, footerIndex = report.DataDefinition.Groups.Count - 1;
         for (int i = 0; i < areas.Count; i++)
         {
             var area = areas[i];
+            int? groupLevel = area.Kind == R.CrAreaSectionKindEnum.crAreaSectionKindGroupHeader ? (int?)headerIndex++ : area.Kind == R.CrAreaSectionKindEnum.crAreaSectionKindGroupFooter ? (int?)footerIndex-- : null;
             for (int j = 0; j < area.Sections.Count; j++)
             {
                 var section = area.Sections[j];
                 var target = sections.Elements("section").FirstOrDefault(x => (string)x.Attribute("name") == section.Name);
                 if (target == null) continue;
+                if (groupLevel.HasValue) target.SetAttributeValue("group-level", groupLevel.Value);
+                var areaFormat = new XElement("area-suppress", new XElement("EnableSuppress", area.Format.EnableSuppress || area.Format.EnableHideForDrillDown));
+                string suppression = area.Format.ConditionFormulas[R.CrSectionAreaFormatConditionFormulaTypeEnum.crSectionAreaConditionFormulaTypeEnableSuppress]?.Text;
+                if (!string.IsNullOrWhiteSpace(suppression)) areaFormat.Add(new XElement("condition", new XAttribute("name", "EnableSuppress"), suppression));
+                target.Element("format").Add(areaFormat);
                 foreach (R.CrSectionAreaFormatConditionFormulaTypeEnum condition in Enum.GetValues(typeof(R.CrSectionAreaFormatConditionFormulaTypeEnum)))
                 {
                     string text = section.Format.ConditionFormulas[condition]?.Text;
@@ -176,6 +199,17 @@ internal static class LayoutExporter
                             obj.SetAttributeValue("y-scaling", picture.YScaling);
                             if (picture.PictureData != null)
                                 obj.Add(new XElement("picture", Convert.ToBase64String(picture.PictureData.ByteArray)));
+                        }
+                    }
+                    if (item is R.ISCRFieldObject fieldObject)
+                    {
+                        string kind = fieldObject.FieldValueType.ToString();
+                        if (kind.Contains("Number") || kind.Contains("Int") || kind.Contains("Currency"))
+                        {
+                            var value = fieldObject.FieldFormat.NumericFormat;
+                            var number = obj.Element("number");
+                            if (number == null) obj.Add(number = new XElement("number"));
+                            number.ReplaceNodes(new XElement("DecimalPlaces", value.NDecimalPlaces), new XElement("EnableUseLeadZero", value.EnableUseLeadZero), new XElement("NegativeFormat", value.NegativeFormat), new XElement("RoundingFormat", value.RoundingFormat), new XElement("EnableSuppressIfZero", value.EnableSuppressIfZero), new XElement("ThousandsSeparator", value.ThousandsSeparator), new XElement("ThousandSymbol", value.ThousandSymbol), new XElement("DecimalSymbol", value.DecimalSymbol), new XElement("DisplayReverseSign", value.DisplayReverseSign), new XElement("ZeroValueString", value.ZeroValueString));
                         }
                     }
                     if (item is R.ISCRSubreportObject subreport)

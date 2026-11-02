@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Axes and totals verified against the original engine's eight-record HTML
+     reference output in validation/original-report-reference. Layout may change. -->
+<pivots>
+  <report name="CrAvgClassBooks_1.rpt"><pivot operation="Average" field="{@Mark}" row-totals="true" total-column="کل"><row>{@book}</row><column>{@Class}</column></pivot></report>
+  <report name="CrAvgClassBooks_2.rpt"><pivot operation="Average" field="{@Mark}" row-totals="true" subtotal-level="1" subtotal-label="اوسط صنف‌ها" total-column="کل"><row>{@book}</row><row>{@Class}</row><column>{@Exam}</column></pivot></report>
+  <report name="CrListBooksRengMark1.rpt"><pivot operation="Count" field="{@xstudent}" subtotal-level="1" subtotal-label="جمع"><row>{@book}</row><row>{@Class}</row><column>{@statusM}</column><column>{@status}</column></pivot></report>
+  <report name="CrListBooksRengMark2.rpt"><pivot operation="Count" field="{@xstudent}"><row>{@book}</row><row>{@Class}</row><row>{@Exam}</row><column>{@statusM}</column><column>{@status}</column></pivot></report>
+  <report name="CrListBooksRengMark_class.rpt"><pivot operation="Count" field="{@xstudent}"><row>{@book}</row><column>{@statusM}</column><column>{@status}</column></pivot></report>
+  <report name="crAmarHozeh.rpt"><pivot operation="Count" field="{@xStudent}" row-totals="true" column-totals="true" total-row="جمع پایه" total-column="جمع حوزه"><row>{@hozeh}</row><column>{@Paye}</column></pivot></report>
+</pivots>

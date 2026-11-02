@@ -31,6 +31,7 @@ namespace FreeSms.NativeControls
         {
             internal float Height;
             internal readonly Dictionary<XElement, Child> Children = new Dictionary<XElement, Child>();
+            internal readonly Dictionary<XElement, PivotTable> Pivots = new Dictionary<XElement, PivotTable>();
             internal readonly Dictionary<XElement, float> ObjectHeights = new Dictionary<XElement, float>();
         }
         private sealed class Child
@@ -178,7 +179,7 @@ namespace FreeSms.NativeControls
                     if (kind == "BoxObject") { graphics.DrawRectangle(Pens.Gray, rect.X, rect.Y, rect.Width, rect.Height); continue; }
                     if (kind == "PictureObject") { DrawPicture(graphics, obj, rect); continue; }
                     if (kind == "ChartObject") { DrawChart(graphics, obj, rect, band, context); continue; }
-                    if (kind == "CrossTabObject") { DrawPivot(graphics, rect, band); continue; }
+                    if (kind == "CrossTabObject") { DrawPivot(graphics, obj, rect, band); continue; }
                     if (kind == "SubreportObject") { DrawSubreport(graphics, obj, rect, band); continue; }
                     var source = obj.Element("source");
                     object value = source == null ? obj.Element("Text")?.Value : model.Evaluate((string)source.Attribute("formula") ?? "", context);
@@ -187,7 +188,7 @@ namespace FreeSms.NativeControls
                         if (value is byte[] bytes) { using var image = DataDynamics.ActiveReports.Rpx.Image(bytes); graphics.DrawImage(image, rect); }
                         continue;
                     }
-                    string text = TextValue(value);
+                    string text = TextValue(ReportValue.Format(obj, value));
                     var fontNode = obj.Element("Font");
                     float size = (float?)fontNode?.Attribute("size") ?? 10;
                     using var font = new Font((string)fontNode?.Attribute("family") ?? "Tahoma", Math.Max(1, size * 100 / 72), (FontStyle)((int?)fontNode?.Attribute("style") ?? 0), GraphicsUnit.Pixel);
@@ -237,16 +238,7 @@ namespace FreeSms.NativeControls
                 string name = (string)obj.Attribute("subreport");
                 if (name == null || !input.Subreports.TryGetValue(name, out var source)) throw new InvalidDataException("Missing report data: " + name);
                 var childModel = new ReportModel(obj.Element("report"));
-                var childInput = new ReportInput { Data = source.Data };
-                foreach (var parameter in input.Parameters) childInput.Parameters[parameter.Key] = parameter.Value;
-                foreach (var parameter in source.Parameters) childInput.Parameters[parameter.Key] = parameter.Value;
-                foreach (var child in source.Subreports) childInput.Subreports[child.Key] = child.Value;
-                foreach (var parameter in childModel.Xml.Element("parameters")?.Elements("parameter") ?? Enumerable.Empty<XElement>())
-                {
-                    string key = (string)parameter.Attribute("name");
-                    if (key != null && key.StartsWith("Pm-", StringComparison.Ordinal))
-                        childInput.Parameters[key] = model.Evaluate("{" + key.Substring(3) + "}", context);
-                }
+                var childInput = model.BindSubreport(input, source, childModel, row, rows);
                 var document = new PortableReportDocument(childModel, childInput, true);
                 children.Add(document);
                 float scale = Math.Min(1, N(obj, "Width") / 14.4f / document.contentWidth);
@@ -262,10 +254,18 @@ namespace FreeSms.NativeControls
                 {
                     var source = obj.Element("source");
                     var value = source == null ? obj.Element("Text")?.Value : model.Evaluate((string)source.Attribute("formula") ?? "", context);
-                    string text = TextValue(value);
+                    string text = TextValue(ReportValue.Format(obj, value));
                     var fontNode = obj.Element("Font");
                     using var font = new Font((string)fontNode?.Attribute("family") ?? "Tahoma", Math.Max(1, ((float?)fontNode?.Attribute("size") ?? 10) * 100 / 72), (FontStyle)((int?)fontNode?.Attribute("style") ?? 0), GraphicsUnit.Pixel);
                     layout.ObjectHeights[obj] = Math.Max(N(obj, "Height") / 14.4f, measureGraphics.MeasureString(text, font, new SizeF(Math.Max(1, N(obj, "Width") / 14.4f), 100000)).Height);
+                }
+                if (obj.Element("Kind")?.Value == "CrossTabObject")
+                {
+                    var definition = obj.Element("pivot") ?? throw new InvalidDataException("Missing migrated pivot definition.");
+                    var scope = Kind(section).StartsWith("Group", StringComparison.Ordinal) ? model.Scope(input, row, rows, model.GroupLevel(section)) : rows;
+                    var pivot = ReportPivot.Build(definition, model, input, scope);
+                    layout.Pivots[obj] = pivot;
+                    layout.ObjectHeights[obj] = Math.Max(N(obj, "Height") / 14.4f, (pivot.Rows.Length + 1) * 26);
                 }
                 float objectHeight = layout.Children.TryGetValue(obj, out var child) ? Math.Max(N(obj, "Height") / 14.4f, child.Height) : layout.ObjectHeights.GetValueOrDefault(obj, N(obj, "Height") / 14.4f);
                 layout.Height = Math.Max(layout.Height, ObjectTop(obj, layout) + objectHeight);
@@ -319,34 +319,25 @@ namespace FreeSms.NativeControls
                 graphics.DrawString(groups[i].Key, font, Brushes.Black, new RectangleF(rect.Left + i * slot, rect.Top + plotHeight, slot, labelHeight), format);
             }
         }
-        private void DrawPivot(Graphics graphics, RectangleF rect, Band band)
+        private static void DrawPivot(Graphics graphics, XElement obj, RectangleF rect, Band band)
         {
-            bool ranges = model.Name.Contains("RengMark", StringComparison.OrdinalIgnoreCase);
-            bool rooms = model.Name.Contains("AmarHozeh", StringComparison.OrdinalIgnoreCase);
-            string rowField = rooms ? "hozeh" : ranges ? "book" : "Class";
-            string columnField = rooms ? "Paye" : ranges ? "status" : "book";
-            var scope = (Kind(band.Section).StartsWith("Group", StringComparison.Ordinal) ? model.Scope(input, band.Row, rows, model.GroupLevel(band.Section)) : rows);
-            string Read(string field, DataRow row) => Formula.Text(model.Evaluate("{@" + field + "}", model.Context(input, row, scope)));
-            var rowKeys = scope.Select(r => Read(rowField, r)).Distinct().ToArray();
-            var columns = scope.Select(r => Read(columnField, r)).Distinct().ToArray();
+            var pivot = band.Layout.Pivots[obj];
             using var font = new Font("Tahoma", 8 * 100f / 72, FontStyle.Regular, GraphicsUnit.Pixel);
+            using var bold = new Font(font, FontStyle.Bold);
             using var format = new StringFormat { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center, FormatFlags = StringFormatFlags.DirectionRightToLeft };
-            float cellWidth = rect.Width / Math.Max(1, columns.Length + 1), cellHeight = Math.Min(24, rect.Height / Math.Max(1, rowKeys.Length + 1));
-            void Draw(string text, int x, int y)
+            float cellWidth = rect.Width / Math.Max(1, pivot.Columns.Length + 1), cellHeight = 26;
+            void Draw(string text, int x, int y, bool total)
             {
                 var cell = new RectangleF(rect.Right - (x + 1) * cellWidth, rect.Top + y * cellHeight, cellWidth, cellHeight);
-                graphics.DrawRectangle(Pens.Gray, cell.X, cell.Y, cell.Width, cell.Height); graphics.DrawString(text, font, Brushes.Black, cell, format);
+                if (total) graphics.FillRectangle(Brushes.WhiteSmoke, cell);
+                graphics.DrawRectangle(Pens.Gray, cell.X, cell.Y, cell.Width, cell.Height);
+                graphics.DrawString(text, total ? bold : font, Brushes.Black, cell, format);
             }
-            for (int c = 0; c < columns.Length; c++) Draw(columns[c], c + 1, 0);
-            for (int r = 0; r < rowKeys.Length; r++)
+            for (int column = 0; column < pivot.Columns.Length; column++) Draw(pivot.Columns[column], column + 1, 0, true);
+            for (int row = 0; row < pivot.Rows.Length; row++)
             {
-                Draw(rowKeys[r], 0, r + 1);
-                for (int c = 0; c < columns.Length; c++)
-                {
-                    var records = scope.Where(row => Read(rowField, row) == rowKeys[r] && Read(columnField, row) == columns[c]).ToArray();
-                    decimal number = ranges || rooms ? records.Length : records.Length == 0 ? 0 : records.Average(row => Convert.ToDecimal(model.Evaluate("{@Mark}", model.Context(input, row, scope)), CultureInfo.InvariantCulture));
-                    Draw(number.ToString("0.##", CultureInfo.CurrentCulture), c + 1, r + 1);
-                }
+                var record = pivot.Rows[row]; Draw(record.Label, 0, row + 1, record.Total);
+                for (int column = 0; column < record.Values.Length; column++) Draw(record.Values[column]?.ToString("0.##", CultureInfo.CurrentCulture) ?? "", column + 1, row + 1, record.Total);
             }
         }
         protected override void Dispose(bool disposing) { if (disposing) { foreach (var picture in pictures.Values) picture.Dispose(); foreach (var child in children) child.Dispose(); } base.Dispose(disposing); }

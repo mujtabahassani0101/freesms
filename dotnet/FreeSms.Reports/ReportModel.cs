@@ -52,6 +52,7 @@ public sealed class ReportModel
     public object? Evaluate(string text, FormulaContext context) => expressions.GetOrAdd(text, Formula.Parse).Evaluate(context);
     public bool Flag(XElement? format, string name, FormulaContext context)
     {
+        if (name == "EnableSuppress" && format?.Element("area-suppress") is XElement area && Flag(area, name, context)) return true;
         string? condition = format?.Elements("condition").FirstOrDefault(x => (string?)x.Attribute("name") == name)?.Value;
         return condition != null ? Formula.Boolean(Evaluate(condition, context)) : bool.TryParse(format?.Element(name)?.Value, out var value) && value;
     }
@@ -99,6 +100,20 @@ public sealed class ReportModel
         };
         return context;
     }
+    public ReportInput BindSubreport(ReportInput parent, ReportInput source, ReportModel child, DataRow? row, IReadOnlyList<DataRow> rows)
+    {
+        var result = new ReportInput { Data = source.Data };
+        foreach (var parameter in parent.Parameters) result.Parameters[parameter.Key] = parameter.Value;
+        foreach (var parameter in source.Parameters) result.Parameters[parameter.Key] = parameter.Value;
+        foreach (var nested in source.Subreports) result.Subreports[nested.Key] = nested.Value;
+        var context = Context(parent, row, rows);
+        foreach (var parameter in child.Xml.Element("parameters")?.Elements("parameter") ?? [])
+        {
+            string key = (string)parameter.Attribute("name")!;
+            if (key.StartsWith("Pm-", StringComparison.Ordinal)) result.Parameters[key] = Evaluate("{" + key[3..] + "}", context);
+        }
+        return result;
+    }
     public DataRow[] Rows(ReportInput input)
     {
         var table = input.Data?.Tables.Cast<DataTable>().FirstOrDefault();
@@ -117,6 +132,7 @@ public sealed class ReportModel
     }
     public int GroupLevel(XElement section)
     {
+        if ((int?)section.Attribute("group-level") is int level) return Math.Clamp(level, 0, Math.Max(0, Groups.Length - 1));
         string name = (string?)section.Attribute("name") ?? "";
         var number = Regex.Match(name, @"(\d+)");
         return number.Success ? Math.Clamp(int.Parse(number.Value) - 1, 0, Math.Max(0, Groups.Length - 1)) : 0;

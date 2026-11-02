@@ -21,9 +21,10 @@ public static class ReportWorkbook
     {
         var sheets = new List<Sheet>();
         var names = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-        void Add(ReportModel report, ReportInput source, string label)
+        void Add(ReportModel report, IReadOnlyList<ReportInput> contexts, string label)
         {
-            var table = source.Data?.Tables.Cast<DataTable>().FirstOrDefault();
+            var source = contexts.FirstOrDefault();
+            var table = source?.Data?.Tables.Cast<DataTable>().FirstOrDefault();
             if (table != null)
             {
                 string name = Regex.Replace(label, @"[\[\]:*?/\\]", "_").Trim('\'');
@@ -31,15 +32,28 @@ public static class ReportWorkbook
                 name = name[..Math.Min(31, name.Length)];
                 string unique = name;
                 for (int suffix = 2; !names.Add(unique); suffix++) unique = name[..Math.Min(26, name.Length)] + "-" + suffix;
-                sheets.Add(new Sheet(unique, table.Columns.Cast<DataColumn>().Where(c => c.DataType != typeof(byte[])).ToArray(), report.Rows(source)));
+                sheets.Add(new Sheet(unique, table.Columns.Cast<DataColumn>().Where(c => c.DataType != typeof(byte[])).ToArray(), contexts.SelectMany(report.Rows).Distinct().ToArray()));
             }
-            foreach (var child in source.Subreports)
+            foreach (var child in source?.Subreports ?? new Dictionary<string, ReportInput>())
             {
                 var node = report.Xml.Descendants("object").First(o => (string?)o.Attribute("subreport") == child.Key).Element("report")!;
-                Add(new ReportModel(node), child.Value, child.Key);
+                var childModel = new ReportModel(node);
+                var bound = new List<ReportInput>();
+                var seen = new HashSet<string>(StringComparer.Ordinal);
+                foreach (var parent in contexts)
+                {
+                    var records = report.Rows(parent);
+                    foreach (var record in records)
+                    {
+                        var item = report.BindSubreport(parent, parent.Subreports[child.Key], childModel, record, records);
+                        string key = System.Text.Json.JsonSerializer.Serialize(item.Parameters.OrderBy(p => p.Key));
+                        if (seen.Add(key)) bound.Add(item);
+                    }
+                }
+                Add(childModel, bound, child.Key);
             }
         }
-        Add(model, input, model.Name.Split('.').Last());
+        Add(model, new[] { input }, model.Name.Split('.').Last());
         if (sheets.Count == 0) throw new InvalidDataException("The report has no data to export.");
         using var archive = ZipFile.Open(path, ZipArchiveMode.Create);
         void Xml(string name, XDocument xml)

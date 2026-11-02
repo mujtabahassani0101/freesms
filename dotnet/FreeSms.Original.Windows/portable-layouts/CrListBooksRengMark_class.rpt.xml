@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version='1.0' encoding='utf-8'?>
 <report type="school_Af.Rpt.CrListBooksRengMark_class">
   <print>
     <PaperOrientation>DefaultPaperOrientation</PaperOrientation>
@@ -9,7 +9,7 @@
     <topMargin>-2147483648</topMargin>
     <bottomMargin>-2147483648</bottomMargin>
   </print>
-  <record-selection></record-selection>
+  <record-selection />
   <database>
     <table name="sp_List_books_RengMark">
       <field name="xStudent" type="Int32sField" />
@@ -412,7 +412,7 @@ else if{sp_List_books_RengMark.mark}&lt;=40 then 'الف'
         <BackgroundColor>-1</BackgroundColor>
       </format>
     </section>
-    <section name="GroupFooterSection1" kind="GroupFooter" height="3655">
+    <section name="GroupFooterSection1" kind="GroupFooter" group-level="1" height="3655">
       <format>
         <EnableSuppress>false</EnableSuppress>
         <EnableNewPageAfter>false</EnableNewPageAfter>
@@ -444,7 +444,7 @@ else if{sp_List_books_RengMark.mark}&lt;=40 then 'الف'
           <TopLineStyle>NoLine</TopLineStyle>
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
-      </object>
+      <pivot operation="Count" field="{@xstudent}"><row>{@book}</row><column>{@statusM}</column><column>{@status}</column></pivot></object>
     </section>
     <section name="GroupFooterSection2" kind="GroupFooter" height="220">
       <format>

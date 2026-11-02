@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version='1.0' encoding='utf-8'?>
 <report type="school_Af.Rpt.CrListBooksRengMark1">
   <print>
     <PaperOrientation>DefaultPaperOrientation</PaperOrientation>
@@ -9,7 +9,7 @@
     <topMargin>-2147483648</topMargin>
     <bottomMargin>-2147483648</bottomMargin>
   </print>
-  <record-selection></record-selection>
+  <record-selection />
   <database>
     <table name="sp_List_books_RengMark">
       <field name="xStudent" type="Int32sField" />
@@ -403,7 +403,7 @@ else if{sp_List_books_RengMark.mark}&lt;=40 then 'الف'
           <TopLineStyle>NoLine</TopLineStyle>
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
-      </object>
+      <pivot operation="Count" field="{@xstudent}" subtotal-level="1" subtotal-label="جمع"><row>{@book}</row><row>{@Class}</row><column>{@statusM}</column><column>{@status}</column></pivot></object>
     </section>
     <section name="Section4" kind="ReportFooter" height="220">
       <format>

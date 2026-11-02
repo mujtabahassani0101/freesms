@@ -17,17 +17,17 @@ public sealed class FormulaContext
     private readonly HashSet<string> evaluating = new(StringComparer.OrdinalIgnoreCase);
     public object? Field(string name)
     {
-        name = name.Trim();
+        name = name.TrimStart();
         if (name.StartsWith('@'))
         {
             name = name[1..];
-            if (!Formulas.TryGetValue(name, out var formula)) throw new InvalidDataException("Missing report formula: " + name);
+            if (!Formulas.TryGetValue(name, out var formula) && !Formulas.TryGetValue(name.TrimEnd(), out formula)) throw new InvalidDataException("Missing report formula: " + name);
             if (!evaluating.Add(name)) throw new InvalidDataException("Recursive report formula: " + name);
             try { return formula.Evaluate(this); } finally { evaluating.Remove(name); }
         }
-        if (name.StartsWith('?')) return Parameters.GetValueOrDefault(name[1..]);
-        if (name.StartsWith('#')) return Special?.Invoke(name);
-        string field = name[(name.LastIndexOf('.') + 1)..];
+        if (name.StartsWith('?')) return Parameters.GetValueOrDefault(name[1..].TrimEnd());
+        if (name.StartsWith('#')) return Special?.Invoke(name.TrimEnd());
+        string field = name[(name.LastIndexOf('.') + 1)..].TrimEnd();
         if (Row == null) return null;
         if (!Row.Table.Columns.Contains(field)) throw new InvalidDataException("Missing report data field: " + name);
         var value = Row[field];

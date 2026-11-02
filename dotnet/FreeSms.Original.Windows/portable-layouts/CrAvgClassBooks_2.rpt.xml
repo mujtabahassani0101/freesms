@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version='1.0' encoding='utf-8'?>
 <report type="school_Af.Rpt.CrAvgClassBooks_2">
   <print>
     <PaperOrientation>DefaultPaperOrientation</PaperOrientation>
@@ -9,7 +9,7 @@
     <topMargin>-2147483648</topMargin>
     <bottomMargin>-2147483648</bottomMargin>
   </print>
-  <record-selection></record-selection>
+  <record-selection />
   <database>
     <table name="spRpt_AvgClassBooks">
       <field name="id" type="Int32sField" />
@@ -345,7 +345,7 @@
           <TopLineStyle>NoLine</TopLineStyle>
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
-      </object>
+      <pivot operation="Average" field="{@Mark}" row-totals="true" subtotal-level="1" subtotal-label="اوسط صنف‌ها" total-column="کل"><row>{@book}</row><row>{@Class}</row><column>{@Exam}</column></pivot></object>
     </section>
     <section name="Section4" kind="ReportFooter" height="220">
       <format>

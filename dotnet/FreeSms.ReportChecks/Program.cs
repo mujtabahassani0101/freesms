@@ -5,11 +5,17 @@ using FreeSms.Reports;
 int count = 0;
 void Check(bool result, string name) { if (!result) throw new Exception(name); count++; Console.WriteLine("PASS " + name); }
 var root = Path.GetFullPath(args.FirstOrDefault() ?? ".");
-int formulas = 0, reportCount = 0;
+int formulas = 0, reportCount = 0, pictures = 0;
 foreach (var path in Directory.GetFiles(Path.Combine(root, "dotnet", "FreeSms.Original.Windows", "portable-layouts"), "*.xml"))
 {
     reportCount++;
     var xml = XDocument.Load(path);
+    foreach (var picture in xml.Descendants("object").Where(o => o.Element("Kind")?.Value == "PictureObject"))
+    {
+        var payload = Convert.FromBase64String(picture.Element("picture")?.Value ?? throw new Exception("Missing original report image: " + path));
+        if (!payload.AsSpan(0, 8).SequenceEqual(new byte[] { 137, 80, 78, 71, 13, 10, 26, 10 })) throw new Exception("Invalid recovered PNG.");
+        pictures++;
+    }
     var fixture = ReportFixtures.Create(xml.Root!);
     void EvaluateReport(XElement template, ReportInput input)
     {
@@ -41,6 +47,7 @@ foreach (var path in Directory.GetFiles(Path.Combine(root, "dotnet", "FreeSms.Or
     foreach (var condition in xml.Descendants("condition")) Formula.Parse(condition.Value);
     foreach (var source in xml.Descendants("source")) Formula.Parse((string?)source.Attribute("formula") ?? "");
 }
+Check(pictures == 58, "all 58 original report images are present");
 Check(reportCount == 98, "evaluate every original report with disconnected sample data: " + reportCount);
 Check(formulas >= 3000, "parse every original report expression: " + formulas);
 var data = new DataTable(); data.Columns.Add("mark", typeof(decimal)); data.Columns.Add("group", typeof(int)); data.Columns.Add("comment", typeof(string));
@@ -58,6 +65,44 @@ Check(Equals(Eval("isnull({d.comment})", 1), true), "database null detection");
 Check(Equals(Eval("'الف' + ' ' + {d.comment}"), "الف نام"), "Persian text concatenation");
 Check(Equals(Eval("mid('1405/08/11', 6, 2)"), "08"), "one-based date substring");
 Check(Equals(Eval("if false then 'الف' else if {d.mark}>0 then 'ب' else 'پ'"), "ب"), "nested conditions");
+Check(Equals(Eval("{d.comment }"), "نام"), "original field references permit surrounding whitespace");
+var selection = new ReportModel(XElement.Parse("<report><formulas><formula name='student '>{d.group }</formula></formulas><record-selection>{@student }={?Pm-@student}</record-selection></report>"));
+var selectionData = new DataSet(); selectionData.Tables.Add(data.Copy());
+var selectionInput = new ReportInput { Data = selectionData }; selectionInput.Parameters["Pm-@student"] = 2m;
+Check(selection.Rows(selectionInput).Length == 1, "subreport selection binds the original linked parent parameter");
+var resetModel = new ReportModel(XElement.Parse("<report><running-totals><total name='rows' field='{d.mark}' reset-field='{d.group}'><Operation>Count</Operation></total></running-totals></report>"));
+var resetTable = data.Copy(); resetTable.Rows.Add(12m, 1, "بازگشت به گروه اول");
+var resetRows = resetTable.Rows.Cast<DataRow>().ToArray();
+Check(Equals(resetModel.Evaluate("{#rows}", resetModel.Context(new ReportInput(), resetRows[3], resetRows)), 1), "running total resets when a field changes back to an earlier value");
+var spaced = new ReportModel(XElement.Parse("<report><formulas><formula name='caption'>1</formula><formula name='caption '>2</formula></formulas></report>"));
+Check(Equals(spaced.Evaluate("{@caption}", spaced.Context(new ReportInput(), null, [])), 1m) && Equals(spaced.Evaluate("{@caption }", spaced.Context(new ReportInput(), null, [])), 2m), "distinct original formula names retain trailing spaces");
+foreach (var config in XDocument.Load(Path.Combine(root, "analysis", "report-pivots.xml")).Root!.Elements("report"))
+{
+    string name = (string)config.Attribute("name")!;
+    var model = ReportModel.Load(Path.Combine(root, "dotnet", "FreeSms.Original.Windows", "portable-layouts", name + ".xml"));
+    var fixture = new DataSet(); fixture.ReadXml(Path.Combine(root, "validation", "original-report-reference", name + ".input.xml"), XmlReadMode.ReadSchema);
+    var input = new ReportInput { Data = fixture };
+    foreach (var parameter in model.Xml.Element("parameters")!.Elements("parameter")) input.Parameters[(string)parameter.Attribute("name")!] = "1";
+    var rows = model.Rows(input);
+    var obj = model.Xml.Descendants("object").First(o => o.Element("Kind")?.Value == "CrossTabObject");
+    var section = obj.Parent!;
+    var scope = ((string?)section.Attribute("kind"))?.StartsWith("Group") == true ? model.Scope(input, rows[0], rows, model.GroupLevel(section)) : rows;
+    var pivot = ReportPivot.Build(obj.Element("pivot")!, model, input, scope);
+    decimal? Cell(string row, string column) => pivot.Rows.Single(r => r.Label == row).Values[Array.IndexOf(pivot.Columns, column)];
+    bool match = name switch
+    {
+        "CrAvgClassBooks_1.rpt" => Cell("Book1", "Class1") == 10 && Cell("Book1", "Class2") == 12 && Cell("Book2", "کل") == 16.5m,
+        "CrAvgClassBooks_2.rpt" => Cell("Book1 / Class1", "Exam2") == 22 && Cell("Book2 / Class2", "کل") == 28 && pivot.Rows.Single(r => r.Total && r.Label.StartsWith("Book1")).Values.SequenceEqual(new decimal?[] { 11, 24, 17.5m }),
+        "CrListBooksRengMark1.rpt" => pivot.Rows.Length == 6 && pivot.Columns.Length == 1 && pivot.Rows.Where(r => r.Total).All(r => r.Values[0] == 2),
+        "CrListBooksRengMark2.rpt" => pivot.Rows.Length == 8 && pivot.Columns.Length == 7 && Cell("Book1 / Class1 / Exam2", "د / ") == 1 && Cell("Book2 / Class2 / Exam2", "الف / ") == 1,
+        "CrListBooksRengMark_class.rpt" => pivot.Rows.Length == 2 && pivot.Rows.All(r => r.Values.Length == 1 && r.Values[0] == 1),
+        "crAmarHozeh.rpt" => Cell("Room1", "Paye1") == 4 && Cell("Room2", "جمع حوزه") == 4 && Cell("جمع پایه", "Paye1") == 8,
+        _ => false
+    };
+    Check(match, "match original engine cross-tab reference: " + name);
+}
+var numeric = XElement.Parse("<object><number><DecimalPlaces>2</DecimalPlaces><ThousandsSeparator>true</ThousandsSeparator><ThousandSymbol>,</ThousandSymbol><DecimalSymbol>/</DecimalSymbol><NegativeFormat>crNegativeTypeTrailingMinus</NegativeFormat><RoundingFormat>crRoundingTypeRoundToHundredth</RoundingFormat></number></object>");
+Check(ReportValue.Format(numeric, -1234.995m) == "1,235/00-", "original report separators, precision and negative format");
 string workbook = Path.Combine(Path.GetTempPath(), "FreeSms-report-" + Guid.NewGuid().ToString("N") + ".xlsx");
 try
 {
