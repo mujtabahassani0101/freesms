@@ -98,7 +98,7 @@ public class asdbf : Form
 				case 1:
 					return;
 				case 9:
-					n.SelectedValue = asdaj.__field_a;
+					OriginalSchoolYears.Select(n, asdaj.__field_a);
 					dataSource = asdcb.c(asdab.e(), CommandType.Text, "select * from tRptPayment");
 					this.m_b.DataSource = dataSource;
 					d();

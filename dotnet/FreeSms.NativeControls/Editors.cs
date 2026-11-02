@@ -115,6 +115,21 @@ namespace Janus.Windows.EditControls
         private bool pendingIndex, pendingValue;
         public UIComboBox() { items = new UIComboBoxItemCollection(this); }
         public new UIComboBoxItemCollection Items => items;
+        public void SetItems(IEnumerable<UIComboBoxItem> options, object selectedValue)
+        {
+            var values = options.ToArray();
+            bindingDepth++;
+            BeginUpdate();
+            try
+            {
+                base.DataSource = null;
+                ValueMember = ""; DisplayMember = "";
+                base.Items.Clear(); base.Items.AddRange(values);
+                SelectedValue = selectedValue;
+            }
+            finally { EndUpdate(); bindingDepth--; }
+            FlushSelection();
+        }
         public new object DataSource
         {
             get => base.DataSource;

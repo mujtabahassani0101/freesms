@@ -1,0 +1,7 @@
+{
+  "workflow_run": 41511439779,
+  "source_commit": "6f2dc336a74228367901e4f7466f06b1b4219caf",
+  "evidence_artifact": 13174190624,
+  "artifact_sha256": "98e54c2707312917a03fe3437993656c40f1d36f0daf04f2199ded469e422169",
+  "scope": "Original student deletion confirmation/cancellation and persisted effects passed. School/discount probes timed out at expected OK dialogs; report year 1410 failed on the original static year selector; catalog has two missing templates. Overall run failed; no full application pass."
+}

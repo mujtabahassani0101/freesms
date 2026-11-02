@@ -140,7 +140,7 @@ public class asda5 : Form
 					}
 					goto case 7;
 				case 7:
-					ai.SelectedValue = asdaj.__field_a;
+					OriginalSchoolYears.Select(ai, asdaj.__field_a);
 					e();
 					f();
 					this.m_a = true;

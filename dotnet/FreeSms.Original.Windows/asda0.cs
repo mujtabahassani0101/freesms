@@ -615,7 +615,7 @@ protected override void Dispose(bool A_0)
 					continue;
 				case 9:
 				{
-					ad.SelectedValue = asdaj.__field_a;
+					OriginalSchoolYears.Select(ad, asdaj.__field_a);
 					ah = false;
 					Dictionary<string, string> dictionary = new Dictionary<string, string>();
 					dictionary.Add("0", "تمام گزارشات");

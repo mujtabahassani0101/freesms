@@ -111,7 +111,7 @@ public class asdbz : Form
 				case 3:
 					v.Text = asdaj.__field_a;
 					e();
-					l.SelectedIndex = 1;
+					OriginalSchoolYears.Select(l, Math.Max(1300, int.Parse(asdaj.__field_a) - 1).ToString(System.Globalization.CultureInfo.InvariantCulture));
 					r.Focus();
 					num = 5;
 					continue;

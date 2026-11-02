@@ -80,7 +80,7 @@ public class asdav : Form
 					}
 					goto case 0;
 				case 0:
-					j.SelectedValue = asdaj.__field_a;
+					OriginalSchoolYears.Select(j, asdaj.__field_a);
 					num = 7;
 					continue;
 				case 7:

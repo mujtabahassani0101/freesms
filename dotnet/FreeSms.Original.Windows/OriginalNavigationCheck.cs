@@ -122,8 +122,13 @@ internal static class OriginalNavigationCheck
                 {
                     if (HasNativeDialog())
                     {
-                        File.AppendAllText(workerLog, "FAILED destination blocked by unexpected native dialog: " + NativeDialogText() + Environment.NewLine);
-                        Environment.Exit(1);
+                        string message = NativeDialogText();
+                        bool expected = className == "asdj" && message.Split(new[] { " | " },StringSplitOptions.None).Contains("هنوز درسی تعریف نشده است")
+                            && Convert.ToInt32(database.Scalar("SELECT COUNT(*) FROM tBook b JOIN tPaye p ON p.id=b.xPaye")) == 0;
+                        expected |= className == "asdp" && message.Split(new[] { " | " },StringSplitOptions.None).Contains("تعداد روز های سال تعلیمی را در منوی اطلاعات پایه مشخص کنید")
+                            && Convert.ToInt32(database.Scalar("SELECT COUNT(*) FROM tYearMaghtaCountDay WHERE xYear=@p0",new object[] {asdaj.__field_a})) == 0;
+                        File.AppendAllText(workerLog, (expected ? "EXPECTED_VALIDATION missing fixture configuration: " : "FAILED destination blocked by unexpected native dialog: ") + message + Environment.NewLine);
+                        Environment.Exit(expected ? 2 : 1);
                     }
                     File.AppendAllText(workerLog, "SUCCESS loaded, shown and UI timer responded" + Environment.NewLine);
                     Environment.Exit(0);
@@ -228,6 +233,7 @@ internal static class OriginalNavigationCheck
             foreach (string column in new[] { "sp", "sp2" })
                 if (!string.IsNullOrWhiteSpace(Convert.ToString(row[column]))) procedures.Add(Convert.ToString(row[column]));
             string children = Convert.ToString(row["subReport"]);
+            if (children.Length > 0) log.WriteLine("SUBREPORT report=" + id + " bindings=" + children);
             if (children.Length > 0)
             {
                 var parts = children.Split(',');

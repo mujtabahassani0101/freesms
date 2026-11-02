@@ -126,7 +126,8 @@ internal static class OriginalWorkflowChecks
     [DllImport("user32.dll")] private static extern bool IsWindowVisible(IntPtr window);
     [DllImport("user32.dll", CharSet=CharSet.Unicode)] private static extern int GetClassName(IntPtr window, StringBuilder name, int size);
     [DllImport("user32.dll", CharSet=CharSet.Unicode)] private static extern int GetWindowText(IntPtr window, StringBuilder text, int size);
-    [DllImport("user32.dll")] private static extern IntPtr GetDlgItem(IntPtr window, int id);
+    [DllImport("user32.dll")] private static extern int GetDlgCtrlID(IntPtr window);
+    [DllImport("user32.dll")] private static extern IntPtr SetActiveWindow(IntPtr window);
     [DllImport("user32.dll")] private static extern bool PostMessage(IntPtr window, uint message, IntPtr wparam, IntPtr lparam);
     [DllImport("kernel32.dll")] private static extern uint GetCurrentThreadId();
     private static void Dialog(Action action, string expectedText, int buttonId)
@@ -139,17 +140,32 @@ internal static class OriginalWorkflowChecks
             var name = new StringBuilder(128); GetClassName(window,name,name.Capacity);
             if (!IsWindowVisible(window) || name.ToString() != "#32770") return true;
             var texts = new List<string>();
-            EnumChildWindows(window,(child,unused) => {var text = new StringBuilder(2048);GetWindowText(child,text,text.Capacity);texts.Add(text.ToString());return true;},IntPtr.Zero);
+            var buttons = new List<(IntPtr Handle,int Id,string Text)>();
+            EnumChildWindows(window,(child,unused) =>
+            {
+                var text = new StringBuilder(2048); GetWindowText(child,text,text.Capacity); texts.Add(text.ToString());
+                var kind = new StringBuilder(128); GetClassName(child,kind,kind.Capacity);
+                if (kind.ToString().IndexOf("button",StringComparison.OrdinalIgnoreCase)>=0)
+                    buttons.Add((child,GetDlgCtrlID(child),text.ToString().Replace("&","").Trim()));
+                return true;
+            },IntPtr.Zero);
             // Never acknowledge an unexpected message or an unrelated window.
             if (!logged) { logged = true; diagnostic("OBSERVED dialog child texts: " + string.Join(" | ",texts)); }
             if (!texts.Any(text => text.Trim() == expectedText)) return true;
-            IntPtr button = GetDlgItem(window,buttonId);
-            if (button == IntPtr.Zero) return true;
+            string[] labels = buttonId == 1 ? new[] { "OK", "تأیید", "تایید" } : buttonId == 6 ? new[] { "Yes", "بله" } : buttonId == 7 ? new[] { "No", "خیر" } : Array.Empty<string>();
+            // Some native dialog hosts nest their buttons; GetDlgItem(root,id)
+            // cannot find those. Resolve the actual descendant button first.
+            var selected = buttons.FirstOrDefault(button => labels.Contains(button.Text,StringComparer.OrdinalIgnoreCase));
+            if (selected.Handle == IntPtr.Zero) selected = buttons.FirstOrDefault(button => button.Id == buttonId);
+            if (selected.Handle == IntPtr.Zero)
+            {
+                diagnostic("FAILED expected dialog button missing; available=" + string.Join(" | ",buttons.Select(button => button.Id + ":" + button.Text)));
+                Environment.Exit(1);
+            }
             observed = true; timer.Stop();
-            // Queue the validated dialog button command; do not depend on focus or
-            // synchronously reenter the native modal loop from a timer callback.
-            Require(PostMessage(window,0x0111,(IntPtr)buttonId,button), "Could not queue expected dialog response."); // WM_COMMAND/BN_CLICKED
-            diagnostic("RESPOND expected dialog, button=" + buttonId);
+            SetActiveWindow(window);
+            Require(PostMessage(selected.Handle,0x00F5,IntPtr.Zero,IntPtr.Zero), "Could not queue expected dialog button click."); // BM_CLICK
+            diagnostic("RESPOND expected dialog, requested=" + buttonId + " actual=" + selected.Id + ":" + selected.Text);
             return false;
         },IntPtr.Zero);
         timer.Start(); action();

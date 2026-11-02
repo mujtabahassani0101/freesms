@@ -394,7 +394,7 @@ protected override void Dispose(bool A_0)
 				case 8:
 					return;
 				case 7:
-					i.SelectedValue = asdaj.__field_a;
+					OriginalSchoolYears.Select(i, asdaj.__field_a);
 					dataSource = asdcb.c(asdab.e(), CommandType.Text, "select * from tRptAFLsit");
 					this.m_b.DataSource = dataSource;
 					c();

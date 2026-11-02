@@ -63,6 +63,7 @@ public class asdas : Form
 		if (true)
 		{
 		}
+        OriginalSchoolYears.Select(t, asdaj.__field_a);
 		DataTable dataSource = asdcb.c(asdab.e(), CommandType.Text, "select * from tRptDis");
 		this.m_e.DataSource = dataSource;
 		d();

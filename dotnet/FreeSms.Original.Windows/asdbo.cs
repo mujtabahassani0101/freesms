@@ -582,7 +582,7 @@ protected override void Dispose(bool A_0)
 				case 1:
 					return;
 				case 4:
-					ab.SelectedValue = asdaj.__field_a;
+					OriginalSchoolYears.Select(ab, asdaj.__field_a);
 					b();
 					a();
 					dataTable2 = asdcb.c(asdab.e(), CommandType.Text, "SELECT  * FROM tParmetrBalance");

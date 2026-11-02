@@ -302,7 +302,7 @@ protected override void Dispose(bool A_0)
 						num = 6;
 						continue;
 					}
-					k.SelectedValue = asdaj.__field_a;
+					OriginalSchoolYears.Select(k, asdaj.__field_a);
 					dataTable = asdcb.c(asdab.e(), CommandType.Text, "select * from tFormColor");
 					flag = dataTable.Rows.Count <= 0;
 					num = 3;

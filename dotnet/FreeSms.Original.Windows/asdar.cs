@@ -497,7 +497,7 @@ protected override void Dispose(bool A_0)
 						continue;
 					}
 					IL_012c:
-					v.SelectedValue = asdaj.__field_a;
+					OriginalSchoolYears.Select(v, asdaj.__field_a);
 					ae = true;
 					d(this, null);
 					ad = true;

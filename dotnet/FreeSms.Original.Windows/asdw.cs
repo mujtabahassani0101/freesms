@@ -116,7 +116,7 @@ public class asdw : Form
 					num = 1;
 					continue;
 				case 3:
-					ab.SelectedValue = asdaj.__field_a;
+					OriginalSchoolYears.Select(ab, asdaj.__field_a);
 					this.m_g = true;
 					d(this, null);
 					this.m_f = true;

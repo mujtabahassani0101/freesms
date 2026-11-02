@@ -27,3 +27,5 @@ The native database integration suite separately adds a temporary foreign key th
 ## Other sections
 
 Student registration, marks, attendance, fees/payments, user permissions, imports/exports, backup/restore and remaining reports still require their own complete scenarios and verified evidence. Their current action inventory status remains unverified. See PLAN.md for the full scope; do not infer coverage from the three scenarios above.
+
+Expected native dialog button automation follows the documented [BM_CLICK focus requirement](https://learn.microsoft.com/en-us/windows/win32/controls/bm-click), after validating the message and locating its actual descendant button. It is confined to disposable-database workers.

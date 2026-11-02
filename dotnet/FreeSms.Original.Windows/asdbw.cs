@@ -1652,7 +1652,7 @@ public class asdbw : Form
 						num = 9;
 						continue;
 					}
-					aq.SelectedValue = asdaj.__field_a;
+					OriginalSchoolYears.Select(aq, asdaj.__field_a);
 					dataTable = asdcb.c(asdab.e(), CommandType.Text, "select * from tFormColor");
 					flag = dataTable.Rows.Count <= 0;
 					num = 5;

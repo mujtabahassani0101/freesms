@@ -103,6 +103,15 @@ internal static class Program
                 observed.Clear(); bindingCombo.DataSource = table.Copy();
                 Check(observed.All(value => value is int), "combo rebinding does not publish transient empty selections");
             }
+            using (var replacingCombo = new UIComboBox())
+            {
+                window.Controls.Add(replacingCombo);
+                replacingCombo.Items.Add("old", "old"); replacingCombo.SelectedIndex=0;
+                var seen = new List<object>();
+                replacingCombo.SelectedIndexChanged += (s,e) => seen.Add(replacingCombo.SelectedValue);
+                replacingCombo.SetItems(new[] { new UIComboBoxItem {Text="future year",Value="1410"}, new UIComboBoxItem {Text="current year",Value="1405"} },"1410");
+                Check(Convert.ToString(replacingCombo.SelectedValue)=="1410" && seen.Count==1 && seen.All(value => Convert.ToString(value)=="1410"), "atomic item replacement publishes only the configured selection, never an empty or first default value");
+            }
             Check(ShamsiDate.GetShamsiDate(ShamsiDate.ShamsiToGregory("۱۴۰۵/۰۸/۱۱")) == "1405/08/11", "Afghan calendar roundtrip with Persian digits");
             using var date = new DatePicker { the_date = new DateTime(2026, 11, 1) }; int changes = 0; date.DateChanged += (s,e) => changes++;
             date.the_date = new DateTime(2026, 11, 2);
