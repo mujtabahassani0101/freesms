@@ -95,8 +95,15 @@ internal static class OriginalWorkflowChecks
     internal static void PrepareStudentEditFixture(Database db)
     {
         var school=new SchoolService(db,new Session(1413));school.SetYear(1413);
+        var usedOrders=new HashSet<int>(db.Query("SELECT sortRpt FROM tClass WHERE sortRpt IS NOT NULL").Select(row=>Convert.ToInt32(row["sortRpt"])));
+        int order=30000;
         foreach(var item in new[]{("صنف ثبت نام",1),("صنف انتقال",1),("صنف پایه دوم",2)})
-            school.SaveClass(new Record{["name"]=item.Item1,["xpaye"]=item.Item2,["fee"]=1000,["shift"]=1,["sortRpt"]=30000});
+        {
+            while(usedOrders.Contains(order))order++;
+            Require(order<=32767,"No available fixture class display order.");
+            school.SaveClass(new Record{["name"]=item.Item1,["xpaye"]=item.Item2,["fee"]=1000,["shift"]=1,["sortRpt"]=order});
+            usedOrders.Add(order++);
+        }
     }
     internal static void AssertReportFixture(FreeSms.NativeControls.PortableReportViewer viewer, Database database)
     {

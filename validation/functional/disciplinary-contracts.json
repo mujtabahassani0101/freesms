@@ -1,0 +1,238 @@
+{
+  "status": "static recovered interface inventory; no new schema implemented or runtime completeness claimed",
+  "sources": [
+    {
+      "path": "dotnet/FreeSms.Original.Windows/asdbm.cs",
+      "sha256": "6833f053027fe856de03696059efbff54114339bc7dad2e18a7b4e082609f09c"
+    },
+    {
+      "path": "dotnet/FreeSms.Original.Windows/asdad.cs",
+      "sha256": "37da570be5bb90535cad2cc7ba0d103ad939de98e0ea11b92515e6113f3cb3d4"
+    },
+    {
+      "path": "dotnet/FreeSms.Original.Windows/asdq.cs",
+      "sha256": "0dd1b7c398411470c814b41795a18900ee23d509b004c9d1de5e1481f3dff7d5"
+    },
+    {
+      "path": "dotnet/FreeSms.Original.Windows/asdn.cs",
+      "sha256": "43e94fa1e31d479eec68a18829e8ebc2d0d0e44bf3ccf5e471368643325ed27e"
+    },
+    {
+      "path": "dotnet/FreeSms.Original.Windows/asdbn.cs",
+      "sha256": "9dfaaa754c4a8200b92886d4d49a2030d501610ede44e57cdd1f56310badec78"
+    },
+    {
+      "path": "dotnet/FreeSms.Original.Windows/asdbu.cs",
+      "sha256": "16491af38d3247f1454226f38c91b6ba023b4fc4edb5dd2c5585b232895820a0"
+    },
+    {
+      "path": "dotnet/FreeSms.Original.Windows/asdas.cs",
+      "sha256": "cc371f0d6222b2215be975202fd2f9a2df18f5846a6426022a849731ffa43e89"
+    },
+    {
+      "path": "dotnet/FreeSms.Original.Windows/asdb3.cs",
+      "sha256": "5deb2cd66e12ae0e3588fb21e9f9f506835edc762bc9ee9f09696e01f23b3e42"
+    }
+  ],
+  "required_tables": {
+    "tDisciplinaryCases": [
+      "id",
+      "name",
+      "mark",
+      "typ"
+    ],
+    "tDisciplinaryStudent": [
+      "id",
+      "xStudent",
+      "xDisciplinaryCases",
+      "DateDis",
+      "dayOfWeek",
+      "comment",
+      "xbook"
+    ],
+    "tRptDis": [
+      "id",
+      "Caption",
+      "Rpt",
+      "sp",
+      "subReport",
+      "dayFilter",
+      "typeFilter"
+    ]
+  },
+  "crud_procedures": {
+    "sp_tDisciplinaryCases_InsertUpdate": [
+      "Code OUTPUT",
+      "id",
+      "name",
+      "mark",
+      "typ",
+      "commandType"
+    ],
+    "sp_tDisciplinaryStudent_insertUpdate": [
+      "id",
+      "xStudent",
+      "DateDis",
+      "dayOfWeek",
+      "xDisciplinaryCases",
+      "comment",
+      "xbook"
+    ],
+    "sp_tDisciplinaryStudent123_insertUpdate": [
+      "xStudent",
+      "DateDis",
+      "xDisciplinaryCases",
+      "dayOfWeek",
+      "comment"
+    ]
+  },
+  "report_parameters": [
+    "datefrom",
+    "dateto",
+    "xDisciplinaryCases CSV",
+    "Class CSV"
+  ],
+  "reserved_daily_cases": {
+    "1": "غیبت موجه",
+    "2": "غیبت غیرموجه",
+    "3": "تاخیر غیرموجه"
+  },
+  "legacy_student_columns_absent_from_afghan_student_table": [
+    "xPaye",
+    "xClass",
+    "xReshteh",
+    "sort"
+  ],
+  "migration_requirement": "Use tYear_Student for year-specific enrolment/grade/class/order; do not add duplicate current-class columns to tStudent.",
+  "report_catalog_format": "subReport stores comma-separated subreport-name/procedure-name pairs; observed filter flag literals require explicit verification before population.",
+  "reports": [
+    {
+      "layout": "dotnet/FreeSms.Original.Windows/portable-layouts/crDis_AmarAbsentClass.rpt.xml",
+      "sha256": "e2509d06bba1ccabf5c8b86cc1382911079f142e1531867d6d02b94dddb79c26",
+      "tables": [
+        {
+          "procedure": "spRpt_Dis_AmarAbsentClass",
+          "columns": [
+            "xStudent",
+            "sort",
+            "FName",
+            "LName",
+            "PName",
+            "Code",
+            "Paye",
+            "Class",
+            "xPaye",
+            "xClass",
+            "dis1",
+            "dis2",
+            "dis3"
+          ]
+        }
+      ]
+    },
+    {
+      "layout": "dotnet/FreeSms.Original.Windows/portable-layouts/crDis_KarnameStd.rpt.xml",
+      "sha256": "9da5ab0388422f10237e8604d85852143a42908b87681b2da0c49cece62d14e7",
+      "tables": [
+        {
+          "procedure": "spRpt_Dis_KarnameStd",
+          "columns": [
+            "sort",
+            "xStudent",
+            "FName",
+            "LName",
+            "PName",
+            "Code",
+            "Paye",
+            "Class",
+            "xPaye",
+            "xClass",
+            "MobileFather",
+            "MobileMother",
+            "Student_img"
+          ]
+        },
+        {
+          "procedure": "spRpt_Dis_SubStdDis",
+          "columns": [
+            "xStudent",
+            "DateDis",
+            "dayOfWeek",
+            "comment",
+            "typ",
+            "DisciplinaryCases",
+            "mark",
+            "Book"
+          ]
+        },
+        {
+          "procedure": "spRpt_Dis_SubStdDis",
+          "columns": [
+            "xStudent",
+            "DateDis",
+            "dayOfWeek",
+            "comment",
+            "typ",
+            "DisciplinaryCases",
+            "mark",
+            "Book"
+          ]
+        }
+      ]
+    },
+    {
+      "layout": "dotnet/FreeSms.Original.Windows/portable-layouts/crDis_ListStdAbsent.rpt.xml",
+      "sha256": "0dc204668f045d21cefe2e944072f2cde1e1a1bac92f7d9f17bd61efca2f61c3",
+      "tables": [
+        {
+          "procedure": "spRpt_Dis_ListStdAbsent",
+          "columns": [
+            "sort",
+            "xStudent",
+            "FName",
+            "LName",
+            "PName",
+            "Code",
+            "Paye",
+            "Class",
+            "DisciplinaryCases",
+            "comment",
+            "DateDis",
+            "dayOfWeek",
+            "xDisciplinaryCases",
+            "xPaye",
+            "xClass"
+          ]
+        }
+      ]
+    },
+    {
+      "layout": "dotnet/FreeSms.Original.Windows/portable-layouts/crDis_ListStdAbsent2.rpt.xml",
+      "sha256": "3c4b7cd3456ee17bbd7a0c087acdf49779025064d3e682fb640922b6b0b98476",
+      "tables": [
+        {
+          "procedure": "spRpt_Dis_ListStdAbsent",
+          "columns": [
+            "sort",
+            "xStudent",
+            "FName",
+            "LName",
+            "PName",
+            "Code",
+            "Paye",
+            "Class",
+            "DisciplinaryCases",
+            "comment",
+            "DateDis",
+            "dayOfWeek",
+            "xDisciplinaryCases",
+            "xPaye",
+            "xClass",
+            "MobileFather",
+            "MobileMother"
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+BEGIN m_e_workflow_student-edit
+toolStd -> frmlistStd
+FAILED FreeSms.Core.ValidationException: ترتیب نمایش صنف تکراری است.
+   at FreeSms.Core.SchoolService.SaveClass(Record values, Int32 id) in D:\a\freesms\freesms\dotnet\FreeSms.Core\SchoolService.cs:line 53
+   at OriginalWorkflowChecks.PrepareStudentEditFixture(Database db) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalWorkflowChecks.cs:line 99
+   at OriginalNavigationCheck.Worker(String route) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalNavigationCheck.cs:line 60
