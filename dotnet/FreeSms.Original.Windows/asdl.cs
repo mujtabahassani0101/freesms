@@ -957,5 +957,8 @@ protected override void Dispose(bool A_0)
 	private void a(object A_0, EventArgs A_1)
 	{
 		z = this.m_h.Row;
+        bool selected=this.m_h.SelectedItems.Count>0 && this.m_h.SelectedItems[0].RowType==RowType.Record;
+        this.m_c.Enabled=selected;
+        this.m_e.Enabled=selected;
 	}
 }

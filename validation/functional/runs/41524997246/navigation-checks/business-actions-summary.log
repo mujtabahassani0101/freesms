@@ -1,0 +1,8 @@
+Original school/discount workflow actions and persisted effects
+PASS m_aj_workflow_backup toolBackUp -> frmbackUp
+FAILED m_bt_workflow_driver toolDriver -> frmDriver
+PASS b6_workflow_school toolfrmSchool -> frmSchool
+FAILED m_j_workflow_teacher toolfrmTeacher -> frmTeacher
+PASS m_e_workflow_student-delete toolStd -> frmlistStd
+PASS d8_workflow_discount toolTakhfif -> frmTakhfif
+RESULT loaded=4, interaction=0, total=6

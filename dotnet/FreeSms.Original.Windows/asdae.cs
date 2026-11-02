@@ -932,6 +932,27 @@ protected override void Dispose(bool A_0)
 
 	private void f(object A_0, EventArgs A_1)
 	{
+        // The original SQL contract uses non-negative Int32 amounts. Validate before
+        // calling it so malformed or negative entries cannot fail SQL or reduce totals.
+        var amounts = new[] {q,r,t,v,u,w,aa,z,y,x,ak};
+        var normalized = new string[amounts.Length];
+        long total=0;
+        for(int index=0;index<amounts.Length;index++)
+        {
+            try
+            {
+                int? paymentAmount=FreeSms.Core.Values.Number(amounts[index].Text,0);
+                total+=paymentAmount??0;
+                if(total>int.MaxValue)throw new FreeSms.Core.ValidationException("Payment total overflow.");
+                normalized[index]=paymentAmount?.ToString(System.Globalization.CultureInfo.InvariantCulture)??"";
+            }
+            catch(FreeSms.Core.ValidationException)
+            {
+                MessageBox.Show("مبلغ باید عدد صحیح غیرمنفی باشد و مجموع پرداخت از ۲۱۴۷۴۸۳۶۴۷ بیشتر نباشد");
+                amounts[index].Focus();return;
+            }
+        }
+        for(int index=0;index<amounts.Length;index++)amounts[index].Text=normalized[index];
 		SqlParameter[] array = default;
 		object value2 = default;
 		bool flag2 = default;

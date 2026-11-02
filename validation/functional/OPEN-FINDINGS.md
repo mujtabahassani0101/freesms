@@ -15,10 +15,13 @@ The full application goal is not complete. The 448-click inventory is a starting
 - Run 41518278379 (285d624) passed reconstructed report 1024/1032 previews and every-page rendering, known original SQL marks70/30 and class mean50, and peer preservation during student deletion.
 - Run 41522307571 (ee2e060) passed native backup/restore with configured catalog, quoted Persian paths, appended backup sets, malformed media and unrelated-schema rejection, recovery after replacement failure, and actual asynchronous backup/admin-restore buttons. See MAINTENANCE.md and the archived artifact receipts/logs.
 
-## Repairs awaiting Windows evidence
+## Latest Windows results and repairs pending a fresh run
 
-- Rebuilt report legends/numeric chart labels, student page boundaries and a populated progress chart including an additional eligible exam (mean15) pass 48 local report checks. Native preview/rendering is pending.
-- Teacher/driver text saves now bind SQL parameters. Driver Edit now switches to update mode. Teacher Edit reloads saved email/password and New clears stale credentials. New original-button CRUD/cancel/confirmation scenarios compile but have not yet run on Windows.
+- Run 41524997246 (af7f9c3) passed all three original report previews, every-page rendering and the actual eligible progress-exam values20/70 with class means15/50. The Core and 48 report checks passed. Its business scenarios passed backup, school, student deletion and discounts, but failed both People scenarios because Edit/Delete remained disabled after keyboard selection. The overall run failed; do not present its build as a verified release. Original logs, screenshots and digest receipt are in runs/41524997246.
+- Teacher/driver SelectionChanged now updates Edit/Delete enabled state; the original-button scenarios explicitly require that state before editing. The quoted-text saves, driver update mode and teacher credential reload still need the complete UI scenario to pass.
+- Payment Save now validates every Int32 amount as non-negative, normalizes Persian/Arabic digits and rejects an overflowing total before SQL. New original-list/editor scenarios cover validation, persisted fee/transport/comment, balance reload, duplicate dates, edit/cancel and delete confirmations. Fresh Windows evidence is pending.
+- Visual inspection of the rebuilt report screenshots exposed physically reversed RightAlign/LeftAlign for Persian text in the native renderer. Alignment now accounts for GDI+ reading direction. Six pixel-position regressions cover left/center/right alignment for Persian and Latin text. They compile locally but require Windows execution.
+- Fixed-height header fields in recovered layouts still truncate some long synthetic names. Correcting horizontal alignment alone does not establish full report readability; visually inspect header sizing and all report pages after the next run.
 
 ## Other open work
 

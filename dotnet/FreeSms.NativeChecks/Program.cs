@@ -184,6 +184,19 @@ internal static class Program
                         if (image.GetPixel(x, y).ToArgb() == Color.SteelBlue.ToArgb()) visible++;
                 Check(visible > 100, "report background boxes cannot cover chart values");
             }
+            foreach(string text in new[]{"مکتب", "School"})
+            foreach(string alignment in new[]{"LeftAlign","RightAlign","HorizontalCenterAlign"})
+            {
+                var template=XElement.Parse("<report><sections><section kind='Detail' height='720'><object><Kind>TextObject</Kind><Left>144</Left><Top>0</Top><Width>4320</Width><Height>720</Height><Font family='Tahoma' size='12'/><format><HorizontalAlignment>"+alignment+"</HorizontalAlignment></format><Text>"+text+"</Text></object></section></sections></report>");
+                using var document=new PortableReportDocument(new ReportModel(template),ReportFixtures.Create(template,1));
+                string path=Path.Combine(output,(text=="School"?"latin":"persian")+"-"+alignment+".png");
+                document.SavePageImage(path,0,100);using var bitmap=new Bitmap(path);
+                int first=bitmap.Width,last=-1;
+                for(int y=0;y<50;y++)for(int x=0;x<bitmap.Width;x++)
+                    if(bitmap.GetPixel(x,y).GetBrightness()<.6f){first=Math.Min(first,x);last=Math.Max(last,x);}
+                bool aligned=alignment=="LeftAlign" ? first>=10 && first<50 : alignment=="RightAlign" ? last>280 && last<=310 : first>100 && last<220;
+                Check(last>=first && aligned,"physical "+alignment+" preserved for "+(text=="School"?"Latin":"Persian")+" report text");
+            }
             var oversizedHeader = XElement.Parse("<report><sections><section kind='PageHeader' height='20000'/><section kind='Detail' height='720'/></sections></report>");
             bool rejectedHeader = false;
             try { using var document = new PortableReportDocument(new ReportModel(oversizedHeader), ReportFixtures.Create(oversizedHeader, 1)); }

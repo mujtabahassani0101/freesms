@@ -66,6 +66,13 @@ internal static class OriginalWorkflowChecks
         Require(custom.Length==2 && custom.All(row=>Convert.ToDecimal(row["AvgClass"])==15m),"Original progress report did not include the additional exam with mean15.");
 
     }
+    internal static void PreparePaymentFixture(Database db)
+    {
+        var school=new SchoolService(db,new Session(1411));school.SetYear(1411);
+        int classroom=school.SaveClass(new Record{["name"]="صنف آزمایشی پرداخت",["xpaye"]=1,["fee"]=1000,["shift"]=1,["sortRpt"]=30000});
+        foreach(int code in new[]{5992001,5992002})
+            school.SaveStudent(new Record{["FName"]=code==5992001?"شاگرد پرداخت":"شاگرد محفوظ پرداخت",["LName"]="پدر آزمایشی",["PName"]="پدرکلان آزمایشی",["Code"]=code,["NumberAsas"]=code,["xPaye"]=1,["xClass"]=classroom,["Status"]=1,["Jens"]=0,["Fee1"]=1000});
+    }
     internal static void AssertReportFixture(FreeSms.NativeControls.PortableReportViewer viewer, Database database)
     {
         var input = (FreeSms.Reports.ReportInput)typeof(FreeSms.NativeControls.PortableReportViewer).GetField("input",BindingFlags.Instance|BindingFlags.NonPublic).GetValue(viewer);
@@ -93,6 +100,7 @@ internal static class OriginalWorkflowChecks
         else if (scenario == "student-delete") StudentDelete(form, db, log);
         else if (scenario == "backup") Backup(form,db,log);
         else if (scenario == "teacher" || scenario == "driver") People(scenario,form,db,log);
+        else if (scenario == "payment") Payment(form,db,log);
         else throw new ArgumentException("Unknown workflow scenario: " + scenario);
     }
     private static void Discount(Form form, Database db, Action<string> log)
@@ -128,6 +136,90 @@ internal static class OriginalWorkflowChecks
         Require(Convert.ToInt32(db.Scalar("SELECT COUNT(*) FROM tTakhfif")) == before, "Confirmed deletion did not remove exactly the new record.");
         log("PASS deletion respects No/Yes and removes only the selected record");
     }
+    private static void ChildPayment(Action open,Action<Form> exercise)
+    {
+        Exception failure=null;bool exercised=false;
+        using var timer=new Timer{Interval=100};
+        timer.Tick+=(sender,args)=>
+        {
+            var child=Application.OpenForms.Cast<Form>().FirstOrDefault(item=>item is asdae && item.Visible);
+            if(child==null)return;
+            timer.Stop();exercised=true;
+            try{exercise(child);}
+            catch(Exception error){failure=error;}
+            finally{if(!child.IsDisposed)child.Close();}
+        };
+        timer.Start();open();timer.Stop();
+        Require(exercised,"Original payment button did not open its editor.");
+        if(failure!=null)System.Runtime.ExceptionServices.ExceptionDispatchInfo.Capture(failure).Throw();
+    }
+    private static void Payment(Form form,Database db,Action<string> log)
+    {
+        int student=Convert.ToInt32(db.Scalar("SELECT id FROM tStudent WHERE Code=5992001"));
+        Field<UIComboBox>(form,"ai").SelectedValue="1411";
+        Select(form,student,"aa");
+        string where=" WHERE xStudent=@p0 AND xYear=1411";
+        int Count()=>Convert.ToInt32(db.Scalar("SELECT COUNT(*) FROM tPaymentStudent"+where,new object[]{student}));
+        int before=Count();string comment="فیس ' آزمایشی ; SELECT 1 --";
+        ChildPayment(()=>Click(form,"m_j"),child=>
+        {
+            Field<Control>(child,"n").Text="1411/02/01";
+            Dialog(()=>Click(child,"k"),"جهت ثبت پرداخت حداقل یکی از گزینه ها باید وارد شود",1);
+            Require(Count()==before,"Empty payment inserted a record.");
+            foreach(string invalid in new[]{"-1","1.5","2147483648"})
+            {
+                Field<Control>(child,"q").Text=invalid;
+                Dialog(()=>Click(child,"k"),"مبلغ باید عدد صحیح غیرمنفی باشد و مجموع پرداخت از ۲۱۴۷۴۸۳۶۴۷ بیشتر نباشد",1);
+                Require(Count()==before,"Invalid amount inserted a payment.");
+            }
+            Field<Control>(child,"q").Text="1";Field<Control>(child,"r").Text="2147483647";
+            Dialog(()=>Click(child,"k"),"مبلغ باید عدد صحیح غیرمنفی باشد و مجموع پرداخت از ۲۱۴۷۴۸۳۶۴۷ بیشتر نباشد",1);
+            Require(Count()==before,"Overflowing payment total inserted a record.");
+            Field<Control>(child,"r").Text="";
+            Field<Control>(child,"q").Text="400";
+            Field<Control>(child,"n").Text="1411/13/01";
+            Dialog(()=>Click(child,"k"),"تاریخ پرداخت اشتباه است",1);
+            Require(Count()==before,"Invalid date inserted a payment.");
+            Field<Control>(child,"n").Text="1411/02/01";
+            Field<Control>(child,"q").Text="1001";
+            Dialog(()=>Click(child,"k"),"مبلغ وارد شده برای فیس بالاتر از مقدار باقی مانده است",1);
+            Require(Count()==before,"Overpayment inserted a record.");
+            Field<Control>(child,"q").Text="۴۰۰";
+            Field<Control>(child,"r").Text="٢٠";
+            Field<Control>(child,"h").Text=comment;
+            Dialog(()=>Click(child,"k"),"ثبت شد",1);
+        });
+        var row=db.Query("SELECT * FROM tPaymentStudent"+where,new object[]{student}).Single();
+        int id=Convert.ToInt32(row["id"]);
+        Require(Convert.ToInt32(row["Fee"])==400 && Convert.ToInt32(row["Transport"])==20 && Convert.ToString(row["comment"])==comment,"Original payment Save did not preserve amounts and quoted comment.");
+        ChildPayment(()=>Click(form,"m_j"),child=>
+        {
+            Require(Field<Control>(child,"am").Text=="400" && Field<Control>(child,"an").Text=="600","Payment totals did not reload committed fee and remaining balance.");
+            Field<Control>(child,"n").Text="1411/02/01";Field<Control>(child,"q").Text="100";
+            Dialog(()=>Click(child,"k"),"در این تاریخ یک پرداخت ثبت شده است\n\nامکان ثبت بیشتر از یک پرداخت در هر روز برای شاگرد امکان پذیر نیست\n\nدر صورت نیاز ، پرداخت موجود در این تاریخ را اصلاح نمایید",1);
+            Require(Count()==before+1,"Duplicate-date validation inserted another payment.");
+            Click(child,"j");
+        });
+        Select(form,id,"x");
+        ChildPayment(()=>Click(form,"u"),child=>
+        {
+            Require(Field<Control>(child,"q").Text=="400" && Field<Control>(child,"h").Text==comment,"Payment Edit did not reload the selected payment.");
+            Field<Control>(child,"q").Text="600";Dialog(()=>Click(child,"k"),"ثبت شد",1);
+        });
+        Require(Count()==before+1 && Convert.ToInt32(db.Scalar("SELECT Fee FROM tPaymentStudent WHERE id=@p0",new object[]{id}))==600,"Payment Edit did not update exactly the selected record.");
+        Select(form,id,"x");
+        ChildPayment(()=>Click(form,"u"),child=>
+        {
+            Require(Field<Control>(child,"am").Text=="600" && Field<Control>(child,"an").Text=="400","Edited payment totals did not reload.");
+            Field<Control>(child,"q").Text="700";Click(child,"j");
+        });
+        Require(Convert.ToInt32(db.Scalar("SELECT Fee FROM tPaymentStudent WHERE id=@p0",new object[]{id}))==600,"Payment Cancel saved changes.");
+        Select(form,id,"x");Dialog(()=>Click(form,"m_i"),"آيا از حذف مطمئن هستيد؟",7);
+        Require(Count()==before+1,"Declining deletion removed the payment.");
+        Dialog(()=>Click(form,"m_i"),"آيا از حذف مطمئن هستيد؟",6);
+        Require(Count()==before && Convert.ToInt32(db.Scalar("SELECT COUNT(*) FROM tPaymentStudent WHERE id=@p0",new object[]{id}))==0,"Confirmed payment deletion did not remove only the selected record.");
+        log("PASS original payment buttons reject empty/invalid-date/overpayment/duplicate input, preserve quoted comments and separate amounts, recalculate balances, edit/cancel and respect deletion confirmation");
+    }
     private static void People(string scenario,Form form,Database db,Action<string> log)
     {
         bool teacher=scenario=="teacher";
@@ -162,7 +254,9 @@ internal static class OriginalWorkflowChecks
             Require(Field<Control>(form,"m_l").Text=="" && Field<Control>(form,"w").Text=="","New teacher retained another teacher's credentials.");
             Click(form,"m_g");
         }
-        Select(form,id,"m_h"); Click(form,"m_e");
+        Select(form,id,"m_h");
+        Require(Field<UIButton>(form,"m_e").Enabled && Field<UIButton>(form,"m_c").Enabled,"Keyboard row selection did not enable Edit/Delete.");
+        Click(form,"m_e");
         Require(Field<Control>(form,valueField).Text==value,"Edit did not load the selected record's saved fields.");
         if(teacher)Require(Field<Control>(form,"w").Text==secret,"Edit did not load the selected teacher's credentials.");
         string edited=teacher ? "edited'person@example.invalid" : "اصلاح ' دوم ; --";
@@ -171,7 +265,9 @@ internal static class OriginalWorkflowChecks
         Require(Convert.ToInt32(db.Scalar("SELECT COUNT(*) FROM "+table))==before+1,"Edit inserted a duplicate record.");
         Require(Convert.ToString(db.Scalar("SELECT "+valueColumn+" FROM "+table+" WHERE id=@p0",new object[]{id}))==edited,"Edit did not update the selected record.");
         if(teacher)Require(Convert.ToString(db.Scalar("SELECT fPassword FROM tTeacher WHERE id=@p0",new object[]{id}))==secret,"Editing teacher details changed the saved password.");
-        Select(form,id,"m_h"); Click(form,"m_e");
+        Select(form,id,"m_h");
+        Require(Field<UIButton>(form,"m_e").Enabled && Field<UIButton>(form,"m_c").Enabled,"Keyboard row selection did not enable Edit/Delete.");
+        Click(form,"m_e");
         Field<Control>(form,valueField).Text="cancelled";Click(form,"m_g");
         Require(Convert.ToString(db.Scalar("SELECT "+valueColumn+" FROM "+table+" WHERE id=@p0",new object[]{id}))==edited,"Cancel saved unsaved changes.");
         Select(form,id,"m_h");

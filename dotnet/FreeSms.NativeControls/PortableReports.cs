@@ -201,8 +201,12 @@ namespace FreeSms.NativeControls
                     using var brush = new SolidBrush(ColorValue(obj.Element("Color"), Color.Black));
                     using var format = new StringFormat { Trimming = StringTrimming.EllipsisCharacter };
                     var alignment = obj.Element("format")?.Element("HorizontalAlignment")?.Value;
-                    format.Alignment = alignment == "RightAlign" ? StringAlignment.Far : alignment == "HorizontalCenterAlign" ? StringAlignment.Center : StringAlignment.Near;
-                    if (Regex.IsMatch(text, "[\u0600-\u06ff]")) format.FormatFlags = StringFormatFlags.DirectionRightToLeft;
+                    bool rightToLeft=Regex.IsMatch(text, "[\u0600-\u06ff]");
+                    // GDI+ Near/Far follow reading direction; report alignments are physical.
+                    format.Alignment = alignment == "HorizontalCenterAlign" ? StringAlignment.Center
+                        : alignment == "RightAlign" ? (rightToLeft ? StringAlignment.Near : StringAlignment.Far)
+                        : (rightToLeft ? StringAlignment.Far : StringAlignment.Near);
+                    if (rightToLeft) format.FormatFlags = StringFormatFlags.DirectionRightToLeft;
                     graphics.DrawString(text, font, brush, rect, format);
                 }
                 graphics.Restore(state);

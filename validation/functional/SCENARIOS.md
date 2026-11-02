@@ -28,8 +28,16 @@ The native database integration suite separately adds a temporary foreign key th
 
 See MAINTENANCE.md for the original-button and staged database round-trip/rejection/recovery scenarios. They use disposable catalogs and owned files.
 
+## Teachers and drivers (`FreeSMS.exe --verify-business-actions`)
+
+Open each original form through its main-menu route. Use New/Save with a quoted email/password or Persian driver comment. Teacher empty-surname validation must not insert. Require exactly one saved record and exact stored text. New teacher clears the previous teacher's email/password; Edit reloads the selected credentials. Edit/Save must update that same identity without inserting another row or overwriting the saved password. Cancel must leave committed values unchanged. Delete first with No and then Yes; require only the selected record to disappear. Run 41524997246 reached the quoted-text insertion assertions but failed at Edit because the keyboard-selected row did not enable the initially disabled buttons. The SelectionChanged repair and the remaining edit/cancel/delete assertions require a new run.
+
+## Payments (`FreeSMS.exe --verify-business-actions`)
+
+Seed a separate year1411, a class and two dedicated students in the disposable bank, each with annual fee1000. Select the first student in the actual payment-list form, then open its editor using New. Require empty-payment validation, rejection of negative/fractional/out-of-range amounts and total overflow, and invalid-date rejection, each without insertion. Reject fee1001 as overpayment. Save fee400 and transport20 using Persian/Arabic digits and a quoted Persian comment; require exact persisted values and fee balance600. Reject another payment on the same date. Edit the saved identity to fee600; require one record and balance400 after reopening. Cancel an unsaved change to700. Decline deletion and then confirm it; require only the selected payment to disappear. This scenario compiles locally; Windows execution is pending. It does not prove concurrent payments or every financial report.
+
 ## Other sections
 
-Student registration, marks, attendance, fees/payments, user permissions, imports/exports, backup/restore and remaining reports still require their own complete scenarios and verified evidence. Their current action inventory status remains unverified. See PLAN.md for the full scope; do not infer coverage from the three scenarios above.
+Student registration, marks, attendance, non-admin permissions, imports/exports and remaining report/editor workflows still require their own complete scenarios and verified evidence. Broader payment and backup cases remain in PLAN.md. Do not infer whole-section coverage from the limited scenarios above.
 
 Expected native dialog button automation follows the documented [BM_CLICK focus requirement](https://learn.microsoft.com/en-us/windows/win32/controls/bm-click), after validating the message and locating its actual descendant button. It is confined to disposable-database workers.
