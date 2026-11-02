@@ -1,4 +1,7 @@
 using System.Data;
+using System.Xml.Linq;
+using FreeSms.Reports;
+using FreeSms.NativeControls;
 using System.Drawing;
 using System.Windows.Forms;
 using BijanComponents;
@@ -59,6 +62,38 @@ internal static class Program
                 report.DataSource = data; report.Run(false);
                 Check(report.Document.PageCount > 0, "paginate RPX " + Path.GetFileName(path));
                 report.Document.SavePageImage(Path.Combine(output, Path.GetFileNameWithoutExtension(path) + ".png"), 0);
+            }
+            using (var designer = new DataDynamics.ActiveReports.Design.Designer())
+            {
+                designer.LoadReport(Directory.GetFiles(Path.Combine(root, "original", "update", "rpt"), "*.rpx").First());
+                Check(designer.Selection == null, "empty designer selection follows original event contract");
+                var field = designer.Report.Sections.SelectMany(s => s.Controls).First();
+                field.Text = "ذخیرهٔ ویرایش"; field.Left = .75f;
+                string saved = Path.Combine(output, "edited.rpx"); designer.SaveReport(saved);
+                designer.LoadReport(saved);
+                var loaded = designer.Report.Sections.SelectMany(s => s.Controls).First();
+                Check(loaded.Text == "ذخیرهٔ ویرایش" && loaded.Left == .75f, "designer saves and reloads actual text and geometry");
+            }
+            foreach (var path in Directory.GetFiles(Path.Combine(root, "dotnet", "FreeSms.Original.Windows", "portable-layouts"), "*.xml"))
+            {
+                try
+                {
+                    var model = ReportModel.Load(path);
+                    using var document = new PortableReportDocument(model, ReportFixtures.Create(model.Xml));
+                    Check(document.PageCount > 0, "native report " + Path.GetFileName(path));
+                    document.SavePageImage(Path.Combine(output, Path.GetFileNameWithoutExtension(path) + ".png"), 0);
+                }
+                catch (Exception error) { throw new Exception(Path.GetFileName(path), error); }
+            }
+            var childTemplate = XElement.Parse("<report><sections><section kind='Detail' height='720'><object><Kind>FieldObject</Kind><Left>0</Left><Top>0</Top><Width>3000</Width><Height>720</Height><source formula='{data.mark}'/></object></section></sections></report>");
+            var parentTemplate = XElement.Parse("<report><sections><section kind='Detail' height='144'><object subreport='Sub1'><Kind>SubreportObject</Kind><Left>0</Left><Top>0</Top><Width>10000</Width><Height>144</Height></object></section></sections></report>");
+            parentTemplate.Descendants("object").First().Add(childTemplate);
+            var parentInput = ReportFixtures.Create(parentTemplate, 1);
+            parentInput.Subreports["Sub1"] = ReportFixtures.Create(childTemplate, 100);
+            using (var document = new PortableReportDocument(new ReportModel(parentTemplate), parentInput))
+            {
+                Check(document.PageCount >= 4, "long subreport continues beyond its original placeholder");
+                document.SavePageImage(Path.Combine(output, "long-subreport-last.png"), document.PageCount - 1);
             }
             Console.WriteLine("SUCCESS " + count);
             return 0;

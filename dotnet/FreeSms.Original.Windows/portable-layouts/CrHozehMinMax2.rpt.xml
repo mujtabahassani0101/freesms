@@ -24,6 +24,7 @@ totext({spRpt_ListStdHozehMinMax.maxidx},0)</formula>
   <sorts>
     <sort field="{@minidx}" direction="AscendingOrder" />
   </sorts>
+  <running-totals />
   <sections>
     <section name="Section1" kind="ReportHeader" height="220">
       <format>
@@ -277,4 +278,5 @@ totext({spRpt_ListStdHozehMinMax.maxidx},0)</formula>
       </format>
     </section>
   </sections>
+  <custom-functions />
 </report>

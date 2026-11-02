@@ -163,6 +163,14 @@ else {spRpt_StdKarnameTajamoee.CommentKoll}</formula>
     <sort field="{@xstudent}" direction="AscendingOrder" />
     <sort field="{@sort}" direction="AscendingOrder" />
   </sorts>
+  <running-totals>
+    <total name="radif" field="{@xstudent}">
+      <Operation>Count</Operation>
+      <OperationParameter>0</OperationParameter>
+      <EvaluationConditionType>NoCondition</EvaluationConditionType>
+      <ResetConditionType>OnChangeOfGroup</ResetConditionType>
+    </total>
+  </running-totals>
   <sections>
     <section name="Section1" kind="ReportHeader" height="220">
       <format>
@@ -2717,6 +2725,11 @@ else {spRpt_StdKarnameTajamoee.CommentKoll}</formula>
           <HorizontalAlignment>DefaultAlign</HorizontalAlignment>
           <EnableKeepTogether>true</EnableKeepTogether>
           <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+          <condition name="EnableSuppress"> if isnull({spRpt_StdKarnameTajamoee.Mark2}) then true
+else if isnull({spRpt_StdKarnameTajamoee.Mark1}) then true
+else if({spRpt_StdKarnameTajamoee.Mark2}-{spRpt_StdKarnameTajamoee.Mark1})&gt;0 then false
+else if({spRpt_StdKarnameTajamoee.Mark2}-{spRpt_StdKarnameTajamoee.Mark1})&lt;0 then true
+else true</condition>
         </format>
         <border>
           <BackgroundColor>-1</BackgroundColor>
@@ -2740,6 +2753,11 @@ else {spRpt_StdKarnameTajamoee.CommentKoll}</formula>
           <HorizontalAlignment>DefaultAlign</HorizontalAlignment>
           <EnableKeepTogether>true</EnableKeepTogether>
           <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+          <condition name="EnableSuppress"> if isnull({spRpt_StdKarnameTajamoee.Mark3}) then true
+else if isnull({spRpt_StdKarnameTajamoee.Mark2}) then true
+else if({spRpt_StdKarnameTajamoee.Mark3}-{spRpt_StdKarnameTajamoee.Mark2})&gt;0 then false
+else if({spRpt_StdKarnameTajamoee.Mark3}-{spRpt_StdKarnameTajamoee.Mark2})&lt;0 then true
+else true</condition>
         </format>
         <border>
           <BackgroundColor>-1</BackgroundColor>
@@ -2763,6 +2781,11 @@ else {spRpt_StdKarnameTajamoee.CommentKoll}</formula>
           <HorizontalAlignment>DefaultAlign</HorizontalAlignment>
           <EnableKeepTogether>true</EnableKeepTogether>
           <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+          <condition name="EnableSuppress">if isnull({spRpt_StdKarnameTajamoee.Mark4}) then true
+else if isnull({spRpt_StdKarnameTajamoee.Mark3}) then true
+else if({spRpt_StdKarnameTajamoee.Mark4}-{spRpt_StdKarnameTajamoee.Mark3})&gt;0 then false
+else if({spRpt_StdKarnameTajamoee.Mark4}-{spRpt_StdKarnameTajamoee.Mark3})&lt;0 then true
+else true</condition>
         </format>
         <border>
           <BackgroundColor>-1</BackgroundColor>
@@ -2786,6 +2809,11 @@ else {spRpt_StdKarnameTajamoee.CommentKoll}</formula>
           <HorizontalAlignment>DefaultAlign</HorizontalAlignment>
           <EnableKeepTogether>true</EnableKeepTogether>
           <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+          <condition name="EnableSuppress"> if isnull({spRpt_StdKarnameTajamoee.Mark5}) then true
+else if isnull({spRpt_StdKarnameTajamoee.Mark4}) then true
+else if({spRpt_StdKarnameTajamoee.Mark5}-{spRpt_StdKarnameTajamoee.Mark4})&gt;0 then false
+else if({spRpt_StdKarnameTajamoee.Mark5}-{spRpt_StdKarnameTajamoee.Mark4})&lt;0 then true
+else true</condition>
         </format>
         <border>
           <BackgroundColor>-1</BackgroundColor>
@@ -2809,6 +2837,11 @@ else {spRpt_StdKarnameTajamoee.CommentKoll}</formula>
           <HorizontalAlignment>DefaultAlign</HorizontalAlignment>
           <EnableKeepTogether>true</EnableKeepTogether>
           <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+          <condition name="EnableSuppress"> if isnull({spRpt_StdKarnameTajamoee.Mark6}) then true
+else if isnull({spRpt_StdKarnameTajamoee.Mark5}) then true
+else if({spRpt_StdKarnameTajamoee.Mark6}-{spRpt_StdKarnameTajamoee.Mark5})&gt;0 then false
+else if({spRpt_StdKarnameTajamoee.Mark6}-{spRpt_StdKarnameTajamoee.Mark5})&lt;0 then true
+else true</condition>
         </format>
         <border>
           <BackgroundColor>-1</BackgroundColor>
@@ -2832,6 +2865,11 @@ else {spRpt_StdKarnameTajamoee.CommentKoll}</formula>
           <HorizontalAlignment>DefaultAlign</HorizontalAlignment>
           <EnableKeepTogether>true</EnableKeepTogether>
           <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+          <condition name="EnableSuppress"> if isnull({spRpt_StdKarnameTajamoee.Mark2}) then true
+else if isnull({spRpt_StdKarnameTajamoee.Mark1}) then true
+else if({spRpt_StdKarnameTajamoee.Mark2}-{spRpt_StdKarnameTajamoee.Mark1})&lt;0 then false
+else if({spRpt_StdKarnameTajamoee.Mark2}-{spRpt_StdKarnameTajamoee.Mark1})&gt;0 then true
+else true</condition>
         </format>
         <border>
           <BackgroundColor>-1</BackgroundColor>
@@ -2855,6 +2893,11 @@ else {spRpt_StdKarnameTajamoee.CommentKoll}</formula>
           <HorizontalAlignment>DefaultAlign</HorizontalAlignment>
           <EnableKeepTogether>true</EnableKeepTogether>
           <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+          <condition name="EnableSuppress"> if isnull({spRpt_StdKarnameTajamoee.Mark3}) then true
+else if isnull({spRpt_StdKarnameTajamoee.Mark2}) then true
+else if({spRpt_StdKarnameTajamoee.Mark3}-{spRpt_StdKarnameTajamoee.Mark2})&lt;0 then false
+else if({spRpt_StdKarnameTajamoee.Mark3}-{spRpt_StdKarnameTajamoee.Mark2})&gt;0 then true
+else true</condition>
         </format>
         <border>
           <BackgroundColor>-1</BackgroundColor>
@@ -2878,6 +2921,11 @@ else {spRpt_StdKarnameTajamoee.CommentKoll}</formula>
           <HorizontalAlignment>DefaultAlign</HorizontalAlignment>
           <EnableKeepTogether>true</EnableKeepTogether>
           <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+          <condition name="EnableSuppress"> if isnull({spRpt_StdKarnameTajamoee.Mark4}) then true
+else if isnull({spRpt_StdKarnameTajamoee.Mark3}) then true
+else if({spRpt_StdKarnameTajamoee.Mark4}-{spRpt_StdKarnameTajamoee.Mark3})&lt;0 then false
+else if({spRpt_StdKarnameTajamoee.Mark4}-{spRpt_StdKarnameTajamoee.Mark3})&gt;0 then true
+else true</condition>
         </format>
         <border>
           <BackgroundColor>-1</BackgroundColor>
@@ -2901,6 +2949,11 @@ else {spRpt_StdKarnameTajamoee.CommentKoll}</formula>
           <HorizontalAlignment>DefaultAlign</HorizontalAlignment>
           <EnableKeepTogether>true</EnableKeepTogether>
           <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+          <condition name="EnableSuppress"> if isnull({spRpt_StdKarnameTajamoee.Mark5}) then true
+else if isnull({spRpt_StdKarnameTajamoee.Mark4}) then true
+else if({spRpt_StdKarnameTajamoee.Mark5}-{spRpt_StdKarnameTajamoee.Mark4})&lt;0 then false
+else if({spRpt_StdKarnameTajamoee.Mark5}-{spRpt_StdKarnameTajamoee.Mark4})&gt;0 then true
+else true</condition>
         </format>
         <border>
           <BackgroundColor>-1</BackgroundColor>
@@ -2924,6 +2977,11 @@ else {spRpt_StdKarnameTajamoee.CommentKoll}</formula>
           <HorizontalAlignment>DefaultAlign</HorizontalAlignment>
           <EnableKeepTogether>true</EnableKeepTogether>
           <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+          <condition name="EnableSuppress"> if isnull({spRpt_StdKarnameTajamoee.Mark6}) then true
+else if isnull({spRpt_StdKarnameTajamoee.Mark5}) then true
+else if({spRpt_StdKarnameTajamoee.Mark6}-{spRpt_StdKarnameTajamoee.Mark5})&lt;0 then false
+else if({spRpt_StdKarnameTajamoee.Mark6}-{spRpt_StdKarnameTajamoee.Mark5})&gt;0 then true
+else true</condition>
         </format>
         <border>
           <BackgroundColor>-1</BackgroundColor>
@@ -3011,6 +3069,7 @@ else {spRpt_StdKarnameTajamoee.CommentKoll}</formula>
             <group field="{@xStudent}" />
           </groups>
           <sorts />
+          <running-totals />
           <sections>
             <section name="Section1" kind="ReportHeader" height="115">
               <format>
@@ -3066,6 +3125,11 @@ else {spRpt_StdKarnameTajamoee.CommentKoll}</formula>
                   <TopLineStyle>NoLine</TopLineStyle>
                   <BottomLineStyle>NoLine</BottomLineStyle>
                 </border>
+                <chart type="crChartTypeDetail">
+                  <category>{@Exam}</category>
+                  <series>Sum ({@mark}, {@Exam})</series>
+                  <series>Sum ({@avgClass}, {@Exam})</series>
+                </chart>
               </object>
               <object>
                 <Name>Text1</Name>
@@ -3385,4 +3449,5 @@ else {spRpt_StdKarnameTajamoee.CommentKoll}</formula>
       </object>
     </section>
   </sections>
+  <custom-functions />
 </report>

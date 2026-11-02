@@ -49,6 +49,14 @@ else if({vListPayment.dateFrom}&lt;&gt;'' and {vListPayment.dateTo}&lt;&gt;'') t
   <sorts>
     <sort field="{@id}" direction="AscendingOrder" />
   </sorts>
+  <running-totals>
+    <total name="RTotal0" field="{@xStudent}">
+      <Operation>Count</Operation>
+      <OperationParameter>0</OperationParameter>
+      <EvaluationConditionType>NoCondition</EvaluationConditionType>
+      <ResetConditionType>NoCondition</ResetConditionType>
+    </total>
+  </running-totals>
   <sections>
     <section name="Section1" kind="ReportHeader" height="220">
       <format>
@@ -1418,4 +1426,5 @@ else if({vListPayment.dateFrom}&lt;&gt;'' and {vListPayment.dateTo}&lt;&gt;'') t
       </format>
     </section>
   </sections>
+  <custom-functions />
 </report>

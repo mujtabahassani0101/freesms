@@ -79,6 +79,14 @@ ToText( {spRpt_ListDabirKhamByTchNameAllBook.xPaye}*1000)+
     <sort field="{@fName}" direction="AscendingOrder" />
     <sort field="{@lName}" direction="AscendingOrder" />
   </sorts>
+  <running-totals>
+    <total name="RTotal0" field="{@Id}">
+      <Operation>Count</Operation>
+      <OperationParameter>0</OperationParameter>
+      <EvaluationConditionType>NoCondition</EvaluationConditionType>
+      <ResetConditionType>OnChangeOfGroup</ResetConditionType>
+    </total>
+  </running-totals>
   <sections>
     <section name="Section1" kind="ReportHeader" height="685">
       <format>
@@ -2032,6 +2040,7 @@ ToText( {spRpt_ListDabirKhamByTchNameAllBook.xPaye}*1000)+
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <condition name="BackgroundColor">if{#RTotal0}mod 2=0 then Color(230,230,230) else white</condition>
       </format>
       <object>
         <Name>fullName1</Name>
@@ -2227,4 +2236,5 @@ ToText( {spRpt_ListDabirKhamByTchNameAllBook.xPaye}*1000)+
       </format>
     </section>
   </sections>
+  <custom-functions />
 </report>

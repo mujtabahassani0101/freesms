@@ -57,6 +57,7 @@ else if{sp_List_books_RengMark.mark}&lt;=40 then 'الف'
     <sort field="{@xPaue}" direction="AscendingOrder" />
     <sort field="{@group}" direction="AscendingOrder" />
   </sorts>
+  <running-totals />
   <sections>
     <section name="Section1" kind="ReportHeader" height="220">
       <format>
@@ -486,4 +487,5 @@ else if{sp_List_books_RengMark.mark}&lt;=40 then 'الف'
       </object>
     </section>
   </sections>
+  <custom-functions />
 </report>

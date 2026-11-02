@@ -44,6 +44,7 @@ else if({spRpt_ListClassOftRoshd.grp})=4 then 'دانش آموزانی که بی
     <sort field="{@group2}" direction="AscendingOrder" />
     <sort field="{@mark2}" direction="DescendingOrder" />
   </sorts>
+  <running-totals />
   <sections>
     <section name="ReportHeaderSection1" kind="ReportHeader" height="484">
       <format>
@@ -1029,4 +1030,5 @@ else if({spRpt_ListClassOftRoshd.grp})=4 then 'دانش آموزانی که بی
       </format>
     </section>
   </sections>
+  <custom-functions />
 </report>

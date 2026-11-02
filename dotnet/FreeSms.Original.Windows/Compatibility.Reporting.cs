@@ -7,9 +7,10 @@ using System.Globalization;
 using System.IO;
 using System.Windows.Forms;
 using System.Xml.Linq;
+using System.Linq;
 
 // The recovered controllers still prepare the original tables and parameter values.
-// Only the rendering boundary crosses into the native .NET Framework report process.
+// Display, pagination and printing now run in the same .NET 10 Windows process.
 namespace FreeSms.Reporting
 {
     public class ReportClass
@@ -64,7 +65,7 @@ namespace FreeSms.Reporting
         public void AddValue(object value) { Items.Add(value); }
     }
 
-    public sealed class CrystalReportViewer : Panel
+    public sealed class CrystalReportViewer : FreeSms.NativeControls.PortableReportViewer
     {
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public int ActiveViewIndex { get; set; }
@@ -75,9 +76,9 @@ namespace FreeSms.Reporting
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public string ViewTimeSelectionFormula { get; set; }
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public bool ShowExportButton { get; set; }
+        public bool ShowExportButton { get => ShowExport; set => ShowExport = value; }
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public bool ShowPrintButton { get; set; }
+        public bool ShowPrintButton { get => ShowPrint; set => ShowPrint = value; }
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public bool ShowRefreshButton { get; set; }
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
@@ -90,66 +91,42 @@ namespace FreeSms.Reporting
             set
             {
                 source = value;
-                if (value != null) BeginInvoke((Action)Preview);
-            }
-        }
-        private void Preview()
-        {
-            try { ReportBridge.Show(source, ShowPrintButton, ShowExportButton); }
-            catch (Exception error) { MessageBox.Show(FindForm(), error.Message, "گزارش باز نشد", MessageBoxButtons.OK, MessageBoxIcon.Error); }
-            finally { FindForm()?.Close(); }
-        }
-    }
-
-    internal static class ReportBridge
-    {
-        internal static void Show(ReportClass report, bool print, bool export)
-        {
-            var host = Path.Combine(AppContext.BaseDirectory, "report-host", "FreeSms.ReportHost.exe");
-            if (!File.Exists(host)) throw new FileNotFoundException("برنامهٔ کمکی گزارش نصب نیست. پوشهٔ report-host باید همراه برنامه باشد.", host);
-            var directory = Path.Combine(Path.GetTempPath(), "FreeSMS-report-" + Guid.NewGuid().ToString("N"));
-            Directory.CreateDirectory(directory);
-            try
-            {
-                var request = new XElement("report", new XAttribute("type", report.GetType().FullName),
-                    new XAttribute("print", print), new XAttribute("export", export));
-                WriteData(report, directory, "main", request);
-                int index = 0;
-                foreach (var sub in report.Subreports.Items)
+                if (value != null) BeginInvoke((Action)(() =>
                 {
-                    var node = new XElement("subreport", new XAttribute("name", sub.Key));
-                    WriteData(sub.Value, directory, "sub" + index++, node);
-                    request.Add(node);
-                }
-                foreach (var parameter in report.ParameterFields.Items)
-                    foreach (var value in parameter.Value.CurrentValues.Items)
-                        request.Add(new XElement("parameter", new XAttribute("key", parameter.Key),
-                            new XAttribute("type", Type.GetTypeCode(value?.GetType()).ToString()),
-                            Convert.ToString(value, CultureInfo.InvariantCulture) ?? ""));
-                var path = Path.Combine(directory, "request.xml");
-                new XDocument(request).Save(path);
-                var start = new ProcessStartInfo(host) { UseShellExecute = false };
-                start.ArgumentList.Add(path);
-                using (var process = Process.Start(start))
-                {
-                    process.WaitForExit();
-                    if (process.ExitCode != 0)
+                    try
                     {
-                        var error = Path.Combine(directory, "error.txt");
-                        throw new InvalidOperationException(File.Exists(error) ? File.ReadAllText(error) : "موتور گزارش اجرا نشد. راه‌اندازی بخش گزارش و Crystal Runtime را بررسی کنید.");
+                        string name = value.ResourceName;
+                        if (Path.GetFileName(name) != name) throw new InvalidDataException("Invalid report template name.");
+                        var model = FreeSms.Reports.ReportModel.Load(Path.Combine(AppContext.BaseDirectory, "portable-layouts", name + ".xml"));
+                        Open(model, ToInput(value, model.Xml));
                     }
-                }
+                    catch (Exception error) { MessageBox.Show(FindForm(), error.Message, "گزارش باز نشد", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+                }));
             }
-            finally { Directory.Delete(directory, true); }
         }
-
-        private static void WriteData(ReportClass report, string directory, string name, XElement node)
+        private static FreeSms.Reports.ReportInput ToInput(ReportClass report, XElement template)
         {
-            if (report.Data == null) return;
-            var file = name + ".xml";
-            report.Data.WriteXml(Path.Combine(directory, file), XmlWriteMode.WriteSchema);
-            node.Add(new XAttribute("data", file));
-            node.Add(new XAttribute("single-table", report.SingleTable));
+            var input = new FreeSms.Reports.ReportInput { Data = report.Data };
+            var names = template.Element("parameters")?.Elements("parameter").Select(x => (string)x.Attribute("name")).ToArray() ?? Array.Empty<string>();
+            foreach (var parameter in report.ParameterFields.Items)
+            {
+                string key = parameter.Key;
+                if (key.StartsWith("index:", StringComparison.Ordinal))
+                {
+                    int index = int.Parse(key.Substring(6), CultureInfo.InvariantCulture);
+                    if (index < 0 || index >= names.Length) throw new InvalidDataException("Unknown report parameter index: " + index);
+                    key = names[index];
+                }
+                else key = key.Substring(5);
+                input.Parameters[key] = parameter.Value.CurrentValues.Items.LastOrDefault();
+            }
+            foreach (var child in report.Subreports.Items)
+            {
+                var node = template.Descendants("object").FirstOrDefault(x => (string)x.Attribute("subreport") == child.Key)?.Element("report");
+                if (node == null) throw new InvalidDataException("Unknown subreport: " + child.Key);
+                input.Subreports[child.Key] = ToInput(child.Value, node);
+            }
+            return input;
         }
     }
 }

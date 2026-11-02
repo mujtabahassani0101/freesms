@@ -37,6 +37,7 @@
     <sort field="{@group}" direction="AscendingOrder" />
     <sort field="{@groupLesson}" direction="AscendingOrder" />
   </sorts>
+  <running-totals />
   <sections>
     <section name="Section1" kind="ReportHeader" height="220">
       <format>
@@ -322,6 +323,11 @@
           <TopLineStyle>NoLine</TopLineStyle>
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
+        <chart type="crChartTypeDetail">
+          <category>{@Class}</category>
+          <category>{@Exam}</category>
+          <series>Average ({@Mark}, {@Exam})</series>
+        </chart>
       </object>
       <object>
         <Name>book1</Name>
@@ -412,4 +418,5 @@
       </object>
     </section>
   </sections>
+  <custom-functions />
 </report>

@@ -168,6 +168,7 @@ else {sp_RptSumPayment.Pay_Transport}</formula>
     <sort field="{@xPaye}" direction="AscendingOrder" />
     <sort field="{@xClass}" direction="AscendingOrder" />
   </sorts>
+  <running-totals />
   <sections>
     <section name="Section1" kind="ReportHeader" height="220">
       <format>
@@ -3086,4 +3087,5 @@ else {sp_RptSumPayment.Pay_Transport}</formula>
       </format>
     </section>
   </sections>
+  <custom-functions />
 </report>

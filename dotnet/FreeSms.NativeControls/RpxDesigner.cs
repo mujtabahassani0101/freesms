@@ -34,7 +34,8 @@ namespace DataDynamics.ActiveReports.Design
         public ActiveReport3 Report { get; private set; } = new ActiveReport3();
         public PropertyGrid PropertyGrid { get; set; }
         public CommandBarManager CommandBarManager { get; } = new CommandBarManager();
-        public Selection Selection { get; } = new Selection();
+        private readonly Selection selection = new Selection();
+        public Selection Selection => selection.Count == 0 ? null : selection;
         public bool DrawGrid { get => grid; set { grid = value; page.Invalidate(); } }
         public bool IsDirty { get; set; }
         public bool LockControls { get; set; }
@@ -67,8 +68,8 @@ namespace DataDynamics.ActiveReports.Design
             };
             page.MouseMove += (s,e) =>
             {
-                if (!moving || Selection.Count == 0) return;
-                var control = (ARControl)Selection[0];
+                if (!moving || selection.Count == 0) return;
+                var control = (ARControl)selection[0];
                 control.Left = Math.Max(0, original.X + (e.X - drag.X) / 100f); control.Top = Math.Max(0, original.Y + (e.Y - drag.Y) / 100f);
                 MarkDirty(); PropertyGrid?.Refresh(); page.Invalidate();
             };
@@ -76,7 +77,7 @@ namespace DataDynamics.ActiveReports.Design
         }
         private void Select(ARControl control)
         {
-            Selection.Clear(); if (control != null) Selection.Add(control);
+            selection.Clear(); if (control != null) selection.Add(control);
             if (PropertyGrid != null)
             {
                 PropertyGrid.SelectedObject = control;
@@ -98,9 +99,9 @@ namespace DataDynamics.ActiveReports.Design
         {
             if (grid) for (int y = 0; y < page.Height; y += 10) for (int x = 0; x < page.Width; x += 10) e.Graphics.FillRectangle(Brushes.LightGray, x, y, 1, 1);
             if (Current != null) foreach (var control in Current.Controls) control.Draw(e.Graphics, null, 0, true);
-            if (Selection.Count > 0)
+            if (selection.Count > 0)
             {
-                var c = (ARControl)Selection[0];
+                var c = (ARControl)selection[0];
                 using var pen = new Pen(Color.DodgerBlue, 2);
                 e.Graphics.DrawRectangle(pen, c.Left * 100, c.Top * 100, c.Width * 100, c.Height * 100);
             }
@@ -124,7 +125,13 @@ namespace DataDynamics.ActiveReports.Design
         private readonly TreeView tree = new TreeView { Dock = DockStyle.Fill };
         public ReportExplorer() { Controls.Add(tree); }
         private ActiveReport3 report;
-        public Designer ReportDesigner { get; set; }
+        private Designer designer;
+        public Designer ReportDesigner
+        {
+            get => designer;
+            set { if (designer != null) designer.LayoutChanged -= Changed; designer = value; if (designer != null) designer.LayoutChanged += Changed; }
+        }
+        private void Changed(object sender, LayoutChangedArgs e) { if (e.Type == LayoutChangeType.Loaded) Report = designer.Report; }
         public ActiveReport3 Report
         {
             get => report;

@@ -26,19 +26,11 @@ jobs:
           Get-ChildItem 'C:/Program Files/Microsoft SQL Server/*/Tools/Binn/SqlLocalDB.exe' | ForEach-Object { $_.FullName; & $_.FullName versions }
           dotnet run --project dotnet/FreeSms.Checks/FreeSms.Checks.csproj -c Release -- --root . --integration 2>&1 | Tee-Object -FilePath validation/windows-native-checks.log
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
-      - name: Publish self-contained Windows application
-        shell: pwsh
-        run: dotnet publish dotnet/FreeSms.Windows/FreeSms.Windows.csproj -c Release -r win-x64 --self-contained true -p:PublishReadyToRun=true -o dist/FreeSMS-Net10
-      - name: Render every recovered form on Windows
+      - name: Verify original report calculations
         shell: pwsh
         run: |
-          $app = Join-Path $PWD 'dist/FreeSMS-Net10/FreeSMS.exe'
-          $process = Start-Process -FilePath $app -ArgumentList '--verify-forms' -Wait -PassThru
-          if ($process.ExitCode -ne 0) {
-            Get-Content dist/FreeSMS-Net10/forms-verification-error.txt -ErrorAction SilentlyContinue
-            exit 1
-          }
-          Get-Content dist/FreeSMS-Net10/forms-verification.txt
+          dotnet run --project dotnet/FreeSms.ReportChecks/FreeSms.ReportChecks.csproj -c Release -- . 2>&1 | Tee-Object validation/report-formulas-checks.log
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
       - name: Upload Windows verification evidence
         if: always()
         uses: actions/upload-artifact@v7.0.2
@@ -46,13 +38,7 @@ jobs:
           name: windows-verification
           path: |
             validation/windows-native-checks.log
-            dist/FreeSMS-Net10/forms-verification*.txt
-          retention-days: 7
-      - name: Upload native Windows application
-        uses: actions/upload-artifact@v7.0.2
-        with:
-          name: FreeSMS-Net10-native-Windows-x64
-          path: dist/FreeSMS-Net10/
+            validation/report-formulas-checks.log
           retention-days: 7
   original:
     name: Native .NET 10 original application
@@ -66,7 +52,7 @@ jobs:
       - name: Build all recovered original Windows code
         shell: pwsh
         run: ./scripts/build-original-windows.ps1
-      - name: Verify native controls and RPX renderer
+      - name: Verify native controls, 7 RPX layouts and 98 migrated reports
         shell: pwsh
         run: |
           dotnet run --project dotnet/FreeSms.NativeChecks/FreeSms.NativeChecks.csproj -c Release -- . 2>&1 | Tee-Object validation/native-controls-checks.log
@@ -75,41 +61,41 @@ jobs:
         if: ${{ !cancelled() }}
         shell: pwsh
         run: |
-          $app = Join-Path $PWD 'dist/FreeSMS-Original-Net10/school_Af.exe'
+          $app = Join-Path $PWD 'dist/FreeSMS-Net10/FreeSMS.exe'
           $process = Start-Process -FilePath $app -ArgumentList '--verify-original-forms' -PassThru
           if (-not $process.WaitForExit(120000)) { $process.Kill(); throw 'Original form verification timed out.' }
           if ($process.ExitCode -ne 0) {
-            Get-Content dist/FreeSMS-Original-Net10/original-runtime-error.txt -ErrorAction SilentlyContinue
-            Get-Content dist/FreeSMS-Original-Net10/original-forms-verification.txt -ErrorAction SilentlyContinue
+            Get-Content dist/FreeSMS-Net10/original-runtime-error.txt -ErrorAction SilentlyContinue
+            Get-Content dist/FreeSMS-Net10/original-forms-verification.txt -ErrorAction SilentlyContinue
             exit 1
           }
-          Get-Content dist/FreeSMS-Original-Net10/original-forms-verification.txt
+          Get-Content dist/FreeSMS-Net10/original-forms-verification.txt
       - name: Verify .NET 10 initialization and original login
         if: ${{ !cancelled() }}
         shell: pwsh
         run: |
-          $app = Join-Path $PWD 'dist/FreeSMS-Original-Net10/school_Af.exe'
+          $app = Join-Path $PWD 'dist/FreeSMS-Net10/FreeSMS.exe'
           $process = Start-Process $app -ArgumentList '--verify-native-startup' -PassThru
           if (-not $process.WaitForExit(180000)) { $process.Kill(); throw 'Native startup timed out.' }
-          if ($process.ExitCode -ne 0) { Get-Content dist/FreeSMS-Original-Net10/original-runtime-error.txt; exit 1 }
-          Get-Content dist/FreeSMS-Original-Net10/native-startup-verification.txt
+          if ($process.ExitCode -ne 0) { Get-Content dist/FreeSMS-Net10/original-runtime-error.txt; exit 1 }
+          Get-Content dist/FreeSMS-Net10/native-startup-verification.txt
       - name: Upload original verification evidence
         if: always()
         uses: actions/upload-artifact@v7.0.2
         with:
           name: original-windows-verification
           path: |
-            dist/FreeSMS-Original-Net10/*verification*.txt
-            dist/FreeSMS-Original-Net10/original-runtime-error.txt
+            dist/FreeSMS-Net10/*verification*.txt
+            dist/FreeSMS-Net10/original-runtime-error.txt
             validation/native-controls-checks.log
             validation/native-controls/
-            dist/FreeSMS-Original-Net10/startup-*.png
-            dist/FreeSMS-Original-Net10/original-forms/
+            dist/FreeSMS-Net10/startup-*.png
+            dist/FreeSMS-Net10/original-forms/
           retention-days: 7
       - name: Upload original application build
         if: always()
         uses: actions/upload-artifact@v7.0.2
         with:
-          name: FreeSMS-Original-Net10-Windows-x86-candidate
-          path: dist/FreeSMS-Original-Net10/
+          name: FreeSMS-Net10-Windows-x86
+          path: dist/FreeSMS-Net10/
           retention-days: 7

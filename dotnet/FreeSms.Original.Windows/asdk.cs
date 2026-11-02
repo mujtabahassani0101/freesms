@@ -621,8 +621,12 @@ protected override void Dispose(bool A_0)
 					}
 					this.m_a.LoadReport(Application.StartupPath + "\\1000.rpx");
 					this.m_a.DrawGrid = false;
-					((Control)(object)this.m_a.CommandBarManager.CommandBars[0]).Visible = false;
-					((Control)(object)this.m_a.CommandBarManager.CommandBars[1]).Visible = false;
+                    this.m_a.Report.DataSource = s;
+                    this.m_c.ReportDesigner = this.m_a;
+                    this.m_c.Report = this.m_a.Report;
+                    foreach (DataTable table in s.Tables)
+                        foreach (DataColumn column in table.Columns)
+                            if (!this.m_d.Items.Contains(column.ColumnName)) this.m_d.Items.Add(column.ColumnName);
 					b();
 					aa = true;
 					num = 3;
@@ -709,7 +713,7 @@ protected override void Dispose(bool A_0)
 									goto case 2;
 								case 2:
 								case 4:
-									val2.Dispose();
+									// Picture lifetime is owned by the native report.
 									num2 = 5;
 									continue;
 								case 5:
@@ -759,7 +763,7 @@ protected override void Dispose(bool A_0)
 									continue;
 								case 3:
 								case 4:
-									val4.Dispose();
+									// Picture lifetime is owned by the native report.
 									num2 = 0;
 									continue;
 								case 0:
@@ -806,7 +810,7 @@ protected override void Dispose(bool A_0)
 									continue;
 								case 2:
 								case 3:
-									val6.Dispose();
+									// Picture lifetime is owned by the native report.
 									num2 = 4;
 									continue;
 								case 4:
@@ -852,7 +856,7 @@ protected override void Dispose(bool A_0)
 									continue;
 								case 2:
 								case 3:
-									val5.Dispose();
+									// Picture lifetime is owned by the native report.
 									num2 = 1;
 									continue;
 								case 1:
@@ -940,7 +944,7 @@ protected override void Dispose(bool A_0)
 									continue;
 								case 1:
 								case 2:
-									val.Dispose();
+									// Picture lifetime is owned by the native report.
 									num2 = 0;
 									continue;
 								case 0:

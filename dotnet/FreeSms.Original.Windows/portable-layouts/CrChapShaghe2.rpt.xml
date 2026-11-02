@@ -40,6 +40,7 @@
   </parameters>
   <groups />
   <sorts />
+  <running-totals />
   <sections>
     <section name="Section1" kind="ReportHeader" height="220">
       <format>
@@ -123,6 +124,7 @@
           <HorizontalAlignment>LeftAlign</HorizontalAlignment>
           <EnableKeepTogether>true</EnableKeepTogether>
           <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+          <condition name="EnableSuppress">if isnull({sp_rptChapShaghe.xbook2}) then true else false</condition>
         </format>
         <border>
           <BackgroundColor>-1</BackgroundColor>
@@ -172,6 +174,14 @@
             <sort field="{@fname}" direction="AscendingOrder" />
             <sort field="{@lname}" direction="AscendingOrder" />
           </sorts>
+          <running-totals>
+            <total name="RTotal0" field="{@xStudent}">
+              <Operation>Count</Operation>
+              <OperationParameter>0</OperationParameter>
+              <EvaluationConditionType>NoCondition</EvaluationConditionType>
+              <ResetConditionType>OnChangeOfField</ResetConditionType>
+            </total>
+          </running-totals>
           <sections>
             <section name="Section1" kind="ReportHeader" height="1010">
               <format>
@@ -1608,6 +1618,14 @@
             <sort field="{@fname}" direction="AscendingOrder" />
             <sort field="{@lname}" direction="AscendingOrder" />
           </sorts>
+          <running-totals>
+            <total name="RTotal0" field="{@xStudent}">
+              <Operation>Count</Operation>
+              <OperationParameter>0</OperationParameter>
+              <EvaluationConditionType>NoCondition</EvaluationConditionType>
+              <ResetConditionType>OnChangeOfField</ResetConditionType>
+            </total>
+          </running-totals>
           <sections>
             <section name="Section1" kind="ReportHeader" height="1010">
               <format>
@@ -3008,4 +3026,5 @@
       </format>
     </section>
   </sections>
+  <custom-functions />
 </report>

@@ -61,6 +61,14 @@ else if {?type}=2 and ({sp_RptPaymentBalance.Fasl}=9) then 'ماه '+'قوس'</f
     <sort field="{@sort}" direction="AscendingOrder" />
     <sort field="{@xStudent}" direction="AscendingOrder" />
   </sorts>
+  <running-totals>
+    <total name="RTotal0" field="{@xStudent}">
+      <Operation>Count</Operation>
+      <OperationParameter>0</OperationParameter>
+      <EvaluationConditionType>NoCondition</EvaluationConditionType>
+      <ResetConditionType>NoCondition</ResetConditionType>
+    </total>
+  </running-totals>
   <sections>
     <section name="Section1" kind="ReportHeader" height="220">
       <format>
@@ -1078,4 +1086,5 @@ else if {?type}=2 and ({sp_RptPaymentBalance.Fasl}=9) then 'ماه '+'قوس'</f
       </format>
     </section>
   </sections>
+  <custom-functions />
 </report>

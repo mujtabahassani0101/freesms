@@ -137,6 +137,14 @@ else {@fname}+'_'+{@lname}</formula>
     <sort field="{@orderbyname}" direction="AscendingOrder" />
     <sort field="{spRpt_StdBookMarks.AvgMark}" direction="DescendingOrder" />
   </sorts>
+  <running-totals>
+    <total name="RTotal0" field="{@Id}">
+      <Operation>Count</Operation>
+      <OperationParameter>0</OperationParameter>
+      <EvaluationConditionType>NoCondition</EvaluationConditionType>
+      <ResetConditionType>OnChangeOfGroup</ResetConditionType>
+    </total>
+  </running-totals>
   <sections>
     <section name="Section1" kind="ReportHeader" height="685">
       <format>
@@ -2009,4 +2017,5 @@ else {@fname}+'_'+{@lname}</formula>
       </object>
     </section>
   </sections>
+  <custom-functions />
 </report>

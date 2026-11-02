@@ -39,6 +39,7 @@ totext({spRpt_AvgClassBooksTch.xPaye}*1000)+'-'+
     <sort field="{@group}" direction="AscendingOrder" />
     <sort field="{@groupLesson}" direction="AscendingOrder" />
   </sorts>
+  <running-totals />
   <sections>
     <section name="Section1" kind="ReportHeader" height="610">
       <format>
@@ -377,6 +378,11 @@ totext({spRpt_AvgClassBooksTch.xPaye}*1000)+'-'+
           <TopLineStyle>NoLine</TopLineStyle>
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
+        <chart type="crChartTypeDetail">
+          <category>{@Exam}</category>
+          <series>Sum ({@Mark}, {@Exam})</series>
+          <series>Sum ({@avgPaye}, {@Exam})</series>
+        </chart>
       </object>
       <object>
         <Name>Text2</Name>
@@ -598,4 +604,5 @@ totext({spRpt_AvgClassBooksTch.xPaye}*1000)+'-'+
       </object>
     </section>
   </sections>
+  <custom-functions />
 </report>

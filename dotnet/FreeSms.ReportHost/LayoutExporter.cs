@@ -127,6 +127,17 @@ internal static class LayoutExporter
             else if (field.ResetCondition is string resetText && !string.IsNullOrWhiteSpace(resetText))
                 node.Add(new XElement("reset-expression", resetText));
         }
+        var summaries = new XElement("summaries");
+        var summaryFields = ras.DataDefController.DataDefinition.SummaryFields;
+        for (int i = 0; i < summaryFields.Count; i++)
+        {
+            var field = (CrystalDecisions.ReportAppServer.DataDefModel.ISCRSummaryField)summaryFields[i];
+            var node = new XElement("summary", new XAttribute("name", field.Name), new XAttribute("formula", field.FormulaForm), new XAttribute("field", field.SummarizedField.FormulaForm), new XAttribute("operation", field.Operation));
+            if (field.Group != null) node.SetAttributeValue("group", field.Group.ConditionField.FormulaForm);
+            if (field.SecondGroup != null) node.SetAttributeValue("second-group", field.SecondGroup.ConditionField.FormulaForm);
+            summaries.Add(node);
+        }
+        xml.Add(summaries);
         var areas = ras.ReportDefController.ReportDefinition.Areas;
         for (int i = 0; i < areas.Count; i++)
         {
@@ -160,6 +171,16 @@ internal static class LayoutExporter
                             if (picture.PictureData != null)
                                 obj.Add(new XElement("picture", Convert.ToBase64String(picture.PictureData.ByteArray)));
                         }
+                    }
+                    if (item is R.ISCRSubreportObject subreport)
+                    {
+                        var links = new XElement("links");
+                        for (int link = 0; link < subreport.SubreportLinks.Count; link++)
+                        {
+                            var rule = subreport.SubreportLinks[link];
+                            links.Add(new XElement("link", new XAttribute("parent", rule.MainReportFieldName), new XAttribute("child", rule.SubreportFieldName)));
+                        }
+                        obj.Add(links);
                     }
                     if (item is R.ChartObject chart)
                     {

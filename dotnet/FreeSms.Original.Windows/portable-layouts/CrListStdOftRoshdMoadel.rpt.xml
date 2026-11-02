@@ -85,6 +85,14 @@ else
     <sort field="{@orderbyname}" direction="AscendingOrder" />
     <sort field="{@OftRoshd}" direction="DescendingOrder" />
   </sorts>
+  <running-totals>
+    <total name="RTotal0" field="{@Id}">
+      <Operation>Count</Operation>
+      <OperationParameter>0</OperationParameter>
+      <EvaluationConditionType>NoCondition</EvaluationConditionType>
+      <ResetConditionType>OnChangeOfGroup</ResetConditionType>
+    </total>
+  </running-totals>
   <sections>
     <section name="Section1" kind="ReportHeader" height="685">
       <format>
@@ -2370,4 +2378,5 @@ else
       </format>
     </section>
   </sections>
+  <custom-functions />
 </report>

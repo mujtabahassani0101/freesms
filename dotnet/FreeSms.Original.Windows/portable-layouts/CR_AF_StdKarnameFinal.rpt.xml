@@ -249,6 +249,14 @@ else '__________________'</formula>
     <sort field="{@sort}" direction="AscendingOrder" />
     <sort field="{@xstudent}" direction="AscendingOrder" />
   </sorts>
+  <running-totals>
+    <total name="radif" field="{@xstudent}">
+      <Operation>Count</Operation>
+      <OperationParameter>0</OperationParameter>
+      <EvaluationConditionType>NoCondition</EvaluationConditionType>
+      <ResetConditionType>OnChangeOfGroup</ResetConditionType>
+    </total>
+  </running-totals>
   <sections>
     <section name="Section1" kind="ReportHeader" height="481">
       <format>
@@ -3233,6 +3241,10 @@ else '__________________'</formula>
           <HorizontalAlignment>RightAlign</HorizontalAlignment>
           <EnableKeepTogether>true</EnableKeepTogether>
           <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+          <condition name="EnableSuppress">if ({?showEmza}='بلی' or {?showEmza}='بله' or {?showEmza}='بلي' )
+then false else true
+
+</condition>
         </format>
         <border>
           <BackgroundColor>-1</BackgroundColor>
@@ -3259,6 +3271,10 @@ else '__________________'</formula>
           <HorizontalAlignment>RightAlign</HorizontalAlignment>
           <EnableKeepTogether>true</EnableKeepTogether>
           <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+          <condition name="EnableSuppress">if ({?showEmza}='بلی' or {?showEmza}='بله' or {?showEmza}='بلي' )
+then false else true
+
+</condition>
         </format>
         <border>
           <BackgroundColor>-1</BackgroundColor>
@@ -3821,6 +3837,8 @@ else '__________________'</formula>
           <HorizontalAlignment>DefaultAlign</HorizontalAlignment>
           <EnableKeepTogether>true</EnableKeepTogether>
           <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+          <condition name="EnableSuppress">if ({?showpic}='بلی' or {?showpic}='بله' or {?showpic}='بلي' )
+then false else true</condition>
         </format>
         <border>
           <BackgroundColor>-1</BackgroundColor>
@@ -5103,6 +5121,7 @@ else '__________________'</formula>
           <HorizontalAlignment>HorizontalCenterAlign</HorizontalAlignment>
           <EnableKeepTogether>true</EnableKeepTogether>
           <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+          <condition name="EnableSuppress">if{spRpt_karnamefinal.Acp}=3 then true else false</condition>
         </format>
         <border>
           <BackgroundColor>-1</BackgroundColor>
@@ -5130,6 +5149,7 @@ else '__________________'</formula>
           <HorizontalAlignment>HorizontalCenterAlign</HorizontalAlignment>
           <EnableKeepTogether>true</EnableKeepTogether>
           <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+          <condition name="EnableSuppress">if{spRpt_karnamefinal.Acp}=3 then true else false</condition>
         </format>
         <border>
           <BackgroundColor>-1</BackgroundColor>
@@ -5157,6 +5177,7 @@ else '__________________'</formula>
           <HorizontalAlignment>HorizontalCenterAlign</HorizontalAlignment>
           <EnableKeepTogether>true</EnableKeepTogether>
           <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+          <condition name="EnableSuppress">if{spRpt_karnamefinal.Acp}=3 then true else false</condition>
         </format>
         <border>
           <BackgroundColor>-1</BackgroundColor>
@@ -5184,6 +5205,7 @@ else '__________________'</formula>
           <HorizontalAlignment>HorizontalCenterAlign</HorizontalAlignment>
           <EnableKeepTogether>true</EnableKeepTogether>
           <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+          <condition name="EnableSuppress">if{spRpt_karnamefinal.Acp}=3 then true else false</condition>
         </format>
         <border>
           <BackgroundColor>-1</BackgroundColor>
@@ -5211,6 +5233,7 @@ else '__________________'</formula>
           <HorizontalAlignment>HorizontalCenterAlign</HorizontalAlignment>
           <EnableKeepTogether>true</EnableKeepTogether>
           <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+          <condition name="EnableSuppress">if{spRpt_karnamefinal.Acp}=3 then true else false</condition>
         </format>
         <border>
           <BackgroundColor>-1</BackgroundColor>
@@ -5238,6 +5261,7 @@ else '__________________'</formula>
           <HorizontalAlignment>HorizontalCenterAlign</HorizontalAlignment>
           <EnableKeepTogether>true</EnableKeepTogether>
           <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+          <condition name="EnableSuppress">if{spRpt_karnamefinal.Acp}=3 then true else false</condition>
         </format>
         <border>
           <BackgroundColor>-1</BackgroundColor>
@@ -5265,6 +5289,7 @@ else '__________________'</formula>
           <HorizontalAlignment>HorizontalCenterAlign</HorizontalAlignment>
           <EnableKeepTogether>true</EnableKeepTogether>
           <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+          <condition name="EnableSuppress">if{spRpt_karnamefinal.Acp}=3 then true else false</condition>
         </format>
         <border>
           <BackgroundColor>-1</BackgroundColor>
@@ -5292,6 +5317,7 @@ else '__________________'</formula>
           <HorizontalAlignment>HorizontalCenterAlign</HorizontalAlignment>
           <EnableKeepTogether>true</EnableKeepTogether>
           <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+          <condition name="EnableSuppress">if{spRpt_karnamefinal.Acp}=3 then true else false</condition>
         </format>
         <border>
           <BackgroundColor>-1</BackgroundColor>
@@ -5319,6 +5345,7 @@ else '__________________'</formula>
           <HorizontalAlignment>HorizontalCenterAlign</HorizontalAlignment>
           <EnableKeepTogether>true</EnableKeepTogether>
           <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+          <condition name="EnableSuppress">if{spRpt_karnamefinal.Acp}=3 then true else false</condition>
         </format>
         <border>
           <BackgroundColor>-1</BackgroundColor>
@@ -5346,6 +5373,7 @@ else '__________________'</formula>
           <HorizontalAlignment>HorizontalCenterAlign</HorizontalAlignment>
           <EnableKeepTogether>true</EnableKeepTogether>
           <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+          <condition name="EnableSuppress">if{spRpt_karnamefinal.Acp}=3 then true else false</condition>
         </format>
         <border>
           <BackgroundColor>-1</BackgroundColor>
@@ -5373,6 +5401,7 @@ else '__________________'</formula>
           <HorizontalAlignment>HorizontalCenterAlign</HorizontalAlignment>
           <EnableKeepTogether>true</EnableKeepTogether>
           <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+          <condition name="EnableSuppress">if{spRpt_karnamefinal.Acp}=3 then true else false</condition>
         </format>
         <border>
           <BackgroundColor>-1</BackgroundColor>
@@ -5400,6 +5429,7 @@ else '__________________'</formula>
           <HorizontalAlignment>HorizontalCenterAlign</HorizontalAlignment>
           <EnableKeepTogether>true</EnableKeepTogether>
           <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+          <condition name="EnableSuppress">if{spRpt_karnamefinal.Acp}=3 then true else false</condition>
         </format>
         <border>
           <BackgroundColor>-1</BackgroundColor>
@@ -5427,6 +5457,7 @@ else '__________________'</formula>
           <HorizontalAlignment>HorizontalCenterAlign</HorizontalAlignment>
           <EnableKeepTogether>true</EnableKeepTogether>
           <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+          <condition name="EnableSuppress">if{spRpt_karnamefinal.Acp}=3 then true else false</condition>
         </format>
         <border>
           <BackgroundColor>-1</BackgroundColor>
@@ -5454,6 +5485,7 @@ else '__________________'</formula>
           <HorizontalAlignment>HorizontalCenterAlign</HorizontalAlignment>
           <EnableKeepTogether>true</EnableKeepTogether>
           <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+          <condition name="EnableSuppress">if{spRpt_karnamefinal.Acp}=3 then true else false</condition>
         </format>
         <border>
           <BackgroundColor>-1</BackgroundColor>
@@ -5481,6 +5513,7 @@ else '__________________'</formula>
           <HorizontalAlignment>HorizontalCenterAlign</HorizontalAlignment>
           <EnableKeepTogether>true</EnableKeepTogether>
           <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+          <condition name="EnableSuppress">if{spRpt_karnamefinal.Acp}=3 then true else false</condition>
         </format>
         <border>
           <BackgroundColor>-1</BackgroundColor>
@@ -5508,6 +5541,7 @@ else '__________________'</formula>
           <HorizontalAlignment>HorizontalCenterAlign</HorizontalAlignment>
           <EnableKeepTogether>true</EnableKeepTogether>
           <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+          <condition name="EnableSuppress">if{spRpt_karnamefinal.Acp}=3 then true else false</condition>
         </format>
         <border>
           <BackgroundColor>-1</BackgroundColor>
@@ -5535,6 +5569,7 @@ else '__________________'</formula>
           <HorizontalAlignment>HorizontalCenterAlign</HorizontalAlignment>
           <EnableKeepTogether>true</EnableKeepTogether>
           <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+          <condition name="EnableSuppress">if{spRpt_karnamefinal.Acp}=3 then true else false</condition>
         </format>
         <border>
           <BackgroundColor>-1</BackgroundColor>
@@ -5562,6 +5597,7 @@ else '__________________'</formula>
           <HorizontalAlignment>HorizontalCenterAlign</HorizontalAlignment>
           <EnableKeepTogether>true</EnableKeepTogether>
           <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+          <condition name="EnableSuppress">if{spRpt_karnamefinal.Acp}=3 then true else false</condition>
         </format>
         <border>
           <BackgroundColor>-1</BackgroundColor>
@@ -6021,6 +6057,7 @@ else '__________________'</formula>
           <HorizontalAlignment>HorizontalCenterAlign</HorizontalAlignment>
           <EnableKeepTogether>true</EnableKeepTogether>
           <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+          <condition name="EnableSuppress">if{spRpt_karnamefinal.Acp}=3 then true else false</condition>
         </format>
         <border>
           <BackgroundColor>-1</BackgroundColor>
@@ -6075,6 +6112,7 @@ else '__________________'</formula>
           <HorizontalAlignment>HorizontalCenterAlign</HorizontalAlignment>
           <EnableKeepTogether>true</EnableKeepTogether>
           <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+          <condition name="EnableSuppress">if{spRpt_karnamefinal.Acp}=3 then true else false</condition>
         </format>
         <border>
           <BackgroundColor>-1</BackgroundColor>
@@ -7354,4 +7392,22 @@ else '__________________'</formula>
       </object>
     </section>
   </sections>
+  <custom-functions>
+    <function name="tosif">Function tosif (Num As Number) As String
+Dim harf As String
+harf = ""
+Select Case Num 
+Case -1 
+harf = "خیلی خوب" 
+Case -2 
+harf = "خوب" 
+Case -3
+harf = "قابل قبول" 
+Case -4
+harf = "نیاز به تلاش بیشتر" 
+End Select
+tosif = Trim(harf)
+End Function
+</function>
+  </custom-functions>
 </report>

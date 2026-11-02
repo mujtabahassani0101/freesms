@@ -1,9 +1,9 @@
 <Solution>
   <Project Path="FreeSms.Core/FreeSms.Core.csproj" />
-  <Project Path="FreeSms.Windows/FreeSms.Windows.csproj" />
-  <Project Path="FreeSms.Checks/FreeSms.Checks.csproj" />
+  <Project Path="FreeSms.Reports/FreeSms.Reports.csproj" />
+  <Project Path="FreeSms.NativeControls/FreeSms.NativeControls.csproj" />
   <Project Path="FreeSms.Original.Windows/FreeSms.Original.Windows.csproj" />
-  <Project Path="FreeSms.ReportHost/FreeSms.ReportHost.csproj" />
-  <Project Path="FreeSms.Original.Framework/FreeSms.Original.Framework.csproj" />
-  <Project Path="FreeSms.NativeLauncher/FreeSms.NativeLauncher.csproj" />
+  <Project Path="FreeSms.Checks/FreeSms.Checks.csproj" />
+  <Project Path="FreeSms.NativeChecks/FreeSms.NativeChecks.csproj" />
+  <Project Path="FreeSms.ReportChecks/FreeSms.ReportChecks.csproj" />
 </Solution>

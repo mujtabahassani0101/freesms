@@ -93,6 +93,14 @@ else if{spRpt_Listfinal.acp}=4 then 'محروم' </formula>
     <sort field="{@orderbyname}" direction="AscendingOrder" />
     <sort field="{@Summark}" direction="DescendingOrder" />
   </sorts>
+  <running-totals>
+    <total name="radif" field="{@xstudent}">
+      <Operation>Count</Operation>
+      <OperationParameter>0</OperationParameter>
+      <EvaluationConditionType>NoCondition</EvaluationConditionType>
+      <ResetConditionType>OnChangeOfGroup</ResetConditionType>
+    </total>
+  </running-totals>
   <sections>
     <section name="Section1" kind="ReportHeader" height="341">
       <format>
@@ -2654,4 +2662,22 @@ else if{spRpt_Listfinal.acp}=4 then 'محروم' </formula>
       </format>
     </section>
   </sections>
+  <custom-functions>
+    <function name="tosif">Function tosif (Num As Number) As String
+Dim harf As String
+harf = ""
+Select Case Num 
+Case -1 
+harf = "خیلی خوب" 
+Case -2 
+harf = "خوب" 
+Case -3
+harf = "قابل قبول" 
+Case -4
+harf = "نیاز به تلاش بیشتر" 
+End Select
+tosif = Trim(harf)
+End Function
+</function>
+  </custom-functions>
 </report>

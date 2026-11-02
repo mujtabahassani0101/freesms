@@ -47,6 +47,14 @@
     <sort field="{@group}" direction="AscendingOrder" />
     <sort field="{@xPaye}" direction="AscendingOrder" />
   </sorts>
+  <running-totals>
+    <total name="radif" field="{@xbook}">
+      <Operation>Count</Operation>
+      <OperationParameter>0</OperationParameter>
+      <EvaluationConditionType>NoCondition</EvaluationConditionType>
+      <ResetConditionType>OnChangeOfGroup</ResetConditionType>
+    </total>
+  </running-totals>
   <sections>
     <section name="Section1" kind="ReportHeader" height="4360">
       <format>
@@ -1263,6 +1271,10 @@
           <TopLineStyle>NoLine</TopLineStyle>
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
+        <chart type="crChartTypeDetail">
+          <category>{@book-class}</category>
+          <series>Sum ({@avgClass}, {@book-class})</series>
+        </chart>
       </object>
     </section>
     <section name="Section4" kind="ReportFooter" height="405">
@@ -1315,4 +1327,5 @@
       </object>
     </section>
   </sections>
+  <custom-functions />
 </report>

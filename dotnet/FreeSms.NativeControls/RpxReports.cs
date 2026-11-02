@@ -126,7 +126,7 @@ namespace DataDynamics.ActiveReports
                 var style = Font.Contains("Bold") ? FontStyle.Bold : FontStyle.Regular;
                 if (Font.Contains("Italic")) style |= FontStyle.Italic;
                 if (Font.Contains("Underline")) style |= FontStyle.Underline;
-                using var font = new Font(fontParts[0], size, style);
+                using var font = new Font(fontParts[0], size * 100 / 72, style, GraphicsUnit.Pixel);
                 using var brush = new SolidBrush(Rpx.Color(Rpx.Get(Xml, "ForeColor"), Color.Black));
                 using var format = new StringFormat { Alignment = Alignment == "Center" ? StringAlignment.Center : Alignment == "Right" ? StringAlignment.Far : StringAlignment.Near, LineAlignment = Rpx.Get(Xml, "VerticalAlignment") == "Middle" ? StringAlignment.Center : StringAlignment.Near };
                 if (Rpx.Get(Xml, "RightToLeft") == "True") format.FormatFlags |= StringFormatFlags.DirectionRightToLeft;
@@ -150,7 +150,23 @@ namespace DataDynamics.ActiveReports
             var data = Rpx.Property(xml, "ImageData")?.Element("Binary");
             if (data != null && !string.IsNullOrWhiteSpace(data.Value)) image = Rpx.Image(Convert.FromBase64String(data.Value));
         }
-        public Image Image { get => image; set => image = value; }
+        public Image Image
+        {
+            get => image;
+            set
+            {
+                var replacement = value == null ? null : new Bitmap(value);
+                image?.Dispose(); image = replacement;
+                var property = Rpx.Property(Xml, "ImageData");
+                if (property == null) Xml.Add(property = new XElement("Property", new XAttribute("name", "ImageData")));
+                property.RemoveNodes();
+                if (image != null)
+                {
+                    using var stream = new MemoryStream(); image.Save(stream, System.Drawing.Imaging.ImageFormat.Png);
+                    property.Add(new XElement("Binary", Convert.ToBase64String(stream.ToArray())));
+                }
+            }
+        }
         public override void Dispose() { image?.Dispose(); image = null; }
     }
     public class ControlCollection : IEnumerable<ARControl>
@@ -272,7 +288,7 @@ namespace DataDynamics.ActiveReports.Document
             var placements = new List<Placement>();
             Pages.Add(placements);
             var headers = report.Sections.Where(s => s.Kind == "GroupHeader").ToArray();
-            var footerFields = report.Sections.Where(s => s.Kind == "GroupFooter").Select((s, i) => new { Section = s, Field = headers.Reverse().ElementAtOrDefault(i)?.GroupField }).ToDictionary(x => x.Section, x => x.Field);
+            var footerFields = report.Sections.Where(s => s.Kind == "GroupFooter").Select((s, i) => new { Section = s, Field = headers.Select((h, index) => string.IsNullOrEmpty(h.GroupField) ? headers.Take(index).LastOrDefault(x => !string.IsNullOrEmpty(x.GroupField))?.GroupField : h.GroupField).Reverse().ElementAtOrDefault(i) }).ToDictionary(x => x.Section, x => x.Field);
             foreach (var item in rows.Select((row, index) => new { row, index }))
                 foreach (var section in report.Sections.Where(s => s.Visible))
                 {

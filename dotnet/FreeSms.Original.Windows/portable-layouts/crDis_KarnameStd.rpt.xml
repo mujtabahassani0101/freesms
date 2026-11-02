@@ -42,6 +42,14 @@ totext({@xClass}+100)</formula>
     <sort field="{@group}" direction="AscendingOrder" />
     <sort field="{@xStudent}" direction="AscendingOrder" />
   </sorts>
+  <running-totals>
+    <total name="radif" field="{@xStudent}">
+      <Operation>Count</Operation>
+      <OperationParameter>0</OperationParameter>
+      <EvaluationConditionType>NoCondition</EvaluationConditionType>
+      <ResetConditionType>OnChangeOfGroup</ResetConditionType>
+    </total>
+  </running-totals>
   <sections>
     <section name="Section1" kind="ReportHeader" height="239">
       <format>
@@ -390,6 +398,14 @@ totext({@xClass}+100)</formula>
             <sort field="{@group}" direction="AscendingOrder" />
             <sort field="{@datedis}" direction="AscendingOrder" />
           </sorts>
+          <running-totals>
+            <total name="radif" field="{@xStudent}">
+              <Operation>Count</Operation>
+              <OperationParameter>0</OperationParameter>
+              <EvaluationConditionType>NoCondition</EvaluationConditionType>
+              <ResetConditionType>OnChangeOfGroup</ResetConditionType>
+            </total>
+          </running-totals>
           <sections>
             <section name="Section1" kind="ReportHeader" height="239">
               <format>
@@ -982,6 +998,14 @@ totext({@xClass}+100)</formula>
             <sort field="{@group}" direction="AscendingOrder" />
             <sort field="{@datedis}" direction="AscendingOrder" />
           </sorts>
+          <running-totals>
+            <total name="radif" field="{@xStudent}">
+              <Operation>Count</Operation>
+              <OperationParameter>0</OperationParameter>
+              <EvaluationConditionType>NoCondition</EvaluationConditionType>
+              <ResetConditionType>OnChangeOfGroup</ResetConditionType>
+            </total>
+          </running-totals>
           <sections>
             <section name="Section1" kind="ReportHeader" height="239">
               <format>
@@ -1578,4 +1602,5 @@ totext({@xClass}+100)</formula>
       </format>
     </section>
   </sections>
+  <custom-functions />
 </report>

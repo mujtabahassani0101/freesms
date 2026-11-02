@@ -50,6 +50,14 @@
     <sort field="{@fname}" direction="AscendingOrder" />
     <sort field="{@lname}" direction="AscendingOrder" />
   </sorts>
+  <running-totals>
+    <total name="RTotal0" field="{@xStudent}">
+      <Operation>Count</Operation>
+      <OperationParameter>0</OperationParameter>
+      <EvaluationConditionType>NoCondition</EvaluationConditionType>
+      <ResetConditionType>OnChangeOfGroup</ResetConditionType>
+    </total>
+  </running-totals>
   <sections>
     <section name="Section1" kind="ReportHeader" height="220">
       <format>
@@ -904,4 +912,5 @@
       </format>
     </section>
   </sections>
+  <custom-functions />
 </report>

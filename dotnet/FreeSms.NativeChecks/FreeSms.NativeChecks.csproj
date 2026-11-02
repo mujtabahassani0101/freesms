@@ -6,4 +6,5 @@
     <OutputType>Exe</OutputType>
   </PropertyGroup>
   <ItemGroup><ProjectReference Include="../FreeSms.NativeControls/FreeSms.NativeControls.csproj" /></ItemGroup>
+  <ItemGroup><Compile Include="../FreeSms.ReportChecks/ReportFixtures.cs" Link="ReportFixtures.cs" /></ItemGroup>
 </Project>

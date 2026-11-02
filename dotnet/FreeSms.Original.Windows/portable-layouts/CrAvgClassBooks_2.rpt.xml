@@ -30,6 +30,7 @@
   <sorts>
     <sort field="{@group}" direction="AscendingOrder" />
   </sorts>
+  <running-totals />
   <sections>
     <section name="Section1" kind="ReportHeader" height="220">
       <format>
@@ -382,4 +383,5 @@
       </object>
     </section>
   </sections>
+  <custom-functions />
 </report>

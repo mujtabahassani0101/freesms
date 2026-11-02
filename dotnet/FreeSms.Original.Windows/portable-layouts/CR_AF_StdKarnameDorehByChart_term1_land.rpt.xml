@@ -267,6 +267,14 @@ else {spRpt_StdKarnameDoreh1.CommentKoll}</formula>
     <sort field="{@xstudent}" direction="AscendingOrder" />
     <sort field="{spRpt_StdKarnameDoreh1.sort}" direction="AscendingOrder" />
   </sorts>
+  <running-totals>
+    <total name="radif" field="{@xstudent}">
+      <Operation>Count</Operation>
+      <OperationParameter>0</OperationParameter>
+      <EvaluationConditionType>NoCondition</EvaluationConditionType>
+      <ResetConditionType>OnChangeOfGroup</ResetConditionType>
+    </total>
+  </running-totals>
   <sections>
     <section name="Section1" kind="ReportHeader" height="190">
       <format>
@@ -382,6 +390,11 @@ else {spRpt_StdKarnameDoreh1.CommentKoll}</formula>
           <TopLineStyle>NoLine</TopLineStyle>
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
+        <chart type="crChartTypeDetail">
+          <category>{@lesson}</category>
+          <series>Sum ({@markchart}, {@lesson})</series>
+          <series>Sum ({@avgClass}, {@lesson})</series>
+        </chart>
       </object>
       <object>
         <Name>examchart1</Name>
@@ -449,6 +462,7 @@ else {spRpt_StdKarnameDoreh1.CommentKoll}</formula>
           <HorizontalAlignment>LeftAlign</HorizontalAlignment>
           <EnableKeepTogether>true</EnableKeepTogether>
           <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+          <condition name="EnableSuppress">if{?showBartar}='1' then false else true</condition>
         </format>
         <border>
           <BackgroundColor>-1</BackgroundColor>
@@ -476,6 +490,7 @@ else {spRpt_StdKarnameDoreh1.CommentKoll}</formula>
           <sorts>
             <sort field="{@MarkDoreh}" direction="DescendingOrder" />
           </sorts>
+          <running-totals />
           <sections>
             <section name="Section1" kind="ReportHeader" height="115">
               <format>
@@ -969,6 +984,7 @@ else {spRpt_StdKarnameDoreh1.CommentKoll}</formula>
           <HorizontalAlignment>LeftAlign</HorizontalAlignment>
           <EnableKeepTogether>true</EnableKeepTogether>
           <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+          <condition name="EnableSuppress">if{?showBartar}='1' then false else true</condition>
         </format>
         <border>
           <BackgroundColor>-1</BackgroundColor>
@@ -995,6 +1011,7 @@ else {spRpt_StdKarnameDoreh1.CommentKoll}</formula>
           <sorts>
             <sort field="{@MarkDoreh}" direction="DescendingOrder" />
           </sorts>
+          <running-totals />
           <sections>
             <section name="Section1" kind="ReportHeader" height="115">
               <format>
@@ -1933,6 +1950,14 @@ else if{spRpt_StdKarnameDoreh1.acp}=0 then 'تلاش بیشتر' </formula>
             <sort field="{@xstudent}" direction="AscendingOrder" />
             <sort field="{spRpt_StdKarnameDoreh1.sort}" direction="AscendingOrder" />
           </sorts>
+          <running-totals>
+            <total name="radif" field="{@xstudent}">
+              <Operation>Count</Operation>
+              <OperationParameter>0</OperationParameter>
+              <EvaluationConditionType>NoCondition</EvaluationConditionType>
+              <ResetConditionType>OnChangeOfGroup</ResetConditionType>
+            </total>
+          </running-totals>
           <sections>
             <section name="Section1" kind="ReportHeader" height="190">
               <format>
@@ -4450,6 +4475,7 @@ else if{spRpt_StdKarnameDoreh1.acp}=0 then 'تلاش بیشتر' </formula>
           <HorizontalAlignment>LeftAlign</HorizontalAlignment>
           <EnableKeepTogether>true</EnableKeepTogether>
           <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+          <condition name="EnableSuppress">if{?showGread}='1'  then true  else  false</condition>
         </format>
         <border>
           <BackgroundColor>-1</BackgroundColor>
@@ -4522,4 +4548,22 @@ else if{spRpt_StdKarnameDoreh1.acp}=0 then 'تلاش بیشتر' </formula>
       </object>
     </section>
   </sections>
+  <custom-functions>
+    <function name="tosif">Function tosif (Num As Number) As String
+Dim harf As String
+harf = ""
+Select Case Num 
+Case -1 
+harf = "خیلی خوب" 
+Case -2 
+harf = "خوب" 
+Case -3
+harf = "قابل قبول" 
+Case -4
+harf = "نیاز به تلاش بیشتر" 
+End Select
+tosif = Trim(harf)
+End Function
+</function>
+  </custom-functions>
 </report>

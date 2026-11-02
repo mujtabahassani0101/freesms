@@ -4,7 +4,7 @@
     <UseWindowsForms>true</UseWindowsForms>
     <EnableWindowsTargeting>true</EnableWindowsTargeting>
     <OutputType>WinExe</OutputType>
-    <AssemblyName>school_Af</AssemblyName>
+    <AssemblyName>FreeSMS</AssemblyName>
     <RootNamespace />
     <StartupObject>OriginalProgram</StartupObject>
     <PlatformTarget>x86</PlatformTarget>

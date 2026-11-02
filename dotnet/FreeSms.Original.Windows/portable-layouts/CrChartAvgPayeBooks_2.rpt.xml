@@ -33,6 +33,7 @@
     <group field="{@group}" />
   </groups>
   <sorts />
+  <running-totals />
   <sections>
     <section name="Section1" kind="ReportHeader" height="220">
       <format>
@@ -334,6 +335,10 @@
           <TopLineStyle>NoLine</TopLineStyle>
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
+        <chart type="crChartTypeDetail">
+          <category>{@book}</category>
+          <series>Average ({@Mark}, {@book})</series>
+        </chart>
       </object>
     </section>
     <section name="Section4" kind="ReportFooter" height="3090">
@@ -386,4 +391,5 @@
       </object>
     </section>
   </sections>
+  <custom-functions />
 </report>

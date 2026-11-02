@@ -43,6 +43,14 @@
     <sort field="{spRpt_ListDabirKham.FName}" direction="AscendingOrder" />
     <sort field="{spRpt_ListDabirKham.LName}" direction="AscendingOrder" />
   </sorts>
+  <running-totals>
+    <total name="radif" field="{@id}">
+      <Operation>Count</Operation>
+      <OperationParameter>0</OperationParameter>
+      <EvaluationConditionType>NoCondition</EvaluationConditionType>
+      <ResetConditionType>OnChangeOfGroup</ResetConditionType>
+    </total>
+  </running-totals>
   <sections>
     <section name="Section1" kind="ReportHeader" height="379">
       <format>
@@ -1396,4 +1404,5 @@
       </object>
     </section>
   </sections>
+  <custom-functions />
 </report>

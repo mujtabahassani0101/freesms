@@ -1,0 +1,18 @@
+{
+  "input_exe_sha256": "f380191dc4a7c6fbf7dbc0f95c21e915e9b50bf8a8bd44eac6e8943bc715fe28",
+  "recovered_csharp_units": 205,
+  "embedded_rpt_templates": 99,
+  "original_forms_verified": 89,
+  "original_report_classes_loaded": 98,
+  "native_database_checks_passed": 18,
+  "full_net10_ui_runtime_compatible": true,
+  "full_workflow_parity_verified": false,
+  "evidence": {
+    "native_database": "https://github.com/mujtabahassani0101/freesms/actions/runs/41448794495",
+    "original_framework_forms": "https://github.com/mujtabahassani0101/freesms/actions/runs/41451359815",
+    "original_report_templates": "https://github.com/mujtabahassani0101/freesms/actions/runs/41449553701",
+    "original_net10_forms": "https://github.com/mujtabahassani0101/freesms/actions/runs/41473425592"
+  },
+  "native_control_checks_passed": 24,
+  "native_report_port_verification": "pending Windows run"
+}

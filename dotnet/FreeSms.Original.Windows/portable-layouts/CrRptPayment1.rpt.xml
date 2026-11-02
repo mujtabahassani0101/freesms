@@ -87,6 +87,14 @@ else {sp_RptPayment.Pay_Fee}-({@fee1}+{@fee2}+{@fee3}+{@fee4}+{@fee5}+{@fee6}+{@
     <sort field="{@sort}" direction="AscendingOrder" />
     <sort field="{@xStudent}" direction="AscendingOrder" />
   </sorts>
+  <running-totals>
+    <total name="RTotal0" field="{@xStudent}">
+      <Operation>Count</Operation>
+      <OperationParameter>0</OperationParameter>
+      <EvaluationConditionType>NoCondition</EvaluationConditionType>
+      <ResetConditionType>OnChangeOfField</ResetConditionType>
+    </total>
+  </running-totals>
   <sections>
     <section name="Section1" kind="ReportHeader" height="220">
       <format>
@@ -1772,4 +1780,5 @@ else {sp_RptPayment.Pay_Fee}-({@fee1}+{@fee2}+{@fee3}+{@fee4}+{@fee5}+{@fee6}+{@
       </format>
     </section>
   </sections>
+  <custom-functions />
 </report>

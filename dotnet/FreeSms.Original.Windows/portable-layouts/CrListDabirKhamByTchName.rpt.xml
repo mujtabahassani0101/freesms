@@ -50,6 +50,14 @@
     <sort field="{@fname}" direction="AscendingOrder" />
     <sort field="{@lname}" direction="AscendingOrder" />
   </sorts>
+  <running-totals>
+    <total name="radif" field="{@id}">
+      <Operation>Count</Operation>
+      <OperationParameter>0</OperationParameter>
+      <EvaluationConditionType>NoCondition</EvaluationConditionType>
+      <ResetConditionType>OnChangeOfGroup</ResetConditionType>
+    </total>
+  </running-totals>
   <sections>
     <section name="Section1" kind="ReportHeader" height="379">
       <format>
@@ -1556,4 +1564,5 @@
       </object>
     </section>
   </sections>
+  <custom-functions />
 </report>

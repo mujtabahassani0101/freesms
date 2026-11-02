@@ -42,6 +42,14 @@ else if{spRpt_AmarGhaboliClass.typ}=5 then 'معدل' </formula>
     <sort field="{@typ}" direction="AscendingOrder" />
     <sort field="{@sort}" direction="AscendingOrder" />
   </sorts>
+  <running-totals>
+    <total name="radif" field="{@xbook}">
+      <Operation>Count</Operation>
+      <OperationParameter>0</OperationParameter>
+      <EvaluationConditionType>NoCondition</EvaluationConditionType>
+      <ResetConditionType>OnChangeOfGroup</ResetConditionType>
+    </total>
+  </running-totals>
   <sections>
     <section name="Section1" kind="ReportHeader" height="895">
       <format>
@@ -854,6 +862,10 @@ else if{spRpt_AmarGhaboliClass.typ}=5 then 'معدل' </formula>
           <TopLineStyle>NoLine</TopLineStyle>
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
+        <chart type="crChartTypeDetail">
+          <category>{@book}</category>
+          <series>Sum ({@darsadAcp}, {@book})</series>
+        </chart>
       </object>
       <object>
         <Name>Box3</Name>
@@ -914,6 +926,10 @@ else if{spRpt_AmarGhaboliClass.typ}=5 then 'معدل' </formula>
           <TopLineStyle>NoLine</TopLineStyle>
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
+        <chart type="crChartTypeDetail">
+          <category>{@book2}</category>
+          <series>Sum ({@Mark}, {@book2})</series>
+        </chart>
       </object>
       <object>
         <Name>Box4</Name>
@@ -992,4 +1008,5 @@ else if{spRpt_AmarGhaboliClass.typ}=5 then 'معدل' </formula>
       </object>
     </section>
   </sections>
+  <custom-functions />
 </report>

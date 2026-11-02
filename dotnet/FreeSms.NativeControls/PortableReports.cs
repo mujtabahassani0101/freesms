@@ -1,0 +1,372 @@
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Drawing.Printing;
+using System.Globalization;
+using System.IO;
+using System.Linq;
+using System.Net;
+using System.Text;
+using System.Text.RegularExpressions;
+using System.Windows.Forms;
+using System.Xml.Linq;
+using FreeSms.Reports;
+
+namespace FreeSms.NativeControls
+{
+    public sealed class PortableReportDocument : PrintDocument
+    {
+        private sealed class Band
+        {
+            internal XElement Section;
+            internal DataRow Row;
+            internal float Top;
+            internal float Height;
+            internal float Offset;
+            internal Layout Layout;
+        }
+        private sealed class Layout
+        {
+            internal float Height;
+            internal readonly Dictionary<XElement, Child> Children = new Dictionary<XElement, Child>();
+        }
+        private sealed class Child
+        {
+            internal PortableReportDocument Document;
+            internal float Scale;
+            internal float Height;
+        }
+        private readonly ReportModel model;
+        private readonly ReportInput input;
+        private readonly DataRow[] rows;
+        private readonly List<List<Band>> pages = new List<List<Band>>();
+        private readonly Dictionary<string, Image> pictures = new Dictionary<string, Image>();
+        private readonly float width;
+        private float height;
+        private readonly float contentWidth;
+        private readonly bool flow;
+        private readonly List<PortableReportDocument> children = new List<PortableReportDocument>();
+        private int page;
+        public int PageCount => pages.Count;
+        public PortableReportDocument(ReportModel model, ReportInput input) : this(model, input, false) { }
+        private PortableReportDocument(ReportModel model, ReportInput input, bool flow)
+        {
+            this.flow = flow;
+            this.model = model; this.input = input; rows = model.Rows(input);
+            var objects = model.Sections.SelectMany(s => s.Elements("object")).ToArray();
+            contentWidth = Math.Max(1, objects.Select(o => N(o, "Left") + N(o, "Width")).DefaultIfEmpty(10000).Max() / 14.4f);
+            width = Math.Max(720, contentWidth);
+            bool landscape = model.Xml.Element("print")?.Element("PaperOrientation")?.Value.Contains("Landscape") == true || width > 900;
+            DefaultPageSettings.PaperSize = new PaperSize("A4", 827, 1169);
+            DefaultPageSettings.Landscape = landscape;
+            DefaultPageSettings.Margins = new System.Drawing.Printing.Margins(25, 25, 25, 25);
+            float paperWidth = landscape ? 1119 : 777;
+            height = (landscape ? 777 : 1119) * Math.Max(1, width / paperWidth);
+            BuildPages();
+            if (flow) height = Math.Max(1, pages.SelectMany(p => p).Select(b => b.Top + b.Height).DefaultIfEmpty(1).Max());
+        }
+        private static float N(XElement node, string name) => float.TryParse(node.Element(name)?.Value, NumberStyles.Float, CultureInfo.InvariantCulture, out var n) ? n : 0;
+        private float BandHeight(XElement section) => Math.Max(0, (float?)section.Attribute("height") ?? 0) / 14.4f;
+        private void BuildPages()
+        {
+            List<Band> current = null;
+            float top = 0;
+            var first = rows.FirstOrDefault();
+            var last = rows.LastOrDefault();
+            float footerHeight = flow ? 0 : model.Sections.Where(s => Kind(s) == "PageFooter").Sum(BandHeight);
+            bool pendingPage = false;
+            void NewPage(DataRow record)
+            {
+                current = new List<Band>(); pages.Add(current); top = 0;
+                foreach (var section in model.Sections.Where(s => Kind(s) == "PageHeader")) Add(section, record, false);
+            }
+            void Add(XElement section, DataRow record, bool paginate = true)
+            {
+                var context = model.Context(input, record, rows, pages.Count, pages.Count);
+                if (model.Flag(section.Element("format"), "EnableSuppress", context)) return;
+                var layout = Measure(section, record);
+                float size = layout.Height;
+                bool before = model.Flag(section.Element("format"), "EnableNewPageBefore", context);
+                if (!flow && paginate && top > 0 && (pendingPage || before || size <= height - footerHeight && top + size > height - footerHeight)) NewPage(record);
+                pendingPage = false;
+                float remaining = size, offset = 0;
+                do
+                {
+                    float available = flow || !paginate ? Math.Max(remaining, 1) : height - footerHeight - top;
+                    if (available <= 0) { NewPage(record); continue; }
+                    float part = Math.Min(remaining, available);
+                    current.Add(new Band { Section = section, Row = record, Top = top, Height = part, Offset = offset, Layout = layout });
+                    if (!model.Flag(section.Element("format"), "EnableUnderlaySection", context)) top += part;
+                    offset += part; remaining -= part;
+                    if (remaining > 0) NewPage(record);
+                } while (remaining > 0);
+                if (paginate && model.Flag(section.Element("format"), "EnableNewPageAfter", context)) pendingPage = true;
+            }
+            bool Boundary(DataRow row, DataRow other, int level) => other == null || Enumerable.Range(0, Math.Min(model.Groups.Length, level + 1)).Any(i => !Equals(model.Evaluate(model.Groups[i], model.Context(input, row, rows)), model.Evaluate(model.Groups[i], model.Context(input, other, rows))));
+            NewPage(first);
+            foreach (var section in model.Sections.Where(s => Kind(s) == "ReportHeader")) Add(section, first);
+            for (int index = 0; index < rows.Length; index++)
+            {
+                var row = rows[index];
+                foreach (var section in model.Sections.Where(s => Kind(s) == "GroupHeader"))
+                    if (Boundary(row, index == 0 ? null : rows[index - 1], model.GroupLevel(section))) Add(section, row);
+                foreach (var section in model.Sections.Where(s => Kind(s) == "Detail")) Add(section, row);
+                foreach (var section in model.Sections.Where(s => Kind(s) == "GroupFooter"))
+                    if (Boundary(row, index + 1 == rows.Length ? null : rows[index + 1], model.GroupLevel(section))) Add(section, row);
+            }
+            foreach (var section in model.Sections.Where(s => Kind(s) == "ReportFooter")) Add(section, last);
+            for (int i = 0; !flow && i < pages.Count; i++)
+            {
+                float bottom = height - footerHeight;
+                foreach (var section in model.Sections.Where(s => Kind(s) == "PageFooter"))
+                {
+                    var record = pages[i].LastOrDefault()?.Row;
+                    if (!model.Flag(section.Element("format"), "EnableSuppress", model.Context(input, record, rows, i + 1, pages.Count)))
+                        pages[i].Add(new Band { Section = section, Row = record, Top = bottom, Height = BandHeight(section), Layout = Measure(section, record) });
+                    bottom += BandHeight(section);
+                }
+            }
+        }
+        private static string Kind(XElement section)
+        {
+            string kind = (string)section.Attribute("kind") ?? "";
+            return kind.EndsWith("Section", StringComparison.Ordinal) ? kind.Substring(0, kind.Length - 7) : kind;
+        }
+        protected override void OnBeginPrint(PrintEventArgs e) { page = 0; base.OnBeginPrint(e); }
+        protected override void OnPrintPage(PrintPageEventArgs e)
+        {
+            base.OnPrintPage(e);
+            var state = e.Graphics.Save();
+            e.Graphics.TranslateTransform(e.MarginBounds.Left, e.MarginBounds.Top);
+            float scale = Math.Min(1, e.MarginBounds.Width / width);
+            e.Graphics.ScaleTransform(scale, scale);
+            DrawPage(e.Graphics, page++);
+            e.Graphics.Restore(state);
+            e.HasMorePages = page < pages.Count;
+        }
+        public void SavePageImage(string path, int index, int dpi = 120)
+        {
+            if (index < 0 || index >= pages.Count) throw new ArgumentOutOfRangeException(nameof(index));
+            using var bitmap = new Bitmap(Math.Max(1, (int)(width * dpi / 100)), Math.Max(1, (int)(height * dpi / 100)));
+            bitmap.SetResolution(dpi, dpi);
+            using (var graphics = Graphics.FromImage(bitmap))
+            {
+                graphics.Clear(Color.White); graphics.ScaleTransform(dpi / 100f, dpi / 100f); DrawPage(graphics, index);
+            }
+            bitmap.Save(path, System.Drawing.Imaging.ImageFormat.Png);
+        }
+        private void DrawPage(Graphics graphics, int index)
+        {
+            if (index < 0 || index >= pages.Count) return;
+            graphics.SmoothingMode = SmoothingMode.AntiAlias;
+            foreach (var band in pages[index])
+            {
+                var state = graphics.Save();
+                graphics.SetClip(new RectangleF(0, band.Top, width, Math.Max(.1f, band.Height)), CombineMode.Intersect);
+                graphics.TranslateTransform(0, band.Top - band.Offset);
+                var context = model.Context(input, band.Row, rows, index + 1, pages.Count);
+                foreach (var obj in band.Section.Elements("object"))
+                {
+                    if (model.Flag(obj.Element("format"), "EnableSuppress", context)) continue;
+                    var rect = new RectangleF(N(obj, "Left") / 14.4f, ObjectTop(obj, band.Layout), Math.Max(.1f, N(obj, "Width") / 14.4f), Math.Max(.1f, N(obj, "Height") / 14.4f));
+                    var kind = obj.Element("Kind")?.Value;
+                    if (kind == "LineObject") { using var pen = new Pen(ColorValue(obj.Element("LineColor"), Color.Black), Math.Max(.5f, N(obj, "LineThickness") / 14.4f)); graphics.DrawLine(pen, rect.Left, rect.Top, rect.Right, rect.Bottom); continue; }
+                    DrawBackground(graphics, obj, rect);
+                    if (kind == "BoxObject") { graphics.DrawRectangle(Pens.Gray, rect.X, rect.Y, rect.Width, rect.Height); continue; }
+                    if (kind == "PictureObject") { DrawPicture(graphics, obj, rect); continue; }
+                    if (kind == "ChartObject") { DrawChart(graphics, obj, rect, band, context); continue; }
+                    if (kind == "CrossTabObject") { DrawPivot(graphics, rect, band); continue; }
+                    if (kind == "SubreportObject") { DrawSubreport(graphics, obj, rect, band); continue; }
+                    var source = obj.Element("source");
+                    object value = source == null ? obj.Element("Text")?.Value : model.Evaluate((string)source.Attribute("formula") ?? "", context);
+                    if (kind == "BlobFieldObject")
+                    {
+                        if (value is byte[] bytes) { using var image = DataDynamics.ActiveReports.Rpx.Image(bytes); graphics.DrawImage(image, rect); }
+                        continue;
+                    }
+                    string text = WebUtility.HtmlDecode(Regex.Replace(Formula.Text(value).Replace("<br>", "\n").Replace("<br/>", "\n"), "<[^>]*>", ""));
+                    var fontNode = obj.Element("Font");
+                    float size = (float?)fontNode?.Attribute("size") ?? 10;
+                    using var font = new Font((string)fontNode?.Attribute("family") ?? "Tahoma", Math.Max(1, size * 100 / 72), (FontStyle)((int?)fontNode?.Attribute("style") ?? 0), GraphicsUnit.Pixel);
+                    using var brush = new SolidBrush(ColorValue(obj.Element("Color"), Color.Black));
+                    using var format = new StringFormat { Trimming = StringTrimming.EllipsisCharacter };
+                    var alignment = obj.Element("format")?.Element("HorizontalAlignment")?.Value;
+                    format.Alignment = alignment == "RightAlign" ? StringAlignment.Far : alignment == "HorizontalCenterAlign" ? StringAlignment.Center : StringAlignment.Near;
+                    if (Regex.IsMatch(text, "[\u0600-\u06ff]")) format.FormatFlags = StringFormatFlags.DirectionRightToLeft;
+                    graphics.DrawString(text, font, brush, rect, format);
+                }
+                graphics.Restore(state);
+            }
+        }
+        private static Color ColorValue(XElement node, Color fallback) => int.TryParse(node?.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var argb) ? Color.FromArgb(argb) : fallback;
+        private static void DrawBackground(Graphics g, XElement obj, RectangleF rect)
+        {
+            var border = obj.Element("border");
+            var back = ColorValue(border?.Element("BackgroundColor"), Color.Transparent);
+            if (back.A != 0) { using var brush = new SolidBrush(back); g.FillRectangle(brush, rect); }
+            using var pen = new Pen(ColorValue(border?.Element("BorderColor"), Color.Black), .5f);
+            bool Has(string side) => border?.Element(side + "LineStyle")?.Value is string value && value != "NoLine";
+            if (Has("Top")) g.DrawLine(pen, rect.Left, rect.Top, rect.Right, rect.Top);
+            if (Has("Bottom")) g.DrawLine(pen, rect.Left, rect.Bottom, rect.Right, rect.Bottom);
+            if (Has("Left")) g.DrawLine(pen, rect.Left, rect.Top, rect.Left, rect.Bottom);
+            if (Has("Right")) g.DrawLine(pen, rect.Right, rect.Top, rect.Right, rect.Bottom);
+        }
+        private void DrawPicture(Graphics graphics, XElement obj, RectangleF rect)
+        {
+            string data = obj.Element("picture")?.Value;
+            if (string.IsNullOrEmpty(data)) return;
+            if (!pictures.TryGetValue(data, out var image))
+            {
+                using var stream = new MemoryStream(Convert.FromBase64String(data));
+                using var source = Image.FromStream(stream);
+                pictures[data] = image = new Bitmap(source);
+            }
+            graphics.DrawImage(image, rect);
+        }
+        private Layout Measure(XElement section, DataRow row)
+        {
+            var layout = new Layout { Height = BandHeight(section) };
+            foreach (var obj in section.Elements("object").Where(o => o.Element("Kind")?.Value == "SubreportObject"))
+            {
+                var context = model.Context(input, row, rows);
+                if (model.Flag(obj.Element("format"), "EnableSuppress", context)) continue;
+                string name = (string)obj.Attribute("subreport");
+                if (name == null || !input.Subreports.TryGetValue(name, out var source)) throw new InvalidDataException("Missing report data: " + name);
+                var childModel = new ReportModel(obj.Element("report"));
+                var childInput = new ReportInput { Data = source.Data };
+                foreach (var parameter in input.Parameters) childInput.Parameters[parameter.Key] = parameter.Value;
+                foreach (var parameter in source.Parameters) childInput.Parameters[parameter.Key] = parameter.Value;
+                foreach (var child in source.Subreports) childInput.Subreports[child.Key] = child.Value;
+                foreach (var parameter in childModel.Xml.Element("parameters")?.Elements("parameter") ?? Enumerable.Empty<XElement>())
+                {
+                    string key = (string)parameter.Attribute("name");
+                    if (key != null && key.StartsWith("Pm-", StringComparison.Ordinal))
+                        childInput.Parameters[key] = model.Evaluate("{" + key.Substring(3) + "}", context);
+                }
+                var document = new PortableReportDocument(childModel, childInput, true);
+                children.Add(document);
+                float scale = Math.Min(1, N(obj, "Width") / 14.4f / document.contentWidth);
+                var placement = new Child { Document = document, Scale = scale, Height = document.height * scale };
+                layout.Children[obj] = placement;
+            }
+            foreach (var obj in section.Elements("object"))
+            {
+                float objectHeight = layout.Children.TryGetValue(obj, out var child) ? Math.Max(N(obj, "Height") / 14.4f, child.Height) : N(obj, "Height") / 14.4f;
+                layout.Height = Math.Max(layout.Height, ObjectTop(obj, layout) + objectHeight);
+            }
+            return layout;
+        }
+        private static float ObjectTop(XElement obj, Layout layout)
+        {
+            float top = N(obj, "Top") / 14.4f;
+            if (layout == null) return top;
+            // Objects beside a subreport remain aligned; objects below it move
+            // down when its rows exceed the original design-time placeholder.
+            return top + layout.Children.Where(p => p.Key != obj && N(p.Key, "Top") + N(p.Key, "Height") <= N(obj, "Top") + .1f)
+                .Select(p => Math.Max(0, p.Value.Height - N(p.Key, "Height") / 14.4f)).DefaultIfEmpty(0).Max();
+        }
+        private static void DrawSubreport(Graphics graphics, XElement obj, RectangleF rect, Band band)
+        {
+            if (!band.Layout.Children.TryGetValue(obj, out var child)) return;
+            var state = graphics.Save(); graphics.TranslateTransform(rect.Left, rect.Top);
+            graphics.ScaleTransform(child.Scale, child.Scale);
+            child.Document.DrawPage(graphics, 0);
+            graphics.Restore(state);
+        }
+        private void DrawChart(Graphics graphics, XElement obj, RectangleF rect, Band band, FormulaContext context)
+        {
+            var chart = obj.Element("chart");
+            if (chart == null) throw new InvalidDataException("The migrated chart definition is missing: " + obj.Element("Name")?.Value);
+            var scope = model.Scope(input, band.Row, rows, model.GroupLevel(band.Section));
+            string category = chart.Element("category")?.Value;
+            var series = chart.Elements("series").Select(x => x.Value).ToArray();
+            if (category == null || series.Length == 0) return;
+            var groups = scope.GroupBy(r => Formula.Text(model.Evaluate(category, model.Context(input, r, scope)))).ToArray();
+            var values = groups.Select(group => series.Select(s => Convert.ToDecimal(model.Evaluate(s, model.Context(input, group.First(), group.ToArray())) ?? 0, CultureInfo.InvariantCulture)).ToArray()).ToArray();
+            decimal max = Math.Max(1, values.SelectMany(v => v).DefaultIfEmpty(1).Max());
+            using var font = new Font("Tahoma", 7 * 100f / 72, FontStyle.Regular, GraphicsUnit.Pixel);
+            Color[] colors = { Color.SteelBlue, Color.OrangeRed, Color.ForestGreen, Color.Goldenrod };
+            float labelHeight = Math.Min(45, rect.Height / 3), plotHeight = Math.Max(1, rect.Height - labelHeight);
+            float slot = rect.Width / Math.Max(1, groups.Length);
+            graphics.DrawLine(Pens.Gray, rect.Left, rect.Top + plotHeight, rect.Right, rect.Top + plotHeight);
+            for (int i = 0; i < groups.Length; i++)
+            {
+                for (int s = 0; s < series.Length; s++)
+                {
+                    float barWidth = slot / (series.Length + 1), barHeight = plotHeight * (float)(values[i][s] / max);
+                    using var brush = new SolidBrush(colors[s % colors.Length]);
+                    graphics.FillRectangle(brush, rect.Left + i * slot + s * barWidth, rect.Top + plotHeight - barHeight, barWidth - 1, Math.Max(0, barHeight));
+                }
+                using var format = new StringFormat { Alignment = StringAlignment.Center, FormatFlags = StringFormatFlags.DirectionRightToLeft };
+                graphics.DrawString(groups[i].Key, font, Brushes.Black, new RectangleF(rect.Left + i * slot, rect.Top + plotHeight, slot, labelHeight), format);
+            }
+        }
+        private void DrawPivot(Graphics graphics, RectangleF rect, Band band)
+        {
+            bool ranges = model.Name.Contains("RengMark", StringComparison.OrdinalIgnoreCase);
+            bool rooms = model.Name.Contains("AmarHozeh", StringComparison.OrdinalIgnoreCase);
+            string rowField = rooms ? "hozeh" : ranges ? "book" : "Class";
+            string columnField = rooms ? "Paye" : ranges ? "status" : "book";
+            var scope = model.Scope(input, band.Row, rows, model.GroupLevel(band.Section));
+            string Read(string field, DataRow row) => Formula.Text(model.Evaluate("{@" + field + "}", model.Context(input, row, scope)));
+            var rowKeys = scope.Select(r => Read(rowField, r)).Distinct().ToArray();
+            var columns = scope.Select(r => Read(columnField, r)).Distinct().ToArray();
+            using var font = new Font("Tahoma", 8 * 100f / 72, FontStyle.Regular, GraphicsUnit.Pixel);
+            using var format = new StringFormat { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center, FormatFlags = StringFormatFlags.DirectionRightToLeft };
+            float cellWidth = rect.Width / Math.Max(1, columns.Length + 1), cellHeight = Math.Min(24, rect.Height / Math.Max(1, rowKeys.Length + 1));
+            void Draw(string text, int x, int y)
+            {
+                var cell = new RectangleF(rect.Right - (x + 1) * cellWidth, rect.Top + y * cellHeight, cellWidth, cellHeight);
+                graphics.DrawRectangle(Pens.Gray, cell.X, cell.Y, cell.Width, cell.Height); graphics.DrawString(text, font, Brushes.Black, cell, format);
+            }
+            for (int c = 0; c < columns.Length; c++) Draw(columns[c], c + 1, 0);
+            for (int r = 0; r < rowKeys.Length; r++)
+            {
+                Draw(rowKeys[r], 0, r + 1);
+                for (int c = 0; c < columns.Length; c++)
+                {
+                    var records = scope.Where(row => Read(rowField, row) == rowKeys[r] && Read(columnField, row) == columns[c]).ToArray();
+                    decimal number = ranges || rooms ? records.Length : records.Length == 0 ? 0 : records.Average(row => Convert.ToDecimal(model.Evaluate("{@Mark}", model.Context(input, row, scope)), CultureInfo.InvariantCulture));
+                    Draw(number.ToString("0.##", CultureInfo.CurrentCulture), c + 1, r + 1);
+                }
+            }
+        }
+        protected override void Dispose(bool disposing) { if (disposing) { foreach (var picture in pictures.Values) picture.Dispose(); foreach (var child in children) child.Dispose(); } base.Dispose(disposing); }
+    }
+
+    public class PortableReportViewer : UserControl
+    {
+        private readonly PrintPreviewControl preview = new PrintPreviewControl { Dock = DockStyle.Fill, AutoZoom = true };
+        private readonly ToolStrip strip = new ToolStrip { Dock = DockStyle.Top };
+        private readonly ToolStripButton print;
+        private readonly ToolStripButton export;
+        private PortableReportDocument document;
+        public bool ShowPrint { get => print.Visible; set => print.Visible = value; }
+        public bool ShowExport { get => export.Visible; set => export.Visible = value; }
+        public PortableReportViewer()
+        {
+            print = new ToolStripButton("چاپ / PDF", null, (s,e) => { if (document == null) return; using var dialog = new PrintDialog { Document = document, UseEXDialog = true }; if (dialog.ShowDialog(FindForm()) == DialogResult.OK) document.Print(); });
+            export = new ToolStripButton("ذخیرهٔ تصویر", null, (s,e) =>
+            {
+                if (document == null) return;
+                using var dialog = new SaveFileDialog { Filter = "PNG|*.png", FileName = "report.png" };
+                if (dialog.ShowDialog(FindForm()) == DialogResult.OK)
+                    for (int i = 0; i < document.PageCount; i++)
+                        document.SavePageImage(Path.Combine(Path.GetDirectoryName(dialog.FileName), Path.GetFileNameWithoutExtension(dialog.FileName) + (document.PageCount == 1 ? "" : "-" + (i + 1)) + ".png"), i, 200);
+            });
+            strip.Items.Add(print); strip.Items.Add(export);
+            strip.Items.Add(new ToolStripButton("قبلی", null, (s,e) => { if (preview.StartPage > 0) preview.StartPage--; }));
+            strip.Items.Add(new ToolStripButton("بعدی", null, (s,e) => { if (document != null && preview.StartPage + 1 < document.PageCount) preview.StartPage++; }));
+            strip.Items.Add(new ToolStripButton("بزرگ‌نمایی", null, (s,e) => { preview.AutoZoom = false; preview.Zoom = preview.Zoom >= 1.5 ? .5 : preview.Zoom + .25; }));
+            Controls.Add(preview); Controls.Add(strip);
+        }
+        public void Open(ReportModel model, ReportInput input)
+        {
+            preview.Document = null; document?.Dispose();
+            document = new PortableReportDocument(model, input); preview.Document = document; preview.InvalidatePreview();
+        }
+        protected override void Dispose(bool disposing) { if (disposing) document?.Dispose(); base.Dispose(disposing); }
+    }
+}

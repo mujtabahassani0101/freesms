@@ -127,6 +127,14 @@ else totext({@sort}+100000)+'_'+{@fname}+'_'+{@lname}
     <sort field="{@orderbyname}" direction="AscendingOrder" />
     <sort field="{@mark2}" direction="DescendingOrder" />
   </sorts>
+  <running-totals>
+    <total name="radif" field="{@id}">
+      <Operation>Count</Operation>
+      <OperationParameter>0</OperationParameter>
+      <EvaluationConditionType>NoCondition</EvaluationConditionType>
+      <ResetConditionType>OnChangeOfGroup</ResetConditionType>
+    </total>
+  </running-totals>
   <sections>
     <section name="Section1" kind="ReportHeader" height="379">
       <format>
@@ -1620,4 +1628,5 @@ else totext({@sort}+100000)+'_'+{@fname}+'_'+{@lname}
       </object>
     </section>
   </sections>
+  <custom-functions />
 </report>

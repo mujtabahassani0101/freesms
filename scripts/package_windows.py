@@ -8,9 +8,9 @@ import subprocess
 import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
-RELEASE = ROOT / 'dist/FreeSMS-Native-Compatible'
+RELEASE = ROOT / 'dist/FreeSMS-Net10'
 SOURCE_ZIP = ROOT / 'FreeSMS-Windows-Source.zip'
-RELEASE_ZIP = ROOT / 'FreeSMS-Native-Windows-x64.zip'
+RELEASE_ZIP = ROOT / 'FreeSMS-Net10-Windows-x86.zip'
 EXCLUDE = {'.venv', '.tools', '.runtime', '.git', 'bin', 'obj', 'build', 'dist', '__pycache__', 'dotnet-data'}
 
 
@@ -48,8 +48,8 @@ def ready_to_run(path):
 
 if __name__ == '__main__':
     assert (RELEASE / 'FreeSMS.exe').read_bytes()[:2] == b'MZ'
-    report = {name: ready_to_run(RELEASE / name) for name in ['FreeSMS.dll', 'FreeSms.Core.dll']}
-    assert all(item['ready_to_run'] and item['machine'] == '0x8664' for item in report.values())
+    report = {name: ready_to_run(RELEASE / name) for name in ['FreeSMS.dll', 'FreeSms.Core.dll', 'FreeSms.NativeControls.dll', 'FreeSms.Reports.dll']}
+    assert all(item['ready_to_run'] and item['machine'] == '0x14c' for item in report.values())
     (ROOT / 'validation/dotnet-release.json').write_text(json.dumps(report, indent=2), encoding='utf-8')
     for name, text in {
         'Run.cmd': '@echo off\ncd /d "%~dp0"\n"%~dp0FreeSMS.exe" %*\n',
@@ -57,26 +57,28 @@ if __name__ == '__main__':
     }.items():
         (RELEASE / name).write_bytes(text.replace('\n', '\r\n').encode('ascii'))
     shutil.copy2(ROOT / 'README.md', RELEASE / 'README-FA.md')
-    shutil.copy2(ROOT / 'scripts/Setup-Reports.cmd', RELEASE / 'Setup-Reports.cmd')
-    shutil.copy2(ROOT / 'vendor/runtime/CRRedist2005_x86.msi', RELEASE / 'CRRedist2005_x86.msi')
+    assert not any(RELEASE.rglob('CrystalDecisions*.dll'))
+    assert not any(RELEASE.rglob('Janus*.dll'))
+    assert not (RELEASE / 'legacy-ui').exists()
+    assert not (RELEASE / 'report-host').exists()
     licenses = RELEASE / 'licenses'
     licenses.mkdir(exist_ok=True)
     package_root = ROOT / '.tools/nuget'
-    for package, version in [('microsoft.netcore.app.runtime.win-x64', '10.0.14'), ('microsoft.windowsdesktop.app.runtime.win-x64', '10.0.14')]:
+    for package, version in [('microsoft.netcore.app.runtime.win-x86', '10.0.14'), ('microsoft.windowsdesktop.app.runtime.win-x86', '10.0.14')]:
         for source in (package_root / package / version).glob('*'):
             if source.is_file() and ('LICENSE' in source.name or 'THIRD-PARTY-NOTICES' in source.name):
                 shutil.copy2(source, licenses / (package + '-' + source.name))
+    inventory = {}
     for source in (ROOT / 'dotnet').glob('FreeSms.*/obj/project.assets.json'):
         assets = json.loads(source.read_text(encoding='utf-8'))
-        inventory = []
         for name, item in assets['libraries'].items():
             if item.get('type') == 'package':
                 directory = package_root / item['path']
-                inventory.append({'package': name, 'repository': 'https://www.nuget.org/packages/' + name})
+                inventory[name] = {'package': name, 'repository': 'https://www.nuget.org/packages/' + name}
                 for notice in directory.glob('*'):
                     if notice.is_file() and notice.name.upper().startswith(('LICENSE', 'THIRD-PARTY', 'NOTICE')):
                         shutil.copy2(notice, licenses / (name.replace('/', '-') + '-' + notice.name))
-        (licenses / 'packages.json').write_text(json.dumps(inventory, indent=2), encoding='utf-8')
+    (licenses / 'packages.json').write_text(json.dumps(list(inventory.values()), indent=2), encoding='utf-8')
     for cache in ROOT.rglob('__pycache__'):
         if '.tools' not in cache.relative_to(ROOT).parts:
             shutil.rmtree(cache)
@@ -87,7 +89,7 @@ if __name__ == '__main__':
         and Path(name).suffix not in {'.zip', '.pyc'}
         and Path(name).name not in {'SOURCE-MANIFEST.json', 'SHA256SUMS.txt'})
     manifest = ROOT / 'SOURCE-MANIFEST.json'
-    manifest.write_text(json.dumps({'format': 2, 'target': 'Windows x64: .NET 10 launcher; original x86 UI on .NET Framework 4.8', 'files': [
+    manifest.write_text(json.dumps({'format': 2, 'target': 'Windows x64: self-contained x86 .NET 10 application, controls and reports', 'files': [
         {'path': p.relative_to(ROOT).as_posix(), 'bytes': p.stat().st_size, 'sha256': digest(p)} for p in source_files
     ]}, ensure_ascii=False, indent=2), encoding='utf-8')
     zip_files(SOURCE_ZIP, source_files + [manifest], ROOT, 'free-sms')

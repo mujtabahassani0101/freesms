@@ -7,4 +7,5 @@
     <ImplicitUsings>disable</ImplicitUsings>
     <NoWarn>WFO1000</NoWarn>
   </PropertyGroup>
+  <ItemGroup><ProjectReference Include="../FreeSms.Reports/FreeSms.Reports.csproj" /></ItemGroup>
 </Project>

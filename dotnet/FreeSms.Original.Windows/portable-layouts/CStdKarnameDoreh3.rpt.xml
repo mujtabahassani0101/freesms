@@ -235,6 +235,14 @@ else {spRpt_StdKarnameDoreh1.CommentKoll}</formula>
     <sort field="{@xstudent}" direction="AscendingOrder" />
     <sort field="{spRpt_StdKarnameDoreh1.sort}" direction="AscendingOrder" />
   </sorts>
+  <running-totals>
+    <total name="radif" field="{@xstudent}">
+      <Operation>Count</Operation>
+      <OperationParameter>0</OperationParameter>
+      <EvaluationConditionType>NoCondition</EvaluationConditionType>
+      <ResetConditionType>OnChangeOfGroup</ResetConditionType>
+    </total>
+  </running-totals>
   <sections>
     <section name="Section1" kind="ReportHeader" height="220">
       <format>
@@ -3343,4 +3351,5 @@ else {spRpt_StdKarnameDoreh1.CommentKoll}</formula>
       </object>
     </section>
   </sections>
+  <custom-functions />
 </report>

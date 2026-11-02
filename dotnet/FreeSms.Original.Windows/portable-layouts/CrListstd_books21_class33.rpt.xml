@@ -266,6 +266,14 @@ else
     <sort field="{@orderbyname}" direction="AscendingOrder" />
     <sort field="{spRpt_Liststd_books.MarkKoll}" direction="DescendingOrder" />
   </sorts>
+  <running-totals>
+    <total name="RTotal0" field="{@Id}">
+      <Operation>Count</Operation>
+      <OperationParameter>0</OperationParameter>
+      <EvaluationConditionType>NoCondition</EvaluationConditionType>
+      <ResetConditionType>OnChangeOfGroup</ResetConditionType>
+    </total>
+  </running-totals>
   <sections>
     <section name="Section1" kind="ReportHeader" height="685">
       <format>
@@ -2049,6 +2057,7 @@ else
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <condition name="BackgroundColor">if{#RTotal0}mod 2=0 then Color(230,230,230) else white</condition>
       </format>
       <object>
         <Name>fullName1</Name>
@@ -3565,4 +3574,5 @@ else
       </format>
     </section>
   </sections>
+  <custom-functions />
 </report>
