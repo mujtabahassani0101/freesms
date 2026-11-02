@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Drawing.Text;
 using System.Windows.Forms;
 using BijanComponents;
-using CrystalDecisions.CrystalReports.Engine;
+using FreeSms.Reporting;
 using Janus.Windows.EditControls;
 using Janus.Windows.GridEX;
 using school_Af.Rpt.Dis;

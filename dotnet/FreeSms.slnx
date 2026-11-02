@@ -3,4 +3,5 @@
   <Project Path="FreeSms.Windows/FreeSms.Windows.csproj" />
   <Project Path="FreeSms.Checks/FreeSms.Checks.csproj" />
   <Project Path="FreeSms.Original.Windows/FreeSms.Original.Windows.csproj" />
+  <Project Path="FreeSms.ReportHost/FreeSms.ReportHost.csproj" />
 </Solution>

@@ -2,8 +2,8 @@ using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
-using CrystalDecisions.CrystalReports.Engine;
-using CrystalDecisions.Windows.Forms;
+using FreeSms.Reporting;
+
 
 public class asda : Form
 {

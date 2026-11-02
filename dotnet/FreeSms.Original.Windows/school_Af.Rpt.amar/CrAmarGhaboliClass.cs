@@ -1,4 +1,4 @@
-using CrystalDecisions.CrystalReports.Engine;
+using FreeSms.Reporting;
 
 namespace school_Af.Rpt.amar;
 

@@ -6,7 +6,7 @@ using Microsoft.Data.SqlClient;
 using System.Drawing;
 using System.Drawing.Text;
 using System.Windows.Forms;
-using CrystalDecisions.CrystalReports.Engine;
+using FreeSms.Reporting;
 using Janus.Windows.EditControls;
 using Janus.Windows.GridEX;
 using school_Af.Rpt.chart;

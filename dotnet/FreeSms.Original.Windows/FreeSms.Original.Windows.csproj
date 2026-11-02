@@ -26,18 +26,6 @@
     <Reference Include="ActiveReports.Viewer3">
       <HintPath>../../vendor/legacy/ActiveReports.Viewer3.dll</HintPath>
     </Reference>
-    <Reference Include="CrystalDecisions.CrystalReports.Engine">
-      <HintPath>../../vendor/legacy/CrystalDecisions.CrystalReports.Engine.dll</HintPath>
-    </Reference>
-    <Reference Include="CrystalDecisions.ReportSource">
-      <HintPath>../../vendor/legacy/CrystalDecisions.ReportSource.dll</HintPath>
-    </Reference>
-    <Reference Include="CrystalDecisions.Shared">
-      <HintPath>../../vendor/legacy/CrystalDecisions.Shared.dll</HintPath>
-    </Reference>
-    <Reference Include="CrystalDecisions.Windows.Forms">
-      <HintPath>../../vendor/legacy/CrystalDecisions.Windows.Forms.dll</HintPath>
-    </Reference>
     <Reference Include="DataDynamics.ActiveReports.ToolBoxClassLib">
       <HintPath>../../vendor/legacy/DataDynamics.ActiveReports.ToolBoxClassLib.dll</HintPath>
     </Reference>
@@ -70,48 +58,6 @@
     </Reference>
     <Reference Include="ActiveReports.Interop">
       <HintPath>../../vendor/legacy/ActiveReports.Interop.DLL</HintPath>
-    </Reference>
-    <Reference Include="CrystalDecisions.KeyCode">
-      <HintPath>../../vendor/legacy/CrystalDecisions.KeyCode.dll</HintPath>
-    </Reference>
-    <Reference Include="CrystalDecisions.ReportAppServer.CommonObjectModel">
-      <HintPath>../../vendor/legacy/CrystalDecisions.ReportAppServer.CommonObjectModel.dll</HintPath>
-    </Reference>
-    <Reference Include="CrystalDecisions.ReportAppServer.ReportDefModel">
-      <HintPath>../../vendor/legacy/CrystalDecisions.ReportAppServer.ReportDefModel.dll</HintPath>
-    </Reference>
-    <Reference Include="CrystalDecisions.ReportAppServer.CubeDefModel">
-      <HintPath>../../vendor/legacy/CrystalDecisions.ReportAppServer.CubeDefModel.dll</HintPath>
-    </Reference>
-    <Reference Include="CrystalDecisions.ReportAppServer.Controllers">
-      <HintPath>../../vendor/legacy/CrystalDecisions.ReportAppServer.Controllers.dll</HintPath>
-    </Reference>
-    <Reference Include="CrystalDecisions.Data.AdoDotNetInterop">
-      <HintPath>../../vendor/legacy/CrystalDecisions.Data.AdoDotNetInterop.dll</HintPath>
-    </Reference>
-    <Reference Include="CrystalDecisions.ReportAppServer.DataSetConversion">
-      <HintPath>../../vendor/legacy/CrystalDecisions.ReportAppServer.DataSetConversion.dll</HintPath>
-    </Reference>
-    <Reference Include="CrystalDecisions.ReportAppServer.DataDefModel">
-      <HintPath>../../vendor/legacy/CrystalDecisions.ReportAppServer.DataDefModel.dll</HintPath>
-    </Reference>
-    <Reference Include="CrystalDecisions.ReportAppServer.ObjectFactory">
-      <HintPath>../../vendor/legacy/CrystalDecisions.ReportAppServer.ObjectFactory.dll</HintPath>
-    </Reference>
-    <Reference Include="CrystalDecisions.ReportAppServer.CommLayer">
-      <HintPath>../../vendor/legacy/CrystalDecisions.ReportAppServer.CommLayer.dll</HintPath>
-    </Reference>
-    <Reference Include="CrystalDecisions.ReportAppServer.CommonControls">
-      <HintPath>../../vendor/legacy/CrystalDecisions.ReportAppServer.CommonControls.dll</HintPath>
-    </Reference>
-    <Reference Include="CrystalDecisions.Web">
-      <HintPath>../../vendor/legacy/CrystalDecisions.Web.dll</HintPath>
-    </Reference>
-    <Reference Include="CrystalDecisions.ReportAppServer.XmlSerialize">
-      <HintPath>../../vendor/legacy/CrystalDecisions.ReportAppServer.XmlSerialize.dll</HintPath>
-    </Reference>
-    <Reference Include="CrystalDecisions.ReportAppServer.ClientDoc">
-      <HintPath>../../vendor/legacy/CrystalDecisions.ReportAppServer.ClientDoc.dll</HintPath>
     </Reference>
     <EmbeddedResource Include="school_Af.Rpt.CrListstd_books10.rpt" LogicalName="school_Af.Rpt.CrListstd_books10.rpt" />
     <EmbeddedResource Include="school_Af.Rpt.CrListBooksRengMark1.rpt" LogicalName="school_Af.Rpt.CrListBooksRengMark1.rpt" />
