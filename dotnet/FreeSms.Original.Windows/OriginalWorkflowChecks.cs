@@ -212,7 +212,7 @@ internal static class OriginalWorkflowChecks
         }
         void EditSave(Form child)
         {
-            bool next=Field<UIButton>(child,"cg").Enabled;
+            bool next=Field<UIComboBox>(child,"ce").Items.Count>0 && Field<UIButton>(child,"cg").Enabled;
             Dialog(()=>Click(child,"m_e"),next?"اطلاعات اصلاح شد . آیا مایل هستید نفر بعدی نمایش داده شود":"اطلاعات اصلاح شد",next?7:1);
         }
         try

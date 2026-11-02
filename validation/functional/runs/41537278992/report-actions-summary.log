@@ -1,0 +1,5 @@
+Original report preview action and generated pages
+PASS m_ad_report_101 toolRpt -> frmRpt
+PASS m_ad_report_1024 toolRpt -> frmRpt
+PASS m_ad_report_1032 toolRpt -> frmRpt
+RESULT loaded=3, interaction=0, total=3

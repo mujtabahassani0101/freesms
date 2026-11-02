@@ -2648,6 +2648,9 @@ public class asdat : Form
 					}
 					goto case 144;
 				case 1:
+                    // A single-student editor has no next/previous list. Confirm
+                    // the committed edit before closing, just as the list editor does.
+                    MessageBox.Show("اطلاعات اصلاح شد");
 					Close();
 					num = 102;
 					continue;
