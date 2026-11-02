@@ -59,7 +59,7 @@ jobs:
       - name: Build all recovered original Windows code
         shell: pwsh
         run: ./scripts/build-original-windows.ps1
-      - name: Verify native controls, 7 RPX layouts and 98 migrated reports
+      - name: Verify native controls, 7 RPX layouts, 98 migrated and 2 rebuilt reports
         shell: pwsh
         run: |
           dotnet run --project dotnet/FreeSms.NativeChecks/FreeSms.NativeChecks.csproj -c Release -- . 2>&1 | Tee-Object validation/native-controls-checks.log
@@ -70,7 +70,7 @@ jobs:
         run: |
           $app = Join-Path $PWD 'dist/FreeSMS-Net10/FreeSMS.exe'
           $process = Start-Process $app -ArgumentList '--verify-report-actions' -PassThru
-          if (-not $process.WaitForExit(180000)) { $process.Kill(); throw 'Report action verification timed out.' }
+          if (-not $process.WaitForExit(300000)) { $process.Kill(); throw 'Report action verification timed out.' }
           Get-Content dist/FreeSMS-Net10/navigation-checks/report-actions-summary.log -ErrorAction SilentlyContinue
           if ($process.ExitCode -ne 0) {
             Get-Content dist/FreeSMS-Net10/navigation-checks/*_report_*.log -ErrorAction SilentlyContinue

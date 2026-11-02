@@ -5,16 +5,17 @@ using FreeSms.Reports;
 int count = 0;
 void Check(bool result, string name) { if (!result) throw new Exception(name); count++; Console.WriteLine("PASS " + name); }
 var root = Path.GetFullPath(args.FirstOrDefault() ?? ".");
-int formulas = 0, reportCount = 0, pictures = 0;
+int formulas = 0, reportCount = 0, rebuiltCount = 0, pictures = 0;
 foreach (var path in Directory.GetFiles(Path.Combine(root, "dotnet", "FreeSms.Original.Windows", "portable-layouts"), "*.xml"))
 {
-    reportCount++;
     var xml = XDocument.Load(path);
+    bool rebuilt = xml.Root!.Attribute("reconstruction") != null;
+    if (rebuilt) rebuiltCount++; else reportCount++;
     foreach (var picture in xml.Descendants("object").Where(o => o.Element("Kind")?.Value == "PictureObject"))
     {
         var payload = Convert.FromBase64String(picture.Element("picture")?.Value ?? throw new Exception("Missing original report image: " + path));
         if (!payload.AsSpan(0, 8).SequenceEqual(new byte[] { 137, 80, 78, 71, 13, 10, 26, 10 })) throw new Exception("Invalid recovered PNG.");
-        pictures++;
+        if (!rebuilt) pictures++;
     }
     var fixture = ReportFixtures.Create(xml.Root!);
     void EvaluateReport(XElement template, ReportInput input)
@@ -48,8 +49,40 @@ foreach (var path in Directory.GetFiles(Path.Combine(root, "dotnet", "FreeSms.Or
     foreach (var source in xml.Descendants("source")) Formula.Parse((string?)source.Attribute("formula") ?? "");
 }
 Check(pictures == 58, "all 58 original report images are present");
+Check(rebuiltCount == 2, "evaluate both reconstructed catalog reports with disconnected sample data");
 Check(reportCount == 98, "evaluate every original report with disconnected sample data: " + reportCount);
 Check(formulas >= 3000, "parse every original report expression: " + formulas);
+foreach (string rebuilt in new[] {"CStdKarnameDorehByChart", "CStdKarnameDorehByChart_byBestStd_OneMark"})
+{
+    var model = ReportModel.Load(Path.Combine(root,"dotnet","FreeSms.Original.Windows","portable-layouts",rebuilt+".rpt.xml"));
+    var fixture = ReportFixtures.Create(model.Xml,2);
+    var main = fixture.Data!.Tables[0];
+    for (int i=0;i<2;i++)
+    {
+        main.Rows[i]["xStudent"]=i+1; main.Rows[i]["Book"]="ریاضی";
+        main.Rows[i]["Mark"]=i==0?70m:30m; main.Rows[i]["avgClass"]=50m;
+    }
+    var rows = model.Rows(fixture);
+    var chartBand = model.Sections.Single(section=>(string?)section.Attribute("name")=="NativeCourseComparison");
+    var chart = chartBand.Descendants("chart").First();
+    var scope = model.Scope(fixture,rows[0],rows,model.GroupLevel(chartBand));
+    var context = model.Context(fixture,scope[0],scope);
+    Check(scope.Length==1 && Equals(model.Evaluate(chart.Elements("series").First().Value,context),70m)
+        && Equals(model.Evaluate(chart.Elements("series").Last().Value,context),50m),"rebuilt chart isolates student 70 from peer 30 and preserves class mean 50: "+rebuilt);
+    var child = new ReportModel(model.Xml.Descendants("object").Single(obj=>(string?)obj.Attribute("subreport")=="Sub1").Element("report")!);
+    var source = fixture.Subreports["Sub1"]; var table = source.Data!.Tables[0]; table.Clear();
+    for(int student=1;student<=2;student++) for(int term=1;term<=3;term++)
+    {
+        var row=table.NewRow(); foreach(DataColumn column in table.Columns) row[column]=1m;
+        row["xStudent"]=student; row["Exam"]="دوره "+term; row["NumExam"]=term;
+        row["MarkDoreh"]=student==1?new[]{30m,40m,70m}[term-1]:new[]{10m,20m,30m}[term-1];
+        row["AvgClass"]=new[]{20m,30m,50m}[term-1]; table.Rows.Add(row);
+    }
+    var bound=model.BindSubreport(fixture,source,child,rows[0],rows); var childRows=child.Rows(bound);
+    Check(childRows.Length==3 && childRows.All(row=>Convert.ToInt32(row["xStudent"])==1)
+        && childRows.Select(row=>Convert.ToDecimal(row["MarkDoreh"])).SequenceEqual(new[]{30m,40m,70m}),"rebuilt progress subreport keeps all three terms and excludes the other student: "+rebuilt);
+}
+
 var data = new DataTable(); data.Columns.Add("mark", typeof(decimal)); data.Columns.Add("group", typeof(int)); data.Columns.Add("comment", typeof(string));
 data.Rows.Add(19.995m, 1, "نام"); data.Rows.Add(15m, 1, DBNull.Value); data.Rows.Add(-1m, 2, "");
 var contexts = data.Rows.Cast<DataRow>().Select(row => new FormulaContext { Row = row, Rows = data.Rows.Cast<DataRow>().ToArray() }).ToArray();

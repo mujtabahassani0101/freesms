@@ -1,0 +1,8 @@
+{
+  "workflow_run": 41516044782,
+  "source_commit": "c318b82b0eaeedb6c0ec82659c2025a00a147205",
+  "artifact_id": 13174529738,
+  "sha256": "727429018d5cdaac049a4b13681a23c35582745cd509bd4b640135a0ee029f19",
+  "bytes": 25058,
+  "scope": "Original report101 receives persisted student identity/name and school header, and renders populated preview. Three business workflows pass. Catalog dependency check still reports two missing layouts in this source revision. No full application pass."
+}

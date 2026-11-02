@@ -9,6 +9,10 @@ public class asdd
 {
 	public static ReportClass a(string A_0)
 	{
+        // Catalog entries whose original classes/RPTs are absent from the EXE.
+        // Explicit reconstructed layouts preserve their existing SQL contracts.
+        if (A_0 == "CStdKarnameDorehByChart" || A_0 == "CStdKarnameDorehByChart_byBestStd_OneMark")
+            return new ReportClass { ResourceName = A_0 + ".rpt" };
 		int value = default;
 		ReportClass result = default;
 		while (true)

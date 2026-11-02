@@ -32,11 +32,36 @@ internal static class OriginalWorkflowChecks
         school.SaveSchool(new Record { ["sch"]="مکتب آزمایشی گزارش", ["Ost"]="کابل", ["cty"]="آزمون", ["Foter1"]="مدیر آزمایشی" });
         int classroom = school.SaveClass(new Record { ["name"]="صنف آزمایشی گزارش", ["xpaye"]=1, ["fee"]=1000, ["shift"]=1, ["sortRpt"]=30000 });
         var entities = new EntityService(school);
-        var existingBook = db.Query("SELECT TOP 1 id FROM tBook WHERE xPaye=1 ORDER BY sort,id").FirstOrDefault();
-        int book = existingBook == null ? entities.Save("books", new Record { ["xPaye"]=1, ["Name"]="مضمون آزمایشی", ["vahed"]=1, ["timeWeek"]=1, ["Type"]=1, ["sort"]=30000, ["SortOneEntry"]=30000, ["codedars"]=5991001, ["Vezarat"]=true }) : Convert.ToInt32(existingBook["id"]);
+        int book = entities.Save("books", new Record { ["xPaye"]=1, ["Name"]="مضمون آزمایشی", ["vahed"]=1, ["timeWeek"]=1, ["Type"]=1, ["sort"]=30000, ["SortOneEntry"]=30000, ["codedars"]=5991001, ["Vezarat"]=true });
         int teacher = entities.Save("teachers",new Record { ["fNamF"]="استاد", ["fNamL"]="آزمایشی", ["fEmail"]="", ["fPassword"]="" });
         school.AssignTeacher(classroom,book,teacher);
         school.SaveStudent(new Record { ["FName"]=ReportStudentName, ["LName"]=asdaj.b("پدر آزمایشی"), ["PName"]=asdaj.b("پدرکلان آزمایشی"), ["Code"]=5991001, ["NumberAsas"]=5991001, ["xPaye"]=1, ["xClass"]=classroom, ["Status"]=1, ["Jens"]=0, ["Fee1"]=1000 });
+        school.SaveStudent(new Record { ["FName"]="شاگرد محفوظ", ["LName"]="پدر دوم", ["PName"]="پدرکلان دوم", ["Code"]=5991002, ["NumberAsas"]=5991002, ["xPaye"]=1, ["xClass"]=classroom, ["Status"]=1, ["Jens"]=1, ["Fee1"]=700 });
+        foreach (var exam in db.Query("SELECT id,term FROM tExam WHERE xYear=1410 AND term IN(1,2)"))
+            foreach (int code in new[] {5991001,5991002})
+            {
+                int term = Convert.ToInt32(exam["term"]);
+                double mark = code == 5991001 ? term == 1 ? 30 : 40 : term == 1 ? 10 : 20;
+                var result = db.Call("sp_tMark_insertUpdate_FromXls_Af",new Record { ["xuser"]=1, ["code"]=code.ToString(), ["codedars"]=5991001, ["Xtest"]=exam["id"], ["xYear"]=1410, ["Mark"]=mark });
+                Require(string.IsNullOrEmpty(Convert.ToString(result.Output["err"])),"Valid fixture marks were rejected by the original import procedure.");
+            }
+        // Calculate using the original SQL, in term order. Assert independent known totals.
+        foreach (var exam in db.Query("SELECT id FROM tExam WHERE xYear=1410 AND term IN(1,2,3) ORDER BY term"))
+        {
+            db.Call("sp_Procc",new Record {["Exam"]=exam["id"]});
+            db.Call("sp_CalcMarkDoreh",new Record {["Exam"]=exam["id"]});
+        }
+        foreach (int code in new[] {5991001,5991002})
+        {
+            var mark = db.Scalar("SELECT m.Mark FROM tMark m JOIN tStudent s ON s.id=m.xStudent JOIN tExam e ON e.id=m.Xtest WHERE s.Code=@p0 AND e.xYear=1410 AND e.term=3 AND m.xbook=@p1 AND m.typ=1",new object[]{code,book});
+            Require(Convert.ToDecimal(mark)==(code==5991001 ? 70m : 30m),"Original final-term calculation did not equal the fixture's known sum.");
+        }
+
+        var finalExam = db.Scalar("SELECT id FROM tExam WHERE xYear=1410 AND term=3");
+        var averages = db.Call("spRpt_StdListTestMark_AvgClass_AllExam",new Record {["Exam"]=Convert.ToString(finalExam),["Class"]=classroom.ToString(),["xYear"]=1410}).Sets[0];
+        var finals = averages.Where(row=>Convert.ToInt32(row["Xtest"])==Convert.ToInt32(finalExam)).ToArray();
+        Require(finals.Length==2 && finals.All(row=>Convert.ToDecimal(row["AvgClass"])==50m),"Original progress report did not return the known class mean of 50.");
+
     }
     internal static void AssertReportFixture(FreeSms.NativeControls.PortableReportViewer viewer, Database database)
     {
@@ -45,6 +70,12 @@ internal static class OriginalWorkflowChecks
         bool found = input != null && input.Data != null && input.Data.Tables.Cast<System.Data.DataTable>().Any(table => table.Columns.Contains("xStudent") && table.Columns.Contains("FName") && table.Rows.Cast<System.Data.DataRow>().Any(row => Convert.ToInt32(row["xStudent"]) == Convert.ToInt32(expected["id"]) && Convert.ToString(row["FName"]) == Convert.ToString(expected["FName"])));
         Require(found,"Report preview did not receive the fixture student's actual database values.");
         Require(input.Parameters.Values.Any(value => Convert.ToString(value).Contains("مکتب آزمایشی گزارش")), "Report preview did not receive the fixture school header.");
+    }
+    internal static void SaveReportPages(FreeSms.NativeControls.PortableReportViewer viewer, string directory, string scenario)
+    {
+        var document = (FreeSms.NativeControls.PortableReportDocument)typeof(FreeSms.NativeControls.PortableReportViewer).GetField("document",BindingFlags.Instance|BindingFlags.NonPublic).GetValue(viewer);
+        Require(document.PageCount>0 && document.PageCount<=20,"Small report fixture produced an invalid page count.");
+        for (int page=0; page<document.PageCount; page++) document.SavePageImage(System.IO.Path.Combine(directory,scenario+"-page-"+(page+1)+".png"),page,100);
     }
     internal static void Run(string scenario, Form form, Database db, Action<string> log)
     {
@@ -104,7 +135,9 @@ internal static class OriginalWorkflowChecks
         Require(Convert.ToInt32(db.Scalar("SELECT COUNT(*) FROM tStudent WHERE id=@p0",new object[]{id})) == 0,"Student delete button did not remove the selected student.");
         Require(Convert.ToInt32(db.Scalar("SELECT COUNT(*) FROM tYear_Student WHERE xStudent=@p0",new object[]{id})) == 0,"Student delete left enrolment behind.");
         Require(Convert.ToInt32(db.Scalar("SELECT COUNT(*) FROM tStudent")) == before-1,"Student delete modified unrelated records.");
-        log("PASS original student deletion buttons complete against the supplied database edition");
+        Require(Convert.ToString(db.Scalar("SELECT FName FROM tStudent WHERE Code=5991002"))=="شاگرد محفوظ", "Deletion modified the other student's identity.");
+        Require(Convert.ToInt32(db.Scalar("SELECT COUNT(*) FROM tYear_Student y JOIN tStudent s ON s.id=y.xStudent WHERE s.Code=5991002 AND y.xYear=1410"))==1, "Deletion removed another student's enrolment.");
+        log("PASS original student deletion buttons preserve the other student and complete against the supplied database edition");
     }
     private static void School(Form form, Database db, Action<string> log)
     {

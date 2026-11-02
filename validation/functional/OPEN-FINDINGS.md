@@ -1,20 +1,23 @@
 # Open findings and scope limits
 
-The full application goal is not complete. The click inventory is a starting point, not exhaustive coverage of keyboard, editing, selection, printing or database behavior.
+The full application goal is not complete. The 448-click inventory is a starting point, not exhaustive coverage of keyboard, editing, selection, printing or database behavior.
 
-- The binary report-layout grid and oversized button icons have native Windows regressions passing in run 41506986650 (source 2c86c76; 145 checks). Those component checks do not prove every RPX editor workflow.
-- Original report 101 successfully opened its preview in that run, but the captured page had no student data. A stronger disposable fixture now requires a named student and school header to reach the actual viewer input; it still needs Windows evidence.
-- Catalog validation in run 41508248274 found missing factories/templates for stored report names `CStdKarnameDorehByChart` (1024) and `CStdKarnameDorehByChart_byBestStd_OneMark` (1032). No matching original embedded templates/classes were found in this source tree. The next catalog log includes `tosifi` and caption to distinguish visibility under the original selector's edition filter; do not silently substitute another report or call this resolved.
-- School settings and discount UI probes timed out at modal messages in run 41508248274. Dialog matching/response diagnostics have been added. No workflow pass has been established by those timeouts.
-- Discount comment insertion/update concatenated raw text into SQL; apostrophes could break the command. Source 2e8bef9 parameterizes these values while preserving existing name normalization. Full UI verification remains pending.
-- Original student deletion issued multiple independent deletes before referencing the absent `tDisciplinaryStudent` table. The new implementation calls the transactional native service, handles the optional table when present, and includes a late foreign-key rejection regression plus original-button confirmation tests. Run 41511439779 verifies the original deletion buttons, No/Yes confirmations and persisted effects against the supplied database edition. Its separate native database job also passed the new rollback regression. This does not verify student registration/editing.
-- Backup/restore code still contains hardcoded `school_af_kbr` names and concatenated backup file paths (for example asda9.cs, asdbl.cs, asdao.cs and asda7.cs). This is a source finding requiring tests with the configured catalog, quoted paths, invalid backups and verified restored records. It has not been repaired by the student deletion or report changes.
-- Visible disciplinary menus still require schemas/procedures missing from the supplied Afghan database. Existing compatibility messages do not count as functional implementation.
+## Verified limited workflows
 
-Student registration/editing, marks, attendance, payments, non-admin authentication/permissions, imports/exports and remaining report workflows are not proven complete. Keep the requirements in PLAN.md and the unverified action inventory intact.
+- Binary report-layout grid rendering and button icon sizing have passing native Windows regressions. Run 41513493718 has 146 native component/package/render checks; these do not prove every RPX editor workflow.
+- Run 41516044782 (c318b82) verifies actual report101 preview with a named persisted student and school header, including a captured populated preview. It also advances through a year-1410 selector beyond the old static year limit. This does not prove every printed field or report.
+- That run's original-button scenarios verify school Save/reopen, discount empty-title/New/Edit/Cancel/Delete with quoted Persian comments, and student deletion confirmation/cancellation and persisted effects.
+- The native Core suite in run 41511439779 verifies rollback when a late foreign-key rejection occurs after earlier enrolment/image deletes. Original deletion now uses that transaction and handles the optional disciplinary table when present.
+- Native OK dialogs use button ID2 on this runner. The probe now locates the actual descendant button by label/id and clicks it after matching the expected message; the earlier school/discount probe timeouts were resolved.
 
-- The populated report fixture in run 41510035549 reproduced a null year in asda0.e(): static year lists ended at 1403. All twelve original year selectors now use the domain-supported 1300–1600 range and atomic selection updates; fresh Windows evidence is pending.
-- Three stricter menu probes caught documented missing-configuration warnings (no lessons, no school-day counts), rather than exceptions. They are classified as expected validation only when both their exact message and corresponding database precondition match; they do not prove populated workflows.
+## Repairs awaiting Windows evidence
 
-- Run 41513493718 (06ff6d2) verifies school Save/reopen, discount empty-title/New/Edit/Cancel/Delete and student deletion through original buttons. The OK dialogs use native button ID 2 on this runner; locating the actual descendant button resolves the previous probe timeouts. These scenario passes do not cover every user role or validation case.
-- That run advanced the year-1410 report through its controller and preview, but the fixture assertion compared legacy Arabic normalization to Core storage normalization. The assertion now queries the persisted student identity/name and requires both in the actual viewer input, with a screenshot captured even on failure. Fresh positive evidence is still required.
+- Catalog reports 1024 and 1032 reference classes/RPTs absent even from the original executable; both are active under the current edition. Two native layouts have been reconstructed from the recovered mark-table and chart components, with existing SQL contracts and base formulas retained. They pass 46 disconnected calculation/expression checks locally. Real original-button previews, every rendered page and the original SQL calculations still require Windows verification. See REBUILT-REPORTS.md.
+- The report/deletion fixture now includes two students and real term marks. It independently requires final marks70/30, class mean50 and preservation of the peer's identity/enrolment after deletion. This stronger fixture has not yet passed Windows verification.
+
+## Other open work
+
+- Backup/restore code still hardcodes `school_af_kbr` and concatenates backup file paths in asda9/asdbl/asdao/asda7/asdbv. Test the configured catalog, quoted paths, invalid backups and actual restored records before claiming repair.
+- Visible disciplinary menus still require schemas/procedures missing from the supplied Afghan database. Existing compatibility messages do not implement those workflows.
+- Student registration/editing/moves, original mark entry, attendance, payments, non-admin authentication/permissions, imports/exports and remaining report/editor workflows are not proven complete. Preserve all requirements in PLAN.md.
+- Exact empty-fixture warnings (no lessons or no configured school-day counts) are classified as expected validation only when the matching database prerequisite is absent; they do not prove populated workflows.

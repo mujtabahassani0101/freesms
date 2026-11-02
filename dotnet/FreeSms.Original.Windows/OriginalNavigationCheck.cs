@@ -62,7 +62,7 @@ internal static class OriginalNavigationCheck
             File.AppendAllText(workerLog, "CONSTRUCT" + Environment.NewLine);
             using var main = new asdb3(); // Do not show the main form or invoke its login Load handler.
             using var timer = new Timer { Interval = 300 };
-            bool started = false, previewClicked = false, workflowRunning = false;
+            bool started = false, previewClicked = false, sortConfirmed = false, workflowRunning = false;
             timer.Tick += (sender, e) =>
             {
                 if (!started)
@@ -99,6 +99,14 @@ internal static class OriginalNavigationCheck
                         Field<Janus.Windows.EditControls.UIButton>(selector, "m_c").PerformClick();
                         return;
                     }
+                    if (previewClicked && !sortConfirmed && selector != null && Field<Panel>(selector,"w").Visible)
+                    {
+                        sortConfirmed = true;
+                        Field<RadioButton>(selector,"aa").Checked=true;
+                        File.AppendAllText(workerLog,"CLICK actual report sort confirmation"+Environment.NewLine);
+                        Field<Janus.Windows.EditControls.UIButton>(selector,"z").PerformClick();
+                        return;
+                    }
                     var viewers = windows.SelectMany(Descendants).OfType<FreeSms.NativeControls.PortableReportViewer>().ToArray();
                     if (viewers.Any(viewer => viewer.ReportPageCount > 0))
                     {
@@ -107,6 +115,7 @@ internal static class OriginalNavigationCheck
                         viewer.DrawToBitmap(image, new System.Drawing.Rectangle(System.Drawing.Point.Empty, image.Size));
                         image.Save(Path.Combine(directory, route + ".png"));
                         OriginalWorkflowChecks.AssertReportFixture(viewer, database);
+                        OriginalWorkflowChecks.SaveReportPages(viewer,directory,route);
                         File.AppendAllText(workerLog, "PASS actual report input contains the fixture student's persisted identity and name" + Environment.NewLine);
                         File.AppendAllText(workerLog, "SUCCESS actual report controller and preview; pages=" + viewer.ReportPageCount + Environment.NewLine);
                         Environment.Exit(0);
@@ -278,9 +287,11 @@ internal static class OriginalNavigationCheck
                 throw new InvalidOperationException("School, discount and student deletion workflow routes are required.");
             if (targets.Length == 0) throw new InvalidOperationException("No verification routes were discovered.");
             int passed = 0, interaction = 0;
+            var reportCases = reportActions ? new[] { "101", "1024", "1032" } : new[] { "" };
+            foreach (string reportCase in reportCases)
             foreach (var control in targets)
             {
-                string route = control.S("variable") + (businessActions ? "_workflow_" + (catalog.Target(main, control).Value.S("class") == "asdh" ? "discount" : catalog.Target(main, control).Value.S("class") == "asdm" ? "student-delete" : "school") : reportActions ? "_report_101" : "");
+                string route = control.S("variable") + (businessActions ? "_workflow_" + (catalog.Target(main, control).Value.S("class") == "asdh" ? "discount" : catalog.Target(main, control).Value.S("class") == "asdm" ? "student-delete" : "school") : reportActions ? "_report_" + reportCase : "");
                 var target = catalog.Target(main, control).Value;
                 var start = new ProcessStartInfo(Environment.ProcessPath) { UseShellExecute = false, CreateNoWindow = true };
                 start.ArgumentList.Add("--verify-navigation-form"); start.ArgumentList.Add(route);
@@ -294,8 +305,8 @@ internal static class OriginalNavigationCheck
                 if (waiting) interaction++;
                 File.AppendAllText(summary, (success ? "PASS " : waiting ? "INTERACTION " : finished ? "FAILED " : "TIMEOUT ") + route + " " + control.S("name") + " -> " + target.S("name") + Environment.NewLine);
             }
-            File.AppendAllText(summary, "RESULT loaded=" + passed + ", interaction=" + interaction + ", total=" + targets.Length + Environment.NewLine);
-            return reportCatalogValid && passed + interaction == targets.Length ? 0 : 1;
+            File.AppendAllText(summary, "RESULT loaded=" + passed + ", interaction=" + interaction + ", total=" + (targets.Length*reportCases.Length) + Environment.NewLine);
+            return reportCatalogValid && passed + interaction == targets.Length*reportCases.Length ? 0 : 1;
         }
         finally
         {
