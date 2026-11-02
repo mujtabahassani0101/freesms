@@ -48,6 +48,18 @@ internal static class Program
             Check(combo.SelectedIndex == 1 && combo.SelectedItem.Value.ToString() == "2", "unbound combo values support original numeric IDs");
             combo.DataSource = table; combo.DisplayMember = "mark"; combo.ValueMember = "id"; combo.SelectedValue = "41";
             Check(Convert.ToInt32(combo.SelectedValue) == 41, "bound combo identity");
+            using (var bindingCombo = new UIComboBox())
+            {
+                window.Controls.Add(bindingCombo);
+                var observed = new List<object>();
+                bindingCombo.SelectedIndexChanged += (s, e) => observed.Add(bindingCombo.SelectedValue);
+                bindingCombo.DataSource = table;
+                Check(observed.Count == 0, "combo does not publish a row object before ValueMember is configured");
+                bindingCombo.DisplayMember = "mark"; bindingCombo.ValueMember = "id";
+                Check(observed.Count > 0 && observed.All(value => value is int), "initial combo selection publishes only the typed database ID");
+                observed.Clear(); bindingCombo.DataSource = table.Copy();
+                Check(observed.All(value => value is int), "combo rebinding does not publish transient empty selections");
+            }
             Check(ShamsiDate.GetShamsiDate(ShamsiDate.ShamsiToGregory("۱۴۰۵/۰۸/۱۱")) == "1405/08/11", "Afghan calendar roundtrip with Persian digits");
             using var date = new DatePicker { the_date = new DateTime(2026, 11, 1) }; int changes = 0; date.DateChanged += (s,e) => changes++;
             date.the_date = new DateTime(2026, 11, 2);

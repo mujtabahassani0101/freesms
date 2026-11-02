@@ -788,8 +788,8 @@ protected override void Dispose(bool A_0)
 					}
 					goto case 4;
 				case 4:
-					c();
 					o.Text = asdaj.__field_a;
+					c();
 					num = 7;
 					continue;
 				case 7:

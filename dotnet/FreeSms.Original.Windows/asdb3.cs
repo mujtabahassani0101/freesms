@@ -1725,12 +1725,14 @@ protected override void Dispose(bool A_0)
 
 	private void a0(object A_0, EventArgs A_1)
 	{
+		if (!OriginalFeatureGuard.RequireSchema(this, "موارد انضباطی", "dbo.tDisciplinaryCases", "dbo.sp_tDisciplinaryCases_InsertUpdate")) return;
 		asdbm asdbm2 = new asdbm();
 		asdbm2.ShowDialog();
 	}
 
 	private void az(object A_0, EventArgs A_1)
 	{
+		if (!OriginalFeatureGuard.RequireSchema(this, "موارد انضباطی", "dbo.tDisciplinaryCases", "dbo.sp_tDisciplinaryCases_InsertUpdate")) return;
 		asdad asdad2 = new asdad();
 		asdad2.ShowDialog();
 	}
@@ -1743,6 +1745,7 @@ protected override void Dispose(bool A_0)
 
 	private void ax(object A_0, EventArgs A_1)
 	{
+		if (!OriginalFeatureGuard.RequireSchema(this, "ثبت عملکرد انضباطی", "dbo.tDisciplinaryCases", "dbo.tDisciplinaryStudent", "dbo.sp_tDisciplinaryStudent_insertUpdate")) return;
 		asdn asdn2 = new asdn();
 		asdn2.ShowDialog();
 	}
@@ -1761,12 +1764,14 @@ protected override void Dispose(bool A_0)
 
 	private void au(object A_0, EventArgs A_1)
 	{
+		if (!OriginalFeatureGuard.RequireSchema(this, "موارد انضباطی", "dbo.tDisciplinaryCases", "dbo.sp_tDisciplinaryCases_InsertUpdate")) return;
 		asdq asdq2 = new asdq();
 		asdq2.ShowDialog();
 	}
 
 	private void at(object A_0, EventArgs A_1)
 	{
+		if (!OriginalFeatureGuard.RequireSchema(this, "گزارش انضباطی", "dbo.tRptDis", "dbo.tDisciplinaryCases", "dbo.tDisciplinaryStudent")) return;
 		asdas asdas2 = new asdas();
 		asdas2.ShowDialog();
 	}

@@ -87,8 +87,47 @@ namespace Janus.Windows.EditControls
     {
         internal ComboBox.ObjectCollection NativeItems => base.Items;
         private readonly UIComboBoxItemCollection items;
+        private int bindingDepth;
+        private bool pendingIndex, pendingValue;
         public UIComboBox() { items = new UIComboBoxItemCollection(this); }
         public new UIComboBoxItemCollection Items => items;
+        public new object DataSource
+        {
+            get => base.DataSource;
+            set
+            {
+                bindingDepth++;
+                try { base.DataSource = value; }
+                finally { bindingDepth--; }
+                FlushSelection();
+            }
+        }
+        private bool SelectionReady => bindingDepth == 0 && (base.DataSource == null || !string.IsNullOrEmpty(ValueMember));
+        protected override void OnSelectedIndexChanged(EventArgs e)
+        {
+            if (!SelectionReady) { pendingIndex = true; return; }
+            pendingIndex = false;
+            base.OnSelectedIndexChanged(e);
+        }
+        protected override void OnSelectedValueChanged(EventArgs e)
+        {
+            if (!SelectionReady) { pendingValue = true; return; }
+            pendingValue = false;
+            base.OnSelectedValueChanged(e);
+        }
+        protected override void OnValueMemberChanged(EventArgs e)
+        {
+            base.OnValueMemberChanged(e);
+            FlushSelection();
+        }
+        private void FlushSelection()
+        {
+            if (!SelectionReady) return;
+            bool index = pendingIndex, value = pendingValue;
+            pendingIndex = pendingValue = false;
+            if (index) base.OnSelectedIndexChanged(EventArgs.Empty);
+            if (value) base.OnSelectedValueChanged(EventArgs.Empty);
+        }
         internal UIComboBoxItem Wrap(object item)
         {
             if (item is UIComboBoxItem wrapped) return wrapped;
@@ -97,7 +136,7 @@ namespace Janus.Windows.EditControls
         private object GetItemValue(object item)
         {
             if (item is UIComboBoxItem wrapped) return wrapped.Value;
-            if (item is DataRowView row && !string.IsNullOrEmpty(ValueMember)) return row[ValueMember];
+            if (item is DataRowView row) return string.IsNullOrEmpty(ValueMember) ? null : row[ValueMember];
             return string.IsNullOrEmpty(ValueMember) || item == null ? item : TypeDescriptor.GetProperties(item)[ValueMember]?.GetValue(item);
         }
         public new UIComboBoxItem SelectedItem

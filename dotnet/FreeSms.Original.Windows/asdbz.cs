@@ -109,8 +109,8 @@ public class asdbz : Form
 					}
 					goto case 3;
 				case 3:
-					e();
 					v.Text = asdaj.__field_a;
+					e();
 					l.SelectedIndex = 1;
 					r.Focus();
 					num = 5;
