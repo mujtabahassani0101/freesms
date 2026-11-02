@@ -1,0 +1,601 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<report type="school_Af.Rpt.chart.CrChartAvgClassDorehBooksTch">
+  <print>
+    <PaperOrientation>DefaultPaperOrientation</PaperOrientation>
+    <PaperSize>DefaultPaperSize</PaperSize>
+    <PaperSource>Auto</PaperSource>
+    <leftMargin>-2147483648</leftMargin>
+    <rightMargin>-2147483648</rightMargin>
+    <topMargin>-2147483648</topMargin>
+    <bottomMargin>-2147483648</bottomMargin>
+  </print>
+  <formulas>
+    <formula name="Class">{spRpt_AvgClassBooksTch.Class}</formula>
+    <formula name="Exam">{spRpt_AvgClassBooksTch.Exam}</formula>
+    <formula name="book">{spRpt_AvgClassBooksTch.Book}</formula>
+    <formula name="sort">{spRpt_AvgClassBooksTch.sort}</formula>
+    <formula name="Mark">{spRpt_AvgClassBooksTch.avgMark}</formula>
+    <formula name="paye">{spRpt_AvgClassBooksTch.Paye}</formula>
+    <formula name="group">{spRpt_AvgClassBooksTch.xTch}
+</formula>
+    <formula name="groupLesson">{@book}+'-'+
+totext({spRpt_AvgClassBooksTch.xPaye}*1000)+'-'+
+{spRpt_AvgClassBooksTch.Class}</formula>
+    <formula name="tch">{spRpt_AvgClassBooksTch.fNamF}+' ' +{spRpt_AvgClassBooksTch.fNamL}</formula>
+    <formula name="avgPaye">{spRpt_AvgClassBooksTch.avgPaye}</formula>
+  </formulas>
+  <parameters>
+    <parameter name="sch" type="StringField" />
+    <parameter name="heder1" type="StringField" />
+    <parameter name="heder2" type="StringField" />
+    <parameter name="foter1" type="StringField" />
+    <parameter name="foter2" type="StringField" />
+  </parameters>
+  <groups>
+    <group field="{@group}" />
+    <group field="{@groupLesson}" />
+  </groups>
+  <sorts>
+    <sort field="{@group}" direction="AscendingOrder" />
+    <sort field="{@groupLesson}" direction="AscendingOrder" />
+  </sorts>
+  <sections>
+    <section name="Section1" kind="ReportHeader" height="610">
+      <format>
+        <EnableSuppress>true</EnableSuppress>
+        <EnableNewPageAfter>false</EnableNewPageAfter>
+        <EnableNewPageBefore>false</EnableNewPageBefore>
+        <EnableKeepTogether>true</EnableKeepTogether>
+        <EnableUnderlaySection>false</EnableUnderlaySection>
+        <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
+        <BackgroundColor>-1</BackgroundColor>
+      </format>
+    </section>
+    <section name="PageHeaderSection1" kind="PageHeader" height="581">
+      <format>
+        <EnableSuppress>true</EnableSuppress>
+        <EnableNewPageAfter>false</EnableNewPageAfter>
+        <EnableNewPageBefore>false</EnableNewPageBefore>
+        <EnableKeepTogether>true</EnableKeepTogether>
+        <EnableUnderlaySection>false</EnableUnderlaySection>
+        <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
+        <BackgroundColor>-1</BackgroundColor>
+      </format>
+    </section>
+    <section name="Section2" kind="PageHeader" height="1414">
+      <format>
+        <EnableSuppress>false</EnableSuppress>
+        <EnableNewPageAfter>false</EnableNewPageAfter>
+        <EnableNewPageBefore>false</EnableNewPageBefore>
+        <EnableKeepTogether>true</EnableKeepTogether>
+        <EnableUnderlaySection>false</EnableUnderlaySection>
+        <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
+        <BackgroundColor>-1</BackgroundColor>
+      </format>
+      <object>
+        <Name>sch1</Name>
+        <Kind>FieldObject</Kind>
+        <Left>375</Left>
+        <Top>579</Top>
+        <Width>4380</Width>
+        <Height>360</Height>
+        <Color>-16777216</Color>
+        <Font family="Microsoft Sans Serif" size="10" style="1" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>LeftAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+        <source name="sch" formula="{?sch}" kind="ParameterField" />
+        <number />
+      </object>
+      <object>
+        <Name>Box1</Name>
+        <Kind>BoxObject</Kind>
+        <Left>180</Left>
+        <Top>0</Top>
+        <Width>10755</Width>
+        <Height>1080</Height>
+        <LineColor>-16777216</LineColor>
+        <LineThickness>20</LineThickness>
+        <LineStyle>SingleLine</LineStyle>
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>DefaultAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>SingleLine</LeftLineStyle>
+          <RightLineStyle>SingleLine</RightLineStyle>
+          <TopLineStyle>SingleLine</TopLineStyle>
+          <BottomLineStyle>SingleLine</BottomLineStyle>
+        </border>
+      </object>
+      <object>
+        <Name>Text1</Name>
+        <Kind>TextObject</Kind>
+        <Left>3390</Left>
+        <Top>0</Top>
+        <Width>5375</Width>
+        <Height>581</Height>
+        <Text>نمودار عملکرد استاد در هر درس و صنف</Text>
+        <Color>-16777216</Color>
+        <Font family="Microsoft Sans Serif" size="18" style="1" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>HorizontalCenterAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+      </object>
+      <object>
+        <Name>Text4</Name>
+        <Kind>TextObject</Kind>
+        <Left>9720</Left>
+        <Top>578</Top>
+        <Width>1200</Width>
+        <Height>360</Height>
+        <Text>نام استاد :</Text>
+        <Color>-16777216</Color>
+        <Font family="Microsoft Sans Serif" size="10" style="1" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>LeftAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+      </object>
+      <object>
+        <Name>tch1</Name>
+        <Kind>FieldObject</Kind>
+        <Left>5535</Left>
+        <Top>578</Top>
+        <Width>4110</Width>
+        <Height>380</Height>
+        <Color>-16777216</Color>
+        <Font family="Microsoft Sans Serif" size="10" style="1" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>RightAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+        <source name="tch" formula="{@tch}" kind="FormulaField" />
+        <number />
+      </object>
+      <object>
+        <Name>Text7</Name>
+        <Kind>TextObject</Kind>
+        <Left>815</Left>
+        <Top>1074</Top>
+        <Width>10035</Width>
+        <Height>324</Height>
+        <Text>توجه : نمودار میله ای مربوط به اوسط کلاس و  نمودار خطی مربوط به اوسط پایه تحصیلی می باشد.</Text>
+        <Color>-16777216</Color>
+        <Font family="Microsoft Sans Serif" size="8" style="1" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>RightAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+      </object>
+    </section>
+    <section name="GroupHeaderSection1" kind="GroupHeader" height="226">
+      <format>
+        <EnableSuppress>true</EnableSuppress>
+        <EnableNewPageAfter>false</EnableNewPageAfter>
+        <EnableNewPageBefore>false</EnableNewPageBefore>
+        <EnableKeepTogether>true</EnableKeepTogether>
+        <EnableUnderlaySection>false</EnableUnderlaySection>
+        <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
+        <BackgroundColor>-1</BackgroundColor>
+      </format>
+      <object>
+        <Name>GroupNamegroup1</Name>
+        <Kind>FieldObject</Kind>
+        <Left>0</Left>
+        <Top>0</Top>
+        <Width>2462</Width>
+        <Height>226</Height>
+        <Color>-16777216</Color>
+        <Font family="Arial" size="10" style="1" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>DefaultAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+        <source name="GroupName ({@group})" formula="GroupName ({@group})" kind="GroupNameField" />
+        <number />
+      </object>
+    </section>
+    <section name="GroupHeaderSection2" kind="GroupHeader" height="224">
+      <format>
+        <EnableSuppress>true</EnableSuppress>
+        <EnableNewPageAfter>false</EnableNewPageAfter>
+        <EnableNewPageBefore>false</EnableNewPageBefore>
+        <EnableKeepTogether>true</EnableKeepTogether>
+        <EnableUnderlaySection>false</EnableUnderlaySection>
+        <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
+        <BackgroundColor>-1</BackgroundColor>
+      </format>
+      <object>
+        <Name>GroupNamegroupLesson1</Name>
+        <Kind>FieldObject</Kind>
+        <Left>0</Left>
+        <Top>0</Top>
+        <Width>2531</Width>
+        <Height>224</Height>
+        <Color>-16777216</Color>
+        <Font family="Arial" size="10" style="1" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>DefaultAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+        <source name="GroupName ({@groupLesson})" formula="GroupName ({@groupLesson})" kind="GroupNameField" />
+        <number />
+      </object>
+    </section>
+    <section name="Section3" kind="Detail" height="220">
+      <format>
+        <EnableSuppress>true</EnableSuppress>
+        <EnableNewPageAfter>false</EnableNewPageAfter>
+        <EnableNewPageBefore>false</EnableNewPageBefore>
+        <EnableKeepTogether>true</EnableKeepTogether>
+        <EnableUnderlaySection>false</EnableUnderlaySection>
+        <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
+        <BackgroundColor>-1</BackgroundColor>
+      </format>
+    </section>
+    <section name="GroupFooterSection2" kind="GroupFooter" height="4785">
+      <format>
+        <EnableSuppress>false</EnableSuppress>
+        <EnableNewPageAfter>false</EnableNewPageAfter>
+        <EnableNewPageBefore>false</EnableNewPageBefore>
+        <EnableKeepTogether>true</EnableKeepTogether>
+        <EnableUnderlaySection>false</EnableUnderlaySection>
+        <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
+        <BackgroundColor>-1</BackgroundColor>
+      </format>
+      <object>
+        <Name>book1</Name>
+        <Kind>FieldObject</Kind>
+        <Left>240</Left>
+        <Top>120</Top>
+        <Width>3360</Width>
+        <Height>440</Height>
+        <Color>-16777216</Color>
+        <Font family="Microsoft Sans Serif" size="12" style="1" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>RightAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+        <source name="book" formula="{@book}" kind="FormulaField" />
+        <number />
+      </object>
+      <object>
+        <Name>Graph1</Name>
+        <Kind>ChartObject</Kind>
+        <Left>240</Left>
+        <Top>720</Top>
+        <Width>10530</Width>
+        <Height>3840</Height>
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>DefaultAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+      </object>
+      <object>
+        <Name>Text2</Name>
+        <Kind>TextObject</Kind>
+        <Left>10170</Left>
+        <Top>115</Top>
+        <Width>720</Width>
+        <Height>360</Height>
+        <Text>پایه :</Text>
+        <Color>-16777216</Color>
+        <Font family="Microsoft Sans Serif" size="12" style="1" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>LeftAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+      </object>
+      <object>
+        <Name>paye1</Name>
+        <Kind>FieldObject</Kind>
+        <Left>7320</Left>
+        <Top>120</Top>
+        <Width>2820</Width>
+        <Height>360</Height>
+        <Color>-16777216</Color>
+        <Font family="Microsoft Sans Serif" size="12" style="1" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>RightAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+        <source name="paye" formula="{@paye}" kind="FormulaField" />
+        <number />
+      </object>
+      <object>
+        <Name>Text5</Name>
+        <Kind>TextObject</Kind>
+        <Left>3720</Left>
+        <Top>120</Top>
+        <Width>720</Width>
+        <Height>360</Height>
+        <Text>درس :</Text>
+        <Color>-16777216</Color>
+        <Font family="Microsoft Sans Serif" size="12" style="1" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>LeftAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+      </object>
+      <object>
+        <Name>Text6</Name>
+        <Kind>TextObject</Kind>
+        <Left>6600</Left>
+        <Top>120</Top>
+        <Width>720</Width>
+        <Height>360</Height>
+        <Text>صنف :</Text>
+        <Color>-16777216</Color>
+        <Font family="Microsoft Sans Serif" size="12" style="1" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>LeftAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+      </object>
+      <object>
+        <Name>Class1</Name>
+        <Kind>FieldObject</Kind>
+        <Left>4560</Left>
+        <Top>120</Top>
+        <Width>1920</Width>
+        <Height>360</Height>
+        <Color>-16777216</Color>
+        <Font family="Microsoft Sans Serif" size="12" style="1" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>RightAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+        <source name="Class" formula="{@Class}" kind="FormulaField" />
+        <number />
+      </object>
+      <object>
+        <Name>Box2</Name>
+        <Kind>BoxObject</Kind>
+        <Left>135</Left>
+        <Top>40</Top>
+        <Width>10740</Width>
+        <Height>4640</Height>
+        <LineColor>-16777216</LineColor>
+        <LineThickness>20</LineThickness>
+        <LineStyle>SingleLine</LineStyle>
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>DefaultAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>SingleLine</LeftLineStyle>
+          <RightLineStyle>SingleLine</RightLineStyle>
+          <TopLineStyle>SingleLine</TopLineStyle>
+          <BottomLineStyle>SingleLine</BottomLineStyle>
+        </border>
+      </object>
+    </section>
+    <section name="GroupFooterSection1" kind="GroupFooter" height="460">
+      <format>
+        <EnableSuppress>true</EnableSuppress>
+        <EnableNewPageAfter>false</EnableNewPageAfter>
+        <EnableNewPageBefore>false</EnableNewPageBefore>
+        <EnableKeepTogether>true</EnableKeepTogether>
+        <EnableUnderlaySection>false</EnableUnderlaySection>
+        <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
+        <BackgroundColor>-1</BackgroundColor>
+      </format>
+    </section>
+    <section name="Section4" kind="ReportFooter" height="405">
+      <format>
+        <EnableSuppress>true</EnableSuppress>
+        <EnableNewPageAfter>false</EnableNewPageAfter>
+        <EnableNewPageBefore>false</EnableNewPageBefore>
+        <EnableKeepTogether>true</EnableKeepTogether>
+        <EnableUnderlaySection>false</EnableUnderlaySection>
+        <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
+        <BackgroundColor>-1</BackgroundColor>
+      </format>
+    </section>
+    <section name="Section5" kind="PageFooter" height="676">
+      <format>
+        <EnableSuppress>true</EnableSuppress>
+        <EnableNewPageAfter>false</EnableNewPageAfter>
+        <EnableNewPageBefore>false</EnableNewPageBefore>
+        <EnableKeepTogether>true</EnableKeepTogether>
+        <EnableUnderlaySection>false</EnableUnderlaySection>
+        <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
+        <BackgroundColor>-1</BackgroundColor>
+      </format>
+      <object>
+        <Name>PageNumber1</Name>
+        <Kind>FieldObject</Kind>
+        <Left>0</Left>
+        <Top>450</Top>
+        <Width>955</Width>
+        <Height>226</Height>
+        <Color>-16777216</Color>
+        <Font family="Arial" size="10" style="0" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>DefaultAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+        <source name="PageNumber" formula="PageNumber" kind="SpecialVarField" />
+        <number />
+      </object>
+    </section>
+  </sections>
+</report>

@@ -1,0 +1,41 @@
+name: Extract portable report layouts
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'dotnet/FreeSms.ReportHost/**'
+      - '.github/workflows/report-migration.yml'
+permissions:
+  contents: read
+jobs:
+  extract:
+    runs-on: windows-2025
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-dotnet@v6.0.0
+        with:
+          dotnet-version: '10.0.x'
+      - name: Build one-time migration tool
+        run: dotnet build dotnet/FreeSms.ReportHost/FreeSms.ReportHost.csproj -c Release -o dist/report-migration
+      - name: Install original template reader
+        shell: pwsh
+        run: |
+          $installer = Join-Path $PWD 'vendor/runtime/CRRedist2005_x86.msi'
+          $process = Start-Process msiexec.exe -ArgumentList "/i `"$installer`" /qn /norestart" -Wait -PassThru
+          if ($process.ExitCode -notin @(0,3010)) { exit 1 }
+      - name: Export original layouts
+        shell: pwsh
+        run: |
+          $process = Start-Process (Join-Path $PWD 'dist/report-migration/FreeSms.ReportHost.exe') -ArgumentList '--export-layouts' -PassThru
+          if (-not $process.WaitForExit(240000)) { $process.Kill(); throw 'Extraction timed out.' }
+          if ($process.ExitCode -ne 0) { Get-Content dist/report-migration/error.txt; exit 1 }
+      - uses: actions/upload-artifact@v7.0.2
+        if: always()
+        with:
+          name: portable-report-layouts
+          path: |
+            dist/report-migration/portable-layouts/
+            dist/report-migration/error.txt
+          retention-days: 7

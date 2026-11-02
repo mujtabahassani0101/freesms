@@ -21,6 +21,7 @@
     <RuntimeFrameworkVersion>10.0.14</RuntimeFrameworkVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="Compatibility.Licenses.cs" />
     <ProjectReference Include="../FreeSms.Core/FreeSms.Core.csproj" />
     <ProjectReference Include="../FreeSms.NativeControls/FreeSms.NativeControls.csproj" />
     <PackageReference Include="System.Data.OleDb" Version="10.0.14" />
@@ -218,7 +219,7 @@
     <EmbeddedResource Include="asdaa.resx" LogicalName="asdaa.resources" />
     <EmbeddedResource Include="asdl.resx" LogicalName="asdl.resources" />
     <EmbeddedResource Include="asdbh.resx" LogicalName="asdbh.resources" />
-    <EmbeddedResource Include="school_Af.exe.licenses" LogicalName="school_Af.exe.licenses" />
+    <Content Include="portable-layouts/*.xml" CopyToOutputDirectory="PreserveNewest" />
     <Content Include="../../native/assets/**/*" Link="native/assets/%(RecursiveDir)%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
     <Content Include="../../analysis/sql-resources/**/*" Link="analysis/sql-resources/%(RecursiveDir)%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
     <Content Include="../../original/installed/db/*" Link="original/installed/db/%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />

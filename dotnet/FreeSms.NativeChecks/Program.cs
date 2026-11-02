@@ -45,7 +45,7 @@ internal static class Program
             combo.DataSource = table; combo.DisplayMember = "mark"; combo.ValueMember = "id"; combo.SelectedValue = "41";
             Check(Convert.ToInt32(combo.SelectedValue) == 41, "bound combo identity");
             Check(ShamsiDate.GetShamsiDate(ShamsiDate.ShamsiToGregory("۱۴۰۵/۰۸/۱۱")) == "1405/08/11", "Afghan calendar roundtrip with Persian digits");
-            using var date = new DatePicker(); int changes = 0; date.DateChanged += (s,e) => changes++;
+            using var date = new DatePicker { the_date = new DateTime(2026, 11, 1) }; int changes = 0; date.DateChanged += (s,e) => changes++;
             date.the_date = new DateTime(2026, 11, 2);
             Check(changes == 1 && ShamsiDate.GetShamsiDate(date.the_date) == "1405/08/11", "date picker value and event");
             window.Hide();

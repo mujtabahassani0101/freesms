@@ -81,7 +81,12 @@ internal static class OriginalProgram
                         {
                             form.CreateControl();
                             using (var image = new System.Drawing.Bitmap(Math.Max(1, form.Width), Math.Max(1, form.Height)))
+                            {
                                 form.DrawToBitmap(image, new System.Drawing.Rectangle(System.Drawing.Point.Empty, image.Size));
+                                var pictures = Path.Combine(AppContext.BaseDirectory, "original-forms");
+                                Directory.CreateDirectory(pictures);
+                                image.Save(Path.Combine(pictures, definition.S("class") + ".png"));
+                            }
                             log.WriteLine(definition.S("name") + ": constructed and rendered");
                             log.Flush();
                         }
@@ -115,8 +120,13 @@ internal static class OriginalProgram
                                 form.DrawToBitmap(image, new System.Drawing.Rectangle(System.Drawing.Point.Empty, image.Size));
                                 image.Save(Path.Combine(AppContext.BaseDirectory, "startup-" + form.GetType().Name + ".png"));
                             }
-                        foreach (var form in windows.Reverse()) form.Close();
-                        Application.Exit();
+                        // Exit the smoke-test process after capturing evidence. Running the
+                        // original close handlers would display backup/exit confirmation dialogs.
+                        if (!seenLogin)
+                            File.WriteAllText(Path.Combine(AppContext.BaseDirectory, "original-runtime-error.txt"), "Original login did not open. Windows: " + string.Join(", ", windows.Select(form => form.GetType().Name + ": " + form.Text)));
+                        else
+                            File.WriteAllText(Path.Combine(AppContext.BaseDirectory, "native-startup-verification.txt"), "SUCCESS: .NET 10 database initialized and the original login opened. Authentication was not bypassed.");
+                        Environment.Exit(seenLogin ? 0 : 1);
                     };
                     timer.Start();
                     asdbx.RunOriginal();

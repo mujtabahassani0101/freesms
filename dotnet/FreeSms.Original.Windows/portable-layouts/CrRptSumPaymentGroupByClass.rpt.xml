@@ -1,0 +1,3089 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<report type="school_Af.Rpt.afPayment.CrRptSumPaymentGroupByClass">
+  <print>
+    <PaperOrientation>DefaultPaperOrientation</PaperOrientation>
+    <PaperSize>DefaultPaperSize</PaperSize>
+    <PaperSource>Auto</PaperSource>
+    <leftMargin>-2147483648</leftMargin>
+    <rightMargin>-2147483648</rightMargin>
+    <topMargin>-2147483648</topMargin>
+    <bottomMargin>-2147483648</bottomMargin>
+  </print>
+  <formulas>
+    <formula name="xClass">{sp_RptSumPayment.xClass}</formula>
+    <formula name="sch">{sp_RptSumPayment.sch}</formula>
+    <formula name="heder1">{sp_RptPayment.heder1}</formula>
+    <formula name="xYear">{sp_RptPayment.xYear}</formula>
+    <formula name="xPaye">{sp_RptSumPayment.xPaye}</formula>
+    <formula name="SumFee">{sp_RptSumPayment.SumFee}</formula>
+    <formula name="fee1">if isnull({sp_RptSumPayment.fee1}) then 0
+else {sp_RptSumPayment.fee1}
+</formula>
+    <formula name="fee2">if isnull({sp_RptSumPayment.fee2}) then 0
+else {sp_RptSumPayment.fee2}
+</formula>
+    <formula name="fee3">if isnull({sp_RptSumPayment.fee3}) then 0
+else {sp_RptSumPayment.fee3}
+</formula>
+    <formula name="fee4">if isnull({sp_RptSumPayment.fee4}) then 0
+else {sp_RptSumPayment.fee4}
+</formula>
+    <formula name="fee5">if isnull({sp_RptSumPayment.fee5}) then 0
+else {sp_RptSumPayment.fee5}
+</formula>
+    <formula name="fee6">if isnull({sp_RptSumPayment.fee6}) then 0
+else {sp_RptSumPayment.fee6}
+</formula>
+    <formula name="fee7">if isnull({sp_RptSumPayment.fee7}) then 0
+else {sp_RptSumPayment.fee7}
+</formula>
+    <formula name="fee8">if isnull({sp_RptSumPayment.fee8}) then 0
+else {sp_RptSumPayment.fee8}
+</formula>
+    <formula name="fee9">if isnull({sp_RptSumPayment.fee9}) then 0
+else {sp_RptSumPayment.fee9}
+</formula>
+    <formula name="Pay_fee">{sp_RptSumPayment.Pay_Fee}</formula>
+    <formula name="payfee1">if isnull({sp_RptSumPayment.Pay_fee1}) then 0
+else {sp_RptSumPayment.Pay_fee1}
+</formula>
+    <formula name="payfee2">if isnull({sp_RptSumPayment.Pay_fee2}) then 0
+else {sp_RptSumPayment.Pay_fee2}
+</formula>
+    <formula name="payfee3">if isnull({sp_RptSumPayment.Pay_fee3}) then 0
+else {sp_RptSumPayment.Pay_fee3}
+</formula>
+    <formula name="payfee4">if isnull({sp_RptSumPayment.Pay_fee4}) then 0
+else {sp_RptSumPayment.Pay_fee4}
+</formula>
+    <formula name="payfee5">if isnull({sp_RptSumPayment.Pay_fee5}) then 0
+else {sp_RptSumPayment.Pay_fee5}
+</formula>
+    <formula name="payfee6">if isnull({sp_RptSumPayment.Pay_fee6}) then 0
+else {sp_RptSumPayment.Pay_fee6}
+</formula>
+    <formula name="payfee7">if isnull({sp_RptSumPayment.Pay_fee7}) then 0
+else {sp_RptSumPayment.Pay_fee7}
+</formula>
+    <formula name="payfee8">if isnull({sp_RptSumPayment.Pay_fee8}) then 0
+else {sp_RptSumPayment.Pay_fee8}
+</formula>
+    <formula name="payfee9">if isnull({sp_RptSumPayment.Pay_fee9}) then 0
+else {sp_RptSumPayment.Pay_fee9}
+</formula>
+    <formula name="bfee1">{@fee1}-{@payfee1}</formula>
+    <formula name="bfee2">{@fee2}-{@payfee2}</formula>
+    <formula name="bfee3">{@fee3}-{@payfee3}</formula>
+    <formula name="bfee4">{@fee4}-{@payfee4}</formula>
+    <formula name="bfee5">{@fee5}-{@payfee5}</formula>
+    <formula name="bfee6">{@fee6}-{@payfee6}</formula>
+    <formula name="bfee7">{@fee7}-{@payfee7}</formula>
+    <formula name="bfee8">{@fee8}-{@payfee8}</formula>
+    <formula name="bfee9">{@fee9}-{@payfee9}</formula>
+    <formula name="bSumFee">{@SumFee}-{@Pay_fee}</formula>
+    <formula name="trans1">if isnull({sp_RptSumPayment.transport1}) then 0
+else {sp_RptSumPayment.transport1}
+</formula>
+    <formula name="trans2">if isnull({sp_RptSumPayment.transport2}) then 0
+else {sp_RptSumPayment.transport2}
+</formula>
+    <formula name="trans3">if isnull({sp_RptSumPayment.transport3}) then 0
+else {sp_RptSumPayment.transport3}
+</formula>
+    <formula name="trans4">if isnull({sp_RptSumPayment.transport4}) then 0
+else {sp_RptSumPayment.transport4}
+</formula>
+    <formula name="trans5">if isnull({sp_RptSumPayment.transport5}) then 0
+else {sp_RptSumPayment.transport5}
+</formula>
+    <formula name="trans6">if isnull({sp_RptSumPayment.transport6}) then 0
+else {sp_RptSumPayment.transport6}
+</formula>
+    <formula name="trans7">if isnull({sp_RptSumPayment.transport7}) then 0
+else {sp_RptSumPayment.transport7}
+</formula>
+    <formula name="trans8">if isnull({sp_RptSumPayment.transport8}) then 0
+else {sp_RptSumPayment.transport8}
+</formula>
+    <formula name="trans9">if isnull({sp_RptSumPayment.transport9}) then 0
+else {sp_RptSumPayment.transport9}
+</formula>
+    <formula name="paytrans1">if isnull({sp_RptSumPayment.Pay_transport1}) then 0
+else {sp_RptSumPayment.Pay_transport1}
+</formula>
+    <formula name="paytrans2">if isnull({sp_RptSumPayment.Pay_transport2}) then 0
+else {sp_RptSumPayment.Pay_transport2}
+</formula>
+    <formula name="paytrans3">if isnull({sp_RptSumPayment.Pay_transport3}) then 0
+else {sp_RptSumPayment.Pay_transport3}
+</formula>
+    <formula name="paytrans4">if isnull({sp_RptSumPayment.Pay_transport4}) then 0
+else {sp_RptSumPayment.Pay_transport4}
+</formula>
+    <formula name="paytrans5">if isnull({sp_RptSumPayment.Pay_transport5}) then 0
+else {sp_RptSumPayment.Pay_transport5}
+</formula>
+    <formula name="paytrans6">if isnull({sp_RptSumPayment.Pay_transport6}) then 0
+else {sp_RptSumPayment.Pay_transport6}
+</formula>
+    <formula name="paytrans7">if isnull({sp_RptSumPayment.Pay_transport7}) then 0
+else {sp_RptSumPayment.Pay_transport7}
+</formula>
+    <formula name="paytrans8">if isnull({sp_RptSumPayment.Pay_transport8}) then 0
+else {sp_RptSumPayment.Pay_transport8}
+</formula>
+    <formula name="paytrans9">if isnull({sp_RptSumPayment.Pay_transport9}) then 0
+else {sp_RptSumPayment.Pay_transport9}
+</formula>
+    <formula name="btrans1">{@trans1}-{@paytrans1}</formula>
+    <formula name="btrans2">{@trans2}-{@paytrans2}</formula>
+    <formula name="btrans3">{@trans3}-{@paytrans3}</formula>
+    <formula name="btrans4">{@trans4}-{@paytrans4}</formula>
+    <formula name="btrans5">{@trans5}-{@paytrans5}</formula>
+    <formula name="btrans6">{@trans6}-{@paytrans6}</formula>
+    <formula name="btrans7">{@trans7}-{@paytrans7}</formula>
+    <formula name="btrans8">{@trans8}-{@paytrans8}</formula>
+    <formula name="btrans9">{@trans9}-{@paytrans9}</formula>
+    <formula name="sumTrans">if isnull({sp_RptSumPayment.SumTransport}) then 0
+else {sp_RptSumPayment.SumTransport}</formula>
+    <formula name="pay_trans">if isnull({sp_RptSumPayment.Pay_Transport}) then 0
+else {sp_RptSumPayment.Pay_Transport}</formula>
+    <formula name="bSumTrans">{@sumTrans}-{@pay_trans}</formula>
+    <formula name="rptheder">'گزارش وضعیت مالی فیس و ترانسپورت بر اساس صنف سال    '+{sp_RptSumPayment.xYear}</formula>
+    <formula name="class">{sp_RptSumPayment.Class}</formula>
+  </formulas>
+  <parameters>
+    <parameter name="sch" type="StringField" />
+    <parameter name="heder1" type="StringField" />
+    <parameter name="heder2" type="StringField" />
+    <parameter name="foter1" type="StringField" />
+    <parameter name="foter2" type="StringField" />
+    <parameter name="sort" type="StringField" />
+  </parameters>
+  <groups>
+    <group field="{@xPaye}" />
+    <group field="{@xClass}" />
+  </groups>
+  <sorts>
+    <sort field="{@xPaye}" direction="AscendingOrder" />
+    <sort field="{@xClass}" direction="AscendingOrder" />
+  </sorts>
+  <sections>
+    <section name="Section1" kind="ReportHeader" height="220">
+      <format>
+        <EnableSuppress>true</EnableSuppress>
+        <EnableNewPageAfter>false</EnableNewPageAfter>
+        <EnableNewPageBefore>false</EnableNewPageBefore>
+        <EnableKeepTogether>true</EnableKeepTogether>
+        <EnableUnderlaySection>false</EnableUnderlaySection>
+        <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
+        <BackgroundColor>-1</BackgroundColor>
+      </format>
+    </section>
+    <section name="PageHeaderSection2" kind="PageHeader" height="480">
+      <format>
+        <EnableSuppress>true</EnableSuppress>
+        <EnableNewPageAfter>false</EnableNewPageAfter>
+        <EnableNewPageBefore>false</EnableNewPageBefore>
+        <EnableKeepTogether>true</EnableKeepTogether>
+        <EnableUnderlaySection>false</EnableUnderlaySection>
+        <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
+        <BackgroundColor>-1</BackgroundColor>
+      </format>
+    </section>
+    <section name="PageHeaderSection1" kind="PageHeader" height="860">
+      <format>
+        <EnableSuppress>true</EnableSuppress>
+        <EnableNewPageAfter>false</EnableNewPageAfter>
+        <EnableNewPageBefore>false</EnableNewPageBefore>
+        <EnableKeepTogether>true</EnableKeepTogether>
+        <EnableUnderlaySection>false</EnableUnderlaySection>
+        <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
+        <BackgroundColor>-1</BackgroundColor>
+      </format>
+    </section>
+    <section name="Section2" kind="PageHeader" height="1335">
+      <format>
+        <EnableSuppress>false</EnableSuppress>
+        <EnableNewPageAfter>false</EnableNewPageAfter>
+        <EnableNewPageBefore>false</EnableNewPageBefore>
+        <EnableKeepTogether>true</EnableKeepTogether>
+        <EnableUnderlaySection>false</EnableUnderlaySection>
+        <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
+        <BackgroundColor>-1</BackgroundColor>
+      </format>
+      <object>
+        <Name>rptheder1</Name>
+        <Kind>FieldObject</Kind>
+        <Left>3120</Left>
+        <Top>0</Top>
+        <Width>10080</Width>
+        <Height>630</Height>
+        <Color>-16777216</Color>
+        <Font family="Microsoft Sans Serif" size="12" style="1" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>HorizontalCenterAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+        <source name="rptheder" formula="{@rptheder}" kind="FormulaField" />
+        <number />
+      </object>
+      <object>
+        <Name>sch1</Name>
+        <Kind>FieldObject</Kind>
+        <Left>7800</Left>
+        <Top>720</Top>
+        <Width>5355</Width>
+        <Height>461</Height>
+        <Color>-16777216</Color>
+        <Font family="Microsoft Sans Serif" size="14" style="1" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>HorizontalCenterAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+        <source name="sch" formula="{@sch}" kind="FormulaField" />
+        <number />
+      </object>
+      <object>
+        <Name>class1</Name>
+        <Kind>FieldObject</Kind>
+        <Left>3120</Left>
+        <Top>720</Top>
+        <Width>4680</Width>
+        <Height>480</Height>
+        <Color>-16777216</Color>
+        <Font family="Microsoft Sans Serif" size="14" style="1" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>HorizontalCenterAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+        <source name="class" formula="{@class}" kind="FormulaField" />
+        <number />
+      </object>
+    </section>
+    <section name="GroupHeaderSection1" kind="GroupHeader" height="221">
+      <format>
+        <EnableSuppress>true</EnableSuppress>
+        <EnableNewPageAfter>false</EnableNewPageAfter>
+        <EnableNewPageBefore>false</EnableNewPageBefore>
+        <EnableKeepTogether>true</EnableKeepTogether>
+        <EnableUnderlaySection>false</EnableUnderlaySection>
+        <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
+        <BackgroundColor>-1</BackgroundColor>
+      </format>
+      <object>
+        <Name>GroupNamexPaye1</Name>
+        <Kind>FieldObject</Kind>
+        <Left>0</Left>
+        <Top>0</Top>
+        <Width>2554</Width>
+        <Height>221</Height>
+        <Color>-16777216</Color>
+        <Font family="Arial" size="10" style="1" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>DefaultAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+        <source name="GroupName ({@xPaye})" formula="GroupName ({@xPaye})" kind="GroupNameField" />
+        <number />
+      </object>
+    </section>
+    <section name="GroupHeaderSection2" kind="GroupHeader" height="230">
+      <format>
+        <EnableSuppress>true</EnableSuppress>
+        <EnableNewPageAfter>false</EnableNewPageAfter>
+        <EnableNewPageBefore>false</EnableNewPageBefore>
+        <EnableKeepTogether>true</EnableKeepTogether>
+        <EnableUnderlaySection>false</EnableUnderlaySection>
+        <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
+        <BackgroundColor>-1</BackgroundColor>
+      </format>
+      <object>
+        <Name>GroupNamexClass1</Name>
+        <Kind>FieldObject</Kind>
+        <Left>0</Left>
+        <Top>0</Top>
+        <Width>2599</Width>
+        <Height>230</Height>
+        <Color>-16777216</Color>
+        <Font family="Arial" size="10" style="1" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>DefaultAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+        <source name="GroupName ({@xClass})" formula="GroupName ({@xClass})" kind="GroupNameField" />
+        <number />
+      </object>
+    </section>
+    <section name="Section3" kind="Detail" height="360">
+      <format>
+        <EnableSuppress>true</EnableSuppress>
+        <EnableNewPageAfter>false</EnableNewPageAfter>
+        <EnableNewPageBefore>false</EnableNewPageBefore>
+        <EnableKeepTogether>true</EnableKeepTogether>
+        <EnableUnderlaySection>false</EnableUnderlaySection>
+        <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
+        <BackgroundColor>-1</BackgroundColor>
+      </format>
+      <object>
+        <Name>Line11</Name>
+        <Kind>LineObject</Kind>
+        <Left>120</Left>
+        <Top>0</Top>
+        <Width>10920</Width>
+        <Height>0</Height>
+        <LineColor>-16777056</LineColor>
+        <LineThickness>20</LineThickness>
+        <LineStyle>SingleLine</LineStyle>
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>DefaultAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777056</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>SingleLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+      </object>
+    </section>
+    <section name="GroupFooterSection2" kind="GroupFooter" height="8489">
+      <format>
+        <EnableSuppress>false</EnableSuppress>
+        <EnableNewPageAfter>false</EnableNewPageAfter>
+        <EnableNewPageBefore>false</EnableNewPageBefore>
+        <EnableKeepTogether>true</EnableKeepTogether>
+        <EnableUnderlaySection>false</EnableUnderlaySection>
+        <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
+        <BackgroundColor>-1</BackgroundColor>
+      </format>
+      <object>
+        <Name>Box4</Name>
+        <Kind>BoxObject</Kind>
+        <Left>600</Left>
+        <Top>7560</Top>
+        <Width>15120</Width>
+        <Height>720</Height>
+        <LineColor>-16777216</LineColor>
+        <LineThickness>0</LineThickness>
+        <LineStyle>NoLine</LineStyle>
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>DefaultAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-5247250</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+      </object>
+      <object>
+        <Name>Box3</Name>
+        <Kind>BoxObject</Kind>
+        <Left>600</Left>
+        <Top>554</Top>
+        <Width>15120</Width>
+        <Height>523</Height>
+        <LineColor>-16777216</LineColor>
+        <LineThickness>0</LineThickness>
+        <LineStyle>NoLine</LineStyle>
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>DefaultAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-16711809</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+      </object>
+      <object>
+        <Name>Text24</Name>
+        <Kind>TextObject</Kind>
+        <Left>14400</Left>
+        <Top>7680</Top>
+        <Width>1230</Width>
+        <Height>480</Height>
+        <Text>مجموع</Text>
+        <Color>-16777216</Color>
+        <Font family="Microsoft Sans Serif" size="14" style="1" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>HorizontalCenterAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+      </object>
+      <object>
+        <Name>fee11</Name>
+        <Kind>FieldObject</Kind>
+        <Left>12000</Left>
+        <Top>1320</Top>
+        <Width>2295</Width>
+        <Height>359</Height>
+        <Color>-16777216</Color>
+        <Font family="Microsoft Sans Serif" size="18" style="1" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>HorizontalCenterAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+        <source name="fee1" formula="{@fee1}" kind="FormulaField" />
+        <number />
+      </object>
+      <object>
+        <Name>fee21</Name>
+        <Kind>FieldObject</Kind>
+        <Left>12000</Left>
+        <Top>2040</Top>
+        <Width>2295</Width>
+        <Height>359</Height>
+        <Color>-16777216</Color>
+        <Font family="Microsoft Sans Serif" size="18" style="1" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>HorizontalCenterAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+        <source name="fee2" formula="{@fee2}" kind="FormulaField" />
+        <number />
+      </object>
+      <object>
+        <Name>fee31</Name>
+        <Kind>FieldObject</Kind>
+        <Left>12000</Left>
+        <Top>2760</Top>
+        <Width>2295</Width>
+        <Height>359</Height>
+        <Color>-16777216</Color>
+        <Font family="Microsoft Sans Serif" size="18" style="1" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>HorizontalCenterAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+        <source name="fee3" formula="{@fee3}" kind="FormulaField" />
+        <number />
+      </object>
+      <object>
+        <Name>fee41</Name>
+        <Kind>FieldObject</Kind>
+        <Left>12000</Left>
+        <Top>3480</Top>
+        <Width>2295</Width>
+        <Height>359</Height>
+        <Color>-16777216</Color>
+        <Font family="Microsoft Sans Serif" size="18" style="1" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>HorizontalCenterAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+        <source name="fee4" formula="{@fee4}" kind="FormulaField" />
+        <number />
+      </object>
+      <object>
+        <Name>fee51</Name>
+        <Kind>FieldObject</Kind>
+        <Left>12000</Left>
+        <Top>4200</Top>
+        <Width>2295</Width>
+        <Height>359</Height>
+        <Color>-16777216</Color>
+        <Font family="Microsoft Sans Serif" size="18" style="1" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>HorizontalCenterAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+        <source name="fee5" formula="{@fee5}" kind="FormulaField" />
+        <number />
+      </object>
+      <object>
+        <Name>fee61</Name>
+        <Kind>FieldObject</Kind>
+        <Left>12000</Left>
+        <Top>4920</Top>
+        <Width>2295</Width>
+        <Height>359</Height>
+        <Color>-16777216</Color>
+        <Font family="Microsoft Sans Serif" size="18" style="1" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>HorizontalCenterAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+        <source name="fee6" formula="{@fee6}" kind="FormulaField" />
+        <number />
+      </object>
+      <object>
+        <Name>fee71</Name>
+        <Kind>FieldObject</Kind>
+        <Left>12000</Left>
+        <Top>5640</Top>
+        <Width>2295</Width>
+        <Height>359</Height>
+        <Color>-16777216</Color>
+        <Font family="Microsoft Sans Serif" size="18" style="1" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>HorizontalCenterAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+        <source name="fee7" formula="{@fee7}" kind="FormulaField" />
+        <number />
+      </object>
+      <object>
+        <Name>fee81</Name>
+        <Kind>FieldObject</Kind>
+        <Left>12000</Left>
+        <Top>6360</Top>
+        <Width>2295</Width>
+        <Height>359</Height>
+        <Color>-16777216</Color>
+        <Font family="Microsoft Sans Serif" size="18" style="1" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>HorizontalCenterAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+        <source name="fee8" formula="{@fee8}" kind="FormulaField" />
+        <number />
+      </object>
+      <object>
+        <Name>fee91</Name>
+        <Kind>FieldObject</Kind>
+        <Left>12000</Left>
+        <Top>7080</Top>
+        <Width>2295</Width>
+        <Height>359</Height>
+        <Color>-16777216</Color>
+        <Font family="Microsoft Sans Serif" size="18" style="1" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>HorizontalCenterAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+        <source name="fee9" formula="{@fee9}" kind="FormulaField" />
+        <number />
+      </object>
+      <object>
+        <Name>Text1</Name>
+        <Kind>TextObject</Kind>
+        <Left>14520</Left>
+        <Top>1200</Top>
+        <Width>960</Width>
+        <Height>480</Height>
+        <Text>حمل</Text>
+        <Color>-16777216</Color>
+        <Font family="Microsoft Sans Serif" size="14" style="1" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>HorizontalCenterAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+      </object>
+      <object>
+        <Name>Text3</Name>
+        <Kind>TextObject</Kind>
+        <Left>14520</Left>
+        <Top>1920</Top>
+        <Width>960</Width>
+        <Height>480</Height>
+        <Text>ثور</Text>
+        <Color>-16777216</Color>
+        <Font family="Microsoft Sans Serif" size="14" style="1" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>HorizontalCenterAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+      </object>
+      <object>
+        <Name>Text4</Name>
+        <Kind>TextObject</Kind>
+        <Left>14520</Left>
+        <Top>2640</Top>
+        <Width>960</Width>
+        <Height>480</Height>
+        <Text>جوزا</Text>
+        <Color>-16777216</Color>
+        <Font family="Microsoft Sans Serif" size="14" style="1" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>HorizontalCenterAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+      </object>
+      <object>
+        <Name>Text5</Name>
+        <Kind>TextObject</Kind>
+        <Left>14520</Left>
+        <Top>3360</Top>
+        <Width>960</Width>
+        <Height>480</Height>
+        <Text>سرطان</Text>
+        <Color>-16777216</Color>
+        <Font family="Microsoft Sans Serif" size="14" style="1" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>HorizontalCenterAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+      </object>
+      <object>
+        <Name>Text8</Name>
+        <Kind>TextObject</Kind>
+        <Left>14520</Left>
+        <Top>4680</Top>
+        <Width>960</Width>
+        <Height>480</Height>
+        <Text>سنبله</Text>
+        <Color>-16777216</Color>
+        <Font family="Microsoft Sans Serif" size="14" style="1" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>HorizontalCenterAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+      </object>
+      <object>
+        <Name>Text9</Name>
+        <Kind>TextObject</Kind>
+        <Left>14520</Left>
+        <Top>5400</Top>
+        <Width>960</Width>
+        <Height>480</Height>
+        <Text>میزان</Text>
+        <Color>-16777216</Color>
+        <Font family="Microsoft Sans Serif" size="14" style="1" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>HorizontalCenterAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+      </object>
+      <object>
+        <Name>Text10</Name>
+        <Kind>TextObject</Kind>
+        <Left>14520</Left>
+        <Top>6120</Top>
+        <Width>960</Width>
+        <Height>480</Height>
+        <Text>عقرب</Text>
+        <Color>-16777216</Color>
+        <Font family="Microsoft Sans Serif" size="14" style="1" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>HorizontalCenterAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+      </object>
+      <object>
+        <Name>Text11</Name>
+        <Kind>TextObject</Kind>
+        <Left>14520</Left>
+        <Top>6840</Top>
+        <Width>960</Width>
+        <Height>480</Height>
+        <Text>قوس</Text>
+        <Color>-16777216</Color>
+        <Font family="Microsoft Sans Serif" size="14" style="1" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>HorizontalCenterAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+      </object>
+      <object>
+        <Name>SumFee1</Name>
+        <Kind>FieldObject</Kind>
+        <Left>12000</Left>
+        <Top>7800</Top>
+        <Width>2295</Width>
+        <Height>359</Height>
+        <Color>-16777216</Color>
+        <Font family="Microsoft Sans Serif" size="18" style="1" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>HorizontalCenterAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+        <source name="SumFee" formula="{@SumFee}" kind="FormulaField" />
+        <number />
+      </object>
+      <object>
+        <Name>payfee11</Name>
+        <Kind>FieldObject</Kind>
+        <Left>9720</Left>
+        <Top>1320</Top>
+        <Width>2295</Width>
+        <Height>359</Height>
+        <Color>-16777216</Color>
+        <Font family="Microsoft Sans Serif" size="18" style="1" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>HorizontalCenterAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+        <source name="payfee1" formula="{@payfee1}" kind="FormulaField" />
+        <number />
+      </object>
+      <object>
+        <Name>payfee21</Name>
+        <Kind>FieldObject</Kind>
+        <Left>9720</Left>
+        <Top>2040</Top>
+        <Width>2295</Width>
+        <Height>359</Height>
+        <Color>-16777216</Color>
+        <Font family="Microsoft Sans Serif" size="18" style="1" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>HorizontalCenterAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+        <source name="payfee2" formula="{@payfee2}" kind="FormulaField" />
+        <number />
+      </object>
+      <object>
+        <Name>payfee31</Name>
+        <Kind>FieldObject</Kind>
+        <Left>9720</Left>
+        <Top>2760</Top>
+        <Width>2295</Width>
+        <Height>359</Height>
+        <Color>-16777216</Color>
+        <Font family="Microsoft Sans Serif" size="18" style="1" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>HorizontalCenterAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+        <source name="payfee3" formula="{@payfee3}" kind="FormulaField" />
+        <number />
+      </object>
+      <object>
+        <Name>payfee41</Name>
+        <Kind>FieldObject</Kind>
+        <Left>9720</Left>
+        <Top>3480</Top>
+        <Width>2295</Width>
+        <Height>359</Height>
+        <Color>-16777216</Color>
+        <Font family="Microsoft Sans Serif" size="18" style="1" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>HorizontalCenterAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+        <source name="payfee4" formula="{@payfee4}" kind="FormulaField" />
+        <number />
+      </object>
+      <object>
+        <Name>payfee51</Name>
+        <Kind>FieldObject</Kind>
+        <Left>9720</Left>
+        <Top>4200</Top>
+        <Width>2295</Width>
+        <Height>359</Height>
+        <Color>-16777216</Color>
+        <Font family="Microsoft Sans Serif" size="18" style="1" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>HorizontalCenterAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+        <source name="payfee5" formula="{@payfee5}" kind="FormulaField" />
+        <number />
+      </object>
+      <object>
+        <Name>payfee61</Name>
+        <Kind>FieldObject</Kind>
+        <Left>9720</Left>
+        <Top>4920</Top>
+        <Width>2295</Width>
+        <Height>359</Height>
+        <Color>-16777216</Color>
+        <Font family="Microsoft Sans Serif" size="18" style="1" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>HorizontalCenterAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+        <source name="payfee6" formula="{@payfee6}" kind="FormulaField" />
+        <number />
+      </object>
+      <object>
+        <Name>payfee71</Name>
+        <Kind>FieldObject</Kind>
+        <Left>9720</Left>
+        <Top>5640</Top>
+        <Width>2295</Width>
+        <Height>359</Height>
+        <Color>-16777216</Color>
+        <Font family="Microsoft Sans Serif" size="18" style="1" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>HorizontalCenterAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+        <source name="payfee7" formula="{@payfee7}" kind="FormulaField" />
+        <number />
+      </object>
+      <object>
+        <Name>payfee81</Name>
+        <Kind>FieldObject</Kind>
+        <Left>9720</Left>
+        <Top>6360</Top>
+        <Width>2295</Width>
+        <Height>359</Height>
+        <Color>-16777216</Color>
+        <Font family="Microsoft Sans Serif" size="18" style="1" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>HorizontalCenterAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+        <source name="payfee8" formula="{@payfee8}" kind="FormulaField" />
+        <number />
+      </object>
+      <object>
+        <Name>payfee91</Name>
+        <Kind>FieldObject</Kind>
+        <Left>9720</Left>
+        <Top>7080</Top>
+        <Width>2295</Width>
+        <Height>359</Height>
+        <Color>-16777216</Color>
+        <Font family="Microsoft Sans Serif" size="18" style="1" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>HorizontalCenterAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+        <source name="payfee9" formula="{@payfee9}" kind="FormulaField" />
+        <number />
+      </object>
+      <object>
+        <Name>Payfee1</Name>
+        <Kind>FieldObject</Kind>
+        <Left>9720</Left>
+        <Top>7800</Top>
+        <Width>2295</Width>
+        <Height>359</Height>
+        <Color>-16777216</Color>
+        <Font family="Microsoft Sans Serif" size="18" style="1" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>HorizontalCenterAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+        <source name="Pay_fee" formula="{@Pay_fee}" kind="FormulaField" />
+        <number />
+      </object>
+      <object>
+        <Name>bfee11</Name>
+        <Kind>FieldObject</Kind>
+        <Left>7440</Left>
+        <Top>1320</Top>
+        <Width>2295</Width>
+        <Height>359</Height>
+        <Color>-16777216</Color>
+        <Font family="Microsoft Sans Serif" size="18" style="1" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>HorizontalCenterAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+        <source name="bfee1" formula="{@bfee1}" kind="FormulaField" />
+        <number />
+      </object>
+      <object>
+        <Name>bfee21</Name>
+        <Kind>FieldObject</Kind>
+        <Left>7440</Left>
+        <Top>2040</Top>
+        <Width>2295</Width>
+        <Height>359</Height>
+        <Color>-16777216</Color>
+        <Font family="Microsoft Sans Serif" size="18" style="1" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>HorizontalCenterAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+        <source name="bfee2" formula="{@bfee2}" kind="FormulaField" />
+        <number />
+      </object>
+      <object>
+        <Name>bfee31</Name>
+        <Kind>FieldObject</Kind>
+        <Left>7440</Left>
+        <Top>2760</Top>
+        <Width>2295</Width>
+        <Height>359</Height>
+        <Color>-16777216</Color>
+        <Font family="Microsoft Sans Serif" size="18" style="1" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>HorizontalCenterAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+        <source name="bfee3" formula="{@bfee3}" kind="FormulaField" />
+        <number />
+      </object>
+      <object>
+        <Name>bfee41</Name>
+        <Kind>FieldObject</Kind>
+        <Left>7440</Left>
+        <Top>3480</Top>
+        <Width>2295</Width>
+        <Height>359</Height>
+        <Color>-16777216</Color>
+        <Font family="Microsoft Sans Serif" size="18" style="1" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>HorizontalCenterAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+        <source name="bfee4" formula="{@bfee4}" kind="FormulaField" />
+        <number />
+      </object>
+      <object>
+        <Name>bfee51</Name>
+        <Kind>FieldObject</Kind>
+        <Left>7440</Left>
+        <Top>4200</Top>
+        <Width>2295</Width>
+        <Height>359</Height>
+        <Color>-16777216</Color>
+        <Font family="Microsoft Sans Serif" size="18" style="1" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>HorizontalCenterAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+        <source name="bfee5" formula="{@bfee5}" kind="FormulaField" />
+        <number />
+      </object>
+      <object>
+        <Name>bfee61</Name>
+        <Kind>FieldObject</Kind>
+        <Left>7440</Left>
+        <Top>4920</Top>
+        <Width>2295</Width>
+        <Height>359</Height>
+        <Color>-16777216</Color>
+        <Font family="Microsoft Sans Serif" size="18" style="1" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>HorizontalCenterAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+        <source name="bfee6" formula="{@bfee6}" kind="FormulaField" />
+        <number />
+      </object>
+      <object>
+        <Name>bfee71</Name>
+        <Kind>FieldObject</Kind>
+        <Left>7440</Left>
+        <Top>5640</Top>
+        <Width>2295</Width>
+        <Height>359</Height>
+        <Color>-16777216</Color>
+        <Font family="Microsoft Sans Serif" size="18" style="1" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>HorizontalCenterAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+        <source name="bfee7" formula="{@bfee7}" kind="FormulaField" />
+        <number />
+      </object>
+      <object>
+        <Name>bfee81</Name>
+        <Kind>FieldObject</Kind>
+        <Left>7440</Left>
+        <Top>6360</Top>
+        <Width>2295</Width>
+        <Height>359</Height>
+        <Color>-16777216</Color>
+        <Font family="Microsoft Sans Serif" size="18" style="1" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>HorizontalCenterAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+        <source name="bfee8" formula="{@bfee8}" kind="FormulaField" />
+        <number />
+      </object>
+      <object>
+        <Name>bfee91</Name>
+        <Kind>FieldObject</Kind>
+        <Left>7440</Left>
+        <Top>7080</Top>
+        <Width>2295</Width>
+        <Height>359</Height>
+        <Color>-16777216</Color>
+        <Font family="Microsoft Sans Serif" size="18" style="1" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>HorizontalCenterAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+        <source name="bfee9" formula="{@bfee9}" kind="FormulaField" />
+        <number />
+      </object>
+      <object>
+        <Name>bSumFee1</Name>
+        <Kind>FieldObject</Kind>
+        <Left>7440</Left>
+        <Top>7800</Top>
+        <Width>2295</Width>
+        <Height>359</Height>
+        <Color>-16777216</Color>
+        <Font family="Microsoft Sans Serif" size="18" style="1" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>HorizontalCenterAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+        <source name="bSumFee" formula="{@bSumFee}" kind="FormulaField" />
+        <number />
+      </object>
+      <object>
+        <Name>Box1</Name>
+        <Kind>BoxObject</Kind>
+        <Left>600</Left>
+        <Top>552</Top>
+        <Width>15120</Width>
+        <Height>7728</Height>
+        <LineColor>-16777216</LineColor>
+        <LineThickness>20</LineThickness>
+        <LineStyle>SingleLine</LineStyle>
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>DefaultAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>SingleLine</LeftLineStyle>
+          <RightLineStyle>SingleLine</RightLineStyle>
+          <TopLineStyle>SingleLine</TopLineStyle>
+          <BottomLineStyle>SingleLine</BottomLineStyle>
+        </border>
+      </object>
+      <object>
+        <Name>Line1</Name>
+        <Kind>LineObject</Kind>
+        <Left>600</Left>
+        <Top>1797</Top>
+        <Width>15120</Width>
+        <Height>0</Height>
+        <LineColor>-16777216</LineColor>
+        <LineThickness>20</LineThickness>
+        <LineStyle>SingleLine</LineStyle>
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>DefaultAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>SingleLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+      </object>
+      <object>
+        <Name>Line2</Name>
+        <Kind>LineObject</Kind>
+        <Left>600</Left>
+        <Top>1077</Top>
+        <Width>15120</Width>
+        <Height>0</Height>
+        <LineColor>-16777216</LineColor>
+        <LineThickness>20</LineThickness>
+        <LineStyle>SingleLine</LineStyle>
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>DefaultAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>SingleLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+      </object>
+      <object>
+        <Name>Line3</Name>
+        <Kind>LineObject</Kind>
+        <Left>600</Left>
+        <Top>2520</Top>
+        <Width>15120</Width>
+        <Height>0</Height>
+        <LineColor>-16777216</LineColor>
+        <LineThickness>20</LineThickness>
+        <LineStyle>SingleLine</LineStyle>
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>DefaultAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>SingleLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+      </object>
+      <object>
+        <Name>Line4</Name>
+        <Kind>LineObject</Kind>
+        <Left>14310</Left>
+        <Top>552</Top>
+        <Width>0</Width>
+        <Height>7725</Height>
+        <LineColor>-16777216</LineColor>
+        <LineThickness>20</LineThickness>
+        <LineStyle>SingleLine</LineStyle>
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>DefaultAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>SingleLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+      </object>
+      <object>
+        <Name>Line5</Name>
+        <Kind>LineObject</Kind>
+        <Left>12000</Left>
+        <Top>552</Top>
+        <Width>0</Width>
+        <Height>7713</Height>
+        <LineColor>-16777216</LineColor>
+        <LineThickness>20</LineThickness>
+        <LineStyle>SingleLine</LineStyle>
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>DefaultAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>SingleLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+      </object>
+      <object>
+        <Name>Text2</Name>
+        <Kind>TextObject</Kind>
+        <Left>14400</Left>
+        <Top>600</Top>
+        <Width>1200</Width>
+        <Height>480</Height>
+        <Text>ماه</Text>
+        <Color>-16777216</Color>
+        <Font family="Microsoft Sans Serif" size="14" style="1" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>HorizontalCenterAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+      </object>
+      <object>
+        <Name>Text6</Name>
+        <Kind>TextObject</Kind>
+        <Left>12000</Left>
+        <Top>600</Top>
+        <Width>2280</Width>
+        <Height>480</Height>
+        <Text>قابل جمع آوری</Text>
+        <Color>-16777216</Color>
+        <Font family="Microsoft Sans Serif" size="14" style="1" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>HorizontalCenterAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+      </object>
+      <object>
+        <Name>Text12</Name>
+        <Kind>TextObject</Kind>
+        <Left>9720</Left>
+        <Top>600</Top>
+        <Width>2280</Width>
+        <Height>480</Height>
+        <Text>جمع آوری شده</Text>
+        <Color>-16777216</Color>
+        <Font family="Microsoft Sans Serif" size="14" style="1" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>HorizontalCenterAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+      </object>
+      <object>
+        <Name>Text13</Name>
+        <Kind>TextObject</Kind>
+        <Left>7440</Left>
+        <Top>600</Top>
+        <Width>2280</Width>
+        <Height>480</Height>
+        <Text>باقی مانده</Text>
+        <Color>-16777216</Color>
+        <Font family="Microsoft Sans Serif" size="14" style="1" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>HorizontalCenterAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+      </object>
+      <object>
+        <Name>Line6</Name>
+        <Kind>LineObject</Kind>
+        <Left>9720</Left>
+        <Top>552</Top>
+        <Width>0</Width>
+        <Height>7713</Height>
+        <LineColor>-16777216</LineColor>
+        <LineThickness>20</LineThickness>
+        <LineStyle>SingleLine</LineStyle>
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>DefaultAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>SingleLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+      </object>
+      <object>
+        <Name>Line7</Name>
+        <Kind>LineObject</Kind>
+        <Left>7440</Left>
+        <Top>0</Top>
+        <Width>0</Width>
+        <Height>8265</Height>
+        <LineColor>-16777216</LineColor>
+        <LineThickness>20</LineThickness>
+        <LineStyle>SingleLine</LineStyle>
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>DefaultAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>SingleLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+      </object>
+      <object>
+        <Name>trans11</Name>
+        <Kind>FieldObject</Kind>
+        <Left>5160</Left>
+        <Top>1320</Top>
+        <Width>2295</Width>
+        <Height>359</Height>
+        <Color>-16777216</Color>
+        <Font family="Microsoft Sans Serif" size="18" style="0" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>HorizontalCenterAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+        <source name="trans1" formula="{@trans1}" kind="FormulaField" />
+        <number />
+      </object>
+      <object>
+        <Name>trans21</Name>
+        <Kind>FieldObject</Kind>
+        <Left>5160</Left>
+        <Top>2040</Top>
+        <Width>2295</Width>
+        <Height>359</Height>
+        <Color>-16777216</Color>
+        <Font family="Microsoft Sans Serif" size="18" style="0" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>HorizontalCenterAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+        <source name="trans2" formula="{@trans2}" kind="FormulaField" />
+        <number />
+      </object>
+      <object>
+        <Name>paytrans11</Name>
+        <Kind>FieldObject</Kind>
+        <Left>2880</Left>
+        <Top>1320</Top>
+        <Width>2295</Width>
+        <Height>359</Height>
+        <Color>-16777216</Color>
+        <Font family="Microsoft Sans Serif" size="18" style="0" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>HorizontalCenterAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+        <source name="paytrans1" formula="{@paytrans1}" kind="FormulaField" />
+        <number />
+      </object>
+      <object>
+        <Name>btrans11</Name>
+        <Kind>FieldObject</Kind>
+        <Left>600</Left>
+        <Top>1320</Top>
+        <Width>2295</Width>
+        <Height>359</Height>
+        <Color>-16777216</Color>
+        <Font family="Microsoft Sans Serif" size="18" style="0" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>HorizontalCenterAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+        <source name="btrans1" formula="{@btrans1}" kind="FormulaField" />
+        <number />
+      </object>
+      <object>
+        <Name>Line8</Name>
+        <Kind>LineObject</Kind>
+        <Left>600</Left>
+        <Top>3240</Top>
+        <Width>15120</Width>
+        <Height>0</Height>
+        <LineColor>-16777216</LineColor>
+        <LineThickness>20</LineThickness>
+        <LineStyle>SingleLine</LineStyle>
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>DefaultAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>SingleLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+      </object>
+      <object>
+        <Name>Text7</Name>
+        <Kind>TextObject</Kind>
+        <Left>14760</Left>
+        <Top>4080</Top>
+        <Width>510</Width>
+        <Height>359</Height>
+        <Text>اسد</Text>
+        <Color>-16777216</Color>
+        <Font family="Microsoft Sans Serif" size="14" style="1" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>HorizontalCenterAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+      </object>
+      <object>
+        <Name>Line10</Name>
+        <Kind>LineObject</Kind>
+        <Left>600</Left>
+        <Top>3960</Top>
+        <Width>15120</Width>
+        <Height>0</Height>
+        <LineColor>-16777216</LineColor>
+        <LineThickness>20</LineThickness>
+        <LineStyle>SingleLine</LineStyle>
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>DefaultAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>SingleLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+      </object>
+      <object>
+        <Name>Line12</Name>
+        <Kind>LineObject</Kind>
+        <Left>600</Left>
+        <Top>4680</Top>
+        <Width>15120</Width>
+        <Height>0</Height>
+        <LineColor>-16777216</LineColor>
+        <LineThickness>20</LineThickness>
+        <LineStyle>SingleLine</LineStyle>
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>DefaultAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>SingleLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+      </object>
+      <object>
+        <Name>Line13</Name>
+        <Kind>LineObject</Kind>
+        <Left>600</Left>
+        <Top>5400</Top>
+        <Width>15120</Width>
+        <Height>0</Height>
+        <LineColor>-16777216</LineColor>
+        <LineThickness>20</LineThickness>
+        <LineStyle>SingleLine</LineStyle>
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>DefaultAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>SingleLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+      </object>
+      <object>
+        <Name>Line14</Name>
+        <Kind>LineObject</Kind>
+        <Left>600</Left>
+        <Top>6120</Top>
+        <Width>15120</Width>
+        <Height>0</Height>
+        <LineColor>-16777216</LineColor>
+        <LineThickness>20</LineThickness>
+        <LineStyle>SingleLine</LineStyle>
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>DefaultAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>SingleLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+      </object>
+      <object>
+        <Name>Line15</Name>
+        <Kind>LineObject</Kind>
+        <Left>600</Left>
+        <Top>6840</Top>
+        <Width>15120</Width>
+        <Height>0</Height>
+        <LineColor>-16777216</LineColor>
+        <LineThickness>20</LineThickness>
+        <LineStyle>SingleLine</LineStyle>
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>DefaultAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>SingleLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+      </object>
+      <object>
+        <Name>Line16</Name>
+        <Kind>LineObject</Kind>
+        <Left>600</Left>
+        <Top>7560</Top>
+        <Width>15120</Width>
+        <Height>0</Height>
+        <LineColor>-16777216</LineColor>
+        <LineThickness>20</LineThickness>
+        <LineStyle>SingleLine</LineStyle>
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>DefaultAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>SingleLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+      </object>
+      <object>
+        <Name>btrans21</Name>
+        <Kind>FieldObject</Kind>
+        <Left>600</Left>
+        <Top>2040</Top>
+        <Width>2295</Width>
+        <Height>359</Height>
+        <Color>-16777216</Color>
+        <Font family="Microsoft Sans Serif" size="18" style="0" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>HorizontalCenterAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+        <source name="btrans2" formula="{@btrans2}" kind="FormulaField" />
+        <number />
+      </object>
+      <object>
+        <Name>btrans31</Name>
+        <Kind>FieldObject</Kind>
+        <Left>600</Left>
+        <Top>2760</Top>
+        <Width>2295</Width>
+        <Height>359</Height>
+        <Color>-16777216</Color>
+        <Font family="Microsoft Sans Serif" size="18" style="0" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>HorizontalCenterAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+        <source name="btrans3" formula="{@btrans3}" kind="FormulaField" />
+        <number />
+      </object>
+      <object>
+        <Name>btrans41</Name>
+        <Kind>FieldObject</Kind>
+        <Left>600</Left>
+        <Top>3480</Top>
+        <Width>2295</Width>
+        <Height>359</Height>
+        <Color>-16777216</Color>
+        <Font family="Microsoft Sans Serif" size="18" style="0" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>HorizontalCenterAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+        <source name="btrans4" formula="{@btrans4}" kind="FormulaField" />
+        <number />
+      </object>
+      <object>
+        <Name>btrans51</Name>
+        <Kind>FieldObject</Kind>
+        <Left>600</Left>
+        <Top>4200</Top>
+        <Width>2295</Width>
+        <Height>359</Height>
+        <Color>-16777216</Color>
+        <Font family="Microsoft Sans Serif" size="18" style="0" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>HorizontalCenterAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+        <source name="btrans5" formula="{@btrans5}" kind="FormulaField" />
+        <number />
+      </object>
+      <object>
+        <Name>btrans61</Name>
+        <Kind>FieldObject</Kind>
+        <Left>600</Left>
+        <Top>4920</Top>
+        <Width>2295</Width>
+        <Height>359</Height>
+        <Color>-16777216</Color>
+        <Font family="Microsoft Sans Serif" size="18" style="0" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>HorizontalCenterAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+        <source name="btrans6" formula="{@btrans6}" kind="FormulaField" />
+        <number />
+      </object>
+      <object>
+        <Name>btrans71</Name>
+        <Kind>FieldObject</Kind>
+        <Left>600</Left>
+        <Top>5640</Top>
+        <Width>2295</Width>
+        <Height>359</Height>
+        <Color>-16777216</Color>
+        <Font family="Microsoft Sans Serif" size="18" style="0" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>HorizontalCenterAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+        <source name="btrans7" formula="{@btrans7}" kind="FormulaField" />
+        <number />
+      </object>
+      <object>
+        <Name>btrans81</Name>
+        <Kind>FieldObject</Kind>
+        <Left>600</Left>
+        <Top>6360</Top>
+        <Width>2295</Width>
+        <Height>359</Height>
+        <Color>-16777216</Color>
+        <Font family="Microsoft Sans Serif" size="18" style="0" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>HorizontalCenterAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+        <source name="btrans8" formula="{@btrans8}" kind="FormulaField" />
+        <number />
+      </object>
+      <object>
+        <Name>btrans91</Name>
+        <Kind>FieldObject</Kind>
+        <Left>600</Left>
+        <Top>7080</Top>
+        <Width>2295</Width>
+        <Height>359</Height>
+        <Color>-16777216</Color>
+        <Font family="Microsoft Sans Serif" size="18" style="0" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>HorizontalCenterAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+        <source name="btrans9" formula="{@btrans9}" kind="FormulaField" />
+        <number />
+      </object>
+      <object>
+        <Name>sumTrans1</Name>
+        <Kind>FieldObject</Kind>
+        <Left>5160</Left>
+        <Top>7800</Top>
+        <Width>2295</Width>
+        <Height>359</Height>
+        <Color>-16777216</Color>
+        <Font family="Microsoft Sans Serif" size="18" style="0" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>HorizontalCenterAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+        <source name="sumTrans" formula="{@sumTrans}" kind="FormulaField" />
+        <number />
+      </object>
+      <object>
+        <Name>paytrans1</Name>
+        <Kind>FieldObject</Kind>
+        <Left>2880</Left>
+        <Top>7800</Top>
+        <Width>2295</Width>
+        <Height>359</Height>
+        <Color>-16777216</Color>
+        <Font family="Microsoft Sans Serif" size="18" style="0" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>HorizontalCenterAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+        <source name="pay_trans" formula="{@pay_trans}" kind="FormulaField" />
+        <number />
+      </object>
+      <object>
+        <Name>bSumTrans1</Name>
+        <Kind>FieldObject</Kind>
+        <Left>600</Left>
+        <Top>7800</Top>
+        <Width>2295</Width>
+        <Height>359</Height>
+        <Color>-16777216</Color>
+        <Font family="Microsoft Sans Serif" size="18" style="0" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>HorizontalCenterAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+        <source name="bSumTrans" formula="{@bSumTrans}" kind="FormulaField" />
+        <number />
+      </object>
+      <object>
+        <Name>paytrans21</Name>
+        <Kind>FieldObject</Kind>
+        <Left>2880</Left>
+        <Top>2040</Top>
+        <Width>2295</Width>
+        <Height>359</Height>
+        <Color>-16777216</Color>
+        <Font family="Microsoft Sans Serif" size="18" style="0" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>HorizontalCenterAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+        <source name="paytrans2" formula="{@paytrans2}" kind="FormulaField" />
+        <number />
+      </object>
+      <object>
+        <Name>paytrans41</Name>
+        <Kind>FieldObject</Kind>
+        <Left>2880</Left>
+        <Top>3480</Top>
+        <Width>2295</Width>
+        <Height>359</Height>
+        <Color>-16777216</Color>
+        <Font family="Microsoft Sans Serif" size="18" style="0" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>HorizontalCenterAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+        <source name="paytrans4" formula="{@paytrans4}" kind="FormulaField" />
+        <number />
+      </object>
+      <object>
+        <Name>paytrans31</Name>
+        <Kind>FieldObject</Kind>
+        <Left>2880</Left>
+        <Top>2760</Top>
+        <Width>2295</Width>
+        <Height>359</Height>
+        <Color>-16777216</Color>
+        <Font family="Microsoft Sans Serif" size="18" style="0" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>HorizontalCenterAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+        <source name="paytrans3" formula="{@paytrans3}" kind="FormulaField" />
+        <number />
+      </object>
+      <object>
+        <Name>paytrans51</Name>
+        <Kind>FieldObject</Kind>
+        <Left>2880</Left>
+        <Top>4200</Top>
+        <Width>2295</Width>
+        <Height>359</Height>
+        <Color>-16777216</Color>
+        <Font family="Microsoft Sans Serif" size="18" style="0" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>HorizontalCenterAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+        <source name="paytrans5" formula="{@paytrans5}" kind="FormulaField" />
+        <number />
+      </object>
+      <object>
+        <Name>paytrans61</Name>
+        <Kind>FieldObject</Kind>
+        <Left>2880</Left>
+        <Top>4920</Top>
+        <Width>2295</Width>
+        <Height>359</Height>
+        <Color>-16777216</Color>
+        <Font family="Microsoft Sans Serif" size="18" style="0" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>HorizontalCenterAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+        <source name="paytrans6" formula="{@paytrans6}" kind="FormulaField" />
+        <number />
+      </object>
+      <object>
+        <Name>paytrans71</Name>
+        <Kind>FieldObject</Kind>
+        <Left>2880</Left>
+        <Top>5640</Top>
+        <Width>2295</Width>
+        <Height>359</Height>
+        <Color>-16777216</Color>
+        <Font family="Microsoft Sans Serif" size="18" style="0" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>HorizontalCenterAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+        <source name="paytrans7" formula="{@paytrans7}" kind="FormulaField" />
+        <number />
+      </object>
+      <object>
+        <Name>paytrans81</Name>
+        <Kind>FieldObject</Kind>
+        <Left>2880</Left>
+        <Top>6360</Top>
+        <Width>2295</Width>
+        <Height>359</Height>
+        <Color>-16777216</Color>
+        <Font family="Microsoft Sans Serif" size="18" style="0" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>HorizontalCenterAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+        <source name="paytrans8" formula="{@paytrans8}" kind="FormulaField" />
+        <number />
+      </object>
+      <object>
+        <Name>paytrans91</Name>
+        <Kind>FieldObject</Kind>
+        <Left>2880</Left>
+        <Top>7080</Top>
+        <Width>2295</Width>
+        <Height>359</Height>
+        <Color>-16777216</Color>
+        <Font family="Microsoft Sans Serif" size="18" style="0" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>HorizontalCenterAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+        <source name="paytrans9" formula="{@paytrans9}" kind="FormulaField" />
+        <number />
+      </object>
+      <object>
+        <Name>trans31</Name>
+        <Kind>FieldObject</Kind>
+        <Left>5160</Left>
+        <Top>2760</Top>
+        <Width>2295</Width>
+        <Height>359</Height>
+        <Color>-16777216</Color>
+        <Font family="Microsoft Sans Serif" size="18" style="0" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>HorizontalCenterAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+        <source name="trans3" formula="{@trans3}" kind="FormulaField" />
+        <number />
+      </object>
+      <object>
+        <Name>trans41</Name>
+        <Kind>FieldObject</Kind>
+        <Left>5160</Left>
+        <Top>3480</Top>
+        <Width>2295</Width>
+        <Height>359</Height>
+        <Color>-16777216</Color>
+        <Font family="Microsoft Sans Serif" size="18" style="0" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>HorizontalCenterAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+        <source name="trans4" formula="{@trans4}" kind="FormulaField" />
+        <number />
+      </object>
+      <object>
+        <Name>trans51</Name>
+        <Kind>FieldObject</Kind>
+        <Left>5160</Left>
+        <Top>4200</Top>
+        <Width>2295</Width>
+        <Height>359</Height>
+        <Color>-16777216</Color>
+        <Font family="Microsoft Sans Serif" size="18" style="0" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>HorizontalCenterAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+        <source name="trans5" formula="{@trans5}" kind="FormulaField" />
+        <number />
+      </object>
+      <object>
+        <Name>trans61</Name>
+        <Kind>FieldObject</Kind>
+        <Left>5160</Left>
+        <Top>4920</Top>
+        <Width>2295</Width>
+        <Height>359</Height>
+        <Color>-16777216</Color>
+        <Font family="Microsoft Sans Serif" size="18" style="0" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>HorizontalCenterAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+        <source name="trans6" formula="{@trans6}" kind="FormulaField" />
+        <number />
+      </object>
+      <object>
+        <Name>trans71</Name>
+        <Kind>FieldObject</Kind>
+        <Left>5160</Left>
+        <Top>5640</Top>
+        <Width>2295</Width>
+        <Height>359</Height>
+        <Color>-16777216</Color>
+        <Font family="Microsoft Sans Serif" size="18" style="0" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>HorizontalCenterAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+        <source name="trans7" formula="{@trans7}" kind="FormulaField" />
+        <number />
+      </object>
+      <object>
+        <Name>trans81</Name>
+        <Kind>FieldObject</Kind>
+        <Left>5160</Left>
+        <Top>6360</Top>
+        <Width>2295</Width>
+        <Height>359</Height>
+        <Color>-16777216</Color>
+        <Font family="Microsoft Sans Serif" size="18" style="0" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>HorizontalCenterAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+        <source name="trans8" formula="{@trans8}" kind="FormulaField" />
+        <number />
+      </object>
+      <object>
+        <Name>trans91</Name>
+        <Kind>FieldObject</Kind>
+        <Left>5160</Left>
+        <Top>7080</Top>
+        <Width>2295</Width>
+        <Height>359</Height>
+        <Color>-16777216</Color>
+        <Font family="Microsoft Sans Serif" size="18" style="0" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>HorizontalCenterAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+        <source name="trans9" formula="{@trans9}" kind="FormulaField" />
+        <number />
+      </object>
+      <object>
+        <Name>Box2</Name>
+        <Kind>BoxObject</Kind>
+        <Left>600</Left>
+        <Top>0</Top>
+        <Width>13730</Width>
+        <Height>563</Height>
+        <LineColor>-16777216</LineColor>
+        <LineThickness>20</LineThickness>
+        <LineStyle>SingleLine</LineStyle>
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>DefaultAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-16711681</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>SingleLine</LeftLineStyle>
+          <RightLineStyle>SingleLine</RightLineStyle>
+          <TopLineStyle>SingleLine</TopLineStyle>
+          <BottomLineStyle>SingleLine</BottomLineStyle>
+        </border>
+      </object>
+      <object>
+        <Name>Line17</Name>
+        <Kind>LineObject</Kind>
+        <Left>5160</Left>
+        <Top>552</Top>
+        <Width>0</Width>
+        <Height>7728</Height>
+        <LineColor>-16777216</LineColor>
+        <LineThickness>20</LineThickness>
+        <LineStyle>SingleLine</LineStyle>
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>DefaultAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>SingleLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+      </object>
+      <object>
+        <Name>Line18</Name>
+        <Kind>LineObject</Kind>
+        <Left>2880</Left>
+        <Top>552</Top>
+        <Width>0</Width>
+        <Height>7728</Height>
+        <LineColor>-16777216</LineColor>
+        <LineThickness>20</LineThickness>
+        <LineStyle>SingleLine</LineStyle>
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>DefaultAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>SingleLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+      </object>
+      <object>
+        <Name>Text15</Name>
+        <Kind>TextObject</Kind>
+        <Left>5160</Left>
+        <Top>600</Top>
+        <Width>2280</Width>
+        <Height>480</Height>
+        <Text>قابل جمع آوری</Text>
+        <Color>-16777216</Color>
+        <Font family="Microsoft Sans Serif" size="14" style="1" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>HorizontalCenterAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+      </object>
+      <object>
+        <Name>Text16</Name>
+        <Kind>TextObject</Kind>
+        <Left>2880</Left>
+        <Top>600</Top>
+        <Width>2280</Width>
+        <Height>480</Height>
+        <Text>جمع آوری شده</Text>
+        <Color>-16777216</Color>
+        <Font family="Microsoft Sans Serif" size="14" style="1" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>HorizontalCenterAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+      </object>
+      <object>
+        <Name>Text17</Name>
+        <Kind>TextObject</Kind>
+        <Left>600</Left>
+        <Top>600</Top>
+        <Width>2280</Width>
+        <Height>480</Height>
+        <Text>باقی مانده</Text>
+        <Color>-16777216</Color>
+        <Font family="Microsoft Sans Serif" size="14" style="1" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>HorizontalCenterAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+      </object>
+      <object>
+        <Name>Text18</Name>
+        <Kind>TextObject</Kind>
+        <Left>2880</Left>
+        <Top>0</Top>
+        <Width>2280</Width>
+        <Height>480</Height>
+        <Text>ترانسپورت</Text>
+        <Color>-16777216</Color>
+        <Font family="Microsoft Sans Serif" size="14" style="1" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>HorizontalCenterAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+      </object>
+      <object>
+        <Name>Text19</Name>
+        <Kind>TextObject</Kind>
+        <Left>9720</Left>
+        <Top>0</Top>
+        <Width>2280</Width>
+        <Height>480</Height>
+        <Text>فیس</Text>
+        <Color>-16777216</Color>
+        <Font family="Microsoft Sans Serif" size="14" style="1" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>HorizontalCenterAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+      </object>
+    </section>
+    <section name="GroupFooterSection1" kind="GroupFooter" height="220">
+      <format>
+        <EnableSuppress>true</EnableSuppress>
+        <EnableNewPageAfter>false</EnableNewPageAfter>
+        <EnableNewPageBefore>false</EnableNewPageBefore>
+        <EnableKeepTogether>true</EnableKeepTogether>
+        <EnableUnderlaySection>false</EnableUnderlaySection>
+        <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
+        <BackgroundColor>-1</BackgroundColor>
+      </format>
+    </section>
+    <section name="Section4" kind="ReportFooter" height="1369">
+      <format>
+        <EnableSuppress>true</EnableSuppress>
+        <EnableNewPageAfter>false</EnableNewPageAfter>
+        <EnableNewPageBefore>false</EnableNewPageBefore>
+        <EnableKeepTogether>true</EnableKeepTogether>
+        <EnableUnderlaySection>false</EnableUnderlaySection>
+        <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
+        <BackgroundColor>-1</BackgroundColor>
+      </format>
+    </section>
+    <section name="Section5" kind="PageFooter" height="706">
+      <format>
+        <EnableSuppress>true</EnableSuppress>
+        <EnableNewPageAfter>false</EnableNewPageAfter>
+        <EnableNewPageBefore>false</EnableNewPageBefore>
+        <EnableKeepTogether>true</EnableKeepTogether>
+        <EnableUnderlaySection>false</EnableUnderlaySection>
+        <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
+        <BackgroundColor>-1</BackgroundColor>
+      </format>
+    </section>
+  </sections>
+</report>

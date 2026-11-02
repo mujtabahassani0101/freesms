@@ -1,0 +1,280 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<report type="school_Af.Rpt.RptLable.CrHozehMinMax2">
+  <print>
+    <PaperOrientation>DefaultPaperOrientation</PaperOrientation>
+    <PaperSize>DefaultPaperSize</PaperSize>
+    <PaperSource>Auto</PaperSource>
+    <leftMargin>-2147483648</leftMargin>
+    <rightMargin>-2147483648</rightMargin>
+    <topMargin>-2147483648</topMargin>
+    <bottomMargin>-2147483648</bottomMargin>
+  </print>
+  <formulas>
+    <formula name="hoze">'حوزه : '+{spRpt_ListStdHozehMinMax.Hozeh}</formula>
+    <formula name="minidx">{spRpt_ListStdHozehMinMax.minidx}</formula>
+    <formula name="maxidx">{spRpt_ListStdHozehMinMax.maxidx}</formula>
+    <formula name="countIdx">{spRpt_ListStdHozehMinMax.countidx}</formula>
+    <formula name="fromto">'از شماره '+
+totext({spRpt_ListStdHozehMinMax.minidx},0)
++'  تا شماره  '+
+totext({spRpt_ListStdHozehMinMax.maxidx},0)</formula>
+  </formulas>
+  <parameters />
+  <groups />
+  <sorts>
+    <sort field="{@minidx}" direction="AscendingOrder" />
+  </sorts>
+  <sections>
+    <section name="Section1" kind="ReportHeader" height="220">
+      <format>
+        <EnableSuppress>true</EnableSuppress>
+        <EnableNewPageAfter>false</EnableNewPageAfter>
+        <EnableNewPageBefore>false</EnableNewPageBefore>
+        <EnableKeepTogether>true</EnableKeepTogether>
+        <EnableUnderlaySection>false</EnableUnderlaySection>
+        <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
+        <BackgroundColor>-1</BackgroundColor>
+      </format>
+    </section>
+    <section name="Section2" kind="PageHeader" height="600">
+      <format>
+        <EnableSuppress>true</EnableSuppress>
+        <EnableNewPageAfter>false</EnableNewPageAfter>
+        <EnableNewPageBefore>false</EnableNewPageBefore>
+        <EnableKeepTogether>true</EnableKeepTogether>
+        <EnableUnderlaySection>false</EnableUnderlaySection>
+        <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
+        <BackgroundColor>-1</BackgroundColor>
+      </format>
+    </section>
+    <section name="PageHeaderSection1" kind="PageHeader" height="510">
+      <format>
+        <EnableSuppress>true</EnableSuppress>
+        <EnableNewPageAfter>false</EnableNewPageAfter>
+        <EnableNewPageBefore>false</EnableNewPageBefore>
+        <EnableKeepTogether>true</EnableKeepTogether>
+        <EnableUnderlaySection>false</EnableUnderlaySection>
+        <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
+        <BackgroundColor>-1</BackgroundColor>
+      </format>
+      <object>
+        <Name>Text2</Name>
+        <Kind>FieldHeadingObject</Kind>
+        <Left>720</Left>
+        <Top>0</Top>
+        <Width>10200</Width>
+        <Height>224</Height>
+        <Text>maxidx</Text>
+        <Color>-16777216</Color>
+        <Font family="Microsoft Sans Serif" size="100" style="4" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>RightAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+      </object>
+    </section>
+    <section name="Section3" kind="Detail" height="10961">
+      <format>
+        <EnableSuppress>false</EnableSuppress>
+        <EnableNewPageAfter>false</EnableNewPageAfter>
+        <EnableNewPageBefore>false</EnableNewPageBefore>
+        <EnableKeepTogether>true</EnableKeepTogether>
+        <EnableUnderlaySection>false</EnableUnderlaySection>
+        <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
+        <BackgroundColor>-1</BackgroundColor>
+      </format>
+      <object>
+        <Name>hoze1</Name>
+        <Kind>FieldObject</Kind>
+        <Left>960</Left>
+        <Top>840</Top>
+        <Width>14760</Width>
+        <Height>4560</Height>
+        <Color>-16777216</Color>
+        <Font family="Microsoft Sans Serif" size="60" style="1" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>HorizontalCenterAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+        <source name="hoze" formula="{@hoze}" kind="FormulaField" />
+        <number />
+      </object>
+      <object>
+        <Name>Box1</Name>
+        <Kind>BoxObject</Kind>
+        <Left>720</Left>
+        <Top>360</Top>
+        <Width>15120</Width>
+        <Height>10600</Height>
+        <LineColor>-16777216</LineColor>
+        <LineThickness>50</LineThickness>
+        <LineStyle>SingleLine</LineStyle>
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>DefaultAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>SingleLine</LeftLineStyle>
+          <RightLineStyle>SingleLine</RightLineStyle>
+          <TopLineStyle>SingleLine</TopLineStyle>
+          <BottomLineStyle>SingleLine</BottomLineStyle>
+        </border>
+      </object>
+      <object>
+        <Name>Text8</Name>
+        <Kind>TextObject</Kind>
+        <Left>11280</Left>
+        <Top>5400</Top>
+        <Width>4320</Width>
+        <Height>1920</Height>
+        <Text>از شماره :</Text>
+        <Color>-16777216</Color>
+        <Font family="Microsoft Sans Serif" size="60" style="1" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>LeftAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+      </object>
+      <object>
+        <Name>Text9</Name>
+        <Kind>TextObject</Kind>
+        <Left>11280</Left>
+        <Top>8280</Top>
+        <Width>4560</Width>
+        <Height>1920</Height>
+        <Text>تا شماره :</Text>
+        <Color>-16777216</Color>
+        <Font family="Microsoft Sans Serif" size="60" style="1" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>LeftAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+      </object>
+      <object>
+        <Name>minidx1</Name>
+        <Kind>FieldObject</Kind>
+        <Left>840</Left>
+        <Top>4560</Top>
+        <Width>10080</Width>
+        <Height>3521</Height>
+        <Color>-16777216</Color>
+        <Font family="Microsoft Sans Serif" size="100" style="0" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>HorizontalCenterAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+        <source name="minidx" formula="{@minidx}" kind="FormulaField" />
+        <number />
+      </object>
+      <object>
+        <Name>maxidx1</Name>
+        <Kind>FieldObject</Kind>
+        <Left>720</Left>
+        <Top>7440</Top>
+        <Width>10200</Width>
+        <Height>3521</Height>
+        <Color>-16777216</Color>
+        <Font family="Microsoft Sans Serif" size="100" style="0" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>HorizontalCenterAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+        <source name="maxidx" formula="{@maxidx}" kind="FormulaField" />
+        <number />
+      </object>
+    </section>
+    <section name="Section4" kind="ReportFooter" height="220">
+      <format>
+        <EnableSuppress>true</EnableSuppress>
+        <EnableNewPageAfter>false</EnableNewPageAfter>
+        <EnableNewPageBefore>false</EnableNewPageBefore>
+        <EnableKeepTogether>true</EnableKeepTogether>
+        <EnableUnderlaySection>false</EnableUnderlaySection>
+        <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
+        <BackgroundColor>-1</BackgroundColor>
+      </format>
+    </section>
+    <section name="Section5" kind="PageFooter" height="672">
+      <format>
+        <EnableSuppress>true</EnableSuppress>
+        <EnableNewPageAfter>false</EnableNewPageAfter>
+        <EnableNewPageBefore>false</EnableNewPageBefore>
+        <EnableKeepTogether>true</EnableKeepTogether>
+        <EnableUnderlaySection>false</EnableUnderlaySection>
+        <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
+        <BackgroundColor>-1</BackgroundColor>
+      </format>
+    </section>
+  </sections>
+</report>

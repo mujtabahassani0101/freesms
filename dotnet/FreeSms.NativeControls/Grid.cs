@@ -71,6 +71,7 @@ namespace Janus.Windows.GridEX
         internal ColumnType Type;
         internal string DataMember;
         internal string Aggregate;
+        internal string InputMask;
         private string caption = "";
         private bool visible = true, sortable = true, selectable = true, list;
         private int width = 100;
@@ -237,7 +238,7 @@ namespace Janus.Windows.GridEX
         public event EventHandler<ColumnActionEventArgs> CellUpdated;
         public event EventHandler<ColumnActionEventArgs> CellValueChanged;
         public event EventHandler<RowLoadEventArgs> FormattingRow;
-        public new event ScrollEventHandler Scroll;
+
         public GridEXTable RootTable { get; }
         public GridEXTable[] Tables => new[] { RootTable };
         public GridEXSelectedItemCollection SelectedItems { get; }
@@ -313,11 +314,27 @@ namespace Janus.Windows.GridEX
             View.CellEndEdit += (s, e) => { if (!loading && e.ColumnIndex >= 0) { EndEdit(); CellUpdated?.Invoke(this, new ColumnActionEventArgs(RootTable.Columns[View.Columns[e.ColumnIndex].Name])); } };
             View.CurrentCellDirtyStateChanged += (s, e) => { if (View.CurrentCell is DataGridViewCheckBoxCell && View.IsCurrentCellDirty) View.CommitEdit(DataGridViewDataErrorContexts.Commit); };
             View.Sorted += (s, e) => SortKeysChanged?.Invoke(this, e);
-            View.Scroll += (s, e) => Scroll?.Invoke(this, e);
+            View.Scroll += (s, e) => OnScroll(e);
+            View.Click += (s, e) => OnClick(e);
+            View.MouseDown += (s, e) => OnMouseDown(e);
+            View.MouseUp += (s, e) => OnMouseUp(e);
+            View.KeyUp += (s, e) => OnKeyUp(e);
             View.DoubleClick += (s, e) => OnDoubleClick(e);
             View.KeyDown += (s, e) => OnKeyDown(e);
             View.KeyPress += (s, e) => OnKeyPress(e);
             View.CellFormatting += FormatCell;
+            View.CellValidating += (s, e) =>
+            {
+                if (e.ColumnIndex < 0 || e.RowIndex < 0) return;
+                var column = RootTable.Columns[View.Columns[e.ColumnIndex].Name];
+                if (!string.IsNullOrEmpty(column.InputMask) && Convert.ToString(e.FormattedValue, CultureInfo.CurrentCulture) is string text && text.Length > 0)
+                {
+                    bool valid = decimal.TryParse(text, NumberStyles.Number, CultureInfo.CurrentCulture, out var number);
+                    if (column.InputMask == "Number0") valid &= number == decimal.Truncate(number);
+                    e.Cancel = !valid;
+                    View.Rows[e.RowIndex].ErrorText = valid ? "" : "مقدار عددی معتبر وارد کنید.";
+                }
+            };
             View.DataBindingComplete += (s, e) => { rows.Clear(); UpdateTotals(); };
             search.TextChanged += (s, e) => Filter();
             HeaderFormatStyle.Changed = () => HeaderFormatStyle.Apply(View.ColumnHeadersDefaultCellStyle);
@@ -387,8 +404,10 @@ namespace Janus.Windows.GridEX
                             Width = (int?)node.Element("Width") ?? 100,
                             Visible = !string.Equals((string)node.Element("Visible"), "False", StringComparison.OrdinalIgnoreCase),
                             Editable = !string.Equals((string)node.Element("EditType"), "NoEdit", StringComparison.OrdinalIgnoreCase),
-                            Type = (string)node.Element("ColumnType") == "CheckBox" ? ColumnType.CheckBox : (string)node.Element("ColumnType") == "Image" ? ColumnType.Image : ColumnType.Text,
-                            Aggregate = (string)node.Element("AggregateFunction")
+                            Type = (string)node.Element("ColumnType") == "CheckBox" ? ColumnType.CheckBox : ((string)node.Element("ColumnType") == "Image" || (string)node.Element("ColumnType") == "BoundImage") ? ColumnType.Image : ColumnType.Text,
+                            Aggregate = (string)node.Element("AggregateFunction"),
+                            InputMask = (string)node.Element("InputMask"),
+                            Selectable = !string.Equals((string)node.Element("Selectable"), "False", StringComparison.OrdinalIgnoreCase)
                         };
                         RootTable.Columns.Add(column);
                     }

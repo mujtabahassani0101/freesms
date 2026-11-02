@@ -1,0 +1,423 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<report type="school_Af.Rpt.afPayment.CrRptStdBalance">
+  <print>
+    <PaperOrientation>DefaultPaperOrientation</PaperOrientation>
+    <PaperSize>DefaultPaperSize</PaperSize>
+    <PaperSource>Auto</PaperSource>
+    <leftMargin>-2147483648</leftMargin>
+    <rightMargin>-2147483648</rightMargin>
+    <topMargin>-2147483648</topMargin>
+    <bottomMargin>-2147483648</bottomMargin>
+  </print>
+  <formulas>
+    <formula name="xClass">{sp_RptPaymentBalance.xClass}</formula>
+    <formula name="xStudent">{sp_RptPaymentBalance.xStudent}</formula>
+    <formula name="sort">{sp_RptPaymentBalance.sort}</formula>
+    <formula name="fname">{sp_RptPaymentBalance.FName}</formula>
+    <formula name="lname">{sp_RptPaymentBalance.LName}</formula>
+    <formula name="sch">'اداره '+{sp_RptPaymentBalance.sch}</formula>
+    <formula name="heder1">{sp_RptPaymentBalance.heder1}</formula>
+    <formula name="Namberasas">{sp_RptPaymentBalance.NumberAsas}</formula>
+    <formula name="class">{sp_RptPaymentBalance.Class}</formula>
+    <formula name="fullname">{sp_RptPaymentBalance.FName}+' - '+{sp_RptPaymentBalance.LName}+ ' - '+  {sp_RptPaymentBalance.PName} + '   '+'متعلم '+' ( '+{sp_RptPaymentBalance.Class}+' ) '</formula>
+    <formula name="xPaye">{sp_RptPaymentBalance.xPaye}</formula>
+    <formula name="rptheder">"&lt;div dir=rtl align=right&gt;"&amp;{?heder1} &amp; ' ' &amp;"&lt;font color=red&gt;"&amp;{@fasl}&amp;"&lt;/font&gt;" &amp;' مبلغ '&amp;"&lt;font color=red&gt;&lt;u&gt;&lt;b&gt;"&amp;{@balance}&amp;"&lt;/b&gt;&lt;/u&gt;&lt;/font&gt;"
+&amp;' افغانی می گردد را حداکثر '&amp;"&lt;font color=red&gt;"&amp;{?fdate}&amp;"&lt;/font&gt;"&amp;' '&amp;{?heder2}&amp;"&lt;/div&gt;"</formula>
+    <formula name="fasl">if{?type}=1 and ({sp_RptPaymentBalance.Fasl}=1) then 'سه ماهه بهار'
+else if {?type}=1 and  ({sp_RptPaymentBalance.Fasl}=2) then 'سه ماهه تابستان'
+else if {?type}=1 and ({sp_RptPaymentBalance.Fasl}=3) then 'سه ماهه خزان'
+
+else if {?type}=2 and ({sp_RptPaymentBalance.Fasl}=1) then 'ماه '+'حمل'
+else if {?type}=2 and ({sp_RptPaymentBalance.Fasl}=2) then 'ماه '+'ثور'
+else if {?type}=2 and ({sp_RptPaymentBalance.Fasl}=3) then 'ماه '+'جوزا'
+else if {?type}=2 and ({sp_RptPaymentBalance.Fasl}=4) then 'ماه '+'سرطان'
+else if {?type}=2 and ({sp_RptPaymentBalance.Fasl}=5) then 'ماه '+'اسد'
+else if {?type}=2 and ({sp_RptPaymentBalance.Fasl}=6) then 'ماه '+'سنبله'
+else if {?type}=2 and ({sp_RptPaymentBalance.Fasl}=7) then 'ماه '+'میزان'
+else if {?type}=2 and ({sp_RptPaymentBalance.Fasl}=8) then 'ماه '+'عقرب'
+else if {?type}=2 and ({sp_RptPaymentBalance.Fasl}=9) then 'ماه '+'قوس'</formula>
+    <formula name="balance">replace(totext({sp_RptPaymentBalance.Balance},0),',','')</formula>
+    <formula name="paytext">"&lt;div dir=rtl align=right&gt;"&amp;'مجموع فیس پرداخت شده تا این تاریخ' &amp; ' ' &amp;"&lt;font color=red&gt;"&amp;replace(totext({sp_RptPaymentBalance.StdPay},0 ),',','')&amp;"&lt;/font&gt;" &amp;' افغانی '&amp;"&lt;/div&gt;"</formula>
+    <formula name="notShowBalance">{sp_RptPaymentBalance.notShowBalance }</formula>
+  </formulas>
+  <parameters>
+    <parameter name="heder1" type="StringField" />
+    <parameter name="heder2" type="StringField" />
+    <parameter name="foter1" type="StringField" />
+    <parameter name="foter2" type="StringField" />
+    <parameter name="fdate" type="StringField" />
+    <parameter name="type" type="NumberField" />
+  </parameters>
+  <groups>
+    <group field="{@xPaye}" />
+    <group field="{@xClass}" />
+  </groups>
+  <sorts>
+    <sort field="{@xPaye}" direction="AscendingOrder" />
+    <sort field="{@xClass}" direction="AscendingOrder" />
+    <sort field="{@sort}" direction="AscendingOrder" />
+    <sort field="{@xStudent}" direction="AscendingOrder" />
+  </sorts>
+  <sections>
+    <section name="Section1" kind="ReportHeader" height="220">
+      <format>
+        <EnableSuppress>true</EnableSuppress>
+        <EnableNewPageAfter>false</EnableNewPageAfter>
+        <EnableNewPageBefore>false</EnableNewPageBefore>
+        <EnableKeepTogether>true</EnableKeepTogether>
+        <EnableUnderlaySection>false</EnableUnderlaySection>
+        <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
+        <BackgroundColor>-1</BackgroundColor>
+      </format>
+    </section>
+    <section name="PageHeaderSection2" kind="PageHeader" height="135">
+      <format>
+        <EnableSuppress>false</EnableSuppress>
+        <EnableNewPageAfter>false</EnableNewPageAfter>
+        <EnableNewPageBefore>false</EnableNewPageBefore>
+        <EnableKeepTogether>true</EnableKeepTogether>
+        <EnableUnderlaySection>false</EnableUnderlaySection>
+        <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
+        <BackgroundColor>-1</BackgroundColor>
+      </format>
+    </section>
+    <section name="PageHeaderSection1" kind="PageHeader" height="860">
+      <format>
+        <EnableSuppress>true</EnableSuppress>
+        <EnableNewPageAfter>false</EnableNewPageAfter>
+        <EnableNewPageBefore>false</EnableNewPageBefore>
+        <EnableKeepTogether>true</EnableKeepTogether>
+        <EnableUnderlaySection>false</EnableUnderlaySection>
+        <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
+        <BackgroundColor>-1</BackgroundColor>
+      </format>
+    </section>
+    <section name="Section2" kind="PageHeader" height="450">
+      <format>
+        <EnableSuppress>true</EnableSuppress>
+        <EnableNewPageAfter>false</EnableNewPageAfter>
+        <EnableNewPageBefore>false</EnableNewPageBefore>
+        <EnableKeepTogether>true</EnableKeepTogether>
+        <EnableUnderlaySection>false</EnableUnderlaySection>
+        <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
+        <BackgroundColor>-1</BackgroundColor>
+      </format>
+      <object>
+        <Name>Text4</Name>
+        <Kind>FieldHeadingObject</Kind>
+        <Left>4320</Left>
+        <Top>224</Top>
+        <Width>6555</Width>
+        <Height>226</Height>
+        <Text>paytext</Text>
+        <Color>-16777216</Color>
+        <Font family="Arial" size="10" style="4" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>LeftAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+      </object>
+      <object>
+        <Name>Text1</Name>
+        <Kind>FieldHeadingObject</Kind>
+        <Left>240</Left>
+        <Top>224</Top>
+        <Width>2880</Width>
+        <Height>226</Height>
+        <Text>foter2</Text>
+        <Color>-16777216</Color>
+        <Font family="Arial" size="10" style="4" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>LeftAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+      </object>
+    </section>
+    <section name="GroupHeaderSection1" kind="GroupHeader" height="230">
+      <format>
+        <EnableSuppress>true</EnableSuppress>
+        <EnableNewPageAfter>false</EnableNewPageAfter>
+        <EnableNewPageBefore>false</EnableNewPageBefore>
+        <EnableKeepTogether>true</EnableKeepTogether>
+        <EnableUnderlaySection>false</EnableUnderlaySection>
+        <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
+        <BackgroundColor>-1</BackgroundColor>
+      </format>
+    </section>
+    <section name="GroupHeaderSection2" kind="GroupHeader" height="230">
+      <format>
+        <EnableSuppress>true</EnableSuppress>
+        <EnableNewPageAfter>false</EnableNewPageAfter>
+        <EnableNewPageBefore>false</EnableNewPageBefore>
+        <EnableKeepTogether>true</EnableKeepTogether>
+        <EnableUnderlaySection>false</EnableUnderlaySection>
+        <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
+        <BackgroundColor>-1</BackgroundColor>
+      </format>
+    </section>
+    <section name="Section3" kind="Detail" height="3135">
+      <format>
+        <EnableSuppress>false</EnableSuppress>
+        <EnableNewPageAfter>false</EnableNewPageAfter>
+        <EnableNewPageBefore>false</EnableNewPageBefore>
+        <EnableKeepTogether>true</EnableKeepTogether>
+        <EnableUnderlaySection>false</EnableUnderlaySection>
+        <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
+        <BackgroundColor>-1</BackgroundColor>
+      </format>
+      <object>
+        <Name>Text19</Name>
+        <Kind>TextObject</Kind>
+        <Left>8520</Left>
+        <Top>0</Top>
+        <Width>2370</Width>
+        <Height>480</Height>
+        <Text>والدین محترم دانش آموز</Text>
+        <Color>-16777216</Color>
+        <Font family="Microsoft Sans Serif" size="14" style="1" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>RightAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+      </object>
+      <object>
+        <Name>fullname1</Name>
+        <Kind>FieldObject</Kind>
+        <Left>1470</Left>
+        <Top>0</Top>
+        <Width>6885</Width>
+        <Height>485</Height>
+        <Color>-16777216</Color>
+        <Font family="Microsoft Sans Serif" size="12" style="1" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>RightAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+        <source name="fullname" formula="{@fullname}" kind="FormulaField" />
+        <number />
+      </object>
+      <object>
+        <Name>rptheder1</Name>
+        <Kind>FieldObject</Kind>
+        <Left>240</Left>
+        <Top>600</Top>
+        <Width>10680</Width>
+        <Height>1080</Height>
+        <Color>-16777216</Color>
+        <Font family="Microsoft Sans Serif" size="12" style="0" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>RightAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+        <source name="rptheder" formula="{@rptheder}" kind="FormulaField" />
+        <number />
+      </object>
+      <object>
+        <Name>paytext1</Name>
+        <Kind>FieldObject</Kind>
+        <Left>4320</Left>
+        <Top>1680</Top>
+        <Width>6555</Width>
+        <Height>360</Height>
+        <Color>-16777216</Color>
+        <Font family="Microsoft Sans Serif" size="12" style="0" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>RightAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+        <source name="paytext" formula="{@paytext}" kind="FormulaField" />
+        <number />
+      </object>
+      <object>
+        <Name>foter11</Name>
+        <Kind>FieldObject</Kind>
+        <Left>3360</Left>
+        <Top>2040</Top>
+        <Width>7515</Width>
+        <Height>840</Height>
+        <Color>-16777216</Color>
+        <Font family="Microsoft Sans Serif" size="12" style="0" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>RightAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+        <source name="foter1" formula="{?foter1}" kind="ParameterField" />
+        <number />
+      </object>
+      <object>
+        <Name>Box1</Name>
+        <Kind>BoxObject</Kind>
+        <Left>120</Left>
+        <Top>0</Top>
+        <Width>10920</Width>
+        <Height>2864</Height>
+        <LineColor>-16777216</LineColor>
+        <LineThickness>20</LineThickness>
+        <LineStyle>SingleLine</LineStyle>
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>DefaultAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>SingleLine</LeftLineStyle>
+          <RightLineStyle>SingleLine</RightLineStyle>
+          <TopLineStyle>SingleLine</TopLineStyle>
+          <BottomLineStyle>SingleLine</BottomLineStyle>
+        </border>
+      </object>
+      <object>
+        <Name>foter21</Name>
+        <Kind>FieldObject</Kind>
+        <Left>240</Left>
+        <Top>2280</Top>
+        <Width>2880</Width>
+        <Height>600</Height>
+        <Color>-16777216</Color>
+        <Font family="Microsoft Sans Serif" size="10" style="0" />
+        <format>
+          <EnableSuppress>false</EnableSuppress>
+          <EnableCanGrow>false</EnableCanGrow>
+          <HorizontalAlignment>HorizontalCenterAlign</HorizontalAlignment>
+          <EnableKeepTogether>true</EnableKeepTogether>
+          <EnableCloseAtPageBreak>true</EnableCloseAtPageBreak>
+        </format>
+        <border>
+          <BackgroundColor>-1</BackgroundColor>
+          <BorderColor>-16777216</BorderColor>
+          <LeftLineStyle>NoLine</LeftLineStyle>
+          <RightLineStyle>NoLine</RightLineStyle>
+          <TopLineStyle>NoLine</TopLineStyle>
+          <BottomLineStyle>NoLine</BottomLineStyle>
+        </border>
+        <source name="foter2" formula="{?foter2}" kind="ParameterField" />
+        <number />
+      </object>
+    </section>
+    <section name="GroupFooterSection2" kind="GroupFooter" height="359">
+      <format>
+        <EnableSuppress>true</EnableSuppress>
+        <EnableNewPageAfter>false</EnableNewPageAfter>
+        <EnableNewPageBefore>false</EnableNewPageBefore>
+        <EnableKeepTogether>true</EnableKeepTogether>
+        <EnableUnderlaySection>false</EnableUnderlaySection>
+        <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
+        <BackgroundColor>-1</BackgroundColor>
+      </format>
+    </section>
+    <section name="GroupFooterSection1" kind="GroupFooter" height="220">
+      <format>
+        <EnableSuppress>true</EnableSuppress>
+        <EnableNewPageAfter>false</EnableNewPageAfter>
+        <EnableNewPageBefore>false</EnableNewPageBefore>
+        <EnableKeepTogether>true</EnableKeepTogether>
+        <EnableUnderlaySection>false</EnableUnderlaySection>
+        <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
+        <BackgroundColor>-1</BackgroundColor>
+      </format>
+    </section>
+    <section name="Section4" kind="ReportFooter" height="1369">
+      <format>
+        <EnableSuppress>true</EnableSuppress>
+        <EnableNewPageAfter>false</EnableNewPageAfter>
+        <EnableNewPageBefore>false</EnableNewPageBefore>
+        <EnableKeepTogether>true</EnableKeepTogether>
+        <EnableUnderlaySection>false</EnableUnderlaySection>
+        <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
+        <BackgroundColor>-1</BackgroundColor>
+      </format>
+    </section>
+    <section name="Section5" kind="PageFooter" height="706">
+      <format>
+        <EnableSuppress>true</EnableSuppress>
+        <EnableNewPageAfter>false</EnableNewPageAfter>
+        <EnableNewPageBefore>false</EnableNewPageBefore>
+        <EnableKeepTogether>true</EnableKeepTogether>
+        <EnableUnderlaySection>false</EnableUnderlaySection>
+        <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
+        <BackgroundColor>-1</BackgroundColor>
+      </format>
+    </section>
+  </sections>
+</report>

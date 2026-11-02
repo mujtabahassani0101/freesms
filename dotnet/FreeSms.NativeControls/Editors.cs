@@ -142,13 +142,23 @@ namespace Janus.Windows.GridEX.EditControls
         }
     }
     public class EditBox : EditBase { }
-    public class MaskedEditBox : EditBase
+    public class MaskedEditBox : MaskedTextBox
     {
-        public string Mask { get; set; }
+        public Font ButtonFont { get; set; }
+        public bool AutoScroll { get; set; }
+        public Size AutoScrollMargin { get; set; }
+        public Size AutoScrollMinSize { get; set; }
+        public Point AutoScrollPosition { get; set; }
+        public VisualStyle VisualStyle { get; set; }
+        public TextAlignment TextAlignment
+        {
+            get => TextAlign == HorizontalAlignment.Right ? TextAlignment.Far : TextAlign == HorizontalAlignment.Center ? TextAlignment.Center : TextAlignment.Near;
+            set => TextAlign = value == TextAlignment.Far ? HorizontalAlignment.Right : value == TextAlignment.Center ? HorizontalAlignment.Center : HorizontalAlignment.Left;
+        }
         public bool Numeric { get; set; }
         protected override void OnKeyPress(KeyPressEventArgs e)
         {
-            if (Numeric && !char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '.' && e.KeyChar != '-') e.Handled = true;
+            if (Numeric && string.IsNullOrEmpty(Mask) && !char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '.' && e.KeyChar != '-') e.Handled = true;
             base.OnKeyPress(e);
         }
     }

@@ -9,58 +9,6 @@ concurrency:
   group: native-windows-${{ github.ref }}
   cancel-in-progress: true
 jobs:
-  compatible:
-    runs-on: windows-2025
-    timeout-minutes: 20
-    steps:
-      - uses: actions/checkout@v7.0.1
-      - uses: actions/setup-dotnet@v6.0.0
-        with:
-          dotnet-version: '10.0.x'
-      - name: Build native compatible original application
-        shell: pwsh
-        run: ./scripts/build-native-compatible-windows.ps1
-      - name: Install native Crystal runtime
-        shell: pwsh
-        run: |
-          $installer = Join-Path $PWD 'vendor/runtime/CRRedist2005_x86.msi'
-          $log = Join-Path $PWD 'validation/compatible-crystal-install.log'
-          $process = Start-Process msiexec.exe -ArgumentList "/i `"$installer`" /qn /norestart /l*v `"$log`"" -Wait -PassThru
-          if ($process.ExitCode -notin @(0,3010)) { Get-Content $log -Tail 50; exit 1 }
-      - name: Render all original forms using supported legacy controls
-        shell: pwsh
-        run: |
-          $app = Join-Path $PWD 'dist/FreeSMS-Native-Compatible/FreeSMS.exe'
-          $process = Start-Process $app -ArgumentList '--verify-original-forms' -PassThru
-          if (-not $process.WaitForExit(180000)) { $process.Kill(); throw 'Compatible original form check timed out.' }
-          Get-Content dist/FreeSMS-Native-Compatible/legacy-ui/original-forms-verification.txt -ErrorAction SilentlyContinue
-          if ($process.ExitCode -ne 0) { Get-Content dist/FreeSMS-Native-Compatible/legacy-ui/original-runtime-error.txt -ErrorAction SilentlyContinue; Get-Content dist/FreeSMS-Native-Compatible/native-launcher-error.txt -ErrorAction SilentlyContinue; exit 1 }
-      - name: Verify native initialization and the original login
-        shell: pwsh
-        run: |
-          $app = Join-Path $PWD 'dist/FreeSMS-Native-Compatible/FreeSMS.exe'
-          $process = Start-Process $app -ArgumentList '--verify-native-startup' -PassThru
-          if (-not $process.WaitForExit(180000)) { $process.Kill(); throw 'Native startup check timed out.' }
-          if ($process.ExitCode -ne 0) { Get-Content dist/FreeSMS-Native-Compatible/legacy-ui/original-runtime-error.txt -ErrorAction SilentlyContinue; exit 1 }
-          Get-Content dist/FreeSMS-Native-Compatible/legacy-ui/native-startup-verification.txt
-      - name: Upload native compatibility evidence
-        if: always()
-        uses: actions/upload-artifact@v7.0.2
-        with:
-          name: compatible-original-verification
-          path: |
-            dist/FreeSMS-Native-Compatible/legacy-ui/*verification.txt
-            dist/FreeSMS-Native-Compatible/legacy-ui/original-runtime-error.txt
-            dist/FreeSMS-Native-Compatible/legacy-ui/startup-*.png
-            dist/FreeSMS-Native-Compatible/native-launcher-error.txt
-            validation/compatible-crystal-install.log
-      - name: Upload native compatibility build
-        if: always()
-        uses: actions/upload-artifact@v7.0.2
-        with:
-          name: FreeSMS-native-compatible-candidate
-          path: dist/FreeSMS-Native-Compatible/
-          retention-days: 7
   windows:
     runs-on: windows-2025
     timeout-minutes: 20
@@ -107,8 +55,7 @@ jobs:
           path: dist/FreeSMS-Net10/
           retention-days: 7
   original:
-    name: Direct .NET 10 port (experimental)
-    continue-on-error: true
+    name: Native .NET 10 original application
     runs-on: windows-2025
     timeout-minutes: 20
     steps:
@@ -125,6 +72,7 @@ jobs:
           dotnet run --project dotnet/FreeSms.NativeChecks/FreeSms.NativeChecks.csproj -c Release -- . 2>&1 | Tee-Object validation/native-controls-checks.log
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
       - name: Verify the original forms and native controls
+        if: ${{ !cancelled() }}
         shell: pwsh
         run: |
           $app = Join-Path $PWD 'dist/FreeSMS-Original-Net10/school_Af.exe'
@@ -145,30 +93,6 @@ jobs:
           if (-not $process.WaitForExit(180000)) { $process.Kill(); throw 'Native startup timed out.' }
           if ($process.ExitCode -ne 0) { Get-Content dist/FreeSMS-Original-Net10/original-runtime-error.txt; exit 1 }
           Get-Content dist/FreeSMS-Original-Net10/native-startup-verification.txt
-      - name: Install native legacy reporting runtime
-        if: ${{ !cancelled() }}
-        shell: pwsh
-        run: |
-          $installer = Join-Path $PWD 'vendor/runtime/CRRedist2005_x86.msi'
-          $log = Join-Path $PWD 'validation/crystal-install.log'
-          $process = Start-Process msiexec.exe -ArgumentList "/i `"$installer`" /qn /norestart /l*v `"$log`"" -Wait -PassThru
-          if ($process.ExitCode -notin @(0,3010)) { Get-Content $log -Tail 50; exit 1 }
-      - name: Verify every original report template in native runtime
-        if: ${{ !cancelled() }}
-        shell: pwsh
-        run: |
-          $app = Join-Path $PWD 'dist/FreeSMS-Original-Net10/report-host/FreeSms.ReportHost.exe'
-          $process = Start-Process $app -ArgumentList '--verify-engine' -PassThru
-          if (-not $process.WaitForExit(120000)) { $process.Kill(); throw 'Report verification timed out.' }
-          if ($process.ExitCode -ne 0) { Get-Content dist/FreeSMS-Original-Net10/report-host/error.txt -ErrorAction SilentlyContinue; exit 1 }
-          Get-Content dist/FreeSMS-Original-Net10/report-host/report-engine-verification.txt
-      - name: Extract portable report definitions for .NET 10 migration
-        if: ${{ !cancelled() }}
-        shell: pwsh
-        run: |
-          $app = Join-Path $PWD 'dist/FreeSMS-Original-Net10/report-host/FreeSms.ReportHost.exe'
-          $process = Start-Process $app -ArgumentList '--export-layouts' -Wait -PassThru
-          if ($process.ExitCode -ne 0) { Get-Content dist/FreeSMS-Original-Net10/report-host/error.txt; exit 1 }
       - name: Upload original verification evidence
         if: always()
         uses: actions/upload-artifact@v7.0.2
@@ -177,13 +101,10 @@ jobs:
           path: |
             dist/FreeSMS-Original-Net10/*verification*.txt
             dist/FreeSMS-Original-Net10/original-runtime-error.txt
-            dist/FreeSMS-Original-Net10/report-host/*verification.txt
-            dist/FreeSMS-Original-Net10/report-host/error.txt
-            dist/FreeSMS-Original-Net10/report-host/portable-layouts/
-            validation/crystal-install.log
             validation/native-controls-checks.log
             validation/native-controls/
             dist/FreeSMS-Original-Net10/startup-*.png
+            dist/FreeSMS-Original-Net10/original-forms/
           retention-days: 7
       - name: Upload original application build
         if: always()

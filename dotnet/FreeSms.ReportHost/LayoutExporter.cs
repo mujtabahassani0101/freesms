@@ -6,6 +6,7 @@ using System.Linq;
 using System.Reflection;
 using System.Xml.Linq;
 using CrystalDecisions.CrystalReports.Engine;
+using R = CrystalDecisions.ReportAppServer.ReportDefModel;
 
 // One-time migration tool. The generated XML is consumed by the .NET 10 renderer;
 // the application distributed to Windows users does not run this exporter.
@@ -45,6 +46,16 @@ internal static class LayoutExporter
         foreach (SortField sort in report.DataDefinition.SortFields)
             sorts.Add(new XElement("sort", new XAttribute("field", sort.Field.FormulaName), new XAttribute("direction", sort.SortDirection)));
         xml.Add(sorts);
+        var running = new XElement("running-totals");
+        foreach (RunningTotalFieldDefinition field in report.DataDefinition.RunningTotalFields)
+        {
+            var total = new XElement("total", new XAttribute("name", field.Name));
+            Simple(total, field, "Operation", "OperationParameter", "EvaluationCondition", "EvaluationConditionType", "ResetCondition", "ResetConditionType");
+            if (field.SummarizedField != null) total.SetAttributeValue("field", field.SummarizedField.FormulaName);
+            if (field.Group != null) total.SetAttributeValue("group", field.Group.ConditionField.FormulaName);
+            running.Add(total);
+        }
+        xml.Add(running);
         var sections = new XElement("sections");
         foreach (Section section in report.ReportDefinition.Sections)
         {
@@ -81,6 +92,41 @@ internal static class LayoutExporter
             sections.Add(node);
         }
         xml.Add(sections);
+        var ras = report.ReportClientDocument;
+        var functions = ras.CustomFunctionController.GetCustomFunctions();
+        var custom = new XElement("custom-functions");
+        for (int i = 0; i < functions.Count; i++)
+            custom.Add(new XElement("function", new XAttribute("name", functions[i].Name), functions[i].Text));
+        xml.Add(custom);
+        var areas = ras.ReportDefController.ReportDefinition.Areas;
+        for (int i = 0; i < areas.Count; i++)
+        {
+            var area = areas[i];
+            for (int j = 0; j < area.Sections.Count; j++)
+            {
+                var section = area.Sections[j];
+                var target = sections.Elements("section").FirstOrDefault(x => (string)x.Attribute("name") == section.Name);
+                if (target == null) continue;
+                foreach (R.CrSectionAreaFormatConditionFormulaTypeEnum condition in Enum.GetValues(typeof(R.CrSectionAreaFormatConditionFormulaTypeEnum)))
+                {
+                    string text = section.Format.ConditionFormulas[condition]?.Text;
+                    if (!string.IsNullOrWhiteSpace(text)) target.Element("format").Add(new XElement("condition", new XAttribute("name", condition.ToString().Replace("crSectionAreaConditionFormulaType", "")), text));
+                }
+                for (int k = 0; k < section.ReportObjects.Count; k++)
+                {
+                    var item = section.ReportObjects[k];
+                    var obj = target.Elements("object").FirstOrDefault(x => x.Element("Name")?.Value == item.Name);
+                    if (obj == null) continue;
+                    foreach (R.CrObjectFormatConditionFormulaTypeEnum condition in Enum.GetValues(typeof(R.CrObjectFormatConditionFormulaTypeEnum)))
+                    {
+                        string text = item.Format.ConditionFormulas[condition]?.Text;
+                        if (!string.IsNullOrWhiteSpace(text)) obj.Element("format").Add(new XElement("condition", new XAttribute("name", condition.ToString().Replace("crObjectFormatConditionFormulaType", "")), text));
+                    }
+                    if (item is R.PictureObject picture && picture.PictureData != null)
+                        obj.Add(new XElement("picture", Convert.ToBase64String(picture.PictureData.ByteArray)));
+                }
+            }
+        }
         return xml;
     }
     private static void Simple(XElement node, object value, params string[] names)
