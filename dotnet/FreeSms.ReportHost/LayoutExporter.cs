@@ -92,6 +92,7 @@ internal static class LayoutExporter
             sections.Add(node);
         }
         xml.Add(sections);
+        if (isSubreport) return xml;
         var ras = report.ReportClientDocument;
         var functions = ras.CustomFunctionController.GetCustomFunctions();
         var custom = new XElement("custom-functions");
@@ -124,6 +125,16 @@ internal static class LayoutExporter
                     }
                     if (item is R.PictureObject picture && picture.PictureData != null)
                         obj.Add(new XElement("picture", Convert.ToBase64String(picture.PictureData.ByteArray)));
+                    if (item is R.ChartObject chart)
+                    {
+                        var definition = chart.ChartDefinition;
+                        var node = new XElement("chart", new XAttribute("type", definition.ChartType));
+                        for (int c = 0; c < definition.ConditionFields.Count; c++)
+                            node.Add(new XElement("category", definition.ConditionFields[c].FormulaForm));
+                        for (int c = 0; c < definition.DataFields.Count; c++)
+                            node.Add(new XElement("series", definition.DataFields[c].FormulaForm));
+                        obj.Add(node);
+                    }
                 }
             }
         }
