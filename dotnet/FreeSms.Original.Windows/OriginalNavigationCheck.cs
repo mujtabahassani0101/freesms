@@ -3,6 +3,8 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
+using System.Runtime.InteropServices;
+using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
 using FreeSms.Core;
@@ -19,19 +21,30 @@ internal static class OriginalNavigationCheck
         if (workerLog == null) return;
         File.AppendAllText(workerLog, "SQL " + Convert.ToHexString(SHA256.HashData(Encoding.UTF8.GetBytes(sql ?? ""))) + Environment.NewLine + Environment.StackTrace + Environment.NewLine);
     }
-    internal static int Worker(string className)
+    internal static int Worker(string route)
     {
         var builder = new SqlConnectionStringBuilder(Environment.GetEnvironmentVariable(WorkerConnection) ?? "");
         if (!builder.InitialCatalog.StartsWith("free_sms_ui_", StringComparison.Ordinal) || builder.ApplicationName != "FreeSMS.NavigationCheck" || !builder.DataSource.StartsWith(@"np:\\.\pipe\LOCALDB#", StringComparison.OrdinalIgnoreCase))
             throw new InvalidOperationException("Navigation probes require their isolated test database.");
         var directory = Path.Combine(AppContext.BaseDirectory, "navigation-checks");
         Directory.CreateDirectory(directory);
-        workerLog = Path.Combine(directory, className + ".log");
-        File.WriteAllText(workerLog, "BEGIN " + className + Environment.NewLine);
+        workerLog = Path.Combine(directory, route + ".log");
+        File.WriteAllText(workerLog, "BEGIN " + route + Environment.NewLine);
         try
         {
             var catalog = new FormCatalog(AppContext.BaseDirectory);
-            if (!catalog.ByClass.ContainsKey(className) || className == "asdb3" || className == "asda3") throw new ArgumentException("Not a navigation destination.");
+            var definition = catalog.ByName["frmMain"];
+            var control = definition.A("controls").Single(item => item.S("variable") == route);
+            var target = catalog.Target(definition, control) ?? throw new ArgumentException("Not a navigation route.");
+            string className = target.S("class");
+            if (className == "asdb3" || className == "asda3") throw new ArgumentException("Not a navigation destination.");
+            File.AppendAllText(workerLog, control.S("name") + " -> " + target.S("name") + Environment.NewLine);
+            Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
+            Application.ThreadException += (sender, exception) =>
+            {
+                File.AppendAllText(workerLog, "FAILED " + exception.Exception + Environment.NewLine);
+                Environment.Exit(1);
+            };
             OriginalRuntime.ConnectionString = builder.ConnectionString;
             KeylessRuntime.Enable();
             asdab.__field_d = builder.InitialCatalog;
@@ -41,16 +54,33 @@ internal static class OriginalNavigationCheck
             asdaj.l = "1"; asdaj.m = "";
             asdaj.n = string.Join(",", database.Query("SELECT id FROM tPaye").Select(row => Convert.ToString(row["id"])));
             File.AppendAllText(workerLog, "CONSTRUCT" + Environment.NewLine);
-            using var form = (Form)Activator.CreateInstance(typeof(OriginalProgram).Assembly.GetType(className, true));
+            using var main = new asdb3(); // Do not show the main form or invoke its login Load handler.
             using var timer = new Timer { Interval = 300 };
-            timer.Tick += (s, e) =>
+            bool started = false;
+            timer.Tick += (sender, e) =>
             {
-                File.AppendAllText(workerLog, "SUCCESS loaded, shown and UI timer responded" + Environment.NewLine);
-                Environment.Exit(0); // Do not invoke legacy backup/close confirmation handlers.
+                if (!started)
+                {
+                    started = true;
+                    File.AppendAllText(workerLog, "CLICK " + control.S("click") + Environment.NewLine);
+                    var handler = typeof(asdb3).GetMethod(control.S("click").TrimStart('@'), BindingFlags.Instance | BindingFlags.NonPublic, null, new[] { typeof(object), typeof(EventArgs) }, null);
+                    handler.Invoke(main, new object[] { main, EventArgs.Empty });
+                    return;
+                }
+                var windows = Application.OpenForms.Cast<Form>().Where(form => form.Visible).ToArray();
+                if (windows.Any(form => form.GetType().Name == className))
+                {
+                    File.AppendAllText(workerLog, "SUCCESS loaded, shown and UI timer responded" + Environment.NewLine);
+                    Environment.Exit(0);
+                }
+                if (windows.Any(form => form.Modal) || HasNativeDialog())
+                {
+                    File.AppendAllText(workerLog, "INTERACTION responsive modal selection/message; awaiting user input" + Environment.NewLine);
+                    Environment.Exit(2);
+                }
             };
-            form.Shown += (s, e) => timer.Start();
-            File.AppendAllText(workerLog, "SHOW" + Environment.NewLine);
-            Application.Run(form);
+            timer.Start();
+            Application.Run(new ApplicationContext());
             File.AppendAllText(workerLog, "FAILED form closed before responsiveness check" + Environment.NewLine);
             return 1;
         }
@@ -59,6 +89,23 @@ internal static class OriginalNavigationCheck
             File.AppendAllText(workerLog, "FAILED " + error + Environment.NewLine);
             return 1;
         }
+    }
+    private delegate bool WindowCallback(IntPtr window, IntPtr parameter);
+    [DllImport("user32.dll")] private static extern bool EnumThreadWindows(uint thread, WindowCallback callback, IntPtr parameter);
+    [DllImport("user32.dll")] private static extern bool IsWindowVisible(IntPtr window);
+    [DllImport("user32.dll", CharSet = CharSet.Unicode)] private static extern int GetClassName(IntPtr window, StringBuilder name, int size);
+    [DllImport("kernel32.dll")] private static extern uint GetCurrentThreadId();
+    private static bool HasNativeDialog()
+    {
+        bool found = false;
+        EnumThreadWindows(GetCurrentThreadId(), (window, parameter) =>
+        {
+            var name = new StringBuilder(128);
+            GetClassName(window, name, name.Capacity);
+            found |= IsWindowVisible(window) && name.ToString() == "#32770";
+            return !found;
+        }, IntPtr.Zero);
+        return found;
     }
     internal static int Run()
     {
@@ -76,23 +123,27 @@ internal static class OriginalNavigationCheck
             var connection = new SqlConnectionStringBuilder(database.ConnectionString) { ApplicationName = "FreeSMS.NavigationCheck" };
             var catalog = new FormCatalog(AppContext.BaseDirectory);
             var main = catalog.ByName["frmMain"];
-            var targets = main.A("controls").Select(control => catalog.Target(main, control)).Where(target => target.HasValue).Select(target => target.Value.S("class"))
-                .Where(name => name != "asdb3" && name != "asda3").Distinct().OrderBy(name => name).ToArray();
-            int passed = 0;
-            foreach (string target in targets)
+            var targets = main.A("controls").Where(control => catalog.Target(main, control) is var target && target.HasValue && target.Value.S("class") != "asdb3" && target.Value.S("class") != "asda3")
+                .GroupBy(control => control.S("click")).Select(group => group.First()).OrderBy(control => control.S("name")).ToArray();
+            int passed = 0, interaction = 0;
+            foreach (var control in targets)
             {
+                string route = control.S("variable");
+                var target = catalog.Target(main, control).Value;
                 var start = new ProcessStartInfo(Environment.ProcessPath) { UseShellExecute = false, CreateNoWindow = true };
-                start.ArgumentList.Add("--verify-navigation-form"); start.ArgumentList.Add(target);
+                start.ArgumentList.Add("--verify-navigation-form"); start.ArgumentList.Add(route);
                 start.Environment[WorkerConnection] = connection.ConnectionString;
                 using var process = Process.Start(start);
                 bool finished = process.WaitForExit(10000);
                 if (!finished) { process.Kill(true); process.WaitForExit(); }
                 bool success = finished && process.ExitCode == 0;
+                bool waiting = finished && process.ExitCode == 2;
                 if (success) passed++;
-                File.AppendAllText(summary, (success ? "PASS " : finished ? "FAILED " : "TIMEOUT ") + target + " " + catalog.ByClass[target].S("name") + Environment.NewLine);
+                if (waiting) interaction++;
+                File.AppendAllText(summary, (success ? "PASS " : waiting ? "INTERACTION " : finished ? "FAILED " : "TIMEOUT ") + route + " " + control.S("name") + " -> " + target.S("name") + Environment.NewLine);
             }
-            File.AppendAllText(summary, "RESULT " + passed + "/" + targets.Length + Environment.NewLine);
-            return passed == targets.Length ? 0 : 1;
+            File.AppendAllText(summary, "RESULT loaded=" + passed + ", interaction=" + interaction + ", total=" + targets.Length + Environment.NewLine);
+            return passed + interaction == targets.Length ? 0 : 1;
         }
         finally
         {

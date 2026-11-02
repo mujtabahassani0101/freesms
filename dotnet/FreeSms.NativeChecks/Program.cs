@@ -120,6 +120,11 @@ internal static class Program
                         if (image.GetPixel(x, y).ToArgb() == Color.SteelBlue.ToArgb()) visible++;
                 Check(visible > 100, "report background boxes cannot cover chart values");
             }
+            var oversizedHeader = XElement.Parse("<report><sections><section kind='PageHeader' height='20000'/><section kind='Detail' height='720'/></sections></report>");
+            bool rejectedHeader = false;
+            try { using var document = new PortableReportDocument(new ReportModel(oversizedHeader), ReportFixtures.Create(oversizedHeader, 1)); }
+            catch (InvalidDataException) { rejectedHeader = true; }
+            Check(rejectedHeader, "oversized page headers reject pagination instead of generating pages forever");
             PackageChecks.Verify(root, Check);
             Console.WriteLine("SUCCESS " + count);
             return 0;

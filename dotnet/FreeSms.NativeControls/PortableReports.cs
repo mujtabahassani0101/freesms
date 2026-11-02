@@ -66,7 +66,8 @@ namespace FreeSms.NativeControls
             DefaultPageSettings.Margins = new System.Drawing.Printing.Margins(25, 25, 25, 25);
             float paperWidth = landscape ? 1119 : 777;
             height = (landscape ? 777 : 1119) * Math.Max(1, width / paperWidth);
-            BuildPages();
+            try { BuildPages(); }
+            catch { Dispose(); throw; }
             if (flow) height = Math.Max(1, pages.SelectMany(p => p).Select(b => b.Top + b.Height).DefaultIfEmpty(1).Max());
         }
         private static float N(XElement node, string name) => float.TryParse(node.Element(name)?.Value, NumberStyles.Float, CultureInfo.InvariantCulture, out var n) ? n : 0;
@@ -83,6 +84,8 @@ namespace FreeSms.NativeControls
             {
                 current = new List<Band>(); pages.Add(current); top = 0;
                 foreach (var section in model.Sections.Where(s => Kind(s) == "PageHeader")) Add(section, record, false);
+                if (!flow && height - footerHeight - top < 1)
+                    throw new InvalidDataException("ارتفاع سربرگ و پابرگ گزارش، تمام صفحه را پر کرده است. ارتفاع این بخش‌ها را در قالب گزارش کاهش دهید.");
             }
             void Add(XElement section, DataRow record, bool paginate = true)
             {
@@ -382,9 +385,16 @@ namespace FreeSms.NativeControls
         }
         public void Open(ReportModel model, ReportInput input)
         {
+            PortableReportDocument next;
+            try { next = new PortableReportDocument(model, input); }
+            catch (InvalidDataException error)
+            {
+                MessageBox.Show(FindForm(), error.Message, "قالب گزارش قابل صفحه‌بندی نیست", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             preview.Document = null; document?.Dispose();
             this.model = model; this.input = input;
-            document = new PortableReportDocument(model, input); preview.Document = document; preview.InvalidatePreview();
+            document = next; preview.Document = document; preview.InvalidatePreview();
         }
         protected override void Dispose(bool disposing) { if (disposing) document?.Dispose(); base.Dispose(disposing); }
     }
