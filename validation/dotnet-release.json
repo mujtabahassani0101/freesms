@@ -1,10 +1,27 @@
 {
-  "FreeSMS.dll": {
-    "machine": "0x8664",
-    "ready_to_run": true
-  },
-  "FreeSms.Core.dll": {
-    "machine": "0x8664",
-    "ready_to_run": true
+  "target": "net10.0-windows",
+  "rid": "win-x86",
+  "self_contained": true,
+  "assemblies": {
+    "FreeSMS.dll": {
+      "target": ".NETCoreApp,Version=v10.0",
+      "ready_to_run": true,
+      "machine": "0x14c"
+    },
+    "FreeSms.Core.dll": {
+      "target": ".NETCoreApp,Version=v10.0",
+      "ready_to_run": true,
+      "machine": "0x14c"
+    },
+    "FreeSms.NativeControls.dll": {
+      "target": ".NETCoreApp,Version=v10.0",
+      "ready_to_run": true,
+      "machine": "0x14c"
+    },
+    "FreeSms.Reports.dll": {
+      "target": ".NETCoreApp,Version=v10.0",
+      "ready_to_run": true,
+      "machine": "0x14c"
+    }
   }
 }

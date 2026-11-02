@@ -1,0 +1,134 @@
+PASS bind two records
+PASS preserve layout metadata
+PASS selected row preserves database identity
+PASS typed mark edits update source data
+PASS checkbox write-through
+PASS sorted row identity
+PASS unbound combo values support original numeric IDs
+PASS bound combo identity
+PASS Afghan calendar roundtrip with Persian digits
+PASS date picker value and event
+PASS load RPX 1.rpx
+PASS paginate RPX 1.rpx
+PASS RPX printer rendering matches image export at 300 DPI
+PASS load RPX 2.rpx
+PASS paginate RPX 2.rpx
+PASS load RPX 3.rpx
+PASS paginate RPX 3.rpx
+PASS load RPX 4.rpx
+PASS paginate RPX 4.rpx
+PASS load RPX 40.rpx
+PASS paginate RPX 40.rpx
+PASS load RPX 5.rpx
+PASS paginate RPX 5.rpx
+PASS load RPX 6.rpx
+PASS paginate RPX 6.rpx
+PASS empty designer selection follows original event contract
+PASS designer saves and reloads actual text and geometry
+PASS native report CrAmarGhaboliClass.rpt.xml
+PASS native printer rendering matches image export at 300 DPI
+PASS native report CrAmarGhaboliPaye.rpt.xml
+PASS native report crAmarHozeh.rpt.xml
+PASS native report CrAvgClassBooks_1.rpt.xml
+PASS native report CrAvgClassBooks_2.rpt.xml
+PASS native report CrChapShaghe.rpt.xml
+PASS native report CrChapShaghe2.rpt.xml
+PASS native report CrChapShagheHzeri.rpt.xml
+PASS native report CrChapShagheHzeri2.rpt.xml
+PASS native report CrChartAvgClassBooks_1.rpt.xml
+PASS native report CrChartAvgClassBooks_2.rpt.xml
+PASS native report CrChartAvgClassBooks_3.rpt.xml
+PASS native report CrChartAvgClassDorehBooks.rpt.xml
+PASS native report CrChartAvgClassDorehBooksTch.rpt.xml
+PASS native report CrChartAvgOneClassBooks_1.rpt.xml
+PASS native report CrChartAvgOneClassBooks_2.rpt.xml
+PASS native report CrChartAvgPayeBooks_1.rpt.xml
+PASS native report CrChartAvgPayeBooks_2.rpt.xml
+PASS native report CrChartAvgStdClassBooks_1.rpt.xml
+PASS native report CrChartAvgStdClassBooks_2.rpt.xml
+PASS native report CrClslistOftRoshd.rpt.xml
+PASS native report CrDabirAvgClassMark.rpt.xml
+PASS native report crDis_AmarAbsentClass.rpt.xml
+PASS native report crDis_KarnameStd.rpt.xml
+PASS native report crDis_ListStdAbsent.rpt.xml
+PASS native report crDis_ListStdAbsent2.rpt.xml
+PASS native report crHozehAlbom.rpt.xml
+PASS native report crHozehLabel.rpt.xml
+PASS native report crHozehLabelByName.rpt.xml
+PASS native report CrHozehMinMax.rpt.xml
+PASS native report CrHozehMinMax2.rpt.xml
+PASS native report crHozehStd.rpt.xml
+PASS native report crHozehStd2.rpt.xml
+PASS native report crHozehStd4020.rpt.xml
+PASS native report crHozehStd4020_2.rpt.xml
+PASS native report CrListBooksRengMark1.rpt.xml
+PASS native report CrListBooksRengMark2.rpt.xml
+PASS native report CrListBooksRengMark_class.rpt.xml
+PASS native report CrListDabirKham.rpt.xml
+PASS native report CrListDabirKham16.rpt.xml
+PASS native report CrListDabirKham18.rpt.xml
+PASS native report CrListDabirKham20.rpt.xml
+PASS native report CrListDabirKhamByTchName.rpt.xml
+PASS native report CrListDabirKhamByTchNameAllBook18.rpt.xml
+PASS native report CrListDabir_1.rpt.xml
+PASS native report CrListStdBookMarks5.rpt.xml
+PASS native report CrListStdHazer.rpt.xml
+PASS native report CrListStdKoll.rpt.xml
+PASS native report CrListStdMali.rpt.xml
+PASS native report CrListStdMoadelGroupByClass.rpt.xml
+PASS native report CrListStdMoadelGroupByPaye.rpt.xml
+PASS native report CrListStdMoadelGroupBySch.rpt.xml
+PASS native report CrListStdOftRoshdBooks.rpt.xml
+PASS native report CrListStdOftRoshdMoadel.rpt.xml
+PASS native report CrListStdshaghe.rpt.xml
+PASS native report CrListStdTransport.rpt.xml
+PASS native report CrListStdTransportDriver.rpt.xml
+PASS native report CrListstd_books10.rpt.xml
+PASS native report CrListstd_books10_class.rpt.xml
+PASS native report CrListstd_books14.rpt.xml
+PASS native report CrListstd_books18.rpt.xml
+PASS native report CrListstd_books18_class.rpt.xml
+PASS native report CrListstd_books18_class33.rpt.xml
+PASS native report CrListstd_books21_class33.rpt.xml
+PASS native report CrListstd_booksAlarm.rpt.xml
+PASS native report CrRptListPayment.rpt.xml
+PASS native report CrRptPayment1.rpt.xml
+PASS native report CrRptStdBalance.rpt.xml
+PASS native report CrRptStdBalanceListe.rpt.xml
+PASS native report CrRptSumPaymentGroupByClass.rpt.xml
+PASS native report CrRptSumPaymentKoll.rpt.xml
+PASS native report CrStdCard.rpt.xml
+PASS native report CrStdCardidx.rpt.xml
+PASS native report CrStdCardidx4020.rpt.xml
+PASS native report crStdIdx_Class.rpt.xml
+PASS native report crStdIdx_Class2.rpt.xml
+PASS native report crStdIdx_Class4020_2.rpt.xml
+PASS native report CrStdMoadelMarkGroupByClass.rpt.xml
+PASS native report CrStdMoadelMarkGroupByPaye.rpt.xml
+PASS native report CR_AF_ListFinal.rpt.xml
+PASS native report CR_AF_ListFinal10_11.rpt.xml
+PASS native report CR_AF_ListFinal12.rpt.xml
+PASS native report CR_AF_ListFinal9.rpt.xml
+PASS native report CR_AF_StdKarnameDorehByChart_term1.rpt.xml
+PASS native report CR_AF_StdKarnameDorehByChart_term1_land.rpt.xml
+PASS native report CR_AF_StdKarnameDorehByChart_term3.rpt.xml
+PASS native report CR_AF_StdKarnameDorehByChart_term3_land.rpt.xml
+PASS native report CR_AF_StdKarnameFinal.rpt.xml
+PASS native report CR_AF_StdKarnameFinalAll.rpt.xml
+PASS native report CR_AF_StdKarnameFinal_10_11.rpt.xml
+PASS native report CR_AF_StdKarnameFinal_12.rpt.xml
+PASS native report CStdKarnameDoreh2.rpt.xml
+PASS native report CStdKarnameDoreh3.rpt.xml
+PASS native report CStdKarnameDoreh_byBestStd_OneMark.rpt.xml
+PASS native report CStdKarnameTajamoee.rpt.xml
+PASS native report CStdKarnameTajamoee2.rpt.xml
+PASS native report CStdKarnameTajamoee2ByChart.rpt.xml
+PASS native report CStdKarnameTajamoee3ByChart.rpt.xml
+PASS long subreport continues beyond its original placeholder
+PASS self-contained package uses only .NET 10 frameworks
+PASS release contains no old UI or report runtime
+PASS .NET 10 x86 ReadyToRun: FreeSMS.dll
+PASS .NET 10 x86 ReadyToRun: FreeSms.Core.dll
+PASS .NET 10 x86 ReadyToRun: FreeSms.NativeControls.dll
+PASS .NET 10 x86 ReadyToRun: FreeSms.Reports.dll
+SUCCESS 133
