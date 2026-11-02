@@ -64,6 +64,28 @@ jobs:
         run: |
           dotnet run --project dotnet/FreeSms.NativeChecks/FreeSms.NativeChecks.csproj -c Release -- . 2>&1 | Tee-Object validation/native-controls-checks.log
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - name: Exercise original report preview action with an isolated database
+        if: ${{ !cancelled() }}
+        shell: pwsh
+        run: |
+          $app = Join-Path $PWD 'dist/FreeSMS-Net10/FreeSMS.exe'
+          $process = Start-Process $app -ArgumentList '--verify-report-actions' -PassThru
+          if (-not $process.WaitForExit(180000)) { $process.Kill(); throw 'Report action verification timed out.' }
+          Get-Content dist/FreeSMS-Net10/navigation-checks/report-actions-summary.log -ErrorAction SilentlyContinue
+          if ($process.ExitCode -ne 0) {
+            Get-Content dist/FreeSMS-Net10/navigation-checks/*_report_*.log -ErrorAction SilentlyContinue
+            exit 1
+          }
+      - name: Exercise school settings and discount workflows through original buttons
+        if: ${{ !cancelled() }}
+        shell: pwsh
+        run: |
+          $app = Join-Path $PWD 'dist/FreeSMS-Net10/FreeSMS.exe'
+          $process = Start-Process $app -ArgumentList '--verify-business-actions' -PassThru
+          if (-not $process.WaitForExit(240000)) { $process.Kill(); throw 'Business action verification timed out.' }
+          Get-Content dist/FreeSMS-Net10/navigation-checks/business-actions-summary.log -ErrorAction SilentlyContinue
+          Get-Content dist/FreeSMS-Net10/navigation-checks/*_workflow_*.log -ErrorAction SilentlyContinue
+          if ($process.ExitCode -ne 0) { exit 1 }
       - name: Verify the original forms and native controls
         if: ${{ !cancelled() }}
         shell: pwsh
@@ -95,28 +117,6 @@ jobs:
           if (-not $process.WaitForExit(900000)) { $process.Kill(); throw 'Navigation verification timed out.' }
           Get-Content dist/FreeSMS-Net10/navigation-checks/summary.log -ErrorAction SilentlyContinue
           if ($process.ExitCode -ne 0) { Get-Content dist/FreeSMS-Net10/original-runtime-error.txt -ErrorAction SilentlyContinue; exit 1 }
-      - name: Exercise original report preview action with an isolated database
-        if: ${{ !cancelled() }}
-        shell: pwsh
-        run: |
-          $app = Join-Path $PWD 'dist/FreeSMS-Net10/FreeSMS.exe'
-          $process = Start-Process $app -ArgumentList '--verify-report-actions' -PassThru
-          if (-not $process.WaitForExit(180000)) { $process.Kill(); throw 'Report action verification timed out.' }
-          Get-Content dist/FreeSMS-Net10/navigation-checks/report-actions-summary.log -ErrorAction SilentlyContinue
-          if ($process.ExitCode -ne 0) {
-            Get-Content dist/FreeSMS-Net10/navigation-checks/*_report_*.log -ErrorAction SilentlyContinue
-            exit 1
-          }
-      - name: Exercise school settings and discount workflows through original buttons
-        if: ${{ !cancelled() }}
-        shell: pwsh
-        run: |
-          $app = Join-Path $PWD 'dist/FreeSMS-Net10/FreeSMS.exe'
-          $process = Start-Process $app -ArgumentList '--verify-business-actions' -PassThru
-          if (-not $process.WaitForExit(240000)) { $process.Kill(); throw 'Business action verification timed out.' }
-          Get-Content dist/FreeSMS-Net10/navigation-checks/business-actions-summary.log -ErrorAction SilentlyContinue
-          Get-Content dist/FreeSMS-Net10/navigation-checks/*_workflow_*.log -ErrorAction SilentlyContinue
-          if ($process.ExitCode -ne 0) { exit 1 }
       - name: Upload original verification evidence
         if: always()
         uses: actions/upload-artifact@v7.0.2

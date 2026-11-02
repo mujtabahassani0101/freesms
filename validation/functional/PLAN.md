@@ -1,6 +1,6 @@
 # Full application verification
 
-The requested end state covers all application sections, including the three reported screenshots. Completion is unproven until the relevant workflow results and persisted effects have been checked. The generated action inventory contains 89 forms, 2,313 controls and 446 click actions; its initial status is deliberately unverified.
+The requested end state covers all application sections, including the three reported screenshots. Completion is unproven until the relevant workflow results and persisted effects have been checked. The generated action inventory contains 89 forms, 2,313 controls and 448 click actions; its initial status is deliberately unverified.
 
 Required workflow groups:
 

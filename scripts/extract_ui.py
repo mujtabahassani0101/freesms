@@ -57,7 +57,7 @@ for path in sorted(SRC.glob('*.cs')):
   par=receiver(par.strip());child=receiver(child)
   if child in ctrls:ctrls[child]['parent']=par
  events={}
- for v,handler in re.findall(r'(.+?)\.Click \+= ([\w]+);',init):events[receiver(v.strip())]=handler
+ for v,handler in re.findall(r'(.+?)\.Click \+= (@?\w+);',init):events[receiver(v.strip())]=handler.lstrip('@')
  for v,c in ctrls.items():
   if v in events:c['click']=events[v]
  for v,layout in re.findall(r'([\w.@]+)\.DesignTimeLayout = ([\w]+);',init):
@@ -75,10 +75,10 @@ for path in sorted(SRC.glob('*.cs')):
  # Resolve each click handler's destination forms from the decompiled method.
  actions={}
  for method in methods:
-  signature=re.match(r'\n\t(?:private|public|protected) \w+ (\w+)\(',method)
+  signature=re.match(r'\n\t(?:private|public|protected) \w+ (@?\w+)\(',method)
   if not signature:continue
   targets=re.findall(r'new (asd\w*)\(',method)
-  if targets:actions[signature[1]]=list(dict.fromkeys(targets))
+  if targets:actions[signature[1].lstrip('@')]=list(dict.fromkeys(targets))
  # Extract grid column layout and bitmap data from source resources.
  layouts=[]
  res=path.with_suffix('.resx')

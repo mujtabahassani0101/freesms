@@ -12,6 +12,7 @@ using Janus.Windows.GridEX;
 // Called only after OriginalNavigationCheck has validated its disposable database.
 internal static class OriginalWorkflowChecks
 {
+    private static Action<string> diagnostic = message => { };
     private static T Field<T>(Form form, string name) => (T)form.GetType().GetField(name, BindingFlags.Instance | BindingFlags.NonPublic).GetValue(form);
     private static void Click(Form form, string name) => Field<UIButton>(form, name).PerformClick();
     private static void Require(bool condition, string message) { if (!condition) throw new InvalidOperationException(message); }
@@ -22,8 +23,31 @@ internal static class OriginalWorkflowChecks
             if (Convert.ToInt32(grid.GetRow(i).Cells["id"].Value) == id) { grid.Row = i; return; }
         throw new InvalidOperationException("Saved row was not reloaded into the original grid.");
     }
+    internal static string ReportStudentName => asdaj.b("شاگرد آزمایشی گزارش");
+    internal static void PrepareReportFixture(Database db)
+    {
+        // The parent creates this database; it never uses OriginalRuntime's user connection.
+        var school = new SchoolService(db, new Session(1410));
+        school.SetYear(1410);
+        school.SaveSchool(new Record { ["sch"]="مکتب آزمایشی گزارش", ["Ost"]="کابل", ["cty"]="آزمون", ["Foter1"]="مدیر آزمایشی" });
+        int classroom = school.SaveClass(new Record { ["name"]="صنف آزمایشی گزارش", ["xpaye"]=1, ["fee"]=1000, ["shift"]=1, ["sortRpt"]=30000 });
+        var entities = new EntityService(school);
+        var existingBook = db.Query("SELECT TOP 1 id FROM tBook WHERE xPaye=1 ORDER BY sort,id").FirstOrDefault();
+        int book = existingBook == null ? entities.Save("books", new Record { ["xPaye"]=1, ["Name"]="مضمون آزمایشی", ["vahed"]=1, ["timeWeek"]=1, ["Type"]=1, ["sort"]=30000, ["SortOneEntry"]=30000, ["codedars"]=5991001, ["Vezarat"]=true }) : Convert.ToInt32(existingBook["id"]);
+        int teacher = entities.Save("teachers",new Record { ["fNamF"]="استاد", ["fNamL"]="آزمایشی", ["fEmail"]="", ["fPassword"]="" });
+        school.AssignTeacher(classroom,book,teacher);
+        school.SaveStudent(new Record { ["FName"]=ReportStudentName, ["LName"]=asdaj.b("پدر آزمایشی"), ["PName"]=asdaj.b("پدرکلان آزمایشی"), ["Code"]=5991001, ["NumberAsas"]=5991001, ["xPaye"]=1, ["xClass"]=classroom, ["Status"]=1, ["Jens"]=0, ["Fee1"]=1000 });
+    }
+    internal static void AssertReportFixture(FreeSms.NativeControls.PortableReportViewer viewer)
+    {
+        var input = (FreeSms.Reports.ReportInput)typeof(FreeSms.NativeControls.PortableReportViewer).GetField("input",BindingFlags.Instance|BindingFlags.NonPublic).GetValue(viewer);
+        bool found = input != null && input.Data != null && input.Data.Tables.Cast<System.Data.DataTable>().Any(table => table.Rows.Cast<System.Data.DataRow>().Any(row => row.ItemArray.Any(value => Convert.ToString(value) == ReportStudentName)));
+        Require(found,"Report preview did not receive the fixture student's actual database values.");
+        Require(input.Parameters.Values.Any(value => Convert.ToString(value).Contains("مکتب آزمایشی گزارش")), "Report preview did not receive the fixture school header.");
+    }
     internal static void Run(string scenario, Form form, Database db, Action<string> log)
     {
+        diagnostic = log;
         if (scenario == "discount") Discount(form, db, log);
         else if (scenario == "school") School(form, db, log);
         else throw new ArgumentException("Unknown workflow scenario: " + scenario);
@@ -83,11 +107,12 @@ internal static class OriginalWorkflowChecks
     [DllImport("user32.dll", CharSet=CharSet.Unicode)] private static extern int GetClassName(IntPtr window, StringBuilder name, int size);
     [DllImport("user32.dll", CharSet=CharSet.Unicode)] private static extern int GetWindowText(IntPtr window, StringBuilder text, int size);
     [DllImport("user32.dll")] private static extern IntPtr GetDlgItem(IntPtr window, int id);
-    [DllImport("user32.dll")] private static extern IntPtr SendMessage(IntPtr window, uint message, IntPtr wparam, IntPtr lparam);
+    [DllImport("user32.dll")] private static extern bool PostMessage(IntPtr window, uint message, IntPtr wparam, IntPtr lparam);
     [DllImport("kernel32.dll")] private static extern uint GetCurrentThreadId();
     private static void Dialog(Action action, string expectedText, int buttonId)
     {
-        bool observed = false;
+        bool observed = false, logged = false;
+        diagnostic("EXPECT dialog: " + expectedText);
         using var timer = new Timer {Interval=100};
         timer.Tick += (s,e) => EnumThreadWindows(GetCurrentThreadId(), (window,p) =>
         {
@@ -96,11 +121,15 @@ internal static class OriginalWorkflowChecks
             var texts = new List<string>();
             EnumChildWindows(window,(child,unused) => {var text = new StringBuilder(2048);GetWindowText(child,text,text.Capacity);texts.Add(text.ToString());return true;},IntPtr.Zero);
             // Never acknowledge an unexpected message or an unrelated window.
-            if (!texts.Contains(expectedText)) return true;
+            if (!logged) { logged = true; diagnostic("OBSERVED dialog child texts: " + string.Join(" | ",texts)); }
+            if (!texts.Any(text => text.Trim() == expectedText)) return true;
             IntPtr button = GetDlgItem(window,buttonId);
             if (button == IntPtr.Zero) return true;
             observed = true; timer.Stop();
-            SendMessage(button,0x00F5,IntPtr.Zero,IntPtr.Zero); // BM_CLICK
+            // Queue the validated dialog button command; do not depend on focus or
+            // synchronously reenter the native modal loop from a timer callback.
+            Require(PostMessage(window,0x0111,(IntPtr)buttonId,button), "Could not queue expected dialog response."); // WM_COMMAND/BN_CLICKED
+            diagnostic("RESPOND expected dialog, button=" + buttonId);
             return false;
         },IntPtr.Zero);
         timer.Start(); action();

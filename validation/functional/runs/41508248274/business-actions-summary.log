@@ -1,0 +1,4 @@
+Original school/discount workflow actions and persisted effects
+TIMEOUT b6_workflow_school toolfrmSchool -> frmSchool
+TIMEOUT d8_workflow_discount toolTakhfif -> frmTakhfif
+RESULT loaded=0, interaction=0, total=2

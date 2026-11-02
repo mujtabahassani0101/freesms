@@ -2,7 +2,7 @@
   "scope": "Every recovered click action; opening a form or a responsive modal is not proof of a business workflow. Add scenarios for selection/editing, keyboard actions, database effects, reports, files and error recovery.",
   "forms": 89,
   "controls": 2313,
-  "click_actions": 446,
+  "click_actions": 448,
   "actions": [
     {
       "id": "asda0.m_c",
@@ -1395,6 +1395,18 @@
       "evidence": []
     },
     {
+      "id": "asdat.m_e",
+      "form_class": "asdat",
+      "form": "frmSabtenam",
+      "form_caption": "ثبت نام ",
+      "control": "btnAcp",
+      "caption": "ثبت(F3)",
+      "handler": "as",
+      "targets": [],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
       "id": "asdat.m_g",
       "form_class": "asdat",
       "form": "frmSabtenam",
@@ -1902,6 +1914,20 @@
       "handler": "af",
       "targets": [
         "asdb7"
+      ],
+      "status": "unverified",
+      "evidence": []
+    },
+    {
+      "id": "asdb3.m_bj",
+      "form_class": "asdb3",
+      "form": "frmMain",
+      "form_caption": "SMS نرم افزار ",
+      "control": "toolshaghe",
+      "caption": "مدیریت شقه های صنف",
+      "handler": "as",
+      "targets": [
+        "asdaz"
       ],
       "status": "unverified",
       "evidence": []

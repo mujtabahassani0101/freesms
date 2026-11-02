@@ -4,7 +4,7 @@ These scenarios execute the original Windows forms and their actual buttons agai
 
 ## Report preview (`FreeSMS.exe --verify-report-actions`)
 
-Precondition: the migrated seed's default year has a class, an exam and report 101. Open the original report selector through the main menu handler; select report 101, one class and the compatible number of exams; click the original preview button. Require a viewer with at least one generated page after asynchronous data binding. Save a rendered screenshot. Unexpected dialogs, controller exceptions, missing fixture data and timeouts are failures. This first case does not yet cover all report configurations or correctness of printed values.
+Precondition: create year 1410, its exams, a dedicated class, named test student and school headers in the migrated disposable database. Never use the user's bank. Open the original report selector through the main menu handler; select report 101, one class and the compatible number of exams; click the original preview button. Require a viewer with at least one generated page after asynchronous data binding and assert the real input received by the viewer contains the named fixture student. An empty report template does not satisfy this assertion. Save a rendered screenshot. Unexpected dialogs, controller exceptions, missing fixture data and timeouts are failures. This first case does not yet cover all report configurations or correctness of printed values.
 
 Also inspect every `tRpt` entry's original factory, migrated template, main/alternate procedures and subreport procedure references. Log each missing dependency separately. These metadata checks do not prove procedure execution or report accuracy.
 

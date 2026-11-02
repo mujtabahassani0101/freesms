@@ -13798,6 +13798,7 @@
         "tabindex": 100,
         "text": "ثبت(F3)",
         "parent": "m_h",
+        "click": "as",
         "image": "asdat_btnAcp_Image.png"
       },
       {
@@ -20201,6 +20202,7 @@
           30
         ],
         "text": "مدیریت شقه های صنف",
+        "click": "as",
         "image": "asdb3_toolshaghe_Image.png"
       },
       {
@@ -22291,6 +22293,9 @@
       ],
       "at": [
         "asdas"
+      ],
+      "as": [
+        "asdaz"
       ],
       "ar": [
         "asda8"

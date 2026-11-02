@@ -77,7 +77,11 @@ internal static class OriginalNavigationCheck
                 {
                     if (workflowRunning) return;
                     var form = windows.FirstOrDefault(item => item.GetType().Name == className);
-                    if (form == null) return;
+                    if (form == null)
+                    {
+                        if (HasNativeDialog()) { File.AppendAllText(workerLog, "FAILED workflow blocked before opening: " + NativeDialogText() + Environment.NewLine); Environment.Exit(1); }
+                        return;
+                    }
                     workflowRunning = true;
                     OriginalWorkflowChecks.Run(workflow, form, database, message => File.AppendAllText(workerLog, message + Environment.NewLine));
                     File.AppendAllText(workerLog, "SUCCESS original workflow actions and persisted effects" + Environment.NewLine);
@@ -98,6 +102,8 @@ internal static class OriginalNavigationCheck
                     if (viewers.Any(viewer => viewer.ReportPageCount > 0))
                     {
                         var viewer = viewers.First(viewer => viewer.ReportPageCount > 0);
+                        OriginalWorkflowChecks.AssertReportFixture(viewer);
+                        File.AppendAllText(workerLog, "PASS actual report input contains the fixture student" + Environment.NewLine);
                         using var image = new System.Drawing.Bitmap(viewer.Width, viewer.Height);
                         viewer.DrawToBitmap(image, new System.Drawing.Rectangle(System.Drawing.Point.Empty, image.Size));
                         image.Save(Path.Combine(directory, route + ".png"));
@@ -106,13 +112,18 @@ internal static class OriginalNavigationCheck
                     }
                     if (HasNativeDialog())
                     {
-                        File.AppendAllText(workerLog, "FAILED unexpected modal during report preview" + Environment.NewLine);
+                        File.AppendAllText(workerLog, "FAILED unexpected modal during report preview: " + NativeDialogText() + Environment.NewLine);
                         Environment.Exit(1);
                     }
                     return;
                 }
                 if (windows.Any(form => form.GetType().Name == className))
                 {
+                    if (HasNativeDialog())
+                    {
+                        File.AppendAllText(workerLog, "FAILED destination blocked by unexpected native dialog: " + NativeDialogText() + Environment.NewLine);
+                        Environment.Exit(1);
+                    }
                     File.AppendAllText(workerLog, "SUCCESS loaded, shown and UI timer responded" + Environment.NewLine);
                     Environment.Exit(0);
                 }
@@ -137,7 +148,22 @@ internal static class OriginalNavigationCheck
     [DllImport("user32.dll")] private static extern bool EnumThreadWindows(uint thread, WindowCallback callback, IntPtr parameter);
     [DllImport("user32.dll")] private static extern bool IsWindowVisible(IntPtr window);
     [DllImport("user32.dll", CharSet = CharSet.Unicode)] private static extern int GetClassName(IntPtr window, StringBuilder name, int size);
+    [DllImport("user32.dll", CharSet = CharSet.Unicode)] private static extern int GetWindowText(IntPtr window, StringBuilder text, int size);
+    [DllImport("user32.dll")] private static extern bool EnumChildWindows(IntPtr window, WindowCallback callback, IntPtr parameter);
     [DllImport("kernel32.dll")] private static extern uint GetCurrentThreadId();
+    private static string NativeDialogText()
+    {
+        var texts = new System.Collections.Generic.List<string>();
+        EnumThreadWindows(GetCurrentThreadId(), (window, parameter) =>
+        {
+            var name = new StringBuilder(128); GetClassName(window,name,name.Capacity);
+            if (!IsWindowVisible(window) || name.ToString() != "#32770") return true;
+            var title = new StringBuilder(2048); GetWindowText(window,title,title.Capacity); texts.Add(title.ToString());
+            EnumChildWindows(window,(child,unused) => { var text = new StringBuilder(2048); GetWindowText(child,text,text.Capacity); if (text.Length > 0) texts.Add(text.ToString()); return true; },IntPtr.Zero);
+            return true;
+        },IntPtr.Zero);
+        return string.Join(" | ",texts);
+    }
     private static bool HasNativeDialog()
     {
         bool found = false;
@@ -188,10 +214,11 @@ internal static class OriginalNavigationCheck
         string path = Path.Combine(directory, "report-catalog.log");
         int failures = 0, count = 0;
         using var log = new StreamWriter(path);
-        foreach (var row in database.Query("SELECT id,Rpt,sp,sp2,subReport FROM tRpt ORDER BY id"))
+        foreach (var row in database.Query("SELECT id,Rpt,sp,sp2,subReport,tosifi,Caption FROM tRpt ORDER BY id"))
         {
             count++;
             string id = Convert.ToString(row["id"]), name = Convert.ToString(row["Rpt"]);
+            log.WriteLine("CATALOG report=" + id + " tosifi=" + Convert.ToString(row["tosifi"]) + " caption=" + Convert.ToString(row["Caption"]));
             var report = asdd.a(name);
             if (report == null || !File.Exists(Path.Combine(AppContext.BaseDirectory, "portable-layouts", report.ResourceName + ".xml")))
             { failures++; log.WriteLine("FAILED report=" + id + " missing factory/template: " + name); }
@@ -230,6 +257,7 @@ internal static class OriginalNavigationCheck
             var database = Bootstrapper.OpenAsync(AppContext.BaseDirectory, options).GetAwaiter().GetResult();
             Migrations.Apply(database, AppContext.BaseDirectory);
             var connection = new SqlConnectionStringBuilder(database.ConnectionString) { ApplicationName = "FreeSMS.NavigationCheck" };
+            if (reportActions) OriginalWorkflowChecks.PrepareReportFixture(database);
             bool reportCatalogValid = !reportActions || CheckReportCatalog(database, directory);
             var catalog = new FormCatalog(AppContext.BaseDirectory);
             var main = catalog.ByName["frmMain"];
@@ -237,6 +265,8 @@ internal static class OriginalNavigationCheck
                 .GroupBy(control => control.S("click")).Select(group => group.First()).OrderBy(control => control.S("name")).ToArray();
             if (reportActions) targets = targets.Where(control => catalog.Target(main, control).Value.S("class") == "asda0").ToArray();
             if (businessActions) targets = targets.Where(control => new[] { "asdh", "asdac" }.Contains(catalog.Target(main, control).Value.S("class"))).ToArray();
+            if (businessActions && targets.Select(control => catalog.Target(main,control).Value.S("class")).Distinct().Count() != 2)
+                throw new InvalidOperationException("Both school and discount workflow routes are required.");
             if (targets.Length == 0) throw new InvalidOperationException("No verification routes were discovered.");
             int passed = 0, interaction = 0;
             foreach (var control in targets)
