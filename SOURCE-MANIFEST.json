@@ -1,6 +1,6 @@
 {
   "format": 3,
-  "source_commit": "bebe4edb8deab59acef862813149d3e47eee3325",
+  "source_commit": "aa3fb31ad8811c0d07f5f47a270a29e36d97c69a",
   "target": "Windows x64: self-contained x86 .NET 10 application, controls and reports",
   "files": [
     {
@@ -36,7 +36,7 @@
     {
       "path": "README.md",
       "bytes": 8949,
-      "sha256": "6c8c5510dac5c5ae744974011d7a81f7af5aa8a335fbe08bb5798481dadce402"
+      "sha256": "5dce8d145111ea097e5bc763e173bd5fa988446289205e7c2d1b501e4d3777c5"
     },
     {
       "path": "analysis/ShamsiDate.cs",
@@ -8561,7 +8561,7 @@
     {
       "path": "validation/README-native.md",
       "bytes": 2012,
-      "sha256": "d14cf6b69270f076848e442dc5f3edcb86276bdc83fc672b1d8f388429564bf4"
+      "sha256": "89785a2a35594f23e0102c1b92e455641616d8bb214434fb3a531e7dd190978a"
     },
     {
       "path": "validation/RESULTS.md",
@@ -8590,13 +8590,13 @@
     },
     {
       "path": "validation/native-controls-checks.log",
-      "bytes": 6039,
-      "sha256": "cfb52b3edef7566c6a25653b30b2b0ee9778c2dbf1607b240e1d80485c741469"
+      "bytes": 6326,
+      "sha256": "6d9bddd3bb111f56c27d391ee060859da4e27d81efbd41c663a81f9d8c20d764"
     },
     {
       "path": "validation/navigation/README.md",
       "bytes": 1530,
-      "sha256": "37373601ed635d1ec78374fc26e23cc644955aeadd267eae1ffa12854a3fa658"
+      "sha256": "f1f098c50345cc2f5cbb3566c80b1f9c589d846ff9582143c3a4be7a0c0fa34b"
     },
     {
       "path": "validation/navigation/asda0.log",
@@ -9416,7 +9416,7 @@
     {
       "path": "validation/original-source-coverage.json",
       "bytes": 1829,
-      "sha256": "84989b8f18fba94d9bfcdd4ac0d2a7e4ef099b4980ea6ad73aa7b25a5fc186c6"
+      "sha256": "78a1a5e80bfa8c3b87b9f721d6f78a46ae09a0a962b238f55cdfbac0fd700e93"
     },
     {
       "path": "validation/previews/CR_AF_StdKarnameDorehByChart_term1.rpt.png",
