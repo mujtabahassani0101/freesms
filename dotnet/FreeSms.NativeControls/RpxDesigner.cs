@@ -119,8 +119,10 @@ namespace DataDynamics.ActiveReports.Design
         }
         protected override void Dispose(bool disposing) { if (disposing) { Report.Dispose(); CommandBarManager.Dispose(); } base.Dispose(disposing); }
     }
-    public class ReportExplorer : TreeView
+    public class ReportExplorer : UserControl
     {
+        private readonly TreeView tree = new TreeView { Dock = DockStyle.Fill };
+        public ReportExplorer() { Controls.Add(tree); }
         private ActiveReport3 report;
         public Designer ReportDesigner { get; set; }
         public ActiveReport3 Report
@@ -128,14 +130,14 @@ namespace DataDynamics.ActiveReports.Design
             get => report;
             set
             {
-                report = value; Nodes.Clear();
+                report = value; tree.Nodes.Clear();
                 if (value == null) return;
                 foreach (var section in value.Sections)
                 {
-                    var node = Nodes.Add(section.Name);
+                    var node = tree.Nodes.Add(section.Name);
                     foreach (var control in section.Controls) node.Nodes.Add(control.Name);
                 }
-                ExpandAll();
+                tree.ExpandAll();
             }
         }
     }

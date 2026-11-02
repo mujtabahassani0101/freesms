@@ -92,13 +92,18 @@ internal static class LayoutExporter
             sections.Add(node);
         }
         xml.Add(sections);
-        if (isSubreport) return xml;
-        var ras = report.ReportClientDocument;
-        var functions = ras.CustomFunctionController.GetCustomFunctions();
-        var custom = new XElement("custom-functions");
-        for (int i = 0; i < functions.Count; i++)
-            custom.Add(new XElement("function", new XAttribute("name", functions[i].Name), functions[i].Text));
-        xml.Add(custom);
+        // Read the loaded document for a one-time conversion of the user's own
+        // templates. Do not change engine licensing, flags or vendor binaries.
+        var documentProperty = typeof(ReportDocument).GetProperty("InternalReportClientDocument", BindingFlags.Instance | BindingFlags.NonPublic);
+        var ras = (CrystalDecisions.ReportAppServer.ClientDoc.ISCDReportClientDocument)documentProperty.GetValue(report, null);
+        if (!isSubreport)
+        {
+            var functions = ras.CustomFunctionController.GetCustomFunctions();
+            var custom = new XElement("custom-functions");
+            for (int i = 0; i < functions.Count; i++)
+                custom.Add(new XElement("function", new XAttribute("name", functions[i].Name), functions[i].Text));
+            xml.Add(custom);
+        }
         var areas = ras.ReportDefController.ReportDefinition.Areas;
         for (int i = 0; i < areas.Count; i++)
         {
