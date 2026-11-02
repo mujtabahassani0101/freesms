@@ -1,0 +1,52 @@
+name: Native Windows verification
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  windows:
+    runs-on: windows-2025
+    timeout-minutes: 20
+    env:
+      DOTNET_NOLOGO: '1'
+      DOTNET_CLI_TELEMETRY_OPTOUT: '1'
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-dotnet@v6.0.0
+        with:
+          dotnet-version: '10.0.x'
+      - name: Verify native LocalDB and business workflows
+        shell: pwsh
+        run: |
+          dotnet run --project dotnet/FreeSms.Checks/FreeSms.Checks.csproj -c Release -- --root . --integration 2>&1 | Tee-Object -FilePath validation/windows-native-checks.log
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - name: Publish self-contained Windows application
+        shell: pwsh
+        run: dotnet publish dotnet/FreeSms.Windows/FreeSms.Windows.csproj -c Release -r win-x64 --self-contained true -p:PublishReadyToRun=true -o dist/FreeSMS-Net10
+      - name: Render every recovered form on Windows
+        shell: pwsh
+        run: |
+          $app = Join-Path $PWD 'dist/FreeSMS-Net10/FreeSMS.exe'
+          $process = Start-Process -FilePath $app -ArgumentList '--verify-forms' -Wait -PassThru
+          if ($process.ExitCode -ne 0) {
+            Get-Content dist/FreeSMS-Net10/forms-verification-error.txt -ErrorAction SilentlyContinue
+            exit 1
+          }
+          Get-Content dist/FreeSMS-Net10/forms-verification.txt
+      - name: Upload Windows verification evidence
+        if: always()
+        uses: actions/upload-artifact@v7.0.2
+        with:
+          name: windows-verification
+          path: |
+            validation/windows-native-checks.log
+            dist/FreeSMS-Net10/forms-verification*.txt
+          retention-days: 7
+      - name: Upload native Windows application
+        uses: actions/upload-artifact@v7.0.2
+        with:
+          name: FreeSMS-Net10-native-Windows-x64
+          path: dist/FreeSMS-Net10/
+          retention-days: 7

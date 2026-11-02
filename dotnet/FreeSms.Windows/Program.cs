@@ -9,7 +9,17 @@ internal static class Program
     {
         ApplicationConfiguration.Initialize();
         Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
-        Application.ThreadException += (_, e) => MessageBox.Show(e.Exception.Message, "خطای برنامه");
+        var verification = args.Contains("--verify-forms");
+        Application.ThreadException += (_, e) =>
+        {
+            if (verification)
+            {
+                File.AppendAllText(Path.Combine(AppContext.BaseDirectory, "forms-verification-error.txt"), e.Exception.ToString());
+                Environment.ExitCode = 1;
+                Application.Exit();
+            }
+            else MessageBox.Show(e.Exception.Message, "خطای برنامه");
+        };
         try
         {
             var preview = args.Contains("--preview") || args.Contains("--verify-forms");
@@ -24,6 +34,7 @@ internal static class Program
                 {
                     using var form = new RecoveredForm(runtime, definition);
                     form.Show(); Application.DoEvents();
+                    if (Environment.ExitCode != 0) throw new InvalidOperationException("Windows form verification failed; see forms-verification-error.txt.");
                     using var bitmap = new Bitmap(form.Width, form.Height);
                     form.DrawToBitmap(bitmap, new Rectangle(Point.Empty, form.Size));
                     form.Close();
@@ -33,6 +44,11 @@ internal static class Program
             }
             Application.Run(new RecoveredForm(runtime, runtime.Catalog.ByName[name]));
         }
-        catch (Exception error) { MessageBox.Show(error.Message, "برنامه باز نشد", MessageBoxButtons.OK, MessageBoxIcon.Error); Environment.ExitCode = 1; }
+        catch (Exception error)
+        {
+            if (verification) File.AppendAllText(Path.Combine(AppContext.BaseDirectory, "forms-verification-error.txt"), error.ToString());
+            else MessageBox.Show(error.Message, "برنامه باز نشد", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            Environment.ExitCode = 1;
+        }
     }
 }

@@ -1,6 +1,3 @@
-using System.Diagnostics;
-using System.Net;
-using System.Net.Sockets;
 using System.Text;
 using System.Text.Json;
 using FreeSms.Core;
@@ -57,13 +54,39 @@ try
             Require(Convert.ToHexStringLower(System.Security.Cryptography.SHA256.HashData(Encoding.UTF8.GetBytes(text))) == resource.S("sha256"));
         }
     });
+    Check("Native LocalDB uses Windows authentication and no application password", () =>
+    {
+        var builder = new Microsoft.Data.SqlClient.SqlConnectionStringBuilder(Bootstrapper.LocalConnectionString(new DatabaseOptions("unused")));
+        Require(builder.DataSource == @"(localdb)\FreeSMS" && builder.IntegratedSecurity && builder.InitialCatalog == "free_sms");
+        Require(builder.Password.Length == 0 && builder.UserID.Length == 0);
+        try { Bootstrapper.LocalConnectionString(new DatabaseOptions("unused", "FreeSMS", "master")); throw new Exception("Unsafe database accepted"); }
+        catch (ArgumentException) { }
+    });
+    Check("Seed copying preserves existing data and refuses incomplete databases", () =>
+    {
+        var directory = Path.Combine(root, "validation/dotnet-data", Guid.NewGuid().ToString("N"));
+        var options = new DatabaseOptions(directory);
+        try
+        {
+            var files = Bootstrapper.PrepareSeedFiles(root, options);
+            Require(File.ReadAllBytes(files.Data).SequenceEqual(File.ReadAllBytes(Path.Combine(root, "original/installed/db/school_af_kbr_Data.MDF"))));
+            File.AppendAllText(files.Data, "existing user data");
+            var size = new FileInfo(files.Data).Length;
+            Bootstrapper.PrepareSeedFiles(root, options);
+            Require(new FileInfo(files.Data).Length == size);
+            File.Delete(files.Log);
+            var rejected = false;
+            try { Bootstrapper.PrepareSeedFiles(root, options); } catch (IOException) { rejected = true; }
+            Require(rejected && new FileInfo(files.Data).Length == size);
+        }
+        finally { if (Directory.Exists(directory)) Directory.Delete(directory, true); }
+    });
     if (args.Contains("--integration"))
     {
         var suffix = Guid.NewGuid().ToString("N")[..10];
-        var container = "free-sms-dotnet-check-" + suffix;
-        var listener = new TcpListener(IPAddress.Loopback, 0); listener.Start();
-        var port = ((IPEndPoint)listener.LocalEndpoint).Port; listener.Stop();
-        var options = new DatabaseOptions(Path.Combine(root, "validation/dotnet-data", suffix), container, container + "-data", port, "free_sms_check_" + suffix);
+        if (!OperatingSystem.IsWindows()) throw new PlatformNotSupportedException("Run native LocalDB integration checks on Windows.");
+        var instance = "FreeSmsCheck_" + suffix;
+        var options = new DatabaseOptions(Path.Combine(root, "validation/dotnet-data", suffix), instance, "free_sms_check_" + suffix);
         try
         {
             var db = await Bootstrapper.OpenAsync(root, options);
@@ -159,15 +182,20 @@ try
         }
         finally
         {
-            foreach (var command in new[] { new[] { "container", "rm", "-f", container }, new[] { "volume", "rm", options.Volume } })
+            // Only this check's uniquely named native instance is stopped and removed.
+            var utility = Bootstrapper.FindLocalDbUtility();
+            if (utility is not null)
             {
-                var start = new ProcessStartInfo("docker") { RedirectStandardOutput = true, RedirectStandardError = true };
-                foreach (var argument in command) start.ArgumentList.Add(argument);
-                using var process = Process.Start(start)!;
-                var output = process.StandardOutput.ReadToEndAsync(); var error = process.StandardError.ReadToEndAsync(); await process.WaitForExitAsync(); await output;
-                if (process.ExitCode != 0) throw new Exception("Verification cleanup failed: " + await error);
+                var exists = await Bootstrapper.RunLocalDbAsync(utility, default, "info", instance);
+                if (exists.Code == 0)
+                {
+                    Microsoft.Data.SqlClient.SqlConnection.ClearAllPools();
+                    var stopped = await Bootstrapper.RunLocalDbAsync(utility, default, "stop", instance, "-k");
+                    var deleted = await Bootstrapper.RunLocalDbAsync(utility, default, "delete", instance);
+                    if (stopped.Code != 0 || deleted.Code != 0) throw new Exception("Native verification instance cleanup failed.");
+                }
             }
-            Directory.Delete(options.DataDirectory, true);
+            if (Directory.Exists(options.DataDirectory)) Directory.Delete(options.DataDirectory, true);
         }
     }
     Console.WriteLine($"SUCCESS: {passed} checks passed.");

@@ -11,3 +11,4 @@ validation/wheels/
 **/obj/
 validation/dotnet-data/
 *.zip
+validation/original-recovery/
