@@ -53,10 +53,27 @@ internal static class Program
                 payments.DataSource=entries;Application.DoEvents();
                 var total=payments.Controls.OfType<Label>().Single();
                 Check(total.Text.Contains("dates: 2") && total.Text.Contains("fees: 600"),"payment grid counts string dates and sums numeric amounts without converting dates to numbers");
-                entries.DefaultView.RowFilter="fee >= 400";Application.DoEvents();
-                Check(total.Text.Contains("dates: 1") && total.Text.Contains("fees: 400"),"payment grid totals follow the visible filtered records");
+                payments.Controls.OfType<TextBox>().Single().Text="1411/02/01";Application.DoEvents();
+                Check(payments.RowCount==1 && total.Text.Contains("dates: 1") && total.Text.Contains("fees: 400"),"payment grid totals follow the visible filtered records");
                 entries.Clear();Application.DoEvents();
                 Check(total.Text.Contains("dates: 0") && total.Text.Contains("fees: 0"),"empty payment grid reports zero count and sum");
+            }
+            using(var numbers=new GridEX{Dock=DockStyle.Fill})
+            {
+                window.Controls.Add(numbers);numbers.BringToFront();
+                numbers.DesignTimeLayout=new GridEXLayout{LayoutString="<GridEXLayoutData><RootTable><Columns><Column0><Key>count</Key><DataMember>count</DataMember><InputMask>Number0</InputMask></Column0><Column1><Key>mark</Key><DataMember>mark</DataMember><InputMask>Number2</InputMask></Column1></Columns></RootTable></GridEXLayoutData>"};
+                var values=new DataTable();values.Columns.Add("count",typeof(int));values.Columns.Add("mark",typeof(decimal));values.Rows.Add(1,1m);numbers.DataSource=values;
+                var view=numbers.Controls.OfType<DataGridView>().Single();int errors=0;view.DataError+=(sender,args)=>{errors++;args.ThrowException=true;};
+                bool Enter(string key,string value)
+                {
+                    view.CurrentCell=view.Rows[0].Cells[key];RequireEditor();
+                    ((TextBox)view.EditingControl!).Text=value;
+                    bool accepted=view.EndEdit();if(!accepted)view.CancelEdit();numbers.EndEdit();return accepted;
+                }
+                void RequireEditor(){if(!view.BeginEdit(true) || view.EditingControl is not TextBox)throw new InvalidOperationException("Numeric cell did not open its editor.");}
+                Check(Enter("count","۱۲٣") && (int)values.Rows[0]["count"]==123 && Enter("mark","۱۲.۵") && (decimal)values.Rows[0]["mark"]==12.5m,"native numeric grid edits preserve typed Persian/Arabic integers and decimal marks");
+                Check(!Enter("count","1.5") && (int)values.Rows[0]["count"]==123,"integer grid mask rejects fractions without changing the saved cell");
+                Check(!Enter("count","2147483648") && (int)values.Rows[0]["count"]==123 && errors==0,"out-of-range integer edits reject before binding without native data-error dialogs");
             }
             using (var blobs = new GridEX { Dock = DockStyle.Fill })
             {

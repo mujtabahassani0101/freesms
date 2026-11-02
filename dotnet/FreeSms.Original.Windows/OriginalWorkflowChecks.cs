@@ -81,6 +81,17 @@ internal static class OriginalWorkflowChecks
         foreach(int code in new[]{5992001,5992002})
             school.SaveStudent(new Record{["FName"]=code==5992001?"شاگرد پرداخت":"شاگرد محفوظ پرداخت",["LName"]="پدر آزمایشی",["PName"]="پدرکلان آزمایشی",["Code"]=code,["NumberAsas"]=code,["xPaye"]=1,["xClass"]=classroom,["Status"]=1,["Jens"]=0,["Fee1"]=1000});
     }
+    internal static void PrepareAttendanceFixture(Database db)
+    {
+        var school=new SchoolService(db,new Session(1412));school.SetYear(1412);
+        if(Convert.ToInt32(db.Scalar("SELECT COUNT(*) FROM tStudent WHERE Code=5993001"))==0)
+        {
+            int classroom=school.SaveClass(new Record{["name"]="صنف آزمایشی حاضری",["xpaye"]=1,["fee"]=0,["shift"]=1,["sortRpt"]=30000});
+            foreach(int code in new[]{5993001,5993002})
+                school.SaveStudent(new Record{["FName"]=code==5993001?"شاگرد حاضری":"شاگرد محفوظ حاضری",["LName"]="پدر آزمایشی",["PName"]="پدرکلان آزمایشی",["Code"]=code,["NumberAsas"]=code,["xPaye"]=1,["xClass"]=classroom,["Status"]=1,["Jens"]=0,["Fee1"]=0});
+            new EntityService(school).Save("year_days",new Record{["xMaghta"]=db.Scalar("SELECT xMaghta FROM tPaye WHERE id=1"),["Term1"]=100,["Term2"]=100});
+        }
+    }
     internal static void AssertReportFixture(FreeSms.NativeControls.PortableReportViewer viewer, Database database)
     {
         var input = (FreeSms.Reports.ReportInput)typeof(FreeSms.NativeControls.PortableReportViewer).GetField("input",BindingFlags.Instance|BindingFlags.NonPublic).GetValue(viewer);
@@ -130,6 +141,7 @@ internal static class OriginalWorkflowChecks
         else if (scenario == "backup") Backup(form,db,log);
         else if (scenario == "teacher" || scenario == "driver") People(scenario,form,db,log);
         else if (scenario == "payment") Payment(form,db,log);
+        else if (scenario == "attendance1" || scenario == "attendance2") Attendance(form,db,log);
         else throw new ArgumentException("Unknown workflow scenario: " + scenario);
     }
     private static void Discount(Form form, Database db, Action<string> log)
@@ -164,6 +176,61 @@ internal static class OriginalWorkflowChecks
         Dialog(() => Click(form,"m_e"), "آيا از حذف تخفیف مطمئن هستيد؟", 6);
         Require(Convert.ToInt32(db.Scalar("SELECT COUNT(*) FROM tTakhfif")) == before, "Confirmed deletion did not remove exactly the new record.");
         log("PASS deletion respects No/Yes and removes only the selected record");
+    }
+    private static void EditGridCell(GridEX grid,int row,string key,string value)
+    {
+        var view=grid.Controls.OfType<DataGridView>().Single();
+        view.CurrentCell=view.Rows[row].Cells[key];
+        Require(view.BeginEdit(true),"Grid cell did not enter edit mode: "+key);
+        Require(view.EditingControl is TextBox,"Grid did not open a text editor.");
+        ((TextBox)view.EditingControl).Text=value;
+        Require(view.EndEdit(),"Grid rejected a valid input: "+key);
+        grid.EndEdit();
+    }
+    private static void Attendance(Form form,Database db,Action<string> log)
+    {
+        string period=((asdp)form).q,other=period=="1"?"2":"1";
+        int days=period=="1"?100:200;
+        Require(Field<Control>(form,"o").Text==days.ToString(),"Attendance did not load the configured period's days.");
+        int id=Convert.ToInt32(db.Scalar("SELECT y.id FROM tYear_Student y JOIN tStudent s ON s.id=y.xStudent WHERE s.Code=5993001 AND y.xYear=1412"));
+        string OtherPeriod()=>string.Join("|",db.Query("SELECT hazer"+other+",Ghayeb"+other+",Mariz"+other+",rokhsat"+other+" FROM tYear_Student WHERE id=@p0",new object[]{id}).Single().Values.Select(Convert.ToString));
+        string otherBefore=OtherPeriod();
+        Select(form,id,"g");var grid=Field<GridEX>(form,"g");int row=grid.Row;
+        EditGridCell(grid,row,"ghayeb","۵");EditGridCell(grid,row,"Mariz","٣");EditGridCell(grid,row,"rokhsat","2");
+        Require(Convert.ToInt32(grid.GetRow(row).Cells["hazer"].Value)==days-10,"Editing absence categories did not recalculate present days.");
+        // Hold a real SQL row lock. Only a responsive UI timer can release it.
+        using(var connection=db.Open())
+        using(var transaction=connection.BeginTransaction())
+        {
+            using var command=connection.CreateCommand();command.Transaction=transaction;
+            command.CommandText="UPDATE tYear_Student SET hazer"+period+"=hazer"+period+" WHERE id=@id";
+            command.Parameters.AddWithValue("@id",id);command.ExecuteNonQuery();
+            bool heartbeat=false;using var release=new Timer{Interval=350};
+            release.Tick+=(sender,args)=>{release.Stop();transaction.Rollback();heartbeat=true;};release.Start();
+            Dialog(()=>Click(form,"m"),"تعداد 2 ردیف انجام شد",1);
+            Require(heartbeat,"Attendance Save blocked the UI while SQL was waiting.");
+        }
+        void AssertSaved()
+        {
+            var saved=db.Query("SELECT hazer"+period+" AS present,Ghayeb"+period+" AS absent,Mariz"+period+" AS sick,rokhsat"+period+" AS leave FROM tYear_Student WHERE id=@p0",new object[]{id}).Single();
+            Require(saved.Int("present")==days-10 && saved.Int("absent")==5 && saved.Int("sick")==3 && saved.Int("leave")==2,"Attendance Save did not preserve the known counts.");
+            Require(OtherPeriod()==otherBefore,"Saving attendance overwrote the other period.");
+        }
+        AssertSaved();
+        foreach(string invalid in new[]{days.ToString(),"-1"})
+        {
+            EditGridCell(grid,row,"hazer",invalid);
+            Dialog(()=>Click(form,"m"),"تعداد 1 ردیف ثبت شد؛ 1 ردیف نامعتبر ثبت نشد",1);
+            AssertSaved();
+            Require(Convert.ToInt32(grid.GetRow(row).Cells["acp"].Value)==-1,"Invalid attendance row was not marked rejected.");
+        }
+        EditGridCell(grid,row,"hazer",(days-10).ToString());Dialog(()=>Click(form,"m"),"تعداد 2 ردیف انجام شد",1);AssertSaved();
+        Click(form,"f");
+        using var reopened=new asdp{q=period};reopened.Show();Select(reopened,id,"g");
+        var reloaded=Field<GridEX>(reopened,"g");
+        Require(Convert.ToInt32(reloaded.GetRow(reloaded.Row).Cells["hazer"].Value)==days-10,"Attendance did not reload saved counts after reopening.");
+        Click(reopened,"f");
+        log("PASS original attendance period"+period+" edits normalize Persian/Arabic digits, recalculate present days, reject negative/over-total rows without overwriting saved values, preserve the other period and reload committed counts");
     }
     private static void ChildPayment(Action open,Action<Form> exercise)
     {

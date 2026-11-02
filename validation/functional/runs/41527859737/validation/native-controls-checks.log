@@ -1,0 +1,10 @@
+PASS bind two records
+PASS preserve layout metadata
+PASS selected row preserves database identity
+PASS typed mark edits update source data
+PASS checkbox write-through
+PASS sorted row identity
+PASS payment grid counts string dates and sums numeric amounts without converting dates to numbers
+System.InvalidOperationException: payment grid totals follow the visible filtered records
+   at Program.<>c__DisplayClass0_0.<Main>g__Check|0(Boolean result, String name) in D:\a\freesms\freesms\dotnet\FreeSms.NativeChecks\Program.cs:line 26
+   at Program.Main(String[] args) in D:\a\freesms\freesms\dotnet\FreeSms.NativeChecks\Program.cs:line 57

@@ -506,135 +506,26 @@ protected override void Dispose(bool A_0)
 		Close();
 	}
 
-	private void a(object A_0, ColumnActionEventArgs A_1)
-	{
-		int num7 = default;
-		int num4 = default;
-		int num5 = default;
-		int num2 = default;
-		bool flag = default;
-		while (true)
-		{
-			r = false;
-			int num = 6;
-			while (true)
-			{
-				int num8;
-				switch (num)
-				{
-				case 6:
-					if (!(A_1.Column.Key == "ghayeb"))
-					{
-						num = 2;
-						continue;
-					}
-					goto IL_0119;
-				case 9:
-				{
-					try
-					{
-						num7 = int.Parse(o.Text);
-					}
-					catch
-					{
-						MessageBox.Show("تعداد روز های سال تعلیمی را در منوی اطلاعات پایه مشخص کنید");
-						return;
-					}
-					int num6 = 0;
-					num4 = 0;
-					num5 = 0;
-					num2 = 0;
-					int num3 = 0;
-					num = 8;
-					continue;
-				}
-				case 11:
-					try
-					{
-						if (true)
-						{
-						}
-						num5 = int.Parse(g.GetRow(g.Row).Cells["Mariz"].Value.ToString());
-					}
-					catch
-					{
-					}
-					num = 10;
-					continue;
-				case 4:
-					num7 = 0;
-					num = 9;
-					continue;
-				case 1:
-					num8 = 0;
-					goto IL_012a;
-				case 12:
-					if (!flag)
-					{
-						num = 4;
-						continue;
-					}
-					return;
-				case 0:
-					num = 5;
-					continue;
-				case 5:
-					num8 = ((!(A_1.Column.Key == "rokhsat")) ? 1 : 0);
-					goto IL_012a;
-				case 2:
-					num = 3;
-					continue;
-				case 3:
-					if (!(A_1.Column.Key == "Mariz"))
-					{
-						num = 0;
-						continue;
-					}
-					goto IL_0119;
-				case 7:
-					return;
-				case 8:
-					try
-					{
-						num4 = int.Parse(g.GetRow(g.Row).Cells["Ghayeb"].Value.ToString());
-					}
-					catch
-					{
-					}
-					num = 11;
-					continue;
-				case 10:
-					{
-						try
-						{
-							num2 = int.Parse(g.GetRow(g.Row).Cells["rokhsat"].Value.ToString());
-						}
-						catch
-						{
-						}
-						int num3 = num4 + num5 + num2;
-						int num6 = num7 - num3;
-						g.GetRow(g.Row).BeginEdit();
-						g.GetRow(g.Row).Cells["hazer"].Value = num6;
-						g.GetRow(g.Row).Cells["Ghayeb"].Value = num4;
-						g.GetRow(g.Row).Cells["Mariz"].Value = num5;
-						g.GetRow(g.Row).Cells["rokhsat"].Value = num2;
-						g.GetRow(g.Row).EndEdit();
-						num = 7;
-						continue;
-					}
-					IL_0119:
-					num = 1;
-					continue;
-					IL_012a:
-					flag = (byte)num8 != 0;
-					num = 12;
-					continue;
-				}
-				break;
-			}
-		}
-	}
+    private bool recalculatingAttendance;
+    private void a(object sender,ColumnActionEventArgs args)
+    {
+        if(recalculatingAttendance)return;
+        r=false;
+        string key=args.Column.Key;
+        if(!string.Equals(key,"ghayeb",StringComparison.OrdinalIgnoreCase) && !string.Equals(key,"Mariz",StringComparison.OrdinalIgnoreCase) && !string.Equals(key,"rokhsat",StringComparison.OrdinalIgnoreCase))return;
+        if(g.Row<0)return;
+        var row=g.GetRow(g.Row);
+        recalculatingAttendance=true;
+        try
+        {
+            int days=FreeSms.Core.Values.Number(o.Text,1)??0;
+            var counts=FreeSms.Core.AttendanceCounts.FromAbsences(days,row.Cells["Ghayeb"].Value,row.Cells["Mariz"].Value,row.Cells["rokhsat"].Value);
+            row.BeginEdit();row.Cells["hazer"].Value=counts.Present;row.Cells["Ghayeb"].Value=counts.Absent;
+            row.Cells["Mariz"].Value=counts.Sick;row.Cells["rokhsat"].Value=counts.Leave;row.Cells["acp"].Value=0;row.EndEdit();
+        }
+        catch(FreeSms.Core.ValidationException){row.Cells["acp"].Value=-1;}
+        finally{recalculatingAttendance=false;}
+    }
 
 	private void b(object A_0, EventArgs A_1)
 	{
@@ -719,441 +610,58 @@ protected override void Dispose(bool A_0)
 		}
 	}
 
-	private void a(object A_0, EventArgs A_1)
-	{
-		int num4 = default;
-		bool flag = default;
-		int num8 = default;
-		int num9 = default;
-		int num10 = default;
-		int num6 = default;
-		while (true)
-		{
-			int num = 0;
-			int num2 = 0;
-			if (true)
-			{
-			}
-			int num3 = 6;
-			while (true)
-			{
-				int num7;
-				int num11;
-				switch (num3)
-				{
-				case 3:
-					g.GetRow(num4).BeginEdit();
-					g.GetRow(num4).Cells["acp"].Value = "1";
-					g.GetRow(num4).EndEdit();
-					num++;
-					num3 = 16;
-					continue;
-				case 4:
-					try
-					{
-						while (true)
-						{
-							IL_0120:
-							flag = !(g.GetRow(num4).Cells["hazer"].Text != "");
-							num3 = 2;
-							while (true)
-							{
-								int num14;
-								switch (num3)
-								{
-								case 2:
-									if (!flag)
-									{
-										num3 = 11;
-										continue;
-									}
-									num8 = 0;
-									num3 = 10;
-									continue;
-								case 1:
-									num3 = 8;
-									continue;
-								case 8:
-									num14 = ((num8 <= num2) ? 1 : 0);
-									goto IL_0252;
-								case 6:
-									num14 = 0;
-									goto IL_0252;
-								case 11:
-									num8 = int.Parse(g.GetRow(num4).Cells["hazer"].Text.ToString());
-									num3 = 9;
-									continue;
-								case 9:
-									num3 = ((num8 >= 0) ? 1 : 6);
-									continue;
-								case 3:
-									g.GetRow(num4).Cells["acp"].Value = "-1";
-									g.GetRow(num4).EndEdit();
-									num3 = 4;
-									continue;
-								case 4:
-									goto end_IL_00e7;
-								case 0:
-									num3 = ((!flag) ? 3 : 7);
-									continue;
-								case 7:
-								case 10:
-									num3 = 5;
-									continue;
-								case 5:
-									goto IL_054d;
-									IL_0252:
-									flag = (byte)num14 != 0;
-									num3 = 0;
-									continue;
-								}
-								goto IL_0120;
-								continue;
-								end_IL_00e7:
-								break;
-							}
-							break;
-						}
-					}
-					catch
-					{
-						g.GetRow(num4).BeginEdit();
-						g.GetRow(num4).Cells["acp"].Value = "-1";
-						g.GetRow(num4).EndEdit();
-					}
-					goto case 1;
-				case 12:
-				case 14:
-					flag = num4 < g.RowCount;
-					num3 = 0;
-					continue;
-				case 0:
-					if (!flag)
-					{
-						num3 = 10;
-						continue;
-					}
-					num8 = 0;
-					num9 = 0;
-					num10 = 0;
-					num6 = 0;
-					num7 = 0;
-					num3 = 4;
-					continue;
-				case 9:
-					num3 = (flag ? 1 : 3);
-					continue;
-				case 5:
-					MessageBox.Show("تعداد " + num + " ردیف انجام شد");
-					num3 = 8;
-					continue;
-				case 10:
-					g.Refresh();
-					flag = num <= 0;
-					num3 = 13;
-					continue;
-				case 13:
-					if (!flag)
-					{
-						num3 = 5;
-						continue;
-					}
-					goto case 8;
-				case 8:
-					r = true;
-					num3 = 11;
-					continue;
-				case 11:
-					return;
-				case 6:
-					try
-					{
-						num2 = int.Parse(o.Text);
-					}
-					catch
-					{
-						MessageBox.Show("تعداد روز های سال تعلیمی را در منوی اطلاعات پایه مشخص کنید");
-						return;
-					}
-					num8 = 0;
-					num9 = 0;
-					num10 = 0;
-					num6 = 0;
-					num7 = 0;
-					num4 = 0;
-					num3 = 14;
-					continue;
-				case 7:
-					try
-					{
-						while (true)
-						{
-							IL_0599:
-							flag = !(g.GetRow(num4).Cells["Ghayeb"].Text != "");
-							num3 = 6;
-							while (true)
-							{
-								int num13;
-								switch (num3)
-								{
-								case 6:
-									if (!flag)
-									{
-										num3 = 1;
-										continue;
-									}
-									num9 = 0;
-									num3 = 11;
-									continue;
-								case 3:
-									num13 = 0;
-									goto IL_0692;
-								case 2:
-									num3 = 10;
-									continue;
-								case 10:
-									num13 = ((num9 <= num2) ? 1 : 0);
-									goto IL_0692;
-								case 1:
-									num9 = int.Parse(g.GetRow(num4).Cells["Ghayeb"].Text.ToString());
-									num3 = 8;
-									continue;
-								case 8:
-									num3 = ((num9 >= 0) ? 2 : 3);
-									continue;
-								case 4:
-									num3 = (flag ? 5 : 0);
-									continue;
-								case 0:
-									g.GetRow(num4).Cells["acp"].Value = "-1";
-									g.GetRow(num4).EndEdit();
-									num3 = 9;
-									continue;
-								case 9:
-									goto end_IL_0560;
-								case 5:
-								case 11:
-									num3 = 7;
-									continue;
-								case 7:
-									goto IL_0786;
-									IL_0692:
-									flag = (byte)num13 != 0;
-									num3 = 4;
-									continue;
-								}
-								goto IL_0599;
-								continue;
-								end_IL_0560:
-								break;
-							}
-							break;
-						}
-					}
-					catch
-					{
-						g.GetRow(num4).BeginEdit();
-						g.GetRow(num4).Cells["acp"].Value = "-1";
-						g.GetRow(num4).EndEdit();
-					}
-					goto case 1;
-				case 1:
-				case 16:
-					num4++;
-					num3 = 12;
-					continue;
-				case 15:
-					try
-					{
-						while (true)
-						{
-							IL_07d2:
-							flag = !(g.GetRow(num4).Cells["Mariz"].Text != "");
-							num3 = 8;
-							while (true)
-							{
-								int num12;
-								switch (num3)
-								{
-								case 4:
-									goto end_IL_0799;
-								case 8:
-									if (!flag)
-									{
-										num3 = 5;
-										continue;
-									}
-									num10 = 0;
-									num3 = 7;
-									continue;
-								case 0:
-									num3 = 10;
-									continue;
-								case 10:
-									num12 = ((num10 <= num2) ? 1 : 0);
-									goto IL_08b3;
-								case 5:
-									num10 = int.Parse(g.GetRow(num4).Cells["Mariz"].Text.ToString());
-									num3 = 9;
-									continue;
-								case 9:
-									num3 = ((num10 < 0) ? 1 : 0);
-									continue;
-								case 1:
-									num12 = 0;
-									goto IL_08b3;
-								case 3:
-									num3 = ((!flag) ? 2 : 6);
-									continue;
-								case 2:
-									g.GetRow(num4).Cells["acp"].Value = "-1";
-									g.GetRow(num4).EndEdit();
-									num3 = 11;
-									continue;
-								case 11:
-									goto end_IL_0797;
-								case 6:
-								case 7:
-									{
-										num3 = 4;
-										continue;
-									}
-									IL_08b3:
-									flag = (byte)num12 != 0;
-									num3 = 3;
-									continue;
-								}
-								goto IL_07d2;
-								continue;
-								end_IL_0799:
-								break;
-							}
-							break;
-						}
-						goto IL_00d1;
-						end_IL_0797:;
-					}
-					catch
-					{
-						g.GetRow(num4).BeginEdit();
-						g.GetRow(num4).Cells["acp"].Value = "-1";
-						g.GetRow(num4).EndEdit();
-					}
-					goto case 1;
-				case 2:
-					{
-						try
-						{
-							while (true)
-							{
-								IL_09e7:
-								flag = !(g.GetRow(num4).Cells["rokhsat"].Text != "");
-								num3 = 1;
-								while (true)
-								{
-									int num5;
-									switch (num3)
-									{
-									case 2:
-										goto end_IL_09a2;
-									case 1:
-										if (!flag)
-										{
-											num3 = 12;
-											continue;
-										}
-										num6 = 0;
-										num3 = 5;
-										continue;
-									case 7:
-										num3 = 11;
-										continue;
-									case 14:
-										g.GetRow(num4).Cells["acp"].Value = "-1";
-										g.GetRow(num4).EndEdit();
-										num3 = 4;
-										continue;
-									case 4:
-										goto end_IL_09a0;
-									case 12:
-										flag = !(g.GetRow(num4).Cells["rokhsat"].Text != "");
-										num3 = 13;
-										continue;
-									case 13:
-										if (!flag)
-										{
-											num3 = 0;
-											continue;
-										}
-										goto case 7;
-									case 3:
-										num5 = 0;
-										goto IL_0b81;
-									case 0:
-										num6 = int.Parse(g.GetRow(num4).Cells["rokhsat"].Text.ToString());
-										num3 = 9;
-										continue;
-									case 9:
-										num3 = ((num6 >= 0) ? 6 : 3);
-										continue;
-									case 8:
-										num3 = ((!flag) ? 14 : 7);
-										continue;
-									case 6:
-										num3 = 10;
-										continue;
-									case 10:
-										num5 = ((num6 <= num2) ? 1 : 0);
-										goto IL_0b81;
-									case 5:
-									case 11:
-										{
-											num3 = 2;
-											continue;
-										}
-										IL_0b81:
-										flag = (byte)num5 != 0;
-										num3 = 8;
-										continue;
-									}
-									goto IL_09e7;
-									continue;
-									end_IL_09a2:
-									break;
-								}
-								break;
-							}
-							goto IL_0350;
-							end_IL_09a0:;
-						}
-						catch
-						{
-							g.GetRow(num4).BeginEdit();
-							g.GetRow(num4).Cells["acp"].Value = "-1";
-							g.GetRow(num4).EndEdit();
-						}
-						goto case 1;
-					}
-					IL_0350:
-					num7 = num8 + num9 + num10 + num6;
-					num11 = asdcb.d(asdab.e(), CommandType.Text, "update tYear_Student set hazer" + q + "=" + num8 + " ,Ghayeb" + q + "=" + num9 + " ,Mariz" + q + "=" + num10 + " ,rokhsat" + q + "=" + num6 + " where id=" + g.GetRow(num4).Cells["id"].Value.ToString());
-					flag = num11 <= 0;
-					num3 = 9;
-					continue;
-					IL_00d1:
-					num3 = 2;
-					continue;
-					IL_0786:
-					num3 = 15;
-					continue;
-					IL_054d:
-					num3 = 7;
-					continue;
-				}
-				break;
-			}
-		}
-	}
+    private async void a(object sender,EventArgs args)
+    {
+        g.EndEdit();
+        if(q!="1" && q!="2")throw new InvalidOperationException("Unknown attendance period.");
+        int days;
+        try{days=FreeSms.Core.Values.Number(o.Text,1)??0;}
+        catch(FreeSms.Core.ValidationException){days=0;}
+        if(days<=0){MessageBox.Show("تعداد روز های سال تعلیمی را در منوی اطلاعات پایه مشخص کنید");return;}
+        int invalid=0,year=int.Parse(j.Text),classroom=Convert.ToInt32(h.SelectedValue);
+        string period=q;
+        var entries=new System.Collections.Generic.List<(int Row,int Id,FreeSms.Core.AttendanceCounts Counts)>();
+        for(int index=0;index<g.RowCount;index++)
+        {
+            var row=g.GetRow(index);
+            try
+            {
+                var counts=FreeSms.Core.AttendanceCounts.Parse(days,row.Cells["hazer"].Value,row.Cells["Ghayeb"].Value,row.Cells["Mariz"].Value,row.Cells["rokhsat"].Value);
+                entries.Add((index,Convert.ToInt32(row.Cells["id"].Value),counts));
+            }
+            catch(FreeSms.Core.ValidationException){row.Cells["acp"].Value=-1;invalid++;}
+        }
+        var database=new FreeSms.Core.Database(OriginalRuntime.ConnectionString);
+        Enabled=false;UseWaitCursor=true;
+        var completed=new System.Collections.Generic.List<int>();Exception failure=null;int failedRow=-1;
+        try
+        {
+            await System.Threading.Tasks.Task.Run(()=>
+            {
+                foreach(var entry in entries)
+                {
+                    try
+                    {
+                        var counts=entry.Counts;
+                        int affected=database.Execute("UPDATE tYear_Student SET hazer"+period+"=@p0,Ghayeb"+period+"=@p1,Mariz"+period+"=@p2,rokhsat"+period+"=@p3 WHERE id=@p4 AND xYear=@p5 AND xClass=@p6",
+                            new object[]{counts.Present,counts.Absent,counts.Sick,counts.Leave,entry.Id,year,classroom});
+                        if(affected!=1)throw new FreeSms.Core.ValidationException("رکورد شاگرد با سال و صنف انتخاب‌شده مطابقت ندارد");
+                        completed.Add(entry.Row);
+                    }
+                    catch(Exception error) when(error is SqlException || error is FreeSms.Core.ValidationException)
+                    {failure=error;failedRow=entry.Row;break;}
+                }
+            });
+        }
+        finally{if(!IsDisposed){Enabled=true;UseWaitCursor=false;}}
+        if(IsDisposed)return;
+        foreach(int index in completed)g.GetRow(index).Cells["acp"].Value=1;
+        if(failedRow>=0)g.GetRow(failedRow).Cells["acp"].Value=-1;
+        g.Refresh();r=invalid==0 && failure==null;
+        if(failure!=null)MessageBox.Show("ثبت حاضری انجام نشد. تعداد "+completed.Count+" ردیف پیش از خطا ثبت شد.\n"+failure.Message,"خطا",MessageBoxButtons.OK,MessageBoxIcon.Error);
+        else if(invalid>0)MessageBox.Show("تعداد "+completed.Count+" ردیف ثبت شد؛ "+invalid+" ردیف نامعتبر ثبت نشد");
+        else if(completed.Count>0)MessageBox.Show("تعداد "+completed.Count+" ردیف انجام شد");
+    }
 
 	private void a(object A_0, KeyEventArgs A_1)
 	{

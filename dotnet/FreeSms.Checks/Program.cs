@@ -23,6 +23,23 @@ try
         Reject(() => Values.Number("not-a-number")); Reject(() => Values.Number(-1, 0));
         Require(Values.Text("  علي كابل  ") == "علی کابل");
     });
+    Check("Attendance accepts Persian digits and calculates present days from all absence categories",()=>
+    {
+        var counts=AttendanceCounts.FromAbsences(100,"۵","٣",2);
+        Require(counts==new AttendanceCounts(90,5,3,2));
+        Require(AttendanceCounts.Parse(100,"۹۰",5,3,2)==counts);
+        Require(AttendanceCounts.Parse(100,null,null,null,null)==default);
+    });
+    Check("Attendance rejects negative, fractional, overflowing and over-total counts",()=>
+    {
+        Reject(()=>AttendanceCounts.Parse(100,-1,0,0,0));
+        Reject(()=>AttendanceCounts.Parse(100,"1.5",0,0,0));
+        Reject(()=>AttendanceCounts.Parse(100,101,0,0,0));
+        Reject(()=>AttendanceCounts.Parse(100,90,20,0,0));
+        Reject(()=>AttendanceCounts.FromAbsences(100,80,30,0));
+        Reject(()=>AttendanceCounts.Parse(int.MaxValue,int.MaxValue,int.MaxValue,0,0));
+        Reject(()=>AttendanceCounts.FromAbsences(0,0,0,0));
+    });
     Check("Legacy version codec agrees with the Python fixture", () =>
     {
         const string fixture = "VkFCV0FGSUFVZ0JrQURBQU1RQndBRThBU0FCb0FFNEFWUUI2QUdnQU5BQlVBREVBUlFBNUFGQUFVUUE5QUQwQQ==";

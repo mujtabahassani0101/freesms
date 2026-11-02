@@ -325,14 +325,32 @@ namespace Janus.Windows.GridEX
             View.KeyDown += (s, e) => OnKeyDown(e);
             View.KeyPress += (s, e) => OnKeyPress(e);
             View.CellFormatting += FormatCell;
+            View.CellParsing += (s,e)=>
+            {
+                if(e.ColumnIndex<0 || string.IsNullOrEmpty(RootTable.Columns[View.Columns[e.ColumnIndex].Name].InputMask))return;
+                string text=NormalizeDigits(Convert.ToString(e.Value,CultureInfo.CurrentCulture));
+                if(decimal.TryParse(text,NumberStyles.Number,CultureInfo.CurrentCulture,out var number))
+                {
+                    var model=RootTable.Columns[View.Columns[e.ColumnIndex].Name];
+                    var target=binding.DataSource is DataView data && data.Table.Columns.Contains(model.DataMember)?data.Table.Columns[model.DataMember].DataType:e.DesiredType;
+                    try{e.Value=target==typeof(string)?text:target==typeof(object)?number:Convert.ChangeType(number,target,CultureInfo.CurrentCulture);e.ParsingApplied=true;}
+                    catch(OverflowException){}catch(InvalidCastException){}
+                }
+            };
             View.CellValidating += (s, e) =>
             {
                 if (e.ColumnIndex < 0 || e.RowIndex < 0) return;
                 var column = RootTable.Columns[View.Columns[e.ColumnIndex].Name];
                 if (!string.IsNullOrEmpty(column.InputMask) && Convert.ToString(e.FormattedValue, CultureInfo.CurrentCulture) is string text && text.Length > 0)
                 {
-                    bool valid = decimal.TryParse(text, NumberStyles.Number, CultureInfo.CurrentCulture, out var number);
+                    bool valid = decimal.TryParse(NormalizeDigits(text), NumberStyles.Number, CultureInfo.CurrentCulture, out var number);
                     if (column.InputMask == "Number0") valid &= number == decimal.Truncate(number);
+                    var target=binding.DataSource is DataView data && data.Table.Columns.Contains(column.DataMember)?data.Table.Columns[column.DataMember].DataType:View.Columns[e.ColumnIndex].ValueType;
+                    if(valid && target!=null && target!=typeof(object) && target!=typeof(string))
+                    {
+                        try{Convert.ChangeType(number,target,CultureInfo.CurrentCulture);}
+                        catch(OverflowException){valid=false;}catch(InvalidCastException){valid=false;}
+                    }
                     e.Cancel = !valid;
                     View.Rows[e.RowIndex].ErrorText = valid ? "" : "مقدار عددی معتبر وارد کنید.";
                 }
@@ -506,6 +524,11 @@ namespace Janus.Windows.GridEX
                 var value = row.Cells[condition.Column.Key].Value;
                 if (Convert.ToString(value, CultureInfo.InvariantCulture) == Convert.ToString(condition.Value, CultureInfo.InvariantCulture)) condition.FormatStyle.Apply(e.CellStyle);
             }
+        }
+        private static string NormalizeDigits(string text)
+        {
+            const string digits="۰۱۲۳۴۵۶۷۸۹٠١٢٣٤٥٦٧٨٩";
+            return string.Concat((text??"").Select(character=>digits.IndexOf(character) is int index && index>=0 ? (char)('0'+index%10) : character));
         }
         private void UpdateTotals()
         {

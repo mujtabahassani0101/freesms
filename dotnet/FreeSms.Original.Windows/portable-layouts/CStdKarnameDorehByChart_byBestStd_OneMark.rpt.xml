@@ -319,7 +319,7 @@ else {spRpt_StdKarnameDoreh1.CommentKoll}</formula>
 شاگرد: ' + {spRpt_StdKarnameDoreh1.FName} + '
 ولد / بنت: ' + {spRpt_StdKarnameDoreh1.LName} + '
 ولدیت: ' + {spRpt_StdKarnameDoreh1.PName} + '
-کد متعلم: ' + ToText({spRpt_StdKarnameDoreh1.Code},0)</formula>
+کد متعلم: ' + ToText({spRpt_StdKarnameDoreh1.Code},0,'')</formula>
     <formula name="nativeClassExam">'پایه: ' + {spRpt_StdKarnameDoreh1.Paye} + '    صنف: ' + {spRpt_StdKarnameDoreh1.Class} + '
 کارنامه: ' + {spRpt_StdKarnameDoreh1.Exam} + '
 ' + {@DateFrom}</formula>
@@ -800,7 +800,7 @@ else {spRpt_StdKarnameDoreh1.CommentKoll}</formula>
         <Left>6120</Left>
         <Top>80</Top>
         <Width>765</Width>
-        <Height>366</Height>
+        <Height>900</Height>
         <Text>نمره</Text>
         <Color>-16777216</Color>
         <Font family="Microsoft Sans Serif" size="12" style="1" />
@@ -826,7 +826,7 @@ else {spRpt_StdKarnameDoreh1.CommentKoll}</formula>
         <Left>5400</Left>
         <Top>120</Top>
         <Width>720</Width>
-        <Height>320</Height>
+        <Height>900</Height>
         <Text>رتبه کلاس</Text>
         <Color>-16777216</Color>
         <Font family="Microsoft Sans Serif" size="9" style="1" />
@@ -852,7 +852,7 @@ else {spRpt_StdKarnameDoreh1.CommentKoll}</formula>
         <Left>4680</Left>
         <Top>120</Top>
         <Width>720</Width>
-        <Height>320</Height>
+        <Height>900</Height>
         <Text>رتبه پایه</Text>
         <Color>-16777216</Color>
         <Font family="Microsoft Sans Serif" size="9" style="1" />
@@ -930,7 +930,7 @@ else {spRpt_StdKarnameDoreh1.CommentKoll}</formula>
         <Left>2600</Left>
         <Top>0</Top>
         <Width>472</Width>
-        <Height>437</Height>
+        <Height>900</Height>
         <Text>تعداد غیبت</Text>
         <Color>-16777216</Color>
         <Font family="Microsoft Sans Serif" size="8" style="0" />
@@ -956,7 +956,7 @@ else {spRpt_StdKarnameDoreh1.CommentKoll}</formula>
         <Left>8775</Left>
         <Top>55</Top>
         <Width>2032</Width>
-        <Height>380</Height>
+        <Height>900</Height>
         <Text>درس</Text>
         <Color>-16777216</Color>
         <Font family="Microsoft Sans Serif" size="12" style="1" />
@@ -982,7 +982,7 @@ else {spRpt_StdKarnameDoreh1.CommentKoll}</formula>
         <Left>10880</Left>
         <Top>0</Top>
         <Width>300</Width>
-        <Height>459</Height>
+        <Height>900</Height>
         <Text>ردیف</Text>
         <Color>-16777216</Color>
         <Font family="Microsoft Sans Serif" size="10" style="0" />
@@ -1008,7 +1008,7 @@ else {spRpt_StdKarnameDoreh1.CommentKoll}</formula>
         <Left>3120</Left>
         <Top>120</Top>
         <Width>1560</Width>
-        <Height>360</Height>
+        <Height>900</Height>
         <Text>نمره کیفی</Text>
         <Color>-16777216</Color>
         <Font family="Microsoft Sans Serif" size="10" style="1" />
@@ -1034,7 +1034,7 @@ else {spRpt_StdKarnameDoreh1.CommentKoll}</formula>
         <Left>7065</Left>
         <Top>30</Top>
         <Width>960</Width>
-        <Height>360</Height>
+        <Height>900</Height>
         <Text>نام دبیر</Text>
         <Color>-16777216</Color>
         <Font family="Microsoft Sans Serif" size="12" style="1" />
@@ -1060,7 +1060,7 @@ else {spRpt_StdKarnameDoreh1.CommentKoll}</formula>
         <Left>0</Left>
         <Top>0</Top>
         <Width>220</Width>
-        <Height>482</Height>
+        <Height>900</Height>
         <Text />
         <Color>-16777216</Color>
         <Font family="Arial" size="10" style="0" />
@@ -1086,7 +1086,7 @@ else {spRpt_StdKarnameDoreh1.CommentKoll}</formula>
         <Left>11220</Left>
         <Top>0</Top>
         <Width>220</Width>
-        <Height>482</Height>
+        <Height>900</Height>
         <Text />
         <Color>-16777216</Color>
         <Font family="Arial" size="10" style="0" />
@@ -1112,7 +1112,7 @@ else {spRpt_StdKarnameDoreh1.CommentKoll}</formula>
         <Left>600</Left>
         <Top>60</Top>
         <Width>1725</Width>
-        <Height>337</Height>
+        <Height>900</Height>
         <Text>ملاحظات</Text>
         <Color>-16777216</Color>
         <Font family="Microsoft Sans Serif" size="10" style="1" />
@@ -1190,7 +1190,7 @@ else {spRpt_StdKarnameDoreh1.CommentKoll}</formula>
         <Left>8325</Left>
         <Top>0</Top>
         <Width>240</Width>
-        <Height>455</Height>
+        <Height>900</Height>
         <Text>واحد</Text>
         <Color>-16777216</Color>
         <Font family="Microsoft Sans Serif" size="8" style="1" />

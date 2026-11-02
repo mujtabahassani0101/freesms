@@ -60,12 +60,16 @@ for name, base in BASES.items():
         ET.SubElement(root.find('parameters'), 'parameter', name=parameter, type='NumberField')
     # Replace the cramped inherited identity header in these reconstructed cards.
     # One growable multi-line field avoids clipping long student/father names.
-    add_formula(root, 'nativeIdentity', "'مکتب: ' + {?sch} + '\nشاگرد: ' + {spRpt_StdKarnameDoreh1.FName} + '\nولد / بنت: ' + {spRpt_StdKarnameDoreh1.LName} + '\nولدیت: ' + {spRpt_StdKarnameDoreh1.PName} + '\nکد متعلم: ' + ToText({spRpt_StdKarnameDoreh1.Code},0)")
+    add_formula(root, 'nativeIdentity', "'مکتب: ' + {?sch} + '\nشاگرد: ' + {spRpt_StdKarnameDoreh1.FName} + '\nولد / بنت: ' + {spRpt_StdKarnameDoreh1.LName} + '\nولدیت: ' + {spRpt_StdKarnameDoreh1.PName} + '\nکد متعلم: ' + ToText({spRpt_StdKarnameDoreh1.Code},0,'')")
     class_exam = "'پایه: ' + {spRpt_StdKarnameDoreh1.Paye} + '    صنف: ' + {spRpt_StdKarnameDoreh1.Class} + '\nکارنامه: ' + {spRpt_StdKarnameDoreh1.Exam}"
     if root.find("./formulas/formula[@name='DateFrom']") is not None:
         class_exam += " + '\n' + {@DateFrom}"
     add_formula(root, 'nativeClassExam', class_exam)
     sections = root.find('sections')
+    headings = sections.find("section[@name='GroupHeaderSection3']")
+    for heading in headings.findall('object'):
+        if heading.findtext('Kind') in ('TextObject', 'FieldHeadingObject'):
+            set_text(heading, 'Height', max(900, int(heading.findtext('Height', '0'))))
     identity = sections.find("section[@name='GroupHeaderSection2']")
     photo = deepcopy(next(obj for obj in identity.findall('object') if obj.findtext('Name') == 'Studentimg1'))
     for obj in identity.findall('object'):

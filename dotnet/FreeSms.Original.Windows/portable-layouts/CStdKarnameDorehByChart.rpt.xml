@@ -313,7 +313,7 @@ else {spRpt_StdKarnameDoreh1.CommentKoll}</formula>
 شاگرد: ' + {spRpt_StdKarnameDoreh1.FName} + '
 ولد / بنت: ' + {spRpt_StdKarnameDoreh1.LName} + '
 ولدیت: ' + {spRpt_StdKarnameDoreh1.PName} + '
-کد متعلم: ' + ToText({spRpt_StdKarnameDoreh1.Code},0)</formula>
+کد متعلم: ' + ToText({spRpt_StdKarnameDoreh1.Code},0,'')</formula>
     <formula name="nativeClassExam">'پایه: ' + {spRpt_StdKarnameDoreh1.Paye} + '    صنف: ' + {spRpt_StdKarnameDoreh1.Class} + '
 کارنامه: ' + {spRpt_StdKarnameDoreh1.Exam}</formula>
   </formulas>
@@ -741,7 +741,7 @@ else {spRpt_StdKarnameDoreh1.CommentKoll}</formula>
         <Left>5655</Left>
         <Top>0</Top>
         <Width>1545</Width>
-        <Height>437</Height>
+        <Height>900</Height>
         <Text>درس</Text>
         <Color>-16777216</Color>
         <Font family="Tahoma" size="10" style="0" />
@@ -767,7 +767,7 @@ else {spRpt_StdKarnameDoreh1.CommentKoll}</formula>
         <Left>7275</Left>
         <Top>0</Top>
         <Width>300</Width>
-        <Height>459</Height>
+        <Height>900</Height>
         <Text>ردیف</Text>
         <Color>-16777216</Color>
         <Font family="Tahoma" size="8" style="0" />
@@ -793,7 +793,7 @@ else {spRpt_StdKarnameDoreh1.CommentKoll}</formula>
         <Left>600</Left>
         <Top>120</Top>
         <Width>1680</Width>
-        <Height>320</Height>
+        <Height>900</Height>
         <Text>نمره کیفی</Text>
         <Color>-16777216</Color>
         <Font family="Microsoft Sans Serif" size="10" style="1" />
@@ -819,7 +819,7 @@ else {spRpt_StdKarnameDoreh1.CommentKoll}</formula>
         <Left>0</Left>
         <Top>0</Top>
         <Width>210</Width>
-        <Height>519</Height>
+        <Height>900</Height>
         <Text />
         <Color>-16777216</Color>
         <Font family="Arial" size="10" style="0" />
@@ -845,7 +845,7 @@ else {spRpt_StdKarnameDoreh1.CommentKoll}</formula>
         <Left>7605</Left>
         <Top>0</Top>
         <Width>405</Width>
-        <Height>519</Height>
+        <Height>900</Height>
         <Text />
         <Color>-16777216</Color>
         <Font family="Arial" size="10" style="0" />
@@ -923,7 +923,7 @@ else {spRpt_StdKarnameDoreh1.CommentKoll}</formula>
         <Left>4080</Left>
         <Top>0</Top>
         <Width>420</Width>
-        <Height>480</Height>
+        <Height>900</Height>
         <Text>واحد درس</Text>
         <Color>-16777216</Color>
         <Font family="Tahoma" size="7" style="0" />
@@ -949,7 +949,7 @@ else {spRpt_StdKarnameDoreh1.CommentKoll}</formula>
         <Left>4560</Left>
         <Top>0</Top>
         <Width>1080</Width>
-        <Height>437</Height>
+        <Height>900</Height>
         <Text>نام دبیر</Text>
         <Color>-16777216</Color>
         <Font family="Tahoma" size="10" style="0" />
@@ -1001,7 +1001,7 @@ else {spRpt_StdKarnameDoreh1.CommentKoll}</formula>
         <Left>2880</Left>
         <Top>0</Top>
         <Width>405</Width>
-        <Height>482</Height>
+        <Height>900</Height>
         <Text>رتبه کلاس</Text>
         <Color>-16777216</Color>
         <Font family="Tahoma" size="8" style="0" />
@@ -1027,7 +1027,7 @@ else {spRpt_StdKarnameDoreh1.CommentKoll}</formula>
         <Left>2400</Left>
         <Top>0</Top>
         <Width>472</Width>
-        <Height>459</Height>
+        <Height>900</Height>
         <Text>رتبه پایه</Text>
         <Color>-16777216</Color>
         <Font family="Tahoma" size="8" style="0" />
@@ -1079,7 +1079,7 @@ else {spRpt_StdKarnameDoreh1.CommentKoll}</formula>
         <Left>240</Left>
         <Top>0</Top>
         <Width>352</Width>
-        <Height>437</Height>
+        <Height>900</Height>
         <Text>تعداد غیبت</Text>
         <Color>-16777216</Color>
         <Font family="Tahoma" size="7" style="0" />
@@ -1105,7 +1105,7 @@ else {spRpt_StdKarnameDoreh1.CommentKoll}</formula>
         <Left>3360</Left>
         <Top>0</Top>
         <Width>720</Width>
-        <Height>320</Height>
+        <Height>900</Height>
         <Text>نمره</Text>
         <Color>-16777216</Color>
         <Font family="Tahoma" size="10" style="1" />

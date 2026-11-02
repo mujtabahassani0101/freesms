@@ -57,6 +57,7 @@ internal static class OriginalNavigationCheck
             asdab.r=new DatabaseMaintenance(database).IsLocalServer()?"0":"1";
             if (workflow == "student-delete") OriginalWorkflowChecks.PrepareReportFixture(database);
             if (workflow == "payment") OriginalWorkflowChecks.PreparePaymentFixture(database);
+            if (workflow == "attendance1" || workflow == "attendance2") OriginalWorkflowChecks.PrepareAttendanceFixture(database);
             asdaj.__field_a = Convert.ToString(database.Scalar("SELECT xYear FROM tDefYear"));
             // Test-only context; connection guard above excludes the user's database.
             asdaj.l = "1"; asdaj.m = "";
@@ -268,7 +269,7 @@ internal static class OriginalNavigationCheck
         string directory = Path.Combine(AppContext.BaseDirectory, "navigation-checks");
         Directory.CreateDirectory(directory);
         string summary = Path.Combine(directory, businessActions ? "business-actions-summary.log" : reportActions ? "report-actions-summary.log" : "summary.log");
-        File.WriteAllText(summary, (businessActions ? "Original school/discount workflow actions and persisted effects" : reportActions ? "Original report preview action and generated pages" : "Isolated native form Load/Shown responsiveness checks") + Environment.NewLine);
+        File.WriteAllText(summary, (businessActions ? "Original business workflow actions and persisted effects" : reportActions ? "Original report preview action and generated pages" : "Isolated native form Load/Shown responsiveness checks") + Environment.NewLine);
         try
         {
             var database = Bootstrapper.OpenAsync(AppContext.BaseDirectory, options).GetAwaiter().GetResult();
@@ -281,16 +282,24 @@ internal static class OriginalNavigationCheck
             var targets = main.A("controls").Where(control => catalog.Target(main, control) is var target && target.HasValue && target.Value.S("class") != "asdb3" && target.Value.S("class") != "asda3")
                 .GroupBy(control => control.S("click")).Select(group => group.First()).OrderBy(control => control.S("name")).ToArray();
             if (reportActions) targets = targets.Where(control => catalog.Target(main, control).Value.S("class") == "asda0").ToArray();
-            if (businessActions) targets = targets.Where(control => new[] { "asdh", "asdac", "asdm", "asda9", "asdbi", "asdl", "asda5" }.Contains(catalog.Target(main, control).Value.S("class"))).ToArray();
-            if (businessActions && targets.Select(control => catalog.Target(main,control).Value.S("class")).Distinct().Count() != 7)
-                throw new InvalidOperationException("School, discount, backup, teacher, driver, payment and student deletion workflow routes are required.");
+            if (businessActions) targets = targets.Where(control => new[] { "asdh", "asdac", "asdm", "asda9", "asdbi", "asdl", "asda5", "asdp" }.Contains(catalog.Target(main, control).Value.S("class"))).ToArray();
+            if (businessActions && targets.Select(control => catalog.Target(main,control).Value.S("class")).Distinct().Count() != 8)
+                throw new InvalidOperationException("School, discount, backup, teacher, driver, payment, attendance and student deletion workflow routes are required.");
+            if(businessActions && !targets.Where(item=>catalog.Target(main,item).Value.S("class")=="asdp").Select(item=>item.S("click")).OrderBy(value=>value).SequenceEqual(new[]{"ao","ap"}))
+                throw new InvalidOperationException("Both half-year and annual attendance routes must be tested.");
             if (targets.Length == 0) throw new InvalidOperationException("No verification routes were discovered.");
             int passed = 0, interaction = 0;
             var reportCases = reportActions ? new[] { "101", "1024", "1032" } : new[] { "" };
             foreach (string reportCase in reportCases)
             foreach (var control in targets)
             {
-                string route = control.S("variable") + (businessActions ? "_workflow_" + (catalog.Target(main, control).Value.S("class") == "asdh" ? "discount" : catalog.Target(main, control).Value.S("class") == "asdm" ? "student-delete" : catalog.Target(main, control).Value.S("class") == "asda9" ? "backup" : catalog.Target(main, control).Value.S("class") == "asdbi" ? "teacher" : catalog.Target(main, control).Value.S("class") == "asdl" ? "driver" : catalog.Target(main, control).Value.S("class") == "asda5" ? "payment" : "school") : reportActions ? "_report_" + reportCase : "");
+                string scenario=businessActions ? catalog.Target(main,control).Value.S("class") switch
+                {
+                    "asdh"=>"discount", "asdm"=>"student-delete", "asda9"=>"backup", "asdbi"=>"teacher", "asdl"=>"driver", "asda5"=>"payment", "asdac"=>"school",
+                    "asdp"=>control.S("click")=="ap"?"attendance1":"attendance2",
+                    _=>throw new InvalidOperationException("Unknown business workflow target.")
+                } : "";
+                string route=control.S("variable")+(businessActions?"_workflow_"+scenario:reportActions?"_report_"+reportCase:"");
                 var target = catalog.Target(main, control).Value;
                 var start = new ProcessStartInfo(Environment.ProcessPath) { UseShellExecute = false, CreateNoWindow = true };
                 start.ArgumentList.Add("--verify-navigation-form"); start.ArgumentList.Add(route);
