@@ -1,0 +1,5 @@
+BEGIN dk
+toolfrmRegisterPak0 -> frmRegisterPak
+CONSTRUCT
+CLICK m
+INTERACTION responsive modal selection/message; awaiting user input

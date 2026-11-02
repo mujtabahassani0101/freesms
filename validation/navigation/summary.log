@@ -1,67 +1,79 @@
 Isolated native form Load/Shown responsiveness checks
-PASS asda0 frmRpt
-PASS asda1 frmHozeh
-PASS asda5 frmPaymentAdd
-PASS asda6 frmSetAcpTerm
-PASS asda7 frmSetMark100
-PASS asda8 frmbackColor
-PASS asda9 frmbackUp
-PASS asdaa frmYearMaghtaCountDay
-PASS asdac frmSchool
-FAILED asdad frmDisciplinaryCases2
-PASS asdag frmTosifConfig
-FAILED asdah frmImportSarbargFile
-PASS asdai frmlistStdSearch
-PASS asdak frmMarkEntrySelect
-PASS asdal frmsarbarg
-PASS asdam frmRptLable
-PASS asdao FrmEmpty
-PASS asdap frmRptChart
-PASS asdaq frmHazeriAgo
-TIMEOUT asdar frmPaymentList
-FAILED asdas frmRptDis
-FAILED asdau frmActivStdSarbarg
-PASS asdav frmSetDefYear
-PASS asdb frmlistHozeh
-FAILED asdb0 frmSendSmsMark
-FAILED asdb1 frmSendSmsMarkTelegram
-PASS asdb2 frmRptAFLsit
-PASS asdb5 frmExpotMarkToXls
-PASS asdb6 frmTelegramConfig
-PASS asdb7 frmImportStd
-PASS asdb8 frmSetgTerm
-FAILED asdba frmSummaryResults
-PASS asdbf frmRptPayment
-PASS asdbh frmMarkEntryAgo
-PASS asdbi frmTeacher
-PASS asdbj frmlistTelegramMessage
-PASS asdbk frmRegisterPak
-FAILED asdbm frmDisciplinaryCases
-PASS asdbn frmDisciplinaryAddAbsentSelectDate
-PASS asdbo frmRptBalance
-PASS asdbq frmExam
-PASS asdbw frmRptSelectStd
-PASS asdby frmMarkEntry2
-FAILED asdbz frmYear_Student
-PASS asdc frmCls
-PASS asdca frmbook
-PASS asdcc frmExportMarkToSite
-PASS asdcd frmPaye
-FAILED asdce frmSendSmsMark
-PASS asdf frmDriverStd
-FAILED asdg frmCreateXlsToMarkEntry
-PASS asdh frmTakhfif
-PASS asdi frmUser
-TIMEOUT asdj frmTchClass
-PASS asdl frmDriver
-PASS asdm frmlistStd
-FAILED asdn frmDisciplinaryAdd
-PASS asdo frmOst
-FAILED asdp frmHazeri
-FAILED asdq frmDisciplinaryCases3
-FAILED asds frmUserPermission
-FAILED asdt frmsarbarg2
-PASS asdv frmImportMark
-TIMEOUT asdw frmCommentList
-PASS asdx frmCommentKollEntrySelect
-RESULT 46/65
+PASS dh btnPer -> frmUserPermission
+PASS m_aj toolBackUp -> frmbackUp
+PASS m_a0 toolCommentKoll -> frmCommentKollEntrySelect
+PASS b7 toolCommentKoll6 -> frmCommentKollEntrySelect
+FAILED by toolCreateXlsToMarkEntry -> frmCreateXlsToMarkEntry
+FAILED m_a6 toolDisciplinaryCases1 -> frmDisciplinaryCases
+FAILED m_a7 toolDisciplinaryCases2 -> frmDisciplinaryCases2
+FAILED m_bh toolDisciplinaryCases3 -> frmDisciplinaryCases3
+PASS m_bt toolDriver -> frmDriver
+PASS m_bu toolDriverStd -> frmDriverStd
+PASS m_h toolEmpty -> FrmEmpty
+PASS m_k toolfrBook -> frmbook
+FAILED d5 toolfrmActivStdSarbarg -> frmActivStdSarbarg
+PASS m_bk toolfrmBackColor -> frmbackColor
+PASS m_l toolfrmCls -> frmCls
+PASS dm toolfrmCommentList -> frmCommentList
+PASS d3 toolfrmCommentList2 -> frmCommentList
+FAILED m_a9 toolfrmDisciplinaryAdd -> frmDisciplinaryAdd
+PASS m_a8 toolfrmDisciplinaryAddAbsent -> frmDisciplinaryAddAbsentSelectDate
+PASS m_ag toolfrmExportMarkToSite -> frmExportMarkToSite
+PASS m_ay toolfrmExpotMarkToXls -> frmExpotMarkToXls
+PASS c3 toolfrmHazeriAgo10 -> frmHazeriAgo
+PASS c4 toolfrmHazeriAgo11 -> frmHazeriAgo
+FAILED d0 toolfrmImportSarbargFile -> frmImportSarbargFile
+PASS m_bw toolfrmlistStdSearch -> frmlistStdSearch
+PASS c2 toolfrmMarkEntryAgo -> frmMarkEntryAgo
+PASS m_w toolfrmPaye -> frmPaye
+PASS b3 toolfrmPaymentList -> frmPaymentList
+INTERACTION dk toolfrmRegisterPak0 -> frmRegisterPak
+PASS m_bp toolfrmRptAFLsit -> frmRptAFLsit
+PASS b6 toolfrmSchool -> frmSchool
+FAILED m_bg toolfrmSendSmsMark_armaghan -> frmSendSmsMark
+PASS c8 toolfrmSetAcpTerm1 -> frmSetAcpTerm
+PASS da toolfrmSetAcpTerm3 -> frmSetAcpTerm
+PASS df toolfrmSetDefYear -> frmSetDefYear
+PASS cb toolfrmSetgTerm1 -> frmSetgTerm
+PASS cd toolfrmSetgTerm3 -> frmSetgTerm
+FAILED b4 toolfrmSummaryResults -> frmSummaryResults
+PASS m_r toolfrmTchClass -> frmTchClass
+PASS m_j toolfrmTeacher -> frmTeacher
+PASS b1 toolfrmTosifConfig -> frmTosifConfig
+PASS dg toolfrmUser -> frmUser
+FAILED m_bm toolHazeri1 -> frmHazeri
+FAILED m_bn toolHazeri2 -> frmHazeri
+PASS m_ap toolHoze -> frmHozeh
+PASS bz toolImportMark -> frmImportMark
+PASS m_bv toolImportStd -> frmImportStd
+PASS m_aw toollistTelegramMessage -> frmlistTelegramMessage
+PASS m_a4 toolMarkEntryOne -> frmMarkEntry2
+FAILED m_al toolNewYear -> frmYear_Student
+PASS b2 toolOst -> frmOst
+PASS m_bq toolPaymentAdd -> frmPaymentAdd
+PASS m_ad toolRpt -> frmRpt
+PASS m_bs toolRptBalance -> frmRptBalance
+PASS m_ae toolRptChart -> frmRptChart
+FAILED m_bi toolRptDis -> frmRptDis
+FAILED do toolRptDynamic1 -> frmsarbarg2
+FAILED ds toolRptDynamic2 -> frmsarbarg2
+FAILED du toolRptDynamic3 -> frmsarbarg2
+FAILED dw toolRptDynamic4 -> frmsarbarg2
+FAILED dq toolRptDynamic5 -> frmsarbarg2
+FAILED dy toolRptDynamic6 -> frmsarbarg2
+PASS m_ar toolRptLable -> frmRptLable
+PASS m_br toolRptPayment -> frmRptPayment
+PASS m_ba toolRptSelectStd -> frmRptSelectStd
+PASS m_a2 toolSarbarg -> frmsarbarg
+INTERACTION d1 toolSarbargReg -> frmRegisterPak
+FAILED m_av toolSendMarkToTelegram -> frmSendSmsMarkTelegram
+PASS d7 toolSetMark100 -> frmSetMark100
+FAILED m_ah toolSms -> frmSendSmsMark
+PASS m_e toolStd -> frmlistStd
+PASS m_ab toolStripMenuItem6 -> frmExam
+PASS m_ac toolStripMenuItem7 -> frmMarkEntrySelect
+PASS m_aq toolStripMenuItem8 -> frmlistHozeh
+PASS d8 toolTakhfif -> frmTakhfif
+PASS m_au toolTelegramConfig -> frmTelegramConfig
+PASS m_bl toolYearMaghtaCountDay -> frmYearMaghtaCountDay
+RESULT loaded=54, interaction=2, total=77

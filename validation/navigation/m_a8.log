@@ -1,0 +1,5 @@
+BEGIN m_a8
+toolfrmDisciplinaryAddAbsent -> frmDisciplinaryAddAbsentSelectDate
+CONSTRUCT
+CLICK ay
+SUCCESS loaded, shown and UI timer responded
