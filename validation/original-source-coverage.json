@@ -8,17 +8,25 @@
   "full_net10_ui_runtime_compatible": true,
   "full_workflow_parity_verified": false,
   "evidence": {
-    "native_database": "https://github.com/mujtabahassani0101/freesms/actions/runs/41490887246",
+    "native_database": "https://github.com/mujtabahassani0101/freesms/actions/runs/41499961538",
     "original_framework_forms": "https://github.com/mujtabahassani0101/freesms/actions/runs/41451359815",
     "original_report_templates": "https://github.com/mujtabahassani0101/freesms/actions/runs/41449553701",
-    "original_net10_forms": "https://github.com/mujtabahassani0101/freesms/actions/runs/41490887246",
-    "native_reports": "https://github.com/mujtabahassani0101/freesms/actions/runs/41490887246"
+    "original_net10_forms": "https://github.com/mujtabahassani0101/freesms/actions/runs/41499961538",
+    "native_reports": "https://github.com/mujtabahassani0101/freesms/actions/runs/41499961538",
+    "menu_loading": "https://github.com/mujtabahassani0101/freesms/actions/runs/41499977813"
   },
-  "native_control_checks_passed": 134,
+  "native_control_checks_passed": 138,
   "native_report_port_verification": "98 templates rendered with disconnected sample data; long-subreport pagination and print/image consistency at 300 DPI passed",
-  "native_control_checks_scope": "Total native suite: controls, RPX, 98 report renders, pagination, printer DPI, chart layering and six package checks",
+  "native_control_checks_scope": "Total native suite: controls, deferred combo binding events, RPX, 98 report renders, pagination including oversized headers, printer DPI, chart layering and six package checks",
   "native_report_calculation_checks_passed": 40,
   "recovered_report_images": 58,
   "original_report_reference_pivots": 6,
-  "source_commit_verified": "c40f293"
+  "source_commit_verified": "56b553e",
+  "native_menu_loading": {
+    "loaded_and_responsive": 70,
+    "responsive_modal_interaction": 7,
+    "failed": 0,
+    "timeout": 0,
+    "scope": "Actual main menu click handlers, seeded isolated database; does not verify every inner-button action or data workflow."
+  }
 }

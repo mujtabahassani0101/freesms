@@ -86,6 +86,15 @@ jobs:
           if (-not $process.WaitForExit(180000)) { $process.Kill(); throw 'Native startup timed out.' }
           if ($process.ExitCode -ne 0) { Get-Content dist/FreeSMS-Net10/original-runtime-error.txt; exit 1 }
           Get-Content dist/FreeSMS-Net10/native-startup-verification.txt
+      - name: Verify main menu loading and responsiveness with an isolated database
+        if: ${{ !cancelled() }}
+        shell: pwsh
+        run: |
+          $app = Join-Path $PWD 'dist/FreeSMS-Net10/FreeSMS.exe'
+          $process = Start-Process $app -ArgumentList '--verify-navigation' -PassThru
+          if (-not $process.WaitForExit(900000)) { $process.Kill(); throw 'Navigation verification timed out.' }
+          Get-Content dist/FreeSMS-Net10/navigation-checks/summary.log -ErrorAction SilentlyContinue
+          if ($process.ExitCode -ne 0) { Get-Content dist/FreeSMS-Net10/original-runtime-error.txt -ErrorAction SilentlyContinue; exit 1 }
       - name: Upload original verification evidence
         if: always()
         uses: actions/upload-artifact@v7.0.2
@@ -97,6 +106,7 @@ jobs:
             validation/native-controls-checks.log
             validation/dotnet-release.json
             validation/native-controls/
+            dist/FreeSMS-Net10/navigation-checks/
             dist/FreeSMS-Net10/startup-*.png
             dist/FreeSMS-Net10/original-forms/
           retention-days: 7
