@@ -226,6 +226,8 @@ namespace Janus.Windows.GridEX
         private readonly Label totals = new Label { Dock = DockStyle.Bottom, AutoSize = false, Height = 26, TextAlign = ContentAlignment.MiddleRight, Visible = false };
         private readonly Dictionary<DataGridViewRow, GridEXRow> rows = new Dictionary<DataGridViewRow, GridEXRow>();
         private bool loading;
+        private DataGridViewCell editingCell;
+        private object editingOriginalValue;
         private bool building;
         private bool explicitLayout;
         private readonly Dictionary<byte[], Image> images = new Dictionary<byte[], Image>();
@@ -313,7 +315,18 @@ namespace Janus.Windows.GridEX
                 var args = new ColumnActionEventArgs(RootTable.Columns[View.Columns[e.ColumnIndex].Name]);
                 CellValueChanged?.Invoke(this, args); UpdateTotals();
             };
-            View.CellEndEdit += (s, e) => { if (!loading && e.ColumnIndex >= 0) { EndEdit(); CellUpdated?.Invoke(this, new ColumnActionEventArgs(RootTable.Columns[View.Columns[e.ColumnIndex].Name])); } };
+            View.CellBeginEdit+=(s,e)=>
+            {
+                editingCell=View.Rows[e.RowIndex].Cells[e.ColumnIndex];editingOriginalValue=editingCell.Value;
+            };
+            View.CellEndEdit+=(s,e)=>
+            {
+                var cell=View.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                bool changed=ReferenceEquals(editingCell,cell) && !Equals(editingOriginalValue,cell.Value);
+                editingCell=null;editingOriginalValue=null;View.Rows[e.RowIndex].ErrorText="";
+                if(!loading && e.ColumnIndex>=0)
+                {EndEdit();if(changed)CellUpdated?.Invoke(this,new ColumnActionEventArgs(RootTable.Columns[View.Columns[e.ColumnIndex].Name]));}
+            };
             View.CurrentCellDirtyStateChanged += (s, e) => { if (View.CurrentCell is DataGridViewCheckBoxCell && View.IsCurrentCellDirty) View.CommitEdit(DataGridViewDataErrorContexts.Commit); };
             View.Sorted += (s, e) => SortKeysChanged?.Invoke(this, e);
             View.Scroll += (s, e) => OnScroll(e);
@@ -337,23 +350,10 @@ namespace Janus.Windows.GridEX
                     catch(OverflowException){}catch(InvalidCastException){}
                 }
             };
-            View.CellValidating += (s, e) =>
+            View.CellValidating += (s,e)=>
             {
-                if (e.ColumnIndex < 0 || e.RowIndex < 0) return;
-                var column = RootTable.Columns[View.Columns[e.ColumnIndex].Name];
-                if (!string.IsNullOrEmpty(column.InputMask) && Convert.ToString(e.FormattedValue, CultureInfo.CurrentCulture) is string text && text.Length > 0)
-                {
-                    bool valid = decimal.TryParse(NormalizeDigits(text), NumberStyles.Number, CultureInfo.CurrentCulture, out var number);
-                    if (column.InputMask == "Number0") valid &= number == decimal.Truncate(number);
-                    var target=binding.DataSource is DataView data && data.Table.Columns.Contains(column.DataMember)?data.Table.Columns[column.DataMember].DataType:View.Columns[e.ColumnIndex].ValueType;
-                    if(valid && target!=null && target!=typeof(object) && target!=typeof(string))
-                    {
-                        try{Convert.ChangeType(number,target,CultureInfo.CurrentCulture);}
-                        catch(OverflowException){valid=false;}catch(InvalidCastException){valid=false;}
-                    }
-                    e.Cancel = !valid;
-                    View.Rows[e.RowIndex].ErrorText = valid ? "" : "مقدار عددی معتبر وارد کنید.";
-                }
+                if(e.ColumnIndex>=0 && e.RowIndex>=0)
+                    e.Cancel=!ValidateNumber(RootTable.Columns[View.Columns[e.ColumnIndex].Name],Convert.ToString(e.FormattedValue,CultureInfo.CurrentCulture),e.RowIndex);
             };
             View.DataBindingComplete += (s, e) => { rows.Clear(); UpdateTotals(); };
             search.TextChanged += (s, e) => Filter();
@@ -377,7 +377,15 @@ namespace Janus.Windows.GridEX
         public void MoveNext() { Row = Math.Min(RowCount - 1, Row + 1); }
         public void MovePrevious() { Row = Math.Max(0, Row - 1); }
         public void SelectCurrentCellText() { View.BeginEdit(true); (View.EditingControl as TextBox)?.SelectAll(); }
-        public void EndEdit() { View.EndEdit(); binding.EndEdit(); }
+        public void EndEdit(){TryEndEdit();}
+        public bool TryEndEdit()
+        {
+            // Native EndEdit skips CellValidating. Explicit Save needs the same guard.
+            if(View.CurrentCell!=null && View.IsCurrentCellInEditMode && View.EditingControl is TextBox editor)
+                if(!ValidateNumber(RootTable.Columns[View.CurrentCell.OwningColumn.Name],editor.Text,View.CurrentCell.RowIndex))return false;
+            if(!View.EndEdit())return false;
+            binding.EndEdit();return true;
+        }
         public void Refetch() { EndEdit(); binding.ResetBindings(false); UpdateTotals(); }
         public override void Refresh() { View.Refresh(); base.Refresh(); }
         protected override void OnFontChanged(EventArgs e) { base.OnFontChanged(e); if (View != null) View.Font = Font; }
@@ -524,6 +532,24 @@ namespace Janus.Windows.GridEX
                 var value = row.Cells[condition.Column.Key].Value;
                 if (Convert.ToString(value, CultureInfo.InvariantCulture) == Convert.ToString(condition.Value, CultureInfo.InvariantCulture)) condition.FormatStyle.Apply(e.CellStyle);
             }
+        }
+        private bool ValidateNumber(GridEXColumn column,string text,int rowIndex)
+        {
+            if(string.IsNullOrEmpty(column.InputMask))return true;
+            bool valid=true;
+            if(!string.IsNullOrWhiteSpace(text))
+            {
+                valid=decimal.TryParse(NormalizeDigits(text),NumberStyles.Number,CultureInfo.CurrentCulture,out var number);
+                if(column.InputMask=="Number0")valid&=number==decimal.Truncate(number);
+                var target=binding.DataSource is DataView data && data.Table.Columns.Contains(column.DataMember)?data.Table.Columns[column.DataMember].DataType:View.Columns[column.Key].ValueType;
+                if(valid && target!=null && target!=typeof(object) && target!=typeof(string))
+                {
+                    try{Convert.ChangeType(number,target,CultureInfo.CurrentCulture);}
+                    catch(OverflowException){valid=false;}catch(InvalidCastException){valid=false;}
+                }
+            }
+            View.Rows[rowIndex].ErrorText=valid?"":"مقدار عددی معتبر وارد کنید.";
+            return valid;
         }
         private static string NormalizeDigits(string text)
         {

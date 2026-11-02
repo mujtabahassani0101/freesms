@@ -34,7 +34,8 @@ public sealed class EntityService(SchoolService school)
             var value = submitted.Value(field);
             data[field] = columns[field].Text("type") switch
             {
-                "int" or "smallint" or "bigint" or "tinyint" => Values.Number(value),
+                "bigint" => Values.LongNumber(value),
+                "int" or "smallint" or "tinyint" => Values.Number(value),
                 "bit" => Values.Boolean(value),
                 "float" or "real" or "decimal" or "numeric" => Values.Text(value).Length == 0 ? null : double.TryParse(Values.Text(value), System.Globalization.CultureInfo.InvariantCulture, out var number) ? number : throw new ValidationException("مقدار عددی معتبر وارد کنید."),
                 _ => Values.Text(value)

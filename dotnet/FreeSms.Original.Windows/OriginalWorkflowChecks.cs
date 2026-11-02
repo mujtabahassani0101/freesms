@@ -92,6 +92,12 @@ internal static class OriginalWorkflowChecks
             new EntityService(school).Save("year_days",new Record{["xMaghta"]=db.Scalar("SELECT xMaghta FROM tPaye WHERE id=1"),["Term1"]=100,["Term2"]=100});
         }
     }
+    internal static void PrepareStudentEditFixture(Database db)
+    {
+        var school=new SchoolService(db,new Session(1413));school.SetYear(1413);
+        foreach(var item in new[]{("صنف ثبت نام",1),("صنف انتقال",1),("صنف پایه دوم",2)})
+            school.SaveClass(new Record{["name"]=item.Item1,["xpaye"]=item.Item2,["fee"]=1000,["shift"]=1,["sortRpt"]=30000});
+    }
     internal static void AssertReportFixture(FreeSms.NativeControls.PortableReportViewer viewer, Database database)
     {
         var input = (FreeSms.Reports.ReportInput)typeof(FreeSms.NativeControls.PortableReportViewer).GetField("input",BindingFlags.Instance|BindingFlags.NonPublic).GetValue(viewer);
@@ -138,6 +144,7 @@ internal static class OriginalWorkflowChecks
         if (scenario == "discount") Discount(form, db, log);
         else if (scenario == "school") School(form, db, log);
         else if (scenario == "student-delete") StudentDelete(form, db, log);
+        else if (scenario == "student-edit") StudentEdit(form,db,log);
         else if (scenario == "backup") Backup(form,db,log);
         else if (scenario == "teacher" || scenario == "driver") People(scenario,form,db,log);
         else if (scenario == "payment") Payment(form,db,log);
@@ -177,6 +184,110 @@ internal static class OriginalWorkflowChecks
         Require(Convert.ToInt32(db.Scalar("SELECT COUNT(*) FROM tTakhfif")) == before, "Confirmed deletion did not remove exactly the new record.");
         log("PASS deletion respects No/Yes and removes only the selected record");
     }
+    private static void StudentEdit(Form form,Database db,Action<string> log)
+    {
+        int classroom=Convert.ToInt32(db.Scalar("SELECT id FROM tClass WHERE xYear=1413 AND name=N'صنف ثبت نام'"));
+        int moved=Convert.ToInt32(db.Scalar("SELECT id FROM tClass WHERE xYear=1413 AND name=N'صنف انتقال'"));
+        int nextGrade=Convert.ToInt32(db.Scalar("SELECT id FROM tClass WHERE xYear=1413 AND name=N'صنف پایه دوم'"));
+        int before=Convert.ToInt32(db.Scalar("SELECT COUNT(*) FROM tStudent"));
+        string folder=System.IO.Path.Combine(System.IO.Path.GetTempPath(),"FreeSmsStudentUi_"+Guid.NewGuid().ToString("N"));System.IO.Directory.CreateDirectory(folder);
+        string photo=System.IO.Path.Combine(folder,"عکس شاگرد.png");byte[] bytes=FixturePhoto(FirstPhotoColor);System.IO.File.WriteAllBytes(photo,bytes);
+        void Fill(Form child,int code,int number)
+        {
+            Field<Control>(child,"m_w").Text="شاگرد ثبت نام";Field<Control>(child,"m_u").Text="پدر ثبت نام";Field<Control>(child,"m_s").Text="پدرکلان ثبت نام";
+            Field<Control>(child,"m_q").Text=code.ToString();Field<Control>(child,"m_ae").Text=number.ToString();
+            Field<UIComboBox>(child,"a4").SelectedValue="1";Field<UIComboBox>(child,"m_d").SelectedValue=classroom.ToString();Field<UIComboBox>(child,"m_y").SelectedValue="0";
+            Field<Control>(child,"az").Text="1413/01/01";Field<Control>(child,"cd").Text="";
+            for(int index=1;index<=9;index++)
+            {child.Controls.Find("txtFee"+index,true).Single().Text="0";child.Controls.Find("txttransport"+index,true).Single().Text="0";}
+            child.Controls.Find("txtFee1",true).Single().Text="100";child.Controls.Find("txtFee2",true).Single().Text="200";
+            child.Controls.Find("txttransport1",true).Single().Text="25";child.Controls.Find("txttransport2",true).Single().Text="30";
+        }
+        void EditSave(Form child)
+        {
+            bool next=Field<UIButton>(child,"cg").Enabled;
+            Dialog(()=>Click(child,"m_e"),next?"اطلاعات اصلاح شد . آیا مایل هستید نفر بعدی نمایش داده شود":"اطلاعات اصلاح شد",next?7:1);
+        }
+        try
+        {
+            ChildForm<asdat>(()=>Click(form,"m_h"),child=>
+            {
+                Dialog(()=>Click(child,"m_e"),"نام را وارد کنید",1);
+                Fill(child,5994001,5994001);
+                Require(Field<Control>(child,"cd").Text=="","Optional birth date contains mask literals.");
+                Field<Control>(child,"b7").Text="-1";
+                Dialog(()=>Click(child,"m_e"),"ثبت معلومات شاگرد انجام نشد:\nمقدار عددی خارج از محدودهٔ مجاز است.",1);
+                Require(Convert.ToInt32(db.Scalar("SELECT COUNT(*) FROM tStudent"))==before,"Rejected fee inserted a partial student.");
+                Field<Control>(child,"b7").Text="100";
+                typeof(asdat).GetField("m_b",BindingFlags.Instance|BindingFlags.NonPublic).SetValue(child,photo);
+                using(var connection=db.Open())
+                using(var transaction=connection.BeginTransaction())
+                {
+                    using var command=connection.CreateCommand();command.Transaction=transaction;
+                    command.CommandText="UPDATE tClass SET fee=fee+1 WHERE id=@id";command.Parameters.AddWithValue("@id",classroom);command.ExecuteNonQuery();
+                    bool heartbeat=false;using var release=new Timer{Interval=350};
+                    release.Tick+=(sender,args)=>{release.Stop();transaction.Rollback();heartbeat=true;};release.Start();
+                    Dialog(()=>Click(child,"m_e"),"ثبت شد",1);Require(heartbeat,"Student registration blocked the UI while SQL waited.");
+                }
+            });
+            var saved=db.Query("SELECT s.id,s.Jens,s.bDate,y.SumFee,y.Sumtransport,y.xClass FROM tStudent s JOIN tYear_Student y ON y.xStudent=s.id WHERE s.Code=5994001 AND y.xYear=1413").Single();
+            int id=saved.Int("id");
+            Require(saved.Int("Jens")==0 && saved.Int("SumFee")==300 && saved.Int("Sumtransport")==55 && saved.Int("xClass")==classroom && string.IsNullOrEmpty(saved.Text("bDate")),"Original registration did not preserve zero gender, optional date and exact fee totals.");
+            Require(new SchoolService(db,new Session(1413)).StudentImage(id)?.SequenceEqual(bytes)==true,"Original registration did not save the selected photo.");
+            foreach(bool duplicateCode in new[]{true,false})
+                ChildForm<asdat>(()=>Click(form,"m_h"),child=>
+                {
+                    Fill(child,duplicateCode?5994001:5994002,duplicateCode?5994002:5994001);
+                    Dialog(()=>Click(child,"m_e"),duplicateCode?"کد متعلم تکراری است":"نمبر اساس تکراری است",1);
+                    Require(Convert.ToInt32(db.Scalar("SELECT COUNT(*) FROM tStudent"))==before+1,"Duplicate identity inserted a partial student.");
+                });
+            ChildForm<asdat>(()=>Click(form,"m_h"),child=>{Fill(child,5994002,5994002);Click(child,"m_g");});
+            Require(Convert.ToInt32(db.Scalar("SELECT COUNT(*) FROM tStudent"))==before+1,"Cancel registered a student.");
+            Select(form,id,"av");
+            ChildForm<asdat>(()=>Click(form,"v"),child=>
+            {
+                Require(Field<Control>(child,"m_w").Text==asdaj.b("شاگرد ثبت نام"),"Edit did not reload the saved student.");
+                Field<UIComboBox>(child,"m_d").SelectedValue=moved.ToString();Field<Control>(child,"b4").Text="250";EditSave(child);
+            });
+            Require(Convert.ToInt32(db.Scalar("SELECT xClass FROM tYear_Student WHERE xStudent=@p0 AND xYear=1413",new object[]{id}))==moved && Convert.ToInt32(db.Scalar("SELECT SumFee FROM tYear_Student WHERE xStudent=@p0 AND xYear=1413",new object[]{id}))==350,"Edit/class move changed the wrong record or totals.");
+            var school=new SchoolService(db,new Session(1413));var entities=new EntityService(school);
+            int book=entities.Save("books",new Record{["xPaye"]=1,["Name"]="مضمون انتقال",["vahed"]=1,["timeWeek"]=1,["Type"]=1,["sort"]=30000,["SortOneEntry"]=30000,["codedars"]=5994001,["Vezarat"]=true});
+            int teacher=entities.Save("teachers",new Record{["fNamF"]="استاد انتقال",["fNamL"]="آزمون",["fEmail"]="",["fPassword"]=""});school.AssignTeacher(moved,book,teacher);
+            int exam=Convert.ToInt32(db.Scalar("SELECT id FROM tExam WHERE xYear=1413 AND term=1"));
+            var mark=db.Call("sp_tMark_insertUpdate_FromXls_Af",new Record{["xuser"]=1,["code"]="5994001",["codedars"]=5994001,["Xtest"]=exam,["xYear"]=1413,["Mark"]=25});Require(string.IsNullOrEmpty(Convert.ToString(mark.Output["err"])),"Student grade-change fixture mark was rejected.");
+            db.Call("sp_Procc",new Record{["Exam"]=exam});db.Call("sp_CalcMarkDoreh",new Record{["Exam"]=exam});
+            int oldTotals=Convert.ToInt32(db.Scalar("SELECT COUNT(*) FROM tMarkDoreh WHERE xStudent=@p0 AND Xtest=@p1",new object[]{id,exam}));Require(oldTotals>0,"Grade-change fixture did not create persisted calculated marks.");
+            int peerMarks=Convert.ToInt32(db.Scalar("SELECT COUNT(*) FROM tMark WHERE xStudent<>@p0",new object[]{id}));
+            db.Execute("UPDATE tExam SET procc=1 WHERE id=@p0",new object[]{exam});
+            db.Execute("CREATE TRIGGER native_reject_student_photo ON tStudentImg AFTER INSERT,UPDATE AS THROW 51000,'native student photo rejection',1");
+            try
+            {
+                Select(form,id,"av");
+                ChildForm<asdat>(()=>Click(form,"v"),child=>
+                {
+                    Field<UIComboBox>(child,"a4").SelectedValue="2";Field<UIComboBox>(child,"m_d").SelectedValue=nextGrade.ToString();
+                    typeof(asdat).GetField("m_b",BindingFlags.Instance|BindingFlags.NonPublic).SetValue(child,photo);
+                    Dialog(()=>Dialog(()=>Click(child,"m_e"),"با اصلاح پایه شاگرد نمرات قبلی شاگرد در این سال حذف میشود\nآیا مطمئن هستید؟",6),"ثبت معلومات شاگرد انجام نشد:",1,"native student photo rejection");
+                });
+            }
+            finally{db.Execute("DROP TRIGGER native_reject_student_photo");}
+            Require(Convert.ToInt32(db.Scalar("SELECT xClass FROM tYear_Student WHERE xStudent=@p0 AND xYear=1413",new object[]{id}))==moved,"Late photo failure committed the grade/class change.");
+            Require(Convert.ToInt32(db.Scalar("SELECT COUNT(*) FROM tMark WHERE xStudent=@p0 AND Xtest=@p1 AND Mark=25",new object[]{id,exam}))==1 && Convert.ToInt32(db.Scalar("SELECT procc FROM tExam WHERE id=@p0",new object[]{exam}))==1,"Failed save removed marks or changed calculation flags.");
+            Require(school.StudentImage(id)?.SequenceEqual(bytes)==true,"Failed save changed the prior photo.");
+            Require(Convert.ToInt32(db.Scalar("SELECT SumFee FROM tYear_Student WHERE xStudent=@p0 AND xYear=1413",new object[]{id}))==350 && Convert.ToInt32(db.Scalar("SELECT COUNT(*) FROM tMarkDoreh WHERE xStudent=@p0 AND Xtest=@p1",new object[]{id,exam}))==oldTotals,"Failed save changed fee totals or calculated marks.");
+            Select(form,id,"av");
+            ChildForm<asdat>(()=>Click(form,"v"),child=>
+            {
+                Field<UIComboBox>(child,"a4").SelectedValue="2";Field<UIComboBox>(child,"m_d").SelectedValue=nextGrade.ToString();
+                Dialog(()=>EditSave(child),"با اصلاح پایه شاگرد نمرات قبلی شاگرد در این سال حذف میشود\nآیا مطمئن هستید؟",6);
+            });
+            Require(Convert.ToInt32(db.Scalar("SELECT xClass FROM tYear_Student WHERE xStudent=@p0 AND xYear=1413",new object[]{id}))==nextGrade && Convert.ToInt32(db.Scalar("SELECT xPaye FROM tYear_Student WHERE xStudent=@p0 AND xYear=1413",new object[]{id}))==2,"Confirmed grade change did not commit the selected enrolment.");
+            Require(Convert.ToInt32(db.Scalar("SELECT COUNT(*) FROM tMark WHERE xStudent=@p0 AND Xtest=@p1",new object[]{id,exam}))==0 && Convert.ToInt32(db.Scalar("SELECT COUNT(*) FROM tMarkDoreh WHERE xStudent=@p0 AND Xtest=@p1",new object[]{id,exam}))==0,"Confirmed grade change left the old grade's marks behind.");
+            Require(Convert.ToInt32(db.Scalar("SELECT COUNT(*) FROM tMark WHERE xStudent<>@p0",new object[]{id}))==peerMarks && school.StudentImage(id)?.SequenceEqual(bytes)==true,"Grade change removed unrelated marks or the saved photo.");
+            log("PASS original student registration/edit buttons validate required identity/fees, preserve zero gender and empty dates, commit exact totals/photo, reject duplicates, cancel safely, move classes and roll back grade/mark/photo changes on late SQL rejection");
+        }
+        finally{System.IO.Directory.Delete(folder,true);}
+    }
     private static void EditGridCell(GridEX grid,int row,string key,string value)
     {
         var view=grid.Controls.OfType<DataGridView>().Single();
@@ -184,8 +295,7 @@ internal static class OriginalWorkflowChecks
         Require(view.BeginEdit(true),"Grid cell did not enter edit mode: "+key);
         Require(view.EditingControl is TextBox,"Grid did not open a text editor.");
         ((TextBox)view.EditingControl).Text=value;
-        Require(view.EndEdit(),"Grid rejected a valid input: "+key);
-        grid.EndEdit();
+        Require(grid.TryEndEdit(),"Grid rejected a valid input: "+key);
     }
     private static void Attendance(Form form,Database db,Action<string> log)
     {
@@ -232,13 +342,14 @@ internal static class OriginalWorkflowChecks
         Click(reopened,"f");
         log("PASS original attendance period"+period+" edits normalize Persian/Arabic digits, recalculate present days, reject negative/over-total rows without overwriting saved values, preserve the other period and reload committed counts");
     }
-    private static void ChildPayment(Action open,Action<Form> exercise)
+    private static void ChildPayment(Action open,Action<Form> exercise)=>ChildForm<asdae>(open,exercise);
+    private static void ChildForm<T>(Action open,Action<Form> exercise) where T:Form
     {
         Exception failure=null;bool exercised=false;
         using var timer=new Timer{Interval=100};
         timer.Tick+=(sender,args)=>
         {
-            var child=Application.OpenForms.Cast<Form>().FirstOrDefault(item=>item is asdae && item.Visible);
+            var child=Application.OpenForms.Cast<Form>().FirstOrDefault(item=>item is T && item.Visible);
             if(child==null)return;
             timer.Stop();exercised=true;
             try{exercise(child);}
@@ -246,7 +357,7 @@ internal static class OriginalWorkflowChecks
             finally{if(!child.IsDisposed)child.Close();}
         };
         timer.Start();open();timer.Stop();
-        Require(exercised,"Original payment button did not open its editor.");
+        Require(exercised,"Original button did not open the expected editor: "+typeof(T).Name+".");
         if(failure!=null)System.Runtime.ExceptionServices.ExceptionDispatchInfo.Capture(failure).Throw();
     }
     private static void Payment(Form form,Database db,Action<string> log)
@@ -458,7 +569,7 @@ internal static class OriginalWorkflowChecks
     [DllImport("user32.dll")] private static extern IntPtr SetActiveWindow(IntPtr window);
     [DllImport("user32.dll")] private static extern bool PostMessage(IntPtr window, uint message, IntPtr wparam, IntPtr lparam);
     [DllImport("kernel32.dll")] private static extern uint GetCurrentThreadId();
-    private static void Dialog(Action action, string expectedText, int buttonId)
+    private static void Dialog(Action action, string expectedText, int buttonId, string requiredText = null)
     {
         bool observed = false, logged = false;
         diagnostic("EXPECT dialog: " + expectedText);
@@ -479,7 +590,7 @@ internal static class OriginalWorkflowChecks
             },IntPtr.Zero);
             // Never acknowledge an unexpected message or an unrelated window.
             if (!logged) { logged = true; diagnostic("OBSERVED dialog child texts: " + string.Join(" | ",texts)); }
-            if (!texts.Any(text => text.Trim() == expectedText)) return true;
+            if (!texts.Any(text => requiredText == null ? text.Trim() == expectedText : text.StartsWith(expectedText,StringComparison.Ordinal) && text.Contains(requiredText,StringComparison.Ordinal))) return true;
             string[] labels = buttonId == 1 ? new[] { "OK", "تأیید", "تایید" } : buttonId == 6 ? new[] { "Yes", "بله" } : buttonId == 7 ? new[] { "No", "خیر" } : Array.Empty<string>();
             // Some native dialog hosts nest their buttons; GetDlgItem(root,id)
             // cannot find those. Resolve the actual descendant button first.

@@ -59,7 +59,7 @@ public sealed class SchoolService(Database database, Session session)
         var where = new List<string> { "y.xYear=@p0" };
         var values = new List<object?> { Session.Year };
         foreach (var (key, column) in new[] { ("grade", "y.xPaye"), ("class", "y.xClass"), ("status", "y.Status"), ("gender", "s.Jens"), ("code", "s.Code"), ("number_asas", "s.NumberAsas"), ("discount_code", "y.codeTakhfif") })
-            if (Values.Text(filters.Value(key)).Length > 0) { where.Add(column + "=@p" + values.Count); values.Add(Values.Number(filters.Value(key))); }
+            if (Values.Text(filters.Value(key)).Length > 0) { where.Add(column + "=@p" + values.Count); values.Add(key=="code"?(object?)Values.LongNumber(filters.Value(key)):Values.Number(filters.Value(key))); }
         foreach (var (key, column) in new[] { ("first_name", "s.FName"), ("father_name", "s.LName"), ("last_name", "s.LastName") })
             if (Values.Text(filters.Value(key)).Length > 0) { where.Add(column + " LIKE @p" + values.Count); values.Add("%" + Values.Text(filters.Value(key)) + "%"); }
         return Db.Query("SELECT s.id,s.Code,s.FName,s.LName,s.PName,s.LastName,s.NumberAsas,s.bDate,s.bDateM,s.Sh_Sh,s.En_Fname,s.En_LastName,s.En_Lname,s.Jens,s.MobileFather,s.MobileMother,s.NumberTelegram,y.Status,y.xClass,y.xPaye,c.name AS class,p.Name AS Paye,y.xYear,y.SumFee,y.Sumtransport,y.xTakhfif,y.xDriver,y.codeTakhfif,y.shaghe,y.hazer,y.mali,CASE y.Status WHEN 1 THEN N'برحال' WHEN 2 THEN N'محروم' WHEN 3 THEN N'منفک' WHEN 4 THEN N'معذرتی' END AS vazeyat FROM tStudent s JOIN tYear_Student y ON y.xStudent=s.id LEFT JOIN tClass c ON c.id=y.xClass LEFT JOIN tPaye p ON p.id=y.xPaye WHERE " + string.Join(" AND ", where) + " ORDER BY s.FName,s.LName,s.id", values.ToArray());
@@ -87,7 +87,8 @@ public sealed class SchoolService(Database database, Session session)
             if (key.Equals("id", StringComparison.OrdinalIgnoreCase)) value = id;
             else if (key.Equals("xYear", StringComparison.OrdinalIgnoreCase)) value = Session.Year;
             else if (field.SqlDbType == SqlDbType.Bit) value = value is null ? new[] { "shaghe", "hazer", "mali" }.Contains(key, StringComparer.OrdinalIgnoreCase) : Values.Boolean(value);
-            else if (field.SqlDbType is SqlDbType.Int or SqlDbType.BigInt or SqlDbType.SmallInt) value = Values.Number(value) ?? (key.StartsWith("fee", StringComparison.OrdinalIgnoreCase) || key.StartsWith("transport", StringComparison.OrdinalIgnoreCase) ? 0 : null);
+            else if(field.SqlDbType==SqlDbType.BigInt)value=Values.LongNumber(value);
+            else if (field.SqlDbType is SqlDbType.Int or SqlDbType.SmallInt) value = Values.Number(value) ?? (key.StartsWith("fee", StringComparison.OrdinalIgnoreCase) || key.StartsWith("transport", StringComparison.OrdinalIgnoreCase) ? 0 : null);
             else if (field.SqlDbType is SqlDbType.NVarChar or SqlDbType.VarChar) value = Values.Text(value) is var text && text.Length > 0 ? text : null;
             inputs[key] = value;
         }
@@ -95,7 +96,9 @@ public sealed class SchoolService(Database database, Session session)
         {
             var amounts = Enumerable.Range(1, 9).Select(i => Values.Number(inputs.Value(prefix + i)) ?? 0).ToArray();
             if (amounts.Any(a => a < 0)) throw new ValidationException("مبلغ فیس و ترانسپورت نمی‌تواند منفی باشد.");
-            inputs[total] = amounts.Aggregate(0, (sum, amount) => checked(sum + amount));
+            long sum=amounts.Sum(amount=>(long)amount);
+            if(sum>int.MaxValue)throw new ValidationException("مجموع مبلغ فیس یا ترانسپورت خارج از محدودهٔ مجاز است");
+            inputs[total]=(int)sum;
         }
         inputs["xPaye"] = grade; inputs["xClass"] = classroom;
         return Db.Transaction((c, t) =>

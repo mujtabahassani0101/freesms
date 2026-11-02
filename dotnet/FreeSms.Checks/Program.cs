@@ -40,6 +40,12 @@ try
         Reject(()=>AttendanceCounts.Parse(int.MaxValue,int.MaxValue,int.MaxValue,0,0));
         Reject(()=>AttendanceCounts.FromAbsences(0,0,0,0));
     });
+    Check("BigInt identifiers preserve Persian digits and reject 64-bit overflow",()=>
+    {
+        Require(Values.LongNumber("۵۹۹۴۰۰۰۰۰۱")==5994000001L && Values.LongNumber("") is null);
+        Require(Values.LongNumber(long.MaxValue)==long.MaxValue);
+        Reject(()=>Values.LongNumber("9223372036854775808"));Reject(()=>Values.LongNumber("12.5"));
+    });
     Check("Legacy version codec agrees with the Python fixture", () =>
     {
         const string fixture = "VkFCV0FGSUFVZ0JrQURBQU1RQndBRThBU0FCb0FFNEFWUUI2QUdnQU5BQlVBREVBUlFBNUFGQUFVUUE5QUQwQQ==";
@@ -124,6 +130,21 @@ try
                 school.SaveSchool(new() { ["sch"] = "مکتب ' آزمایشی", ["Ost"] = "کابل", ["cty"] = "مرکز" });
                 Require(school.School().Text("sch") == "مکتب ' آزمایشی"); Reject(() => school.SaveSchool(new()));
             });
+            Check("Server-aborted transactions preserve the original SQL error and roll back prior changes",()=>
+            {
+                string before=school.School().Text("sch");bool rejected=false;
+                try
+                {
+                    db.Transaction((connection,transaction)=>
+                    {
+                        db.Execute("UPDATE tParmetr SET sch=N'rollback fixture'",connection:connection,transaction:transaction);
+                        db.Execute("SET XACT_ABORT ON; THROW 51001,'native server abort fixture',1",connection:connection,transaction:transaction);
+                        return 0;
+                    });
+                }
+                catch(Microsoft.Data.SqlClient.SqlException error){rejected=error.Message.Contains("native server abort fixture");}
+                Require(rejected && school.School().Text("sch")==before);
+            });
             Check("School year creates exactly three terms", () =>
             {
                 school.SetYear(1410); school.SetYear(1410);
@@ -147,6 +168,17 @@ try
                 Require(school.Students(new() { ["code"] = "۹۹۱۰۰۱", ["gender"] = 0 }).Single().Int("id") == student);
                 Require(school.Students(new() { ["first_name"] = "'; DROP TABLE tStudent;--" }).Count == 0);
             });
+            Check("Student BigInt codes round trip and filter without Int32 truncation",()=>
+            {
+                var large=Student(991009);large["Code"]="۵۹۹۴۰۰۰۰۰۱";int saved=0;
+                try
+                {
+                    saved=school.SaveStudent(large);
+                    Require(Convert.ToInt64(school.Student(saved)!.Value("Code"))==5994000001L);
+                    Require(school.Students(new(){["code"]="۵۹۹۴۰۰۰۰۰۱"}).Single().Int("id")==saved);
+                }
+                finally{if(saved>0)school.DeleteStudent(saved);}
+            });
             Check("Student update recalculates sums and retains the record identifier", () =>
             {
                 first["Fee1"] = 900; first["Fee2"] = 10;
@@ -163,7 +195,8 @@ try
             Check("Negative fees and incompatible class grades are rejected", () =>
             {
                 var invalid = Student(991003); invalid["Fee1"] = -1; Reject(() => school.SaveStudent(invalid));
-                invalid["Fee1"] = 0; invalid["xPaye"] = 2; Reject(() => school.SaveStudent(invalid));
+                invalid["Fee1"]=int.MaxValue;invalid["Fee2"]=1;Reject(()=>school.SaveStudent(invalid));
+                invalid["Fee1"] = 0; invalid["Fee2"]=0; invalid["xPaye"] = 2; Reject(() => school.SaveStudent(invalid));
                 Reject(() => school.DeleteClass(classroom));
             });
             Check("An image failure rolls the student transaction back", () =>

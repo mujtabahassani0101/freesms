@@ -30,5 +30,15 @@ public static class Values
         return result;
     }
 
+    public static long? LongNumber(object? value,long? minimum=null,long? maximum=null)
+    {
+        string text=Text(value);if(text.Length==0)return null;
+        const string digits="۰۱۲۳۴۵۶۷۸۹٠١٢٣٤٥٦٧٨٩";
+        text=string.Concat(text.Select(character=>digits.IndexOf(character) is var index && index>=0?(char)('0'+index%10):character));
+        if(!long.TryParse(text,NumberStyles.Integer,CultureInfo.InvariantCulture,out long number))throw new ValidationException("مقدار عددی معتبر وارد کنید.");
+        if(minimum is not null && number<minimum || maximum is not null && number>maximum)throw new ValidationException("مقدار عددی خارج از محدودهٔ مجاز است.");
+        return number;
+    }
+
     public static bool Boolean(object? value) => value is bool boolean ? boolean : Number(value) is not null and not 0;
 }

@@ -63,17 +63,18 @@ internal static class Program
                 window.Controls.Add(numbers);numbers.BringToFront();
                 numbers.DesignTimeLayout=new GridEXLayout{LayoutString="<GridEXLayoutData><RootTable><Columns><Column0><Key>count</Key><DataMember>count</DataMember><InputMask>Number0</InputMask></Column0><Column1><Key>mark</Key><DataMember>mark</DataMember><InputMask>Number2</InputMask></Column1></Columns></RootTable></GridEXLayoutData>"};
                 var values=new DataTable();values.Columns.Add("count",typeof(int));values.Columns.Add("mark",typeof(decimal));values.Rows.Add(1,1m);numbers.DataSource=values;
-                var view=numbers.Controls.OfType<DataGridView>().Single();int errors=0;view.DataError+=(sender,args)=>{errors++;args.ThrowException=true;};
+                var view=numbers.Controls.OfType<DataGridView>().Single();int editNotifications=0;numbers.CellUpdated+=(sender,args)=>editNotifications++;int errors=0;view.DataError+=(sender,args)=>{errors++;args.ThrowException=true;};
                 bool Enter(string key,string value)
                 {
                     view.CurrentCell=view.Rows[0].Cells[key];RequireEditor();
                     ((TextBox)view.EditingControl!).Text=value;
-                    bool accepted=view.EndEdit();if(!accepted)view.CancelEdit();numbers.EndEdit();return accepted;
+                    bool accepted=numbers.TryEndEdit();if(!accepted)view.CancelEdit();Console.WriteLine("NUMERIC key="+key+" input="+value+" accepted="+accepted+" stored="+values.Rows[0][key]);return accepted;
                 }
                 void RequireEditor(){if(!view.BeginEdit(true) || view.EditingControl is not TextBox)throw new InvalidOperationException("Numeric cell did not open its editor.");}
                 Check(Enter("count","۱۲٣") && (int)values.Rows[0]["count"]==123 && Enter("mark","۱۲.۵") && (decimal)values.Rows[0]["mark"]==12.5m,"native numeric grid edits preserve typed Persian/Arabic integers and decimal marks");
+                Check(Enter("count","123") && editNotifications==2,"ending an unchanged grid edit does not publish a false modification");
                 Check(!Enter("count","1.5") && (int)values.Rows[0]["count"]==123,"integer grid mask rejects fractions without changing the saved cell");
-                Check(!Enter("count","2147483648") && (int)values.Rows[0]["count"]==123 && errors==0,"out-of-range integer edits reject before binding without native data-error dialogs");
+                Check(!Enter("count","2147483648") && (int)values.Rows[0]["count"]==123 && errors==0 && editNotifications==2,"out-of-range integer edits reject before binding without native data-error dialogs");
             }
             using (var blobs = new GridEX { Dock = DockStyle.Fill })
             {
@@ -143,6 +144,12 @@ internal static class Program
                 replacingCombo.SelectedIndexChanged += (s,e) => seen.Add(replacingCombo.SelectedValue);
                 replacingCombo.SetItems(new[] { new UIComboBoxItem {Text="future year",Value="1410"}, new UIComboBoxItem {Text="current year",Value="1405"} },"1410");
                 Check(Convert.ToString(replacingCombo.SelectedValue)=="1410" && seen.Count==1 && seen.All(value => Convert.ToString(value)=="1410"), "atomic item replacement publishes only the configured selection, never an empty or first default value");
+            }
+            using(var masked=new Janus.Windows.GridEX.EditControls.MaskedEditBox{Mask="0000/00/00",Numeric=true})
+            {
+                Check(masked.Text=="","empty masked dates expose no literal separators as a value");
+                masked.Text="۱۴۱۳/۰۲/۰۳";Check(masked.Text=="1413/02/03","masked dates normalize Persian input without losing separators");
+                masked.Text="";Check(masked.Text=="","cleared masked dates become empty again");
             }
             Check(ShamsiDate.GetShamsiDate(ShamsiDate.ShamsiToGregory("۱۴۰۵/۰۸/۱۱")) == "1405/08/11", "Afghan calendar roundtrip with Persian digits");
             using var date = new DatePicker { the_date = new DateTime(2026, 11, 1) }; int changes = 0; date.DateChanged += (s,e) => changes++;

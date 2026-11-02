@@ -612,7 +612,7 @@ protected override void Dispose(bool A_0)
 
     private async void a(object sender,EventArgs args)
     {
-        g.EndEdit();
+        if(!g.TryEndEdit())return;
         if(q!="1" && q!="2")throw new InvalidOperationException("Unknown attendance period.");
         int days;
         try{days=FreeSms.Core.Values.Number(o.Text,1)??0;}

@@ -222,6 +222,24 @@ namespace Janus.Windows.GridEX.EditControls
     public class EditBox : EditBase { }
     public class MaskedEditBox : MaskedTextBox
     {
+        public override string Text
+        {
+            get
+            {
+                if(!string.IsNullOrEmpty(Mask) && MaskedTextProvider?.AssignedEditPositionCount==0)return "";
+                return Numeric?Digits(base.Text):base.Text;
+            }
+            set{base.Text=Numeric?Digits(value):value;}
+        }
+        private static string Digits(string text)
+        {
+            if(string.IsNullOrEmpty(text))return text??"";
+            const string digits="۰۱۲۳۴۵۶۷۸۹٠١٢٣٤٥٦٧٨٩";
+            var result=text.ToCharArray();
+            for(int index=0;index<result.Length;index++)
+            {int digit=digits.IndexOf(result[index]);if(digit>=0)result[index]=(char)('0'+digit%10);}
+            return new string(result);
+        }
         public Font ButtonFont { get; set; }
         public bool AutoScroll { get; set; }
         public Size AutoScrollMargin { get; set; }

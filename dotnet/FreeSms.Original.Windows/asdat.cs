@@ -1734,7 +1734,7 @@ public class asdat : Form
 		a4.ValueMember = "id";
 	}
 
-	private void @as(object A_0, EventArgs A_1)
+	private async void @as(object A_0, EventArgs A_1)
 	{
 		object value7 = default;
 		object value21 = default;
@@ -1975,9 +1975,9 @@ public class asdat : Form
 					num = 110;
 					continue;
 				case 2:
-					asdcb.d(asdab.e(), CommandType.Text, "DELETE FROM tMark WHERE (xStudent = " + this.__field_a + ") AND (Xtest IN (" + text + "))");
-					asdcb.d(asdab.e(), CommandType.Text, "DELETE FROM tMarkDoreh WHERE (xStudent = " + this.__field_a + ") AND (Xtest IN (" + text + "))");
-					asdcb.d(asdab.e(), CommandType.Text, "UPDATE tExam SET procc = 0 WHERE id in(" + text + ")");
+                    // Applied atomically by OriginalStudentSave after successful validation.
+                    // Applied atomically by OriginalStudentSave after successful validation.
+                    // Applied atomically by OriginalStudentSave after successful validation.
 					num = 56;
 					continue;
 				case 68:
@@ -2340,7 +2340,15 @@ public class asdat : Form
 						asdcb.a("@xCityNow", SqlDbType.Int, a_2),
 						asdcb.a("@codeTakhfif", SqlDbType.Int, value19)
 					};
-					num5 = asdcb.d(asdab.e(), CommandType.StoredProcedure, "sp_tStudent_insertUpdate", array);
+                    string photoPath=this.m_b;Exception saveError=null;
+                    Enabled=false;UseWaitCursor=true;
+                    try{num5=await System.Threading.Tasks.Task.Run(()=>OriginalStudentSave.Save(array,photoPath));}
+                    catch(Exception error) when(error is FreeSms.Core.ValidationException || error is System.IO.IOException || error is UnauthorizedAccessException || error is SqlException || error is AggregateException)
+                    {saveError=error;}
+                    finally{if(!IsDisposed){Enabled=true;UseWaitCursor=false;}}
+                    if(IsDisposed)return;
+                    if(saveError!=null){MessageBox.Show("ثبت معلومات شاگرد انجام نشد:\n"+saveError.Message,"خطا",MessageBoxButtons.OK,MessageBoxIcon.Error);return;}
+                    if(num5>0)this.m_b="";
 					flag = !(array[0].Value.ToString() == "-100");
 					num = 5;
 					continue;

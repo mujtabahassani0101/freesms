@@ -50,7 +50,14 @@ public sealed partial class Database(string connectionString)
         using var connection = Open();
         using var transaction = connection.BeginTransaction();
         try { var result = action(connection, transaction); transaction.Commit(); return result; }
-        catch { transaction.Rollback(); throw; }
+        catch(Exception failure)
+        {
+            // A server-aborted transaction has no connection and cannot roll back again.
+            try{if(transaction.Connection is not null)transaction.Rollback();}
+            catch(Exception rollback) when(rollback is SqlException || rollback is InvalidOperationException)
+            {throw new AggregateException("Database operation and rollback both failed.",failure,rollback);}
+            throw;
+        }
     }
 
     public SqlParameter[] Parameters(string name) => procedureParameters.GetOrAdd(name, key =>
