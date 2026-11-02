@@ -9,6 +9,27 @@
     <topMargin>-2147483648</topMargin>
     <bottomMargin>-2147483648</bottomMargin>
   </print>
+  <record-selection></record-selection>
+  <database>
+    <table name="spRpt_StdCard">
+      <field name="xPaye" type="Int32sField" />
+      <field name="xClass" type="Int32sField" />
+      <field name="xStudent" type="Int32sField" />
+      <field name="sort" type="Int32sField" />
+      <field name="FName" type="StringField" />
+      <field name="LName" type="StringField" />
+      <field name="PName" type="StringField" />
+      <field name="code" type="NumberField" />
+      <field name="Class" type="StringField" />
+      <field name="Paye" type="StringField" />
+      <field name="heder1" type="StringField" />
+      <field name="sch" type="StringField" />
+      <field name="NumberAsas" type="Int32sField" />
+      <field name="RegDate" type="StringField" />
+      <field name="xYear" type="StringField" />
+      <field name="Student_img" type="BlobField" />
+    </table>
+  </database>
   <formulas>
     <formula name="name">{spRpt_StdCard.FName}</formula>
     <formula name="pName">{spRpt_StdCard.LName}</formula>
@@ -688,4 +709,5 @@
     </section>
   </sections>
   <custom-functions />
+  <summaries />
 </report>

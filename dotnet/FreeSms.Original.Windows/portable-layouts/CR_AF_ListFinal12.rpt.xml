@@ -9,6 +9,256 @@
     <topMargin>-2147483648</topMargin>
     <bottomMargin>-2147483648</bottomMargin>
   </print>
+  <record-selection></record-selection>
+  <database>
+    <table name="spRpt_karnamefinal">
+      <field name="xStudent" type="Int32sField" />
+      <field name="xTest" type="Int32sField" />
+      <field name="xPaye" type="Int32sField" />
+      <field name="MarkKoll" type="NumberField" />
+      <field name="Summark" type="NumberField" />
+      <field name="tosifM" type="StringField" />
+      <field name="level5" type="Int16sField" />
+      <field name="gschkoll" type="Int32sField" />
+      <field name="gclsKoll" type="Int32sField" />
+      <field name="gPayeKoll" type="Int32sField" />
+      <field name="Acp" type="Int32sField" />
+      <field name="countStdClass" type="Int32sField" />
+      <field name="xbook1" type="Int32sField" />
+      <field name="book1" type="StringField" />
+      <field name="M1_1" type="NumberField" />
+      <field name="M2_1" type="NumberField" />
+      <field name="M3_1" type="NumberField" />
+      <field name="xbook2" type="Int32sField" />
+      <field name="book2" type="StringField" />
+      <field name="M1_2" type="NumberField" />
+      <field name="M2_2" type="NumberField" />
+      <field name="M3_2" type="NumberField" />
+      <field name="xbook3" type="Int32sField" />
+      <field name="book3" type="StringField" />
+      <field name="M1_3" type="NumberField" />
+      <field name="M2_3" type="NumberField" />
+      <field name="M3_3" type="NumberField" />
+      <field name="xbook4" type="Int32sField" />
+      <field name="book4" type="StringField" />
+      <field name="M1_4" type="NumberField" />
+      <field name="M2_4" type="NumberField" />
+      <field name="M3_4" type="NumberField" />
+      <field name="xbook5" type="Int32sField" />
+      <field name="book5" type="StringField" />
+      <field name="M1_5" type="NumberField" />
+      <field name="M2_5" type="NumberField" />
+      <field name="M3_5" type="NumberField" />
+      <field name="xbook6" type="Int32sField" />
+      <field name="book6" type="StringField" />
+      <field name="M1_6" type="NumberField" />
+      <field name="M2_6" type="NumberField" />
+      <field name="M3_6" type="NumberField" />
+      <field name="xbook7" type="Int32sField" />
+      <field name="book7" type="StringField" />
+      <field name="M1_7" type="NumberField" />
+      <field name="M2_7" type="NumberField" />
+      <field name="M3_7" type="NumberField" />
+      <field name="xbook8" type="Int32sField" />
+      <field name="book8" type="StringField" />
+      <field name="M1_8" type="NumberField" />
+      <field name="M2_8" type="NumberField" />
+      <field name="M3_8" type="NumberField" />
+      <field name="xbook9" type="Int32sField" />
+      <field name="book9" type="StringField" />
+      <field name="M1_9" type="NumberField" />
+      <field name="M2_9" type="NumberField" />
+      <field name="M3_9" type="NumberField" />
+      <field name="xbook10" type="Int32sField" />
+      <field name="book10" type="StringField" />
+      <field name="M1_10" type="NumberField" />
+      <field name="M2_10" type="Int32sField" />
+      <field name="M3_10" type="NumberField" />
+      <field name="xbook11" type="Int32sField" />
+      <field name="book11" type="StringField" />
+      <field name="M1_11" type="NumberField" />
+      <field name="M2_11" type="Int32sField" />
+      <field name="M3_11" type="NumberField" />
+      <field name="xbook12" type="Int32sField" />
+      <field name="book12" type="StringField" />
+      <field name="M1_12" type="NumberField" />
+      <field name="M2_12" type="Int32sField" />
+      <field name="M3_12" type="NumberField" />
+      <field name="xbook13" type="Int32sField" />
+      <field name="book13" type="StringField" />
+      <field name="M1_13" type="NumberField" />
+      <field name="M2_13" type="Int32sField" />
+      <field name="M3_13" type="NumberField" />
+      <field name="xbook14" type="Int32sField" />
+      <field name="book14" type="StringField" />
+      <field name="M1_14" type="NumberField" />
+      <field name="M2_14" type="Int32sField" />
+      <field name="M3_14" type="NumberField" />
+      <field name="xbook15" type="Int32sField" />
+      <field name="book15" type="StringField" />
+      <field name="M1_15" type="NumberField" />
+      <field name="M2_15" type="Int32sField" />
+      <field name="M3_15" type="NumberField" />
+      <field name="xbook16" type="Int32sField" />
+      <field name="book16" type="StringField" />
+      <field name="M1_16" type="NumberField" />
+      <field name="M2_16" type="Int32sField" />
+      <field name="M3_16" type="NumberField" />
+      <field name="xbook17" type="Int32sField" />
+      <field name="book17" type="StringField" />
+      <field name="M1_17" type="NumberField" />
+      <field name="M2_17" type="Int32sField" />
+      <field name="M3_17" type="NumberField" />
+      <field name="xbook18" type="Int32sField" />
+      <field name="book18" type="StringField" />
+      <field name="M1_18" type="NumberField" />
+      <field name="M2_18" type="Int32sField" />
+      <field name="M3_18" type="NumberField" />
+      <field name="xbook19" type="Int32sField" />
+      <field name="book19" type="StringField" />
+      <field name="M1_19" type="NumberField" />
+      <field name="M2_19" type="Int32sField" />
+      <field name="M3_19" type="NumberField" />
+      <field name="xbook20" type="Int32sField" />
+      <field name="book20" type="StringField" />
+      <field name="M1_20" type="NumberField" />
+      <field name="M2_20" type="Int32sField" />
+      <field name="M3_20" type="NumberField" />
+      <field name="xbook21" type="Int32sField" />
+      <field name="book21" type="StringField" />
+      <field name="M1_21" type="NumberField" />
+      <field name="M2_21" type="Int32sField" />
+      <field name="M3_21" type="NumberField" />
+      <field name="MAgo10_1" type="NumberField" />
+      <field name="MAgo10_2" type="NumberField" />
+      <field name="MAgo10_3" type="NumberField" />
+      <field name="MAgo10_4" type="NumberField" />
+      <field name="MAgo10_5" type="NumberField" />
+      <field name="MAgo10_6" type="NumberField" />
+      <field name="MAgo10_7" type="NumberField" />
+      <field name="MAgo10_8" type="NumberField" />
+      <field name="MAgo10_9" type="NumberField" />
+      <field name="MAgo10_10" type="NumberField" />
+      <field name="MAgo10_11" type="NumberField" />
+      <field name="MAgo10_12" type="NumberField" />
+      <field name="MAgo10_13" type="NumberField" />
+      <field name="MAgo10_14" type="NumberField" />
+      <field name="MAgo10_15" type="NumberField" />
+      <field name="MAgo10_16" type="NumberField" />
+      <field name="MAgo10_17" type="NumberField" />
+      <field name="MAgo10_18" type="NumberField" />
+      <field name="MAgo10_19" type="NumberField" />
+      <field name="MAgo10_20" type="NumberField" />
+      <field name="MAgo10_21" type="NumberField" />
+      <field name="MAgo11_1" type="NumberField" />
+      <field name="MAgo11_2" type="NumberField" />
+      <field name="MAgo11_3" type="NumberField" />
+      <field name="MAgo11_4" type="NumberField" />
+      <field name="MAgo11_5" type="NumberField" />
+      <field name="MAgo11_6" type="NumberField" />
+      <field name="MAgo11_7" type="NumberField" />
+      <field name="MAgo11_8" type="NumberField" />
+      <field name="MAgo11_9" type="NumberField" />
+      <field name="MAgo11_10" type="NumberField" />
+      <field name="MAgo11_11" type="NumberField" />
+      <field name="MAgo11_12" type="NumberField" />
+      <field name="MAgo11_13" type="NumberField" />
+      <field name="MAgo11_14" type="NumberField" />
+      <field name="MAgo11_15" type="NumberField" />
+      <field name="MAgo11_16" type="NumberField" />
+      <field name="MAgo11_17" type="NumberField" />
+      <field name="MAgo11_18" type="NumberField" />
+      <field name="MAgo11_19" type="NumberField" />
+      <field name="MAgo11_20" type="NumberField" />
+      <field name="MAgo11_21" type="NumberField" />
+      <field name="MarkKoll1" type="NumberField" />
+      <field name="Summark1" type="NumberField" />
+      <field name="Acp1" type="Int32sField" />
+      <field name="gclsKoll1" type="Int32sField" />
+      <field name="tosifM_1" type="StringField" />
+      <field name="level5_1" type="Int16sField" />
+      <field name="Summark2" type="NumberField" />
+      <field name="MarkKoll2" type="NumberField" />
+      <field name="Summark10" type="NumberField" />
+      <field name="Summark11" type="NumberField" />
+      <field name="gClass10" type="NumberField" />
+      <field name="gClass11" type="NumberField" />
+      <field name="SumMarkFinal" type="NumberField" />
+      <field name="countBookStd" type="Int32sField" />
+      <field name="sort" type="Int32sField" />
+      <field name="FName" type="StringField" />
+      <field name="LName" type="StringField" />
+      <field name="PName" type="StringField" />
+      <field name="Code" type="NumberField" />
+      <field name="bDate" type="StringField" />
+      <field name="bDateM" type="StringField" />
+      <field name="Sh_Sh" type="StringField" />
+      <field name="NumberAsas" type="Int32sField" />
+      <field name="En_Fname" type="StringField" />
+      <field name="En_Lname" type="StringField" />
+      <field name="LastName" type="StringField" />
+      <field name="En_LastName" type="StringField" />
+      <field name="City" type="StringField" />
+      <field name="Ostan" type="StringField" />
+      <field name="XClass" type="Int32sField" />
+      <field name="Exam" type="StringField" />
+      <field name="DateFrom" type="StringField" />
+      <field name="DateTo" type="StringField" />
+      <field name="Class" type="StringField" />
+      <field name="Paye" type="StringField" />
+      <field name="Student_img" type="BlobField" />
+      <field name="hazer1" type="Int16sField" />
+      <field name="hazer3" type="Int16sField" />
+      <field name="hazer2" type="Int16sField" />
+      <field name="Ghayeb1" type="Int16sField" />
+      <field name="Ghayeb3" type="Int16sField" />
+      <field name="Ghayeb2" type="Int16sField" />
+      <field name="Mariz1" type="Int16sField" />
+      <field name="Mariz3" type="Int16sField" />
+      <field name="Mariz2" type="Int16sField" />
+      <field name="rokhsat1" type="Int16sField" />
+      <field name="rokhsat3" type="Int16sField" />
+      <field name="rokhsat2" type="Int16sField" />
+      <field name="countDakhele1" type="Int16sField" />
+      <field name="countDakhele2" type="Int16sField" />
+      <field name="countExam1" type="Int16sField" />
+      <field name="countExam2" type="Int16sField" />
+      <field name="countAcp1" type="Int16sField" />
+      <field name="countAcp2" type="Int16sField" />
+      <field name="countNoAcp1" type="Int16sField" />
+      <field name="countNoAcp2" type="Int16sField" />
+      <field name="countMashrot1" type="Int16sField" />
+      <field name="countMashrot2" type="Int16sField" />
+      <field name="countMazerati1" type="Int16sField" />
+      <field name="countMazerati2" type="Int16sField" />
+      <field name="countAbsent1" type="Int16sField" />
+      <field name="countAbsent2" type="Int16sField" />
+      <field name="Separcheh" type="Int16sField" />
+      <field name="countDayTerm1" type="Int32sField" />
+      <field name="countDayTerm2" type="Int32sField" />
+      <field name="countDayTerm3" type="Int32sField" />
+      <field name="School" type="StringField" />
+      <field name="SchOst" type="StringField" />
+      <field name="SchCty" type="StringField" />
+      <field name="xYear" type="StringField" />
+      <field name="Comment6" type="StringField" />
+      <field name="gTerm1" type="Int32sField" />
+      <field name="gTerm3" type="Int32sField" />
+      <field name="hazer10" type="Int16sField" />
+      <field name="hazer11" type="Int16sField" />
+      <field name="Ghayeb10" type="Int16sField" />
+      <field name="Ghayeb11" type="Int16sField" />
+      <field name="Mariz10" type="Int16sField" />
+      <field name="Mariz11" type="Int16sField" />
+      <field name="rokhsat10" type="Int16sField" />
+      <field name="rokhsat11" type="Int16sField" />
+      <field name="CountDay10" type="Int16sField" />
+      <field name="CountDay11" type="Int16sField" />
+      <field name="xYear10" type="Int16sField" />
+      <field name="xYear11" type="Int16sField" />
+      <field name="MarkTerm3_From100" type="BooleanField" />
+    </table>
+  </database>
   <formulas>
     <formula name="pname">{spRpt_karnamefinal.PName}</formula>
     <formula name="fName">{spRpt_karnamefinal.FName}</formula>
@@ -111,7 +361,7 @@ else if{spRpt_karnamefinal.acp}=4 then 'محروم' </formula>
     <sort field="{@Summark}" direction="DescendingOrder" />
   </sorts>
   <running-totals>
-    <total name="radif" field="{@xstudent}">
+    <total name="radif" field="{@xstudent}" group="{@group}">
       <Operation>Count</Operation>
       <OperationParameter>0</OperationParameter>
       <EvaluationConditionType>NoCondition</EvaluationConditionType>
@@ -1434,7 +1684,7 @@ else if{spRpt_karnamefinal.acp}=4 then 'محروم' </formula>
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
       </object>
-      <object>
+      <object ras-class="CrystalReports.PictureObject" picture-type="crPictureTypeBitmap">
         <Name>Picture4</Name>
         <Kind>PictureObject</Kind>
         <Left>14040</Left>
@@ -1457,7 +1707,7 @@ else if{spRpt_karnamefinal.acp}=4 then 'محروم' </formula>
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
       </object>
-      <object>
+      <object ras-class="CrystalReports.PictureObject" picture-type="crPictureTypeBitmap">
         <Name>Picture3</Name>
         <Kind>PictureObject</Kind>
         <Left>4995</Left>
@@ -3424,4 +3674,5 @@ tosif = Trim(harf)
 End Function
 </function>
   </custom-functions>
+  <summaries />
 </report>

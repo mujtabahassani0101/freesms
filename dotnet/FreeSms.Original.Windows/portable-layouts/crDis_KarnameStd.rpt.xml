@@ -9,6 +9,24 @@
     <topMargin>-2147483648</topMargin>
     <bottomMargin>-2147483648</bottomMargin>
   </print>
+  <record-selection></record-selection>
+  <database>
+    <table name="spRpt_Dis_KarnameStd">
+      <field name="sort" type="Int32sField" />
+      <field name="xStudent" type="Int32sField" />
+      <field name="FName" type="StringField" />
+      <field name="LName" type="StringField" />
+      <field name="PName" type="StringField" />
+      <field name="Code" type="NumberField" />
+      <field name="Paye" type="StringField" />
+      <field name="Class" type="StringField" />
+      <field name="xPaye" type="Int32sField" />
+      <field name="xClass" type="Int32sField" />
+      <field name="MobileFather" type="StringField" />
+      <field name="MobileMother" type="StringField" />
+      <field name="Student_img" type="BlobField" />
+    </table>
+  </database>
   <formulas>
     <formula name="xStudent">{spRpt_Dis_KarnameStd.xStudent}</formula>
     <formula name="fName">{spRpt_Dis_KarnameStd.FName}</formula>
@@ -43,7 +61,7 @@ totext({@xClass}+100)</formula>
     <sort field="{@xStudent}" direction="AscendingOrder" />
   </sorts>
   <running-totals>
-    <total name="radif" field="{@xStudent}">
+    <total name="radif" field="{@xStudent}" group="{@group}">
       <Operation>Count</Operation>
       <OperationParameter>0</OperationParameter>
       <EvaluationConditionType>NoCondition</EvaluationConditionType>
@@ -380,6 +398,19 @@ totext({@xClass}+100)</formula>
         </border>
         <report>
           <print />
+          <record-selection>{@xStudent} = {?Pm-@xStudent} </record-selection>
+          <database>
+            <table name="spRpt_Dis_SubStdDis">
+              <field name="xStudent" type="Int32sField" />
+              <field name="DateDis" type="StringField" />
+              <field name="dayOfWeek" type="StringField" />
+              <field name="comment" type="StringField" />
+              <field name="typ" type="Int16sField" />
+              <field name="DisciplinaryCases" type="StringField" />
+              <field name="mark" type="NumberField" />
+              <field name="Book" type="StringField" />
+            </table>
+          </database>
           <formulas>
             <formula name="xStudent">{spRpt_Dis_SubStdDis.xStudent}</formula>
             <formula name="group">{spRpt_Dis_SubStdDis.xStudent}</formula>
@@ -399,7 +430,7 @@ totext({@xClass}+100)</formula>
             <sort field="{@datedis}" direction="AscendingOrder" />
           </sorts>
           <running-totals>
-            <total name="radif" field="{@xStudent}">
+            <total name="radif" field="{@xStudent}" group="{@group}">
               <Operation>Count</Operation>
               <OperationParameter>0</OperationParameter>
               <EvaluationConditionType>NoCondition</EvaluationConditionType>
@@ -943,7 +974,11 @@ totext({@xClass}+100)</formula>
               </format>
             </section>
           </sections>
+          <summaries />
         </report>
+        <links>
+          <link parent="{@xStudent}" child="{@xStudent}" />
+        </links>
       </object>
     </section>
     <section name="GroupHeaderSection3" kind="GroupHeader" height="1015">
@@ -980,6 +1015,19 @@ totext({@xClass}+100)</formula>
         </border>
         <report>
           <print />
+          <record-selection>{@xStudent} = {?Pm-@xStudent} </record-selection>
+          <database>
+            <table name="spRpt_Dis_SubStdDis">
+              <field name="xStudent" type="Int32sField" />
+              <field name="DateDis" type="StringField" />
+              <field name="dayOfWeek" type="StringField" />
+              <field name="comment" type="StringField" />
+              <field name="typ" type="Int16sField" />
+              <field name="DisciplinaryCases" type="StringField" />
+              <field name="mark" type="NumberField" />
+              <field name="Book" type="StringField" />
+            </table>
+          </database>
           <formulas>
             <formula name="xStudent">{spRpt_Dis_SubStdDis.xStudent}</formula>
             <formula name="group">{spRpt_Dis_SubStdDis.xStudent}</formula>
@@ -999,7 +1047,7 @@ totext({@xClass}+100)</formula>
             <sort field="{@datedis}" direction="AscendingOrder" />
           </sorts>
           <running-totals>
-            <total name="radif" field="{@xStudent}">
+            <total name="radif" field="{@xStudent}" group="{@group}">
               <Operation>Count</Operation>
               <OperationParameter>0</OperationParameter>
               <EvaluationConditionType>NoCondition</EvaluationConditionType>
@@ -1543,7 +1591,11 @@ totext({@xClass}+100)</formula>
               </format>
             </section>
           </sections>
+          <summaries />
         </report>
+        <links>
+          <link parent="{@xStudent}" child="{@xStudent}" />
+        </links>
       </object>
     </section>
     <section name="Section3" kind="Detail" height="414">
@@ -1603,4 +1655,5 @@ totext({@xClass}+100)</formula>
     </section>
   </sections>
   <custom-functions />
+  <summaries />
 </report>

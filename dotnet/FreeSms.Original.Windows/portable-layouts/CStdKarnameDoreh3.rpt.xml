@@ -9,6 +9,91 @@
     <topMargin>-2147483648</topMargin>
     <bottomMargin>-2147483648</bottomMargin>
   </print>
+  <record-selection></record-selection>
+  <database>
+    <table name="spRpt_StdKarnameDoreh1">
+      <field name="xStudent" type="Int32sField" />
+      <field name="Code" type="NumberField" />
+      <field name="FName" type="StringField" />
+      <field name="LName" type="StringField" />
+      <field name="PName" type="StringField" />
+      <field name="Student_img" type="BlobField" />
+      <field name="xPaye" type="Int32sField" />
+      <field name="xClass" type="Int32sField" />
+      <field name="xReshteh" type="Int32sField" />
+      <field name="Class" type="StringField" />
+      <field name="Reshteh" type="StringField" />
+      <field name="Paye" type="StringField" />
+      <field name="Book" type="StringField" />
+      <field name="vahed" type="NumberField" />
+      <field name="sort" type="Int16sField" />
+      <field name="CountAb" type="Int16sField" />
+      <field name="M1" type="NumberField" />
+      <field name="M2" type="NumberField" />
+      <field name="M3" type="NumberField" />
+      <field name="M4" type="NumberField" />
+      <field name="M5" type="NumberField" />
+      <field name="M6" type="NumberField" />
+      <field name="M7" type="NumberField" />
+      <field name="M8" type="NumberField" />
+      <field name="M9" type="NumberField" />
+      <field name="M10" type="NumberField" />
+      <field name="Mark" type="NumberField" />
+      <field name="Tosif" type="StringField" />
+      <field name="gClass" type="Int16sField" />
+      <field name="gKoll" type="Int16sField" />
+      <field name="MarkDoreh" type="NumberField" />
+      <field name="gClassKoll" type="Int16sField" />
+      <field name="gPayeKoll" type="Int16sField" />
+      <field name="gSchKoll" type="Int16sField" />
+      <field name="CountClass" type="Int16sField" />
+      <field name="CountPaye" type="Int16sField" />
+      <field name="TchFname" type="StringField" />
+      <field name="tchLname" type="StringField" />
+      <field name="Exam" type="StringField" />
+      <field name="DateFrom" type="StringField" />
+      <field name="DateTo" type="StringField" />
+      <field name="NumExam" type="Int16sField" />
+      <field name="timeWeek" type="Int16sField" />
+      <field name="CommentKoll" type="StringField" />
+      <field name="test1" type="StringField" />
+      <field name="Mark1" type="NumberField" />
+      <field name="gSch1" type="Int32sField" />
+      <field name="gCls1" type="Int32sField" />
+      <field name="test2" type="StringField" />
+      <field name="Mark2" type="NumberField" />
+      <field name="gSch2" type="Int32sField" />
+      <field name="gCls2" type="Int32sField" />
+      <field name="test3" type="StringField" />
+      <field name="Mark3" type="NumberField" />
+      <field name="gSch3" type="Int32sField" />
+      <field name="gCls3" type="Int32sField" />
+      <field name="test4" type="StringField" />
+      <field name="Mark4" type="NumberField" />
+      <field name="gSch4" type="Int32sField" />
+      <field name="gCls4" type="Int32sField" />
+      <field name="test5" type="StringField" />
+      <field name="Mark5" type="NumberField" />
+      <field name="gSch5" type="Int32sField" />
+      <field name="gCls5" type="Int32sField" />
+      <field name="test6" type="StringField" />
+      <field name="Mark6" type="NumberField" />
+      <field name="gSch6" type="Int32sField" />
+      <field name="gCls6" type="Int32sField" />
+      <field name="test7" type="StringField" />
+      <field name="Mark7" type="NumberField" />
+      <field name="gSch7" type="Int32sField" />
+      <field name="gCls7" type="Int32sField" />
+      <field name="test8" type="StringField" />
+      <field name="Mark8" type="NumberField" />
+      <field name="gSch8" type="Int32sField" />
+      <field name="gCls8" type="Int32sField" />
+      <field name="test9" type="StringField" />
+      <field name="Mark9" type="NumberField" />
+      <field name="gSch9" type="Int32sField" />
+      <field name="gCls9" type="Int32sField" />
+    </table>
+  </database>
   <formulas>
     <formula name="m1">if(Right(totext({spRpt_StdKarnameDoreh1.M1}),1 )='-') then
 '-'+replace( replace(replace(totext({spRpt_StdKarnameDoreh1.M1}),'.00',''),'.','/'),'-','')
@@ -236,7 +321,7 @@ else {spRpt_StdKarnameDoreh1.CommentKoll}</formula>
     <sort field="{spRpt_StdKarnameDoreh1.sort}" direction="AscendingOrder" />
   </sorts>
   <running-totals>
-    <total name="radif" field="{@xstudent}">
+    <total name="radif" field="{@xstudent}" group="{@xstudent}">
       <Operation>Count</Operation>
       <OperationParameter>0</OperationParameter>
       <EvaluationConditionType>NoCondition</EvaluationConditionType>
@@ -3352,4 +3437,5 @@ else {spRpt_StdKarnameDoreh1.CommentKoll}</formula>
     </section>
   </sections>
   <custom-functions />
+  <summaries />
 </report>

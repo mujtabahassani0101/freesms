@@ -9,6 +9,14 @@
     <topMargin>-2147483648</topMargin>
     <bottomMargin>-2147483648</bottomMargin>
   </print>
+  <record-selection></record-selection>
+  <database>
+    <table name="sp_RptListStd">
+      <field name="id" type="Int32sField" />
+      <field name="xClass1" type="Int32sField" />
+      <field name="xClass2" type="Int32sField" />
+    </table>
+  </database>
   <formulas>
     <formula name="id">{sp_RptListStd.id}</formula>
     <formula name="xClass1">{sp_RptListStd.xClass1}</formula>
@@ -132,6 +140,26 @@
         </border>
         <report>
           <print />
+          <record-selection>{@xClass} = {?Pm-@xClass1} </record-selection>
+          <database>
+            <table name="sp_SubListStd">
+              <field name="xPaye" type="Int32sField" />
+              <field name="xClass" type="Int32sField" />
+              <field name="xStudent" type="Int32sField" />
+              <field name="sort" type="Int32sField" />
+              <field name="FName" type="StringField" />
+              <field name="LName" type="StringField" />
+              <field name="PName" type="StringField" />
+              <field name="answerable" type="StringField" />
+              <field name="Class" type="StringField" />
+              <field name="Paye" type="StringField" />
+              <field name="heder1" type="StringField" />
+              <field name="sch" type="StringField" />
+              <field name="NumberAsas" type="Int32sField" />
+              <field name="RegDate" type="StringField" />
+              <field name="xYear" type="StringField" />
+            </table>
+          </database>
           <formulas>
             <formula name="xClass">{sp_SubListStd.xClass}</formula>
             <formula name="xStudent">{sp_SubListStd.xStudent}</formula>
@@ -161,7 +189,7 @@
             <sort field="{@xStudent}" direction="AscendingOrder" />
           </sorts>
           <running-totals>
-            <total name="RTotal0" field="{@xStudent}">
+            <total name="RTotal0" field="{@xStudent}" reset-field="{@xClass}">
               <Operation>Count</Operation>
               <OperationParameter>0</OperationParameter>
               <EvaluationConditionType>NoCondition</EvaluationConditionType>
@@ -906,7 +934,11 @@
               </format>
             </section>
           </sections>
+          <summaries />
         </report>
+        <links>
+          <link parent="{@xClass1}" child="{@xClass}" />
+        </links>
       </object>
       <object subreport="Sub2">
         <Name>Sub2</Name>
@@ -933,6 +965,26 @@
         </border>
         <report>
           <print />
+          <record-selection>{@xClass} = {?Pm-@xClass2} </record-selection>
+          <database>
+            <table name="sp_SubListStd">
+              <field name="xPaye" type="Int32sField" />
+              <field name="xClass" type="Int32sField" />
+              <field name="xStudent" type="Int32sField" />
+              <field name="sort" type="Int32sField" />
+              <field name="FName" type="StringField" />
+              <field name="LName" type="StringField" />
+              <field name="PName" type="StringField" />
+              <field name="answerable" type="StringField" />
+              <field name="Class" type="StringField" />
+              <field name="Paye" type="StringField" />
+              <field name="heder1" type="StringField" />
+              <field name="sch" type="StringField" />
+              <field name="NumberAsas" type="Int32sField" />
+              <field name="RegDate" type="StringField" />
+              <field name="xYear" type="StringField" />
+            </table>
+          </database>
           <formulas>
             <formula name="xClass">{sp_SubListStd.xClass}</formula>
             <formula name="xStudent">{sp_SubListStd.xStudent}</formula>
@@ -962,7 +1014,7 @@
             <sort field="{@xStudent}" direction="AscendingOrder" />
           </sorts>
           <running-totals>
-            <total name="RTotal0" field="{@xStudent}">
+            <total name="RTotal0" field="{@xStudent}" reset-field="{@xClass}">
               <Operation>Count</Operation>
               <OperationParameter>0</OperationParameter>
               <EvaluationConditionType>NoCondition</EvaluationConditionType>
@@ -1707,7 +1759,11 @@
               </format>
             </section>
           </sections>
+          <summaries />
         </report>
+        <links>
+          <link parent="{@xClass2}" child="{@xClass}" />
+        </links>
       </object>
     </section>
     <section name="Section4" kind="ReportFooter" height="715">
@@ -1734,4 +1790,5 @@
     </section>
   </sections>
   <custom-functions />
+  <summaries />
 </report>

@@ -9,6 +9,32 @@
     <topMargin>-2147483648</topMargin>
     <bottomMargin>-2147483648</bottomMargin>
   </print>
+  <record-selection></record-selection>
+  <database>
+    <table name="spRpt_DabirAvgClassMark">
+      <field name="xtest" type="Int32sField" />
+      <field name="xTch" type="Int32sField" />
+      <field name="xPaye" type="Int32sField" />
+      <field name="xClass" type="Int32sField" />
+      <field name="xbook" type="Int32sField" />
+      <field name="AvgClass" type="NumberField" />
+      <field name="maxClass" type="NumberField" />
+      <field name="minClass" type="NumberField" />
+      <field name="AvgPaye" type="NumberField" />
+      <field name="maxPaye" type="NumberField" />
+      <field name="minPaye" type="NumberField" />
+      <field name="Avgkoll" type="NumberField" />
+      <field name="maxKoll" type="NumberField" />
+      <field name="minkoll" type="NumberField" />
+      <field name="tch" type="StringField" />
+      <field name="Paye" type="StringField" />
+      <field name="Book" type="StringField" />
+      <field name="Class" type="StringField" />
+      <field name="Exam" type="StringField" />
+      <field name="DateFrom" type="StringField" />
+      <field name="DateTo" type="StringField" />
+    </table>
+  </database>
   <formulas>
     <formula name="Class">{spRpt_DabirAvgClassMark.Class}</formula>
     <formula name="Exam">{spRpt_DabirAvgClassMark.Exam}</formula>
@@ -48,7 +74,7 @@
     <sort field="{@xPaye}" direction="AscendingOrder" />
   </sorts>
   <running-totals>
-    <total name="radif" field="{@xbook}">
+    <total name="radif" field="{@xbook}" group="{@group}">
       <Operation>Count</Operation>
       <OperationParameter>0</OperationParameter>
       <EvaluationConditionType>NoCondition</EvaluationConditionType>
@@ -1328,4 +1354,5 @@
     </section>
   </sections>
   <custom-functions />
+  <summaries />
 </report>

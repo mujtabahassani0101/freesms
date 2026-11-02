@@ -9,6 +9,57 @@
     <topMargin>-2147483648</topMargin>
     <bottomMargin>-2147483648</bottomMargin>
   </print>
+  <record-selection></record-selection>
+  <database>
+    <table name="sp_RptSumPayment">
+      <field name="xClass" type="Int32sField" />
+      <field name="SumFee" type="Int32sField" />
+      <field name="SumTransport" type="Int32sField" />
+      <field name="Pay_Fee" type="Int32sField" />
+      <field name="Pay_Transport" type="Int32sField" />
+      <field name="fee1" type="Int32sField" />
+      <field name="fee2" type="Int32sField" />
+      <field name="fee3" type="Int32sField" />
+      <field name="fee4" type="Int32sField" />
+      <field name="fee5" type="Int32sField" />
+      <field name="fee6" type="Int32sField" />
+      <field name="fee7" type="Int32sField" />
+      <field name="fee8" type="Int32sField" />
+      <field name="fee9" type="Int32sField" />
+      <field name="Pay_fee1" type="Int32sField" />
+      <field name="Pay_fee2" type="Int32sField" />
+      <field name="Pay_fee3" type="Int32sField" />
+      <field name="Pay_fee4" type="Int32sField" />
+      <field name="Pay_fee5" type="Int32sField" />
+      <field name="Pay_fee6" type="Int32sField" />
+      <field name="Pay_fee7" type="Int32sField" />
+      <field name="Pay_fee8" type="Int32sField" />
+      <field name="Pay_fee9" type="Int32sField" />
+      <field name="transport1" type="Int32sField" />
+      <field name="transport2" type="Int32sField" />
+      <field name="transport3" type="Int32sField" />
+      <field name="transport4" type="Int32sField" />
+      <field name="transport5" type="Int32sField" />
+      <field name="transport6" type="Int32sField" />
+      <field name="transport7" type="Int32sField" />
+      <field name="transport8" type="Int32sField" />
+      <field name="transport9" type="Int32sField" />
+      <field name="Pay_transport1" type="Int32sField" />
+      <field name="Pay_transport2" type="Int32sField" />
+      <field name="Pay_transport3" type="Int32sField" />
+      <field name="Pay_transport4" type="Int32sField" />
+      <field name="Pay_transport5" type="Int32sField" />
+      <field name="Pay_transport6" type="Int32sField" />
+      <field name="Pay_transport7" type="Int32sField" />
+      <field name="Pay_transport8" type="Int32sField" />
+      <field name="Pay_transport9" type="Int32sField" />
+      <field name="Class" type="StringField" />
+      <field name="heder1" type="StringField" />
+      <field name="sch" type="StringField" />
+      <field name="xPaye" type="Int32sField" />
+      <field name="xYear" type="StringField" />
+    </table>
+  </database>
   <formulas>
     <formula name="xClass">{sp_RptSumPayment.xClass}</formula>
     <formula name="sch">{sp_RptSumPayment.sch}</formula>
@@ -3010,4 +3061,5 @@ else {sp_RptSumPayment.Pay_Transport}</formula>
     </section>
   </sections>
   <custom-functions />
+  <summaries />
 </report>

@@ -9,6 +9,28 @@
     <topMargin>-2147483648</topMargin>
     <bottomMargin>-2147483648</bottomMargin>
   </print>
+  <record-selection></record-selection>
+  <database>
+    <table name="spRpt_ListClassOftRoshd">
+      <field name="grp" type="Int32sField" />
+      <field name="typ" type="Int32sField" />
+      <field name="xbook" type="Int32sField" />
+      <field name="xStudent" type="NumberField" />
+      <field name="xClass" type="Int32sField" />
+      <field name="Mark2" type="NumberField" />
+      <field name="gcls2" type="Int32sField" />
+      <field name="test2" type="StringField" />
+      <field name="mark1" type="NumberField" />
+      <field name="gcls1" type="Int32sField" />
+      <field name="test1" type="StringField" />
+      <field name="FName" type="StringField" />
+      <field name="LName" type="StringField" />
+      <field name="PName" type="StringField" />
+      <field name="Class" type="StringField" />
+      <field name="Paye" type="StringField" />
+      <field name="xPaye" type="Int32sField" />
+    </table>
+  </database>
   <formulas>
     <formula name="fullName">{spRpt_ListClassOftRoshd.FName}+' - '+{spRpt_ListClassOftRoshd.LName}</formula>
     <formula name="mark1">{spRpt_ListClassOftRoshd.mark1}</formula>
@@ -1031,4 +1053,5 @@ else if({spRpt_ListClassOftRoshd.grp})=4 then 'دانش آموزانی که بی
     </section>
   </sections>
   <custom-functions />
+  <summaries />
 </report>

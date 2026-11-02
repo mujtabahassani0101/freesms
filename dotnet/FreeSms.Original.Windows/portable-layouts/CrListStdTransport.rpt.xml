@@ -9,6 +9,35 @@
     <topMargin>-2147483648</topMargin>
     <bottomMargin>-2147483648</bottomMargin>
   </print>
+  <record-selection></record-selection>
+  <database>
+    <table name="sp_RptListStdTransport">
+      <field name="xPaye" type="Int32sField" />
+      <field name="xClass" type="Int32sField" />
+      <field name="xStudent" type="Int32sField" />
+      <field name="Code" type="NumberField" />
+      <field name="sort" type="Int32sField" />
+      <field name="FName" type="StringField" />
+      <field name="LName" type="StringField" />
+      <field name="PName" type="StringField" />
+      <field name="answerable" type="StringField" />
+      <field name="Class" type="StringField" />
+      <field name="Paye" type="StringField" />
+      <field name="heder1" type="StringField" />
+      <field name="sch" type="StringField" />
+      <field name="NumberAsas" type="Int32sField" />
+      <field name="RegDate" type="StringField" />
+      <field name="xYear" type="StringField" />
+      <field name="Driver" type="StringField" />
+      <field name="mobil" type="StringField" />
+      <field name="xDriver" type="Int32sField" />
+      <field name="mobil2" type="StringField" />
+      <field name="MobileFather" type="StringField" />
+      <field name="MobileMother" type="StringField" />
+      <field name="NumberTelegram" type="StringField" />
+      <field name="NumberTelegram2" type="StringField" />
+    </table>
+  </database>
   <formulas>
     <formula name="xClass">{sp_RptListStdTransport.xClass}</formula>
     <formula name="xStudent">{sp_RptListStdTransport.xStudent}</formula>
@@ -47,7 +76,7 @@
     <sort field="{@lname}" direction="AscendingOrder" />
   </sorts>
   <running-totals>
-    <total name="RTotal0" field="{@xStudent}">
+    <total name="RTotal0" field="{@xStudent}" group="{@group}">
       <Operation>Count</Operation>
       <OperationParameter>0</OperationParameter>
       <EvaluationConditionType>NoCondition</EvaluationConditionType>
@@ -958,4 +987,5 @@
     </section>
   </sections>
   <custom-functions />
+  <summaries />
 </report>

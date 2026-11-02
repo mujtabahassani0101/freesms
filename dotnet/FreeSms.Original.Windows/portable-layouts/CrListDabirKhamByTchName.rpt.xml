@@ -9,6 +9,28 @@
     <topMargin>-2147483648</topMargin>
     <bottomMargin>-2147483648</bottomMargin>
   </print>
+  <record-selection></record-selection>
+  <database>
+    <table name="spRpt_ListDabirKhamByTchName">
+      <field name="sort" type="Int32sField" />
+      <field name="xStudent" type="Int32sField" />
+      <field name="FName" type="StringField" />
+      <field name="LName" type="StringField" />
+      <field name="PName" type="StringField" />
+      <field name="xPaye" type="Int32sField" />
+      <field name="xClass" type="Int32sField" />
+      <field name="xbook" type="Int32sField" />
+      <field name="Book" type="StringField" />
+      <field name="xTch" type="Int32sField" />
+      <field name="tch" type="StringField" />
+      <field name="Paye" type="StringField" />
+      <field name="Class" type="StringField" />
+      <field name="Exam" type="StringField" />
+      <field name="DateFrom" type="StringField" />
+      <field name="DateTo" type="StringField" />
+      <field name="Xtest" type="Int32sField" />
+    </table>
+  </database>
   <formulas>
     <formula name="fullname">{spRpt_ListDabirKhamByTchName.FName} + ' '+{spRpt_ListDabirKhamByTchName.LName}</formula>
     <formula name="pname">{spRpt_ListDabirKhamByTchName.PName}</formula>
@@ -51,7 +73,7 @@
     <sort field="{@lname}" direction="AscendingOrder" />
   </sorts>
   <running-totals>
-    <total name="radif" field="{@id}">
+    <total name="radif" field="{@id}" group="{@xbook}">
       <Operation>Count</Operation>
       <OperationParameter>0</OperationParameter>
       <EvaluationConditionType>NoCondition</EvaluationConditionType>
@@ -1565,4 +1587,5 @@
     </section>
   </sections>
   <custom-functions />
+  <summaries />
 </report>

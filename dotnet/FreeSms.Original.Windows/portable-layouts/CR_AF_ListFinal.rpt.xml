@@ -9,6 +9,69 @@
     <topMargin>-2147483648</topMargin>
     <bottomMargin>-2147483648</bottomMargin>
   </print>
+  <record-selection></record-selection>
+  <database>
+    <table name="spRpt_Listfinal">
+      <field name="xStudent" type="Int32sField" />
+      <field name="xTest" type="Int32sField" />
+      <field name="xPaye" type="Int32sField" />
+      <field name="MarkKoll" type="NumberField" />
+      <field name="Summark" type="NumberField" />
+      <field name="tosifM" type="StringField" />
+      <field name="level5" type="Int16sField" />
+      <field name="gschkoll" type="Int32sField" />
+      <field name="gclsKoll" type="Int32sField" />
+      <field name="gPayeKoll" type="Int32sField" />
+      <field name="Acp" type="Int32sField" />
+      <field name="sort" type="Int32sField" />
+      <field name="FName" type="StringField" />
+      <field name="LName" type="StringField" />
+      <field name="PName" type="StringField" />
+      <field name="Code" type="NumberField" />
+      <field name="bDate" type="StringField" />
+      <field name="Sh_Sh" type="StringField" />
+      <field name="NumberAsas" type="Int32sField" />
+      <field name="En_Fname" type="StringField" />
+      <field name="En_Lname" type="StringField" />
+      <field name="LastName" type="StringField" />
+      <field name="En_LastName" type="StringField" />
+      <field name="XClass" type="Int32sField" />
+      <field name="Exam" type="StringField" />
+      <field name="DateFrom" type="StringField" />
+      <field name="DateTo" type="StringField" />
+      <field name="Class" type="StringField" />
+      <field name="Paye" type="StringField" />
+      <field name="hazer3" type="Int16sField" />
+      <field name="Ghayeb3" type="Int16sField" />
+      <field name="Mariz3" type="Int16sField" />
+      <field name="rokhsat3" type="Int16sField" />
+      <field name="countDakhele1" type="Int16sField" />
+      <field name="countDakhele2" type="Int16sField" />
+      <field name="countExam1" type="Int16sField" />
+      <field name="countExam2" type="Int16sField" />
+      <field name="countAcp1" type="Int16sField" />
+      <field name="countAcp2" type="Int16sField" />
+      <field name="countNoAcp1" type="Int16sField" />
+      <field name="countNoAcp2" type="Int16sField" />
+      <field name="countMashrot1" type="Int16sField" />
+      <field name="countMashrot2" type="Int16sField" />
+      <field name="countMazerati1" type="Int16sField" />
+      <field name="countMazerati2" type="Int16sField" />
+      <field name="countAbsent1" type="Int16sField" />
+      <field name="countAbsent2" type="Int16sField" />
+      <field name="Separcheh" type="Int16sField" />
+      <field name="countDayTerm1" type="Int32sField" />
+      <field name="countDayTerm2" type="Int32sField" />
+      <field name="countDayTerm3" type="Int32sField" />
+      <field name="School" type="StringField" />
+      <field name="SchOst" type="StringField" />
+      <field name="SchCty" type="StringField" />
+      <field name="xYear" type="StringField" />
+      <field name="Comment6" type="StringField" />
+      <field name="gTerm1" type="Int32sField" />
+      <field name="gTerm3" type="Int32sField" />
+    </table>
+  </database>
   <formulas>
     <formula name="pname">{spRpt_Listfinal.PName}</formula>
     <formula name="fName">{spRpt_Listfinal.FName}</formula>
@@ -94,7 +157,7 @@ else if{spRpt_Listfinal.acp}=4 then 'محروم' </formula>
     <sort field="{@Summark}" direction="DescendingOrder" />
   </sorts>
   <running-totals>
-    <total name="radif" field="{@xstudent}">
+    <total name="radif" field="{@xstudent}" group="{@group}">
       <Operation>Count</Operation>
       <OperationParameter>0</OperationParameter>
       <EvaluationConditionType>NoCondition</EvaluationConditionType>
@@ -1233,7 +1296,7 @@ else if{spRpt_Listfinal.acp}=4 then 'محروم' </formula>
         <source name="Separcheh " formula="{@Separcheh }" kind="FormulaField" />
         <number />
       </object>
-      <object>
+      <object ras-class="CrystalReports.PictureObject" picture-type="crPictureTypeBitmap">
         <Name>Picture4</Name>
         <Kind>PictureObject</Kind>
         <Left>9780</Left>
@@ -1256,7 +1319,7 @@ else if{spRpt_Listfinal.acp}=4 then 'محروم' </formula>
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
       </object>
-      <object>
+      <object ras-class="CrystalReports.PictureObject" picture-type="crPictureTypeBitmap">
         <Name>Picture3</Name>
         <Kind>PictureObject</Kind>
         <Left>4030</Left>
@@ -2680,4 +2743,5 @@ tosif = Trim(harf)
 End Function
 </function>
   </custom-functions>
+  <summaries />
 </report>

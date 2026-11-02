@@ -9,6 +9,26 @@
     <topMargin>-2147483648</topMargin>
     <bottomMargin>-2147483648</bottomMargin>
   </print>
+  <record-selection></record-selection>
+  <database>
+    <table name="sp_List_books_RengMark">
+      <field name="xStudent" type="Int32sField" />
+      <field name="Xtest" type="Int32sField" />
+      <field name="typ" type="Int16sField" />
+      <field name="xbook" type="Int32sField" />
+      <field name="book" type="StringField" />
+      <field name="mark" type="NumberField" />
+      <field name="sort" type="Int16sField" />
+      <field name="xPaye" type="Int32sField" />
+      <field name="xClass" type="Int32sField" />
+      <field name="Exam" type="StringField" />
+      <field name="DateFrom" type="StringField" />
+      <field name="DateTo" type="StringField" />
+      <field name="NumExam" type="Int16sField" />
+      <field name="Paye" type="StringField" />
+      <field name="Class" type="StringField" />
+    </table>
+  </database>
   <formulas>
     <formula name="Class">{sp_List_books_RengMark.Class}</formula>
     <formula name="Exam">{sp_List_books_RengMark.Exam}</formula>
@@ -381,4 +401,5 @@ else if{sp_List_books_RengMark.mark}&lt;=40 then 'الف'
     </section>
   </sections>
   <custom-functions />
+  <summaries />
 </report>

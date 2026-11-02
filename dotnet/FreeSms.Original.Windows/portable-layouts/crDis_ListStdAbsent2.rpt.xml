@@ -9,6 +9,28 @@
     <topMargin>-2147483648</topMargin>
     <bottomMargin>-2147483648</bottomMargin>
   </print>
+  <record-selection></record-selection>
+  <database>
+    <table name="spRpt_Dis_ListStdAbsent">
+      <field name="sort" type="Int32sField" />
+      <field name="xStudent" type="Int32sField" />
+      <field name="FName" type="StringField" />
+      <field name="LName" type="StringField" />
+      <field name="PName" type="StringField" />
+      <field name="Code" type="NumberField" />
+      <field name="Paye" type="StringField" />
+      <field name="Class" type="StringField" />
+      <field name="DisciplinaryCases" type="StringField" />
+      <field name="comment" type="StringField" />
+      <field name="DateDis" type="StringField" />
+      <field name="dayOfWeek" type="StringField" />
+      <field name="xDisciplinaryCases" type="Int32sField" />
+      <field name="xPaye" type="Int32sField" />
+      <field name="xClass" type="Int32sField" />
+      <field name="MobileFather" type="StringField" />
+      <field name="MobileMother" type="StringField" />
+    </table>
+  </database>
   <formulas>
     <formula name="xStudent">{spRpt_Dis_ListStdAbsent.xStudent}</formula>
     <formula name="fName">{spRpt_Dis_ListStdAbsent.FName}</formula>
@@ -48,7 +70,7 @@
     <sort field="{@fName}" direction="AscendingOrder" />
   </sorts>
   <running-totals>
-    <total name="radif" field="{@xStudent}">
+    <total name="radif" field="{@xStudent}" group="{@group}">
       <Operation>Count</Operation>
       <OperationParameter>0</OperationParameter>
       <EvaluationConditionType>NoCondition</EvaluationConditionType>
@@ -990,4 +1012,5 @@
     </section>
   </sections>
   <custom-functions />
+  <summaries />
 </report>

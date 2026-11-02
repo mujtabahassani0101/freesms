@@ -9,6 +9,57 @@
     <topMargin>-2147483648</topMargin>
     <bottomMargin>-2147483648</bottomMargin>
   </print>
+  <record-selection></record-selection>
+  <database>
+    <table name="sp_RptPayment">
+      <field name="xPaye" type="Int32sField" />
+      <field name="xClass" type="Int32sField" />
+      <field name="xStudent" type="Int32sField" />
+      <field name="sort" type="Int32sField" />
+      <field name="FName" type="StringField" />
+      <field name="LName" type="StringField" />
+      <field name="PName" type="StringField" />
+      <field name="answerable" type="StringField" />
+      <field name="Class" type="StringField" />
+      <field name="Paye" type="StringField" />
+      <field name="heder1" type="StringField" />
+      <field name="sch" type="StringField" />
+      <field name="NumberAsas" type="Int32sField" />
+      <field name="RegDate" type="StringField" />
+      <field name="xYear" type="StringField" />
+      <field name="Sumtransport" type="Int32sField" />
+      <field name="transport1" type="Int32sField" />
+      <field name="transport2" type="Int32sField" />
+      <field name="transport3" type="Int32sField" />
+      <field name="transport4" type="Int32sField" />
+      <field name="transport5" type="Int32sField" />
+      <field name="transport6" type="Int32sField" />
+      <field name="transport7" type="Int32sField" />
+      <field name="transport8" type="Int32sField" />
+      <field name="transport9" type="Int32sField" />
+      <field name="SumFee" type="Int32sField" />
+      <field name="fee1" type="Int32sField" />
+      <field name="fee2" type="Int32sField" />
+      <field name="fee3" type="Int32sField" />
+      <field name="fee4" type="Int32sField" />
+      <field name="fee5" type="Int32sField" />
+      <field name="fee6" type="Int32sField" />
+      <field name="fee7" type="Int32sField" />
+      <field name="fee8" type="Int32sField" />
+      <field name="fee9" type="Int32sField" />
+      <field name="Pay_Fee" type="Int32sField" />
+      <field name="Pay_Transport" type="Int32sField" />
+      <field name="Pay_racing" type="Int32sField" />
+      <field name="Pay_Celebration" type="Int32sField" />
+      <field name="Pay_Exam" type="Int32sField" />
+      <field name="Pay_uniform" type="Int32sField" />
+      <field name="Pay_maghnae" type="Int32sField" />
+      <field name="Pay_ketab" type="Int32sField" />
+      <field name="Pay_komakdarsi" type="Int32sField" />
+      <field name="Pay_dakhle" type="Int32sField" />
+      <field name="Pay_other" type="Int32sField" />
+    </table>
+  </database>
   <formulas>
     <formula name="xClass">{sp_RptPayment.xClass}</formula>
     <formula name="xStudent">{sp_RptPayment.xStudent}</formula>
@@ -88,7 +139,7 @@ else {sp_RptPayment.Pay_Fee}-({@fee1}+{@fee2}+{@fee3}+{@fee4}+{@fee5}+{@fee6}+{@
     <sort field="{@xStudent}" direction="AscendingOrder" />
   </sorts>
   <running-totals>
-    <total name="RTotal0" field="{@xStudent}">
+    <total name="RTotal0" field="{@xStudent}" reset-field="{@xClass}">
       <Operation>Count</Operation>
       <OperationParameter>0</OperationParameter>
       <EvaluationConditionType>NoCondition</EvaluationConditionType>
@@ -1781,4 +1832,5 @@ else {sp_RptPayment.Pay_Fee}-({@fee1}+{@fee2}+{@fee3}+{@fee4}+{@fee5}+{@fee6}+{@
     </section>
   </sections>
   <custom-functions />
+  <summaries />
 </report>

@@ -9,6 +9,15 @@
     <topMargin>-2147483648</topMargin>
     <bottomMargin>-2147483648</bottomMargin>
   </print>
+  <record-selection></record-selection>
+  <database>
+    <table name="sp_rptChapShaghe">
+      <field name="id" type="Int32sField" />
+      <field name="xClass" type="Int32sField" />
+      <field name="xbook1" type="Int32sField" />
+      <field name="xbook2" type="Int32sField" />
+    </table>
+  </database>
   <formulas>
     <formula name="xClass">{sp_rptChapShaghe.xClass}</formula>
     <formula name="xbook1">{sp_rptChapShaghe.xbook1}</formula>
@@ -136,6 +145,27 @@
         </border>
         <report>
           <print />
+          <record-selection>{@xbook} = {?Pm-@xbook2}  AND  {@xClass} = {?Pm-@xClass} </record-selection>
+          <database>
+            <table name="sp_SubrptChapShaghe">
+              <field name="xClass" type="Int32sField" />
+              <field name="xbook" type="Int32sField" />
+              <field name="xStudent" type="Int32sField" />
+              <field name="id" type="Int32sField" />
+              <field name="sort" type="Int32sField" />
+              <field name="FName" type="StringField" />
+              <field name="LName" type="StringField" />
+              <field name="answerable" type="StringField" />
+              <field name="book" type="StringField" />
+              <field name="tch" type="StringField" />
+              <field name="Class" type="StringField" />
+              <field name="xYear" type="StringField" />
+              <field name="heder1" type="StringField" />
+              <field name="sch" type="StringField" />
+              <field name="NumberAsas" type="Int32sField" />
+              <field name="PName" type="StringField" />
+            </table>
+          </database>
           <formulas>
             <formula name="xClass">{sp_SubrptChapShaghe.xClass}</formula>
             <formula name="xbook">{sp_SubrptChapShaghe.xbook}</formula>
@@ -173,7 +203,7 @@
             <sort field="{@lname}" direction="AscendingOrder" />
           </sorts>
           <running-totals>
-            <total name="RTotal0" field="{@xStudent}">
+            <total name="RTotal0" field="{@xStudent}" reset-field="{@xbook}">
               <Operation>Count</Operation>
               <OperationParameter>0</OperationParameter>
               <EvaluationConditionType>NoCondition</EvaluationConditionType>
@@ -228,7 +258,7 @@
                   <BottomLineStyle>NoLine</BottomLineStyle>
                 </border>
               </object>
-              <object>
+              <object ras-class="CrystalReports.PictureObject" picture-type="crPictureTypeBitmap">
                 <Name>Picture3</Name>
                 <Kind>PictureObject</Kind>
                 <Left>2400</Left>
@@ -1554,7 +1584,12 @@
               </format>
             </section>
           </sections>
+          <summaries />
         </report>
+        <links>
+          <link parent="{@xbook2}" child="{@xbook}" />
+          <link parent="{@xClass}" child="{@xClass}" />
+        </links>
       </object>
       <object subreport="Sub1">
         <Name>sub1</Name>
@@ -1580,6 +1615,27 @@
         </border>
         <report>
           <print />
+          <record-selection>{@xbook} = {?Pm-@xbook1}  AND  {@xClass} = {?Pm-@xClass} </record-selection>
+          <database>
+            <table name="sp_SubrptChapShaghe">
+              <field name="xClass" type="Int32sField" />
+              <field name="xbook" type="Int32sField" />
+              <field name="xStudent" type="Int32sField" />
+              <field name="id" type="Int32sField" />
+              <field name="sort" type="Int32sField" />
+              <field name="FName" type="StringField" />
+              <field name="LName" type="StringField" />
+              <field name="answerable" type="StringField" />
+              <field name="book" type="StringField" />
+              <field name="tch" type="StringField" />
+              <field name="Class" type="StringField" />
+              <field name="xYear" type="StringField" />
+              <field name="heder1" type="StringField" />
+              <field name="sch" type="StringField" />
+              <field name="NumberAsas" type="Int32sField" />
+              <field name="PName" type="StringField" />
+            </table>
+          </database>
           <formulas>
             <formula name="xClass">{sp_SubrptChapShaghe.xClass}</formula>
             <formula name="xbook">{sp_SubrptChapShaghe.xbook}</formula>
@@ -1617,7 +1673,7 @@
             <sort field="{@lname}" direction="AscendingOrder" />
           </sorts>
           <running-totals>
-            <total name="RTotal0" field="{@xStudent}">
+            <total name="RTotal0" field="{@xStudent}" reset-field="{@xbook}">
               <Operation>Count</Operation>
               <OperationParameter>0</OperationParameter>
               <EvaluationConditionType>NoCondition</EvaluationConditionType>
@@ -1672,7 +1728,7 @@
                   <BottomLineStyle>NoLine</BottomLineStyle>
                 </border>
               </object>
-              <object>
+              <object ras-class="CrystalReports.PictureObject" picture-type="crPictureTypeBitmap">
                 <Name>Picture3</Name>
                 <Kind>PictureObject</Kind>
                 <Left>2400</Left>
@@ -2998,7 +3054,12 @@
               </format>
             </section>
           </sections>
+          <summaries />
         </report>
+        <links>
+          <link parent="{@xbook1}" child="{@xbook}" />
+          <link parent="{@xClass}" child="{@xClass}" />
+        </links>
       </object>
     </section>
     <section name="Section4" kind="ReportFooter" height="715">
@@ -3025,4 +3086,5 @@
     </section>
   </sections>
   <custom-functions />
+  <summaries />
 </report>

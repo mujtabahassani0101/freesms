@@ -9,6 +9,24 @@
     <topMargin>-2147483648</topMargin>
     <bottomMargin>-2147483648</bottomMargin>
   </print>
+  <record-selection></record-selection>
+  <database>
+    <table name="spRpt_Dis_AmarAbsentClass">
+      <field name="xStudent" type="Int32sField" />
+      <field name="sort" type="Int32sField" />
+      <field name="FName" type="StringField" />
+      <field name="LName" type="StringField" />
+      <field name="PName" type="StringField" />
+      <field name="Code" type="NumberField" />
+      <field name="Paye" type="StringField" />
+      <field name="Class" type="StringField" />
+      <field name="xPaye" type="Int32sField" />
+      <field name="xClass" type="Int32sField" />
+      <field name="dis1" type="Int32sField" />
+      <field name="dis2" type="Int32sField" />
+      <field name="dis3" type="Int32sField" />
+    </table>
+  </database>
   <formulas>
     <formula name="xStudent">{spRpt_Dis_AmarAbsentClass.xStudent}</formula>
     <formula name="fName">{spRpt_Dis_AmarAbsentClass.FName}</formula>
@@ -43,7 +61,7 @@
     <sort field="{@fName}" direction="AscendingOrder" />
   </sorts>
   <running-totals>
-    <total name="radif" field="{@xStudent}">
+    <total name="radif" field="{@xStudent}" group="{@group}">
       <Operation>Count</Operation>
       <OperationParameter>0</OperationParameter>
       <EvaluationConditionType>NoCondition</EvaluationConditionType>
@@ -969,4 +987,5 @@
     </section>
   </sections>
   <custom-functions />
+  <summaries />
 </report>

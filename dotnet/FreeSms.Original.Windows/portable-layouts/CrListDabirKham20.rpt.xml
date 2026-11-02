@@ -9,6 +9,24 @@
     <topMargin>-2147483648</topMargin>
     <bottomMargin>-2147483648</bottomMargin>
   </print>
+  <record-selection></record-selection>
+  <database>
+    <table name="spRpt_ListDabirKham">
+      <field name="id" type="Int32sField" />
+      <field name="Code" type="NumberField" />
+      <field name="FName" type="StringField" />
+      <field name="LName" type="StringField" />
+      <field name="PName" type="StringField" />
+      <field name="Class" type="StringField" />
+      <field name="Paye" type="StringField" />
+      <field name="xPaye" type="Int32sField" />
+      <field name="Exam" type="StringField" />
+      <field name="DateFrom" type="StringField" />
+      <field name="DateTo" type="StringField" />
+      <field name="Xtest" type="Int32sField" />
+      <field name="sort" type="Int32sField" />
+    </table>
+  </database>
   <formulas>
     <formula name="fName">{spRpt_ListDabirKham.FName} + ' - '+{spRpt_ListDabirKham.LName}</formula>
     <formula name="pname">{spRpt_ListDabirKham.PName}</formula>
@@ -44,7 +62,7 @@
     <sort field="{spRpt_ListDabirKham.LName}" direction="AscendingOrder" />
   </sorts>
   <running-totals>
-    <total name="radif" field="{@id}">
+    <total name="radif" field="{@id}" group="{@class}">
       <Operation>Count</Operation>
       <OperationParameter>0</OperationParameter>
       <EvaluationConditionType>NoCondition</EvaluationConditionType>
@@ -1405,4 +1423,5 @@
     </section>
   </sections>
   <custom-functions />
+  <summaries />
 </report>

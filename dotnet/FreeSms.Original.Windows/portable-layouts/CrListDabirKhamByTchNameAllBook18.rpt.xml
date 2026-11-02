@@ -9,6 +9,78 @@
     <topMargin>-2147483648</topMargin>
     <bottomMargin>-2147483648</bottomMargin>
   </print>
+  <record-selection></record-selection>
+  <database>
+    <table name="spRpt_ListDabirKhamByTchNameAllBook">
+      <field name="xStudent" type="Int32sField" />
+      <field name="xTest" type="Int32sField" />
+      <field name="xPaye" type="Int32sField" />
+      <field name="xbook1" type="Int32sField" />
+      <field name="book1" type="StringField" />
+      <field name="tch1" type="StringField" />
+      <field name="xbook2" type="Int32sField" />
+      <field name="book2" type="StringField" />
+      <field name="tch2" type="StringField" />
+      <field name="xbook3" type="Int32sField" />
+      <field name="book3" type="StringField" />
+      <field name="tch3" type="StringField" />
+      <field name="xbook4" type="Int32sField" />
+      <field name="book4" type="StringField" />
+      <field name="tch4" type="StringField" />
+      <field name="xbook5" type="Int32sField" />
+      <field name="book5" type="StringField" />
+      <field name="tch5" type="StringField" />
+      <field name="xbook6" type="Int32sField" />
+      <field name="book6" type="StringField" />
+      <field name="tch6" type="StringField" />
+      <field name="xbook7" type="Int32sField" />
+      <field name="book7" type="StringField" />
+      <field name="tch7" type="StringField" />
+      <field name="xbook8" type="Int32sField" />
+      <field name="book8" type="StringField" />
+      <field name="tch8" type="StringField" />
+      <field name="xbook9" type="Int32sField" />
+      <field name="book9" type="StringField" />
+      <field name="tch9" type="StringField" />
+      <field name="xbook10" type="Int32sField" />
+      <field name="book10" type="StringField" />
+      <field name="tch10" type="StringField" />
+      <field name="xbook11" type="Int32sField" />
+      <field name="book11" type="StringField" />
+      <field name="tch11" type="StringField" />
+      <field name="xbook12" type="Int32sField" />
+      <field name="book12" type="StringField" />
+      <field name="tch12" type="StringField" />
+      <field name="xbook13" type="Int32sField" />
+      <field name="book13" type="StringField" />
+      <field name="tch13" type="StringField" />
+      <field name="xbook14" type="Int32sField" />
+      <field name="book14" type="StringField" />
+      <field name="tch14" type="StringField" />
+      <field name="xbook15" type="Int32sField" />
+      <field name="book15" type="StringField" />
+      <field name="tch15" type="StringField" />
+      <field name="xbook16" type="Int32sField" />
+      <field name="book16" type="StringField" />
+      <field name="tch16" type="StringField" />
+      <field name="xbook17" type="Int32sField" />
+      <field name="book17" type="StringField" />
+      <field name="tch17" type="StringField" />
+      <field name="xbook18" type="Int32sField" />
+      <field name="book18" type="StringField" />
+      <field name="tch18" type="StringField" />
+      <field name="sort" type="Int32sField" />
+      <field name="FName" type="StringField" />
+      <field name="LName" type="StringField" />
+      <field name="PName" type="StringField" />
+      <field name="XClass" type="Int32sField" />
+      <field name="Exam" type="StringField" />
+      <field name="DateFrom" type="StringField" />
+      <field name="DateTo" type="StringField" />
+      <field name="Class" type="StringField" />
+      <field name="Paye" type="StringField" />
+    </table>
+  </database>
   <formulas>
     <formula name="group">ToText({spRpt_ListDabirKhamByTchNameAllBook.xTest}*1000)+' '+
 ToText( {spRpt_ListDabirKhamByTchNameAllBook.xPaye}*1000)+
@@ -80,7 +152,7 @@ ToText( {spRpt_ListDabirKhamByTchNameAllBook.xPaye}*1000)+
     <sort field="{@lName}" direction="AscendingOrder" />
   </sorts>
   <running-totals>
-    <total name="RTotal0" field="{@Id}">
+    <total name="RTotal0" field="{@Id}" group="{@group}">
       <Operation>Count</Operation>
       <OperationParameter>0</OperationParameter>
       <EvaluationConditionType>NoCondition</EvaluationConditionType>
@@ -2237,4 +2309,5 @@ ToText( {spRpt_ListDabirKhamByTchNameAllBook.xPaye}*1000)+
     </section>
   </sections>
   <custom-functions />
+  <summaries />
 </report>

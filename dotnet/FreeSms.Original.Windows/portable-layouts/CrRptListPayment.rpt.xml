@@ -9,6 +9,44 @@
     <topMargin>-2147483648</topMargin>
     <bottomMargin>-2147483648</bottomMargin>
   </print>
+  <record-selection></record-selection>
+  <database>
+    <table name="vListPayment">
+      <field name="dateFrom" type="StringField" />
+      <field name="dateTo" type="StringField" />
+      <field name="dayName" type="StringField" />
+      <field name="SumPay" type="Int32sField" />
+      <field name="SumOther" type="Int32sField" />
+      <field name="Code" type="NumberField" />
+      <field name="FName" type="StringField" />
+      <field name="LName" type="StringField" />
+      <field name="PName" type="StringField" />
+      <field name="Class" type="StringField" />
+      <field name="Paye" type="StringField" />
+      <field name="xPaye" type="Int32sField" />
+      <field name="xClass" type="Int32sField" />
+      <field name="id" type="Int32sField" />
+      <field name="xYear" type="Int32sField" />
+      <field name="xStudent" type="Int32sField" />
+      <field name="PaynemtDate" type="StringField" />
+      <field name="dayOfWeek" type="StringField" />
+      <field name="NamberBel" type="StringField" />
+      <field name="Fee" type="Int32sField" />
+      <field name="Transport" type="Int32sField" />
+      <field name="racing" type="Int32sField" />
+      <field name="Celebration" type="Int32sField" />
+      <field name="Exam" type="Int32sField" />
+      <field name="uniform" type="Int32sField" />
+      <field name="maghnae" type="Int32sField" />
+      <field name="ketab" type="Int32sField" />
+      <field name="komakdarsi" type="Int32sField" />
+      <field name="dakhle" type="Int32sField" />
+      <field name="other" type="Int32sField" />
+      <field name="comment" type="StringField" />
+      <field name="heder1" type="StringField" />
+      <field name="sch" type="StringField" />
+    </table>
+  </database>
   <formulas>
     <formula name="xClass">{vListPayment.xClass}</formula>
     <formula name="xStudent">{vListPayment.xStudent}</formula>
@@ -1427,4 +1465,5 @@ else if({vListPayment.dateFrom}&lt;&gt;'' and {vListPayment.dateTo}&lt;&gt;'') t
     </section>
   </sections>
   <custom-functions />
+  <summaries />
 </report>

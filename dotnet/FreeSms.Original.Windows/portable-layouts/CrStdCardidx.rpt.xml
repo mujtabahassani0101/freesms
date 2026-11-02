@@ -9,6 +9,24 @@
     <topMargin>-2147483648</topMargin>
     <bottomMargin>-2147483648</bottomMargin>
   </print>
+  <record-selection></record-selection>
+  <database>
+    <table name="v_HozehStd">
+      <field name="xStudent" type="NumberField" />
+      <field name="xPaye" type="Int32sField" />
+      <field name="xClass" type="Int32sField" />
+      <field name="xHozeh" type="Int32sField" />
+      <field name="idx" type="Int32sField" />
+      <field name="Hozeh" type="StringField" />
+      <field name="FName" type="StringField" />
+      <field name="LName" type="StringField" />
+      <field name="PName" type="StringField" />
+      <field name="Class" type="StringField" />
+      <field name="Paye" type="StringField" />
+      <field name="CapacityHozeh" type="Int32sField" />
+      <field name="Student_img" type="BlobField" />
+    </table>
+  </database>
   <formulas>
     <formula name="name">{v_HozehStd.FName}+ ' - '+{v_HozehStd.LName}</formula>
     <formula name="pName">{v_HozehStd.PName}</formula>
@@ -822,4 +840,5 @@
     </section>
   </sections>
   <custom-functions />
+  <summaries />
 </report>

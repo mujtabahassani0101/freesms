@@ -9,6 +9,25 @@
     <topMargin>-2147483648</topMargin>
     <bottomMargin>-2147483648</bottomMargin>
   </print>
+  <record-selection></record-selection>
+  <database>
+    <table name="spRpt_AmarGhaboliClass">
+      <field name="xclass" type="Int32sField" />
+      <field name="xtest" type="Int32sField" />
+      <field name="typ" type="Int32sField" />
+      <field name="xbook" type="Int32sField" />
+      <field name="avgmark" type="NumberField" />
+      <field name="countMark" type="Int32sField" />
+      <field name="countAcp" type="Int32sField" />
+      <field name="Book" type="StringField" />
+      <field name="sort" type="Int16sField" />
+      <field name="Class" type="StringField" />
+      <field name="Paye" type="StringField" />
+      <field name="xPaye" type="Int32sField" />
+      <field name="Exam" type="StringField" />
+      <field name="tch" type="StringField" />
+    </table>
+  </database>
   <formulas>
     <formula name="Class">{spRpt_AmarGhaboliClass.Class}</formula>
     <formula name="Exam">'گزارش آمار تعداد قبولی دانش آموزان در '+{spRpt_AmarGhaboliClass.Exam}</formula>
@@ -43,7 +62,7 @@ else if{spRpt_AmarGhaboliClass.typ}=5 then 'معدل' </formula>
     <sort field="{@sort}" direction="AscendingOrder" />
   </sorts>
   <running-totals>
-    <total name="radif" field="{@xbook}">
+    <total name="radif" field="{@xbook}" group="{@group}">
       <Operation>Count</Operation>
       <OperationParameter>0</OperationParameter>
       <EvaluationConditionType>NoCondition</EvaluationConditionType>
@@ -1009,4 +1028,5 @@ else if{spRpt_AmarGhaboliClass.typ}=5 then 'معدل' </formula>
     </section>
   </sections>
   <custom-functions />
+  <summaries />
 </report>

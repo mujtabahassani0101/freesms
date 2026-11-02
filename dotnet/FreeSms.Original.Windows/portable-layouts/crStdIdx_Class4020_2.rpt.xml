@@ -9,6 +9,29 @@
     <topMargin>-2147483648</topMargin>
     <bottomMargin>-2147483648</bottomMargin>
   </print>
+  <record-selection></record-selection>
+  <database>
+    <table name="v_HozehStd">
+      <field name="xStudent" type="NumberField" />
+      <field name="xYear" type="Int32sField" />
+      <field name="xPaye" type="Int32sField" />
+      <field name="xClass" type="Int32sField" />
+      <field name="xHozeh" type="Int32sField" />
+      <field name="idx" type="Int32sField" />
+      <field name="Hozeh" type="StringField" />
+      <field name="FName" type="StringField" />
+      <field name="LName" type="StringField" />
+      <field name="PName" type="StringField" />
+      <field name="Sh_Sh" type="StringField" />
+      <field name="StdCode" type="StringField" />
+      <field name="Class" type="StringField" />
+      <field name="Paye" type="StringField" />
+      <field name="Maghta" type="StringField" />
+      <field name="xmaghta" type="Int32sField" />
+      <field name="sortHozeh" type="Int32sField" />
+      <field name="CapacityHozeh" type="Int32sField" />
+    </table>
+  </database>
   <formulas>
     <formula name="xStudent">{v_HozehStd.xStudent}</formula>
     <formula name="idx">{v_HozehStd.idx}</formula>
@@ -32,7 +55,7 @@
     <sort field="{@fName}" direction="AscendingOrder" />
   </sorts>
   <running-totals>
-    <total name="countStdHozeh" field="{@xStudent}">
+    <total name="countStdHozeh" field="{@xStudent}" group="{@group}">
       <Operation>Count</Operation>
       <OperationParameter>0</OperationParameter>
       <EvaluationConditionType>NoCondition</EvaluationConditionType>
@@ -684,4 +707,5 @@
     </section>
   </sections>
   <custom-functions />
+  <summaries />
 </report>

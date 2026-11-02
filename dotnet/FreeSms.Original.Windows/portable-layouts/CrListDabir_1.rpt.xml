@@ -9,6 +9,41 @@
     <topMargin>-2147483648</topMargin>
     <bottomMargin>-2147483648</bottomMargin>
   </print>
+  <record-selection></record-selection>
+  <database>
+    <table name="spRpt_ListDabir">
+      <field name="xStudent" type="Int32sField" />
+      <field name="FName" type="StringField" />
+      <field name="LName" type="StringField" />
+      <field name="PName" type="StringField" />
+      <field name="Book" type="StringField" />
+      <field name="Class" type="StringField" />
+      <field name="Paye" type="StringField" />
+      <field name="xPaye" type="Int32sField" />
+      <field name="Xtest" type="Int32sField" />
+      <field name="xbook" type="Int32sField" />
+      <field name="sort" type="Int32sField" />
+      <field name="M1" type="NumberField" />
+      <field name="M2" type="NumberField" />
+      <field name="M3" type="NumberField" />
+      <field name="M4" type="NumberField" />
+      <field name="M5" type="NumberField" />
+      <field name="M6" type="NumberField" />
+      <field name="M7" type="NumberField" />
+      <field name="M8" type="NumberField" />
+      <field name="M9" type="NumberField" />
+      <field name="M10" type="NumberField" />
+      <field name="Mark" type="NumberField" />
+      <field name="gClass" type="Int16sField" />
+      <field name="gKoll" type="Int16sField" />
+      <field name="Exam" type="StringField" />
+      <field name="DateFrom" type="StringField" />
+      <field name="DateTo" type="StringField" />
+      <field name="Tosif" type="StringField" />
+      <field name="TosifM" type="StringField" />
+      <field name="LevelBook" type="Int16sField" />
+    </table>
+  </database>
   <formulas>
     <formula name="fullname">{spRpt_ListDabir.FName} + ' - '+{spRpt_ListDabir.LName}</formula>
     <formula name="pname">{spRpt_ListDabir.PName}</formula>
@@ -128,7 +163,7 @@ else totext({@sort}+100000)+'_'+{@fname}+'_'+{@lname}
     <sort field="{@mark2}" direction="DescendingOrder" />
   </sorts>
   <running-totals>
-    <total name="radif" field="{@id}">
+    <total name="radif" field="{@id}" group="{@xbook}">
       <Operation>Count</Operation>
       <OperationParameter>0</OperationParameter>
       <EvaluationConditionType>NoCondition</EvaluationConditionType>
@@ -1629,4 +1664,7 @@ else totext({@sort}+100000)+'_'+{@fname}+'_'+{@lname}
     </section>
   </sections>
   <custom-functions />
+  <summaries>
+    <summary name="Mark" formula="Average ({spRpt_ListDabir.Mark}, {@xbook})" field="{spRpt_ListDabir.Mark}" operation="crSummaryOperationAverage" group="{@xbook}" />
+  </summaries>
 </report>

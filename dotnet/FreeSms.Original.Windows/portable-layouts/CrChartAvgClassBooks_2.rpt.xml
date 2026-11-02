@@ -9,6 +9,20 @@
     <topMargin>-2147483648</topMargin>
     <bottomMargin>-2147483648</bottomMargin>
   </print>
+  <record-selection></record-selection>
+  <database>
+    <table name="spRpt_AvgClassBooks">
+      <field name="id" type="Int32sField" />
+      <field name="Exam" type="StringField" />
+      <field name="Paye" type="StringField" />
+      <field name="Class" type="StringField" />
+      <field name="Book" type="StringField" />
+      <field name="sort" type="Int16sField" />
+      <field name="DateFrom" type="StringField" />
+      <field name="DateTo" type="StringField" />
+      <field name="Mark" type="NumberField" />
+    </table>
+  </database>
   <formulas>
     <formula name="Class">{spRpt_AvgClassBooks.Class}</formula>
     <formula name="Exam">{spRpt_AvgClassBooks.Exam}</formula>
@@ -499,4 +513,5 @@
     </section>
   </sections>
   <custom-functions />
+  <summaries />
 </report>

@@ -9,6 +9,79 @@
     <topMargin>-2147483648</topMargin>
     <bottomMargin>-2147483648</bottomMargin>
   </print>
+  <record-selection></record-selection>
+  <database>
+    <table name="spRpt_StdKarnameTajamoee">
+      <field name="xStudent" type="Int32sField" />
+      <field name="xbook" type="Int32sField" />
+      <field name="xPaye" type="Int32sField" />
+      <field name="countTest" type="Int32sField" />
+      <field name="avgMark" type="NumberField" />
+      <field name="xtest1" type="Int32sField" />
+      <field name="Test1" type="StringField" />
+      <field name="Mark1" type="NumberField" />
+      <field name="gSch1" type="Int32sField" />
+      <field name="gCls1" type="Int32sField" />
+      <field name="xTest2" type="Int32sField" />
+      <field name="Test2" type="StringField" />
+      <field name="Mark2" type="NumberField" />
+      <field name="gSch2" type="Int32sField" />
+      <field name="gCls2" type="Int32sField" />
+      <field name="xTest3" type="Int32sField" />
+      <field name="Test3" type="StringField" />
+      <field name="Mark3" type="NumberField" />
+      <field name="gSch3" type="Int32sField" />
+      <field name="gCls3" type="Int32sField" />
+      <field name="xTest4" type="Int32sField" />
+      <field name="Test4" type="StringField" />
+      <field name="Mark4" type="NumberField" />
+      <field name="gSch4" type="Int32sField" />
+      <field name="gCls4" type="Int32sField" />
+      <field name="xTest5" type="Int32sField" />
+      <field name="Test5" type="StringField" />
+      <field name="Mark5" type="NumberField" />
+      <field name="gSch5" type="Int32sField" />
+      <field name="gCls5" type="Int32sField" />
+      <field name="xTest6" type="Int32sField" />
+      <field name="Test6" type="StringField" />
+      <field name="Mark6" type="NumberField" />
+      <field name="gSch6" type="Int32sField" />
+      <field name="gCls6" type="Int32sField" />
+      <field name="xTest7" type="Int32sField" />
+      <field name="Test7" type="StringField" />
+      <field name="Mark7" type="NumberField" />
+      <field name="gSch7" type="Int32sField" />
+      <field name="gCls7" type="Int32sField" />
+      <field name="xTest8" type="Int32sField" />
+      <field name="Test8" type="StringField" />
+      <field name="Mark8" type="NumberField" />
+      <field name="gSch8" type="Int32sField" />
+      <field name="gCls8" type="Int32sField" />
+      <field name="xTest9" type="Int32sField" />
+      <field name="Test9" type="StringField" />
+      <field name="Mark9" type="NumberField" />
+      <field name="gSch9" type="Int32sField" />
+      <field name="gCls9" type="Int32sField" />
+      <field name="FName" type="StringField" />
+      <field name="LName" type="StringField" />
+      <field name="PName" type="StringField" />
+      <field name="XClass" type="Int32sField" />
+      <field name="Class" type="StringField" />
+      <field name="Paye" type="StringField" />
+      <field name="book" type="StringField" />
+      <field name="vahed" type="NumberField" />
+      <field name="timeWeek" type="NumberField" />
+      <field name="sort" type="Int16sField" />
+      <field name="Student_img" type="BlobField" />
+      <field name="CountClass" type="Int16sField" />
+      <field name="CountPaye" type="Int16sField" />
+      <field name="TimeDored" type="StringField" />
+      <field name="CommentKoll" type="StringField" />
+      <field name="commentbook" type="StringField" />
+      <field name="TchFname" type="StringField" />
+      <field name="tchLname" type="StringField" />
+    </table>
+  </database>
   <formulas>
     <formula name="mark">if({spRpt_StdKarnameTajamoee.avgMark}&lt;20 and {spRpt_StdKarnameTajamoee.avgMark}&gt;=19.99)
 then '19.99'
@@ -164,7 +237,7 @@ else {spRpt_StdKarnameTajamoee.CommentKoll}</formula>
     <sort field="{@sort}" direction="AscendingOrder" />
   </sorts>
   <running-totals>
-    <total name="radif" field="{@xstudent}">
+    <total name="radif" field="{@xstudent}" group="{@xstudent}">
       <Operation>Count</Operation>
       <OperationParameter>0</OperationParameter>
       <EvaluationConditionType>NoCondition</EvaluationConditionType>
@@ -2712,7 +2785,7 @@ else {spRpt_StdKarnameTajamoee.CommentKoll}</formula>
         <source name="gCls6" formula="{@gCls6}" kind="FormulaField" />
         <number />
       </object>
-      <object>
+      <object ras-class="CrystalReports.PictureObject" picture-type="crPictureTypeBitmap">
         <Name>Picture2</Name>
         <Kind>PictureObject</Kind>
         <Left>6960</Left>
@@ -2740,7 +2813,7 @@ else true</condition>
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
       </object>
-      <object>
+      <object ras-class="CrystalReports.PictureObject" picture-type="crPictureTypeBitmap">
         <Name>Picture3</Name>
         <Kind>PictureObject</Kind>
         <Left>5840</Left>
@@ -2768,7 +2841,7 @@ else true</condition>
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
       </object>
-      <object>
+      <object ras-class="CrystalReports.PictureObject" picture-type="crPictureTypeBitmap">
         <Name>Picture4</Name>
         <Kind>PictureObject</Kind>
         <Left>4640</Left>
@@ -2796,7 +2869,7 @@ else true</condition>
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
       </object>
-      <object>
+      <object ras-class="CrystalReports.PictureObject" picture-type="crPictureTypeBitmap">
         <Name>Picture5</Name>
         <Kind>PictureObject</Kind>
         <Left>3400</Left>
@@ -2824,7 +2897,7 @@ else true</condition>
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
       </object>
-      <object>
+      <object ras-class="CrystalReports.PictureObject" picture-type="crPictureTypeBitmap">
         <Name>Picture6</Name>
         <Kind>PictureObject</Kind>
         <Left>2220</Left>
@@ -2852,7 +2925,7 @@ else true</condition>
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
       </object>
-      <object>
+      <object ras-class="CrystalReports.PictureObject" picture-type="crPictureTypeBitmap">
         <Name>Picture22</Name>
         <Kind>PictureObject</Kind>
         <Left>7000</Left>
@@ -2880,7 +2953,7 @@ else true</condition>
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
       </object>
-      <object>
+      <object ras-class="CrystalReports.PictureObject" picture-type="crPictureTypeBitmap">
         <Name>Picture33</Name>
         <Kind>PictureObject</Kind>
         <Left>5880</Left>
@@ -2908,7 +2981,7 @@ else true</condition>
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
       </object>
-      <object>
+      <object ras-class="CrystalReports.PictureObject" picture-type="crPictureTypeBitmap">
         <Name>Picture44</Name>
         <Kind>PictureObject</Kind>
         <Left>4680</Left>
@@ -2936,7 +3009,7 @@ else true</condition>
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
       </object>
-      <object>
+      <object ras-class="CrystalReports.PictureObject" picture-type="crPictureTypeBitmap">
         <Name>Picture55</Name>
         <Kind>PictureObject</Kind>
         <Left>3480</Left>
@@ -2964,7 +3037,7 @@ else true</condition>
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
       </object>
-      <object>
+      <object ras-class="CrystalReports.PictureObject" picture-type="crPictureTypeBitmap">
         <Name>Picture66</Name>
         <Kind>PictureObject</Kind>
         <Left>2280</Left>
@@ -3054,6 +3127,18 @@ else true</condition>
         </border>
         <report>
           <print />
+          <record-selection>{@xStudent} = {?Pm-@xstudent} </record-selection>
+          <database>
+            <table name="spRpt_StdListTestMark_AvgClass">
+              <field name="xStudent" type="Int32sField" />
+              <field name="Xtest" type="Int32sField" />
+              <field name="Exam" type="StringField" />
+              <field name="NumExam" type="Int16sField" />
+              <field name="MarkDoreh" type="NumberField" />
+              <field name="xClass" type="Int32sField" />
+              <field name="AvgClass" type="NumberField" />
+            </table>
+          </database>
           <formulas>
             <formula name="group">{spRpt_StdListTestMark_AvgClass.xStudent}</formula>
             <formula name="xStudent">{spRpt_StdListTestMark_AvgClass.xStudent}</formula>
@@ -3294,7 +3379,11 @@ else true</condition>
               </object>
             </section>
           </sections>
+          <summaries />
         </report>
+        <links>
+          <link parent="{@xstudent}" child="{@xStudent}" />
+        </links>
       </object>
     </section>
     <section name="GroupFooterSection3" kind="GroupFooter" height="1315">
@@ -3450,4 +3539,5 @@ else true</condition>
     </section>
   </sections>
   <custom-functions />
+  <summaries />
 </report>

@@ -9,6 +9,29 @@
     <topMargin>-2147483648</topMargin>
     <bottomMargin>-2147483648</bottomMargin>
   </print>
+  <record-selection></record-selection>
+  <database>
+    <table name="spRpt_ListStdMoadel">
+      <field name="xStudent" type="Int32sField" />
+      <field name="FName" type="StringField" />
+      <field name="LName" type="StringField" />
+      <field name="PName" type="StringField" />
+      <field name="Class" type="StringField" />
+      <field name="Paye" type="StringField" />
+      <field name="xPaye" type="Int32sField" />
+      <field name="Xtest" type="StringField" />
+      <field name="sort" type="Int32sField" />
+      <field name="Mark" type="NumberField" />
+      <field name="gClass" type="Int16sField" />
+      <field name="gPaye" type="Int16sField" />
+      <field name="gKoll" type="Int16sField" />
+      <field name="Exam" type="StringField" />
+      <field name="DateFrom" type="StringField" />
+      <field name="DateTo" type="StringField" />
+      <field name="TosifM5" type="StringField" />
+      <field name="Level5" type="Int16sField" />
+    </table>
+  </database>
   <formulas>
     <formula name="group">//</formula>
     <formula name="fName">{spRpt_ListStdMoadel.FName}</formula>
@@ -57,7 +80,7 @@ else
     <sort field="{@MarkKoll}" direction="DescendingOrder" />
   </sorts>
   <running-totals>
-    <total name="RTotal0" field="{@Id}">
+    <total name="RTotal0" field="{@Id}" group="{@group}">
       <Operation>Count</Operation>
       <OperationParameter>0</OperationParameter>
       <EvaluationConditionType>NoCondition</EvaluationConditionType>
@@ -1115,4 +1138,5 @@ else
     </section>
   </sections>
   <custom-functions />
+  <summaries />
 </report>

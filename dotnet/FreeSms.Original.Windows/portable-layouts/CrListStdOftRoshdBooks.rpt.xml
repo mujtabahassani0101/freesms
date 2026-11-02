@@ -9,6 +9,42 @@
     <topMargin>-2147483648</topMargin>
     <bottomMargin>-2147483648</bottomMargin>
   </print>
+  <record-selection></record-selection>
+  <database>
+    <table name="spRpt_ListStdOftRoshdBooks">
+      <field name="xStudent" type="Int32sField" />
+      <field name="xBook" type="Int32sField" />
+      <field name="xClass" type="Int32sField" />
+      <field name="xtest1" type="Int32sField" />
+      <field name="test1" type="StringField" />
+      <field name="Mark1" type="NumberField" />
+      <field name="gSch1" type="Int32sField" />
+      <field name="gCls1" type="Int32sField" />
+      <field name="xtest2" type="Int32sField" />
+      <field name="test2" type="StringField" />
+      <field name="Mark2" type="NumberField" />
+      <field name="gSch2" type="Int32sField" />
+      <field name="gCls2" type="Int32sField" />
+      <field name="countTest" type="Int16sField" />
+      <field name="AvgMark" type="NumberField" />
+      <field name="tmpavgMark" type="NumberField" />
+      <field name="countStd" type="Int32sField" />
+      <field name="countRosd" type="Int32sField" />
+      <field name="countOft" type="Int32sField" />
+      <field name="count0" type="Int32sField" />
+      <field name="oftrosd" type="NumberField" />
+      <field name="sort" type="Int32sField" />
+      <field name="FName" type="StringField" />
+      <field name="LName" type="StringField" />
+      <field name="PName" type="StringField" />
+      <field name="XClass1" type="Int32sField" />
+      <field name="Class" type="StringField" />
+      <field name="Paye" type="StringField" />
+      <field name="book" type="StringField" />
+      <field name="tch" type="StringField" />
+      <field name="xtch" type="Int32sField" />
+    </table>
+  </database>
   <formulas>
     <formula name="group">totext({@xtch}*100000)+ ' '+
 {spRpt_ListStdOftRoshdBooks.Paye}+' '+{spRpt_ListStdOftRoshdBooks.Class}+' '+ToText({spRpt_ListStdOftRoshdBooks.xBook})</formula>
@@ -89,7 +125,7 @@ else
     <sort field="{@OftRoshd}" direction="DescendingOrder" />
   </sorts>
   <running-totals>
-    <total name="RTotal0" field="{@Id}">
+    <total name="RTotal0" field="{@Id}" group="{@group}">
       <Operation>Count</Operation>
       <OperationParameter>0</OperationParameter>
       <EvaluationConditionType>NoCondition</EvaluationConditionType>
@@ -2488,4 +2524,5 @@ else
     </section>
   </sections>
   <custom-functions />
+  <summaries />
 </report>

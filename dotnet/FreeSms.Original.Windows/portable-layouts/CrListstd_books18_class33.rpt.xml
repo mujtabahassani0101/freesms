@@ -9,6 +9,121 @@
     <topMargin>-2147483648</topMargin>
     <bottomMargin>-2147483648</bottomMargin>
   </print>
+  <record-selection></record-selection>
+  <database>
+    <table name="spRpt_Liststd_books">
+      <field name="xStudent" type="Int32sField" />
+      <field name="xTest" type="Int32sField" />
+      <field name="xPaye" type="Int32sField" />
+      <field name="MarkKoll" type="NumberField" />
+      <field name="Summark" type="NumberField" />
+      <field name="tosifM" type="StringField" />
+      <field name="Level5" type="Int16sField" />
+      <field name="gschkoll" type="Int32sField" />
+      <field name="gclsKoll" type="Int32sField" />
+      <field name="gPayeKoll" type="Int32sField" />
+      <field name="xbook1" type="Int32sField" />
+      <field name="book1" type="StringField" />
+      <field name="Mark1" type="NumberField" />
+      <field name="gSch1" type="Int32sField" />
+      <field name="gCls1" type="Int32sField" />
+      <field name="xbook2" type="Int32sField" />
+      <field name="book2" type="StringField" />
+      <field name="Mark2" type="NumberField" />
+      <field name="gSch2" type="Int32sField" />
+      <field name="gCls2" type="Int32sField" />
+      <field name="xbook3" type="Int32sField" />
+      <field name="book3" type="StringField" />
+      <field name="Mark3" type="NumberField" />
+      <field name="gSch3" type="Int32sField" />
+      <field name="gCls3" type="Int32sField" />
+      <field name="xbook4" type="Int32sField" />
+      <field name="book4" type="StringField" />
+      <field name="Mark4" type="NumberField" />
+      <field name="gSch4" type="Int32sField" />
+      <field name="gCls4" type="Int32sField" />
+      <field name="xbook5" type="Int32sField" />
+      <field name="book5" type="StringField" />
+      <field name="Mark5" type="NumberField" />
+      <field name="gSch5" type="Int32sField" />
+      <field name="gCls5" type="Int32sField" />
+      <field name="xbook6" type="Int32sField" />
+      <field name="book6" type="StringField" />
+      <field name="Mark6" type="NumberField" />
+      <field name="gSch6" type="Int32sField" />
+      <field name="gCls6" type="Int32sField" />
+      <field name="xbook7" type="Int32sField" />
+      <field name="book7" type="StringField" />
+      <field name="Mark7" type="NumberField" />
+      <field name="gSch7" type="Int32sField" />
+      <field name="gCls7" type="Int32sField" />
+      <field name="xbook8" type="Int32sField" />
+      <field name="book8" type="StringField" />
+      <field name="Mark8" type="NumberField" />
+      <field name="gSch8" type="Int32sField" />
+      <field name="gCls8" type="Int32sField" />
+      <field name="xbook9" type="Int32sField" />
+      <field name="book9" type="StringField" />
+      <field name="Mark9" type="NumberField" />
+      <field name="gSch9" type="Int32sField" />
+      <field name="gCls9" type="Int32sField" />
+      <field name="xbook10" type="Int32sField" />
+      <field name="book10" type="StringField" />
+      <field name="Mark10" type="NumberField" />
+      <field name="gSch10" type="Int32sField" />
+      <field name="gCls10" type="Int32sField" />
+      <field name="xbook11" type="Int32sField" />
+      <field name="book11" type="StringField" />
+      <field name="Mark11" type="NumberField" />
+      <field name="gSch11" type="Int32sField" />
+      <field name="gCls11" type="Int32sField" />
+      <field name="xbook12" type="Int32sField" />
+      <field name="book12" type="StringField" />
+      <field name="Mark12" type="NumberField" />
+      <field name="gSch12" type="Int32sField" />
+      <field name="gCls12" type="Int32sField" />
+      <field name="xbook13" type="Int32sField" />
+      <field name="book13" type="StringField" />
+      <field name="Mark13" type="NumberField" />
+      <field name="gSch13" type="Int32sField" />
+      <field name="gCls13" type="Int32sField" />
+      <field name="xbook14" type="Int32sField" />
+      <field name="book14" type="StringField" />
+      <field name="Mark14" type="NumberField" />
+      <field name="gSch14" type="Int32sField" />
+      <field name="gCls14" type="Int32sField" />
+      <field name="xbook15" type="Int32sField" />
+      <field name="book15" type="StringField" />
+      <field name="Mark15" type="NumberField" />
+      <field name="gSch15" type="Int32sField" />
+      <field name="gCls15" type="Int32sField" />
+      <field name="xbook16" type="Int32sField" />
+      <field name="book16" type="StringField" />
+      <field name="Mark16" type="NumberField" />
+      <field name="gSch16" type="Int32sField" />
+      <field name="gCls16" type="Int32sField" />
+      <field name="xbook17" type="Int32sField" />
+      <field name="book17" type="StringField" />
+      <field name="Mark17" type="NumberField" />
+      <field name="gSch17" type="Int32sField" />
+      <field name="gCls17" type="Int32sField" />
+      <field name="xbook18" type="Int32sField" />
+      <field name="book18" type="StringField" />
+      <field name="Mark18" type="NumberField" />
+      <field name="gSch18" type="Int32sField" />
+      <field name="gCls18" type="Int32sField" />
+      <field name="sort" type="Int32sField" />
+      <field name="FName" type="StringField" />
+      <field name="LName" type="StringField" />
+      <field name="PName" type="StringField" />
+      <field name="XClass" type="Int32sField" />
+      <field name="Exam" type="StringField" />
+      <field name="DateFrom" type="StringField" />
+      <field name="DateTo" type="StringField" />
+      <field name="Class" type="StringField" />
+      <field name="Paye" type="StringField" />
+    </table>
+  </database>
   <formulas>
     <formula name="group">ToText({spRpt_Liststd_books.xTest}*1000)+' '+ToText( {spRpt_Liststd_books.xPaye}*1000)+{spRpt_Liststd_books.Class}</formula>
     <formula name="fName">{spRpt_Liststd_books.FName}</formula>
@@ -239,7 +354,7 @@ else
     <sort field="{spRpt_Liststd_books.MarkKoll}" direction="DescendingOrder" />
   </sorts>
   <running-totals>
-    <total name="RTotal0" field="{@Id}">
+    <total name="RTotal0" field="{@Id}" group="{@group}">
       <Operation>Count</Operation>
       <OperationParameter>0</OperationParameter>
       <EvaluationConditionType>NoCondition</EvaluationConditionType>
@@ -3225,4 +3340,5 @@ else
     </section>
   </sections>
   <custom-functions />
+  <summaries />
 </report>

@@ -9,6 +9,16 @@
     <topMargin>-2147483648</topMargin>
     <bottomMargin>-2147483648</bottomMargin>
   </print>
+  <record-selection></record-selection>
+  <database>
+    <table name="spRpt_ListStdHozehMinMax">
+      <field name="xhozeh" type="Int32sField" />
+      <field name="Hozeh" type="StringField" />
+      <field name="minidx" type="Int32sField" />
+      <field name="maxidx" type="Int32sField" />
+      <field name="countidx" type="Int32sField" />
+    </table>
+  </database>
   <formulas>
     <formula name="hoze">'حوزه : '+{spRpt_ListStdHozehMinMax.Hozeh}</formula>
     <formula name="minidx">{spRpt_ListStdHozehMinMax.minidx}</formula>
@@ -279,4 +289,5 @@ totext({spRpt_ListStdHozehMinMax.maxidx},0)</formula>
     </section>
   </sections>
   <custom-functions />
+  <summaries />
 </report>

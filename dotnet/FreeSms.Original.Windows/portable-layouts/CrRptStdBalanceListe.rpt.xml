@@ -9,6 +9,33 @@
     <topMargin>-2147483648</topMargin>
     <bottomMargin>-2147483648</bottomMargin>
   </print>
+  <record-selection></record-selection>
+  <database>
+    <table name="sp_RptPaymentBalance">
+      <field name="xPaye" type="Int32sField" />
+      <field name="xClass" type="Int32sField" />
+      <field name="xStudent" type="Int32sField" />
+      <field name="sort" type="Int32sField" />
+      <field name="FName" type="StringField" />
+      <field name="LName" type="StringField" />
+      <field name="PName" type="StringField" />
+      <field name="answerable" type="StringField" />
+      <field name="Class" type="StringField" />
+      <field name="Paye" type="StringField" />
+      <field name="heder1" type="StringField" />
+      <field name="sch" type="StringField" />
+      <field name="NumberAsas" type="Int32sField" />
+      <field name="AmountMostPayTransPort" type="Int32sField" />
+      <field name="AmountMostPayFee" type="Int32sField" />
+      <field name="StdPay" type="Int32sField" />
+      <field name="Pay_Fee" type="Int32sField" />
+      <field name="Pay_Transport" type="Int32sField" />
+      <field name="Balance" type="Int32sField" />
+      <field name="Balance_Transport" type="Int32sField" />
+      <field name="Balance_Fee" type="Int32sField" />
+      <field name="Fasl" type="Int32sField" />
+    </table>
+  </database>
   <formulas>
     <formula name="xClass">{sp_RptPaymentBalance.xClass}</formula>
     <formula name="xStudent">{sp_RptPaymentBalance.xStudent}</formula>
@@ -1087,4 +1114,5 @@ else if {?type}=2 and ({sp_RptPaymentBalance.Fasl}=9) then 'ماه '+'قوس'</f
     </section>
   </sections>
   <custom-functions />
+  <summaries />
 </report>

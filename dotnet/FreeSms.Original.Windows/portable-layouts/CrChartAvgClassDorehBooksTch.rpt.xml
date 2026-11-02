@@ -9,6 +9,23 @@
     <topMargin>-2147483648</topMargin>
     <bottomMargin>-2147483648</bottomMargin>
   </print>
+  <record-selection></record-selection>
+  <database>
+    <table name="spRpt_AvgClassBooksTch">
+      <field name="Exam" type="StringField" />
+      <field name="xPaye" type="Int32sField" />
+      <field name="Paye" type="StringField" />
+      <field name="Class" type="StringField" />
+      <field name="Book" type="StringField" />
+      <field name="sort" type="Int16sField" />
+      <field name="avgMark" type="NumberField" />
+      <field name="fNamF" type="StringField" />
+      <field name="fNamL" type="StringField" />
+      <field name="xTch" type="Int32sField" />
+      <field name="NumExam" type="Int16sField" />
+      <field name="avgPaye" type="NumberField" />
+    </table>
+  </database>
   <formulas>
     <formula name="Class">{spRpt_AvgClassBooksTch.Class}</formula>
     <formula name="Exam">{spRpt_AvgClassBooksTch.Exam}</formula>
@@ -605,4 +622,5 @@ totext({spRpt_AvgClassBooksTch.xPaye}*1000)+'-'+
     </section>
   </sections>
   <custom-functions />
+  <summaries />
 </report>
