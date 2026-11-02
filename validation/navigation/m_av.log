@@ -136,7 +136,7 @@ SQL 15B2DA1725B06939CD4D443DF2AB4BE68289D79B473EE02372F2BF788509C80C
    at System.Windows.Forms.Application.Run(ApplicationContext context)
    at OriginalNavigationCheck.Worker(String route) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalNavigationCheck.cs:line 83
    at OriginalProgram.Main(String[] args) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalProgram.cs:line 51
-SQL D4C1014781C3D76B4352DF5417446049E0BB5A6FF667E25E1F02BDFF5D2FC8F8
+SQL EA252D7E1FE0254F8864501FF66B2701C10E847E71D31AB7C374C18B3211D40A
    at System.Environment.get_StackTrace()
    at OriginalNavigationCheck.TraceCommand(String sql) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalNavigationCheck.cs:line 22
    at asdcb.a(SqlCommand A_0, SqlConnection A_1, SqlTransaction A_2, CommandType A_3, String A_4, SqlParameter[] A_5) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdcb.cs:line 87
@@ -145,117 +145,8 @@ SQL D4C1014781C3D76B4352DF5417446049E0BB5A6FF667E25E1F02BDFF5D2FC8F8
    at asdb1.a() in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdb1.cs:line 763
    at asdb1.d(Object A_0, EventArgs A_1) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdb1.cs:line 1107
    at System.Windows.Forms.ComboBox.OnSelectedIndexChanged(EventArgs e)
-   at System.Windows.Forms.ComboBox.set_SelectedIndex(Int32 value)
-   at System.Windows.Forms.ComboBox.RefreshItems()
-   at System.Windows.Forms.ComboBox.OnDataSourceChanged(EventArgs e)
-   at System.Windows.Forms.ListControl.SetDataConnection(Object newDataSource, BindingMemberInfo newDisplayMember, Boolean force)
-   at System.Windows.Forms.ListControl.set_DataSource(Object value)
-   at System.Windows.Forms.ComboBox.set_DataSource(Object value)
-   at asdb1.c() in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdb1.cs:line 625
-   at asdb1.c(Object A_0, EventArgs A_1) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdb1.cs:line 1154
-   at System.Windows.Forms.Form.OnLoad(EventArgs e)
-   at System.Windows.Forms.Form.OnCreateControl()
-   at System.Windows.Forms.Control.CreateControl(Boolean ignoreVisible)
-   at System.Windows.Forms.Control.CreateControl()
-   at System.Windows.Forms.Control.WmShowWindow(Message& m)
-   at System.Windows.Forms.Control.WndProc(Message& m)
-   at System.Windows.Forms.ScrollableControl.WndProc(Message& m)
-   at System.Windows.Forms.ContainerControl.WndProc(Message& m)
-   at System.Windows.Forms.Form.WmShowWindow(Message& m)
-   at System.Windows.Forms.Form.WndProc(Message& m)
-   at System.Windows.Forms.Control.ControlNativeWindow.OnMessage(Message& m)
-   at System.Windows.Forms.Control.ControlNativeWindow.WndProc(Message& m)
-   at System.Windows.Forms.NativeWindow.Callback(HWND hWnd, UInt32 msg, WPARAM wparam, LPARAM lparam)
-   at Windows.Win32.PInvoke.ShowWindow(HWND hWnd, SHOW_WINDOW_CMD nCmdShow)
-   at System.Windows.Forms.Control.SetVisibleCore(Boolean value)
-   at System.Windows.Forms.Form.SetVisibleCore(Boolean value)
-   at System.Windows.Forms.Application.ThreadContext.RunMessageLoopInner(msoloop reason, ApplicationContext context)
-   at System.Windows.Forms.Application.RunDialog(Form form)
-   at System.Windows.Forms.Form.ShowDialog(IWin32Window owner)
-   at System.Windows.Forms.Form.ShowDialog()
-   at asdb3.a6(Object A_0, EventArgs A_1) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdb3.cs:line 1693
-   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
-   at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
-   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
-   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
-   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
-   at OriginalNavigationCheck.<>c__DisplayClass3_1.<Worker>b__3(Object sender, EventArgs e) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalNavigationCheck.cs:line 66
-   at System.Windows.Forms.Timer.OnTick(EventArgs e)
-   at System.Windows.Forms.Timer.TimerNativeWindow.WndProc(Message& m)
-   at System.Windows.Forms.NativeWindow.Callback(HWND hWnd, UInt32 msg, WPARAM wparam, LPARAM lparam)
-   at Windows.Win32.PInvoke.DispatchMessage(MSG* lpMsg)
-   at System.Windows.Forms.Application.LightThreadContext.FPushMessageLoop(msoloop uReason)
-   at System.Windows.Forms.Application.LightThreadContext.RunMessageLoop(msoloop reason, Boolean fullModal)
-   at System.Windows.Forms.Application.ThreadContext.RunMessageLoopInner(msoloop reason, ApplicationContext context)
-   at System.Windows.Forms.Application.Run(ApplicationContext context)
-   at OriginalNavigationCheck.Worker(String route) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalNavigationCheck.cs:line 83
-   at OriginalProgram.Main(String[] args) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalProgram.cs:line 51
-SQL D4C1014781C3D76B4352DF5417446049E0BB5A6FF667E25E1F02BDFF5D2FC8F8
-   at System.Environment.get_StackTrace()
-   at OriginalNavigationCheck.TraceCommand(String sql) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalNavigationCheck.cs:line 22
-   at asdcb.a(SqlCommand A_0, SqlConnection A_1, SqlTransaction A_2, CommandType A_3, String A_4, SqlParameter[] A_5) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdcb.cs:line 87
-   at asdcb.b(SqlConnection A_0, CommandType A_1, String A_2, SqlParameter[] A_3) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdcb.cs:line 408
-   at asdcb.c(String A_0, CommandType A_1, String A_2, SqlParameter[] A_3) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdcb.cs:line 356
-   at asdb1.a() in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdb1.cs:line 763
-   at asdb1.d(Object A_0, EventArgs A_1) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdb1.cs:line 1107
-   at System.Windows.Forms.ComboBox.OnSelectedIndexChanged(EventArgs e)
-   at System.Windows.Forms.ComboBox.set_SelectedIndex(Int32 value)
-   at System.Windows.Forms.ComboBox.RefreshItems()
-   at System.Windows.Forms.ComboBox.OnDisplayMemberChanged(EventArgs e)
-   at System.Windows.Forms.ListControl.SetDataConnection(Object newDataSource, BindingMemberInfo newDisplayMember, Boolean force)
-   at System.Windows.Forms.ListControl.set_DisplayMember(String value)
-   at asdb1.c() in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdb1.cs:line 626
-   at asdb1.c(Object A_0, EventArgs A_1) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdb1.cs:line 1154
-   at System.Windows.Forms.Form.OnLoad(EventArgs e)
-   at System.Windows.Forms.Form.OnCreateControl()
-   at System.Windows.Forms.Control.CreateControl(Boolean ignoreVisible)
-   at System.Windows.Forms.Control.CreateControl()
-   at System.Windows.Forms.Control.WmShowWindow(Message& m)
-   at System.Windows.Forms.Control.WndProc(Message& m)
-   at System.Windows.Forms.ScrollableControl.WndProc(Message& m)
-   at System.Windows.Forms.ContainerControl.WndProc(Message& m)
-   at System.Windows.Forms.Form.WmShowWindow(Message& m)
-   at System.Windows.Forms.Form.WndProc(Message& m)
-   at System.Windows.Forms.Control.ControlNativeWindow.OnMessage(Message& m)
-   at System.Windows.Forms.Control.ControlNativeWindow.WndProc(Message& m)
-   at System.Windows.Forms.NativeWindow.Callback(HWND hWnd, UInt32 msg, WPARAM wparam, LPARAM lparam)
-   at Windows.Win32.PInvoke.ShowWindow(HWND hWnd, SHOW_WINDOW_CMD nCmdShow)
-   at System.Windows.Forms.Control.SetVisibleCore(Boolean value)
-   at System.Windows.Forms.Form.SetVisibleCore(Boolean value)
-   at System.Windows.Forms.Application.ThreadContext.RunMessageLoopInner(msoloop reason, ApplicationContext context)
-   at System.Windows.Forms.Application.RunDialog(Form form)
-   at System.Windows.Forms.Form.ShowDialog(IWin32Window owner)
-   at System.Windows.Forms.Form.ShowDialog()
-   at asdb3.a6(Object A_0, EventArgs A_1) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdb3.cs:line 1693
-   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
-   at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
-   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
-   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
-   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
-   at OriginalNavigationCheck.<>c__DisplayClass3_1.<Worker>b__3(Object sender, EventArgs e) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalNavigationCheck.cs:line 66
-   at System.Windows.Forms.Timer.OnTick(EventArgs e)
-   at System.Windows.Forms.Timer.TimerNativeWindow.WndProc(Message& m)
-   at System.Windows.Forms.NativeWindow.Callback(HWND hWnd, UInt32 msg, WPARAM wparam, LPARAM lparam)
-   at Windows.Win32.PInvoke.DispatchMessage(MSG* lpMsg)
-   at System.Windows.Forms.Application.LightThreadContext.FPushMessageLoop(msoloop uReason)
-   at System.Windows.Forms.Application.LightThreadContext.RunMessageLoop(msoloop reason, Boolean fullModal)
-   at System.Windows.Forms.Application.ThreadContext.RunMessageLoopInner(msoloop reason, ApplicationContext context)
-   at System.Windows.Forms.Application.Run(ApplicationContext context)
-   at OriginalNavigationCheck.Worker(String route) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalNavigationCheck.cs:line 83
-   at OriginalProgram.Main(String[] args) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalProgram.cs:line 51
-SQL D4C1014781C3D76B4352DF5417446049E0BB5A6FF667E25E1F02BDFF5D2FC8F8
-   at System.Environment.get_StackTrace()
-   at OriginalNavigationCheck.TraceCommand(String sql) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalNavigationCheck.cs:line 22
-   at asdcb.a(SqlCommand A_0, SqlConnection A_1, SqlTransaction A_2, CommandType A_3, String A_4, SqlParameter[] A_5) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdcb.cs:line 87
-   at asdcb.b(SqlConnection A_0, CommandType A_1, String A_2, SqlParameter[] A_3) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdcb.cs:line 408
-   at asdcb.c(String A_0, CommandType A_1, String A_2, SqlParameter[] A_3) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdcb.cs:line 356
-   at asdb1.a() in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdb1.cs:line 763
-   at asdb1.d(Object A_0, EventArgs A_1) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdb1.cs:line 1107
-   at System.Windows.Forms.ComboBox.OnSelectedIndexChanged(EventArgs e)
-   at System.Windows.Forms.ComboBox.set_SelectedIndex(Int32 value)
-   at System.Windows.Forms.ComboBox.RefreshItems()
-   at System.Windows.Forms.ComboBox.OnDisplayMemberChanged(EventArgs e)
-   at System.Windows.Forms.ListControl.SetDataConnection(Object newDataSource, BindingMemberInfo newDisplayMember, Boolean force)
+   at Janus.Windows.EditControls.UIComboBox.FlushSelection() in D:\a\freesms\freesms\dotnet\FreeSms.NativeControls\Editors.cs:line 128
+   at Janus.Windows.EditControls.UIComboBox.OnValueMemberChanged(EventArgs e) in D:\a\freesms\freesms\dotnet\FreeSms.NativeControls\Editors.cs:line 121
    at System.Windows.Forms.ListControl.set_ValueMember(String value)
    at asdb1.c() in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdb1.cs:line 627
    at asdb1.c(Object A_0, EventArgs A_1) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdb1.cs:line 1154
@@ -296,31 +187,17 @@ SQL D4C1014781C3D76B4352DF5417446049E0BB5A6FF667E25E1F02BDFF5D2FC8F8
    at System.Windows.Forms.Application.Run(ApplicationContext context)
    at OriginalNavigationCheck.Worker(String route) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalNavigationCheck.cs:line 83
    at OriginalProgram.Main(String[] args) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalProgram.cs:line 51
-FAILED Microsoft.Data.SqlClient.SqlException (0x80131904): The multi-part identifier "System.Data.DataRowView" could not be bound.
-   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
-   at Microsoft.Data.SqlClient.Connection.SqlConnectionInternal.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
-   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, SqlCommand command, Boolean callerHasConnectionLock, Boolean asyncClose)
-   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
-   at Microsoft.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
-   at Microsoft.Data.SqlClient.SqlDataReader.get_MetaData()
-   at Microsoft.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
-   at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean isAsync, Int32 timeout, Task& task, Boolean asyncWrite, Boolean isRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
-   at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& executeTask, Boolean& usedCache, Boolean asyncWrite, Boolean isRetry, String method)
-   at Microsoft.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
-   at Microsoft.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
-   at System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
-   at System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
-   at System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
-   at System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
-   at asdcb.b(SqlConnection A_0, CommandType A_1, String A_2, SqlParameter[] A_3) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdcb.cs:line 411
+SQL A699B6369E0DBB9162687E826D8B9A41AC2DB84A6966669DEA6AE43950951E63
+   at System.Environment.get_StackTrace()
+   at OriginalNavigationCheck.TraceCommand(String sql) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalNavigationCheck.cs:line 22
+   at asdcb.a(SqlCommand A_0, SqlConnection A_1, SqlTransaction A_2, CommandType A_3, String A_4, SqlParameter[] A_5) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdcb.cs:line 87
+   at asdcb.b(SqlConnection A_0, CommandType A_1, String A_2, SqlParameter[] A_3) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdcb.cs:line 408
    at asdcb.c(String A_0, CommandType A_1, String A_2, SqlParameter[] A_3) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdcb.cs:line 356
-   at asdb1.a() in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdb1.cs:line 763
-   at asdb1.d(Object A_0, EventArgs A_1) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdb1.cs:line 1107
+   at asdb1.b() in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdb1.cs:line 672
+   at asdb1.d(Object A_0, EventArgs A_1) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdb1.cs:line 1108
    at System.Windows.Forms.ComboBox.OnSelectedIndexChanged(EventArgs e)
-   at System.Windows.Forms.ComboBox.set_SelectedIndex(Int32 value)
-   at System.Windows.Forms.ComboBox.RefreshItems()
-   at System.Windows.Forms.ComboBox.OnDisplayMemberChanged(EventArgs e)
-   at System.Windows.Forms.ListControl.SetDataConnection(Object newDataSource, BindingMemberInfo newDisplayMember, Boolean force)
+   at Janus.Windows.EditControls.UIComboBox.FlushSelection() in D:\a\freesms\freesms\dotnet\FreeSms.NativeControls\Editors.cs:line 128
+   at Janus.Windows.EditControls.UIComboBox.OnValueMemberChanged(EventArgs e) in D:\a\freesms\freesms\dotnet\FreeSms.NativeControls\Editors.cs:line 121
    at System.Windows.Forms.ListControl.set_ValueMember(String value)
    at asdb1.c() in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdb1.cs:line 627
    at asdb1.c(Object A_0, EventArgs A_1) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdb1.cs:line 1154
@@ -337,5 +214,28 @@ FAILED Microsoft.Data.SqlClient.SqlException (0x80131904): The multi-part identi
    at System.Windows.Forms.Control.ControlNativeWindow.OnMessage(Message& m)
    at System.Windows.Forms.Control.ControlNativeWindow.WndProc(Message& m)
    at System.Windows.Forms.NativeWindow.Callback(HWND hWnd, UInt32 msg, WPARAM wparam, LPARAM lparam)
-ClientConnectionId:410d8978-0666-4e15-b708-57d5e1dde8eb
-Error Number:4104,State:1,Class:16
+   at Windows.Win32.PInvoke.ShowWindow(HWND hWnd, SHOW_WINDOW_CMD nCmdShow)
+   at System.Windows.Forms.Control.SetVisibleCore(Boolean value)
+   at System.Windows.Forms.Form.SetVisibleCore(Boolean value)
+   at System.Windows.Forms.Application.ThreadContext.RunMessageLoopInner(msoloop reason, ApplicationContext context)
+   at System.Windows.Forms.Application.RunDialog(Form form)
+   at System.Windows.Forms.Form.ShowDialog(IWin32Window owner)
+   at System.Windows.Forms.Form.ShowDialog()
+   at asdb3.a6(Object A_0, EventArgs A_1) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdb3.cs:line 1693
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at OriginalNavigationCheck.<>c__DisplayClass3_1.<Worker>b__3(Object sender, EventArgs e) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalNavigationCheck.cs:line 66
+   at System.Windows.Forms.Timer.OnTick(EventArgs e)
+   at System.Windows.Forms.Timer.TimerNativeWindow.WndProc(Message& m)
+   at System.Windows.Forms.NativeWindow.Callback(HWND hWnd, UInt32 msg, WPARAM wparam, LPARAM lparam)
+   at Windows.Win32.PInvoke.DispatchMessage(MSG* lpMsg)
+   at System.Windows.Forms.Application.LightThreadContext.FPushMessageLoop(msoloop uReason)
+   at System.Windows.Forms.Application.LightThreadContext.RunMessageLoop(msoloop reason, Boolean fullModal)
+   at System.Windows.Forms.Application.ThreadContext.RunMessageLoopInner(msoloop reason, ApplicationContext context)
+   at System.Windows.Forms.Application.Run(ApplicationContext context)
+   at OriginalNavigationCheck.Worker(String route) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalNavigationCheck.cs:line 83
+   at OriginalProgram.Main(String[] args) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalProgram.cs:line 51
+SUCCESS loaded, shown and UI timer responded

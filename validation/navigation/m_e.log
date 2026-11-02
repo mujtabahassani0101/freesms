@@ -145,6 +145,7 @@ SQL 2D398F08D58E393CA26E8EDAF7F53B5581BE48529F492FBED1CE3D0A5B5E0BBB
    at asdm.d() in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdm.cs:line 265
    at asdm.o(Object A_0, EventArgs A_1) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdm.cs:line 666
    at System.Windows.Forms.ComboBox.OnSelectedIndexChanged(EventArgs e)
+   at Janus.Windows.EditControls.UIComboBox.OnSelectedIndexChanged(EventArgs e) in D:\a\freesms\freesms\dotnet\FreeSms.NativeControls\Editors.cs:line 110
    at System.Windows.Forms.ComboBox.set_SelectedIndex(Int32 value)
    at asdm.e() in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdm.cs:line 226
    at asdm.r(Object A_0, EventArgs A_1) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdm.cs:line 172

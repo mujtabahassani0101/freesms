@@ -29,7 +29,7 @@ SQL 1E846049AB9113F7D191CDB90D8974CFC5A20D31D8AB57E09CB9420C3FC6C490
    at System.Windows.Forms.Application.RunDialog(Form form)
    at System.Windows.Forms.Form.ShowDialog(IWin32Window owner)
    at System.Windows.Forms.Form.ShowDialog()
-   at asdb3.w(Object A_0, EventArgs A_1) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdb3.cs:line 1911
+   at asdb3.w(Object A_0, EventArgs A_1) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdb3.cs:line 1916
    at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
    at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
    at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
@@ -73,7 +73,7 @@ SQL D04E31861B14F78305D9EFA772B3C94420C4FE004302A0682D8BD6DB50E8FACC
    at System.Windows.Forms.Application.RunDialog(Form form)
    at System.Windows.Forms.Form.ShowDialog(IWin32Window owner)
    at System.Windows.Forms.Form.ShowDialog()
-   at asdb3.w(Object A_0, EventArgs A_1) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdb3.cs:line 1911
+   at asdb3.w(Object A_0, EventArgs A_1) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdb3.cs:line 1916
    at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
    at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
    at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
@@ -117,7 +117,7 @@ SQL 57FF4784C1194B269D089C2558E71678DF5EBE70571FC8E519AC453F797805AE
    at System.Windows.Forms.Application.RunDialog(Form form)
    at System.Windows.Forms.Form.ShowDialog(IWin32Window owner)
    at System.Windows.Forms.Form.ShowDialog()
-   at asdb3.w(Object A_0, EventArgs A_1) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdb3.cs:line 1911
+   at asdb3.w(Object A_0, EventArgs A_1) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdb3.cs:line 1916
    at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
    at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
    at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
@@ -162,7 +162,7 @@ SQL 77687E9F554FA498CB022731A514A0A55B486FB0DE8652E357E3F89F4DAE549C
    at System.Windows.Forms.Application.RunDialog(Form form)
    at System.Windows.Forms.Form.ShowDialog(IWin32Window owner)
    at System.Windows.Forms.Form.ShowDialog()
-   at asdb3.w(Object A_0, EventArgs A_1) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdb3.cs:line 1911
+   at asdb3.w(Object A_0, EventArgs A_1) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdb3.cs:line 1916
    at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
    at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
    at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)

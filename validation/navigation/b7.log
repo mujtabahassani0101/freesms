@@ -29,7 +29,7 @@ SQL 1E846049AB9113F7D191CDB90D8974CFC5A20D31D8AB57E09CB9420C3FC6C490
    at System.Windows.Forms.Application.RunDialog(Form form)
    at System.Windows.Forms.Form.ShowDialog(IWin32Window owner)
    at System.Windows.Forms.Form.ShowDialog()
-   at asdb3.x(Object A_0, EventArgs A_1) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdb3.cs:line 1904
+   at asdb3.x(Object A_0, EventArgs A_1) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdb3.cs:line 1909
    at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
    at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
    at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
@@ -74,7 +74,7 @@ SQL B3C56E46FB3E73A9EEB1B3A813299545B518FC1BBFAC614D3C49941CE6CE3F19
    at System.Windows.Forms.Application.RunDialog(Form form)
    at System.Windows.Forms.Form.ShowDialog(IWin32Window owner)
    at System.Windows.Forms.Form.ShowDialog()
-   at asdb3.x(Object A_0, EventArgs A_1) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdb3.cs:line 1904
+   at asdb3.x(Object A_0, EventArgs A_1) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdb3.cs:line 1909
    at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
    at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
    at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
@@ -100,13 +100,10 @@ SQL 4DB8082A8424660CCE2A260EA1639EF85C22C2680176461C75DB6ABB803A27A6
    at asdx.a() in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdx.cs:line 485
    at asdx.b(Object A_0, EventArgs A_1) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdx.cs:line 520
    at System.Windows.Forms.ComboBox.OnSelectedIndexChanged(EventArgs e)
-   at System.Windows.Forms.ComboBox.set_SelectedIndex(Int32 value)
-   at System.Windows.Forms.ComboBox.RefreshItems()
-   at System.Windows.Forms.ComboBox.OnDataSourceChanged(EventArgs e)
-   at System.Windows.Forms.ListControl.SetDataConnection(Object newDataSource, BindingMemberInfo newDisplayMember, Boolean force)
-   at System.Windows.Forms.ListControl.set_DataSource(Object value)
-   at System.Windows.Forms.ComboBox.set_DataSource(Object value)
-   at asdx.c() in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdx.cs:line 389
+   at Janus.Windows.EditControls.UIComboBox.FlushSelection() in D:\a\freesms\freesms\dotnet\FreeSms.NativeControls\Editors.cs:line 128
+   at Janus.Windows.EditControls.UIComboBox.OnValueMemberChanged(EventArgs e) in D:\a\freesms\freesms\dotnet\FreeSms.NativeControls\Editors.cs:line 121
+   at System.Windows.Forms.ListControl.set_ValueMember(String value)
+   at asdx.c() in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdx.cs:line 391
    at asdx.d(Object A_0, EventArgs A_1) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdx.cs:line 338
    at System.Windows.Forms.Form.OnLoad(EventArgs e)
    at System.Windows.Forms.Form.OnCreateControl()
@@ -128,60 +125,7 @@ SQL 4DB8082A8424660CCE2A260EA1639EF85C22C2680176461C75DB6ABB803A27A6
    at System.Windows.Forms.Application.RunDialog(Form form)
    at System.Windows.Forms.Form.ShowDialog(IWin32Window owner)
    at System.Windows.Forms.Form.ShowDialog()
-   at asdb3.x(Object A_0, EventArgs A_1) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdb3.cs:line 1904
-   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
-   at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
-   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
-   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
-   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
-   at OriginalNavigationCheck.<>c__DisplayClass3_1.<Worker>b__3(Object sender, EventArgs e) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalNavigationCheck.cs:line 66
-   at System.Windows.Forms.Timer.OnTick(EventArgs e)
-   at System.Windows.Forms.Timer.TimerNativeWindow.WndProc(Message& m)
-   at System.Windows.Forms.NativeWindow.Callback(HWND hWnd, UInt32 msg, WPARAM wparam, LPARAM lparam)
-   at Windows.Win32.PInvoke.DispatchMessage(MSG* lpMsg)
-   at System.Windows.Forms.Application.LightThreadContext.FPushMessageLoop(msoloop uReason)
-   at System.Windows.Forms.Application.LightThreadContext.RunMessageLoop(msoloop reason, Boolean fullModal)
-   at System.Windows.Forms.Application.ThreadContext.RunMessageLoopInner(msoloop reason, ApplicationContext context)
-   at System.Windows.Forms.Application.Run(ApplicationContext context)
-   at OriginalNavigationCheck.Worker(String route) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalNavigationCheck.cs:line 83
-   at OriginalProgram.Main(String[] args) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalProgram.cs:line 51
-SQL 4DB8082A8424660CCE2A260EA1639EF85C22C2680176461C75DB6ABB803A27A6
-   at System.Environment.get_StackTrace()
-   at OriginalNavigationCheck.TraceCommand(String sql) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalNavigationCheck.cs:line 22
-   at asdcb.a(SqlCommand A_0, SqlConnection A_1, SqlTransaction A_2, CommandType A_3, String A_4, SqlParameter[] A_5) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdcb.cs:line 87
-   at asdcb.b(SqlConnection A_0, CommandType A_1, String A_2, SqlParameter[] A_3) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdcb.cs:line 408
-   at asdcb.c(String A_0, CommandType A_1, String A_2, SqlParameter[] A_3) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdcb.cs:line 356
-   at asdx.a() in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdx.cs:line 485
-   at asdx.b(Object A_0, EventArgs A_1) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdx.cs:line 520
-   at System.Windows.Forms.ComboBox.OnSelectedIndexChanged(EventArgs e)
-   at System.Windows.Forms.ComboBox.set_SelectedIndex(Int32 value)
-   at System.Windows.Forms.ComboBox.RefreshItems()
-   at System.Windows.Forms.ComboBox.OnDisplayMemberChanged(EventArgs e)
-   at System.Windows.Forms.ListControl.SetDataConnection(Object newDataSource, BindingMemberInfo newDisplayMember, Boolean force)
-   at System.Windows.Forms.ListControl.set_DisplayMember(String value)
-   at asdx.c() in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdx.cs:line 390
-   at asdx.d(Object A_0, EventArgs A_1) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdx.cs:line 338
-   at System.Windows.Forms.Form.OnLoad(EventArgs e)
-   at System.Windows.Forms.Form.OnCreateControl()
-   at System.Windows.Forms.Control.CreateControl(Boolean ignoreVisible)
-   at System.Windows.Forms.Control.CreateControl()
-   at System.Windows.Forms.Control.WmShowWindow(Message& m)
-   at System.Windows.Forms.Control.WndProc(Message& m)
-   at System.Windows.Forms.ScrollableControl.WndProc(Message& m)
-   at System.Windows.Forms.ContainerControl.WndProc(Message& m)
-   at System.Windows.Forms.Form.WmShowWindow(Message& m)
-   at System.Windows.Forms.Form.WndProc(Message& m)
-   at System.Windows.Forms.Control.ControlNativeWindow.OnMessage(Message& m)
-   at System.Windows.Forms.Control.ControlNativeWindow.WndProc(Message& m)
-   at System.Windows.Forms.NativeWindow.Callback(HWND hWnd, UInt32 msg, WPARAM wparam, LPARAM lparam)
-   at Windows.Win32.PInvoke.ShowWindow(HWND hWnd, SHOW_WINDOW_CMD nCmdShow)
-   at System.Windows.Forms.Control.SetVisibleCore(Boolean value)
-   at System.Windows.Forms.Form.SetVisibleCore(Boolean value)
-   at System.Windows.Forms.Application.ThreadContext.RunMessageLoopInner(msoloop reason, ApplicationContext context)
-   at System.Windows.Forms.Application.RunDialog(Form form)
-   at System.Windows.Forms.Form.ShowDialog(IWin32Window owner)
-   at System.Windows.Forms.Form.ShowDialog()
-   at asdb3.x(Object A_0, EventArgs A_1) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdb3.cs:line 1904
+   at asdb3.x(Object A_0, EventArgs A_1) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdb3.cs:line 1909
    at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
    at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
    at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
@@ -226,7 +170,7 @@ SQL 0616583F7688463AA9FBBE676D25B3CBF626BE8DA9E5242406759818E4BA5E08
    at System.Windows.Forms.Application.RunDialog(Form form)
    at System.Windows.Forms.Form.ShowDialog(IWin32Window owner)
    at System.Windows.Forms.Form.ShowDialog()
-   at asdb3.x(Object A_0, EventArgs A_1) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdb3.cs:line 1904
+   at asdb3.x(Object A_0, EventArgs A_1) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdb3.cs:line 1909
    at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
    at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
    at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
@@ -270,7 +214,7 @@ SQL B3F829D355EF97FFEDF8FA00A73BE889B4AC5E55221D1F955EDC1A4DF778F88E
    at System.Windows.Forms.Application.RunDialog(Form form)
    at System.Windows.Forms.Form.ShowDialog(IWin32Window owner)
    at System.Windows.Forms.Form.ShowDialog()
-   at asdb3.x(Object A_0, EventArgs A_1) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdb3.cs:line 1904
+   at asdb3.x(Object A_0, EventArgs A_1) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdb3.cs:line 1909
    at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
    at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
    at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
@@ -296,8 +240,9 @@ SQL 4DB8082A8424660CCE2A260EA1639EF85C22C2680176461C75DB6ABB803A27A6
    at asdx.a() in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdx.cs:line 485
    at asdx.b(Object A_0, EventArgs A_1) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdx.cs:line 520
    at System.Windows.Forms.ComboBox.OnSelectedIndexChanged(EventArgs e)
+   at Janus.Windows.EditControls.UIComboBox.OnSelectedIndexChanged(EventArgs e) in D:\a\freesms\freesms\dotnet\FreeSms.NativeControls\Editors.cs:line 110
    at System.Windows.Forms.ComboBox.set_SelectedIndex(Int32 value)
-   at Janus.Windows.EditControls.UIComboBox.set_SelectedValue(Object value) in D:\a\freesms\freesms\dotnet\FreeSms.NativeControls\Editors.cs:line 121
+   at Janus.Windows.EditControls.UIComboBox.set_SelectedValue(Object value) in D:\a\freesms\freesms\dotnet\FreeSms.NativeControls\Editors.cs:line 160
    at asdx.d(Object A_0, EventArgs A_1) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdx.cs:line 354
    at System.Windows.Forms.Form.OnLoad(EventArgs e)
    at System.Windows.Forms.Form.OnCreateControl()
@@ -319,7 +264,7 @@ SQL 4DB8082A8424660CCE2A260EA1639EF85C22C2680176461C75DB6ABB803A27A6
    at System.Windows.Forms.Application.RunDialog(Form form)
    at System.Windows.Forms.Form.ShowDialog(IWin32Window owner)
    at System.Windows.Forms.Form.ShowDialog()
-   at asdb3.x(Object A_0, EventArgs A_1) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdb3.cs:line 1904
+   at asdb3.x(Object A_0, EventArgs A_1) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdb3.cs:line 1909
    at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
    at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
    at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)

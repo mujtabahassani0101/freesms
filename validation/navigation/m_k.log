@@ -91,7 +91,7 @@ SQL 15B2DA1725B06939CD4D443DF2AB4BE68289D79B473EE02372F2BF788509C80C
    at System.Windows.Forms.Application.Run(ApplicationContext context)
    at OriginalNavigationCheck.Worker(String route) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalNavigationCheck.cs:line 83
    at OriginalProgram.Main(String[] args) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalProgram.cs:line 51
-SQL 177E1B4E26B36D22A42BA4C9BD08EF38B58AAD661AC036654FF7193296E7AF87
+SQL 8D4BDC984E3DA4E91841280B8740965650FE5F48681561CA61D16850646762F6
    at System.Environment.get_StackTrace()
    at OriginalNavigationCheck.TraceCommand(String sql) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalNavigationCheck.cs:line 22
    at asdcb.a(SqlCommand A_0, SqlConnection A_1, SqlTransaction A_2, CommandType A_3, String A_4, SqlParameter[] A_5) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdcb.cs:line 87
@@ -100,13 +100,10 @@ SQL 177E1B4E26B36D22A42BA4C9BD08EF38B58AAD661AC036654FF7193296E7AF87
    at asdca.e() in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdca.cs:line 620
    at asdca.a(Object A_0, EventArgs A_1) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdca.cs:line 1513
    at System.Windows.Forms.ComboBox.OnSelectedIndexChanged(EventArgs e)
-   at System.Windows.Forms.ComboBox.set_SelectedIndex(Int32 value)
-   at System.Windows.Forms.ComboBox.RefreshItems()
-   at System.Windows.Forms.ComboBox.OnDataSourceChanged(EventArgs e)
-   at System.Windows.Forms.ListControl.SetDataConnection(Object newDataSource, BindingMemberInfo newDisplayMember, Boolean force)
-   at System.Windows.Forms.ListControl.set_DataSource(Object value)
-   at System.Windows.Forms.ComboBox.set_DataSource(Object value)
-   at asdca.c() in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdca.cs:line 648
+   at Janus.Windows.EditControls.UIComboBox.FlushSelection() in D:\a\freesms\freesms\dotnet\FreeSms.NativeControls\Editors.cs:line 128
+   at Janus.Windows.EditControls.UIComboBox.OnValueMemberChanged(EventArgs e) in D:\a\freesms\freesms\dotnet\FreeSms.NativeControls\Editors.cs:line 121
+   at System.Windows.Forms.ListControl.set_ValueMember(String value)
+   at asdca.c() in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdca.cs:line 650
    at asdca.h(Object A_0, EventArgs A_1) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdca.cs:line 867
    at System.Windows.Forms.Form.OnLoad(EventArgs e)
    at System.Windows.Forms.Form.OnCreateControl()
@@ -199,6 +196,7 @@ SQL ADD239C5EAE7D1E77CA8B3F1388C99BFAB21A20093E6EF35998C821102FE1FB2
    at asdca.a() in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdca.cs:line 792
    at asdca.b(Object A_0, EventArgs A_1) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdca.cs:line 1504
    at System.Windows.Forms.ComboBox.OnSelectedIndexChanged(EventArgs e)
+   at Janus.Windows.EditControls.UIComboBox.OnSelectedIndexChanged(EventArgs e) in D:\a\freesms\freesms\dotnet\FreeSms.NativeControls\Editors.cs:line 110
    at System.Windows.Forms.ComboBox.set_SelectedIndex(Int32 value)
    at asdca.b() in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdca.cs:line 685
    at asdca.h(Object A_0, EventArgs A_1) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdca.cs:line 868
