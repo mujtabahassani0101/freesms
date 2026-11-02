@@ -32,7 +32,7 @@ public static void RunOriginal()
 						continue;
 					}
 					Application.EnableVisualStyles();
-					Application.SetCompatibleTextRenderingDefault(defaultValue: false);
+			
 					Application.Run(new asdb3());
 					num = 3;
 					continue;

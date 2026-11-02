@@ -33,6 +33,11 @@ internal static class Program
                 }
                 return 0;
             }
+            if (args.Length == 1 && args[0] == "--export-layouts")
+            {
+                LayoutExporter.ExportAll(Path.Combine(directory, "portable-layouts"));
+                return 0;
+            }
             OriginalFonts.Initialize();
             Application.EnableVisualStyles();
             if (args.Length == 1 && args[0] == "--verify-engine")

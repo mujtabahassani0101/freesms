@@ -148,6 +148,13 @@ jobs:
           if (-not $process.WaitForExit(120000)) { $process.Kill(); throw 'Report verification timed out.' }
           if ($process.ExitCode -ne 0) { Get-Content dist/FreeSMS-Original-Net10/report-host/error.txt -ErrorAction SilentlyContinue; exit 1 }
           Get-Content dist/FreeSMS-Original-Net10/report-host/report-engine-verification.txt
+      - name: Extract portable report definitions for .NET 10 migration
+        if: ${{ !cancelled() }}
+        shell: pwsh
+        run: |
+          $app = Join-Path $PWD 'dist/FreeSMS-Original-Net10/report-host/FreeSms.ReportHost.exe'
+          $process = Start-Process $app -ArgumentList '--export-layouts' -Wait -PassThru
+          if ($process.ExitCode -ne 0) { Get-Content dist/FreeSMS-Original-Net10/report-host/error.txt; exit 1 }
       - name: Upload original verification evidence
         if: always()
         uses: actions/upload-artifact@v7.0.2
@@ -158,6 +165,7 @@ jobs:
             dist/FreeSMS-Original-Net10/original-runtime-error.txt
             dist/FreeSMS-Original-Net10/report-host/*verification.txt
             dist/FreeSMS-Original-Net10/report-host/error.txt
+            dist/FreeSMS-Original-Net10/report-host/portable-layouts/
             validation/crystal-install.log
           retention-days: 7
       - name: Upload original application build

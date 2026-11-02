@@ -22,6 +22,7 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="../FreeSms.Core/FreeSms.Core.csproj" />
+    <ProjectReference Include="../FreeSms.NativeControls/FreeSms.NativeControls.csproj" />
     <PackageReference Include="System.Data.OleDb" Version="10.0.14" />
     <Reference Include="ActiveReports.Viewer3">
       <HintPath>../../vendor/legacy/ActiveReports.Viewer3.dll</HintPath>
@@ -29,23 +30,11 @@
     <Reference Include="DataDynamics.ActiveReports.ToolBoxClassLib">
       <HintPath>../../vendor/legacy/DataDynamics.ActiveReports.ToolBoxClassLib.dll</HintPath>
     </Reference>
-    <Reference Include="Janus.Windows.Common.v2">
-      <HintPath>../../vendor/legacy/Janus.Windows.Common.v2.dll</HintPath>
-    </Reference>
-    <Reference Include="Janus.Windows.GridEX.v2">
-      <HintPath>../../vendor/legacy/Janus.Windows.GridEX.v2.dll</HintPath>
-    </Reference>
-    <Reference Include="Janus.Windows.UI.v2">
-      <HintPath>../../vendor/legacy/Janus.Windows.UI.v2.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Office.Interop.Excel">
       <HintPath>../../vendor/legacy/Microsoft.Office.Interop.Excel.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Vbe.Interop">
       <HintPath>../../vendor/legacy/Microsoft.Vbe.Interop.dll</HintPath>
-    </Reference>
-    <Reference Include="ShamsiDate">
-      <HintPath>../../vendor/legacy/ShamsiDate.dll</HintPath>
     </Reference>
     <Reference Include="office">
       <HintPath>../../vendor/legacy/office.dll</HintPath>
