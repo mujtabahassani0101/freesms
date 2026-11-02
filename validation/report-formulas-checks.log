@@ -1,16 +1,16 @@
-PASS original descriptive grade CR_AF_StdKarnameDorehByChart_term1.rpt.xml
-PASS original descriptive grade CR_AF_StdKarnameDorehByChart_term1_land.rpt.xml
-PASS original descriptive grade CR_AF_StdKarnameDorehByChart_term3.rpt.xml
-PASS original descriptive grade CR_AF_StdKarnameDorehByChart_term3_land.rpt.xml
-PASS original descriptive grade CStdKarnameDoreh_byBestStd_OneMark.rpt.xml
 PASS original descriptive grade CR_AF_ListFinal.rpt.xml
 PASS original descriptive grade CR_AF_ListFinal10_11.rpt.xml
 PASS original descriptive grade CR_AF_ListFinal12.rpt.xml
 PASS original descriptive grade CR_AF_ListFinal9.rpt.xml
+PASS original descriptive grade CR_AF_StdKarnameDorehByChart_term1.rpt.xml
+PASS original descriptive grade CR_AF_StdKarnameDorehByChart_term1_land.rpt.xml
+PASS original descriptive grade CR_AF_StdKarnameDorehByChart_term3.rpt.xml
+PASS original descriptive grade CR_AF_StdKarnameDorehByChart_term3_land.rpt.xml
 PASS original descriptive grade CR_AF_StdKarnameFinal.rpt.xml
 PASS original descriptive grade CR_AF_StdKarnameFinalAll.rpt.xml
 PASS original descriptive grade CR_AF_StdKarnameFinal_10_11.rpt.xml
 PASS original descriptive grade CR_AF_StdKarnameFinal_12.rpt.xml
+PASS original descriptive grade CStdKarnameDoreh_byBestStd_OneMark.rpt.xml
 PASS all 58 original report images are present
 PASS evaluate every original report with disconnected sample data: 98
 PASS parse every original report expression: 3932

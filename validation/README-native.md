@@ -1,11 +1,16 @@
 # Native Windows evidence
 
-The active application targets .NET 10. The default solution/build no longer starts the Framework interface or Crystal host. Earlier Python/container and Framework results in this directory are historical.
+The active solution, application, controls and reporting engine target .NET 10. Earlier Python/container and Framework results in this directory are historical.
 
-Windows Server 2025 run [41479209832](https://github.com/mujtabahassani0101/freesms/actions/runs/41479209832), commit `b9c9017`, passed the recovered 89-form render check, native initialization/original login, native control/RPX checks, rendering of all 98 migrated report templates with disconnected sample data, and a long-subreport pagination check. The separate database job passed 18 LocalDB integration/service checks and the report job passed 26 expression/lookup checks, including evaluation across every template.
+Windows Server 2025 run [41490887246](https://github.com/mujtabahassani0101/freesms/actions/runs/41490887246), source commit `c40f293`, passed:
 
-Fixtures exercise rendering and adapter contracts. They do not prove every recovered controller workflow, data-dependent report layout or Excel operation behaves identically to the original. Actual printers and all manual workflows have not been verified.
+- 18 LocalDB integration/service checks and 40 report expression, lookup, pivot-reference, formatting and XLSX checks.
+- 134 native checks: control adapter contracts, 7 RPX layouts, all 98 migrated report templates with disconnected sample data, long-subreport pagination, print/image consistency at 300 DPI, chart visibility over background boxes, and package validation.
+- Construction and bitmap rendering of the 89 recovered forms, database initialization, and the original login form.
+- A self-contained x86 package with .NET 10 frameworks only. All four application assemblies have .NET 10 target attributes and x86 ReadyToRun headers; old UI/report runtime files are absent.
+
+Selected synthetic previews, package metadata, startup evidence and check logs are committed here. Fixtures exercise rendering and adapter contracts. They do not prove every recovered controller workflow, data-dependent report layout or original Excel operation behaves identically to the original. Actual printer hardware and all manual workflows have not been verified.
 
 The integration check creates a unique LocalDB instance under the current user's LocalAppData and deletes only that temporary instance. The application's own writable database is separate.
 
-Current evidence and the self-contained x86 Windows artifact are in the [Windows workflow](https://github.com/mujtabahassani0101/freesms/actions/workflows/windows.yml).
+The [self-contained Windows artifact](https://github.com/mujtabahassani0101/freesms/actions/runs/41490887246/artifacts/13163848205) is retained by GitHub for seven days. The checked-in source can rebuild it on Windows using `build-windows.cmd`.
