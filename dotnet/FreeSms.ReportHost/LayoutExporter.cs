@@ -30,6 +30,16 @@ internal static class LayoutExporter
         if (!isSubreport) Simple(print, report.PrintOptions, "PaperOrientation", "PaperSize", "PaperSource");
         if (!isSubreport) Simple(print, report.PrintOptions.PageMargins, "leftMargin", "rightMargin", "topMargin", "bottomMargin");
         xml.Add(print);
+        xml.Add(new XElement("record-selection", report.RecordSelectionFormula));
+        var database = new XElement("database");
+        foreach (Table table in report.Database.Tables)
+        {
+            var node = new XElement("table", new XAttribute("name", table.Name));
+            foreach (DatabaseFieldDefinition field in table.Fields)
+                node.Add(new XElement("field", new XAttribute("name", field.Name), new XAttribute("type", field.ValueType)));
+            database.Add(node);
+        }
+        xml.Add(database);
         var formulas = new XElement("formulas");
         foreach (FormulaFieldDefinition formula in report.DataDefinition.FormulaFields)
             formulas.Add(new XElement("formula", new XAttribute("name", formula.Name), formula.Text));
@@ -104,6 +114,19 @@ internal static class LayoutExporter
                 custom.Add(new XElement("function", new XAttribute("name", functions[i].Name), functions[i].Text));
             xml.Add(custom);
         }
+        var totals = ras.DataDefController.DataDefinition.RunningTotalFields;
+        for (int i = 0; i < totals.Count; i++)
+        {
+            var field = (CrystalDecisions.ReportAppServer.DataDefModel.ISCRRunningTotalField)totals[i];
+            var node = running.Elements("total").FirstOrDefault(t => (string)t.Attribute("name") == field.Name);
+            if (node == null) continue;
+            if (field.ResetCondition is CrystalDecisions.ReportAppServer.DataDefModel.ISCRGroup group)
+                node.SetAttributeValue("group", group.ConditionField.FormulaForm);
+            else if (field.ResetCondition is CrystalDecisions.ReportAppServer.DataDefModel.ISCRField reset)
+                node.SetAttributeValue("reset-field", reset.FormulaForm);
+            else if (field.ResetCondition is string resetText && !string.IsNullOrWhiteSpace(resetText))
+                node.Add(new XElement("reset-expression", resetText));
+        }
         var areas = ras.ReportDefController.ReportDefinition.Areas;
         for (int i = 0; i < areas.Count; i++)
         {
@@ -128,8 +151,16 @@ internal static class LayoutExporter
                         string text = item.Format.ConditionFormulas[condition]?.Text;
                         if (!string.IsNullOrWhiteSpace(text)) obj.Element("format").Add(new XElement("condition", new XAttribute("name", condition.ToString().Replace("crObjectFormatConditionFormulaType", "")), text));
                     }
-                    if (item is R.PictureObject picture && picture.PictureData != null)
-                        obj.Add(new XElement("picture", Convert.ToBase64String(picture.PictureData.ByteArray)));
+                    if (obj.Element("Kind")?.Value == "PictureObject")
+                    {
+                        obj.SetAttributeValue("ras-class", item.ClassName);
+                        if (item is R.ISCRPictureObject picture)
+                        {
+                            obj.SetAttributeValue("picture-type", picture.PictureType);
+                            if (picture.PictureData != null)
+                                obj.Add(new XElement("picture", Convert.ToBase64String(picture.PictureData.ByteArray)));
+                        }
+                    }
                     if (item is R.ChartObject chart)
                     {
                         var definition = chart.ChartDefinition;
