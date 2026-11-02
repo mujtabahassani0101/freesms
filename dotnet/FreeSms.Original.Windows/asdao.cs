@@ -876,7 +876,7 @@ protected override void Dispose(bool A_0)
 					if (true)
 					{
 					}
-					int num2 = asdcb.d(asdab.e().Replace("school_af_kbr", "master"), CommandType.Text, "Backup DATABASE school_af_kbr to  DISK = N'" + Application.StartupPath + "\\Backup\\Delete_backup_" + ShamsiDate.GetShamsiDate(DateTime.Today).Replace("/", "") + "-" + DateTime.Now.Hour + DateTime.Now.Minute + "'");
+					int num2 = OriginalDatabaseMaintenance.BackupNamed("Delete_backup");
 					flag = this.m_j.Items.Count <= 0;
 					num = 27;
 					continue;

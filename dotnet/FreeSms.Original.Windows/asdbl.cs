@@ -209,7 +209,7 @@ protected override void Dispose(bool A_0)
 	{
 		while (true)
 		{
-			g.FileName = Application.StartupPath + "\\Backup\\backup_" + ShamsiDate.GetShamsiDate(DateTime.Today).Replace("/", "") + "-" + DateTime.Now.Hour + DateTime.Now.Minute;
+			g.FileName = OriginalDatabaseMaintenance.NewBackupPath();
 			DialogResult dialogResult = g.ShowDialog();
 			bool flag = dialogResult != DialogResult.OK;
 			int num = 0;
@@ -253,60 +253,11 @@ protected override void Dispose(bool A_0)
 		}
 	}
 
-	private void c(object A_0, EventArgs A_1)
-	{
-		while (true)
-		{
-			bool flag = !(e.Text != "");
-			int num = 2;
-			while (true)
-			{
-				switch (num)
-				{
-				case 2:
-					if (!flag)
-					{
-						num = 0;
-						continue;
-					}
-					return;
-				case 3:
-					MessageBox.Show("تهيه نسخه پشتيبان با موفقیت انجام شد", "", MessageBoxButtons.OK, MessageBoxIcon.None);
-					Close();
-					num = 4;
-					continue;
-				case 0:
-				{
-					int num2 = asdcb.d(asdab.e().Replace("school_af_kbr", "master"), CommandType.Text, "Backup DATABASE school_af_kbr to  DISK = N'" + e.Text + "'");
-					flag = num2 != -1;
-					num = 5;
-					continue;
-				}
-				case 5:
-					if (flag)
-					{
-						MessageBox.Show("خطا در تهيه نسخه پشتيبان", "خطا", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-						num = 6;
-					}
-					else
-					{
-						num = 3;
-					}
-					continue;
-				case 4:
-				case 6:
-					if (true)
-					{
-					}
-					num = 1;
-					continue;
-				case 1:
-					return;
-				}
-				break;
-			}
-		}
-	}
+	private async void c(object A_0, EventArgs A_1)
+    {
+        if(string.IsNullOrWhiteSpace(e.Text)){MessageBox.Show("مسیر فایل پشتیبان را مشخص کنید");return;}
+        if(await OriginalDatabaseMaintenance.BackupAsync(this,e.Text)) Close();
+    }
 
 	private void b(object A_0, EventArgs A_1)
 	{
@@ -318,6 +269,6 @@ protected override void Dispose(bool A_0)
 		if (true)
 		{
 		}
-		e.Text = Application.StartupPath + "\\Backup\\backup_" + ShamsiDate.GetShamsiDate(DateTime.Today).Replace("/", "") + "-" + DateTime.Now.Hour + DateTime.Now.Minute;
+		e.Text = OriginalDatabaseMaintenance.NewBackupPath();
 	}
 }

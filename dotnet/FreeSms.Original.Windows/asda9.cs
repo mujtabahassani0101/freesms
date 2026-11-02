@@ -258,7 +258,7 @@ protected override void Dispose(bool A_0)
 	{
 		while (true)
 		{
-			g.FileName = Application.StartupPath + "\\Backup\\backup_" + ShamsiDate.GetShamsiDate(DateTime.Today).Replace("/", "") + "-" + DateTime.Now.Hour + DateTime.Now.Minute;
+			g.FileName = OriginalDatabaseMaintenance.NewBackupPath();
 			DialogResult dialogResult = g.ShowDialog();
 			bool flag = dialogResult != DialogResult.OK;
 			int num = 0;
@@ -302,243 +302,24 @@ protected override void Dispose(bool A_0)
 		}
 	}
 
-	private void e(object A_0, EventArgs A_1)
-	{
-		while (true)
-		{
-			bool flag = !(this.m_e.Text != "");
-			int num = 6;
-			while (true)
-			{
-				switch (num)
-				{
-				case 6:
-					if (!flag)
-					{
-						num = 1;
-						continue;
-					}
-					return;
-				case 4:
-					MessageBox.Show("تهيه نسخه پشتيبان با موفقیت انجام شد", "", MessageBoxButtons.OK, MessageBoxIcon.None);
-					num = 0;
-					continue;
-				case 1:
-				{
-					int num2 = asdcb.d(asdab.e().Replace("school_af_kbr", "master"), CommandType.Text, "Backup DATABASE school_af_kbr to  DISK = N'" + this.m_e.Text + "'");
-					flag = num2 != -1;
-					num = 5;
-					continue;
-				}
-				case 5:
-					if (flag)
-					{
-						MessageBox.Show("خطا در تهيه نسخه پشتيبان", "خطا", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-						num = 3;
-					}
-					else
-					{
-						num = 4;
-					}
-					continue;
-				case 0:
-				case 3:
-					if (true)
-					{
-					}
-					num = 2;
-					continue;
-				case 2:
-					return;
-				}
-				break;
-			}
-		}
-	}
+	private async void e(object A_0, EventArgs A_1)
+    {
+        if(string.IsNullOrWhiteSpace(this.m_e.Text)){MessageBox.Show("مسیر فایل پشتیبان را مشخص کنید");return;}
+        await OriginalDatabaseMaintenance.BackupAsync(this,this.m_e.Text);
+    }
 
 	private void d(object A_0, EventArgs A_1)
-	{
-		while (true)
-		{
-			bool flag = !(asdaj.l != "1");
-			int num = 5;
-			while (true)
-			{
-				switch (num)
-				{
-				case 5:
-					if (!flag)
-					{
-						num = 10;
-						continue;
-					}
-					flag = !(asdab.r == "1");
-					num = 8;
-					continue;
-				case 9:
-					flag = !(h.FileName != "");
-					num = 4;
-					continue;
-				case 4:
-					if (!flag)
-					{
-						num = 6;
-						continue;
-					}
-					goto case 11;
-				case 3:
-					if (!flag)
-					{
-						num = 9;
-						continue;
-					}
-					return;
-				case 8:
-					if (flag)
-					{
-						DialogResult dialogResult = h.ShowDialog();
-						flag = dialogResult != DialogResult.OK;
-						num = 3;
-					}
-					else
-					{
-						num = 1;
-					}
-					continue;
-				case 11:
-					if (true)
-					{
-					}
-					num = 0;
-					continue;
-				case 0:
-					return;
-				case 10:
-					MessageBox.Show("اجازه بازگردانی دارد admin فقط کاربر");
-					num = 2;
-					continue;
-				case 2:
-					return;
-				case 6:
-					l.Text = h.FileName;
-					num = 11;
-					continue;
-				case 1:
-					MessageBox.Show("بازگرانی فقط باید از کامپیوتر اصلی صورت بگیرید");
-					num = 7;
-					continue;
-				case 7:
-					return;
-				}
-				break;
-			}
-		}
-	}
+    {
+        if(asdaj.l!="1"){MessageBox.Show("اجازه بازگردانی دارد admin فقط کاربر");return;}
+        if(h.ShowDialog(this)==DialogResult.OK) l.Text=h.FileName;
+    }
 
-	private void c(object A_0, EventArgs A_1)
-	{
-		while (true)
-		{
-			bool flag = !(asdaj.l != "1");
-			int num = 9;
-			while (true)
-			{
-				switch (num)
-				{
-				case 9:
-					if (!flag)
-					{
-						num = 3;
-						continue;
-					}
-					flag = !(asdab.r == "1");
-					num = 6;
-					continue;
-				case 7:
-					if (!flag)
-					{
-						num = 1;
-						continue;
-					}
-					MessageBox.Show("خطا در بازگرداني نسخه پشتيبان");
-					num = 0;
-					continue;
-				case 2:
-					if (true)
-					{
-					}
-					if (flag)
-					{
-						asdcb.d(asdab.e().Replace("school_af_kbr", "master"), CommandType.Text, "declare @vcdbname varchar(50)\r\n\t\t\t\t\t\t\tSet @vcdbname = 'school_af_kbr'\r\n\t\t\t\t\t\t\tset nocount on\r\n\t\t\t\t\t\t\tdeclare Users cursor for\r\n\t\t\t\t\t\t\tselect spid\r\n\t\t\t\t\t\t\tfrom master..sysprocesses\r\n\t\t\t\t\t\t\twhere db_name(dbid) = @vcdbname\r\n\t\t\t\t\t\t\tdeclare @spid int, @str varchar(255)\r\n\t\t\t\t\t\t\topen users\r\n\t\t\t\t\t\t\tfetch next from users into @spid\r\n\t\t\t\t\t\t\twhile @@fetch_status <> -1\r\n\t\t\t\t\t\t\tbegin\r\n\t\t\t\t\t\t\tif @@fetch_status = 0\r\n\t\t\t\t\t\t\tbegin\r\n\t\t\t\t\t\t\t\tset @str = 'kill ' + convert(varchar, @spid)\r\n\t\t\t\t\t\t\t\texec (@str)\r\n\t\t\t\t\t\t\tend\r\n\t\t\t\t\t\t\tfetch next from users into @spid\r\n\t\t\t\t\t\t\tend\r\n\t\t\t\t\t\t\tdeallocate users ");
-						int num2 = asdcb.d(asdab.e().Replace("school_af_kbr", "master"), CommandType.Text, "RESTORE DATABASE school_af_kbr from  DISK = N'" + l.Text + "'");
-						flag = num2 != -1;
-						num = 7;
-					}
-					else
-					{
-						num = 11;
-					}
-					continue;
-				case 6:
-					if (!flag)
-					{
-						num = 15;
-						continue;
-					}
-					flag = !(l.Text == "");
-					num = 12;
-					continue;
-				case 1:
-					MessageBox.Show("بازگرداني نسخه پشتيبان انجام شد ");
-					Application.ExitThread();
-					num = 4;
-					continue;
-				case 4:
-					return;
-				case 3:
-					MessageBox.Show("اجازه بازگردانی دارد admin فقط کاربر");
-					num = 5;
-					continue;
-				case 5:
-					return;
-				case 11:
-					MessageBox.Show("خطا در تهيه نسخه پشتيبان");
-					num = 8;
-					continue;
-				case 8:
-					return;
-				case 0:
-					return;
-				case 12:
-					if (flag)
-					{
-						int num2 = asdcb.d(asdab.e().Replace("school_af_kbr", "master"), CommandType.Text, "Backup DATABASE school_af_kbr to  DISK = N'" + Application.StartupPath + "\\Backup\\RESTORE_backup_" + ShamsiDate.GetShamsiDate(DateTime.Today).Replace("/", "") + "-" + DateTime.Now.Hour + DateTime.Now.Minute + "'");
-						flag = num2 == -1;
-						num = 2;
-					}
-					else
-					{
-						num = 14;
-					}
-					continue;
-				case 15:
-					MessageBox.Show("فقط از کامپیوتر اصلی (سرور) این امکان وجود دارد", "خطای دسترسی", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-					Close();
-					num = 10;
-					continue;
-				case 10:
-					return;
-				case 14:
-					MessageBox.Show("فایلی برای بازگردانی انتخاب نشده است");
-					num = 13;
-					continue;
-				case 13:
-					return;
-				}
-				break;
-			}
-		}
-	}
+	private async void c(object A_0, EventArgs A_1)
+    {
+        if(asdaj.l!="1"){MessageBox.Show("اجازه بازگردانی دارد admin فقط کاربر");return;}
+        if(string.IsNullOrWhiteSpace(l.Text)){MessageBox.Show("فایلی برای بازگردانی انتخاب نشده است");return;}
+        if(await OriginalDatabaseMaintenance.RestoreAsync(this,l.Text)) Application.ExitThread();
+    }
 
 	private void b(object A_0, EventArgs A_1)
 	{
@@ -583,7 +364,7 @@ protected override void Dispose(bool A_0)
 					num = 3;
 					continue;
 				case 2:
-					this.m_e.Text = Application.StartupPath + "\\Backup\\backup_" + ShamsiDate.GetShamsiDate(DateTime.Today).Replace("/", "") + "-" + DateTime.Now.Hour + DateTime.Now.Minute;
+					this.m_e.Text = OriginalDatabaseMaintenance.NewBackupPath();
 					return;
 				}
 				break;

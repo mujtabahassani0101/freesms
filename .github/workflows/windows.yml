@@ -76,13 +76,13 @@ jobs:
             Get-Content dist/FreeSMS-Net10/navigation-checks/*_report_*.log -ErrorAction SilentlyContinue
             exit 1
           }
-      - name: Exercise school, discount and student deletion workflows through original buttons
+      - name: Exercise school, discount, backup and student deletion workflows through original buttons
         if: ${{ !cancelled() }}
         shell: pwsh
         run: |
           $app = Join-Path $PWD 'dist/FreeSMS-Net10/FreeSMS.exe'
           $process = Start-Process $app -ArgumentList '--verify-business-actions' -PassThru
-          if (-not $process.WaitForExit(300000)) { $process.Kill(); throw 'Business action verification timed out.' }
+          if (-not $process.WaitForExit(420000)) { $process.Kill(); throw 'Business action verification timed out.' }
           Get-Content dist/FreeSMS-Net10/navigation-checks/business-actions-summary.log -ErrorAction SilentlyContinue
           Get-Content dist/FreeSMS-Net10/navigation-checks/*_workflow_*.log -ErrorAction SilentlyContinue
           if ($process.ExitCode -ne 0) { exit 1 }

@@ -15,6 +15,7 @@ internal static class OriginalRuntime
         Migrations.Apply(database, AppContext.BaseDirectory);
         ConnectionString = database.ConnectionString;
         KeylessRuntime.Enable();
+        asdab.r=new DatabaseMaintenance(database).IsLocalServer()?"0":"1";
     }
 }
 

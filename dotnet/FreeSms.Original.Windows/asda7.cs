@@ -124,7 +124,7 @@ public class asda7 : Form
 					}
 					return;
 				case 1:
-					asdcb.d(asdab.e().Replace("school_af_kbr", "master"), CommandType.Text, "Backup DATABASE school_af_kbr to  DISK = N'" + Application.StartupPath + "\\Backup\\SetMark100_backup_" + ShamsiDate.GetShamsiDate(DateTime.Today).Replace("/", "") + "-" + DateTime.Now.Hour + DateTime.Now.Minute + "'");
+					OriginalDatabaseMaintenance.BackupNamed("SetMark100_backup");
 					asdcb.d(asdab.e(), CommandType.Text, "update tYear_Student set MarkTerm3_From100=1 where xYear=" + asdaj.__field_a);
 					MessageBox.Show("ثبت شد");
 					if (true)

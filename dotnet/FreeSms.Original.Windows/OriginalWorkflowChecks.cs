@@ -83,6 +83,7 @@ internal static class OriginalWorkflowChecks
         if (scenario == "discount") Discount(form, db, log);
         else if (scenario == "school") School(form, db, log);
         else if (scenario == "student-delete") StudentDelete(form, db, log);
+        else if (scenario == "backup") Backup(form,db,log);
         else throw new ArgumentException("Unknown workflow scenario: " + scenario);
     }
     private static void Discount(Form form, Database db, Action<string> log)
@@ -117,6 +118,40 @@ internal static class OriginalWorkflowChecks
         Dialog(() => Click(form,"m_e"), "آيا از حذف تخفیف مطمئن هستيد؟", 6);
         Require(Convert.ToInt32(db.Scalar("SELECT COUNT(*) FROM tTakhfif")) == before, "Confirmed deletion did not remove exactly the new record.");
         log("PASS deletion respects No/Yes and removes only the selected record");
+    }
+    private static void Backup(Form form,Database db,Action<string> log)
+    {
+        string folder=System.IO.Path.Combine(System.IO.Path.GetTempPath(),"FreeSmsBackupUi_"+Guid.NewGuid().ToString("N"));
+        System.IO.Directory.CreateDirectory(folder);
+        try
+        {
+            Field<Control>(form,"m_e").Text="";
+            Dialog(()=>Click(form,"m_d"),"مسیر فایل پشتیبان را مشخص کنید",1);
+            db.Execute("CREATE TABLE native_ui_backup_fixture(id int PRIMARY KEY,value nvarchar(100))");
+            db.Execute("INSERT INTO native_ui_backup_fixture VALUES(1,N'پیش از پشتیبان')");
+            string path=System.IO.Path.Combine(folder,"نسخه ' فارسی.bak");Field<Control>(form,"m_e").Text=path;
+            Dialog(()=>Click(form,"m_d"),"تهيه نسخه پشتيبان با موفقیت انجام شد",1);
+            Require(System.IO.File.Exists(path),"Original backup button did not create the selected file.");
+            var header=db.Query("RESTORE HEADERONLY FROM DISK=@p0",new object[]{path}).Single();
+            Require(Convert.ToString(header["DatabaseName"])==new Microsoft.Data.SqlClient.SqlConnectionStringBuilder(db.ConnectionString).InitialCatalog,"Backup button saved a different database.");
+            db.Execute("UPDATE native_ui_backup_fixture SET value=N'پس از پشتیبان'");
+            new DatabaseMaintenance(db).Restore(path);
+            Require(Convert.ToString(db.Scalar("SELECT value FROM native_ui_backup_fixture WHERE id=1"))=="پیش از پشتیبان","Backup from the actual button did not restore its actual record.");
+            string originalUser=asdaj.l;
+            try
+            {
+                asdaj.l="2";Field<Control>(form,"l").Text=path;
+                Dialog(()=>Click(form,"k"),"اجازه بازگردانی دارد admin فقط کاربر",1);
+                Require(Convert.ToString(db.Scalar("SELECT value FROM native_ui_backup_fixture WHERE id=1"))=="پیش از پشتیبان","Non-admin restore action altered the database.");
+            }
+            finally{asdaj.l=originalUser;}
+            db.Execute("UPDATE native_ui_backup_fixture SET value=N'پیش از دکمهٔ بازگردانی'");
+            Dialog(()=>Click(form,"k"),"بازگردانی نسخهٔ پشتیبان انجام شد. برنامه را دوباره اجرا کنید.",1);
+            Require(Convert.ToString(db.Scalar("SELECT value FROM native_ui_backup_fixture WHERE id=1"))=="پیش از پشتیبان","Original admin restore button did not restore the saved record.");
+            db.Execute("DROP TABLE native_ui_backup_fixture");
+            log("PASS actual async backup button validates path, backs up configured bank to quoted Persian path, produces restorable records, blocks non-admin restore and completes actual admin restore");
+        }
+        finally{System.IO.Directory.Delete(folder,true);}
     }
     private static void StudentDelete(Form form, Database db, Action<string> log)
     {
@@ -203,6 +238,9 @@ internal static class OriginalWorkflowChecks
             return false;
         },IntPtr.Zero);
         timer.Start(); action();
+        var deadline=System.Diagnostics.Stopwatch.StartNew();
+        while(!observed && deadline.Elapsed<TimeSpan.FromSeconds(45))
+        {Application.DoEvents();System.Threading.Thread.Sleep(10);}
         Require(observed,"Expected dialog did not appear: " + expectedText);
     }
 }

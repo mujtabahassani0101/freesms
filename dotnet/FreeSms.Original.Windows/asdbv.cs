@@ -3711,7 +3711,7 @@ protected override void Dispose(bool A_0)
 	{
 		while (true)
 		{
-			int num = asdcb.d(asdab.e().Replace("school_af_kbr", "master"), CommandType.Text, "Backup DATABASE school_af_kbr to  DISK = N'" + Application.StartupPath + "\\Backup\\Update14000914_backup_" + asdab.b().Replace("/", "") + "-" + DateTime.Now.Hour + DateTime.Now.Minute + "'");
+			int num = OriginalDatabaseMaintenance.BackupNamed("Update_backup");
 			bool flag = num == -1;
 			int num2 = 6;
 			while (true)

@@ -24,6 +24,10 @@ Seed a dedicated year, class and student in the worker's guarded disposable data
 
 The native database integration suite separately adds a temporary foreign key that rejects the final student delete. Require the earlier enrolment and image deletes to roll back. Drop the test guard in a `finally` block before checking successful deletion. This specifically tests atomicity after earlier statements have already executed.
 
+## Backup and restore
+
+See MAINTENANCE.md for the original-button and staged database round-trip/rejection/recovery scenarios. They use disposable catalogs and owned files.
+
 ## Other sections
 
 Student registration, marks, attendance, fees/payments, user permissions, imports/exports, backup/restore and remaining reports still require their own complete scenarios and verified evidence. Their current action inventory status remains unverified. See PLAN.md for the full scope; do not infer coverage from the three scenarios above.

@@ -21,3 +21,6 @@ The full application goal is not complete. The 448-click inventory is a starting
 - Visible disciplinary menus still require schemas/procedures missing from the supplied Afghan database. Existing compatibility messages do not implement those workflows.
 - Student registration/editing/moves, original mark entry, attendance, payments, non-admin authentication/permissions, imports/exports and remaining report/editor workflows are not proven complete. Preserve all requirements in PLAN.md.
 - Exact empty-fixture warnings (no lessons or no configured school-day counts) are classified as expected validation only when the matching database prerequisite is absent; they do not prove populated workflows.
+
+- Run 41518278379 (285d624) passed the reconstructed report previews and every-page rendering, known SQL marks70/30 and class mean50, and preservation of the peer during deletion. The full Windows workflow succeeded for this revision. This does not complete the application-wide scope.
+- Native backup/restore now has staged validation, configured-catalog/path handling, recovery and asynchronous original buttons. Fresh Windows evidence for these new changes is pending; see MAINTENANCE.md.

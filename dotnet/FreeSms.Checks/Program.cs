@@ -192,6 +192,7 @@ try
                 }
                 finally { db.Execute("DROP TABLE native_check_delete_guard"); }
             });
+            MaintenanceChecks.Run(db,root,options.DataDirectory,Check);
             Check("Deleting a student removes their image and enrolment", () =>
             {
                 school.DeleteStudent(student); Require(school.Student(student) is null && school.StudentImage(student) is null);
