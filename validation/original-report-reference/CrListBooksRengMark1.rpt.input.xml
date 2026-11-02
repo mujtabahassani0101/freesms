@@ -1,0 +1,168 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="sp_List_books_RengMark">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="xStudent" type="xs:decimal" minOccurs="0" />
+                <xs:element name="Xtest" type="xs:decimal" minOccurs="0" />
+                <xs:element name="typ" type="xs:decimal" minOccurs="0" />
+                <xs:element name="xbook" type="xs:decimal" minOccurs="0" />
+                <xs:element name="book" type="xs:string" minOccurs="0" />
+                <xs:element name="mark" type="xs:decimal" minOccurs="0" />
+                <xs:element name="sort" type="xs:decimal" minOccurs="0" />
+                <xs:element name="xPaye" type="xs:decimal" minOccurs="0" />
+                <xs:element name="xClass" type="xs:decimal" minOccurs="0" />
+                <xs:element name="Exam" type="xs:string" minOccurs="0" />
+                <xs:element name="DateFrom" type="xs:string" minOccurs="0" />
+                <xs:element name="DateTo" type="xs:string" minOccurs="0" />
+                <xs:element name="NumExam" type="xs:decimal" minOccurs="0" />
+                <xs:element name="Paye" type="xs:string" minOccurs="0" />
+                <xs:element name="Class" type="xs:string" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
+  <sp_List_books_RengMark>
+    <xStudent>1</xStudent>
+    <Xtest>1</Xtest>
+    <typ>1</typ>
+    <xbook>1</xbook>
+    <book>Book1</book>
+    <mark>10</mark>
+    <sort>1</sort>
+    <xPaye>1</xPaye>
+    <xClass>1</xClass>
+    <Exam>Exam1</Exam>
+    <DateFrom>1</DateFrom>
+    <DateTo>1</DateTo>
+    <NumExam>1</NumExam>
+    <Paye>Paye1</Paye>
+    <Class>Class1</Class>
+  </sp_List_books_RengMark>
+  <sp_List_books_RengMark>
+    <xStudent>2</xStudent>
+    <Xtest>1</Xtest>
+    <typ>1</typ>
+    <xbook>1</xbook>
+    <book>Book1</book>
+    <mark>12</mark>
+    <sort>1</sort>
+    <xPaye>1</xPaye>
+    <xClass>2</xClass>
+    <Exam>Exam1</Exam>
+    <DateFrom>1</DateFrom>
+    <DateTo>1</DateTo>
+    <NumExam>1</NumExam>
+    <Paye>Paye1</Paye>
+    <Class>Class2</Class>
+  </sp_List_books_RengMark>
+  <sp_List_books_RengMark>
+    <xStudent>3</xStudent>
+    <Xtest>1</Xtest>
+    <typ>1</typ>
+    <xbook>2</xbook>
+    <book>Book2</book>
+    <mark>15</mark>
+    <sort>1</sort>
+    <xPaye>1</xPaye>
+    <xClass>1</xClass>
+    <Exam>Exam1</Exam>
+    <DateFrom>1</DateFrom>
+    <DateTo>1</DateTo>
+    <NumExam>1</NumExam>
+    <Paye>Paye1</Paye>
+    <Class>Class1</Class>
+  </sp_List_books_RengMark>
+  <sp_List_books_RengMark>
+    <xStudent>4</xStudent>
+    <Xtest>1</Xtest>
+    <typ>1</typ>
+    <xbook>2</xbook>
+    <book>Book2</book>
+    <mark>18</mark>
+    <sort>1</sort>
+    <xPaye>1</xPaye>
+    <xClass>2</xClass>
+    <Exam>Exam1</Exam>
+    <DateFrom>1</DateFrom>
+    <DateTo>1</DateTo>
+    <NumExam>1</NumExam>
+    <Paye>Paye1</Paye>
+    <Class>Class2</Class>
+  </sp_List_books_RengMark>
+  <sp_List_books_RengMark>
+    <xStudent>5</xStudent>
+    <Xtest>1</Xtest>
+    <typ>1</typ>
+    <xbook>1</xbook>
+    <book>Book1</book>
+    <mark>22</mark>
+    <sort>1</sort>
+    <xPaye>1</xPaye>
+    <xClass>1</xClass>
+    <Exam>Exam2</Exam>
+    <DateFrom>1</DateFrom>
+    <DateTo>1</DateTo>
+    <NumExam>2</NumExam>
+    <Paye>Paye1</Paye>
+    <Class>Class1</Class>
+  </sp_List_books_RengMark>
+  <sp_List_books_RengMark>
+    <xStudent>6</xStudent>
+    <Xtest>1</Xtest>
+    <typ>1</typ>
+    <xbook>1</xbook>
+    <book>Book1</book>
+    <mark>26</mark>
+    <sort>1</sort>
+    <xPaye>1</xPaye>
+    <xClass>2</xClass>
+    <Exam>Exam2</Exam>
+    <DateFrom>1</DateFrom>
+    <DateTo>1</DateTo>
+    <NumExam>2</NumExam>
+    <Paye>Paye1</Paye>
+    <Class>Class2</Class>
+  </sp_List_books_RengMark>
+  <sp_List_books_RengMark>
+    <xStudent>7</xStudent>
+    <Xtest>1</Xtest>
+    <typ>1</typ>
+    <xbook>2</xbook>
+    <book>Book2</book>
+    <mark>32</mark>
+    <sort>1</sort>
+    <xPaye>1</xPaye>
+    <xClass>1</xClass>
+    <Exam>Exam2</Exam>
+    <DateFrom>1</DateFrom>
+    <DateTo>1</DateTo>
+    <NumExam>2</NumExam>
+    <Paye>Paye1</Paye>
+    <Class>Class1</Class>
+  </sp_List_books_RengMark>
+  <sp_List_books_RengMark>
+    <xStudent>8</xStudent>
+    <Xtest>1</Xtest>
+    <typ>1</typ>
+    <xbook>2</xbook>
+    <book>Book2</book>
+    <mark>38</mark>
+    <sort>1</sort>
+    <xPaye>1</xPaye>
+    <xClass>2</xClass>
+    <Exam>Exam2</Exam>
+    <DateFrom>1</DateFrom>
+    <DateTo>1</DateTo>
+    <NumExam>2</NumExam>
+    <Paye>Paye1</Paye>
+    <Class>Class2</Class>
+  </sp_List_books_RengMark>
+</NewDataSet>

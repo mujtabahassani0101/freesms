@@ -1,0 +1,141 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="v_HozehStd">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="xStudent" type="xs:decimal" minOccurs="0" />
+                <xs:element name="xPaye" type="xs:decimal" minOccurs="0" />
+                <xs:element name="xClass" type="xs:decimal" minOccurs="0" />
+                <xs:element name="xHozeh" type="xs:decimal" minOccurs="0" />
+                <xs:element name="idx" type="xs:decimal" minOccurs="0" />
+                <xs:element name="Hozeh" type="xs:string" minOccurs="0" />
+                <xs:element name="FName" type="xs:string" minOccurs="0" />
+                <xs:element name="LName" type="xs:string" minOccurs="0" />
+                <xs:element name="PName" type="xs:string" minOccurs="0" />
+                <xs:element name="Class" type="xs:string" minOccurs="0" />
+                <xs:element name="Paye" type="xs:string" minOccurs="0" />
+                <xs:element name="CapacityHozeh" type="xs:decimal" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
+  <v_HozehStd>
+    <xStudent>1</xStudent>
+    <xPaye>1</xPaye>
+    <xClass>1</xClass>
+    <xHozeh>1</xHozeh>
+    <idx>1</idx>
+    <Hozeh>Room1</Hozeh>
+    <FName>1</FName>
+    <LName>1</LName>
+    <PName>1</PName>
+    <Class>Class1</Class>
+    <Paye>Paye1</Paye>
+    <CapacityHozeh>1</CapacityHozeh>
+  </v_HozehStd>
+  <v_HozehStd>
+    <xStudent>2</xStudent>
+    <xPaye>1</xPaye>
+    <xClass>2</xClass>
+    <xHozeh>2</xHozeh>
+    <idx>1</idx>
+    <Hozeh>Room2</Hozeh>
+    <FName>1</FName>
+    <LName>1</LName>
+    <PName>1</PName>
+    <Class>Class2</Class>
+    <Paye>Paye1</Paye>
+    <CapacityHozeh>1</CapacityHozeh>
+  </v_HozehStd>
+  <v_HozehStd>
+    <xStudent>3</xStudent>
+    <xPaye>1</xPaye>
+    <xClass>1</xClass>
+    <xHozeh>1</xHozeh>
+    <idx>1</idx>
+    <Hozeh>Room1</Hozeh>
+    <FName>1</FName>
+    <LName>1</LName>
+    <PName>1</PName>
+    <Class>Class1</Class>
+    <Paye>Paye1</Paye>
+    <CapacityHozeh>1</CapacityHozeh>
+  </v_HozehStd>
+  <v_HozehStd>
+    <xStudent>4</xStudent>
+    <xPaye>1</xPaye>
+    <xClass>2</xClass>
+    <xHozeh>2</xHozeh>
+    <idx>1</idx>
+    <Hozeh>Room2</Hozeh>
+    <FName>1</FName>
+    <LName>1</LName>
+    <PName>1</PName>
+    <Class>Class2</Class>
+    <Paye>Paye1</Paye>
+    <CapacityHozeh>1</CapacityHozeh>
+  </v_HozehStd>
+  <v_HozehStd>
+    <xStudent>5</xStudent>
+    <xPaye>1</xPaye>
+    <xClass>1</xClass>
+    <xHozeh>1</xHozeh>
+    <idx>1</idx>
+    <Hozeh>Room1</Hozeh>
+    <FName>1</FName>
+    <LName>1</LName>
+    <PName>1</PName>
+    <Class>Class1</Class>
+    <Paye>Paye1</Paye>
+    <CapacityHozeh>1</CapacityHozeh>
+  </v_HozehStd>
+  <v_HozehStd>
+    <xStudent>6</xStudent>
+    <xPaye>1</xPaye>
+    <xClass>2</xClass>
+    <xHozeh>2</xHozeh>
+    <idx>1</idx>
+    <Hozeh>Room2</Hozeh>
+    <FName>1</FName>
+    <LName>1</LName>
+    <PName>1</PName>
+    <Class>Class2</Class>
+    <Paye>Paye1</Paye>
+    <CapacityHozeh>1</CapacityHozeh>
+  </v_HozehStd>
+  <v_HozehStd>
+    <xStudent>7</xStudent>
+    <xPaye>1</xPaye>
+    <xClass>1</xClass>
+    <xHozeh>1</xHozeh>
+    <idx>1</idx>
+    <Hozeh>Room1</Hozeh>
+    <FName>1</FName>
+    <LName>1</LName>
+    <PName>1</PName>
+    <Class>Class1</Class>
+    <Paye>Paye1</Paye>
+    <CapacityHozeh>1</CapacityHozeh>
+  </v_HozehStd>
+  <v_HozehStd>
+    <xStudent>8</xStudent>
+    <xPaye>1</xPaye>
+    <xClass>2</xClass>
+    <xHozeh>2</xHozeh>
+    <idx>1</idx>
+    <Hozeh>Room2</Hozeh>
+    <FName>1</FName>
+    <LName>1</LName>
+    <PName>1</PName>
+    <Class>Class2</Class>
+    <Paye>Paye1</Paye>
+    <CapacityHozeh>1</CapacityHozeh>
+  </v_HozehStd>
+</NewDataSet>

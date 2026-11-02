@@ -260,7 +260,7 @@
                   <BottomLineStyle>NoLine</BottomLineStyle>
                 </border>
               </object>
-              <object ras-class="CrystalReports.PictureObject" picture-type="crPictureTypeBitmap">
+              <object ras-class="CrystalReports.PictureObject" picture-type="crPictureTypeBitmap" original-width="5382" original-height="4926" x-scaling="0.20903010033444816" y-scaling="0.20300446609825415">
                 <Name>Picture3</Name>
                 <Kind>PictureObject</Kind>
                 <Left>2400</Left>
@@ -1730,7 +1730,7 @@
                   <BottomLineStyle>NoLine</BottomLineStyle>
                 </border>
               </object>
-              <object ras-class="CrystalReports.PictureObject" picture-type="crPictureTypeBitmap">
+              <object ras-class="CrystalReports.PictureObject" picture-type="crPictureTypeBitmap" original-width="5382" original-height="4926" x-scaling="0.20903010033444816" y-scaling="0.20300446609825415">
                 <Name>Picture3</Name>
                 <Kind>PictureObject</Kind>
                 <Left>2400</Left>

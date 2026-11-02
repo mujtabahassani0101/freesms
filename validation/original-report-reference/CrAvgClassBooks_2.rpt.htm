@@ -1,0 +1,625 @@
+﻿<HTML>
+    <script>
+        ie4up=false;
+        var agt = navigator.userAgent.toLowerCase();
+        var major = parseInt(navigator.appVersion);
+        if ((agt.indexOf('msie') != -1) && (major >= 4))
+            ie4up = true;
+    </script>
+    <script language="javascript">
+        <!--
+        function doGraphDrilldown_(event, name, brch, offsetX, offsetY, pageNumber, nextpart) {
+        if (ie4up)
+            alert('name=' + name + '&brch=' + brch + '&coord=' + (event.offsetX*15 / 1
++parseInt(offsetX)) + '-' + (event.offsetY*15 / 1 +parseInt(offsetY)) +
+'&pagenumber=' + pageNumber + '&nextpart=' + nextpart)
+        else
+            alert('name=' + name + '&brch=' + brch + '&coord=' + (event.layerX*15 / 1
++parseInt(offsetX)) + '-'  + (event.layerY*15 / 1 +parseInt(offsetY)) +
+'&pagenumber=' + pageNumber + '&nextpart=' + nextpart)
+        }
+        // -->
+    </script>
+    <script language="javascript">
+        <!--
+        function ScrollToCrystalHighLighted() {
+            var highlighted = document.getElementById('CrystalHighLighted');
+            if(highlighted != null)
+            {
+                var offset = highlighted.offsetTop;
+                var myOffsetParent = highlighted.offsetParent;
+                while( myOffsetParent )
+                {
+                    offset += myOffsetParent.offsetTop;
+                    myOffsetParent = myOffsetParent.offsetParent;
+                }
+                window.scrollTo( 0, offset);
+            }
+        }
+        // -->
+    </script>
+<style>
+    div.crystalstyle div {position:absolute; z-index:25}
+    div.crystalstyle a {text-decoration:none}
+    div.crystalstyle a img {border-style:none; border-width:0}
+	.fc678b9e09-903c-4834-89af-3c08ac8d92e1-0 {font-size:11pt;color:#000000;font-family:B Nazanin;font-weight:normal;}
+	.fc678b9e09-903c-4834-89af-3c08ac8d92e1-1 {font-size:13pt;color:#000000;font-family:B Badr;font-weight:bold;}
+	.fc678b9e09-903c-4834-89af-3c08ac8d92e1-2 {font-size:9pt;color:#000000;font-family:B Titr;font-weight:bold;}
+	.fc678b9e09-903c-4834-89af-3c08ac8d92e1-3 {font-size:9pt;color:#000000;font-family:B Badr;font-weight:normal;}
+	.fc678b9e09-903c-4834-89af-3c08ac8d92e1-4 {font-size:7pt;color:#000000;font-family:Tahoma;font-weight:normal;}
+	.fc678b9e09-903c-4834-89af-3c08ac8d92e1-5 {font-size:13pt;color:#000000;font-family:IPT.Nazanin;font-weight:bold;}
+	.ad5dad5e0f-c55d-43e2-9f12-cdeea0a584f2-0 {border-color:#000000;border-left-width:0;border-right-width:0;border-top-width:0;border-bottom-width:0;}
+</style>
+<TITLE>Crystal Report Viewer</TITLE>
+<BODY BGCOLOR="FFFFFF" LEFTMARGIN=31 TOPMARGIN=31>
+<Div class="crystalstyle" style="position:absolute; top:31px; left:31px; ">
+<div id="Box2" style="z-index:10;top:34px;left:16px;width:742px;height:64px;border-color:#000000;border-style:solid;border-width:1px;">
+    <table width="734px" height="56px">
+        <tr>
+            <td></td>
+        </tr>
+    </table>
+</div>
+<div id="PageHeaderSection1" style="z-index:3;clip:rect(0px,768px,34px,0px);top:0px;left:0px;width:768px;height:34px;">
+
+</div>
+<div class="ad5dad5e0f-c55d-43e2-9f12-cdeea0a584f2-0" style="top:0px;left:32px;width:712px;height:28px;text-align:center;">
+    <table width="712px" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+            <td><table width="100%" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td align="center"><span class="fc678b9e09-903c-4834-89af-3c08ac8d92e1-0">1</span></td>
+                </tr>
+            </table></td>
+        </tr>
+    </table>
+</div>
+<div id="Section2" style="z-index:3;clip:rect(0px,768px,66px,0px);top:34px;left:0px;width:768px;height:66px;">
+
+</div>
+<div class="ad5dad5e0f-c55d-43e2-9f12-cdeea0a584f2-0" style="top:34px;left:32px;width:712px;height:33px;">
+    <table width="712px" border="0" cellpadding="0" cellspacing="0px">
+        <tr>
+            <td><table width="100%" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td align="center" style="line-height:1.0;"><span class="fc678b9e09-903c-4834-89af-3c08ac8d92e1-1">گزارش&nbsp;مقایسه&nbsp;مضمون&nbsp;صنوف&nbsp;در&nbsp;دوره&nbsp;ها&#x200F;</span></td>
+                </tr>
+            </table></td>
+        </tr>
+    </table>
+</div>
+<div class="ad5dad5e0f-c55d-43e2-9f12-cdeea0a584f2-0" style="top:66px;left:16px;width:163px;height:24px;text-align:right;">
+    <table width="163px" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+            <td><table width="100%" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td align="right"><span class="fc678b9e09-903c-4834-89af-3c08ac8d92e1-2">Paye1</span></td>
+                </tr>
+            </table></td>
+        </tr>
+    </table>
+</div>
+<div class="ad5dad5e0f-c55d-43e2-9f12-cdeea0a584f2-0" style="top:66px;left:184px;width:48px;height:24px;">
+    <table width="48px" border="0" cellpadding="0" cellspacing="0px">
+        <tr>
+            <td><table width="100%" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td style="line-height:1.0;"><span class="fc678b9e09-903c-4834-89af-3c08ac8d92e1-2">پایه&nbsp;&#x200F;</span><span class="fc678b9e09-903c-4834-89af-3c08ac8d92e1-2">:&#x200F;</span></td>
+                </tr>
+            </table></td>
+        </tr>
+    </table>
+</div>
+<div class="ad5dad5e0f-c55d-43e2-9f12-cdeea0a584f2-0" style="top:66px;left:408px;width:280px;height:24px;text-align:right;">
+    <table width="280px" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+            <td><table width="100%" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td align="right"><span class="fc678b9e09-903c-4834-89af-3c08ac8d92e1-2">1</span></td>
+                </tr>
+            </table></td>
+        </tr>
+    </table>
+</div>
+<div class="ad5dad5e0f-c55d-43e2-9f12-cdeea0a584f2-0" style="top:66px;left:696px;width:48px;height:24px;">
+    <table width="48px" border="0" cellpadding="0" cellspacing="0px">
+        <tr>
+            <td><table width="100%" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td style="line-height:1.0;"><span class="fc678b9e09-903c-4834-89af-3c08ac8d92e1-2">مکتب&nbsp;&#x200F;</span><span class="fc678b9e09-903c-4834-89af-3c08ac8d92e1-2">:&#x200F;</span></td>
+                </tr>
+            </table></td>
+        </tr>
+    </table><table width="48px" border="0" cellpadding="0" cellspacing="0px">
+        <tr>
+            <td><table width="100%" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td style="line-height:1.0;"><span class="fc678b9e09-903c-4834-89af-3c08ac8d92e1-2">&nbsp;</span></td>
+                </tr>
+            </table></td>
+        </tr>
+    </table>
+</div>
+<div id="GroupFooterSection1" style="z-index:3;clip:rect(0px,768px,259px,0px);top:100px;left:0px;width:768px;height:259px;">
+
+</div>
+<div class="ad5dad5e0f-c55d-43e2-9f12-cdeea0a584f2-0" style="z-index:15;top:108px;left:8px;width:411px;height:251px;">
+
+</div><div class="ad5dad5e0f-c55d-43e2-9f12-cdeea0a584f2-0" style="top:332px;left:115px;width:95px;height:19px;">
+    <table width="95px" border="0" cellpadding="0" cellspacing="0px">
+        <tr>
+            <td><table width="100%" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td align="center" style="line-height:1.0;"><span class="fc678b9e09-903c-4834-89af-3c08ac8d92e1-3">اوسط&nbsp;صنف&nbsp;ها&#x200E;</span></td>
+                </tr>
+            </table></td>
+        </tr>
+    </table>
+</div>
+<div class="ad5dad5e0f-c55d-43e2-9f12-cdeea0a584f2-0" style="top:268px;left:15px;width:87px;height:82px;text-align:center;">
+    <table width="87px" border="0" cellpadding="0" cellspacing="0px">
+        <tr>
+            <td><table width="100%" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td align="center" style="line-height:1.0;"><span class="fc678b9e09-903c-4834-89af-3c08ac8d92e1-3">Book&#x200E;</span><span class="fc678b9e09-903c-4834-89af-3c08ac8d92e1-3">2&#x200E;</span></td>
+                </tr>
+            </table></td>
+        </tr>
+    </table>
+</div>
+<div class="ad5dad5e0f-c55d-43e2-9f12-cdeea0a584f2-0" style="top:300px;left:115px;width:95px;height:19px;text-align:center;">
+    <table width="95px" border="0" cellpadding="0" cellspacing="0px">
+        <tr>
+            <td><table width="100%" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td align="center" style="line-height:1.0;"><span class="fc678b9e09-903c-4834-89af-3c08ac8d92e1-3">2&#x200F;</span><span class="fc678b9e09-903c-4834-89af-3c08ac8d92e1-3">Class&#x200F;</span></td>
+                </tr>
+            </table></td>
+        </tr>
+    </table>
+</div>
+<div class="ad5dad5e0f-c55d-43e2-9f12-cdeea0a584f2-0" style="top:268px;left:115px;width:95px;height:19px;text-align:center;">
+    <table width="95px" border="0" cellpadding="0" cellspacing="0px">
+        <tr>
+            <td><table width="100%" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td align="center" style="line-height:1.0;"><span class="fc678b9e09-903c-4834-89af-3c08ac8d92e1-3">1&#x200F;</span><span class="fc678b9e09-903c-4834-89af-3c08ac8d92e1-3">Class&#x200F;</span></td>
+                </tr>
+            </table></td>
+        </tr>
+    </table>
+</div>
+<div class="ad5dad5e0f-c55d-43e2-9f12-cdeea0a584f2-0" style="top:236px;left:115px;width:95px;height:19px;">
+    <table width="95px" border="0" cellpadding="0" cellspacing="0px">
+        <tr>
+            <td><table width="100%" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td align="center" style="line-height:1.0;"><span class="fc678b9e09-903c-4834-89af-3c08ac8d92e1-3">اوسط&nbsp;صنف&nbsp;ها&#x200E;</span></td>
+                </tr>
+            </table></td>
+        </tr>
+    </table>
+</div>
+<div class="ad5dad5e0f-c55d-43e2-9f12-cdeea0a584f2-0" style="top:173px;left:15px;width:87px;height:82px;text-align:center;">
+    <table width="87px" border="0" cellpadding="0" cellspacing="0px">
+        <tr>
+            <td><table width="100%" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td align="center" style="line-height:1.0;"><span class="fc678b9e09-903c-4834-89af-3c08ac8d92e1-3">Book&#x200E;</span><span class="fc678b9e09-903c-4834-89af-3c08ac8d92e1-3">1&#x200E;</span></td>
+                </tr>
+            </table></td>
+        </tr>
+    </table>
+</div>
+<div class="ad5dad5e0f-c55d-43e2-9f12-cdeea0a584f2-0" style="top:204px;left:115px;width:95px;height:19px;text-align:center;">
+    <table width="95px" border="0" cellpadding="0" cellspacing="0px">
+        <tr>
+            <td><table width="100%" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td align="center" style="line-height:1.0;"><span class="fc678b9e09-903c-4834-89af-3c08ac8d92e1-3">2&#x200F;</span><span class="fc678b9e09-903c-4834-89af-3c08ac8d92e1-3">Class&#x200F;</span></td>
+                </tr>
+            </table></td>
+        </tr>
+    </table>
+</div>
+<div class="ad5dad5e0f-c55d-43e2-9f12-cdeea0a584f2-0" style="top:173px;left:115px;width:95px;height:19px;text-align:center;">
+    <table width="95px" border="0" cellpadding="0" cellspacing="0px">
+        <tr>
+            <td><table width="100%" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td align="center" style="line-height:1.0;"><span class="fc678b9e09-903c-4834-89af-3c08ac8d92e1-3">1&#x200F;</span><span class="fc678b9e09-903c-4834-89af-3c08ac8d92e1-3">Class&#x200F;</span></td>
+                </tr>
+            </table></td>
+        </tr>
+    </table>
+</div>
+<div class="ad5dad5e0f-c55d-43e2-9f12-cdeea0a584f2-0" style="top:114px;left:359px;width:52px;height:45px;">
+    <table width="52px" border="0" cellpadding="0" cellspacing="0px">
+        <tr>
+            <td><table width="100%" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td align="center" style="line-height:1.0;"><span class="fc678b9e09-903c-4834-89af-3c08ac8d92e1-3">کل&#x200E;</span></td>
+                </tr>
+            </table></td>
+        </tr>
+    </table>
+</div>
+<div class="ad5dad5e0f-c55d-43e2-9f12-cdeea0a584f2-0" style="top:114px;left:291px;width:54px;height:45px;text-align:center;">
+    <table width="54px" border="0" cellpadding="0" cellspacing="0px">
+        <tr>
+            <td><table width="100%" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td align="center" style="line-height:1.0;"><span class="fc678b9e09-903c-4834-89af-3c08ac8d92e1-4">2&#x200F;</span><span class="fc678b9e09-903c-4834-89af-3c08ac8d92e1-4">Exam&#x200F;</span></td>
+                </tr>
+            </table></td>
+        </tr>
+    </table>
+</div>
+<div class="ad5dad5e0f-c55d-43e2-9f12-cdeea0a584f2-0" style="top:114px;left:224px;width:54px;height:45px;text-align:center;">
+    <table width="54px" border="0" cellpadding="0" cellspacing="0px">
+        <tr>
+            <td><table width="100%" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td align="center" style="line-height:1.0;"><span class="fc678b9e09-903c-4834-89af-3c08ac8d92e1-4">1&#x200F;</span><span class="fc678b9e09-903c-4834-89af-3c08ac8d92e1-4">Exam&#x200F;</span></td>
+                </tr>
+            </table></td>
+        </tr>
+    </table>
+</div>
+<div class="ad5dad5e0f-c55d-43e2-9f12-cdeea0a584f2-0" style="top:173px;left:224px;width:54px;height:19px;text-align:center;">
+    <table width="54px" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+            <td><table width="100%" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td align="center"><span class="fc678b9e09-903c-4834-89af-3c08ac8d92e1-5">&nbsp;10/00</span></td>
+                </tr>
+            </table></td>
+        </tr>
+    </table>
+</div>
+<div class="ad5dad5e0f-c55d-43e2-9f12-cdeea0a584f2-0" style="top:173px;left:291px;width:54px;height:19px;text-align:center;">
+    <table width="54px" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+            <td><table width="100%" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td align="center"><span class="fc678b9e09-903c-4834-89af-3c08ac8d92e1-5">&nbsp;22/00</span></td>
+                </tr>
+            </table></td>
+        </tr>
+    </table>
+</div>
+<div class="ad5dad5e0f-c55d-43e2-9f12-cdeea0a584f2-0" style="top:173px;left:359px;width:52px;height:19px;text-align:center;">
+    <table width="52px" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+            <td><table width="100%" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td align="center"><span class="fc678b9e09-903c-4834-89af-3c08ac8d92e1-5">&nbsp;16.00</span></td>
+                </tr>
+            </table></td>
+        </tr>
+    </table>
+</div>
+<div class="ad5dad5e0f-c55d-43e2-9f12-cdeea0a584f2-0" style="top:204px;left:224px;width:54px;height:19px;text-align:center;">
+    <table width="54px" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+            <td><table width="100%" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td align="center"><span class="fc678b9e09-903c-4834-89af-3c08ac8d92e1-5">&nbsp;12/00</span></td>
+                </tr>
+            </table></td>
+        </tr>
+    </table>
+</div>
+<div class="ad5dad5e0f-c55d-43e2-9f12-cdeea0a584f2-0" style="top:204px;left:291px;width:54px;height:19px;text-align:center;">
+    <table width="54px" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+            <td><table width="100%" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td align="center"><span class="fc678b9e09-903c-4834-89af-3c08ac8d92e1-5">&nbsp;26/00</span></td>
+                </tr>
+            </table></td>
+        </tr>
+    </table>
+</div>
+<div class="ad5dad5e0f-c55d-43e2-9f12-cdeea0a584f2-0" style="top:204px;left:359px;width:52px;height:19px;text-align:center;">
+    <table width="52px" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+            <td><table width="100%" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td align="center"><span class="fc678b9e09-903c-4834-89af-3c08ac8d92e1-5">&nbsp;19.00</span></td>
+                </tr>
+            </table></td>
+        </tr>
+    </table>
+</div>
+<div class="ad5dad5e0f-c55d-43e2-9f12-cdeea0a584f2-0" style="top:236px;left:224px;width:54px;height:19px;text-align:center;">
+    <table width="54px" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+            <td><table width="100%" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td align="center"><span class="fc678b9e09-903c-4834-89af-3c08ac8d92e1-5">&nbsp;11/00</span></td>
+                </tr>
+            </table></td>
+        </tr>
+    </table>
+</div>
+<div class="ad5dad5e0f-c55d-43e2-9f12-cdeea0a584f2-0" style="top:236px;left:291px;width:54px;height:19px;text-align:center;">
+    <table width="54px" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+            <td><table width="100%" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td align="center"><span class="fc678b9e09-903c-4834-89af-3c08ac8d92e1-5">&nbsp;24/00</span></td>
+                </tr>
+            </table></td>
+        </tr>
+    </table>
+</div>
+<div class="ad5dad5e0f-c55d-43e2-9f12-cdeea0a584f2-0" style="top:236px;left:359px;width:52px;height:19px;text-align:center;">
+    <table width="52px" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+            <td><table width="100%" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td align="center"><span class="fc678b9e09-903c-4834-89af-3c08ac8d92e1-5">&nbsp;17/50</span></td>
+                </tr>
+            </table></td>
+        </tr>
+    </table>
+</div>
+<div class="ad5dad5e0f-c55d-43e2-9f12-cdeea0a584f2-0" style="top:268px;left:224px;width:54px;height:19px;text-align:center;">
+    <table width="54px" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+            <td><table width="100%" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td align="center"><span class="fc678b9e09-903c-4834-89af-3c08ac8d92e1-5">&nbsp;15/00</span></td>
+                </tr>
+            </table></td>
+        </tr>
+    </table>
+</div>
+<div class="ad5dad5e0f-c55d-43e2-9f12-cdeea0a584f2-0" style="top:268px;left:291px;width:54px;height:19px;text-align:center;">
+    <table width="54px" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+            <td><table width="100%" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td align="center"><span class="fc678b9e09-903c-4834-89af-3c08ac8d92e1-5">&nbsp;32/00</span></td>
+                </tr>
+            </table></td>
+        </tr>
+    </table>
+</div>
+<div class="ad5dad5e0f-c55d-43e2-9f12-cdeea0a584f2-0" style="top:268px;left:359px;width:52px;height:19px;text-align:center;">
+    <table width="52px" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+            <td><table width="100%" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td align="center"><span class="fc678b9e09-903c-4834-89af-3c08ac8d92e1-5">&nbsp;23.50</span></td>
+                </tr>
+            </table></td>
+        </tr>
+    </table>
+</div>
+<div class="ad5dad5e0f-c55d-43e2-9f12-cdeea0a584f2-0" style="top:300px;left:224px;width:54px;height:19px;text-align:center;">
+    <table width="54px" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+            <td><table width="100%" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td align="center"><span class="fc678b9e09-903c-4834-89af-3c08ac8d92e1-5">&nbsp;18/00</span></td>
+                </tr>
+            </table></td>
+        </tr>
+    </table>
+</div>
+<div class="ad5dad5e0f-c55d-43e2-9f12-cdeea0a584f2-0" style="top:300px;left:291px;width:54px;height:19px;text-align:center;">
+    <table width="54px" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+            <td><table width="100%" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td align="center"><span class="fc678b9e09-903c-4834-89af-3c08ac8d92e1-5">&nbsp;38/00</span></td>
+                </tr>
+            </table></td>
+        </tr>
+    </table>
+</div>
+<div class="ad5dad5e0f-c55d-43e2-9f12-cdeea0a584f2-0" style="top:300px;left:359px;width:52px;height:19px;text-align:center;">
+    <table width="52px" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+            <td><table width="100%" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td align="center"><span class="fc678b9e09-903c-4834-89af-3c08ac8d92e1-5">&nbsp;28.00</span></td>
+                </tr>
+            </table></td>
+        </tr>
+    </table>
+</div>
+<div class="ad5dad5e0f-c55d-43e2-9f12-cdeea0a584f2-0" style="top:332px;left:224px;width:54px;height:19px;text-align:center;">
+    <table width="54px" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+            <td><table width="100%" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td align="center"><span class="fc678b9e09-903c-4834-89af-3c08ac8d92e1-5">&nbsp;16/50</span></td>
+                </tr>
+            </table></td>
+        </tr>
+    </table>
+</div>
+<div class="ad5dad5e0f-c55d-43e2-9f12-cdeea0a584f2-0" style="top:332px;left:291px;width:54px;height:19px;text-align:center;">
+    <table width="54px" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+            <td><table width="100%" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td align="center"><span class="fc678b9e09-903c-4834-89af-3c08ac8d92e1-5">&nbsp;35/00</span></td>
+                </tr>
+            </table></td>
+        </tr>
+    </table>
+</div>
+<div class="ad5dad5e0f-c55d-43e2-9f12-cdeea0a584f2-0" style="top:332px;left:359px;width:52px;height:19px;text-align:center;">
+    <table width="52px" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+            <td><table width="100%" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td align="center"><span class="fc678b9e09-903c-4834-89af-3c08ac8d92e1-5">&nbsp;25/75</span></td>
+                </tr>
+            </table></td>
+        </tr>
+    </table>
+</div>
+<div id style="z-index:30;top:198px;left:217px;border-color:#000000;border-style:solid;border-width:0px;border-top-width:1px;width:201px;">
+
+</div>
+<div id style="z-index:30;top:230px;left:217px;border-color:#000000;border-style:solid;border-width:0px;border-top-width:1px;width:201px;">
+
+</div>
+<div id style="z-index:30;top:262px;left:217px;border-color:#000000;border-style:solid;border-width:0px;border-top-width:1px;width:201px;">
+
+</div>
+<div id style="z-index:30;top:293px;left:217px;border-color:#000000;border-style:solid;border-width:0px;border-top-width:1px;width:201px;">
+
+</div>
+<div id style="z-index:30;top:325px;left:217px;border-color:#000000;border-style:solid;border-width:0px;border-top-width:1px;width:201px;">
+
+</div>
+<div id style="z-index:30;top:166px;left:285px;border-color:#000000;border-style:solid;border-width:0px;border-left-width:1px;clip:rect(0px,1px,191px,0px);height:191px;">
+    <table width="0px" height="186px">
+        <tr>
+            <td></td>
+        </tr>
+    </table>
+</div>
+<div id style="z-index:30;top:166px;left:352px;border-color:#000000;border-style:solid;border-width:0px;border-left-width:1px;clip:rect(0px,1px,191px,0px);height:191px;">
+    <table width="0px" height="186px">
+        <tr>
+            <td></td>
+        </tr>
+    </table>
+</div>
+<div id style="z-index:30;top:325px;left:109px;border-color:#000000;border-style:solid;border-width:0px;border-left-width:1px;clip:rect(0px,1px,32px,0px);height:32px;">
+    <table width="0px" height="27px">
+        <tr>
+            <td></td>
+        </tr>
+    </table>
+</div>
+<div id style="z-index:30;top:325px;left:109px;border-color:#000000;border-style:solid;border-width:0px;border-top-width:1px;width:108px;">
+
+</div>
+<div id style="z-index:30;top:262px;left:8px;border-color:#000000;border-style:solid;border-width:0px;border-top-width:1px;width:101px;">
+
+</div>
+<div id style="z-index:30;top:293px;left:109px;border-color:#000000;border-style:solid;border-width:0px;border-left-width:1px;clip:rect(0px,1px,32px,0px);height:32px;">
+    <table width="0px" height="27px">
+        <tr>
+            <td></td>
+        </tr>
+    </table>
+</div>
+<div id style="z-index:30;top:293px;left:109px;border-color:#000000;border-style:solid;border-width:0px;border-top-width:1px;width:108px;">
+
+</div>
+<div id style="z-index:30;top:262px;left:109px;border-color:#000000;border-style:solid;border-width:0px;border-left-width:1px;clip:rect(0px,1px,32px,0px);height:32px;">
+    <table width="0px" height="27px">
+        <tr>
+            <td></td>
+        </tr>
+    </table>
+</div>
+<div id style="z-index:30;top:262px;left:109px;border-color:#000000;border-style:solid;border-width:0px;border-top-width:1px;width:108px;">
+
+</div>
+<div id style="z-index:30;top:230px;left:109px;border-color:#000000;border-style:solid;border-width:0px;border-left-width:1px;clip:rect(0px,1px,32px,0px);height:32px;">
+    <table width="0px" height="27px">
+        <tr>
+            <td></td>
+        </tr>
+    </table>
+</div>
+<div id style="z-index:30;top:230px;left:109px;border-color:#000000;border-style:solid;border-width:0px;border-top-width:1px;width:108px;">
+
+</div>
+<div id style="z-index:30;top:198px;left:109px;border-color:#000000;border-style:solid;border-width:0px;border-left-width:1px;clip:rect(0px,1px,32px,0px);height:32px;">
+    <table width="0px" height="27px">
+        <tr>
+            <td></td>
+        </tr>
+    </table>
+</div>
+<div id style="z-index:30;top:198px;left:109px;border-color:#000000;border-style:solid;border-width:0px;border-top-width:1px;width:108px;">
+
+</div>
+<div id style="z-index:30;top:166px;left:109px;border-color:#000000;border-style:solid;border-width:0px;border-left-width:1px;clip:rect(0px,1px,32px,0px);height:32px;">
+    <table width="0px" height="27px">
+        <tr>
+            <td></td>
+        </tr>
+    </table>
+</div>
+<div id style="z-index:30;top:108px;left:352px;border-color:#000000;border-style:solid;border-width:0px;border-left-width:1px;clip:rect(0px,1px,58px,0px);height:58px;">
+    <table width="0px" height="53px">
+        <tr>
+            <td></td>
+        </tr>
+    </table>
+</div>
+<div id style="z-index:30;top:108px;left:285px;border-color:#000000;border-style:solid;border-width:0px;border-left-width:1px;clip:rect(0px,1px,58px,0px);height:58px;">
+    <table width="0px" height="53px">
+        <tr>
+            <td></td>
+        </tr>
+    </table>
+</div>
+<div id style="z-index:30;top:166px;left:8px;border-color:#000000;border-style:solid;border-width:0px;border-top-width:1px;width:209px;">
+
+</div>
+<div id style="z-index:30;top:357px;left:8px;border-color:#000000;border-style:solid;border-width:0px;border-top-width:1px;width:209px;">
+
+</div>
+<div id style="z-index:30;top:166px;left:8px;border-color:#000000;border-style:solid;border-width:0px;border-left-width:1px;clip:rect(0px,1px,191px,0px);height:191px;">
+    <table width="0px" height="186px">
+        <tr>
+            <td></td>
+        </tr>
+    </table>
+</div>
+<div id style="z-index:30;top:166px;left:217px;border-color:#000000;border-style:solid;border-width:0px;border-left-width:1px;clip:rect(0px,1px,191px,0px);height:191px;">
+    <table width="0px" height="186px">
+        <tr>
+            <td></td>
+        </tr>
+    </table>
+</div>
+<div id style="z-index:30;top:108px;left:217px;border-color:#000000;border-style:solid;border-width:0px;border-top-width:1px;width:201px;">
+
+</div>
+<div id style="z-index:30;top:108px;left:217px;border-color:#000000;border-style:solid;border-width:0px;border-left-width:1px;clip:rect(0px,1px,58px,0px);height:58px;">
+    <table width="0px" height="53px">
+        <tr>
+            <td></td>
+        </tr>
+    </table>
+</div>
+<div id style="z-index:30;top:108px;left:418px;border-color:#000000;border-style:solid;border-width:0px;border-left-width:1px;clip:rect(0px,1px,58px,0px);height:58px;">
+    <table width="0px" height="53px">
+        <tr>
+            <td></td>
+        </tr>
+    </table>
+</div>
+<div id style="z-index:30;top:166px;left:217px;border-color:#000000;border-style:solid;border-width:0px;border-top-width:1px;width:201px;">
+
+</div>
+<div id style="z-index:30;top:357px;left:217px;border-color:#000000;border-style:solid;border-width:0px;border-top-width:1px;width:201px;">
+
+</div>
+<div id style="z-index:30;top:166px;left:418px;border-color:#000000;border-style:solid;border-width:0px;border-left-width:1px;clip:rect(0px,1px,191px,0px);height:191px;">
+    <table width="0px" height="186px">
+        <tr>
+            <td></td>
+        </tr>
+    </table>
+</div>
+
+
+<DIV style="position:absolute; top:330pt">
+</TR></TABLE></CENTER></Div>
+</BODY>
+</HTML>

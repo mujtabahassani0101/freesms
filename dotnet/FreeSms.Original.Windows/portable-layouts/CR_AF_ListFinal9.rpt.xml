@@ -1512,7 +1512,7 @@ else if{spRpt_Listfinal.acp}=4 then 'محروم' </formula>
         <source name="hederClass" formula="{@hederClass}" kind="FormulaField" />
         <number />
       </object>
-      <object ras-class="CrystalReports.PictureObject" picture-type="crPictureTypeBitmap">
+      <object ras-class="CrystalReports.PictureObject" picture-type="crPictureTypeBitmap" original-width="4316" original-height="4026" x-scaling="0.27803521779425394" y-scaling="0.29806259314456035">
         <Name>Picture4</Name>
         <Kind>PictureObject</Kind>
         <Left>9600</Left>
@@ -1595,7 +1595,7 @@ then false else true
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
       </object>
-      <object ras-class="CrystalReports.PictureObject" picture-type="crPictureTypeBitmap">
+      <object ras-class="CrystalReports.PictureObject" picture-type="crPictureTypeBitmap" original-width="5383" original-height="4929" x-scaling="0.2480029723202675" y-scaling="0.25400689795090281">
         <Name>Picture3</Name>
         <Kind>PictureObject</Kind>
         <Left>4035</Left>

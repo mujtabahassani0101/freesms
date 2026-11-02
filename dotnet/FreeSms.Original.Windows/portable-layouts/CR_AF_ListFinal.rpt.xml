@@ -1296,7 +1296,7 @@ else if{spRpt_Listfinal.acp}=4 then 'محروم' </formula>
         <source name="Separcheh " formula="{@Separcheh }" kind="FormulaField" />
         <number />
       </object>
-      <object ras-class="CrystalReports.PictureObject" picture-type="crPictureTypeBitmap">
+      <object ras-class="CrystalReports.PictureObject" picture-type="crPictureTypeBitmap" original-width="4316" original-height="4026" x-scaling="0.27803521779425394" y-scaling="0.29806259314456035">
         <Name>Picture4</Name>
         <Kind>PictureObject</Kind>
         <Left>9780</Left>
@@ -1319,7 +1319,7 @@ else if{spRpt_Listfinal.acp}=4 then 'محروم' </formula>
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
       </object>
-      <object ras-class="CrystalReports.PictureObject" picture-type="crPictureTypeBitmap">
+      <object ras-class="CrystalReports.PictureObject" picture-type="crPictureTypeBitmap" original-width="5390" original-height="4944" x-scaling="0.26901669758812619" y-scaling="0.26901294498381878">
         <Name>Picture3</Name>
         <Kind>PictureObject</Kind>
         <Left>4030</Left>

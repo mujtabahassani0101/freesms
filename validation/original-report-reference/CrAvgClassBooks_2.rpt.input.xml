@@ -1,0 +1,114 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="spRpt_AvgClassBooks">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="id" type="xs:decimal" minOccurs="0" />
+                <xs:element name="Exam" type="xs:string" minOccurs="0" />
+                <xs:element name="Paye" type="xs:string" minOccurs="0" />
+                <xs:element name="Class" type="xs:string" minOccurs="0" />
+                <xs:element name="Book" type="xs:string" minOccurs="0" />
+                <xs:element name="sort" type="xs:decimal" minOccurs="0" />
+                <xs:element name="DateFrom" type="xs:string" minOccurs="0" />
+                <xs:element name="DateTo" type="xs:string" minOccurs="0" />
+                <xs:element name="Mark" type="xs:decimal" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
+  <spRpt_AvgClassBooks>
+    <id>1</id>
+    <Exam>Exam1</Exam>
+    <Paye>Paye1</Paye>
+    <Class>Class1</Class>
+    <Book>Book1</Book>
+    <sort>1</sort>
+    <DateFrom>1</DateFrom>
+    <DateTo>1</DateTo>
+    <Mark>10</Mark>
+  </spRpt_AvgClassBooks>
+  <spRpt_AvgClassBooks>
+    <id>2</id>
+    <Exam>Exam1</Exam>
+    <Paye>Paye1</Paye>
+    <Class>Class2</Class>
+    <Book>Book1</Book>
+    <sort>1</sort>
+    <DateFrom>1</DateFrom>
+    <DateTo>1</DateTo>
+    <Mark>12</Mark>
+  </spRpt_AvgClassBooks>
+  <spRpt_AvgClassBooks>
+    <id>3</id>
+    <Exam>Exam1</Exam>
+    <Paye>Paye1</Paye>
+    <Class>Class1</Class>
+    <Book>Book2</Book>
+    <sort>1</sort>
+    <DateFrom>1</DateFrom>
+    <DateTo>1</DateTo>
+    <Mark>15</Mark>
+  </spRpt_AvgClassBooks>
+  <spRpt_AvgClassBooks>
+    <id>4</id>
+    <Exam>Exam1</Exam>
+    <Paye>Paye1</Paye>
+    <Class>Class2</Class>
+    <Book>Book2</Book>
+    <sort>1</sort>
+    <DateFrom>1</DateFrom>
+    <DateTo>1</DateTo>
+    <Mark>18</Mark>
+  </spRpt_AvgClassBooks>
+  <spRpt_AvgClassBooks>
+    <id>5</id>
+    <Exam>Exam2</Exam>
+    <Paye>Paye1</Paye>
+    <Class>Class1</Class>
+    <Book>Book1</Book>
+    <sort>1</sort>
+    <DateFrom>1</DateFrom>
+    <DateTo>1</DateTo>
+    <Mark>22</Mark>
+  </spRpt_AvgClassBooks>
+  <spRpt_AvgClassBooks>
+    <id>6</id>
+    <Exam>Exam2</Exam>
+    <Paye>Paye1</Paye>
+    <Class>Class2</Class>
+    <Book>Book1</Book>
+    <sort>1</sort>
+    <DateFrom>1</DateFrom>
+    <DateTo>1</DateTo>
+    <Mark>26</Mark>
+  </spRpt_AvgClassBooks>
+  <spRpt_AvgClassBooks>
+    <id>7</id>
+    <Exam>Exam2</Exam>
+    <Paye>Paye1</Paye>
+    <Class>Class1</Class>
+    <Book>Book2</Book>
+    <sort>1</sort>
+    <DateFrom>1</DateFrom>
+    <DateTo>1</DateTo>
+    <Mark>32</Mark>
+  </spRpt_AvgClassBooks>
+  <spRpt_AvgClassBooks>
+    <id>8</id>
+    <Exam>Exam2</Exam>
+    <Paye>Paye1</Paye>
+    <Class>Class2</Class>
+    <Book>Book2</Book>
+    <sort>1</sort>
+    <DateFrom>1</DateFrom>
+    <DateTo>1</DateTo>
+    <Mark>38</Mark>
+  </spRpt_AvgClassBooks>
+</NewDataSet>

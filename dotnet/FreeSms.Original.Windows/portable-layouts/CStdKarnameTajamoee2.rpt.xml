@@ -2942,7 +2942,7 @@ else {spRpt_StdKarnameTajamoee.CommentKoll}</formula>
         <source name="gCls7" formula="{@gCls7}" kind="FormulaField" />
         <number />
       </object>
-      <object ras-class="CrystalReports.PictureObject" picture-type="crPictureTypeBitmap">
+      <object ras-class="CrystalReports.PictureObject" picture-type="crPictureTypeBitmap" original-width="300" original-height="315" x-scaling="0.6" y-scaling="0.58730158730158732">
         <Name>Picture2</Name>
         <Kind>PictureObject</Kind>
         <Left>6960</Left>
@@ -2970,7 +2970,7 @@ else true</condition>
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
       </object>
-      <object ras-class="CrystalReports.PictureObject" picture-type="crPictureTypeBitmap">
+      <object ras-class="CrystalReports.PictureObject" picture-type="crPictureTypeBitmap" original-width="300" original-height="315" x-scaling="0.6" y-scaling="0.58730158730158732">
         <Name>Picture3</Name>
         <Kind>PictureObject</Kind>
         <Left>5840</Left>
@@ -2998,7 +2998,7 @@ else true</condition>
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
       </object>
-      <object ras-class="CrystalReports.PictureObject" picture-type="crPictureTypeBitmap">
+      <object ras-class="CrystalReports.PictureObject" picture-type="crPictureTypeBitmap" original-width="300" original-height="315" x-scaling="0.6" y-scaling="0.58730158730158732">
         <Name>Picture4</Name>
         <Kind>PictureObject</Kind>
         <Left>4640</Left>
@@ -3026,7 +3026,7 @@ else true</condition>
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
       </object>
-      <object ras-class="CrystalReports.PictureObject" picture-type="crPictureTypeBitmap">
+      <object ras-class="CrystalReports.PictureObject" picture-type="crPictureTypeBitmap" original-width="300" original-height="315" x-scaling="0.6" y-scaling="0.58730158730158732">
         <Name>Picture5</Name>
         <Kind>PictureObject</Kind>
         <Left>3400</Left>
@@ -3054,7 +3054,7 @@ else true</condition>
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
       </object>
-      <object ras-class="CrystalReports.PictureObject" picture-type="crPictureTypeBitmap">
+      <object ras-class="CrystalReports.PictureObject" picture-type="crPictureTypeBitmap" original-width="300" original-height="315" x-scaling="0.6" y-scaling="0.58730158730158732">
         <Name>Picture6</Name>
         <Kind>PictureObject</Kind>
         <Left>2220</Left>
@@ -3082,7 +3082,7 @@ else true</condition>
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
       </object>
-      <object ras-class="CrystalReports.PictureObject" picture-type="crPictureTypeBitmap">
+      <object ras-class="CrystalReports.PictureObject" picture-type="crPictureTypeBitmap" original-width="300" original-height="315" x-scaling="0.6" y-scaling="0.58730158730158732">
         <Name>Picture7</Name>
         <Kind>PictureObject</Kind>
         <Left>1040</Left>
@@ -3110,7 +3110,7 @@ else true</condition>
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
       </object>
-      <object ras-class="CrystalReports.PictureObject" picture-type="crPictureTypeBitmap">
+      <object ras-class="CrystalReports.PictureObject" picture-type="crPictureTypeBitmap" original-width="416" original-height="576" x-scaling="0.43269230769230771" y-scaling="0.32118055555555558">
         <Name>Picture22</Name>
         <Kind>PictureObject</Kind>
         <Left>7000</Left>
@@ -3138,7 +3138,7 @@ else true</condition>
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
       </object>
-      <object ras-class="CrystalReports.PictureObject" picture-type="crPictureTypeBitmap">
+      <object ras-class="CrystalReports.PictureObject" picture-type="crPictureTypeBitmap" original-width="416" original-height="576" x-scaling="0.43269230769230771" y-scaling="0.32118055555555558">
         <Name>Picture33</Name>
         <Kind>PictureObject</Kind>
         <Left>5880</Left>
@@ -3166,7 +3166,7 @@ else true</condition>
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
       </object>
-      <object ras-class="CrystalReports.PictureObject" picture-type="crPictureTypeBitmap">
+      <object ras-class="CrystalReports.PictureObject" picture-type="crPictureTypeBitmap" original-width="416" original-height="576" x-scaling="0.43269230769230771" y-scaling="0.32118055555555558">
         <Name>Picture44</Name>
         <Kind>PictureObject</Kind>
         <Left>4680</Left>
@@ -3194,7 +3194,7 @@ else true</condition>
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
       </object>
-      <object ras-class="CrystalReports.PictureObject" picture-type="crPictureTypeBitmap">
+      <object ras-class="CrystalReports.PictureObject" picture-type="crPictureTypeBitmap" original-width="416" original-height="576" x-scaling="0.43269230769230771" y-scaling="0.32118055555555558">
         <Name>Picture55</Name>
         <Kind>PictureObject</Kind>
         <Left>3480</Left>
@@ -3222,7 +3222,7 @@ else true</condition>
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
       </object>
-      <object ras-class="CrystalReports.PictureObject" picture-type="crPictureTypeBitmap">
+      <object ras-class="CrystalReports.PictureObject" picture-type="crPictureTypeBitmap" original-width="416" original-height="576" x-scaling="0.43269230769230771" y-scaling="0.32118055555555558">
         <Name>Picture66</Name>
         <Kind>PictureObject</Kind>
         <Left>2280</Left>
@@ -3250,7 +3250,7 @@ else true</condition>
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
       </object>
-      <object ras-class="CrystalReports.PictureObject" picture-type="crPictureTypeBitmap">
+      <object ras-class="CrystalReports.PictureObject" picture-type="crPictureTypeBitmap" original-width="416" original-height="576" x-scaling="0.43269230769230771" y-scaling="0.32118055555555558">
         <Name>Picture77</Name>
         <Kind>PictureObject</Kind>
         <Left>1080</Left>

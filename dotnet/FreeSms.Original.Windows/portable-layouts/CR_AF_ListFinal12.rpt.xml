@@ -1684,7 +1684,7 @@ else if{spRpt_karnamefinal.acp}=4 then 'محروم' </formula>
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
       </object>
-      <object ras-class="CrystalReports.PictureObject" picture-type="crPictureTypeBitmap">
+      <object ras-class="CrystalReports.PictureObject" picture-type="crPictureTypeBitmap" original-width="4322" original-height="4021" x-scaling="0.34706154558074964" y-scaling="0.37304153195722456">
         <Name>Picture4</Name>
         <Kind>PictureObject</Kind>
         <Left>14040</Left>
@@ -1707,7 +1707,7 @@ else if{spRpt_karnamefinal.acp}=4 then 'محروم' </formula>
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
       </object>
-      <object ras-class="CrystalReports.PictureObject" picture-type="crPictureTypeBitmap">
+      <object ras-class="CrystalReports.PictureObject" picture-type="crPictureTypeBitmap" original-width="5387" original-height="4933" x-scaling="0.29701132355671062" y-scaling="0.3020474356375431">
         <Name>Picture3</Name>
         <Kind>PictureObject</Kind>
         <Left>4995</Left>
