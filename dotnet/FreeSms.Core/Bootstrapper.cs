@@ -36,7 +36,11 @@ public static partial class Bootstrapper
         }
         var started = await RunLocalDbAsync(utility, cancellation, "start", options.Instance);
         if (started.Code != 0) throw new InvalidOperationException("بانک محلی شروع نشد: " + started.Error);
-        var database = new Database(LocalConnectionString(options));
+        var running = await RunLocalDbAsync(utility, cancellation, "info", options.Instance);
+        if (running.Code != 0) throw new InvalidOperationException("مشخصات نمونهٔ بانک خوانده نشد: " + running.Error);
+        // Connect to the native pipe directly, avoiding LocalDB client API version/bitness conflicts.
+        var connection = new SqlConnectionStringBuilder(LocalConnectionString(options)) { DataSource = PipeFromInstanceInfo(running.Output) };
+        var database = new Database(connection.ConnectionString);
         await Task.Run(() =>
         {
             cancellation.ThrowIfCancellationRequested();
@@ -92,14 +96,19 @@ public static partial class Bootstrapper
 
     public static string? FindLocalDbUtility()
     {
-        var directory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles), "Microsoft SQL Server");
-        if (Directory.Exists(directory))
+        var programDirectories = new[] { Environment.GetEnvironmentVariable("ProgramW6432"), Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles) }
+            .Where(path => !string.IsNullOrWhiteSpace(path)).Distinct(StringComparer.OrdinalIgnoreCase);
+        foreach (var programDirectory in programDirectories)
+        {
+            var directory = Path.Combine(programDirectory!, "Microsoft SQL Server");
+            if (!Directory.Exists(directory)) continue;
             foreach (var version in Directory.GetDirectories(directory).OrderByDescending(path => int.TryParse(Path.GetFileName(path), out var number) ? number : 0))
             {
                 if (!int.TryParse(Path.GetFileName(version), out var major) || major < 150) continue;
                 var candidate = Path.Combine(version, "Tools", "Binn", "SqlLocalDB.exe");
                 if (File.Exists(candidate)) return candidate;
             }
+        }
         foreach (var path in (Environment.GetEnvironmentVariable("PATH") ?? "").Split(Path.PathSeparator))
         {
             if (string.IsNullOrWhiteSpace(path)) continue;
@@ -107,6 +116,13 @@ public static partial class Bootstrapper
             if (File.Exists(candidate)) return candidate;
         }
         return null;
+    }
+
+    public static string PipeFromInstanceInfo(string output)
+    {
+        var match = LocalPipe().Match(output);
+        if (!match.Success) throw new InvalidOperationException("آدرس ارتباط نمونهٔ LocalDB در خروجی ابزار پیدا نشد.");
+        return match.Value.Trim();
     }
 
     public static async Task<(int Code, string Output, string Error)> RunLocalDbAsync(string utility, CancellationToken cancellation, params string[] arguments)
@@ -139,4 +155,5 @@ public static partial class Bootstrapper
         if (string.IsNullOrWhiteSpace(options.DataDirectory)) throw new ArgumentException("مسیر بانک مشخص نشده است.");
     }
     [GeneratedRegex(@"^[A-Za-z_][A-Za-z0-9_]{0,79}$")] private static partial Regex SimpleName();
+    [GeneratedRegex(@"np:\\\\\.\\pipe\\[^\r\n]+", RegexOptions.IgnoreCase)] private static partial Regex LocalPipe();
 }

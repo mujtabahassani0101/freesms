@@ -59,6 +59,8 @@ try
         var builder = new Microsoft.Data.SqlClient.SqlConnectionStringBuilder(Bootstrapper.LocalConnectionString(new DatabaseOptions("unused")));
         Require(builder.DataSource == @"(localdb)\FreeSMS" && builder.IntegratedSecurity && builder.InitialCatalog == "free_sms");
         Require(builder.Password.Length == 0 && builder.UserID.Length == 0);
+        var pipe = @"np:\\.\pipe\LOCALDB#sample\tsql\query";
+        Require(Bootstrapper.PipeFromInstanceInfo("Instance pipe name: " + pipe + "\r\n") == pipe);
         try { Bootstrapper.LocalConnectionString(new DatabaseOptions("unused", "FreeSMS", "master")); throw new Exception("Unsafe database accepted"); }
         catch (ArgumentException) { }
     });
