@@ -108,6 +108,18 @@ internal static class Program
                 Check(document.PageCount >= 4, "long subreport continues beyond its original placeholder");
                 document.SavePageImage(Path.Combine(output, "long-subreport-last.png"), document.PageCount - 1);
             }
+            var layered = XElement.Parse("<report><sections><section kind='Detail' height='2400'><object><Kind>ChartObject</Kind><Left>144</Left><Top>144</Top><Width>4320</Width><Height>1440</Height><chart><category>'گروه'</category><series>Sum({data.mark})</series></chart></object><object><Kind>BoxObject</Kind><Left>0</Left><Top>0</Top><Width>5000</Width><Height>2200</Height><border><BackgroundColor>-1</BackgroundColor></border></object></section></sections></report>");
+            using (var document = new PortableReportDocument(new ReportModel(layered), ReportFixtures.Create(layered, 1)))
+            {
+                string path = Path.Combine(output, "chart-over-background.png");
+                document.SavePageImage(path, 0, 100);
+                using var image = new Bitmap(path);
+                int visible = 0;
+                for (int y = 15; y < 70; y++)
+                    for (int x = 15; x < 100; x++)
+                        if (image.GetPixel(x, y).ToArgb() == Color.SteelBlue.ToArgb()) visible++;
+                Check(visible > 100, "report background boxes cannot cover chart values");
+            }
             PackageChecks.Verify(root, Check);
             Console.WriteLine("SUCCESS " + count);
             return 0;

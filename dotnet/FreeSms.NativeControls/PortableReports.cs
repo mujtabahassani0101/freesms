@@ -171,7 +171,8 @@ namespace FreeSms.NativeControls
                 graphics.SetClip(new RectangleF(0, band.Top, width, Math.Max(.1f, band.Height)), CombineMode.Intersect);
                 graphics.TranslateTransform(0, band.Top - band.Offset);
                 var context = model.Context(input, band.Row, rows, index + 1, pages.Count);
-                foreach (var obj in band.Section.Elements("object"))
+                // Crystal boxes are backgrounds. Charts must also precede overlaid labels/subreports.
+                foreach (var obj in band.Section.Elements("object").OrderBy(o => o.Element("Kind")?.Value == "BoxObject" ? 0 : o.Element("Kind")?.Value == "ChartObject" ? 1 : 2))
                 {
                     if (model.Flag(obj.Element("format"), "EnableSuppress", context)) continue;
                     var rect = new RectangleF(N(obj, "Left") / 14.4f, ObjectTop(obj, band.Layout), Math.Max(.1f, N(obj, "Width") / 14.4f), Math.Max(.1f, band.Layout.ObjectHeights.TryGetValue(obj, out var measuredHeight) ? measuredHeight : N(obj, "Height") / 14.4f));
