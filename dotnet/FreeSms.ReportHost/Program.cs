@@ -1,11 +1,13 @@
 using System;
 using System.Data;
+using System.Collections;
 using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using System.Xml;
 using System.Xml.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 using CrystalDecisions.CrystalReports.Engine;
 using CrystalDecisions.Windows.Forms;
 
@@ -14,9 +16,23 @@ internal static class Program
     [STAThread]
     private static int Main(string[] args)
     {
-        string directory = args.Length == 1 && args[0] != "--verify-engine" ? Path.GetDirectoryName(Path.GetFullPath(args[0])) : AppDomain.CurrentDomain.BaseDirectory;
+        string directory = args.Length == 1 && !args[0].StartsWith("--", StringComparison.Ordinal) ? Path.GetDirectoryName(Path.GetFullPath(args[0])) : AppDomain.CurrentDomain.BaseDirectory;
         try
         {
+            if (args.Length == 1 && args[0] == "--export-license-context")
+            {
+                // This is the original trusted build resource, never an input from the user.
+                using (var stream = typeof(Program).Assembly.GetManifestResourceStream("FreeSms.ReportHost.exe.licenses"))
+                {
+                    var context = (object[])new BinaryFormatter().Deserialize(stream);
+                    var keys = (Hashtable)context[1];
+                    var xml = new XElement("licenses");
+                    foreach (DictionaryEntry item in keys)
+                        xml.Add(new XElement("license", new XAttribute("type", (string)item.Key), (string)item.Value));
+                    new XDocument(xml).Save(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "original-component-licenses.xml"));
+                }
+                return 0;
+            }
             Application.EnableVisualStyles();
             if (args.Length == 1 && args[0] == "--verify-engine")
             {

@@ -41,6 +41,7 @@ internal static class OriginalProgram
         bool checking = args.Contains("--verify-original-forms");
         try
         {
+            OriginalComponentLicenses.Initialize();
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             if (checking)
             {

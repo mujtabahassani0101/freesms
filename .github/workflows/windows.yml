@@ -66,6 +66,9 @@ jobs:
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
           dotnet build dotnet/FreeSms.ReportHost/FreeSms.ReportHost.csproj -c Release -o dist/FreeSMS-Original-Net10/report-host
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          $hostApp = Join-Path $PWD 'dist/FreeSMS-Original-Net10/report-host/FreeSms.ReportHost.exe'
+          $licenseProcess = Start-Process $hostApp -ArgumentList '--export-license-context' -Wait -PassThru
+          if ($licenseProcess.ExitCode -ne 0) { Get-Content dist/FreeSMS-Original-Net10/report-host/error.txt; exit 1 }
       - name: Verify the original forms and vendor controls
         shell: pwsh
         run: |
@@ -79,6 +82,7 @@ jobs:
           }
           Get-Content dist/FreeSMS-Original-Net10/original-forms-verification.txt
       - name: Install native legacy reporting runtime
+        if: ${{ !cancelled() }}
         shell: pwsh
         run: |
           $installer = Join-Path $PWD 'vendor/runtime/CRRedist2005_x86.msi'
@@ -86,6 +90,7 @@ jobs:
           $process = Start-Process msiexec.exe -ArgumentList "/i `"$installer`" /qn /norestart /l*v `"$log`"" -Wait -PassThru
           if ($process.ExitCode -notin @(0,3010)) { Get-Content $log -Tail 50; exit 1 }
       - name: Verify every original report template in native runtime
+        if: ${{ !cancelled() }}
         shell: pwsh
         run: |
           $app = Join-Path $PWD 'dist/FreeSMS-Original-Net10/report-host/FreeSms.ReportHost.exe'
