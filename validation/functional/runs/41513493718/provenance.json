@@ -1,0 +1,8 @@
+{
+  "workflow_run": 41513493718,
+  "source_commit": "06ff6d263484c3209ef005007e93426354753dc5",
+  "artifact_id": 13173393092,
+  "sha256": "e369616d651de899481c0389b3422a3da52983620d599ec189a82658bea5c13d",
+  "bytes": 13643,
+  "scope": "School Save/reopen, discount New/Edit/Cancel/Delete/validation and original student deletion passed. Report preview fixture comparison failed; its Arabic/Persian normalization mismatch is being corrected by comparing persisted identity/name. Two configured report templates remain absent. Overall run is not a full application pass."
+}

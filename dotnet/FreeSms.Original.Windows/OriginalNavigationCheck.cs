@@ -103,11 +103,11 @@ internal static class OriginalNavigationCheck
                     if (viewers.Any(viewer => viewer.ReportPageCount > 0))
                     {
                         var viewer = viewers.First(viewer => viewer.ReportPageCount > 0);
-                        OriginalWorkflowChecks.AssertReportFixture(viewer);
-                        File.AppendAllText(workerLog, "PASS actual report input contains the fixture student" + Environment.NewLine);
                         using var image = new System.Drawing.Bitmap(viewer.Width, viewer.Height);
                         viewer.DrawToBitmap(image, new System.Drawing.Rectangle(System.Drawing.Point.Empty, image.Size));
                         image.Save(Path.Combine(directory, route + ".png"));
+                        OriginalWorkflowChecks.AssertReportFixture(viewer, database);
+                        File.AppendAllText(workerLog, "PASS actual report input contains the fixture student's persisted identity and name" + Environment.NewLine);
                         File.AppendAllText(workerLog, "SUCCESS actual report controller and preview; pages=" + viewer.ReportPageCount + Environment.NewLine);
                         Environment.Exit(0);
                     }
@@ -220,7 +220,9 @@ internal static class OriginalNavigationCheck
         string path = Path.Combine(directory, "report-catalog.log");
         int failures = 0, count = 0;
         using var log = new StreamWriter(path);
-        foreach (var row in database.Query("SELECT id,Rpt,sp,sp2,subReport,tosifi,Caption FROM tRpt ORDER BY id"))
+        var entries = database.Query("SELECT * FROM tRpt ORDER BY id");
+        File.WriteAllText(Path.Combine(directory,"report-catalog-spec.json"),System.Text.Json.JsonSerializer.Serialize(entries,new System.Text.Json.JsonSerializerOptions {WriteIndented=true}));
+        foreach (var row in entries)
         {
             count++;
             string id = Convert.ToString(row["id"]), name = Convert.ToString(row["Rpt"]);

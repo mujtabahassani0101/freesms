@@ -15,3 +15,6 @@ Student registration/editing, marks, attendance, payments, non-admin authenticat
 
 - The populated report fixture in run 41510035549 reproduced a null year in asda0.e(): static year lists ended at 1403. All twelve original year selectors now use the domain-supported 1300–1600 range and atomic selection updates; fresh Windows evidence is pending.
 - Three stricter menu probes caught documented missing-configuration warnings (no lessons, no school-day counts), rather than exceptions. They are classified as expected validation only when both their exact message and corresponding database precondition match; they do not prove populated workflows.
+
+- Run 41513493718 (06ff6d2) verifies school Save/reopen, discount empty-title/New/Edit/Cancel/Delete and student deletion through original buttons. The OK dialogs use native button ID 2 on this runner; locating the actual descendant button resolves the previous probe timeouts. These scenario passes do not cover every user role or validation case.
+- That run advanced the year-1410 report through its controller and preview, but the fixture assertion compared legacy Arabic normalization to Core storage normalization. The assertion now queries the persisted student identity/name and requires both in the actual viewer input, with a screenshot captured even on failure. Fresh positive evidence is still required.

@@ -1,0 +1,171 @@
+CATALOG report=101 tosifi= caption=لیست خام جهت ورود نمرات
+PASS report=101 original factory and migrated template: CrListDabirKhamByTchNameAllBook18
+PASS report=101 procedure=spRpt_ListDabirKhamByTchNameAllBook
+CATALOG report=102 tosifi= caption=لیست نمرات
+PASS report=102 original factory and migrated template: CrListstd_books18_class33
+PASS report=102 procedure=spRpt_Liststd_books2
+PASS report=102 procedure=spRpt_Liststd_books1
+CATALOG report=103 tosifi= caption=لیست نمرات هر مضمون
+PASS report=103 original factory and migrated template: CrListDabir_1
+PASS report=103 procedure=spRpt_ListDabir2
+PASS report=103 procedure=spRpt_ListDabir1
+CATALOG report=104 tosifi= caption=اطلاع نامه چهار و نيم ماهه - عمودي
+PASS report=104 original factory and migrated template: CR_AF_StdKarnameDorehByChart_term1
+SUBREPORT report=104 bindings=Sub1,spRpt_StdListTestMark_AvgClass_AllExam,Sub2,spRpt_StdgClass3,Sub3,spRpt_StdgPaye3
+PASS report=104 procedure=spRpt_StdKarnameDoreh2
+PASS report=104 procedure=spRpt_StdKarnameDoreh1
+PASS report=104 procedure=spRpt_StdListTestMark_AvgClass_AllExam
+PASS report=104 procedure=spRpt_StdgClass3
+PASS report=104 procedure=spRpt_StdgPaye3
+CATALOG report=105 tosifi= caption=اطلاع نامه چهار و نيم ماهه - افقي
+PASS report=105 original factory and migrated template: CR_AF_StdKarnameDorehByChart_term1_land
+SUBREPORT report=105 bindings=Sub1,spRpt_StdKarnameDoreh1,Sub2,spRpt_StdgClass3,Sub3,spRpt_StdgPaye3
+PASS report=105 procedure=spRpt_StdKarnameDoreh2
+PASS report=105 procedure=spRpt_StdKarnameDoreh1
+PASS report=105 procedure=spRpt_StdgClass3
+PASS report=105 procedure=spRpt_StdgPaye3
+CATALOG report=106 tosifi= caption=ليست اوسط دانش آموزان تا 4 رقم اعشار به تفکيک صنف
+PASS report=106 original factory and migrated template: CrListStdMoadelGroupByClass
+PASS report=106 procedure=spRpt_ListStdMoadel2
+PASS report=106 procedure=spRpt_ListStdMoadel1
+CATALOG report=107 tosifi= caption=ليست اوسط دانش آموزان تا 4 رقم اعشار به تفکيک پايه
+PASS report=107 original factory and migrated template: CrListStdMoadelGroupByPaye
+PASS report=107 procedure=spRpt_ListStdMoadel2
+PASS report=107 procedure=spRpt_ListStdMoadel1
+CATALOG report=108 tosifi= caption=ليست اوسط دانش آموزان تا 4 رقم اعشار  در کل مکتب
+PASS report=108 original factory and migrated template: CrListStdMoadelGroupBySch
+PASS report=108 procedure=spRpt_ListStdMoadel2
+PASS report=108 procedure=spRpt_ListStdMoadel1
+CATALOG report=109 tosifi= caption=آمار تعداد دانش آموزان در محدوده نمرات کسب شده در صنف
+PASS report=109 original factory and migrated template: CrListBooksRengMark1
+PASS report=109 procedure=sp_List_books_RengMark
+CATALOG report=110 tosifi= caption=آمار تعداد دانش آموزان در محدوده نمرات کسب شده در صنف-به تفکیک صنف
+PASS report=110 original factory and migrated template: CrListBooksRengMark_class
+PASS report=110 procedure=sp_List_books_RengMark
+CATALOG report=111 tosifi= caption=لیست نمرات تا 21 مضمون
+PASS report=111 original factory and migrated template: CrListstd_books21_class33
+PASS report=111 procedure=spRpt_Liststd_books2
+PASS report=111 procedure=spRpt_Liststd_books1
+CATALOG report=112 tosifi= caption=اطلاع نامه نهایی - عمودي
+PASS report=112 original factory and migrated template: CR_AF_StdKarnameDorehByChart_term3
+SUBREPORT report=112 bindings=Sub1,spRpt_StdListTestMark_AvgClass_AllExam,Sub2,spRpt_StdgClass3,Sub3,spRpt_StdgPaye3
+PASS report=112 procedure=spRpt_StdKarnameDoreh2
+PASS report=112 procedure=spRpt_StdKarnameDoreh1
+PASS report=112 procedure=spRpt_StdListTestMark_AvgClass_AllExam
+PASS report=112 procedure=spRpt_StdgClass3
+PASS report=112 procedure=spRpt_StdgPaye3
+CATALOG report=113 tosifi= caption=اطلاع نامه نهایی - افقی
+PASS report=113 original factory and migrated template: CR_AF_StdKarnameDorehByChart_term3_land
+SUBREPORT report=113 bindings=Sub1,spRpt_StdKarnameDoreh1,Sub2,spRpt_StdgClass3,Sub3,spRpt_StdgPaye3
+PASS report=113 procedure=spRpt_StdKarnameDoreh2
+PASS report=113 procedure=spRpt_StdKarnameDoreh1
+PASS report=113 procedure=spRpt_StdgClass3
+PASS report=113 procedure=spRpt_StdgPaye3
+CATALOG report=114 tosifi= caption=جدول نتايج صنف اول تا نهم
+PASS report=114 original factory and migrated template: CR_AF_StdKarnameFinal
+PASS report=114 procedure=spRpt_karnamefinal
+CATALOG report=115 tosifi= caption=جدول نتايج صنف دهم و يازدهم
+PASS report=115 original factory and migrated template: CR_AF_StdKarnameFinal_10_11
+PASS report=115 procedure=spRpt_karnamefinal
+CATALOG report=117 tosifi= caption=جدول نتايج صنف دوازدهم
+PASS report=117 original factory and migrated template: CR_AF_StdKarnameFinal_12
+PASS report=117 procedure=spRpt_karnamefinal
+CATALOG report=118 tosifi= caption=خلص نتایج اول تا نهم
+PASS report=118 original factory and migrated template: CR_AF_ListFinal9
+PASS report=118 procedure=spRpt_Listfinal
+CATALOG report=119 tosifi= caption=خلص نتایج دهم و یازدهم
+PASS report=119 original factory and migrated template: CR_AF_ListFinal10_11
+PASS report=119 procedure=spRpt_Listfinal
+CATALOG report=120 tosifi= caption=خلص نتایج دوازدهم
+PASS report=120 original factory and migrated template: CR_AF_ListFinal12
+PASS report=120 procedure=spRpt_karnamefinal
+CATALOG report=121 tosifi= caption=لیست مضمون وار
+PASS report=121 original factory and migrated template: CR_AF_StdKarnameFinalAll
+PASS report=121 procedure=spRpt_karnamefinal
+CATALOG report=1003 tosifi= caption=لیست دبیر-میانگین نمرات چند دوره
+PASS report=1003 original factory and migrated template: CrListStdBookMarks5
+PASS report=1003 procedure=spRpt_StdBookMarks
+CATALOG report=1007 tosifi= caption=گزارش مقایسه دورس صنف ها  در یک دوره 
+PASS report=1007 original factory and migrated template: CrAvgClassBooks_1
+PASS report=1007 procedure=spRpt_AvgClassBooks
+CATALOG report=1008 tosifi= caption=گزارش مقایسه دورس صنف ها  در چند دوره
+PASS report=1008 original factory and migrated template: CrAvgClassBooks_2
+PASS report=1008 procedure=spRpt_AvgClassBooks
+CATALOG report=1012 tosifi= caption=اطلاع نامه تجمعي دانش آموز
+PASS report=1012 original factory and migrated template: CStdKarnameTajamoee
+PASS report=1012 procedure=spRpt_StdKarnameTajamoee2
+CATALOG report=1014 tosifi= caption=اطلاع نامه دانش آموز- آ 5-فقط یک نمره برای دوره
+PASS report=1014 original factory and migrated template: CStdKarnameDoreh3
+PASS report=1014 procedure=spRpt_StdKarnameDoreh2
+PASS report=1014 procedure=spRpt_StdKarnameDoreh1
+CATALOG report=1016 tosifi= caption=اطلاع نامه تجمعی دانش آموز با وضعیت افت و رشد
+PASS report=1016 original factory and migrated template: CStdKarnameTajamoee2
+PASS report=1016 procedure=spRpt_StdKarnameTajamoee2
+CATALOG report=1021 tosifi= caption=دانش آموزان برتر و ضعیف و دانش آموزانی که بیشرین افت و رشد را نسبت به دوره گذشته داشته اند
+PASS report=1021 original factory and migrated template: CrClslistOftRoshd
+PASS report=1021 procedure=spRpt_ListClassOftRoshd
+CATALOG report=1024 tosifi= caption=اطلاع نامه آ 4 -با نمودار دروس و نمودار پيشرفت اوسط دانش آموز
+FAILED report=1024 missing factory/template: CStdKarnameDorehByChart
+SUBREPORT report=1024 bindings=Sub1,spRpt_StdListTestMark_AvgClass_AllExam
+PASS report=1024 procedure=spRpt_StdKarnameDoreh2
+PASS report=1024 procedure=spRpt_StdKarnameDoreh1
+PASS report=1024 procedure=spRpt_StdListTestMark_AvgClass_AllExam
+CATALOG report=1025 tosifi= caption=اطلاع نامه آ 4-اطلاع نامه تجمعي دانش آموز با وضعيت افت و رشد-با نمودار پيشرفت
+PASS report=1025 original factory and migrated template: CStdKarnameTajamoee2ByChart
+SUBREPORT report=1025 bindings=Sub1,spRpt_StdListTestMark_AvgClass
+PASS report=1025 procedure=spRpt_StdKarnameTajamoee2
+PASS report=1025 procedure=spRpt_StdListTestMark_AvgClass
+CATALOG report=1026 tosifi= caption=آمار قبولي صنف در هر درس
+PASS report=1026 original factory and migrated template: CrAmarGhaboliClass
+PASS report=1026 procedure=spRpt_AmarGhaboliClass
+CATALOG report=1027 tosifi= caption=آمار قبولي پايه در هر درس
+PASS report=1027 original factory and migrated template: CrAmarGhaboliPaye
+PASS report=1027 procedure=spRpt_AmarGhaboliPaye
+CATALOG report=1029 tosifi= caption=کارتکس دبير با 16 ستون
+PASS report=1029 original factory and migrated template: CrListDabirKham16
+PASS report=1029 procedure=spRpt_ListDabirKham
+CATALOG report=1030 tosifi= caption=کارتکس دبير با 18 ستون
+PASS report=1030 original factory and migrated template: CrListDabirKham18
+PASS report=1030 procedure=spRpt_ListDabirKham
+CATALOG report=1031 tosifi= caption=کارتکس دبير با 20 ستون
+PASS report=1031 original factory and migrated template: CrListDabirKham20
+PASS report=1031 procedure=spRpt_ListDabirKham
+CATALOG report=1032 tosifi= caption=اطلاع نامه آ 4 -تک نمره-با نمودار دروس و نفرات برتر صنف و پایه
+FAILED report=1032 missing factory/template: CStdKarnameDorehByChart_byBestStd_OneMark
+SUBREPORT report=1032 bindings=Sub1,spRpt_StdListTestMark_AvgClass_AllExam,Sub2,spRpt_StdgClass3,Sub3,spRpt_StdgPaye3
+PASS report=1032 procedure=spRpt_StdKarnameDoreh2
+PASS report=1032 procedure=spRpt_StdKarnameDoreh1
+PASS report=1032 procedure=spRpt_StdListTestMark_AvgClass_AllExam
+PASS report=1032 procedure=spRpt_StdgClass3
+PASS report=1032 procedure=spRpt_StdgPaye3
+CATALOG report=1037 tosifi= caption=میزان افت و رشد دانش آموزان صنف در هر درس
+PASS report=1037 original factory and migrated template: CrListStdOftRoshdBooks
+PASS report=1037 procedure=spRpt_ListStdOftRoshdBooks
+CATALOG report=1038 tosifi= caption=میزان افت و رشد دانش آموزان صنف در اوسط
+PASS report=1038 original factory and migrated template: CrListStdOftRoshdMoadel
+PASS report=1038 procedure=spRpt_ListStdOftRoshdMoadel
+CATALOG report=1039 tosifi= caption=اطلاع نامه استاد
+PASS report=1039 original factory and migrated template: CrDabirAvgClassMark
+PASS report=1039 procedure=spRpt_DabirAvgClassMark
+CATALOG report=1040 tosifi= caption=اطلاع نامه تجمعی -با اسم دبیر-دانش آموز با وضعیت افت و رشد-با نمودار پیشرفت
+PASS report=1040 original factory and migrated template: CStdKarnameTajamoee3ByChart
+SUBREPORT report=1040 bindings=Sub1,spRpt_StdListTestMark_AvgClass
+PASS report=1040 procedure=spRpt_StdKarnameTajamoee2
+PASS report=1040 procedure=spRpt_StdListTestMark_AvgClass
+CATALOG report=1041 tosifi= caption=اطلاع نامه آ 4 -تک نمره-با نفرات برتر صنف و پایه
+PASS report=1041 original factory and migrated template: CStdKarnameDoreh_byBestStd_OneMark
+SUBREPORT report=1041 bindings=Sub2,spRpt_StdgClass3,Sub3,spRpt_StdgPaye3
+PASS report=1041 procedure=spRpt_StdKarnameDoreh2
+PASS report=1041 procedure=spRpt_StdKarnameDoreh1
+PASS report=1041 procedure=spRpt_StdgClass3
+PASS report=1041 procedure=spRpt_StdgPaye3
+CATALOG report=1048 tosifi= caption=اوسط مکتسبه دانش آموزان در طول دوره هاي ارزيابي-به تفکيک صنف
+PASS report=1048 original factory and migrated template: CrStdMoadelMarkGroupByClass
+PASS report=1048 procedure=spRpt_StdMoadelMarks
+CATALOG report=1049 tosifi= caption=اوسط مکتسبه دانش آموزان در طول دوره هاي ارزيابي-به تفکيک پايه 
+PASS report=1049 original factory and migrated template: CrStdMoadelMarkGroupByPaye
+PASS report=1049 procedure=spRpt_StdMoadelMarks
+CATALOG report=1050 tosifi= caption=ليست دانش آموزان مشروطي
+PASS report=1050 original factory and migrated template: CrListstd_booksAlarm
+PASS report=1050 procedure=spRpt_Liststd_booksAlarm
+RESULT reports=43 failures=2; dependency checks only, not execution proof

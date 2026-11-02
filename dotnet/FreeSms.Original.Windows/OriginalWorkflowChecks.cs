@@ -23,7 +23,7 @@ internal static class OriginalWorkflowChecks
             if (Convert.ToInt32(grid.GetRow(i).Cells["id"].Value) == id) { grid.Row = i; return; }
         throw new InvalidOperationException("Saved row was not reloaded into the original grid.");
     }
-    internal static string ReportStudentName => asdaj.b("شاگرد آزمایشی گزارش");
+    internal static string ReportStudentName => "شاگرد آزمایشی گزارش";
     internal static void PrepareReportFixture(Database db)
     {
         // The parent creates this database; it never uses OriginalRuntime's user connection.
@@ -38,10 +38,11 @@ internal static class OriginalWorkflowChecks
         school.AssignTeacher(classroom,book,teacher);
         school.SaveStudent(new Record { ["FName"]=ReportStudentName, ["LName"]=asdaj.b("پدر آزمایشی"), ["PName"]=asdaj.b("پدرکلان آزمایشی"), ["Code"]=5991001, ["NumberAsas"]=5991001, ["xPaye"]=1, ["xClass"]=classroom, ["Status"]=1, ["Jens"]=0, ["Fee1"]=1000 });
     }
-    internal static void AssertReportFixture(FreeSms.NativeControls.PortableReportViewer viewer)
+    internal static void AssertReportFixture(FreeSms.NativeControls.PortableReportViewer viewer, Database database)
     {
         var input = (FreeSms.Reports.ReportInput)typeof(FreeSms.NativeControls.PortableReportViewer).GetField("input",BindingFlags.Instance|BindingFlags.NonPublic).GetValue(viewer);
-        bool found = input != null && input.Data != null && input.Data.Tables.Cast<System.Data.DataTable>().Any(table => table.Rows.Cast<System.Data.DataRow>().Any(row => row.ItemArray.Any(value => Convert.ToString(value) == ReportStudentName)));
+        var expected = database.Query("SELECT id,FName FROM tStudent WHERE Code=5991001").Single();
+        bool found = input != null && input.Data != null && input.Data.Tables.Cast<System.Data.DataTable>().Any(table => table.Columns.Contains("xStudent") && table.Columns.Contains("FName") && table.Rows.Cast<System.Data.DataRow>().Any(row => Convert.ToInt32(row["xStudent"]) == Convert.ToInt32(expected["id"]) && Convert.ToString(row["FName"]) == Convert.ToString(expected["FName"])));
         Require(found,"Report preview did not receive the fixture student's actual database values.");
         Require(input.Parameters.Values.Any(value => Convert.ToString(value).Contains("مکتب آزمایشی گزارش")), "Report preview did not receive the fixture school header.");
     }

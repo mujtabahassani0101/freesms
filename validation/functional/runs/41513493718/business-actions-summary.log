@@ -1,0 +1,5 @@
+Original school/discount workflow actions and persisted effects
+PASS b6_workflow_school toolfrmSchool -> frmSchool
+PASS m_e_workflow_student-delete toolStd -> frmlistStd
+PASS d8_workflow_discount toolTakhfif -> frmTakhfif
+RESULT loaded=3, interaction=0, total=3
