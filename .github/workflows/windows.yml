@@ -107,6 +107,8 @@ jobs:
           path: dist/FreeSMS-Net10/
           retention-days: 7
   original:
+    name: Direct .NET 10 port (experimental)
+    continue-on-error: true
     runs-on: windows-2025
     timeout-minutes: 20
     steps:

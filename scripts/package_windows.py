@@ -4,12 +4,13 @@ import hashlib
 import json
 import shutil
 import struct
+import subprocess
 import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
-RELEASE = ROOT / 'dist/FreeSMS-Net10'
+RELEASE = ROOT / 'dist/FreeSMS-Native-Compatible'
 SOURCE_ZIP = ROOT / 'FreeSMS-Windows-Source.zip'
-RELEASE_ZIP = ROOT / 'FreeSMS-Net10-Windows-x64.zip'
+RELEASE_ZIP = ROOT / 'FreeSMS-Native-Windows-x64.zip'
 EXCLUDE = {'.venv', '.tools', '.runtime', '.git', 'bin', 'obj', 'build', 'dist', '__pycache__', 'dotnet-data'}
 
 
@@ -56,6 +57,8 @@ if __name__ == '__main__':
     }.items():
         (RELEASE / name).write_bytes(text.replace('\n', '\r\n').encode('ascii'))
     shutil.copy2(ROOT / 'README.md', RELEASE / 'README-FA.md')
+    shutil.copy2(ROOT / 'scripts/Setup-Reports.cmd', RELEASE / 'Setup-Reports.cmd')
+    shutil.copy2(ROOT / 'vendor/runtime/CRRedist2005_x86.msi', RELEASE / 'CRRedist2005_x86.msi')
     licenses = RELEASE / 'licenses'
     licenses.mkdir(exist_ok=True)
     package_root = ROOT / '.tools/nuget'
@@ -63,7 +66,7 @@ if __name__ == '__main__':
         for source in (package_root / package / version).glob('*'):
             if source.is_file() and ('LICENSE' in source.name or 'THIRD-PARTY-NOTICES' in source.name):
                 shutil.copy2(source, licenses / (package + '-' + source.name))
-    for source in (ROOT / 'dotnet/FreeSms.Windows/obj').glob('project.assets.json'):
+    for source in (ROOT / 'dotnet').glob('FreeSms.*/obj/project.assets.json'):
         assets = json.loads(source.read_text(encoding='utf-8'))
         inventory = []
         for name, item in assets['libraries'].items():
@@ -77,16 +80,18 @@ if __name__ == '__main__':
     for cache in ROOT.rglob('__pycache__'):
         if '.tools' not in cache.relative_to(ROOT).parts:
             shutil.rmtree(cache)
-    source_files = sorted(p for p in ROOT.rglob('*') if p.is_file()
-        and not EXCLUDE.intersection(p.relative_to(ROOT).parts)
-        and p.suffix not in {'.zip', '.pyc'}
-        and p.name not in {'SOURCE-MANIFEST.json', 'SHA256SUMS.txt'})
+    tracked = subprocess.check_output(['git', 'ls-files', '-z'], cwd=ROOT).decode('utf-8').split('\0')
+    source_files = sorted(ROOT / name for name in tracked if name
+        and (ROOT / name).is_file()
+        and not EXCLUDE.intersection(Path(name).parts)
+        and Path(name).suffix not in {'.zip', '.pyc'}
+        and Path(name).name not in {'SOURCE-MANIFEST.json', 'SHA256SUMS.txt'})
     manifest = ROOT / 'SOURCE-MANIFEST.json'
-    manifest.write_text(json.dumps({'format': 2, 'target': 'net10.0-windows / win-x64', 'files': [
+    manifest.write_text(json.dumps({'format': 2, 'target': 'Windows x64: .NET 10 launcher; original x86 UI on .NET Framework 4.8', 'files': [
         {'path': p.relative_to(ROOT).as_posix(), 'bytes': p.stat().st_size, 'sha256': digest(p)} for p in source_files
     ]}, ensure_ascii=False, indent=2), encoding='utf-8')
     zip_files(SOURCE_ZIP, source_files + [manifest], ROOT, 'free-sms')
-    zip_files(RELEASE_ZIP, sorted(p for p in RELEASE.rglob('*') if p.is_file()), RELEASE, 'FreeSMS-Net10')
+    zip_files(RELEASE_ZIP, sorted(p for p in RELEASE.rglob('*') if p.is_file()), RELEASE, 'FreeSMS-Windows')
     (ROOT / 'SHA256SUMS.txt').write_text(''.join(digest(p) + '  ' + p.name + '\n' for p in [SOURCE_ZIP, RELEASE_ZIP]), encoding='ascii')
     for path in [SOURCE_ZIP, RELEASE_ZIP]:
         print(path.name, path.stat().st_size, 'bytes')

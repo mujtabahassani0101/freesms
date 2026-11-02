@@ -16,3 +16,4 @@ validation/original-recovery/
 validation/ci-*/
 validation/*failure.log
 validation/*build.log
+validation/compatible-windows.log

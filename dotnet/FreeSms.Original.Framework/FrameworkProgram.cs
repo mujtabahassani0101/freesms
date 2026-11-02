@@ -51,6 +51,20 @@ internal static class FrameworkProgram
         {
             OriginalFonts.Initialize();
             KeylessRuntime.Enable();
+            if (args.Contains("--preview"))
+            {
+                Application.EnableVisualStyles();
+                using (var original = new asdb3())
+                using (var image = new System.Drawing.Bitmap(original.Width, original.Height))
+                using (var preview = new Form { Text = "پیش‌نمایش فرم اصلی — بدون بانک", ClientSize = original.Size, AutoScroll = true })
+                {
+                    original.CreateControl();
+                    original.DrawToBitmap(image, new System.Drawing.Rectangle(System.Drawing.Point.Empty, image.Size));
+                    preview.Controls.Add(new PictureBox { Image = image, SizeMode = PictureBoxSizeMode.AutoSize });
+                    Application.Run(preview);
+                }
+                return 0;
+            }
             if (args.Contains("--verify-original-forms"))
             {
                 Application.EnableVisualStyles();
@@ -101,7 +115,7 @@ internal static class FrameworkProgram
                                 image.Save(Path.Combine(AppContext.BaseDirectory, "startup-" + form.GetType().Name + ".png"));
                             }
                         }
-                        foreach (var form in windows.Reverse()) form.Close();
+                        foreach (var form in Enumerable.Reverse(windows)) form.Close();
                         Application.Exit();
                     };
                     timer.Start();

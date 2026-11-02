@@ -13,7 +13,7 @@ internal static class Program
             if (!File.Exists(app)) throw new FileNotFoundException("پوشهٔ برنامهٔ اصلی همراه این فایل نیست. بسته را کامل استخراج کنید.");
             var start = new ProcessStartInfo(app) { UseShellExecute = false, WorkingDirectory = root };
             foreach (var argument in args) start.ArgumentList.Add(argument);
-            if (!args.Contains("--verify-original-forms"))
+            if (!args.Contains("--verify-original-forms") && !args.Contains("--preview"))
             {
                 var options = DatabaseOptions.Default with { Name = "school_af_kbr" };
                 var database = Bootstrapper.OpenAsync(root,
