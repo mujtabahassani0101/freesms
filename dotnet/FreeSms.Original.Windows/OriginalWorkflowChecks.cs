@@ -16,11 +16,11 @@ internal static class OriginalWorkflowChecks
     private static T Field<T>(Form form, string name) => (T)form.GetType().GetField(name, BindingFlags.Instance | BindingFlags.NonPublic).GetValue(form);
     private static void Click(Form form, string name) => Field<UIButton>(form, name).PerformClick();
     private static void Require(bool condition, string message) { if (!condition) throw new InvalidOperationException(message); }
-    private static void Select(Form form, int id, string field = "m_b")
+    private static void Select(Form form, int id, string field = "m_b", string key = "id")
     {
         var grid = Field<GridEX>(form, field);
         for (int i = 0; i < grid.RowCount; i++)
-            if (Convert.ToInt32(grid.GetRow(i).Cells["id"].Value) == id) { grid.Row = i; return; }
+            if (Convert.ToInt32(grid.GetRow(i).Cells[key].Value) == id) { grid.Row = i; return; }
         throw new InvalidOperationException("Saved row was not reloaded into the original grid.");
     }
     internal static string ReportStudentName => "شاگرد آزمایشی گزارش";
@@ -105,6 +105,26 @@ internal static class OriginalWorkflowChecks
             usedOrders.Add(order++);
         }
     }
+    internal static void PrepareMarkEntryFixture(Database db)
+    {
+        var school=new SchoolService(db,new Session(1414));school.SetYear(1414);
+        var used=new HashSet<int>(db.Query("SELECT sortRpt FROM tClass WHERE sortRpt IS NOT NULL").Select(row=>Convert.ToInt32(row["sortRpt"])));
+        int order=30000;while(used.Contains(order))order++;
+        Require(order<=32767,"No available mark fixture class order.");
+        int classroom=school.SaveClass(new Record{["name"]="صنف ورود نمره",["xpaye"]=1,["fee"]=0,["shift"]=1,["sortRpt"]=order});
+        var entities=new EntityService(school);
+        int book=entities.Save("books",new Record{["xPaye"]=1,["Name"]="مضمون ورود نمره",["vahed"]=1,["timeWeek"]=1,["Type"]=1,["sort"]=30001,["SortOneEntry"]=30001,["codedars"]=5995001,["Vezarat"]=true});
+        db.Execute("UPDATE tBook SET showOneEntry=1 WHERE id=@p0",new object[]{book});
+        int teacher=entities.Save("teachers",new Record{["fNamF"]="استاد نمره",["fNamL"]="آزمون",["fEmail"]="",["fPassword"]=""});school.AssignTeacher(classroom,book,teacher);
+        foreach(int code in new[]{5995001,5995002})
+            school.SaveStudent(new Record{["FName"]=code==5995001?"شاگرد محفوظ نمره":"شاگرد ورود نمره",["LName"]="پدر نمره",["PName"]="پدرکلان نمره",["Code"]=code,["NumberAsas"]=code,["xPaye"]=1,["xClass"]=classroom,["Status"]=1,["Jens"]=0,["Fee1"]=0});
+        foreach(var item in new[]{(5995001,1,10),(5995002,2,15)})
+        {
+            int exam=Convert.ToInt32(db.Scalar("SELECT id FROM tExam WHERE xYear=1414 AND term=@p0",new object[]{item.Item2}));
+            var result=db.Call("sp_tMark_insertUpdate_FromXls_Af",new Record{["xuser"]=1,["code"]=item.Item1.ToString(),["codedars"]=5995001,["Xtest"]=exam,["xYear"]=1414,["Mark"]=item.Item3});
+            Require(string.IsNullOrEmpty(Convert.ToString(result.Output["err"])),"Mark entry fixture rejected an owned mark.");
+        }
+    }
     internal static void AssertReportFixture(FreeSms.NativeControls.PortableReportViewer viewer, Database database)
     {
         var input = (FreeSms.Reports.ReportInput)typeof(FreeSms.NativeControls.PortableReportViewer).GetField("input",BindingFlags.Instance|BindingFlags.NonPublic).GetValue(viewer);
@@ -155,6 +175,7 @@ internal static class OriginalWorkflowChecks
         else if (scenario == "backup") Backup(form,db,log);
         else if (scenario == "teacher" || scenario == "driver") People(scenario,form,db,log);
         else if (scenario == "payment") Payment(form,db,log);
+        else if (scenario == "mark-entry") MarkEntry(form,db,log);
         else if (scenario == "attendance1" || scenario == "attendance2") Attendance(form,db,log);
         else throw new ArgumentException("Unknown workflow scenario: " + scenario);
     }
@@ -303,6 +324,43 @@ internal static class OriginalWorkflowChecks
         Require(view.EditingControl is TextBox,"Grid did not open a text editor.");
         ((TextBox)view.EditingControl).Text=value;
         Require(grid.TryEndEdit(),"Grid rejected a valid input: "+key);
+    }
+    private static void MarkEntry(Form form,Database db,Action<string> log)
+    {
+        int classroom=Convert.ToInt32(db.Scalar("SELECT id FROM tClass WHERE xYear=1414 AND name=N'صنف ورود نمره'"));
+        int student=Convert.ToInt32(db.Scalar("SELECT id FROM tStudent WHERE Code=5995002"));
+        int peer=Convert.ToInt32(db.Scalar("SELECT id FROM tStudent WHERE Code=5995001"));
+        int book=Convert.ToInt32(db.Scalar("SELECT id FROM tBook WHERE codedars=5995001"));
+        int exam=Convert.ToInt32(db.Scalar("SELECT id FROM tExam WHERE xYear=1414 AND term=1"));
+        int other=Convert.ToInt32(db.Scalar("SELECT id FROM tExam WHERE xYear=1414 AND term=2"));
+        Field<UIComboBox>(form,"q").SelectedValue=exam.ToString();
+        Field<UIComboBox>(form,"u").SelectedValue="1";
+        Field<UIComboBox>(form,"s").SelectedValue=classroom.ToString();
+        void Open()
+        {
+            Select(form,student,"m_i");Click(form,"m_c");Select(form,book,"w","xbook");
+            Require(Field<Control>(form,"m_k").Visible,"Mark entry panel did not open.");
+        }
+        void Save()
+        {
+            var students=Field<GridEX>(form,"m_i");bool next=students.Row<students.RowCount-1;
+            Dialog(()=>Click(form,"o"),next?"اطلاعات ذخیره شد . آیا مایل هستید نفر بعدی نمایش داده شود":"اطلاعات ذخیره شد",next?7:1);
+        }
+        object Value(int id,int test)=>db.Scalar("SELECT M1 FROM tMark WHERE xStudent=@p0 AND Xtest=@p1 AND xbook=@p2",new object[]{id,test,book});
+        Open();var grid=Field<GridEX>(form,"w");
+        EditGridCell(grid,grid.Row,"m1","۲۵");Save();
+        Require(Convert.ToDecimal(Value(student,exam))==25,"Original mark Save did not persist the entered Persian digits.");
+        Open();grid=Field<GridEX>(form,"w");
+        Require(Convert.ToDecimal(grid.GetRow(grid.Row).Cells["m1"].Value)==25,"Mark entry did not reload the saved mark.");
+        EditGridCell(grid,grid.Row,"m1","28");Click(form,"p");
+        Require(Convert.ToDecimal(Value(student,exam))==25,"Cancel committed an edited mark.");
+        Open();grid=Field<GridEX>(form,"w");EditGridCell(grid,grid.Row,"m1","28");Save();
+        Require(Convert.ToDecimal(Value(student,exam))==28,"Original mark Edit did not update the selected mark.");
+        Require(Convert.ToDecimal(Value(peer,exam))==10 && Convert.ToDecimal(Value(student,other))==15,"Mark entry changed a peer or another exam.");
+        Open();grid=Field<GridEX>(form,"w");
+        Require(Convert.ToDecimal(grid.GetRow(grid.Row).Cells["m1"].Value)==28,"Edited mark was not persisted on reopening the entry panel.");
+        Click(form,"p");Click(form,"m_d");
+        log("PASS original individual mark entry saves Persian digits, reloads edits, cancels safely and preserves peer and other-exam marks");
     }
     private static void Attendance(Form form,Database db,Action<string> log)
     {

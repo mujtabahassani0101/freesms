@@ -88,7 +88,7 @@ jobs:
             Get-Content dist/FreeSMS-Net10/navigation-checks/*_report_*.log -ErrorAction SilentlyContinue
             exit 1
           }
-      - name: Exercise school, discount, backup, teacher, driver, payment, attendance, student registration and deletion workflows through original buttons
+      - name: Exercise school, discount, backup, teacher, driver, payment, attendance, individual marks, student registration and deletion workflows through original buttons
         if: ${{ !cancelled() }}
         shell: pwsh
         run: |
