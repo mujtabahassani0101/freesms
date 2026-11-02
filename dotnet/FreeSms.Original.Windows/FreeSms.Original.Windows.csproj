@@ -23,7 +23,6 @@
   <ItemGroup>
     <ProjectReference Include="../FreeSms.Core/FreeSms.Core.csproj" />
     <PackageReference Include="System.Data.OleDb" Version="10.0.14" />
-    <PackageReference Include="System.Resources.Extensions" Version="10.0.14" />
     <Reference Include="ActiveReports.Viewer3">
       <HintPath>../../vendor/legacy/ActiveReports.Viewer3.dll</HintPath>
     </Reference>
