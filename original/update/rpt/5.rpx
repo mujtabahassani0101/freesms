@@ -1,0 +1,1858 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ActiveReportsLayout Version="4">
+  <Object type="DataDynamics.ActiveReports.ActiveReport3" name="ActiveReport31">
+    <Property name="StyleSheet">
+      <Item type="DDCssLib.StyleSheetRule">
+        <InstanceDescriptor type="DDCssLib.StyleSheetRule">
+          <Argument type="System.String">font-family: Arial; font-style: normal; text-decoration: none; font-weight: normal; font-size: 10pt; color: Black; </Argument>
+          <Argument type="System.String">Normal</Argument>
+        </InstanceDescriptor>
+      </Item>
+      <Item type="DDCssLib.StyleSheetRule">
+        <InstanceDescriptor type="DDCssLib.StyleSheetRule">
+          <Argument type="System.String">font-size: 16pt; font-weight: bold; </Argument>
+          <Argument type="System.String">Heading1</Argument>
+          <Argument type="System.String">Normal</Argument>
+        </InstanceDescriptor>
+      </Item>
+      <Item type="DDCssLib.StyleSheetRule">
+        <InstanceDescriptor type="DDCssLib.StyleSheetRule">
+          <Argument type="System.String">font-family: Times New Roman; font-size: 14pt; font-weight: bold; font-style: italic; </Argument>
+          <Argument type="System.String">Heading2</Argument>
+          <Argument type="System.String">Normal</Argument>
+        </InstanceDescriptor>
+      </Item>
+      <Item type="DDCssLib.StyleSheetRule">
+        <InstanceDescriptor type="DDCssLib.StyleSheetRule">
+          <Argument type="System.String">font-size: 13pt; font-weight: bold; </Argument>
+          <Argument type="System.String">Heading3</Argument>
+          <Argument type="System.String">Normal</Argument>
+        </InstanceDescriptor>
+      </Item>
+    </Property>
+    <Property name="DataMember">v_data</Property>
+    <Property name="DataSource">
+      <Binary>AAEAAAD/////AQAAAAAAAAAMAgAAAE5TeXN0ZW0uRGF0YSwgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAABNTeXN0ZW0uRGF0YS5EYXRhU2V0AwAAABdEYXRhU2V0LlJlbW90aW5nVmVyc2lvbglYbWxTY2hlbWELWG1sRGlmZkdyYW0DAQEOU3lzdGVtLlZlcnNpb24CAAAACQMAAAAGBAAAAKYaPD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTE2Ij8+DQo8eHM6c2NoZW1hIGlkPSJOZXdEYXRhU2V0IiB4bWxucz0iIiB4bWxuczp4cz0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEiIHhtbG5zOm1zZGF0YT0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp4bWwtbXNkYXRhIj4NCiAgPHhzOmVsZW1lbnQgbmFtZT0iTmV3RGF0YVNldCIgbXNkYXRhOklzRGF0YVNldD0idHJ1ZSIgbXNkYXRhOlVzZUN1cnJlbnRMb2NhbGU9InRydWUiPg0KICAgIDx4czpjb21wbGV4VHlwZT4NCiAgICAgIDx4czpjaG9pY2UgbWluT2NjdXJzPSIwIiBtYXhPY2N1cnM9InVuYm91bmRlZCI+DQogICAgICAgIDx4czplbGVtZW50IG5hbWU9InZfZGF0YSI+DQogICAgICAgICAgPHhzOmNvbXBsZXhUeXBlPg0KICAgICAgICAgICAgPHhzOnNlcXVlbmNlPg0KICAgICAgICAgICAgICA8eHM6ZWxlbWVudCBuYW1lPSJjb2RlX21vdGFsZW0iIHR5cGU9InhzOmxvbmciIG1zZGF0YTp0YXJnZXROYW1lc3BhY2U9IiIgbWluT2NjdXJzPSIwIiAvPg0KICAgICAgICAgICAgICA8eHM6ZWxlbWVudCBuYW1lPSJjaG9raSIgdHlwZT0ieHM6c2hvcnQiIG1zZGF0YTp0YXJnZXROYW1lc3BhY2U9IiIgbWluT2NjdXJzPSIwIiAvPg0KICAgICAgICAgICAgICA8eHM6ZWxlbWVudCBuYW1lPSJob3plIiB0eXBlPSJ4czpzdHJpbmciIG1zZGF0YTp0YXJnZXROYW1lc3BhY2U9IiIgbWluT2NjdXJzPSIwIiAvPg0KICAgICAgICAgICAgICA8eHM6ZWxlbWVudCBuYW1lPSJOYW1lIiB0eXBlPSJ4czpzdHJpbmciIG1zZGF0YTp0YXJnZXROYW1lc3BhY2U9IiIgbWluT2NjdXJzPSIwIiAvPg0KICAgICAgICAgICAgICA8eHM6ZWxlbWVudCBuYW1lPSJ2YWxhZCIgdHlwZT0ieHM6c3RyaW5nIiBtc2RhdGE6dGFyZ2V0TmFtZXNwYWNlPSIiIG1pbk9jY3Vycz0iMCIgLz4NCiAgICAgICAgICAgICAgPHhzOmVsZW1lbnQgbmFtZT0iTmFtZV92YWxhZCIgdHlwZT0ieHM6c3RyaW5nIiBtc2RhdGE6dGFyZ2V0TmFtZXNwYWNlPSIiIG1pbk9jY3Vycz0iMCIgLz4NCiAgICAgICAgICAgICAgPHhzOmVsZW1lbnQgbmFtZT0idGFydGliIiB0eXBlPSJ4czppbnQiIG1zZGF0YTp0YXJnZXROYW1lc3BhY2U9IiIgbWluT2NjdXJzPSIwIiAvPg0KICAgICAgICAgICAgICA8eHM6ZWxlbWVudCBuYW1lPSJ2YWxhZGl5YXQiIHR5cGU9InhzOnN0cmluZyIgbXNkYXRhOnRhcmdldE5hbWVzcGFjZT0iIiBtaW5PY2N1cnM9IjAiIC8+DQogICAgICAgICAgICAgIDx4czplbGVtZW50IG5hbWU9InRha2hhbG9zIiB0eXBlPSJ4czpzdHJpbmciIG1zZGF0YTp0YXJnZXROYW1lc3BhY2U9IiIgbWluT2NjdXJzPSIwIiAvPg0KICAgICAgICAgICAgICA8eHM6ZWxlbWVudCBuYW1lPSJOdW1iZXJfQXNhcyIgdHlwZT0ieHM6aW50IiBtc2RhdGE6dGFyZ2V0TmFtZXNwYWNlPSIiIG1pbk9jY3Vycz0iMCIgLz4NCiAgICAgICAgICAgICAgPHhzOmVsZW1lbnQgbmFtZT0iTnVtYmVyX1RhemthcmUiIHR5cGU9InhzOnN0cmluZyIgbXNkYXRhOnRhcmdldE5hbWVzcGFjZT0iIiBtaW5PY2N1cnM9IjAiIC8+DQogICAgICAgICAgICAgIDx4czplbGVtZW50IG5hbWU9InRhcmlraF90YXZhbG9kIiB0eXBlPSJ4czpzdHJpbmciIG1zZGF0YTp0YXJnZXROYW1lc3BhY2U9IiIgbWluT2NjdXJzPSIwIiAvPg0KICAgICAgICAgICAgICA8eHM6ZWxlbWVudCBuYW1lPSJuYW1lX0VuZ2xpc2giIHR5cGU9InhzOnN0cmluZyIgbXNkYXRhOnRhcmdldE5hbWVzcGFjZT0iIiBtaW5PY2N1cnM9IjAiIC8+DQogICAgICAgICAgICAgIDx4czplbGVtZW50IG5hbWU9InRha2hhbG9zX0VuZ2xpc2giIHR5cGU9InhzOnN0cmluZyIgbXNkYXRhOnRhcmdldE5hbWVzcGFjZT0iIiBtaW5PY2N1cnM9IjAiIC8+DQogICAgICAgICAgICAgIDx4czplbGVtZW50IG5hbWU9InBlZGFyX0VuZ2xpc2giIHR5cGU9InhzOnN0cmluZyIgbXNkYXRhOnRhcmdldE5hbWVzcGFjZT0iIiBtaW5PY2N1cnM9IjAiIC8+DQogICAgICAgICAgICAgIDx4czplbGVtZW50IG5hbWU9InNlbmYiIHR5cGU9InhzOnN0cmluZyIgbXNkYXRhOnRhcmdldE5hbWVzcGFjZT0iIiBtaW5PY2N1cnM9IjAiIC8+DQogICAgICAgICAgICAgIDx4czplbGVtZW50IG5hbWU9IlBheWUiIHR5cGU9InhzOnN0cmluZyIgbXNkYXRhOnRhcmdldE5hbWVzcGFjZT0iIiBtaW5PY2N1cnM9IjAiIC8+DQogICAgICAgICAgICAgIDx4czplbGVtZW50IG5hbWU9IkFrcyIgdHlwZT0ieHM6YmFzZTY0QmluYXJ5IiBtc2RhdGE6dGFyZ2V0TmFtZXNwYWNlPSIiIG1pbk9jY3Vycz0iMCIgLz4NCiAgICAgICAgICAgICAgPHhzOmVsZW1lbnQgbmFtZT0iVGVhY2hlciIgdHlwZT0ieHM6c3RyaW5nIiBtc2RhdGE6dGFyZ2V0TmFtZXNwYWNlPSIiIG1pbk9jY3Vycz0iMCIgLz4NCiAgICAgICAgICAgICAgPHhzOmVsZW1lbnQgbmFtZT0iTWF6bW9uIiB0eXBlPSJ4czpzdHJpbmciIG1zZGF0YTp0YXJnZXROYW1lc3BhY2U9IiIgbWluT2NjdXJzPSIwIiAvPg0KICAgICAgICAgICAgICA8eHM6ZWxlbWVudCBuYW1lPSJUYXJpa2hFeGFtIiB0eXBlPSJ4czpzdHJpbmciIG1zZGF0YTp0YXJnZXROYW1lc3BhY2U9IiIgbWluT2NjdXJzPSIwIiAvPg0KICAgICAgICAgICAgICA8eHM6ZWxlbWVudCBuYW1lPSJUaW1lRXhhbSIgdHlwZT0ieHM6c3RyaW5nIiBtc2RhdGE6dGFyZ2V0TmFtZXNwYWNlPSIiIG1pbk9jY3Vycz0iMCIgLz4NCiAgICAgICAgICAgICAgPHhzOmVsZW1lbnQgbmFtZT0iU3RhcnRFeGFtIiB0eXBlPSJ4czpzdHJpbmciIG1zZGF0YTp0YXJnZXROYW1lc3BhY2U9IiIgbWluT2NjdXJzPSIwIiAvPg0KICAgICAgICAgICAgICA8eHM6ZWxlbWVudCBuYW1lPSJQYWdlRXhhbSIgdHlwZT0ieHM6c3RyaW5nIiBtc2RhdGE6dGFyZ2V0TmFtZXNwYWNlPSIiIG1pbk9jY3Vycz0iMCIgLz4NCiAgICAgICAgICAgICAgPHhzOmVsZW1lbnQgbmFtZT0iUXVzRXhhbSIgdHlwZT0ieHM6c3RyaW5nIiBtc2RhdGE6dGFyZ2V0TmFtZXNwYWNlPSIiIG1pbk9jY3Vycz0iMCIgLz4NCiAgICAgICAgICAgICAgPHhzOmVsZW1lbnQgbmFtZT0ic29ydGlkIiB0eXBlPSJ4czpzdHJpbmciIG1zZGF0YTp0YXJnZXROYW1lc3BhY2U9IiIgbWluT2NjdXJzPSIwIiAvPg0KICAgICAgICAgICAgICA8eHM6ZWxlbWVudCBuYW1lPSJ4U3R1ZGVudCIgdHlwZT0ieHM6aW50IiBtc2RhdGE6dGFyZ2V0TmFtZXNwYWNlPSIiIG1pbk9jY3Vycz0iMCIgLz4NCiAgICAgICAgICAgIDwveHM6c2VxdWVuY2U+DQogICAgICAgICAgPC94czpjb21wbGV4VHlwZT4NCiAgICAgICAgPC94czplbGVtZW50Pg0KICAgICAgPC94czpjaG9pY2U+DQogICAgPC94czpjb21wbGV4VHlwZT4NCiAgPC94czplbGVtZW50Pg0KPC94czpzY2hlbWE+BgUAAADFCzxkaWZmZ3I6ZGlmZmdyYW0geG1sbnM6bXNkYXRhPSJ1cm46c2NoZW1hcy1taWNyb3NvZnQtY29tOnhtbC1tc2RhdGEiIHhtbG5zOmRpZmZncj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp4bWwtZGlmZmdyYW0tdjEiPjxOZXdEYXRhU2V0Pjx2X2RhdGEgZGlmZmdyOmlkPSJ2X2RhdGExIiBtc2RhdGE6cm93T3JkZXI9IjAiPjxjb2RlX21vdGFsZW0+OTkwMTEyOTg8L2NvZGVfbW90YWxlbT48Y2hva2k+ODwvY2hva2k+PGhvemU+2LPYp9mE2YYg2LnZhdmI2YXZiiDYrzwvaG96ZT48TmFtZT7Yp9mF2YrYrzwvTmFtZT48dmFsYWQ+2LnZhNmKINiv2KfYrzwvdmFsYWQ+PE5hbWVfdmFsYWQ+2KfZhdmK2K8g2LnZhNmKINiv2KfYrzwvTmFtZV92YWxhZD48dGFydGliPjI8L3RhcnRpYj48dmFsYWRpeWF0PtmC2LHYqNin2YYg2LnZhNmKPC92YWxhZGl5YXQ+PHRha2hhbG9zPtin2K3Zhdiv2Yo8L3Rha2hhbG9zPjxOdW1iZXJfQXNhcz4xNzgwPC9OdW1iZXJfQXNhcz48TnVtYmVyX1RhemthcmUgLz48dGFyaWtoX3RhdmFsb2Q+MTM5Mi8vPC90YXJpa2hfdGF2YWxvZD48bmFtZV9FbmdsaXNoIC8+PHRha2hhbG9zX0VuZ2xpc2ggLz48cGVkYXJfRW5nbGlzaCAvPjxzZW5mPtin2YjZhCDZvtiz2LHYp9mGIDE8L3NlbmY+PFBheWU+2KfZiNmEPC9QYXllPjxUYXJpa2hFeGFtPjEzOTkvMDkvMDg8L1RhcmlraEV4YW0+PFRpbWVFeGFtIC8+PFN0YXJ0RXhhbSAvPjxQYWdlRXhhbSAvPjxRdXNFeGFtIC8+PHNvcnRpZD4xMDAwMDEt2KfZiNmEINm+2LPYsdin2YYgMS0xMDAwMDIt2LnZhNmKINiv2KfYry3Yp9mF2YrYrzwvc29ydGlkPjx4U3R1ZGVudD4xMTQxOTwveFN0dWRlbnQ+PC92X2RhdGE+PHZfZGF0YSBkaWZmZ3I6aWQ9InZfZGF0YTIiIG1zZGF0YTpyb3dPcmRlcj0iMSI+PGNob2tpPjQ8L2Nob2tpPjxob3plPtiz2KfZhNmGINi52YXZiNmF2Yog2K88L2hvemU+PE5hbWU+2KjZhtmK2KfZhdmK2YY8L05hbWU+PHZhbGFkPtmG2Ygg2LHZiNiyPC92YWxhZD48TmFtZV92YWxhZD7YqNmG2YrYp9mF2YrZhiDZhtmIINix2YjYsjwvTmFtZV92YWxhZD48dGFydGliPjM8L3RhcnRpYj48dmFsYWRpeWF0Ptis2KfZhiDYudmE2Yo8L3ZhbGFkaXlhdD48dGFraGFsb3MgLz48TnVtYmVyX1RhemthcmUgLz48dGFyaWtoX3RhdmFsb2QgLz48bmFtZV9FbmdsaXNoIC8+PHRha2hhbG9zX0VuZ2xpc2ggLz48cGVkYXJfRW5nbGlzaCAvPjxzZW5mPtin2YjZhCDZvtiz2LHYp9mGIDE8L3NlbmY+PFBheWU+2KfZiNmEPC9QYXllPjxUYXJpa2hFeGFtPjEzOTkvMDkvMDg8L1RhcmlraEV4YW0+PFRpbWVFeGFtIC8+PFN0YXJ0RXhhbSAvPjxQYWdlRXhhbSAvPjxRdXNFeGFtIC8+PHNvcnRpZD4xMDAwMDEt2KfZiNmEINm+2LPYsdin2YYgMS0xMDAwMDMt2YbZiCDYsdmI2LIt2KjZhtmK2KfZhdmK2YY8L3NvcnRpZD48eFN0dWRlbnQ+MTEzOTE8L3hTdHVkZW50Pjwvdl9kYXRhPjwvTmV3RGF0YVNldD48L2RpZmZncjpkaWZmZ3JhbT4EAwAAAA5TeXN0ZW0uVmVyc2lvbgQAAAAGX01ham9yBl9NaW5vcgZfQnVpbGQJX1JldmlzaW9uAAAAAAgICAgCAAAAAAAAAP//////////Cw==</Binary>
+    </Property>
+    <Property name="Sections">
+      <Reference name="GroupHeader1" />
+      <Reference name="GroupHeader2" />
+      <Reference name="GroupHeader3" />
+      <Reference name="GroupHeader4" />
+      <Reference name="GroupHeader5" />
+      <Reference name="Detail1" />
+      <Reference name="Page2" />
+      <Reference name="Page3" />
+      <Reference name="Page4" />
+      <Reference name="Page5" />
+      <Reference name="Page6" />
+    </Property>
+    <Property name="PrintWidth">7.67708349</Property>
+    <Property name="PageSettings">
+      <Property name="Margins">
+        <Property name="Left">0.25</Property>
+        <Property name="Top">0.25</Property>
+        <Property name="Right">0.25</Property>
+        <Property name="Bottom">0.25</Property>
+      </Property>
+      <Property name="PaperWidth">8.5</Property>
+      <Property name="PaperHeight">11</Property>
+    </Property>
+    <Event name="ReportStart">handler_DataDynamics.ActiveReports.ActiveReport3_ReportStart</Event>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.Detail" name="Detail1">
+    <Property name="Height">10.979167</Property>
+    <Property name="ColumnSpacing">0</Property>
+    <Property name="Name">Detail1</Property>
+    <Property name="Controls">
+      <Reference name="Shape1" />
+      <Reference name="Shape8" />
+      <Reference name="Shape6" />
+      <Reference name="txtTarikhExam1" />
+      <Reference name="txtTimeExam1" />
+      <Reference name="txtPageExam1" />
+      <Reference name="Label6" />
+      <Reference name="Label5" />
+      <Reference name="Label7" />
+      <Reference name="Label8" />
+      <Reference name="pic" />
+      <Reference name="Label16" />
+      <Reference name="txtQusExam1" />
+      <Reference name="Label23" />
+      <Reference name="txtStartExam1" />
+      <Reference name="Label11" />
+      <Reference name="Label12" />
+      <Reference name="Picture2" />
+      <Reference name="TextBox9" />
+      <Reference name="Label4" />
+      <Reference name="TextBox12" />
+      <Reference name="TextBox13" />
+      <Reference name="Label9" />
+      <Reference name="Label10" />
+      <Reference name="TextBox14" />
+      <Reference name="TextBox15" />
+      <Reference name="Label25" />
+      <Reference name="Label35" />
+      <Reference name="Label36" />
+      <Reference name="Label37" />
+      <Reference name="Label38" />
+      <Reference name="txtchoki1" />
+      <Reference name="txttartib1" />
+      <Reference name="txthoze1" />
+      <Reference name="txtTeacher1" />
+      <Reference name="Picture1" />
+    </Property>
+    <Property name="NewPage">Before</Property>
+    <Event name="Format">handler_DataDynamics.ActiveReports.Detail_Format</Event>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.Shape" name="Shape1">
+    <Property name="Border">
+      <Property name="TopStyle">ThickDouble</Property>
+      <Property name="BottomStyle">ThickDouble</Property>
+      <Property name="LeftStyle">ThickDouble</Property>
+      <Property name="RightStyle">ThickDouble</Property>
+    </Property>
+    <Property name="Name">Shape1</Property>
+    <Property name="Style">RoundRect</Property>
+    <Property name="Location">
+      <Binary>AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJhd2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAACAPQAAAAAL</Binary>
+    </Property>
+    <Property name="Size">7.5625, 1.75</Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.TextBox" name="txtTarikhExam1">
+    <Property name="Text">txtTarikhExam1</Property>
+    <Property name="DataField">TarikhExam</Property>
+    <Property name="Font">B Nazanin, 11.25pt, style=Bold</Property>
+    <Property name="Location">
+      <Binary>AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJhd2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAAA6QAAAiD8L</Binary>
+    </Property>
+    <Property name="OutputFormat" />
+    <Property name="RightToLeft">True</Property>
+    <Property name="Name">txtTarikhExam1</Property>
+    <Property name="DistinctField" />
+    <Property name="Size">1.25, 0.25</Property>
+    <Property name="Border">
+      <Property name="TopStyle">None</Property>
+      <Property name="BottomStyle">None</Property>
+      <Property name="LeftStyle">None</Property>
+      <Property name="RightStyle">None</Property>
+    </Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.TextBox" name="txtTimeExam1">
+    <Property name="Text">txtTimeExam1</Property>
+    <Property name="DataField">TimeExam</Property>
+    <Property name="Font">B Nazanin, 11.25pt, style=Bold</Property>
+    <Property name="Location">
+      <Binary>AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJhd2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAACiQAAAAD4L</Binary>
+    </Property>
+    <Property name="OutputFormat" />
+    <Property name="RightToLeft">True</Property>
+    <Property name="Name">txtTimeExam1</Property>
+    <Property name="DistinctField" />
+    <Property name="Size">0.6875, 0.25</Property>
+    <Property name="Border">
+      <Property name="TopStyle">None</Property>
+      <Property name="BottomStyle">None</Property>
+      <Property name="LeftStyle">None</Property>
+      <Property name="RightStyle">None</Property>
+    </Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.TextBox" name="txtPageExam1">
+    <Property name="Text">txtPageExam1</Property>
+    <Property name="DataField">PageExam</Property>
+    <Property name="Font">B Nazanin, 11.25pt, style=Bold</Property>
+    <Property name="Location">
+      <Binary>AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJhd2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAACiQAAAiD8L</Binary>
+    </Property>
+    <Property name="OutputFormat" />
+    <Property name="RightToLeft">True</Property>
+    <Property name="Name">txtPageExam1</Property>
+    <Property name="DistinctField" />
+    <Property name="Size">0.625, 0.25</Property>
+    <Property name="Border">
+      <Property name="TopStyle">None</Property>
+      <Property name="BottomStyle">None</Property>
+      <Property name="LeftStyle">None</Property>
+      <Property name="RightStyle">None</Property>
+    </Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.Label" name="Label6">
+    <Property name="HyperLink" />
+    <Property name="Font">B Nazanin, 10pt, style=Bold</Property>
+    <Property name="Location">
+      <Binary>AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJhd2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAACHQAAAiD8L</Binary>
+    </Property>
+    <Property name="Text">تاریخ امتحان :</Property>
+    <Property name="Border">
+      <Property name="TopStyle">None</Property>
+      <Property name="BottomStyle">None</Property>
+      <Property name="LeftStyle">None</Property>
+      <Property name="RightStyle">None</Property>
+    </Property>
+    <Property name="Name">Label6</Property>
+    <Property name="RightToLeft">True</Property>
+    <Property name="Size">0.75, 0.25</Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.Label" name="Label5">
+    <Property name="HyperLink" />
+    <Property name="Alignment">Center</Property>
+    <Property name="Font">B Titr, 14pt, style=Bold</Property>
+    <Property name="Location">
+      <Binary>AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJhd2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAAA6QAAAID8L</Binary>
+    </Property>
+    <Property name="Text">امتحان چهار و نیم ماهه</Property>
+    <Property name="Border">
+      <Property name="TopStyle">None</Property>
+      <Property name="BottomStyle">None</Property>
+      <Property name="LeftStyle">None</Property>
+      <Property name="RightStyle">None</Property>
+    </Property>
+    <Property name="VerticalAlignment">Middle</Property>
+    <Property name="Name">Label5</Property>
+    <Property name="RightToLeft">True</Property>
+    <Property name="Size">2.0625, 0.3125</Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.Label" name="Label7">
+    <Property name="HyperLink" />
+    <Property name="Font">B Nazanin, 10pt, style=Bold</Property>
+    <Property name="Location">
+      <Binary>AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJhd2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAAC4QAAAAD4L</Binary>
+    </Property>
+    <Property name="Text">مدت امتحان :</Property>
+    <Property name="Border">
+      <Property name="TopStyle">None</Property>
+      <Property name="BottomStyle">None</Property>
+      <Property name="LeftStyle">None</Property>
+      <Property name="RightStyle">None</Property>
+    </Property>
+    <Property name="Name">Label7</Property>
+    <Property name="RightToLeft">True</Property>
+    <Property name="Size">0.6875, 0.25</Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.Label" name="Label8">
+    <Property name="HyperLink" />
+    <Property name="Font">B Nazanin, 10pt, style=Bold</Property>
+    <Property name="Location">
+      <Binary>AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJhd2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAAC4QAAAiD8L</Binary>
+    </Property>
+    <Property name="Text">تعداد صفحات:</Property>
+    <Property name="Border">
+      <Property name="TopStyle">None</Property>
+      <Property name="BottomStyle">None</Property>
+      <Property name="LeftStyle">None</Property>
+      <Property name="RightStyle">None</Property>
+    </Property>
+    <Property name="Name">Label8</Property>
+    <Property name="RightToLeft">True</Property>
+    <Property name="Size">0.75, 0.25</Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.Picture" name="pic">
+    <Property name="ImageData" />
+    <Property name="Location">
+      <Binary>AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJhd2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAACAPQAA6D8L</Binary>
+    </Property>
+    <Property name="Border">
+      <Property name="TopStyle">None</Property>
+      <Property name="BottomStyle">None</Property>
+      <Property name="LeftStyle">None</Property>
+      <Property name="RightStyle">None</Property>
+    </Property>
+    <Property name="Name">pic</Property>
+    <Property name="Size">7.5625, 9.125</Property>
+    <Property name="SizeMode">Stretch</Property>
+    <Property name="LineWeight">0</Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.Label" name="Label16">
+    <Property name="HyperLink" />
+    <Property name="Font">B Nazanin, 10pt, style=Bold</Property>
+    <Property name="Location">
+      <Binary>AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJhd2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAq6q4QAAAQD8L</Binary>
+    </Property>
+    <Property name="Text">تعداد سوال :</Property>
+    <Property name="Border">
+      <Property name="TopStyle">None</Property>
+      <Property name="BottomStyle">None</Property>
+      <Property name="LeftStyle">None</Property>
+      <Property name="RightStyle">None</Property>
+    </Property>
+    <Property name="Name">Label16</Property>
+    <Property name="RightToLeft">True</Property>
+    <Property name="Size">0.6875, 0.25</Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.TextBox" name="txtQusExam1">
+    <Property name="Text">txtQusExam1</Property>
+    <Property name="DataField">QusExam</Property>
+    <Property name="Font">B Nazanin, 11.25pt, style=Bold</Property>
+    <Property name="Location">
+      <Binary>AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJhd2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAq6qhQAAAQD8L</Binary>
+    </Property>
+    <Property name="OutputFormat" />
+    <Property name="RightToLeft">True</Property>
+    <Property name="Name">txtQusExam1</Property>
+    <Property name="DistinctField" />
+    <Property name="Size">0.6875, 0.25</Property>
+    <Property name="Border">
+      <Property name="TopStyle">None</Property>
+      <Property name="BottomStyle">None</Property>
+      <Property name="LeftStyle">None</Property>
+      <Property name="RightStyle">None</Property>
+    </Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.GroupHeader" name="GroupHeader1">
+    <Property name="DataField">xStudent</Property>
+    <Property name="NewPage">Before</Property>
+    <Property name="Height">0</Property>
+    <Property name="Name">GroupHeader1</Property>
+    <Property name="Visible">False</Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.GroupFooter" name="Page6">
+    <Property name="Name">Page6</Property>
+    <Property name="Height">10.875</Property>
+    <Property name="Controls">
+      <Reference name="Shape7" />
+      <Reference name="pic6" />
+      <Reference name="TextBox24" />
+      <Reference name="TextBox25" />
+      <Reference name="TextBox26" />
+      <Reference name="TextBox27" />
+      <Reference name="Label31" />
+      <Reference name="Label32" />
+      <Reference name="Label33" />
+      <Reference name="Label34" />
+      <Reference name="TextBox28" />
+    </Property>
+    <Property name="NewPage">Before</Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.GroupHeader" name="GroupHeader2">
+    <Property name="DataField">xStudent</Property>
+    <Property name="NewPage">Before</Property>
+    <Property name="Height">0</Property>
+    <Property name="Name">GroupHeader2</Property>
+    <Property name="Visible">False</Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.GroupFooter" name="Page5">
+    <Property name="Name">Page5</Property>
+    <Property name="Height">10.875</Property>
+    <Property name="Controls">
+      <Reference name="Shape5" />
+      <Reference name="pic5" />
+      <Reference name="TextBox5" />
+      <Reference name="TextBox6" />
+      <Reference name="TextBox8" />
+      <Reference name="TextBox22" />
+      <Reference name="Label20" />
+      <Reference name="Label21" />
+      <Reference name="Label22" />
+      <Reference name="Label30" />
+      <Reference name="TextBox23" />
+    </Property>
+    <Property name="NewPage">Before</Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.GroupHeader" name="GroupHeader3">
+    <Property name="DataField">xStudent</Property>
+    <Property name="NewPage">Before</Property>
+    <Property name="Height">0</Property>
+    <Property name="Name">GroupHeader3</Property>
+    <Property name="Visible">False</Property>
+    <Event name="Format">handler_DataDynamics.ActiveReports.GroupHeader_Format</Event>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.GroupFooter" name="Page4">
+    <Property name="Name">Page4</Property>
+    <Property name="Height">11.125</Property>
+    <Property name="Controls">
+      <Reference name="Shape3" />
+      <Reference name="pic4" />
+      <Reference name="TextBox17" />
+      <Reference name="TextBox18" />
+      <Reference name="TextBox19" />
+      <Reference name="TextBox20" />
+      <Reference name="Label26" />
+      <Reference name="Label27" />
+      <Reference name="Label28" />
+      <Reference name="Label29" />
+      <Reference name="TextBox21" />
+    </Property>
+    <Property name="NewPage">Before</Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.Picture" name="pic4">
+    <Property name="ImageData" />
+    <Property name="Location">
+      <Binary>AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJhd2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAACAPQAA4D4L</Binary>
+    </Property>
+    <Property name="Border">
+      <Property name="TopStyle">None</Property>
+      <Property name="BottomStyle">None</Property>
+      <Property name="LeftStyle">None</Property>
+      <Property name="RightStyle">None</Property>
+    </Property>
+    <Property name="Name">pic4</Property>
+    <Property name="Size">7.5625, 10.5</Property>
+    <Property name="SizeMode">Stretch</Property>
+    <Property name="LineWeight">0</Property>
+    <Property name="LineColor">White</Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.Picture" name="pic5">
+    <Property name="ImageData" />
+    <Property name="Location">
+      <Binary>AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJhd2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAACAPQAA4D4L</Binary>
+    </Property>
+    <Property name="Border">
+      <Property name="TopStyle">None</Property>
+      <Property name="BottomStyle">None</Property>
+      <Property name="LeftStyle">None</Property>
+      <Property name="RightStyle">None</Property>
+    </Property>
+    <Property name="Name">pic5</Property>
+    <Property name="Size">7.5625, 10.3125</Property>
+    <Property name="SizeMode">Stretch</Property>
+    <Property name="LineWeight">0</Property>
+    <Property name="LineColor">White</Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.Picture" name="pic6">
+    <Property name="ImageData" />
+    <Property name="Location">
+      <Binary>AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJhd2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAACAPQAAwD4L</Binary>
+    </Property>
+    <Property name="Border">
+      <Property name="TopStyle">None</Property>
+      <Property name="BottomStyle">None</Property>
+      <Property name="LeftStyle">None</Property>
+      <Property name="RightStyle">None</Property>
+    </Property>
+    <Property name="Name">pic6</Property>
+    <Property name="Size">7.5625, 10.375</Property>
+    <Property name="SizeMode">Stretch</Property>
+    <Property name="LineWeight">0</Property>
+    <Property name="LineColor">White</Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.GroupHeader" name="GroupHeader4">
+    <Property name="NewPage">Before</Property>
+    <Property name="Height">0.010416667</Property>
+    <Property name="Name">GroupHeader4</Property>
+    <Property name="Visible">False</Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.GroupFooter" name="Page3">
+    <Property name="Name">Page3</Property>
+    <Property name="Height">11.0625</Property>
+    <Property name="Controls">
+      <Reference name="Shape2" />
+      <Reference name="pic3" />
+      <Reference name="Label19" />
+      <Reference name="TextBox4" />
+      <Reference name="Label17" />
+      <Reference name="TextBox16" />
+      <Reference name="txtName1" />
+      <Reference name="Label3" />
+      <Reference name="txtvalad1" />
+      <Reference name="Label13" />
+      <Reference name="txtsenf1" />
+    </Property>
+    <Property name="NewPage">Before</Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.GroupHeader" name="GroupHeader5">
+    <Property name="NewPage">Before</Property>
+    <Property name="Height">0</Property>
+    <Property name="Name">GroupHeader5</Property>
+    <Property name="Visible">False</Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.GroupFooter" name="Page2">
+    <Property name="Name">Page2</Property>
+    <Property name="Height">10.875</Property>
+    <Property name="Controls">
+      <Reference name="Shape4" />
+      <Reference name="pic2" />
+      <Reference name="Label14" />
+      <Reference name="TextBox2" />
+      <Reference name="TextBox3" />
+      <Reference name="TextBox7" />
+      <Reference name="Label15" />
+      <Reference name="TextBox10" />
+      <Reference name="Label18" />
+      <Reference name="TextBox11" />
+      <Reference name="Label24" />
+    </Property>
+    <Property name="NewPage">Before</Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.Picture" name="pic2">
+    <Property name="ImageData" />
+    <Property name="Location">
+      <Binary>AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJhd2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAACAPQAAwD4L</Binary>
+    </Property>
+    <Property name="Border">
+      <Property name="TopStyle">None</Property>
+      <Property name="BottomStyle">None</Property>
+      <Property name="LeftStyle">None</Property>
+      <Property name="RightStyle">None</Property>
+    </Property>
+    <Property name="Name">pic2</Property>
+    <Property name="Size">7.5625, 10.375</Property>
+    <Property name="SizeMode">Stretch</Property>
+    <Property name="LineWeight">0</Property>
+    <Property name="LineColor">White</Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.Picture" name="pic3">
+    <Property name="ImageData" />
+    <Property name="Location">
+      <Binary>AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJhd2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAq6oqPQAA4D4L</Binary>
+    </Property>
+    <Property name="Border">
+      <Property name="TopStyle">None</Property>
+      <Property name="BottomStyle">None</Property>
+      <Property name="LeftStyle">None</Property>
+      <Property name="RightStyle">None</Property>
+    </Property>
+    <Property name="Name">pic3</Property>
+    <Property name="Size">7.5625, 10.4375</Property>
+    <Property name="SizeMode">Stretch</Property>
+    <Property name="LineWeight">0</Property>
+    <Property name="LineColor">White</Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.Label" name="Label19">
+    <Property name="HyperLink" />
+    <Property name="Font">B Nazanin, 12pt, style=Bold</Property>
+    <Property name="Location">
+      <Binary>AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJhd2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAAAAPgAAgD0L</Binary>
+    </Property>
+    <Property name="Text">صفحه 3</Property>
+    <Property name="Border">
+      <Property name="TopStyle">None</Property>
+      <Property name="BottomStyle">None</Property>
+      <Property name="LeftStyle">None</Property>
+      <Property name="RightStyle">None</Property>
+    </Property>
+    <Property name="Name">Label19</Property>
+    <Property name="RightToLeft">True</Property>
+    <Property name="Size">0.5625, 0.25</Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.Label" name="Label23">
+    <Property name="HyperLink" />
+    <Property name="Font">B Nazanin, 10pt, style=Bold</Property>
+    <Property name="Location">
+      <Binary>AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJhd2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAAC4QAAA4D4L</Binary>
+    </Property>
+    <Property name="Text">ساعت شروع:</Property>
+    <Property name="Border">
+      <Property name="TopStyle">None</Property>
+      <Property name="BottomStyle">None</Property>
+      <Property name="LeftStyle">None</Property>
+      <Property name="RightStyle">None</Property>
+    </Property>
+    <Property name="Name">Label23</Property>
+    <Property name="RightToLeft">True</Property>
+    <Property name="Size">0.6875, 0.25</Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.TextBox" name="txtStartExam1">
+    <Property name="Text">txtStartExam1</Property>
+    <Property name="DataField">StartExam</Property>
+    <Property name="Font">B Nazanin, 11pt, style=Bold</Property>
+    <Property name="Location">
+      <Binary>AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJhd2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAAChQAAA4D4L</Binary>
+    </Property>
+    <Property name="OutputFormat" />
+    <Property name="RightToLeft">True</Property>
+    <Property name="Name">txtStartExam1</Property>
+    <Property name="DistinctField" />
+    <Property name="Size">0.6875, 0.25</Property>
+    <Property name="Border">
+      <Property name="TopStyle">None</Property>
+      <Property name="BottomStyle">None</Property>
+      <Property name="LeftStyle">None</Property>
+      <Property name="RightStyle">None</Property>
+    </Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.TextBox" name="TextBox4">
+    <Property name="Text">txtMazmon1</Property>
+    <Property name="DataField">Mazmon</Property>
+    <Property name="Font">B Nazanin, 12pt, style=Bold</Property>
+    <Property name="Location">
+      <Binary>AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJhd2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAABAPwAAgD0L</Binary>
+    </Property>
+    <Property name="OutputFormat" />
+    <Property name="Name">TextBox4</Property>
+    <Property name="DistinctField" />
+    <Property name="Size">1.3125, 0.25</Property>
+    <Property name="Border">
+      <Property name="TopStyle">None</Property>
+      <Property name="BottomStyle">None</Property>
+      <Property name="LeftStyle">None</Property>
+      <Property name="RightStyle">None</Property>
+    </Property>
+    <Property name="Alignment">Right</Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.Label" name="Label17">
+    <Property name="HyperLink" />
+    <Property name="Font">B Nazanin, 12pt, style=Bold</Property>
+    <Property name="Location">
+      <Binary>AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJhd2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAADmQAAAgD0L</Binary>
+    </Property>
+    <Property name="Text">:نام</Property>
+    <Property name="Border">
+      <Property name="TopStyle">None</Property>
+      <Property name="BottomStyle">None</Property>
+      <Property name="LeftStyle">None</Property>
+      <Property name="RightStyle">None</Property>
+    </Property>
+    <Property name="VerticalAlignment">Middle</Property>
+    <Property name="Name">Label17</Property>
+    <Property name="Size">0.375, 0.25</Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.TextBox" name="TextBox16">
+    <Property name="Text">:مضمون</Property>
+    <Property name="Font">B Nazanin, 12pt, style=Bold</Property>
+    <Property name="Location">
+      <Binary>AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJhd2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAAAEQAAAgD0L</Binary>
+    </Property>
+    <Property name="VerticalAlignment">Middle</Property>
+    <Property name="OutputFormat" />
+    <Property name="Name">TextBox16</Property>
+    <Property name="DistinctField" />
+    <Property name="Size">0.5625, 0.25</Property>
+    <Property name="Border">
+      <Property name="TopStyle">None</Property>
+      <Property name="BottomStyle">None</Property>
+      <Property name="LeftStyle">None</Property>
+      <Property name="RightStyle">None</Property>
+    </Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.Shape" name="Shape2">
+    <Property name="Border">
+      <Property name="TopStyle">None</Property>
+      <Property name="BottomStyle">None</Property>
+      <Property name="LeftStyle">None</Property>
+      <Property name="RightStyle">None</Property>
+    </Property>
+    <Property name="LineWeight">4</Property>
+    <Property name="BackColor">Aquamarine</Property>
+    <Property name="Name">Shape2</Property>
+    <Property name="LineColor">DeepPink</Property>
+    <Property name="Location">
+      <Binary>AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJhd2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAq6qqPAAAAAAL</Binary>
+    </Property>
+    <Property name="LineStyle">DashDot</Property>
+    <Property name="Size">7.625, 0.375</Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.Label" name="Label11">
+    <Property name="HyperLink" />
+    <Property name="Alignment">Center</Property>
+    <Property name="Font">B Titr, 16pt, style=Bold</Property>
+    <Property name="Location">
+      <Binary>AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJhd2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAAA6QAAAoD4L</Binary>
+    </Property>
+    <Property name="Text">لیسه عالی ستارگان تمدن</Property>
+    <Property name="Border">
+      <Property name="TopStyle">None</Property>
+      <Property name="BottomStyle">None</Property>
+      <Property name="LeftStyle">None</Property>
+      <Property name="RightStyle">None</Property>
+    </Property>
+    <Property name="VerticalAlignment">Middle</Property>
+    <Property name="Name">Label11</Property>
+    <Property name="RightToLeft">True</Property>
+    <Property name="Size">2.0625, 0.3125</Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.Label" name="Label12">
+    <Property name="HyperLink" />
+    <Property name="Alignment">Center</Property>
+    <Property name="Font">B Titr, 11pt, style=Bold</Property>
+    <Property name="Location">
+      <Binary>AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJhd2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAAA6QAAAgD0L</Binary>
+    </Property>
+    <Property name="Text">ریاست معارف شهر کابل</Property>
+    <Property name="Border">
+      <Property name="TopStyle">None</Property>
+      <Property name="BottomStyle">None</Property>
+      <Property name="LeftStyle">None</Property>
+      <Property name="RightStyle">None</Property>
+    </Property>
+    <Property name="VerticalAlignment">Middle</Property>
+    <Property name="Name">Label12</Property>
+    <Property name="RightToLeft">True</Property>
+    <Property name="Size">2.0625, 0.1875</Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.Picture" name="Picture2">
+    <Property name="ImageData">
+      <Binary>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</Binary>
+    </Property>
+    <Property name="Location">
+      <Binary>AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJhd2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAADSQAAAAD4L</Binary>
+    </Property>
+    <Property name="Border">
+      <Property name="TopStyle">None</Property>
+      <Property name="BottomStyle">None</Property>
+      <Property name="LeftStyle">None</Property>
+      <Property name="RightStyle">None</Property>
+    </Property>
+    <Property name="Name">Picture2</Property>
+    <Property name="Size">1, 1.1875</Property>
+    <Property name="SizeMode">Stretch</Property>
+    <Property name="LineWeight">0</Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.TextBox" name="txtName1">
+    <Property name="Text">txtName1</Property>
+    <Property name="DataField">Name</Property>
+    <Property name="Font">B Nazanin, 12pt, style=Bold</Property>
+    <Property name="Location">
+      <Binary>AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJhd2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAADEQAAAgD0L</Binary>
+    </Property>
+    <Property name="OutputFormat" />
+    <Property name="RightToLeft">True</Property>
+    <Property name="Name">txtName1</Property>
+    <Property name="DistinctField" />
+    <Property name="Size">1.0625, 0.25</Property>
+    <Property name="Border">
+      <Property name="TopStyle">None</Property>
+      <Property name="BottomStyle">None</Property>
+      <Property name="LeftStyle">None</Property>
+      <Property name="RightStyle">None</Property>
+    </Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.Label" name="Label3">
+    <Property name="HyperLink" />
+    <Property name="Font">B Nazanin, 12pt, style=Bold</Property>
+    <Property name="Location">
+      <Binary>AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJhd2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAAC2QAAAgD0L</Binary>
+    </Property>
+    <Property name="Text">:ولد</Property>
+    <Property name="Border">
+      <Property name="TopStyle">None</Property>
+      <Property name="BottomStyle">None</Property>
+      <Property name="LeftStyle">None</Property>
+      <Property name="RightStyle">None</Property>
+    </Property>
+    <Property name="VerticalAlignment">Middle</Property>
+    <Property name="Name">Label3</Property>
+    <Property name="Size">0.375, 0.25</Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.TextBox" name="txtvalad1">
+    <Property name="Text">txtvalad1</Property>
+    <Property name="DataField">valad</Property>
+    <Property name="Font">B Nazanin, 12pt, style=Bold</Property>
+    <Property name="Location">
+      <Binary>AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJhd2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAACUQAAAgD0L</Binary>
+    </Property>
+    <Property name="OutputFormat" />
+    <Property name="RightToLeft">True</Property>
+    <Property name="Name">txtvalad1</Property>
+    <Property name="DistinctField" />
+    <Property name="Size">1.0625, 0.25</Property>
+    <Property name="Border">
+      <Property name="TopStyle">None</Property>
+      <Property name="BottomStyle">None</Property>
+      <Property name="LeftStyle">None</Property>
+      <Property name="RightStyle">None</Property>
+    </Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.Label" name="Label13">
+    <Property name="HyperLink" />
+    <Property name="Font">B Nazanin, 12pt, style=Bold</Property>
+    <Property name="Location">
+      <Binary>AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJhd2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAACGQAAAgD0L</Binary>
+    </Property>
+    <Property name="Text">:صنف</Property>
+    <Property name="Border">
+      <Property name="TopStyle">None</Property>
+      <Property name="BottomStyle">None</Property>
+      <Property name="LeftStyle">None</Property>
+      <Property name="RightStyle">None</Property>
+    </Property>
+    <Property name="VerticalAlignment">Middle</Property>
+    <Property name="Name">Label13</Property>
+    <Property name="Size">0.375, 0.25</Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.TextBox" name="txtsenf1">
+    <Property name="Text">txtsenf1</Property>
+    <Property name="DataField">senf</Property>
+    <Property name="Font">B Nazanin, 12pt, style=Bold</Property>
+    <Property name="Location">
+      <Binary>AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJhd2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAAAsQAAAgD0L</Binary>
+    </Property>
+    <Property name="OutputFormat" />
+    <Property name="RightToLeft">True</Property>
+    <Property name="Name">txtsenf1</Property>
+    <Property name="DistinctField" />
+    <Property name="Size">1.5, 0.25</Property>
+    <Property name="Border">
+      <Property name="TopStyle">None</Property>
+      <Property name="BottomStyle">None</Property>
+      <Property name="LeftStyle">None</Property>
+      <Property name="RightStyle">None</Property>
+    </Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.Label" name="Label14">
+    <Property name="HyperLink" />
+    <Property name="Font">B Nazanin, 12pt, style=Bold</Property>
+    <Property name="Location">
+      <Binary>AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJhd2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAADoQAAAgD0L</Binary>
+    </Property>
+    <Property name="Text">:نام</Property>
+    <Property name="Border">
+      <Property name="TopStyle">None</Property>
+      <Property name="BottomStyle">None</Property>
+      <Property name="LeftStyle">None</Property>
+      <Property name="RightStyle">None</Property>
+    </Property>
+    <Property name="VerticalAlignment">Middle</Property>
+    <Property name="Name">Label14</Property>
+    <Property name="Size">0.375, 0.25</Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.TextBox" name="TextBox2">
+    <Property name="Text">txtMazmon1</Property>
+    <Property name="DataField">Mazmon</Property>
+    <Property name="Font">B Nazanin, 12pt, style=Bold</Property>
+    <Property name="Location">
+      <Binary>AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJhd2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAABQPwAAgD0L</Binary>
+    </Property>
+    <Property name="OutputFormat" />
+    <Property name="Name">TextBox2</Property>
+    <Property name="DistinctField" />
+    <Property name="Size">1.3125, 0.25</Property>
+    <Property name="Border">
+      <Property name="TopStyle">None</Property>
+      <Property name="BottomStyle">None</Property>
+      <Property name="LeftStyle">None</Property>
+      <Property name="RightStyle">None</Property>
+    </Property>
+    <Property name="Alignment">Right</Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.TextBox" name="TextBox3">
+    <Property name="Text">txtvalad1</Property>
+    <Property name="DataField">valad</Property>
+    <Property name="Font">B Nazanin, 12pt, style=Bold</Property>
+    <Property name="Location">
+      <Binary>AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJhd2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAACWQAAAgD0L</Binary>
+    </Property>
+    <Property name="OutputFormat" />
+    <Property name="RightToLeft">True</Property>
+    <Property name="Name">TextBox3</Property>
+    <Property name="DistinctField" />
+    <Property name="Size">1.0625, 0.25</Property>
+    <Property name="Border">
+      <Property name="TopStyle">None</Property>
+      <Property name="BottomStyle">None</Property>
+      <Property name="LeftStyle">None</Property>
+      <Property name="RightStyle">None</Property>
+    </Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.TextBox" name="TextBox7">
+    <Property name="Text">txtName1</Property>
+    <Property name="DataField">Name</Property>
+    <Property name="Font">B Nazanin, 12pt, style=Bold</Property>
+    <Property name="Location">
+      <Binary>AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJhd2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAADGQAAAgD0L</Binary>
+    </Property>
+    <Property name="OutputFormat" />
+    <Property name="RightToLeft">True</Property>
+    <Property name="Name">TextBox7</Property>
+    <Property name="DistinctField" />
+    <Property name="Size">1.0625, 0.25</Property>
+    <Property name="Border">
+      <Property name="TopStyle">None</Property>
+      <Property name="BottomStyle">None</Property>
+      <Property name="LeftStyle">None</Property>
+      <Property name="RightStyle">None</Property>
+    </Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.Label" name="Label15">
+    <Property name="HyperLink" />
+    <Property name="Font">B Nazanin, 12pt, style=Bold</Property>
+    <Property name="Location">
+      <Binary>AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJhd2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAACIQAAAgD0L</Binary>
+    </Property>
+    <Property name="Text">:صنف</Property>
+    <Property name="Border">
+      <Property name="TopStyle">None</Property>
+      <Property name="BottomStyle">None</Property>
+      <Property name="LeftStyle">None</Property>
+      <Property name="RightStyle">None</Property>
+    </Property>
+    <Property name="VerticalAlignment">Middle</Property>
+    <Property name="Name">Label15</Property>
+    <Property name="Size">0.375, 0.25</Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.TextBox" name="TextBox10">
+    <Property name="Text">txtsenf1</Property>
+    <Property name="DataField">senf</Property>
+    <Property name="Font">B Nazanin, 12pt, style=Bold</Property>
+    <Property name="Location">
+      <Binary>AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJhd2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAAAwQAAAgD0L</Binary>
+    </Property>
+    <Property name="OutputFormat" />
+    <Property name="RightToLeft">True</Property>
+    <Property name="Name">TextBox10</Property>
+    <Property name="DistinctField" />
+    <Property name="Size">1.5, 0.25</Property>
+    <Property name="Border">
+      <Property name="TopStyle">None</Property>
+      <Property name="BottomStyle">None</Property>
+      <Property name="LeftStyle">None</Property>
+      <Property name="RightStyle">None</Property>
+    </Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.Label" name="Label18">
+    <Property name="HyperLink" />
+    <Property name="Font">B Nazanin, 12pt, style=Bold</Property>
+    <Property name="Location">
+      <Binary>AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJhd2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAAC4QAAAgD0L</Binary>
+    </Property>
+    <Property name="Text">:ولد</Property>
+    <Property name="Border">
+      <Property name="TopStyle">None</Property>
+      <Property name="BottomStyle">None</Property>
+      <Property name="LeftStyle">None</Property>
+      <Property name="RightStyle">None</Property>
+    </Property>
+    <Property name="VerticalAlignment">Middle</Property>
+    <Property name="Name">Label18</Property>
+    <Property name="Size">0.375, 0.25</Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.TextBox" name="TextBox11">
+    <Property name="Text">:مضمون</Property>
+    <Property name="Font">B Nazanin, 12pt, style=Bold</Property>
+    <Property name="Location">
+      <Binary>AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJhd2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAAAIQAAAgD0L</Binary>
+    </Property>
+    <Property name="VerticalAlignment">Middle</Property>
+    <Property name="OutputFormat" />
+    <Property name="Name">TextBox11</Property>
+    <Property name="DistinctField" />
+    <Property name="Size">0.5625, 0.25</Property>
+    <Property name="Border">
+      <Property name="TopStyle">None</Property>
+      <Property name="BottomStyle">None</Property>
+      <Property name="LeftStyle">None</Property>
+      <Property name="RightStyle">None</Property>
+    </Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.Label" name="Label24">
+    <Property name="HyperLink" />
+    <Property name="Font">B Nazanin, 12pt, style=Bold</Property>
+    <Property name="Location">
+      <Binary>AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJhd2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAABAPgAAgD0L</Binary>
+    </Property>
+    <Property name="Text">صفحه 2</Property>
+    <Property name="Border">
+      <Property name="TopStyle">None</Property>
+      <Property name="BottomStyle">None</Property>
+      <Property name="LeftStyle">None</Property>
+      <Property name="RightStyle">None</Property>
+    </Property>
+    <Property name="Name">Label24</Property>
+    <Property name="RightToLeft">True</Property>
+    <Property name="Size">0.5625, 0.25</Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.Shape" name="Shape4">
+    <Property name="Border">
+      <Property name="TopStyle">None</Property>
+      <Property name="BottomStyle">None</Property>
+      <Property name="LeftStyle">None</Property>
+      <Property name="RightStyle">None</Property>
+    </Property>
+    <Property name="LineWeight">4</Property>
+    <Property name="BackColor">Aquamarine</Property>
+    <Property name="Name">Shape4</Property>
+    <Property name="LineColor">DeepPink</Property>
+    <Property name="Location">
+      <Binary>AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJhd2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAACAPauqqjwL</Binary>
+    </Property>
+    <Property name="LineStyle">DashDot</Property>
+    <Property name="Size">7.625, 0.3125</Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.TextBox" name="TextBox9">
+    <Property name="Text">:مضمون</Property>
+    <Property name="Font">B Nazanin, 12pt, style=Bold</Property>
+    <Property name="Location">
+      <Binary>AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJhd2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAAAIQAAAuD8L</Binary>
+    </Property>
+    <Property name="VerticalAlignment">Middle</Property>
+    <Property name="OutputFormat" />
+    <Property name="Name">TextBox9</Property>
+    <Property name="DistinctField" />
+    <Property name="Size">0.5625, 0.25</Property>
+    <Property name="Border">
+      <Property name="TopStyle">None</Property>
+      <Property name="BottomStyle">None</Property>
+      <Property name="LeftStyle">None</Property>
+      <Property name="RightStyle">None</Property>
+    </Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.Label" name="Label4">
+    <Property name="HyperLink" />
+    <Property name="Font">B Nazanin, 12pt, style=Bold</Property>
+    <Property name="Location">
+      <Binary>AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJhd2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAACIQAAAuD8L</Binary>
+    </Property>
+    <Property name="Text">:صنف</Property>
+    <Property name="Border">
+      <Property name="TopStyle">None</Property>
+      <Property name="BottomStyle">None</Property>
+      <Property name="LeftStyle">None</Property>
+      <Property name="RightStyle">None</Property>
+    </Property>
+    <Property name="VerticalAlignment">Middle</Property>
+    <Property name="Name">Label4</Property>
+    <Property name="Size">0.375, 0.25</Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.TextBox" name="TextBox12">
+    <Property name="Text">txtName1</Property>
+    <Property name="DataField">Name</Property>
+    <Property name="Font">B Nazanin, 12pt, style=Bold</Property>
+    <Property name="Location">
+      <Binary>AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJhd2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAADGQAAAuD8L</Binary>
+    </Property>
+    <Property name="OutputFormat" />
+    <Property name="RightToLeft">True</Property>
+    <Property name="Name">TextBox12</Property>
+    <Property name="DistinctField" />
+    <Property name="Size">1.0625, 0.25</Property>
+    <Property name="Border">
+      <Property name="TopStyle">None</Property>
+      <Property name="BottomStyle">None</Property>
+      <Property name="LeftStyle">None</Property>
+      <Property name="RightStyle">None</Property>
+    </Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.TextBox" name="TextBox13">
+    <Property name="Text">txtsenf1</Property>
+    <Property name="DataField">senf</Property>
+    <Property name="Font">B Nazanin, 12pt, style=Bold</Property>
+    <Property name="Location">
+      <Binary>AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJhd2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAAAwQAAAuD8L</Binary>
+    </Property>
+    <Property name="OutputFormat" />
+    <Property name="RightToLeft">True</Property>
+    <Property name="Name">TextBox13</Property>
+    <Property name="DistinctField" />
+    <Property name="Size">1.5, 0.25</Property>
+    <Property name="Border">
+      <Property name="TopStyle">None</Property>
+      <Property name="BottomStyle">None</Property>
+      <Property name="LeftStyle">None</Property>
+      <Property name="RightStyle">None</Property>
+    </Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.Label" name="Label9">
+    <Property name="HyperLink" />
+    <Property name="Font">B Nazanin, 12pt, style=Bold</Property>
+    <Property name="Location">
+      <Binary>AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJhd2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAADoQAAAuD8L</Binary>
+    </Property>
+    <Property name="Text">:نام</Property>
+    <Property name="Border">
+      <Property name="TopStyle">None</Property>
+      <Property name="BottomStyle">None</Property>
+      <Property name="LeftStyle">None</Property>
+      <Property name="RightStyle">None</Property>
+    </Property>
+    <Property name="VerticalAlignment">Middle</Property>
+    <Property name="Name">Label9</Property>
+    <Property name="Size">0.375, 0.25</Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.Label" name="Label10">
+    <Property name="HyperLink" />
+    <Property name="Font">B Nazanin, 12pt, style=Bold</Property>
+    <Property name="Location">
+      <Binary>AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJhd2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAAC4QAAAuD8L</Binary>
+    </Property>
+    <Property name="Text">:ولد</Property>
+    <Property name="Border">
+      <Property name="TopStyle">None</Property>
+      <Property name="BottomStyle">None</Property>
+      <Property name="LeftStyle">None</Property>
+      <Property name="RightStyle">None</Property>
+    </Property>
+    <Property name="VerticalAlignment">Middle</Property>
+    <Property name="Name">Label10</Property>
+    <Property name="Size">0.375, 0.25</Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.TextBox" name="TextBox14">
+    <Property name="Text">txtMazmon1</Property>
+    <Property name="DataField">Mazmon</Property>
+    <Property name="Font">B Nazanin, 12pt, style=Bold</Property>
+    <Property name="Location">
+      <Binary>AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJhd2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAABQPwAAuD8L</Binary>
+    </Property>
+    <Property name="OutputFormat" />
+    <Property name="Name">TextBox14</Property>
+    <Property name="DistinctField" />
+    <Property name="Size">1.3125, 0.25</Property>
+    <Property name="Border">
+      <Property name="TopStyle">None</Property>
+      <Property name="BottomStyle">None</Property>
+      <Property name="LeftStyle">None</Property>
+      <Property name="RightStyle">None</Property>
+    </Property>
+    <Property name="Alignment">Right</Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.TextBox" name="TextBox15">
+    <Property name="Text">txtvalad1</Property>
+    <Property name="DataField">valad</Property>
+    <Property name="Font">B Nazanin, 12pt, style=Bold</Property>
+    <Property name="Location">
+      <Binary>AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJhd2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAACWQAAAuD8L</Binary>
+    </Property>
+    <Property name="OutputFormat" />
+    <Property name="RightToLeft">True</Property>
+    <Property name="Name">TextBox15</Property>
+    <Property name="DistinctField" />
+    <Property name="Size">1.0625, 0.25</Property>
+    <Property name="Border">
+      <Property name="TopStyle">None</Property>
+      <Property name="BottomStyle">None</Property>
+      <Property name="LeftStyle">None</Property>
+      <Property name="RightStyle">None</Property>
+    </Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.Label" name="Label25">
+    <Property name="HyperLink" />
+    <Property name="Font">B Nazanin, 12pt, style=Bold</Property>
+    <Property name="Location">
+      <Binary>AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJhd2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAABAPgAAuD8L</Binary>
+    </Property>
+    <Property name="Text">صفحه 1</Property>
+    <Property name="Border">
+      <Property name="TopStyle">None</Property>
+      <Property name="BottomStyle">None</Property>
+      <Property name="LeftStyle">None</Property>
+      <Property name="RightStyle">None</Property>
+    </Property>
+    <Property name="Name">Label25</Property>
+    <Property name="RightToLeft">True</Property>
+    <Property name="Size">0.5625, 0.25</Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.TextBox" name="TextBox17">
+    <Property name="Text">txtName1</Property>
+    <Property name="DataField">Name</Property>
+    <Property name="Font">B Nazanin, 12pt, style=Bold</Property>
+    <Property name="Location">
+      <Binary>AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJhd2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAADEQAAAgD0L</Binary>
+    </Property>
+    <Property name="OutputFormat" />
+    <Property name="RightToLeft">True</Property>
+    <Property name="Name">TextBox17</Property>
+    <Property name="DistinctField" />
+    <Property name="Size">1.0625, 0.25</Property>
+    <Property name="Border">
+      <Property name="TopStyle">None</Property>
+      <Property name="BottomStyle">None</Property>
+      <Property name="LeftStyle">None</Property>
+      <Property name="RightStyle">None</Property>
+    </Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.TextBox" name="TextBox18">
+    <Property name="Text">:مضمون</Property>
+    <Property name="Font">B Nazanin, 12pt, style=Bold</Property>
+    <Property name="Location">
+      <Binary>AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJhd2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAAAEQAAAgD0L</Binary>
+    </Property>
+    <Property name="VerticalAlignment">Middle</Property>
+    <Property name="OutputFormat" />
+    <Property name="Name">TextBox18</Property>
+    <Property name="DistinctField" />
+    <Property name="Size">0.5625, 0.25</Property>
+    <Property name="Border">
+      <Property name="TopStyle">None</Property>
+      <Property name="BottomStyle">None</Property>
+      <Property name="LeftStyle">None</Property>
+      <Property name="RightStyle">None</Property>
+    </Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.TextBox" name="TextBox19">
+    <Property name="Text">txtvalad1</Property>
+    <Property name="DataField">valad</Property>
+    <Property name="Font">B Nazanin, 12pt, style=Bold</Property>
+    <Property name="Location">
+      <Binary>AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJhd2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAACUQAAAgD0L</Binary>
+    </Property>
+    <Property name="OutputFormat" />
+    <Property name="RightToLeft">True</Property>
+    <Property name="Name">TextBox19</Property>
+    <Property name="DistinctField" />
+    <Property name="Size">1.0625, 0.25</Property>
+    <Property name="Border">
+      <Property name="TopStyle">None</Property>
+      <Property name="BottomStyle">None</Property>
+      <Property name="LeftStyle">None</Property>
+      <Property name="RightStyle">None</Property>
+    </Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.TextBox" name="TextBox20">
+    <Property name="Text">txtsenf1</Property>
+    <Property name="DataField">senf</Property>
+    <Property name="Font">B Nazanin, 12pt, style=Bold</Property>
+    <Property name="Location">
+      <Binary>AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJhd2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAAAsQAAAgD0L</Binary>
+    </Property>
+    <Property name="OutputFormat" />
+    <Property name="RightToLeft">True</Property>
+    <Property name="Name">TextBox20</Property>
+    <Property name="DistinctField" />
+    <Property name="Size">1.5, 0.25</Property>
+    <Property name="Border">
+      <Property name="TopStyle">None</Property>
+      <Property name="BottomStyle">None</Property>
+      <Property name="LeftStyle">None</Property>
+      <Property name="RightStyle">None</Property>
+    </Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.Label" name="Label26">
+    <Property name="HyperLink" />
+    <Property name="Font">B Nazanin, 12pt, style=Bold</Property>
+    <Property name="Location">
+      <Binary>AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJhd2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAAC2QAAAgD0L</Binary>
+    </Property>
+    <Property name="Text">:ولد</Property>
+    <Property name="Border">
+      <Property name="TopStyle">None</Property>
+      <Property name="BottomStyle">None</Property>
+      <Property name="LeftStyle">None</Property>
+      <Property name="RightStyle">None</Property>
+    </Property>
+    <Property name="VerticalAlignment">Middle</Property>
+    <Property name="Name">Label26</Property>
+    <Property name="Size">0.375, 0.25</Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.Label" name="Label27">
+    <Property name="HyperLink" />
+    <Property name="Font">B Nazanin, 12pt, style=Bold</Property>
+    <Property name="Location">
+      <Binary>AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJhd2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAACGQAAAgD0L</Binary>
+    </Property>
+    <Property name="Text">:صنف</Property>
+    <Property name="Border">
+      <Property name="TopStyle">None</Property>
+      <Property name="BottomStyle">None</Property>
+      <Property name="LeftStyle">None</Property>
+      <Property name="RightStyle">None</Property>
+    </Property>
+    <Property name="VerticalAlignment">Middle</Property>
+    <Property name="Name">Label27</Property>
+    <Property name="Size">0.375, 0.25</Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.Label" name="Label28">
+    <Property name="HyperLink" />
+    <Property name="Font">B Nazanin, 12pt, style=Bold</Property>
+    <Property name="Location">
+      <Binary>AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJhd2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAADmQAAAgD0L</Binary>
+    </Property>
+    <Property name="Text">:نام</Property>
+    <Property name="Border">
+      <Property name="TopStyle">None</Property>
+      <Property name="BottomStyle">None</Property>
+      <Property name="LeftStyle">None</Property>
+      <Property name="RightStyle">None</Property>
+    </Property>
+    <Property name="VerticalAlignment">Middle</Property>
+    <Property name="Name">Label28</Property>
+    <Property name="Size">0.375, 0.25</Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.Label" name="Label29">
+    <Property name="HyperLink" />
+    <Property name="Font">B Nazanin, 12pt, style=Bold</Property>
+    <Property name="Location">
+      <Binary>AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJhd2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAAAAPgAAgD0L</Binary>
+    </Property>
+    <Property name="Text">صفحه 4</Property>
+    <Property name="Border">
+      <Property name="TopStyle">None</Property>
+      <Property name="BottomStyle">None</Property>
+      <Property name="LeftStyle">None</Property>
+      <Property name="RightStyle">None</Property>
+    </Property>
+    <Property name="Name">Label29</Property>
+    <Property name="RightToLeft">True</Property>
+    <Property name="Size">0.5625, 0.25</Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.TextBox" name="TextBox21">
+    <Property name="Text">txtMazmon1</Property>
+    <Property name="DataField">Mazmon</Property>
+    <Property name="Font">B Nazanin, 12pt, style=Bold</Property>
+    <Property name="Location">
+      <Binary>AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJhd2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAABAPwAAgD0L</Binary>
+    </Property>
+    <Property name="OutputFormat" />
+    <Property name="Name">TextBox21</Property>
+    <Property name="DistinctField" />
+    <Property name="Size">1.3125, 0.25</Property>
+    <Property name="Border">
+      <Property name="TopStyle">None</Property>
+      <Property name="BottomStyle">None</Property>
+      <Property name="LeftStyle">None</Property>
+      <Property name="RightStyle">None</Property>
+    </Property>
+    <Property name="Alignment">Right</Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.TextBox" name="TextBox5">
+    <Property name="Text">txtName1</Property>
+    <Property name="DataField">Name</Property>
+    <Property name="Font">B Nazanin, 12pt, style=Bold</Property>
+    <Property name="Location">
+      <Binary>AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJhd2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAADEQAAAgD0L</Binary>
+    </Property>
+    <Property name="OutputFormat" />
+    <Property name="RightToLeft">True</Property>
+    <Property name="Name">TextBox5</Property>
+    <Property name="DistinctField" />
+    <Property name="Size">1.0625, 0.25</Property>
+    <Property name="Border">
+      <Property name="TopStyle">None</Property>
+      <Property name="BottomStyle">None</Property>
+      <Property name="LeftStyle">None</Property>
+      <Property name="RightStyle">None</Property>
+    </Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.TextBox" name="TextBox6">
+    <Property name="Text">:مضمون</Property>
+    <Property name="Font">B Nazanin, 12pt, style=Bold</Property>
+    <Property name="Location">
+      <Binary>AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJhd2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAAAEQAAAgD0L</Binary>
+    </Property>
+    <Property name="VerticalAlignment">Middle</Property>
+    <Property name="OutputFormat" />
+    <Property name="Name">TextBox6</Property>
+    <Property name="DistinctField" />
+    <Property name="Size">0.5625, 0.25</Property>
+    <Property name="Border">
+      <Property name="TopStyle">None</Property>
+      <Property name="BottomStyle">None</Property>
+      <Property name="LeftStyle">None</Property>
+      <Property name="RightStyle">None</Property>
+    </Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.TextBox" name="TextBox8">
+    <Property name="Text">txtvalad1</Property>
+    <Property name="DataField">valad</Property>
+    <Property name="Font">B Nazanin, 12pt, style=Bold</Property>
+    <Property name="Location">
+      <Binary>AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJhd2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAACUQAAAgD0L</Binary>
+    </Property>
+    <Property name="OutputFormat" />
+    <Property name="RightToLeft">True</Property>
+    <Property name="Name">TextBox8</Property>
+    <Property name="DistinctField" />
+    <Property name="Size">1.0625, 0.25</Property>
+    <Property name="Border">
+      <Property name="TopStyle">None</Property>
+      <Property name="BottomStyle">None</Property>
+      <Property name="LeftStyle">None</Property>
+      <Property name="RightStyle">None</Property>
+    </Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.TextBox" name="TextBox22">
+    <Property name="Text">txtsenf1</Property>
+    <Property name="DataField">senf</Property>
+    <Property name="Font">B Nazanin, 12pt, style=Bold</Property>
+    <Property name="Location">
+      <Binary>AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJhd2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAAAsQAAAgD0L</Binary>
+    </Property>
+    <Property name="OutputFormat" />
+    <Property name="RightToLeft">True</Property>
+    <Property name="Name">TextBox22</Property>
+    <Property name="DistinctField" />
+    <Property name="Size">1.5, 0.25</Property>
+    <Property name="Border">
+      <Property name="TopStyle">None</Property>
+      <Property name="BottomStyle">None</Property>
+      <Property name="LeftStyle">None</Property>
+      <Property name="RightStyle">None</Property>
+    </Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.Label" name="Label20">
+    <Property name="HyperLink" />
+    <Property name="Font">B Nazanin, 12pt, style=Bold</Property>
+    <Property name="Location">
+      <Binary>AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJhd2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAAC2QAAAgD0L</Binary>
+    </Property>
+    <Property name="Text">:ولد</Property>
+    <Property name="Border">
+      <Property name="TopStyle">None</Property>
+      <Property name="BottomStyle">None</Property>
+      <Property name="LeftStyle">None</Property>
+      <Property name="RightStyle">None</Property>
+    </Property>
+    <Property name="VerticalAlignment">Middle</Property>
+    <Property name="Name">Label20</Property>
+    <Property name="Size">0.375, 0.25</Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.Label" name="Label21">
+    <Property name="HyperLink" />
+    <Property name="Font">B Nazanin, 12pt, style=Bold</Property>
+    <Property name="Location">
+      <Binary>AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJhd2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAACGQAAAgD0L</Binary>
+    </Property>
+    <Property name="Text">:صنف</Property>
+    <Property name="Border">
+      <Property name="TopStyle">None</Property>
+      <Property name="BottomStyle">None</Property>
+      <Property name="LeftStyle">None</Property>
+      <Property name="RightStyle">None</Property>
+    </Property>
+    <Property name="VerticalAlignment">Middle</Property>
+    <Property name="Name">Label21</Property>
+    <Property name="Size">0.375, 0.25</Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.Label" name="Label22">
+    <Property name="HyperLink" />
+    <Property name="Font">B Nazanin, 12pt, style=Bold</Property>
+    <Property name="Location">
+      <Binary>AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJhd2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAADmQAAAgD0L</Binary>
+    </Property>
+    <Property name="Text">:نام</Property>
+    <Property name="Border">
+      <Property name="TopStyle">None</Property>
+      <Property name="BottomStyle">None</Property>
+      <Property name="LeftStyle">None</Property>
+      <Property name="RightStyle">None</Property>
+    </Property>
+    <Property name="VerticalAlignment">Middle</Property>
+    <Property name="Name">Label22</Property>
+    <Property name="Size">0.375, 0.25</Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.Label" name="Label30">
+    <Property name="HyperLink" />
+    <Property name="Font">B Nazanin, 12pt, style=Bold</Property>
+    <Property name="Location">
+      <Binary>AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJhd2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAAAAPgAAgD0L</Binary>
+    </Property>
+    <Property name="Text">صفحه 5</Property>
+    <Property name="Border">
+      <Property name="TopStyle">None</Property>
+      <Property name="BottomStyle">None</Property>
+      <Property name="LeftStyle">None</Property>
+      <Property name="RightStyle">None</Property>
+    </Property>
+    <Property name="Name">Label30</Property>
+    <Property name="RightToLeft">True</Property>
+    <Property name="Size">0.5625, 0.25</Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.TextBox" name="TextBox23">
+    <Property name="Text">txtMazmon1</Property>
+    <Property name="DataField">Mazmon</Property>
+    <Property name="Font">B Nazanin, 12pt, style=Bold</Property>
+    <Property name="Location">
+      <Binary>AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJhd2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAABAPwAAgD0L</Binary>
+    </Property>
+    <Property name="OutputFormat" />
+    <Property name="Name">TextBox23</Property>
+    <Property name="DistinctField" />
+    <Property name="Size">1.3125, 0.25</Property>
+    <Property name="Border">
+      <Property name="TopStyle">None</Property>
+      <Property name="BottomStyle">None</Property>
+      <Property name="LeftStyle">None</Property>
+      <Property name="RightStyle">None</Property>
+    </Property>
+    <Property name="Alignment">Right</Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.TextBox" name="TextBox24">
+    <Property name="Text">txtName1</Property>
+    <Property name="DataField">Name</Property>
+    <Property name="Font">B Nazanin, 12pt, style=Bold</Property>
+    <Property name="Location">
+      <Binary>AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJhd2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAADEQAAAgD0L</Binary>
+    </Property>
+    <Property name="OutputFormat" />
+    <Property name="RightToLeft">True</Property>
+    <Property name="Name">TextBox24</Property>
+    <Property name="DistinctField" />
+    <Property name="Size">1.0625, 0.25</Property>
+    <Property name="Border">
+      <Property name="TopStyle">None</Property>
+      <Property name="BottomStyle">None</Property>
+      <Property name="LeftStyle">None</Property>
+      <Property name="RightStyle">None</Property>
+    </Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.TextBox" name="TextBox25">
+    <Property name="Text">:مضمون</Property>
+    <Property name="Font">B Nazanin, 12pt, style=Bold</Property>
+    <Property name="Location">
+      <Binary>AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJhd2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAAAEQAAAgD0L</Binary>
+    </Property>
+    <Property name="VerticalAlignment">Middle</Property>
+    <Property name="OutputFormat" />
+    <Property name="Name">TextBox25</Property>
+    <Property name="DistinctField" />
+    <Property name="Size">0.5625, 0.25</Property>
+    <Property name="Border">
+      <Property name="TopStyle">None</Property>
+      <Property name="BottomStyle">None</Property>
+      <Property name="LeftStyle">None</Property>
+      <Property name="RightStyle">None</Property>
+    </Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.TextBox" name="TextBox26">
+    <Property name="Text">txtvalad1</Property>
+    <Property name="DataField">valad</Property>
+    <Property name="Font">B Nazanin, 12pt, style=Bold</Property>
+    <Property name="Location">
+      <Binary>AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJhd2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAACUQAAAgD0L</Binary>
+    </Property>
+    <Property name="OutputFormat" />
+    <Property name="RightToLeft">True</Property>
+    <Property name="Name">TextBox26</Property>
+    <Property name="DistinctField" />
+    <Property name="Size">1.0625, 0.25</Property>
+    <Property name="Border">
+      <Property name="TopStyle">None</Property>
+      <Property name="BottomStyle">None</Property>
+      <Property name="LeftStyle">None</Property>
+      <Property name="RightStyle">None</Property>
+    </Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.TextBox" name="TextBox27">
+    <Property name="Text">txtsenf1</Property>
+    <Property name="DataField">senf</Property>
+    <Property name="Font">B Nazanin, 12pt, style=Bold</Property>
+    <Property name="Location">
+      <Binary>AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJhd2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAAAsQAAAgD0L</Binary>
+    </Property>
+    <Property name="OutputFormat" />
+    <Property name="RightToLeft">True</Property>
+    <Property name="Name">TextBox27</Property>
+    <Property name="DistinctField" />
+    <Property name="Size">1.5, 0.25</Property>
+    <Property name="Border">
+      <Property name="TopStyle">None</Property>
+      <Property name="BottomStyle">None</Property>
+      <Property name="LeftStyle">None</Property>
+      <Property name="RightStyle">None</Property>
+    </Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.Label" name="Label31">
+    <Property name="HyperLink" />
+    <Property name="Font">B Nazanin, 12pt, style=Bold</Property>
+    <Property name="Location">
+      <Binary>AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJhd2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAAC2QAAAgD0L</Binary>
+    </Property>
+    <Property name="Text">:ولد</Property>
+    <Property name="Border">
+      <Property name="TopStyle">None</Property>
+      <Property name="BottomStyle">None</Property>
+      <Property name="LeftStyle">None</Property>
+      <Property name="RightStyle">None</Property>
+    </Property>
+    <Property name="VerticalAlignment">Middle</Property>
+    <Property name="Name">Label31</Property>
+    <Property name="Size">0.375, 0.25</Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.Label" name="Label32">
+    <Property name="HyperLink" />
+    <Property name="Font">B Nazanin, 12pt, style=Bold</Property>
+    <Property name="Location">
+      <Binary>AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJhd2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAACGQAAAgD0L</Binary>
+    </Property>
+    <Property name="Text">:صنف</Property>
+    <Property name="Border">
+      <Property name="TopStyle">None</Property>
+      <Property name="BottomStyle">None</Property>
+      <Property name="LeftStyle">None</Property>
+      <Property name="RightStyle">None</Property>
+    </Property>
+    <Property name="VerticalAlignment">Middle</Property>
+    <Property name="Name">Label32</Property>
+    <Property name="Size">0.375, 0.25</Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.Label" name="Label33">
+    <Property name="HyperLink" />
+    <Property name="Font">B Nazanin, 12pt, style=Bold</Property>
+    <Property name="Location">
+      <Binary>AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJhd2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAADmQAAAgD0L</Binary>
+    </Property>
+    <Property name="Text">:نام</Property>
+    <Property name="Border">
+      <Property name="TopStyle">None</Property>
+      <Property name="BottomStyle">None</Property>
+      <Property name="LeftStyle">None</Property>
+      <Property name="RightStyle">None</Property>
+    </Property>
+    <Property name="VerticalAlignment">Middle</Property>
+    <Property name="Name">Label33</Property>
+    <Property name="Size">0.375, 0.25</Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.Label" name="Label34">
+    <Property name="HyperLink" />
+    <Property name="Font">B Nazanin, 12pt, style=Bold</Property>
+    <Property name="Location">
+      <Binary>AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJhd2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAAAAPgAAgD0L</Binary>
+    </Property>
+    <Property name="Text">صفحه 6</Property>
+    <Property name="Border">
+      <Property name="TopStyle">None</Property>
+      <Property name="BottomStyle">None</Property>
+      <Property name="LeftStyle">None</Property>
+      <Property name="RightStyle">None</Property>
+    </Property>
+    <Property name="Name">Label34</Property>
+    <Property name="RightToLeft">True</Property>
+    <Property name="Size">0.5625, 0.25</Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.TextBox" name="TextBox28">
+    <Property name="Text">txtMazmon1</Property>
+    <Property name="DataField">Mazmon</Property>
+    <Property name="Font">B Nazanin, 12pt, style=Bold</Property>
+    <Property name="Location">
+      <Binary>AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJhd2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAABAPwAAgD0L</Binary>
+    </Property>
+    <Property name="OutputFormat" />
+    <Property name="Name">TextBox28</Property>
+    <Property name="DistinctField" />
+    <Property name="Size">1.3125, 0.25</Property>
+    <Property name="Border">
+      <Property name="TopStyle">None</Property>
+      <Property name="BottomStyle">None</Property>
+      <Property name="LeftStyle">None</Property>
+      <Property name="RightStyle">None</Property>
+    </Property>
+    <Property name="Alignment">Right</Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.Shape" name="Shape6">
+    <Property name="Border">
+      <Property name="TopStyle">None</Property>
+      <Property name="BottomStyle">None</Property>
+      <Property name="LeftStyle">None</Property>
+      <Property name="RightStyle">None</Property>
+    </Property>
+    <Property name="LineWeight">4</Property>
+    <Property name="BackColor">Aquamarine</Property>
+    <Property name="Name">Shape6</Property>
+    <Property name="LineColor">DeepPink</Property>
+    <Property name="Location">
+      <Binary>AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJhd2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAACAPQAAuD8L</Binary>
+    </Property>
+    <Property name="LineStyle">DashDot</Property>
+    <Property name="Size">7.5625, 0.3125</Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.Shape" name="Shape3">
+    <Property name="Border">
+      <Property name="TopStyle">None</Property>
+      <Property name="BottomStyle">None</Property>
+      <Property name="LeftStyle">None</Property>
+      <Property name="RightStyle">None</Property>
+    </Property>
+    <Property name="LineWeight">4</Property>
+    <Property name="BackColor">Aquamarine</Property>
+    <Property name="Name">Shape3</Property>
+    <Property name="LineColor">DeepPink</Property>
+    <Property name="Location">
+      <Binary>AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJhd2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAVVVVPauqKj0L</Binary>
+    </Property>
+    <Property name="LineStyle">DashDot</Property>
+    <Property name="Size">7.625, 0.3125</Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.Shape" name="Shape5">
+    <Property name="Border">
+      <Property name="TopStyle">None</Property>
+      <Property name="BottomStyle">None</Property>
+      <Property name="LeftStyle">None</Property>
+      <Property name="RightStyle">None</Property>
+    </Property>
+    <Property name="LineWeight">4</Property>
+    <Property name="BackColor">Aquamarine</Property>
+    <Property name="Name">Shape5</Property>
+    <Property name="LineColor">DeepPink</Property>
+    <Property name="Location">
+      <Binary>AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJhd2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAq6oqPQAAAD0L</Binary>
+    </Property>
+    <Property name="LineStyle">DashDot</Property>
+    <Property name="Size">7.625, 0.3125</Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.Shape" name="Shape7">
+    <Property name="Border">
+      <Property name="TopStyle">None</Property>
+      <Property name="BottomStyle">None</Property>
+      <Property name="LeftStyle">None</Property>
+      <Property name="RightStyle">None</Property>
+    </Property>
+    <Property name="LineWeight">4</Property>
+    <Property name="BackColor">Aquamarine</Property>
+    <Property name="Name">Shape7</Property>
+    <Property name="LineColor">DeepPink</Property>
+    <Property name="Location">
+      <Binary>AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJhd2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAq6oqPauqqjwL</Binary>
+    </Property>
+    <Property name="LineStyle">DashDot</Property>
+    <Property name="Size">7.625, 0.3125</Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.Label" name="Label35">
+    <Property name="HyperLink" />
+    <Property name="Alignment">Right</Property>
+    <Property name="Font">B Nazanin, 10pt, style=Bold</Property>
+    <Property name="Location">
+      <Binary>AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJhd2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAAAEQAAAkD8L</Binary>
+    </Property>
+    <Property name="Text">حوزه امتحانی:</Property>
+    <Property name="Border">
+      <Property name="TopStyle">None</Property>
+      <Property name="BottomStyle">None</Property>
+      <Property name="LeftStyle">None</Property>
+      <Property name="RightStyle">None</Property>
+    </Property>
+    <Property name="Name">Label35</Property>
+    <Property name="RightToLeft">True</Property>
+    <Property name="Size">0.75, 0.25</Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.Label" name="Label36">
+    <Property name="HyperLink" />
+    <Property name="Alignment">Right</Property>
+    <Property name="Font">B Nazanin, 10pt, style=Bold</Property>
+    <Property name="Location">
+      <Binary>AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJhd2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAAAEQFVVRT8L</Binary>
+    </Property>
+    <Property name="Text">شماره چوکی:</Property>
+    <Property name="Border">
+      <Property name="TopStyle">None</Property>
+      <Property name="BottomStyle">None</Property>
+      <Property name="LeftStyle">None</Property>
+      <Property name="RightStyle">None</Property>
+    </Property>
+    <Property name="Name">Label36</Property>
+    <Property name="RightToLeft">True</Property>
+    <Property name="Size">0.75, 0.25</Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.Label" name="Label37">
+    <Property name="HyperLink" />
+    <Property name="Alignment">Right</Property>
+    <Property name="Font">B Nazanin, 10pt, style=Bold</Property>
+    <Property name="Location">
+      <Binary>AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJhd2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAAAEQFVV1T0L</Binary>
+    </Property>
+    <Property name="Text">استاد مضمون:</Property>
+    <Property name="Border">
+      <Property name="TopStyle">None</Property>
+      <Property name="BottomStyle">None</Property>
+      <Property name="LeftStyle">None</Property>
+      <Property name="RightStyle">None</Property>
+    </Property>
+    <Property name="Name">Label37</Property>
+    <Property name="RightToLeft">True</Property>
+    <Property name="Size">0.75, 0.25</Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.Label" name="Label38">
+    <Property name="HyperLink" />
+    <Property name="Alignment">Right</Property>
+    <Property name="Font">B Nazanin, 10pt, style=Bold</Property>
+    <Property name="Location">
+      <Binary>AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJhd2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAAAEQKuq2j4L</Binary>
+    </Property>
+    <Property name="Text">نمبر ترتیب:</Property>
+    <Property name="Border">
+      <Property name="TopStyle">None</Property>
+      <Property name="BottomStyle">None</Property>
+      <Property name="LeftStyle">None</Property>
+      <Property name="RightStyle">None</Property>
+    </Property>
+    <Property name="Name">Label38</Property>
+    <Property name="RightToLeft">True</Property>
+    <Property name="Size">0.75, 0.25</Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.TextBox" name="txtchoki1">
+    <Property name="Text">txtchoki1</Property>
+    <Property name="DataField">choki</Property>
+    <Property name="Font">B Nazanin, 12pt</Property>
+    <Property name="Location">
+      <Binary>AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJhd2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAq6qSPwAAQD8L</Binary>
+    </Property>
+    <Property name="VerticalAlignment">Middle</Property>
+    <Property name="OutputFormat" />
+    <Property name="RightToLeft">True</Property>
+    <Property name="Name">txtchoki1</Property>
+    <Property name="DistinctField" />
+    <Property name="Size">0.875, 0.25</Property>
+    <Property name="Border">
+      <Property name="TopStyle">None</Property>
+      <Property name="BottomStyle">None</Property>
+      <Property name="LeftStyle">None</Property>
+      <Property name="RightStyle">None</Property>
+    </Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.TextBox" name="txttartib1">
+    <Property name="Text">txttartib1</Property>
+    <Property name="DataField">tartib</Property>
+    <Property name="Font">B Nazanin, 12pt</Property>
+    <Property name="Location">
+      <Binary>AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJhd2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAq6qSPwAA4D4L</Binary>
+    </Property>
+    <Property name="VerticalAlignment">Middle</Property>
+    <Property name="OutputFormat" />
+    <Property name="RightToLeft">True</Property>
+    <Property name="Name">txttartib1</Property>
+    <Property name="DistinctField" />
+    <Property name="Size">0.875, 0.25</Property>
+    <Property name="Border">
+      <Property name="TopStyle">None</Property>
+      <Property name="BottomStyle">None</Property>
+      <Property name="LeftStyle">None</Property>
+      <Property name="RightStyle">None</Property>
+    </Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.TextBox" name="txthoze1">
+    <Property name="Text">txthoze1</Property>
+    <Property name="DataField">hoze</Property>
+    <Property name="Font">B Nazanin, 12pt</Property>
+    <Property name="Location">
+      <Binary>AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJhd2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAVVUlPwAAkD8L</Binary>
+    </Property>
+    <Property name="VerticalAlignment">Middle</Property>
+    <Property name="OutputFormat" />
+    <Property name="RightToLeft">True</Property>
+    <Property name="Name">txthoze1</Property>
+    <Property name="DistinctField" />
+    <Property name="Size">1.375, 0.25</Property>
+    <Property name="Border">
+      <Property name="TopStyle">None</Property>
+      <Property name="BottomStyle">None</Property>
+      <Property name="LeftStyle">None</Property>
+      <Property name="RightStyle">None</Property>
+    </Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.TextBox" name="txtTeacher1">
+    <Property name="Text">txtTeacher1</Property>
+    <Property name="DataField">Teacher</Property>
+    <Property name="Font">B Nazanin, 12pt</Property>
+    <Property name="Location">
+      <Binary>AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJhd2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAq6pyPwAAwD0L</Binary>
+    </Property>
+    <Property name="VerticalAlignment">Middle</Property>
+    <Property name="OutputFormat" />
+    <Property name="RightToLeft">True</Property>
+    <Property name="Name">txtTeacher1</Property>
+    <Property name="DistinctField" />
+    <Property name="Size">1.0625, 0.25</Property>
+    <Property name="Border">
+      <Property name="TopStyle">None</Property>
+      <Property name="BottomStyle">None</Property>
+      <Property name="LeftStyle">None</Property>
+      <Property name="RightStyle">None</Property>
+    </Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.Shape" name="Shape8">
+    <Property name="Border">
+      <Property name="TopStyle">None</Property>
+      <Property name="BottomStyle">None</Property>
+      <Property name="LeftStyle">None</Property>
+      <Property name="RightStyle">None</Property>
+    </Property>
+    <Property name="Name">Shape8</Property>
+    <Property name="Location">
+      <Binary>AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJhd2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAAA4QKuqKjwL</Binary>
+    </Property>
+    <Property name="Size">2.125, 1.4375</Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.Picture" name="Picture1">
+    <Property name="ImageData" />
+    <Property name="Location">
+      <Binary>AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJhd2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAAAAPgAAAD4L</Binary>
+    </Property>
+    <Property name="Border">
+      <Property name="TopStyle">None</Property>
+      <Property name="BottomStyle">None</Property>
+      <Property name="LeftStyle">None</Property>
+      <Property name="RightStyle">None</Property>
+    </Property>
+    <Property name="Name">Picture1</Property>
+    <Property name="Size">0.875, 1</Property>
+    <Property name="SizeMode">Stretch</Property>
+    <Property name="LineWeight">0</Property>
+    <Property name="DataField">Aks</Property>
+  </Object>
+</ActiveReportsLayout>

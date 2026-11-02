@@ -1,0 +1,34 @@
+{
+  "inputs": [
+    {
+      "path": "Setup.rar",
+      "sha256": "cf950bb742dd8edbc84c80316661f9a26146af0fb8a4767a23f23ed91f808dd6",
+      "bytes": 54309455
+    },
+    {
+      "path": "update14021119_3 (1).exe",
+      "sha256": "a28b8deff1611ec655056308dba8614d213d314f87c8ef7f8dd556110480e518",
+      "bytes": 4430644
+    },
+    {
+      "path": "original/update/school_af.exe",
+      "sha256": "f380191dc4a7c6fbf7dbc0f95c21e915e9b50bf8a8bd44eac6e8943bc715fe28",
+      "bytes": 20058112
+    },
+    {
+      "path": "original/installed/db/school_af_kbr_Data.MDF",
+      "sha256": "91656d4185c9354daaebca81f58c6fcf027eda19f5257c6cbf2deede35d66966",
+      "bytes": 5505024
+    },
+    {
+      "path": "original/installed/db/school_af_kbr_Log.LDF",
+      "sha256": "dcb0144dabca87310d9650776117eed6ab294618955a016dc7a4ab1e5d1df827",
+      "bytes": 5832704
+    }
+  ],
+  "rea": {
+    "repository": "https://github.com/morluto/rea",
+    "commit": "93b8b82db70279e40f484114cff9dc1958dc14ee"
+  },
+  "native_status": "read-only UI preview; business logic and reports are not ported"
+}

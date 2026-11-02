@@ -1,0 +1,11 @@
+test_migrations_are_complete_and_idempotent (free_sms_workflows.SchoolWorkflows.test_migrations_are_complete_and_idempotent) ... ok
+test_qt_school_save_and_registration_button (free_sms_workflows.SchoolWorkflows.test_qt_school_save_and_registration_button) ... ok
+test_reference_crud_and_reference_protection (free_sms_workflows.SchoolWorkflows.test_reference_crud_and_reference_protection) ... ok
+test_register_update_search_duplicates_and_delete (free_sms_workflows.SchoolWorkflows.test_register_update_search_duplicates_and_delete) ... ok
+test_student_image_is_saved_in_registration_transaction (free_sms_workflows.SchoolWorkflows.test_student_image_is_saved_in_registration_transaction) ... ok
+test_year_creates_three_terms_and_assignments_validate_grade (free_sms_workflows.SchoolWorkflows.test_year_creates_three_terms_and_assignments_validate_grade) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 8.693s
+
+OK

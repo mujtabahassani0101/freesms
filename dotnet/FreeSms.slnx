@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="FreeSms.Core/FreeSms.Core.csproj" />
+  <Project Path="FreeSms.Windows/FreeSms.Windows.csproj" />
+  <Project Path="FreeSms.Checks/FreeSms.Checks.csproj" />
+</Solution>

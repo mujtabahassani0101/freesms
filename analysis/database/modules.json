@@ -1,0 +1,530 @@
+[
+  {
+    "name": "CountA",
+    "type_desc": "SQL_SCALAR_FUNCTION",
+    "definition": null,
+    "definition_unavailable": 1
+  },
+  {
+    "name": "CountB",
+    "type_desc": "SQL_SCALAR_FUNCTION",
+    "definition": null,
+    "definition_unavailable": 1
+  },
+  {
+    "name": "CountC",
+    "type_desc": "SQL_SCALAR_FUNCTION",
+    "definition": null,
+    "definition_unavailable": 1
+  },
+  {
+    "name": "CountD",
+    "type_desc": "SQL_SCALAR_FUNCTION",
+    "definition": null,
+    "definition_unavailable": 1
+  },
+  {
+    "name": "CreateMsg",
+    "type_desc": "SQL_STORED_PROCEDURE",
+    "definition": null,
+    "definition_unavailable": 1
+  },
+  {
+    "name": "CreateMsgTelegram",
+    "type_desc": "SQL_STORED_PROCEDURE",
+    "definition": null,
+    "definition_unavailable": 1
+  },
+  {
+    "name": "idx",
+    "type_desc": "SQL_STORED_PROCEDURE",
+    "definition": null,
+    "definition_unavailable": 1
+  },
+  {
+    "name": "idx_SortClass",
+    "type_desc": "SQL_STORED_PROCEDURE",
+    "definition": null,
+    "definition_unavailable": 1
+  },
+  {
+    "name": "idxSortPaye",
+    "type_desc": "SQL_STORED_PROCEDURE",
+    "definition": null,
+    "definition_unavailable": 1
+  },
+  {
+    "name": "idxSortPaye_SortClass",
+    "type_desc": "SQL_STORED_PROCEDURE",
+    "definition": null,
+    "definition_unavailable": 1
+  },
+  {
+    "name": "ReturnStatusJoinTelegram",
+    "type_desc": "SQL_SCALAR_FUNCTION",
+    "definition": null,
+    "definition_unavailable": 1
+  },
+  {
+    "name": "ReturnTosif",
+    "type_desc": "SQL_SCALAR_FUNCTION",
+    "definition": null,
+    "definition_unavailable": 1
+  },
+  {
+    "name": "sp_CalcMarkDoreh",
+    "type_desc": "SQL_STORED_PROCEDURE",
+    "definition": null,
+    "definition_unavailable": 1
+  },
+  {
+    "name": "sp_ExportMarkToXls",
+    "type_desc": "SQL_STORED_PROCEDURE",
+    "definition": null,
+    "definition_unavailable": 1
+  },
+  {
+    "name": "sp_List_books_RengMark",
+    "type_desc": "SQL_STORED_PROCEDURE",
+    "definition": null,
+    "definition_unavailable": 1
+  },
+  {
+    "name": "SP_pass",
+    "type_desc": "SQL_STORED_PROCEDURE",
+    "definition": null,
+    "definition_unavailable": 1
+  },
+  {
+    "name": "sp_Procc",
+    "type_desc": "SQL_STORED_PROCEDURE",
+    "definition": null,
+    "definition_unavailable": 1
+  },
+  {
+    "name": "sp_rptChapShaghe",
+    "type_desc": "SQL_STORED_PROCEDURE",
+    "definition": null,
+    "definition_unavailable": 1
+  },
+  {
+    "name": "sp_rptListStd",
+    "type_desc": "SQL_STORED_PROCEDURE",
+    "definition": "--sp_rptChapShagheHzeri '','32,33,34,35'\r\nCREATE procedure dbo.sp_rptListStd\r\n@Class varchar(500),\r\n@xYear int\r\nas\r\ncreate table #tmp(id int identity ,xClass1 int ,xClass2 int)\r\ndeclare @xclass int\r\ndeclare @xPaye int\r\ndeclare @id int\r\ndeclare @counter int\r\n\r\n\r\ndeclare paye cursor for\r\nSELECT  distinct   xpaye\r\nFROM         tClass\r\nWHERE (xYear = @xYear) and id in(select * from SplitNumber(@Class))\r\nand id IN \r\n         (SELECT xclass  FROM tyear_student \r\n          WHERE xyear = @xYear  and xclass in(select * from SplitNumber(@Class)))\r\nORDER BY xpaye\r\n      open paye\r\nfetch next from paye into \r\n     @xPaye\r\nSet @counter=1\r\nwhile (@@fetch_status=0)\r\nbegin\r\n\r\n\tdeclare class cursor for\r\n\tSELECT id FROM tclass WHERE (xPaye = @xPaye)\r\n        and id in(select xclass from tYear_Student where xYear=@xYear)  ORDER BY sortRpt \r\n\t      open class\r\n\tfetch next from class into \r\n\t     @xclass\r\n\twhile (@@fetch_status=0)\r\n\tbegin\r\n          \r\n        if(@counter=1)\r\n          begin\r\n           insert into #tmp(xclass1)values(@xclass)\r\n            set @id=@@identity\r\n            set @counter=2\r\n          end\r\n        else\r\n          begin\r\n             update #tmp set xclass2=@xclass where id=@id\r\n             set @counter=1\r\n          end\r\n\r\n\tfetch next from class into \r\n\t   @xclass\r\n\tend\r\n\tclose class\r\n\tdeallocate class\r\n\r\n\r\n--Set @counter=1\r\nfetch next from paye into \r\n   @xPaye\r\nend\r\nclose paye\r\ndeallocate paye\r\n\r\nselect * from #tmp\r\ndrop table #tmp\r\n\r\n\r\n\r\n\r\n\r\n",
+    "definition_unavailable": 0
+  },
+  {
+    "name": "sp_RptPayment1",
+    "type_desc": "SQL_STORED_PROCEDURE",
+    "definition": null,
+    "definition_unavailable": 1
+  },
+  {
+    "name": "sp_RptPayment2",
+    "type_desc": "SQL_STORED_PROCEDURE",
+    "definition": null,
+    "definition_unavailable": 1
+  },
+  {
+    "name": "sp_RptPaymentBalance1",
+    "type_desc": "SQL_STORED_PROCEDURE",
+    "definition": null,
+    "definition_unavailable": 1
+  },
+  {
+    "name": "sp_RptPaymentBalance2",
+    "type_desc": "SQL_STORED_PROCEDURE",
+    "definition": null,
+    "definition_unavailable": 1
+  },
+  {
+    "name": "sp_RptSumPaymentGroupByClass",
+    "type_desc": "SQL_STORED_PROCEDURE",
+    "definition": null,
+    "definition_unavailable": 1
+  },
+  {
+    "name": "sp_RptSumPaymentkoll",
+    "type_desc": "SQL_STORED_PROCEDURE",
+    "definition": null,
+    "definition_unavailable": 1
+  },
+  {
+    "name": "sp_SelectStdForSarbarg",
+    "type_desc": "SQL_STORED_PROCEDURE",
+    "definition": null,
+    "definition_unavailable": 1
+  },
+  {
+    "name": "sp_SelectTelegramMessageForSend",
+    "type_desc": "SQL_STORED_PROCEDURE",
+    "definition": null,
+    "definition_unavailable": 1
+  },
+  {
+    "name": "sp_selectTelegramSendLog",
+    "type_desc": "SQL_STORED_PROCEDURE",
+    "definition": null,
+    "definition_unavailable": 1
+  },
+  {
+    "name": "sp_SubListStdHazer",
+    "type_desc": "SQL_STORED_PROCEDURE",
+    "definition": "CREATE procedure dbo.sp_SubListStdHazer\r\n@Class varchar(500)  ,\r\n@xYear int\r\nas\r\nSELECT     tYear_Student.xPaye, tYear_Student.xClass, tYear_Student.xStudent, tYear_Student.sort, tStudent.FName, tStudent.LName, tStudent.PName, tClass.answerable, \r\n                      tClass.name AS Class, tPaye.Name AS Paye, tParmetr.heder1, tParmetr.sch, tStudent.NumberAsas, tStudent.RegDate,cast(tClass.xYear as nvarchar(4)) as xYear\r\nFROM         tStudent INNER JOIN\r\n                      tYear_Student ON tStudent.id = tYear_Student.xStudent INNER JOIN\r\n                      tClass ON tYear_Student.xClass = tClass.id INNER JOIN\r\n                      tPaye ON tYear_Student.xPaye = tPaye.id CROSS JOIN\r\n                      tParmetr\r\nWHERE     (tYear_Student.hazer = 1) AND (tYear_Student.xYear = @xYear)\r\nand tYear_Student.xclass in(select * from SplitNumber(@Class))\r\n\r\n",
+    "definition_unavailable": 0
+  },
+  {
+    "name": "sp_SubListStdKoll",
+    "type_desc": "SQL_STORED_PROCEDURE",
+    "definition": "CREATE procedure dbo.sp_SubListStdKoll\r\n@Class varchar(500)  ,\r\n@xYear int\r\nas\r\nSELECT     tYear_Student.xPaye, tYear_Student.xClass, tYear_Student.xStudent, tYear_Student.sort, tStudent.FName, tStudent.LName, tStudent.PName, tClass.answerable, \r\n                      tClass.name AS Class, tPaye.Name AS Paye, tParmetr.heder1, tParmetr.sch, tStudent.NumberAsas, tStudent.RegDate,cast(tClass.xYear as nvarchar(4)) as xYear\r\nFROM         tStudent INNER JOIN\r\n                      tYear_Student ON tStudent.id = tYear_Student.xStudent INNER JOIN\r\n                      tClass ON tYear_Student.xClass = tClass.id INNER JOIN\r\n                      tPaye ON tYear_Student.xPaye = tPaye.id CROSS JOIN\r\n                      tParmetr\r\nWHERE  (tYear_Student.xYear = @xYear)\r\nand tYear_Student.xclass in(select * from SplitNumber(@Class))\r\n\r\n",
+    "definition_unavailable": 0
+  },
+  {
+    "name": "sp_SubListStdMali",
+    "type_desc": "SQL_STORED_PROCEDURE",
+    "definition": "CREATE procedure dbo.sp_SubListStdMali\r\n@Class varchar(500)  ,\r\n@xYear int\r\nas\r\nSELECT     tYear_Student.xPaye, tYear_Student.xClass, tYear_Student.xStudent, tYear_Student.sort, tStudent.FName, tStudent.LName, tStudent.PName, tClass.answerable, \r\n                      tClass.name AS Class, tPaye.Name AS Paye, tParmetr.heder1, tParmetr.sch, tStudent.NumberAsas, tStudent.RegDate,cast(tClass.xYear as nvarchar(4)) as xYear\r\nFROM         tStudent INNER JOIN\r\n                      tYear_Student ON tStudent.id = tYear_Student.xStudent INNER JOIN\r\n                      tClass ON tYear_Student.xClass = tClass.id INNER JOIN\r\n                      tPaye ON tYear_Student.xPaye = tPaye.id CROSS JOIN\r\n                      tParmetr\r\nWHERE     (tYear_Student.mali = 1) AND (tYear_Student.xYear = @xYear)\r\nand tYear_Student.xclass in(select * from SplitNumber(@Class))\r\n\r\n",
+    "definition_unavailable": 0
+  },
+  {
+    "name": "sp_SubListStdshaghe",
+    "type_desc": "SQL_STORED_PROCEDURE",
+    "definition": "CREATE procedure dbo.sp_SubListStdshaghe\r\n@Class varchar(500)  ,\r\n@xYear int\r\nas\r\nSELECT     tYear_Student.xPaye, tYear_Student.xClass, tYear_Student.xStudent, tYear_Student.sort, tStudent.FName, tStudent.LName, tStudent.PName, tClass.answerable, \r\n                      tClass.name AS Class, tPaye.Name AS Paye, tParmetr.heder1, tParmetr.sch, tStudent.NumberAsas, tStudent.RegDate,cast(tClass.xYear as nvarchar(4)) as xYear\r\nFROM         tStudent INNER JOIN\r\n                      tYear_Student ON tStudent.id = tYear_Student.xStudent INNER JOIN\r\n                      tClass ON tYear_Student.xClass = tClass.id INNER JOIN\r\n                      tPaye ON tYear_Student.xPaye = tPaye.id CROSS JOIN\r\n                      tParmetr\r\nWHERE     (tYear_Student.shaghe = 1) AND (tYear_Student.xYear = @xYear)\r\nand tYear_Student.xclass in(select * from SplitNumber(@Class))\r\n",
+    "definition_unavailable": 0
+  },
+  {
+    "name": "sp_SubrptChapShaghe",
+    "type_desc": "SQL_STORED_PROCEDURE",
+    "definition": null,
+    "definition_unavailable": 1
+  },
+  {
+    "name": "sp_SubrptChapShagheHzeri",
+    "type_desc": "SQL_STORED_PROCEDURE",
+    "definition": null,
+    "definition_unavailable": 1
+  },
+  {
+    "name": "sp_tClass_insertUpdate",
+    "type_desc": "SQL_STORED_PROCEDURE",
+    "definition": null,
+    "definition_unavailable": 1
+  },
+  {
+    "name": "sp_tComnentKarname_insertUpdate",
+    "type_desc": "SQL_STORED_PROCEDURE",
+    "definition": null,
+    "definition_unavailable": 1
+  },
+  {
+    "name": "sp_tEnzebat_insertUpdate",
+    "type_desc": "SQL_STORED_PROCEDURE",
+    "definition": null,
+    "definition_unavailable": 1
+  },
+  {
+    "name": "sp_tHozeh_InsertUpdate",
+    "type_desc": "SQL_STORED_PROCEDURE",
+    "definition": null,
+    "definition_unavailable": 1
+  },
+  {
+    "name": "sp_tMark_insertUpdate",
+    "type_desc": "SQL_STORED_PROCEDURE",
+    "definition": null,
+    "definition_unavailable": 1
+  },
+  {
+    "name": "sp_tMark_insertUpdate_FromXls",
+    "type_desc": "SQL_STORED_PROCEDURE",
+    "definition": null,
+    "definition_unavailable": 1
+  },
+  {
+    "name": "sp_tMark_insertUpdate_FromXls_Tosif",
+    "type_desc": "SQL_STORED_PROCEDURE",
+    "definition": null,
+    "definition_unavailable": 1
+  },
+  {
+    "name": "sp_tMark_insertUpdate_FromXls2",
+    "type_desc": "SQL_STORED_PROCEDURE",
+    "definition": null,
+    "definition_unavailable": 1
+  },
+  {
+    "name": "sp_tMarkDoreh_insertUpdateEnzebat",
+    "type_desc": "SQL_STORED_PROCEDURE",
+    "definition": null,
+    "definition_unavailable": 1
+  },
+  {
+    "name": "sp_tPaymentStudent_insertUpdate",
+    "type_desc": "SQL_STORED_PROCEDURE",
+    "definition": null,
+    "definition_unavailable": 1
+  },
+  {
+    "name": "sp_tStudent_insertUpdate",
+    "type_desc": "SQL_STORED_PROCEDURE",
+    "definition": null,
+    "definition_unavailable": 1
+  },
+  {
+    "name": "sp_tStudentImg_InsertUpdate",
+    "type_desc": "SQL_STORED_PROCEDURE",
+    "definition": null,
+    "definition_unavailable": 1
+  },
+  {
+    "name": "sp_tTelegramId_insert",
+    "type_desc": "SQL_STORED_PROCEDURE",
+    "definition": null,
+    "definition_unavailable": 1
+  },
+  {
+    "name": "sp_tYearMaghtaCountDay_insertUpdate",
+    "type_desc": "SQL_STORED_PROCEDURE",
+    "definition": null,
+    "definition_unavailable": 1
+  },
+  {
+    "name": "SplitNumber",
+    "type_desc": "SQL_TABLE_VALUED_FUNCTION",
+    "definition": null,
+    "definition_unavailable": 1
+  },
+  {
+    "name": "spRpt_AmarGhaboliClass",
+    "type_desc": "SQL_STORED_PROCEDURE",
+    "definition": null,
+    "definition_unavailable": 1
+  },
+  {
+    "name": "spRpt_AmarGhaboliPaye",
+    "type_desc": "SQL_STORED_PROCEDURE",
+    "definition": null,
+    "definition_unavailable": 1
+  },
+  {
+    "name": "spRpt_AvgClassBooks",
+    "type_desc": "SQL_STORED_PROCEDURE",
+    "definition": null,
+    "definition_unavailable": 1
+  },
+  {
+    "name": "spRpt_AvgClassBooks_1",
+    "type_desc": "SQL_STORED_PROCEDURE",
+    "definition": null,
+    "definition_unavailable": 1
+  },
+  {
+    "name": "spRpt_AvgClassBooks_2",
+    "type_desc": "SQL_STORED_PROCEDURE",
+    "definition": null,
+    "definition_unavailable": 1
+  },
+  {
+    "name": "spRpt_AvgClassBooks_3",
+    "type_desc": "SQL_STORED_PROCEDURE",
+    "definition": null,
+    "definition_unavailable": 1
+  },
+  {
+    "name": "spRpt_AvgClassBooks_4",
+    "type_desc": "SQL_STORED_PROCEDURE",
+    "definition": null,
+    "definition_unavailable": 1
+  },
+  {
+    "name": "spRpt_AvgClassBooksTch",
+    "type_desc": "SQL_STORED_PROCEDURE",
+    "definition": null,
+    "definition_unavailable": 1
+  },
+  {
+    "name": "spRpt_DabirAvgClassMark",
+    "type_desc": "SQL_STORED_PROCEDURE",
+    "definition": null,
+    "definition_unavailable": 1
+  },
+  {
+    "name": "spRpt_ListClassOftRoshd",
+    "type_desc": "SQL_STORED_PROCEDURE",
+    "definition": null,
+    "definition_unavailable": 1
+  },
+  {
+    "name": "spRpt_ListDabir1",
+    "type_desc": "SQL_STORED_PROCEDURE",
+    "definition": null,
+    "definition_unavailable": 1
+  },
+  {
+    "name": "spRpt_ListDabir2",
+    "type_desc": "SQL_STORED_PROCEDURE",
+    "definition": null,
+    "definition_unavailable": 1
+  },
+  {
+    "name": "spRpt_ListDabirKham",
+    "type_desc": "SQL_STORED_PROCEDURE",
+    "definition": null,
+    "definition_unavailable": 1
+  },
+  {
+    "name": "spRpt_ListDabirKhamByTchName",
+    "type_desc": "SQL_STORED_PROCEDURE",
+    "definition": null,
+    "definition_unavailable": 1
+  },
+  {
+    "name": "spRpt_ListDabirKhamByTchNameAllBook",
+    "type_desc": "SQL_STORED_PROCEDURE",
+    "definition": null,
+    "definition_unavailable": 1
+  },
+  {
+    "name": "spRpt_Liststd_books1",
+    "type_desc": "SQL_STORED_PROCEDURE",
+    "definition": null,
+    "definition_unavailable": 1
+  },
+  {
+    "name": "spRpt_Liststd_books2",
+    "type_desc": "SQL_STORED_PROCEDURE",
+    "definition": null,
+    "definition_unavailable": 1
+  },
+  {
+    "name": "spRpt_Liststd_booksAlarm",
+    "type_desc": "SQL_STORED_PROCEDURE",
+    "definition": null,
+    "definition_unavailable": 1
+  },
+  {
+    "name": "spRpt_ListStdHozeh",
+    "type_desc": "SQL_STORED_PROCEDURE",
+    "definition": null,
+    "definition_unavailable": 1
+  },
+  {
+    "name": "spRpt_ListStdHozehByImg",
+    "type_desc": "SQL_STORED_PROCEDURE",
+    "definition": null,
+    "definition_unavailable": 1
+  },
+  {
+    "name": "spRpt_ListStdHozehMinMax",
+    "type_desc": "SQL_STORED_PROCEDURE",
+    "definition": null,
+    "definition_unavailable": 1
+  },
+  {
+    "name": "spRpt_ListStdMoadel1",
+    "type_desc": "SQL_STORED_PROCEDURE",
+    "definition": null,
+    "definition_unavailable": 1
+  },
+  {
+    "name": "spRpt_ListStdMoadel2",
+    "type_desc": "SQL_STORED_PROCEDURE",
+    "definition": null,
+    "definition_unavailable": 1
+  },
+  {
+    "name": "spRpt_ListStdOftRoshdBooks",
+    "type_desc": "SQL_STORED_PROCEDURE",
+    "definition": null,
+    "definition_unavailable": 1
+  },
+  {
+    "name": "spRpt_ListStdOftRoshdMoadel",
+    "type_desc": "SQL_STORED_PROCEDURE",
+    "definition": null,
+    "definition_unavailable": 1
+  },
+  {
+    "name": "spRpt_ListTestBookStd",
+    "type_desc": "SQL_STORED_PROCEDURE",
+    "definition": null,
+    "definition_unavailable": 1
+  },
+  {
+    "name": "spRpt_StdBookMarks",
+    "type_desc": "SQL_STORED_PROCEDURE",
+    "definition": null,
+    "definition_unavailable": 1
+  },
+  {
+    "name": "spRpt_StdgClass3",
+    "type_desc": "SQL_STORED_PROCEDURE",
+    "definition": null,
+    "definition_unavailable": 1
+  },
+  {
+    "name": "spRpt_StdgPaye3",
+    "type_desc": "SQL_STORED_PROCEDURE",
+    "definition": null,
+    "definition_unavailable": 1
+  },
+  {
+    "name": "spRpt_StdKarnameDoreh1",
+    "type_desc": "SQL_STORED_PROCEDURE",
+    "definition": null,
+    "definition_unavailable": 1
+  },
+  {
+    "name": "spRpt_StdKarnameDoreh2",
+    "type_desc": "SQL_STORED_PROCEDURE",
+    "definition": null,
+    "definition_unavailable": 1
+  },
+  {
+    "name": "spRpt_StdKarnameTajamoee2",
+    "type_desc": "SQL_STORED_PROCEDURE",
+    "definition": null,
+    "definition_unavailable": 1
+  },
+  {
+    "name": "spRpt_StdListTestMark_AvgClass",
+    "type_desc": "SQL_STORED_PROCEDURE",
+    "definition": null,
+    "definition_unavailable": 1
+  },
+  {
+    "name": "spRpt_StdListTestMark_AvgClass_AllExam",
+    "type_desc": "SQL_STORED_PROCEDURE",
+    "definition": null,
+    "definition_unavailable": 1
+  },
+  {
+    "name": "spRpt_StdMoadelMarks",
+    "type_desc": "SQL_STORED_PROCEDURE",
+    "definition": null,
+    "definition_unavailable": 1
+  },
+  {
+    "name": "updatetCardProperties",
+    "type_desc": "SQL_STORED_PROCEDURE",
+    "definition": null,
+    "definition_unavailable": 1
+  },
+  {
+    "name": "updatetParmetr",
+    "type_desc": "SQL_STORED_PROCEDURE",
+    "definition": null,
+    "definition_unavailable": 1
+  },
+  {
+    "name": "updatetTelegramConfigTestMobil",
+    "type_desc": "SQL_STORED_PROCEDURE",
+    "definition": null,
+    "definition_unavailable": 1
+  },
+  {
+    "name": "vPass",
+    "type_desc": "VIEW",
+    "definition": "CREATE VIEW dbo.vPass\r\nAS\r\nSELECT     TOP 100 PERCENT dbo.tStudent.id, dbo.tStudent.FName, dbo.tStudent.LName, dbo.tStudent.PName, dbo.tStudent.pass, dbo.tStudent.pass2, \r\n                      dbo.tStudent.xPaye\r\nFROM         dbo.tStudent INNER JOIN\r\n                      dbo.tPaye ON dbo.tStudent.xPaye = dbo.tPaye.id\r\nORDER BY dbo.tStudent.xPaye\r\n",
+    "definition_unavailable": 0
+  }
+]

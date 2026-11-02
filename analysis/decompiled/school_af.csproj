@@ -1,0 +1,247 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <AssemblyName>school_Af</AssemblyName>
+    <GenerateAssemblyInfo>False</GenerateAssemblyInfo>
+    <OutputType>WinExe</OutputType>
+    <UseWindowsForms>True</UseWindowsForms>
+    <TargetFramework>net20</TargetFramework>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup>
+    <LangVersion>14.0</LangVersion>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>app.ico</ApplicationIcon>
+    <RootNamespace />
+  </PropertyGroup>
+  <ItemGroup>
+    <None Remove="school_Af.Rpt.CrListstd_books10.rpt" />
+    <None Remove="school_Af.Rpt.CrListBooksRengMark1.rpt" />
+    <None Remove="school_Af.Rpt.karname.CR_AF_StdKarnameDorehByChart_term1.rpt" />
+    <None Remove="school_Af.Rpt.karname.CR_AF_ListFinal.rpt" />
+    <None Remove="school_Af.Rpt.karname.CR_AF_StdKarnameFinal_12.rpt" />
+    <None Remove="school_Af.Rpt.Dis.crDis_AmarAbsentClass.rpt" />
+    <None Remove="school_Af.Rpt.af.CrChapShagheHzeri2.rpt" />
+    <None Remove="school_Af.Rpt.CrListBooksRengMark2.rpt" />
+    <None Remove="school_Af.Rpt.RptLable._4020.crHozehStd4020_2.rpt" />
+    <None Remove="school_Af.exe.licenses" />
+    <None Remove="school_Af.Rpt.karname.CStdKarnameDoreh2.rpt" />
+    <None Remove="school_Af.Rpt.CrListDabirKham20.rpt" />
+    <None Remove="school_Af.Rpt.karname.CStdKarnameDoreh_byBestStd_OneMark.rpt" />
+    <None Remove="school_Af.Rpt.karname.CR_AF_StdKarnameDorehByChart_term3.rpt" />
+    <None Remove="school_Af.Rpt.CrListStdOftRoshdBooks.rpt" />
+    <None Remove="school_Af.Rpt.CrListStdMoadelGroupByClass.rpt" />
+    <None Remove="school_Af.Rpt.CrListBooksRengMark_class.rpt" />
+    <None Remove="school_Af.Rpt.karname.CStdKarnameDoreh3.rpt" />
+    <None Remove="school_Af.Rpt.CrListstd_books10_class.rpt" />
+    <None Remove="school_Af.Rpt.RptLable._4020.CrStdCardidx4020.rpt" />
+    <None Remove="school_Af.Rpt.amar.CrAmarGhaboliClass.rpt" />
+    <None Remove="school_Af.Rpt.CrListstd_books14.rpt" />
+    <None Remove="school_Af.Rpt.RptLable.crStdIdx_Class2.rpt" />
+    <None Remove="school_Af.Rpt.karname.CStdKarnameTajamoee2ByChart.rpt" />
+    <None Remove="school_Af.Rpt.af.CrChapShagheHzeri.rpt" />
+    <None Remove="school_Af.Rpt.afPayment.CrRptStdBalance.rpt" />
+    <None Remove="school_Af.Rpt.RptLable.CrStdCardidx.rpt" />
+    <None Remove="school_Af.Rpt.af.CrStdCard.rpt" />
+    <None Remove="school_Af.Rpt.karname.CR_AF_StdKarnameDorehByChart_term3_land.rpt" />
+    <None Remove="school_Af.Rpt.karname.CR_AF_ListFinal9.rpt" />
+    <None Remove="school_Af.Rpt.CrListDabirKhamByTchNameAllBook18.rpt" />
+    <None Remove="school_Af.Rpt.CrListstd_booksAlarm.rpt" />
+    <None Remove="school_Af.Rpt.RptLable.crHozehStd.rpt" />
+    <None Remove="school_Af.Rpt.RptLable.crAmarHozeh.rpt" />
+    <None Remove="school_Af.Rpt.Dis.crDis_ListStdAbsent2.rpt" />
+    <None Remove="school_Af.Rpt.CrStdMoadelMarkGroupByPaye.rpt" />
+    <None Remove="school_Af.Rpt.CrListStdBookMarks5.rpt" />
+    <None Remove="school_Af.Rpt.RptLable.crHozehStd2.rpt" />
+    <None Remove="school_Af.Rpt.RptLable.CrHozehMinMax.rpt" />
+    <None Remove="school_Af.Rpt.karname.Copy-of-CR_AF_StdKarnameDorehByChart_term1.rpt" />
+    <None Remove="school_Af.Rpt.CrDabirAvgClassMark.rpt" />
+    <None Remove="school_Af.Rpt.CrListstd_books21_class33.rpt" />
+    <None Remove="school_Af.Rpt.amar.CrAmarGhaboliPaye.rpt" />
+    <None Remove="school_Af.Rpt.af.CrChapShaghe.rpt" />
+    <None Remove="school_Af.Rpt.af.CrListStdHazer.rpt" />
+    <None Remove="school_Af.Rpt.afPayment.CrRptPayment1.rpt" />
+    <None Remove="school_Af.Rpt.CrListstd_books18.rpt" />
+    <None Remove="school_Af.Rpt.CrAvgClassBooks_1.rpt" />
+    <None Remove="school_Af.Rpt.RptLable.crHozehAlbom.rpt" />
+    <None Remove="school_Af.Rpt.RptLable._4020.crHozehStd4020.rpt" />
+    <None Remove="school_Af.Rpt.chart.CrChartAvgClassDorehBooksTch.rpt" />
+    <None Remove="school_Af.Rpt.CrAvgClassBooks_2.rpt" />
+    <None Remove="school_Af.Rpt.CrListDabirKham16.rpt" />
+    <None Remove="school_Af.Rpt.chart.CrChartAvgClassBooks_1.rpt" />
+    <None Remove="school_Af.Rpt.karname.CStdKarnameTajamoee3ByChart.rpt" />
+    <None Remove="school_Af.Rpt.karname.CR_AF_ListFinal10_11.rpt" />
+    <None Remove="school_Af.Rpt.CrListStdOftRoshdMoadel.rpt" />
+    <None Remove="school_Af.Rpt.CrListStdMoadelGroupBySch.rpt" />
+    <None Remove="school_Af.Rpt.afPayment.CrRptSumPaymentKoll.rpt" />
+    <None Remove="school_Af.Rpt.RptLable.crStdIdx_Class.rpt" />
+    <None Remove="school_Af.Rpt.chart.CrChartAvgClassBooks_2.rpt" />
+    <None Remove="school_Af.Rpt.chart.CrChartAvgOneClassBooks_1.rpt" />
+    <None Remove="school_Af.Rpt.CrListstd_books18_class.rpt" />
+    <None Remove="school_Af.Rpt.karname.CR_AF_StdKarnameFinal_10_11.rpt" />
+    <None Remove="school_Af.Rpt.karname.CR_AF_ListFinal12.rpt" />
+    <None Remove="school_Af.Rpt.CrListDabirKham.rpt" />
+    <None Remove="school_Af.Rpt.chart.CrChartAvgClassBooks_3.rpt" />
+    <None Remove="school_Af.Rpt.chart.CrChartAvgOneClassBooks_2.rpt" />
+    <None Remove="school_Af.Rpt.chart.CrChartAvgPayeBooks_1.rpt" />
+    <None Remove="school_Af.Rpt.karname.CStdKarnameTajamoee2.rpt" />
+    <None Remove="school_Af.Rpt.Dis.crDis_KarnameStd.rpt" />
+    <None Remove="school_Af.Rpt.CrListDabirKham18.rpt" />
+    <None Remove="school_Af.Rpt.CrListStdMoadelGroupByPaye.rpt" />
+    <None Remove="school_Af.Rpt.af.CrListStdTransport.rpt" />
+    <None Remove="school_Af.Rpt.afPayment.CrRptStdBalanceListe.rpt" />
+    <None Remove="school_Af.Rpt.chart.CrChartAvgClassDorehBooks.rpt" />
+    <None Remove="school_Af.Rpt.chart.CrChartAvgPayeBooks_2.rpt" />
+    <None Remove="school_Af.Rpt.CrListDabirKhamByTchName.rpt" />
+    <None Remove="school_Af.Rpt.karname.CR_AF_StdKarnameDorehByChart_term1_land.rpt" />
+    <None Remove="school_Af.Rpt.karname.CR_AF_StdKarnameFinal.rpt" />
+    <None Remove="school_Af.Rpt.CrListstd_books18_class33.rpt" />
+    <None Remove="school_Af.Rpt.af.CrChapShaghe2.rpt" />
+    <None Remove="school_Af.Rpt.afPayment.CrRptSumPaymentGroupByClass.rpt" />
+    <None Remove="school_Af.Rpt.CrClslistOftRoshd.rpt" />
+    <None Remove="school_Af.Rpt.CrStdMoadelMarkGroupByClass.rpt" />
+    <None Remove="school_Af.Rpt.af.CrListStdshaghe.rpt" />
+    <None Remove="school_Af.Rpt.afPayment.CrRptListPayment.rpt" />
+    <None Remove="school_Af.Rpt.RptLable.crHozehLabelByName.rpt" />
+    <None Remove="school_Af.Rpt.RptLable.crHozehLabel.rpt" />
+    <None Remove="school_Af.Rpt.chart.CrChartAvgStdClassBooks_1.rpt" />
+    <None Remove="school_Af.Rpt.af.CrListStdTransportDriver.rpt" />
+    <None Remove="school_Af.Rpt.CrListDabir_1.rpt" />
+    <None Remove="school_Af.Rpt.karname.CStdKarnameTajamoee.rpt" />
+    <None Remove="school_Af.Rpt.chart.CrChartAvgStdClassBooks_2.rpt" />
+    <None Remove="school_Af.Rpt.RptLable.CrHozehMinMax2.rpt" />
+    <None Remove="school_Af.Rpt.RptLable._4020.crStdIdx_Class4020_2.rpt" />
+    <None Remove="school_Af.Rpt.karname.CR_AF_StdKarnameFinalAll.rpt" />
+    <None Remove="school_Af.Rpt.Dis.crDis_ListStdAbsent.rpt" />
+    <None Remove="school_Af.Rpt.af.CrListStdKoll.rpt" />
+    <None Remove="school_Af.Rpt.af.CrListStdMali.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.CrListstd_books10.rpt" LogicalName="school_Af.Rpt.CrListstd_books10.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.CrListBooksRengMark1.rpt" LogicalName="school_Af.Rpt.CrListBooksRengMark1.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.karname.CR_AF_StdKarnameDorehByChart_term1.rpt" LogicalName="school_Af.Rpt.karname.CR_AF_StdKarnameDorehByChart_term1.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.karname.CR_AF_ListFinal.rpt" LogicalName="school_Af.Rpt.karname.CR_AF_ListFinal.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.karname.CR_AF_StdKarnameFinal_12.rpt" LogicalName="school_Af.Rpt.karname.CR_AF_StdKarnameFinal_12.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.Dis.crDis_AmarAbsentClass.rpt" LogicalName="school_Af.Rpt.Dis.crDis_AmarAbsentClass.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.af.CrChapShagheHzeri2.rpt" LogicalName="school_Af.Rpt.af.CrChapShagheHzeri2.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.CrListBooksRengMark2.rpt" LogicalName="school_Af.Rpt.CrListBooksRengMark2.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.RptLable._4020.crHozehStd4020_2.rpt" LogicalName="school_Af.Rpt.RptLable._4020.crHozehStd4020_2.rpt" />
+    <EmbeddedResource Include="school_Af.exe.licenses" LogicalName="school_Af.exe.licenses" />
+    <EmbeddedResource Include="school_Af.Rpt.karname.CStdKarnameDoreh2.rpt" LogicalName="school_Af.Rpt.karname.CStdKarnameDoreh2.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.CrListDabirKham20.rpt" LogicalName="school_Af.Rpt.CrListDabirKham20.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.karname.CStdKarnameDoreh_byBestStd_OneMark.rpt" LogicalName="school_Af.Rpt.karname.CStdKarnameDoreh_byBestStd_OneMark.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.karname.CR_AF_StdKarnameDorehByChart_term3.rpt" LogicalName="school_Af.Rpt.karname.CR_AF_StdKarnameDorehByChart_term3.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.CrListStdOftRoshdBooks.rpt" LogicalName="school_Af.Rpt.CrListStdOftRoshdBooks.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.CrListStdMoadelGroupByClass.rpt" LogicalName="school_Af.Rpt.CrListStdMoadelGroupByClass.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.CrListBooksRengMark_class.rpt" LogicalName="school_Af.Rpt.CrListBooksRengMark_class.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.karname.CStdKarnameDoreh3.rpt" LogicalName="school_Af.Rpt.karname.CStdKarnameDoreh3.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.CrListstd_books10_class.rpt" LogicalName="school_Af.Rpt.CrListstd_books10_class.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.RptLable._4020.CrStdCardidx4020.rpt" LogicalName="school_Af.Rpt.RptLable._4020.CrStdCardidx4020.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.amar.CrAmarGhaboliClass.rpt" LogicalName="school_Af.Rpt.amar.CrAmarGhaboliClass.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.CrListstd_books14.rpt" LogicalName="school_Af.Rpt.CrListstd_books14.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.RptLable.crStdIdx_Class2.rpt" LogicalName="school_Af.Rpt.RptLable.crStdIdx_Class2.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.karname.CStdKarnameTajamoee2ByChart.rpt" LogicalName="school_Af.Rpt.karname.CStdKarnameTajamoee2ByChart.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.af.CrChapShagheHzeri.rpt" LogicalName="school_Af.Rpt.af.CrChapShagheHzeri.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.afPayment.CrRptStdBalance.rpt" LogicalName="school_Af.Rpt.afPayment.CrRptStdBalance.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.RptLable.CrStdCardidx.rpt" LogicalName="school_Af.Rpt.RptLable.CrStdCardidx.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.af.CrStdCard.rpt" LogicalName="school_Af.Rpt.af.CrStdCard.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.karname.CR_AF_StdKarnameDorehByChart_term3_land.rpt" LogicalName="school_Af.Rpt.karname.CR_AF_StdKarnameDorehByChart_term3_land.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.karname.CR_AF_ListFinal9.rpt" LogicalName="school_Af.Rpt.karname.CR_AF_ListFinal9.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.CrListDabirKhamByTchNameAllBook18.rpt" LogicalName="school_Af.Rpt.CrListDabirKhamByTchNameAllBook18.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.CrListstd_booksAlarm.rpt" LogicalName="school_Af.Rpt.CrListstd_booksAlarm.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.RptLable.crHozehStd.rpt" LogicalName="school_Af.Rpt.RptLable.crHozehStd.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.RptLable.crAmarHozeh.rpt" LogicalName="school_Af.Rpt.RptLable.crAmarHozeh.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.Dis.crDis_ListStdAbsent2.rpt" LogicalName="school_Af.Rpt.Dis.crDis_ListStdAbsent2.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.CrStdMoadelMarkGroupByPaye.rpt" LogicalName="school_Af.Rpt.CrStdMoadelMarkGroupByPaye.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.CrListStdBookMarks5.rpt" LogicalName="school_Af.Rpt.CrListStdBookMarks5.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.RptLable.crHozehStd2.rpt" LogicalName="school_Af.Rpt.RptLable.crHozehStd2.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.RptLable.CrHozehMinMax.rpt" LogicalName="school_Af.Rpt.RptLable.CrHozehMinMax.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.karname.Copy-of-CR_AF_StdKarnameDorehByChart_term1.rpt" LogicalName="school_Af.Rpt.karname.Copy of CR_AF_StdKarnameDorehByChart_term1.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.CrDabirAvgClassMark.rpt" LogicalName="school_Af.Rpt.CrDabirAvgClassMark.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.CrListstd_books21_class33.rpt" LogicalName="school_Af.Rpt.CrListstd_books21_class33.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.amar.CrAmarGhaboliPaye.rpt" LogicalName="school_Af.Rpt.amar.CrAmarGhaboliPaye.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.af.CrChapShaghe.rpt" LogicalName="school_Af.Rpt.af.CrChapShaghe.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.af.CrListStdHazer.rpt" LogicalName="school_Af.Rpt.af.CrListStdHazer.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.afPayment.CrRptPayment1.rpt" LogicalName="school_Af.Rpt.afPayment.CrRptPayment1.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.CrListstd_books18.rpt" LogicalName="school_Af.Rpt.CrListstd_books18.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.CrAvgClassBooks_1.rpt" LogicalName="school_Af.Rpt.CrAvgClassBooks_1.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.RptLable.crHozehAlbom.rpt" LogicalName="school_Af.Rpt.RptLable.crHozehAlbom.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.RptLable._4020.crHozehStd4020.rpt" LogicalName="school_Af.Rpt.RptLable._4020.crHozehStd4020.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.chart.CrChartAvgClassDorehBooksTch.rpt" LogicalName="school_Af.Rpt.chart.CrChartAvgClassDorehBooksTch.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.CrAvgClassBooks_2.rpt" LogicalName="school_Af.Rpt.CrAvgClassBooks_2.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.CrListDabirKham16.rpt" LogicalName="school_Af.Rpt.CrListDabirKham16.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.chart.CrChartAvgClassBooks_1.rpt" LogicalName="school_Af.Rpt.chart.CrChartAvgClassBooks_1.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.karname.CStdKarnameTajamoee3ByChart.rpt" LogicalName="school_Af.Rpt.karname.CStdKarnameTajamoee3ByChart.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.karname.CR_AF_ListFinal10_11.rpt" LogicalName="school_Af.Rpt.karname.CR_AF_ListFinal10_11.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.CrListStdOftRoshdMoadel.rpt" LogicalName="school_Af.Rpt.CrListStdOftRoshdMoadel.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.CrListStdMoadelGroupBySch.rpt" LogicalName="school_Af.Rpt.CrListStdMoadelGroupBySch.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.afPayment.CrRptSumPaymentKoll.rpt" LogicalName="school_Af.Rpt.afPayment.CrRptSumPaymentKoll.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.RptLable.crStdIdx_Class.rpt" LogicalName="school_Af.Rpt.RptLable.crStdIdx_Class.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.chart.CrChartAvgClassBooks_2.rpt" LogicalName="school_Af.Rpt.chart.CrChartAvgClassBooks_2.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.chart.CrChartAvgOneClassBooks_1.rpt" LogicalName="school_Af.Rpt.chart.CrChartAvgOneClassBooks_1.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.CrListstd_books18_class.rpt" LogicalName="school_Af.Rpt.CrListstd_books18_class.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.karname.CR_AF_StdKarnameFinal_10_11.rpt" LogicalName="school_Af.Rpt.karname.CR_AF_StdKarnameFinal_10_11.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.karname.CR_AF_ListFinal12.rpt" LogicalName="school_Af.Rpt.karname.CR_AF_ListFinal12.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.CrListDabirKham.rpt" LogicalName="school_Af.Rpt.CrListDabirKham.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.chart.CrChartAvgClassBooks_3.rpt" LogicalName="school_Af.Rpt.chart.CrChartAvgClassBooks_3.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.chart.CrChartAvgOneClassBooks_2.rpt" LogicalName="school_Af.Rpt.chart.CrChartAvgOneClassBooks_2.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.chart.CrChartAvgPayeBooks_1.rpt" LogicalName="school_Af.Rpt.chart.CrChartAvgPayeBooks_1.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.karname.CStdKarnameTajamoee2.rpt" LogicalName="school_Af.Rpt.karname.CStdKarnameTajamoee2.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.Dis.crDis_KarnameStd.rpt" LogicalName="school_Af.Rpt.Dis.crDis_KarnameStd.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.CrListDabirKham18.rpt" LogicalName="school_Af.Rpt.CrListDabirKham18.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.CrListStdMoadelGroupByPaye.rpt" LogicalName="school_Af.Rpt.CrListStdMoadelGroupByPaye.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.af.CrListStdTransport.rpt" LogicalName="school_Af.Rpt.af.CrListStdTransport.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.afPayment.CrRptStdBalanceListe.rpt" LogicalName="school_Af.Rpt.afPayment.CrRptStdBalanceListe.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.chart.CrChartAvgClassDorehBooks.rpt" LogicalName="school_Af.Rpt.chart.CrChartAvgClassDorehBooks.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.chart.CrChartAvgPayeBooks_2.rpt" LogicalName="school_Af.Rpt.chart.CrChartAvgPayeBooks_2.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.CrListDabirKhamByTchName.rpt" LogicalName="school_Af.Rpt.CrListDabirKhamByTchName.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.karname.CR_AF_StdKarnameDorehByChart_term1_land.rpt" LogicalName="school_Af.Rpt.karname.CR_AF_StdKarnameDorehByChart_term1_land.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.karname.CR_AF_StdKarnameFinal.rpt" LogicalName="school_Af.Rpt.karname.CR_AF_StdKarnameFinal.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.CrListstd_books18_class33.rpt" LogicalName="school_Af.Rpt.CrListstd_books18_class33.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.af.CrChapShaghe2.rpt" LogicalName="school_Af.Rpt.af.CrChapShaghe2.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.afPayment.CrRptSumPaymentGroupByClass.rpt" LogicalName="school_Af.Rpt.afPayment.CrRptSumPaymentGroupByClass.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.CrClslistOftRoshd.rpt" LogicalName="school_Af.Rpt.CrClslistOftRoshd.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.CrStdMoadelMarkGroupByClass.rpt" LogicalName="school_Af.Rpt.CrStdMoadelMarkGroupByClass.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.af.CrListStdshaghe.rpt" LogicalName="school_Af.Rpt.af.CrListStdshaghe.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.afPayment.CrRptListPayment.rpt" LogicalName="school_Af.Rpt.afPayment.CrRptListPayment.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.RptLable.crHozehLabelByName.rpt" LogicalName="school_Af.Rpt.RptLable.crHozehLabelByName.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.RptLable.crHozehLabel.rpt" LogicalName="school_Af.Rpt.RptLable.crHozehLabel.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.chart.CrChartAvgStdClassBooks_1.rpt" LogicalName="school_Af.Rpt.chart.CrChartAvgStdClassBooks_1.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.af.CrListStdTransportDriver.rpt" LogicalName="school_Af.Rpt.af.CrListStdTransportDriver.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.CrListDabir_1.rpt" LogicalName="school_Af.Rpt.CrListDabir_1.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.karname.CStdKarnameTajamoee.rpt" LogicalName="school_Af.Rpt.karname.CStdKarnameTajamoee.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.chart.CrChartAvgStdClassBooks_2.rpt" LogicalName="school_Af.Rpt.chart.CrChartAvgStdClassBooks_2.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.RptLable.CrHozehMinMax2.rpt" LogicalName="school_Af.Rpt.RptLable.CrHozehMinMax2.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.RptLable._4020.crStdIdx_Class4020_2.rpt" LogicalName="school_Af.Rpt.RptLable._4020.crStdIdx_Class4020_2.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.karname.CR_AF_StdKarnameFinalAll.rpt" LogicalName="school_Af.Rpt.karname.CR_AF_StdKarnameFinalAll.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.Dis.crDis_ListStdAbsent.rpt" LogicalName="school_Af.Rpt.Dis.crDis_ListStdAbsent.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.af.CrListStdKoll.rpt" LogicalName="school_Af.Rpt.af.CrListStdKoll.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.af.CrListStdMali.rpt" LogicalName="school_Af.Rpt.af.CrListStdMali.rpt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine" />
+    <Reference Include="CrystalDecisions.ReportSource" />
+    <Reference Include="System.Data">
+      <HintPath>../../../../.local/share/mise/dotnet-root/shared/Microsoft.NETCore.App/10.0.12/System.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.Shared" />
+    <Reference Include="Janus.Windows.UI.v2" />
+    <Reference Include="Janus.Windows.GridEX.v2" />
+    <Reference Include="ShamsiDate" />
+    <Reference Include="System.Xml">
+      <HintPath>../../../../.local/share/mise/dotnet-root/shared/Microsoft.NETCore.App/10.0.12/System.Xml.dll</HintPath>
+    </Reference>
+    <Reference Include="AxInterop.TINYLib">
+      <HintPath>original/update/AxInterop.TINYLib.dll</HintPath>
+    </Reference>
+    <Reference Include="ActiveReports.Viewer3" />
+    <Reference Include="ActiveReports3" />
+    <Reference Include="CrystalDecisions.Windows.Forms" />
+    <Reference Include="ActiveReports.Design3" />
+    <Reference Include="DataDynamics.ActiveReports.ToolBoxClassLib" />
+    <Reference Include="Microsoft.Office.Interop.Excel" />
+    <Reference Include="Interop.TINYLib">
+      <HintPath>original/update/Interop.TINYLib.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+</Project>

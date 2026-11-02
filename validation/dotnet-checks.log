@@ -1,0 +1,17 @@
+PASS Persian and Arabic digits, zero, null and bounds
+PASS Legacy version codec agrees with the Python fixture
+PASS SQL GO batches, comments and blank lines
+PASS All recovered forms and the school menu route
+PASS All SQL resource hashes verified
+PASS Database migrations reach the target version and are idempotent
+PASS School details round trip Persian text and apostrophes
+PASS School year creates exactly three terms
+PASS Student registration, zero gender, totals, photo and filters
+PASS Student update recalculates sums and retains the record identifier
+PASS Duplicate codes and enrolment numbers fail without partial inserts
+PASS Negative fees and incompatible class grades are rejected
+PASS An image failure rolls the student transaction back
+PASS Teacher assignments and reference protection
+PASS Reference entities save, edit and delete
+PASS Deleting a student removes their image and enrolment
+SUCCESS: 16 checks passed.

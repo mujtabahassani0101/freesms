@@ -1,0 +1,44 @@
+[
+  {
+    "name": "FK_tComnentKarname_tExam",
+    "table_name": "tComnentKarname",
+    "column_name": "Xtest",
+    "referenced_table": "tExam",
+    "referenced_column": "id"
+  },
+  {
+    "name": "FK_tBook_tPaye",
+    "table_name": "tBook",
+    "column_name": "xPaye",
+    "referenced_table": "tPaye",
+    "referenced_column": "id"
+  },
+  {
+    "name": "FK_tMark_tExam",
+    "table_name": "tMark",
+    "column_name": "Xtest",
+    "referenced_table": "tExam",
+    "referenced_column": "id"
+  },
+  {
+    "name": "FK_tTch_Cls_tClass",
+    "table_name": "tTch_Cls",
+    "column_name": "xCls",
+    "referenced_table": "tClass",
+    "referenced_column": "id"
+  },
+  {
+    "name": "FK_tTch_Cls_tBook",
+    "table_name": "tTch_Cls",
+    "column_name": "xLsn",
+    "referenced_table": "tBook",
+    "referenced_column": "id"
+  },
+  {
+    "name": "FK_tTch_Cls_tTeacher",
+    "table_name": "tTch_Cls",
+    "column_name": "xTch",
+    "referenced_table": "tTeacher",
+    "referenced_column": "id"
+  }
+]

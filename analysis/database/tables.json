@@ -1,0 +1,217 @@
+[
+  {
+    "schema_name": "dbo",
+    "name": "dtproperties",
+    "object_id": 2137058649
+  },
+  {
+    "schema_name": "dbo",
+    "name": "tBook",
+    "object_id": 402100473
+  },
+  {
+    "schema_name": "dbo",
+    "name": "tCardProperties",
+    "object_id": 1266103551
+  },
+  {
+    "schema_name": "dbo",
+    "name": "tClass",
+    "object_id": 1950629992
+  },
+  {
+    "schema_name": "dbo",
+    "name": "tComnentKarname",
+    "object_id": 270624007
+  },
+  {
+    "schema_name": "dbo",
+    "name": "tCon",
+    "object_id": 1106102981
+  },
+  {
+    "schema_name": "dbo",
+    "name": "tDefYear",
+    "object_id": 1207675350
+  },
+  {
+    "schema_name": "dbo",
+    "name": "tEnzebat",
+    "object_id": 350624292
+  },
+  {
+    "schema_name": "dbo",
+    "name": "tExam",
+    "object_id": 2043154324
+  },
+  {
+    "schema_name": "dbo",
+    "name": "tExportRpt",
+    "object_id": 1138103095
+  },
+  {
+    "schema_name": "dbo",
+    "name": "tFormColor",
+    "object_id": 55671246
+  },
+  {
+    "schema_name": "dbo",
+    "name": "tHozeh",
+    "object_id": 670625432
+  },
+  {
+    "schema_name": "dbo",
+    "name": "tItemSabtenamEnable",
+    "object_id": 372196376
+  },
+  {
+    "schema_name": "dbo",
+    "name": "tListField",
+    "object_id": 1198627313
+  },
+  {
+    "schema_name": "dbo",
+    "name": "tMaghta",
+    "object_id": 215671816
+  },
+  {
+    "schema_name": "dbo",
+    "name": "tMark",
+    "object_id": 642101328
+  },
+  {
+    "schema_name": "dbo",
+    "name": "tMarkDoreh",
+    "object_id": 1285579618
+  },
+  {
+    "schema_name": "dbo",
+    "name": "tmpStdforPrint",
+    "object_id": 1454628225
+  },
+  {
+    "schema_name": "dbo",
+    "name": "tParmetr",
+    "object_id": 1781581385
+  },
+  {
+    "schema_name": "dbo",
+    "name": "tParmetrBalance",
+    "object_id": 1124199055
+  },
+  {
+    "schema_name": "dbo",
+    "name": "tPaye",
+    "object_id": 103671417
+  },
+  {
+    "schema_name": "dbo",
+    "name": "tPaymentStudent",
+    "object_id": 836198029
+  },
+  {
+    "schema_name": "dbo",
+    "name": "tReshteh",
+    "object_id": 2057058364
+  },
+  {
+    "schema_name": "dbo",
+    "name": "tRpt",
+    "object_id": 1189579276
+  },
+  {
+    "schema_name": "dbo",
+    "name": "tRptAFLsit",
+    "object_id": 692197516
+  },
+  {
+    "schema_name": "dbo",
+    "name": "tRptChart",
+    "object_id": 1858105660
+  },
+  {
+    "schema_name": "dbo",
+    "name": "tRptLable",
+    "object_id": 750625717
+  },
+  {
+    "schema_name": "dbo",
+    "name": "tRptPayment",
+    "object_id": 964198485
+  },
+  {
+    "schema_name": "dbo",
+    "name": "tSchool",
+    "object_id": 2073058421
+  },
+  {
+    "schema_name": "dbo",
+    "name": "tStudent",
+    "object_id": 1303675692
+  },
+  {
+    "schema_name": "dbo",
+    "name": "tStudentImg",
+    "object_id": 1653580929
+  },
+  {
+    "schema_name": "dbo",
+    "name": "tTakhfif",
+    "object_id": 84195350
+  },
+  {
+    "schema_name": "dbo",
+    "name": "tTch_Cls",
+    "object_id": 1845581613
+  },
+  {
+    "schema_name": "dbo",
+    "name": "tTeacher",
+    "object_id": 1813581499
+  },
+  {
+    "schema_name": "dbo",
+    "name": "tTelegramConfig",
+    "object_id": 814625945
+  },
+  {
+    "schema_name": "dbo",
+    "name": "tTelegramId",
+    "object_id": 830626002
+  },
+  {
+    "schema_name": "dbo",
+    "name": "tTelegramMessage",
+    "object_id": 846626059
+  },
+  {
+    "schema_name": "dbo",
+    "name": "tTelegramTypeMessage",
+    "object_id": 862626116
+  },
+  {
+    "schema_name": "dbo",
+    "name": "tTosif",
+    "object_id": 2105058535
+  },
+  {
+    "schema_name": "dbo",
+    "name": "tuser",
+    "object_id": 1973582069
+  },
+  {
+    "schema_name": "dbo",
+    "name": "tVer",
+    "object_id": 2069582411
+  },
+  {
+    "schema_name": "dbo",
+    "name": "tYear_Student",
+    "object_id": 1927677915
+  },
+  {
+    "schema_name": "dbo",
+    "name": "tYearMaghtaCountDay",
+    "object_id": 1543676547
+  }
+]

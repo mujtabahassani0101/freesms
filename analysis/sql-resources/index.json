@@ -1,0 +1,501 @@
+[
+  {
+    "source": "analysis/decompiled/asdbv.resx",
+    "resource": "txt980912.Text",
+    "file": "analysis/sql-resources/asdbv_txt980912.Text.sql",
+    "characters": 27218,
+    "sha256": "6369536e8e5ec6fe00b9c1a7fdf4b9fcd81fd2b9b6d46c7a9b2921603d7ef879",
+    "procedure_declarations": [
+      "spRpt_StdCard",
+      "sp_Procc",
+      "dbo.sp_CalcMarkDoreh",
+      "dbo.spRpt_karnamefinal"
+    ]
+  },
+  {
+    "source": "analysis/decompiled/asdbv.resx",
+    "resource": "txt980308.Text",
+    "file": "analysis/sql-resources/asdbv_txt980308.Text.sql",
+    "characters": 4067,
+    "sha256": "361f46ccb2c107306e68256001b0927df021d13a55fecdddddaccb283264925f",
+    "procedure_declarations": [
+      "dbo.sp_tPaymentStudent_insertFromXls",
+      "dbo.sp_tStudent_insert_FromXls"
+    ]
+  },
+  {
+    "source": "analysis/decompiled/asdbv.resx",
+    "resource": "txt980305.Text",
+    "file": "analysis/sql-resources/asdbv_txt980305.Text.sql",
+    "characters": 5500,
+    "sha256": "07b66f2f806d9d3c202af53109e5af93cb5eaf55fad8208bfbf82ffd541eef84",
+    "procedure_declarations": [
+      "dbo.sp_tStudent_insertUpdate"
+    ]
+  },
+  {
+    "source": "analysis/decompiled/asdbv.resx",
+    "resource": "txt981018.Text",
+    "file": "analysis/sql-resources/asdbv_txt981018.Text.sql",
+    "characters": 5290,
+    "sha256": "67cecffc8ab753ddb04999a5958e60bf2855e683052e8613fb05ee96d866630a",
+    "procedure_declarations": [
+      "dbo.sp_tMarkAgo_insertUpdate",
+      "dbo.spRpt_Listfinal"
+    ]
+  },
+  {
+    "source": "analysis/decompiled/asdbv.resx",
+    "resource": "txt981112.Text",
+    "file": "analysis/sql-resources/asdbv_txt981112.Text.sql",
+    "characters": 24794,
+    "sha256": "fbb00d14ec1272f66ed22013e473da81c9f0f9aacbb909ac311ffd8564cceec6",
+    "procedure_declarations": [
+      "dbo.sp_SelectStdForSetAcp",
+      "dbo.sp_SelectStdForSetGTerm",
+      "dbo.spRpt_Listfinal",
+      "[dbo].[spRpt_karnamefinal]"
+    ]
+  },
+  {
+    "source": "analysis/decompiled/asdbv.resx",
+    "resource": "txt990814.Text",
+    "file": "analysis/sql-resources/asdbv_txt990814.Text.sql",
+    "characters": 10250,
+    "sha256": "aac673f28ffb523bd1c77775e657a40f1c63e4059606ccf8184d5b7d11f13d64",
+    "procedure_declarations": [
+      "dbo.sp_RptPaymentBalance1",
+      "dbo.sp_RptPaymentBalance2"
+    ]
+  },
+  {
+    "source": "analysis/decompiled/asdbv.resx",
+    "resource": "txt990102.Text",
+    "file": "analysis/sql-resources/asdbv_txt990102.Text.sql",
+    "characters": 16795,
+    "sha256": "7817839f639ed5d4c5400a2867ef46e54f8f2711c49d3052e4c48678ff32b6fe",
+    "procedure_declarations": [
+      "dbo.spRpt_Liststd_books1",
+      "spRpt_Liststd_books2",
+      "dbo.sp_tStudent_insertUpdate"
+    ]
+  },
+  {
+    "source": "analysis/decompiled/asdbv.resx",
+    "resource": "txt980222.Text",
+    "file": "analysis/sql-resources/asdbv_txt980222.Text.sql",
+    "characters": 9852,
+    "sha256": "71fc76ebd7838f56f12a6012e9adb991c7a25f5ec023495fc52f8842e30778a4",
+    "procedure_declarations": [
+      "dbo.sp_RptPaymentBalance1",
+      "dbo.sp_RptPaymentBalance2"
+    ]
+  },
+  {
+    "source": "analysis/decompiled/asdbv.resx",
+    "resource": "txt980701.Text",
+    "file": "analysis/sql-resources/asdbv_txt980701.Text.sql",
+    "characters": 6102,
+    "sha256": "6911d40513729f703321945ae797a28ca40a616e1bf7400d813f6d5acbfa4eb8",
+    "procedure_declarations": [
+      "dbo.sp_tStudent_insertUpdate"
+    ]
+  },
+  {
+    "source": "analysis/decompiled/asdbv.resx",
+    "resource": "txt980404.Text",
+    "file": "analysis/sql-resources/asdbv_txt980404.Text.sql",
+    "characters": 11551,
+    "sha256": "7022629666df3c125fb70dd4f745e62edf16516575a466782dc091fa2ff47f99",
+    "procedure_declarations": [
+      "dbo.sp_RptListStdTransport",
+      "sp_Procc",
+      "dbo.spRpt_StdListTestMark_AvgClass_AllExam",
+      "spRpt_StdCard",
+      "dbo.sp_tMark_insertUpdate_FromXls_Af"
+    ]
+  },
+  {
+    "source": "analysis/decompiled/asdbv.resx",
+    "resource": "txt14000914.Text",
+    "file": "analysis/sql-resources/asdbv_txt14000914.Text.sql",
+    "characters": 3955,
+    "sha256": "6d9739328b05b05fda819e78f9d3aa1dc8af7f99c676535b2567ac85bf1a99c6",
+    "procedure_declarations": []
+  },
+  {
+    "source": "analysis/decompiled/asdbv.resx",
+    "resource": "txt980812.Text",
+    "file": "analysis/sql-resources/asdbv_txt980812.Text.sql",
+    "characters": 11334,
+    "sha256": "187e4ca118d206ebe15b071e9708358c9c0ab05d6eef9d3da88e13572aa43d45",
+    "procedure_declarations": [
+      "dbo.sp_CalcMarkDoreh"
+    ]
+  },
+  {
+    "source": "analysis/decompiled/asdbv.resx",
+    "resource": "txt980923.Text",
+    "file": "analysis/sql-resources/asdbv_txt980923.Text.sql",
+    "characters": 11287,
+    "sha256": "b40404c5f79c5b983986a743fa6fbf7a0ac43cae40ecd5ebfa154c37a12746c3",
+    "procedure_declarations": [
+      "dbo.spRpt_karnamefinal"
+    ]
+  },
+  {
+    "source": "analysis/decompiled/asdbv.resx",
+    "resource": "txt980813.Text",
+    "file": "analysis/sql-resources/asdbv_txt980813.Text.sql",
+    "characters": 2288,
+    "sha256": "c5680e19b5272ce8600ee8b5c1f66931abff985baeb070b925c62b6f3af22a4f",
+    "procedure_declarations": [
+      "dbo.sp_rptListStd"
+    ]
+  },
+  {
+    "source": "analysis/decompiled/asdbv.resx",
+    "resource": "txt981024.Text",
+    "file": "analysis/sql-resources/asdbv_txt981024.Text.sql",
+    "characters": 13523,
+    "sha256": "aff96832cea6138c6369da51c0e9753c063e9ff04feb712ffc16f096eb84ad7f",
+    "procedure_declarations": [
+      "dbo.spRpt_karnamefinal"
+    ]
+  },
+  {
+    "source": "analysis/decompiled/asdbv.resx",
+    "resource": "txt980922.Text",
+    "file": "analysis/sql-resources/asdbv_txt980922.Text.sql",
+    "characters": 22253,
+    "sha256": "596c605903e2ccc254ccc428c83caca6ea85adb68f29a70f783fc1a14ffe5d77",
+    "procedure_declarations": [
+      "dbo.spRpt_karnamefinal",
+      "sp_Procc",
+      "dbo.sp_tStudent_insertUpdate"
+    ]
+  },
+  {
+    "source": "analysis/decompiled/asdbv.resx",
+    "resource": "txt981023.Text",
+    "file": "analysis/sql-resources/asdbv_txt981023.Text.sql",
+    "characters": 14244,
+    "sha256": "ea4ac7a284c1f475f68a8aeeaacc5ea0e1ce01cfb0926086bde1a02afd5816fb",
+    "procedure_declarations": [
+      "dbo.spRpt_karnamefinal"
+    ]
+  },
+  {
+    "source": "analysis/decompiled/asdbv.resx",
+    "resource": "txt991225.Text",
+    "file": "analysis/sql-resources/asdbv_txt991225.Text.sql",
+    "characters": 422,
+    "sha256": "72efa50f694bf7002ff4c7766347e65e14815e9dd4ca09e63432018f39a5db64",
+    "procedure_declarations": []
+  },
+  {
+    "source": "analysis/decompiled/asdbv.resx",
+    "resource": "txt980216.Text",
+    "file": "analysis/sql-resources/asdbv_txt980216.Text.sql",
+    "characters": 32814,
+    "sha256": "7071558456914f24f6c92ca9008831f513f833ffd54ed4a9e8ed009e8fab00f5",
+    "procedure_declarations": [
+      "dbo.sp_RptSumPaymentGroupByClass",
+      "dbo.sp_RptSumPaymentkoll"
+    ]
+  },
+  {
+    "source": "analysis/decompiled/asdbv.resx",
+    "resource": "txt14020427.Text",
+    "file": "analysis/sql-resources/asdbv_txt14020427.Text.sql",
+    "characters": 882,
+    "sha256": "b7ae45d3afc2f6b93c5b5b6d7e0e4ef601aa78adbd152cfcf3772a449bab6650",
+    "procedure_declarations": [
+      "updatetParmetr"
+    ]
+  },
+  {
+    "source": "analysis/decompiled/asdbv.resx",
+    "resource": "txt990605.Text",
+    "file": "analysis/sql-resources/asdbv_txt990605.Text.sql",
+    "characters": 1464,
+    "sha256": "d47cfd6e240df37511c0f2e1bad15820ee5098bb1059ba0dc88023239f413935",
+    "procedure_declarations": []
+  },
+  {
+    "source": "analysis/decompiled/asdbv.resx",
+    "resource": "txt14001017.Text",
+    "file": "analysis/sql-resources/asdbv_txt14001017.Text.sql",
+    "characters": 15812,
+    "sha256": "d8a6c08af62221a26dd17e073a7fd00ae831f0cc495b29551edfed7d0a14b653",
+    "procedure_declarations": [
+      "dbo.spRpt_Listfinal",
+      "[dbo].[spRpt_karnamefinal]"
+    ]
+  },
+  {
+    "source": "analysis/decompiled/asdbv.resx",
+    "resource": "txt14020107.Text",
+    "file": "analysis/sql-resources/asdbv_txt14020107.Text.sql",
+    "characters": 2481,
+    "sha256": "a6d0096802c42d04ab43e3c4b7c1f4d17059e201cbf9c5eeecfe815373f0ed49",
+    "procedure_declarations": [
+      "dbo.sp_tYear_Student_Insert"
+    ]
+  },
+  {
+    "source": "analysis/decompiled/asdbv.resx",
+    "resource": "txt980510.Text",
+    "file": "analysis/sql-resources/asdbv_txt980510.Text.sql",
+    "characters": 39267,
+    "sha256": "6fc89b9e4b8bbe0c48d8a4782701389b63df2c178704c9519362299de133f261",
+    "procedure_declarations": [
+      "dbo.spRpt_StdKarnameDoreh2",
+      "spRpt_StdKarnameDoreh1",
+      "sp_Procc",
+      "dbo.sp_CalcMarkDoreh",
+      "dbo.spRpt_StdgClass3",
+      "dbo.spRpt_StdgPaye3",
+      "updatetParmetr",
+      "dbo.spRpt_ListStdMoadel1",
+      "dbo.spRpt_ListStdMoadel2"
+    ]
+  },
+  {
+    "source": "analysis/decompiled/asdbv.resx",
+    "resource": "txt980513.Text",
+    "file": "analysis/sql-resources/asdbv_txt980513.Text.sql",
+    "characters": 48496,
+    "sha256": "8bf26fa30c7852ff6408fed92679c6687217ab2628a25dc8ec2dc11cf0fa7a1c",
+    "procedure_declarations": [
+      "spRpt_StdKarnameDoreh1",
+      "dbo.spRpt_StdKarnameDoreh2",
+      "dbo.sp_CalcMarkDoreh",
+      "dbo.spRpt_Liststd_books1",
+      "spRpt_Liststd_books2",
+      "dbo.spRpt_ListDabir2",
+      "spRpt_ListDabir1",
+      "dbo.spRpt_ListStdMoadel1",
+      "dbo.spRpt_ListStdMoadel2"
+    ]
+  },
+  {
+    "source": "analysis/decompiled/asdbv.resx",
+    "resource": "txt980431.Text",
+    "file": "analysis/sql-resources/asdbv_txt980431.Text.sql",
+    "characters": 60389,
+    "sha256": "312ec9e72cf034eef19cf3b28647d869778a3468407a78996dd1adef7cec80c5",
+    "procedure_declarations": [
+      "dbo.sp_CalcMarkDoreh",
+      "dbo.spRpt_StdKarnameDoreh2",
+      "spRpt_StdKarnameDoreh1",
+      "dbo.spRpt_ListDabir1",
+      "spRpt_ListDabir2",
+      "dbo.sp_RptSumPaymentkoll",
+      "spRpt_Liststd_books2",
+      "dbo.spRpt_Liststd_books1"
+    ]
+  },
+  {
+    "source": "analysis/decompiled/asdbv.resx",
+    "resource": "txt980514.Text",
+    "file": "analysis/sql-resources/asdbv_txt980514.Text.sql",
+    "characters": 11145,
+    "sha256": "a45d6f15cfaaba13658fc059ff288151da1570090d0c42282b9424f074a4b4b7",
+    "procedure_declarations": [
+      "dbo.sp_CalcMarkDoreh"
+    ]
+  },
+  {
+    "source": "analysis/decompiled/asdbv.resx",
+    "resource": "txt990612.Text",
+    "file": "analysis/sql-resources/asdbv_txt990612.Text.sql",
+    "characters": 18398,
+    "sha256": "72765372a79fc44c9ff116af63f211e92abf084c4f81d94886f0a935d01b2574",
+    "procedure_declarations": [
+      "dbo.sp_tComnentStd_insertUpdate",
+      "dbo.sp_SelectStdForSarbarg_Test_Type1",
+      "dbo.sp_SelectStdForSarbarg_Test_Type2",
+      "dbo.sp_SelectStdForSarbarg_Type1",
+      "dbo.sp_SelectStdForSarbarg_Type2"
+    ]
+  },
+  {
+    "source": "analysis/decompiled/asdbv.resx",
+    "resource": "txt14000224.Text",
+    "file": "analysis/sql-resources/asdbv_txt14000224.Text.sql",
+    "characters": 16255,
+    "sha256": "10b76c918e6a9822914b78c6c587413ee5a24e3245571de2aac6fedb6839985e",
+    "procedure_declarations": [
+      "[dbo].[spRpt_karnamefinal]",
+      "dbo.spRpt_Listfinal"
+    ]
+  },
+  {
+    "source": "analysis/decompiled/asdbv.resx",
+    "resource": "txt981127.Text",
+    "file": "analysis/sql-resources/asdbv_txt981127.Text.sql",
+    "characters": 2225,
+    "sha256": "e51210a8db4b9c729f4497bb4f95fedddaf46fc6c15b7f7ab1376b4fb3498f03",
+    "procedure_declarations": [
+      "dbo.sp_tYear_Student_Insert"
+    ]
+  },
+  {
+    "source": "analysis/decompiled/asdbv.resx",
+    "resource": "txt14000111.Text",
+    "file": "analysis/sql-resources/asdbv_txt14000111.Text.sql",
+    "characters": 18279,
+    "sha256": "6c4652d6135ca46979e6162c84b1680d618c2b7c8e50538f410c3a92902b79bd",
+    "procedure_declarations": [
+      "dbo.sp_tStudent_insertUpdate",
+      "[dbo].[spRpt_karnamefinal]"
+    ]
+  },
+  {
+    "source": "analysis/decompiled/asdbv.resx",
+    "resource": "txt981126.Text",
+    "file": "analysis/sql-resources/asdbv_txt981126.Text.sql",
+    "characters": 24506,
+    "sha256": "e372a29c76597e7f5b0c5ff6b6a958221f996face80d536f1650d5bd878ebb3c",
+    "procedure_declarations": [
+      "dbo.Sp_SetDefYear",
+      "[dbo].[sp_SelectStdForSetAcp]",
+      "dbo.sp_SelectStdForSetGTerm",
+      "dbo.spRpt_Listfinal",
+      "[dbo].[spRpt_karnamefinal]"
+    ]
+  },
+  {
+    "source": "analysis/decompiled/asdbv.resx",
+    "resource": "txt980128.Text",
+    "file": "analysis/sql-resources/asdbv_txt980128.Text.sql",
+    "characters": 10029,
+    "sha256": "0ccf5dae78e4c85a01d3a4fff0bf8d8075413fcaab919cba48518e1cb0792fb3",
+    "procedure_declarations": [
+      "dbo.sp_SubListStdshaghe",
+      "dbo.sp_rptListStd",
+      "dbo.sp_SubListStdKoll",
+      "dbo.sp_SubListStdHazer",
+      "dbo.sp_SubListStdMali",
+      "dbo.sp_rptChapShaghe",
+      "dbo.sp_SubrptChapShaghe",
+      "dbo.sp_SubrptChapShagheHzeri"
+    ]
+  },
+  {
+    "source": "analysis/decompiled/asdbv.resx",
+    "resource": "txt981008.Text",
+    "file": "analysis/sql-resources/asdbv_txt981008.Text.sql",
+    "characters": 15502,
+    "sha256": "01e447a8f9b81e5c9e8ee39bf209069e9a5bf5537c92f7dcab5745912118412e",
+    "procedure_declarations": [
+      "dbo.spRpt_karnamefinal",
+      "dbo.spRpt_Listfinal"
+    ]
+  },
+  {
+    "source": "analysis/decompiled/asdbv.resx",
+    "resource": "txt980124.Text",
+    "file": "analysis/sql-resources/asdbv_txt980124.Text.sql",
+    "characters": 8709,
+    "sha256": "7d422b86d51b7a84f40f79fc87f35a68a0957e9d5a588bf303614ecaddf18050",
+    "procedure_declarations": [
+      "dbo.sp_tStudent_insertUpdate"
+    ]
+  },
+  {
+    "source": "analysis/decompiled/asdbv.resx",
+    "resource": "txt14001023.Text",
+    "file": "analysis/sql-resources/asdbv_txt14001023.Text.sql",
+    "characters": 13639,
+    "sha256": "087f4572ffff2a6023e6f39c89fe2f7e5e568d76a2b1a7701b4f14cdb3652146",
+    "procedure_declarations": [
+      "[dbo].[spRpt_karnamefinal]"
+    ]
+  },
+  {
+    "source": "analysis/decompiled/asdbv.resx",
+    "resource": "txt980209.Text",
+    "file": "analysis/sql-resources/asdbv_txt980209.Text.sql",
+    "characters": 3188,
+    "sha256": "e44d56711bfe31c371d2c67b1f2919c7e141a41b2fca9c63856697f6bcdd3294",
+    "procedure_declarations": [
+      "dbo.sp_RptPayment1"
+    ]
+  },
+  {
+    "source": "analysis/decompiled/asdbv.resx",
+    "resource": "txt14020413.Text",
+    "file": "analysis/sql-resources/asdbv_txt14020413.Text.sql",
+    "characters": 2062,
+    "sha256": "cceb4f6900d331d713fc24ab9cc21166d62d9988d6b8c590aea7587d2d970690",
+    "procedure_declarations": [
+      "dbo.sp_SubrptChapShaghe",
+      "dbo.sp_SubrptChapShagheHzeri"
+    ]
+  },
+  {
+    "source": "analysis/decompiled/asdbv.resx",
+    "resource": "txt990902.Text",
+    "file": "analysis/sql-resources/asdbv_txt990902.Text.sql",
+    "characters": 19782,
+    "sha256": "c12d8f3c6d10270ef4991edc6a9ca55b676376596bbec1f9dc81db6bbc580593",
+    "procedure_declarations": [
+      "dbo.sp_SelectStdForSarbarg_Test_Type1",
+      "dbo.sp_SelectStdForSarbarg_Test_Type2",
+      "dbo.sp_SelectStdForSarbarg_Type1",
+      "dbo.sp_SelectStdForSarbarg_Type2"
+    ]
+  },
+  {
+    "source": "analysis/decompiled/asdbv.resx",
+    "resource": "txt980914.Text",
+    "file": "analysis/sql-resources/asdbv_txt980914.Text.sql",
+    "characters": 10560,
+    "sha256": "b1f46227fce375af66ad1253836e30a26622f26bdf435a8baba9fcd43748f456",
+    "procedure_declarations": [
+      "dbo.spRpt_karnamefinal"
+    ]
+  },
+  {
+    "source": "analysis/decompiled/asdbv.resx",
+    "resource": "txt980616.Text",
+    "file": "analysis/sql-resources/asdbv_txt980616.Text.sql",
+    "characters": 10458,
+    "sha256": "c4a45ebe1bde5a84b71758cca81ad4971469d2fb86a3cec5d138b4ee7a8c384a",
+    "procedure_declarations": [
+      "dbo.spRpt_Liststd_books1",
+      "spRpt_Liststd_books2"
+    ]
+  },
+  {
+    "source": "analysis/decompiled/asdbv.resx",
+    "resource": "txt980131.Text",
+    "file": "analysis/sql-resources/asdbv_txt980131.Text.sql",
+    "characters": 3968,
+    "sha256": "b93c70ebe422819b5946df62dcdc3e449e7fc166e52469c1be4010838ed6a377",
+    "procedure_declarations": [
+      "dbo.sp_tPaymentStudent_insertUpdate"
+    ]
+  },
+  {
+    "source": "analysis/decompiled/asdbv.resx",
+    "resource": "txt990908.Text",
+    "file": "analysis/sql-resources/asdbv_txt990908.Text.sql",
+    "characters": 1275,
+    "sha256": "da07abae3938f463326a7e62bdd9bbeb894acf44ef50439ddef14aaa925d0f81",
+    "procedure_declarations": []
+  },
+  {
+    "source": "analysis/decompiled/asdbv.resx",
+    "resource": "txt980614.Text",
+    "file": "analysis/sql-resources/asdbv_txt980614.Text.sql",
+    "characters": 9074,
+    "sha256": "1f9b38f353f383a0b90e417762167e30394bd08e27837c652b63e879c8d9c3d3",
+    "procedure_declarations": [
+      "dbo.sp_tStudent_insertUpdate",
+      "dbo.sp_List_books_RengMark"
+    ]
+  }
+]

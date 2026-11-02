@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "parameters": "--vulnerable --include-transitive",
+  "sources": [
+    "https://api.nuget.org/v3/index.json"
+  ],
+  "projects": [
+    {
+      "path": "/home/you/Projects/مدیریار/free-sms/dotnet/FreeSms.Windows/FreeSms.Windows.csproj"
+    }
+  ]
+}

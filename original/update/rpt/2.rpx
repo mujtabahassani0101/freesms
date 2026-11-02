@@ -1,0 +1,388 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ActiveReportsLayout Version="4">
+  <Object type="DataDynamics.ActiveReports.ActiveReport3" name="ActiveReport31">
+    <Property name="StyleSheet">
+      <Item type="DDCssLib.StyleSheetRule">
+        <InstanceDescriptor type="DDCssLib.StyleSheetRule">
+          <Argument type="System.String">font-family: Arial; font-style: normal; text-decoration: none; font-weight: normal; font-size: 10pt; color: Black; </Argument>
+          <Argument type="System.String">Normal</Argument>
+        </InstanceDescriptor>
+      </Item>
+      <Item type="DDCssLib.StyleSheetRule">
+        <InstanceDescriptor type="DDCssLib.StyleSheetRule">
+          <Argument type="System.String">font-size: 16pt; font-weight: bold; </Argument>
+          <Argument type="System.String">Heading1</Argument>
+          <Argument type="System.String">Normal</Argument>
+        </InstanceDescriptor>
+      </Item>
+      <Item type="DDCssLib.StyleSheetRule">
+        <InstanceDescriptor type="DDCssLib.StyleSheetRule">
+          <Argument type="System.String">font-family: Times New Roman; font-size: 14pt; font-weight: bold; font-style: italic; </Argument>
+          <Argument type="System.String">Heading2</Argument>
+          <Argument type="System.String">Normal</Argument>
+        </InstanceDescriptor>
+      </Item>
+      <Item type="DDCssLib.StyleSheetRule">
+        <InstanceDescriptor type="DDCssLib.StyleSheetRule">
+          <Argument type="System.String">font-size: 13pt; font-weight: bold; </Argument>
+          <Argument type="System.String">Heading3</Argument>
+          <Argument type="System.String">Normal</Argument>
+        </InstanceDescriptor>
+      </Item>
+    </Property>
+    <Property name="DataMember">v_data</Property>
+    <Property name="DataSource">
+      <Binary>AAEAAAD/////AQAAAAAAAAAMAgAAAE5TeXN0ZW0uRGF0YSwgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAABNTeXN0ZW0uRGF0YS5EYXRhU2V0AwAAABdEYXRhU2V0LlJlbW90aW5nVmVyc2lvbglYbWxTY2hlbWELWG1sRGlmZkdyYW0DAQEOU3lzdGVtLlZlcnNpb24CAAAACQMAAAAGBAAAAIMYPD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTE2Ij8+DQo8eHM6c2NoZW1hIGlkPSJOZXdEYXRhU2V0IiB4bWxucz0iIiB4bWxuczp4cz0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEiIHhtbG5zOm1zZGF0YT0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp4bWwtbXNkYXRhIj4NCiAgPHhzOmVsZW1lbnQgbmFtZT0iTmV3RGF0YVNldCIgbXNkYXRhOklzRGF0YVNldD0idHJ1ZSIgbXNkYXRhOlVzZUN1cnJlbnRMb2NhbGU9InRydWUiPg0KICAgIDx4czpjb21wbGV4VHlwZT4NCiAgICAgIDx4czpjaG9pY2UgbWluT2NjdXJzPSIwIiBtYXhPY2N1cnM9InVuYm91bmRlZCI+DQogICAgICAgIDx4czplbGVtZW50IG5hbWU9InZfZGF0YSI+DQogICAgICAgICAgPHhzOmNvbXBsZXhUeXBlPg0KICAgICAgICAgICAgPHhzOnNlcXVlbmNlPg0KICAgICAgICAgICAgICA8eHM6ZWxlbWVudCBuYW1lPSJjb2RlX21vdGFsZW0iIHR5cGU9InhzOmxvbmciIG1zZGF0YTp0YXJnZXROYW1lc3BhY2U9IiIgbWluT2NjdXJzPSIwIiAvPg0KICAgICAgICAgICAgICA8eHM6ZWxlbWVudCBuYW1lPSJjaG9raSIgdHlwZT0ieHM6c2hvcnQiIG1zZGF0YTp0YXJnZXROYW1lc3BhY2U9IiIgbWluT2NjdXJzPSIwIiAvPg0KICAgICAgICAgICAgICA8eHM6ZWxlbWVudCBuYW1lPSJob3plIiB0eXBlPSJ4czpzdHJpbmciIG1zZGF0YTp0YXJnZXROYW1lc3BhY2U9IiIgbWluT2NjdXJzPSIwIiAvPg0KICAgICAgICAgICAgICA8eHM6ZWxlbWVudCBuYW1lPSJOYW1lIiB0eXBlPSJ4czpzdHJpbmciIG1zZGF0YTp0YXJnZXROYW1lc3BhY2U9IiIgbWluT2NjdXJzPSIwIiAvPg0KICAgICAgICAgICAgICA8eHM6ZWxlbWVudCBuYW1lPSJ2YWxhZCIgdHlwZT0ieHM6c3RyaW5nIiBtc2RhdGE6dGFyZ2V0TmFtZXNwYWNlPSIiIG1pbk9jY3Vycz0iMCIgLz4NCiAgICAgICAgICAgICAgPHhzOmVsZW1lbnQgbmFtZT0iTmFtZV92YWxhZCIgdHlwZT0ieHM6c3RyaW5nIiBtc2RhdGE6dGFyZ2V0TmFtZXNwYWNlPSIiIG1pbk9jY3Vycz0iMCIgLz4NCiAgICAgICAgICAgICAgPHhzOmVsZW1lbnQgbmFtZT0idmFsYWRpeWF0IiB0eXBlPSJ4czpzdHJpbmciIG1zZGF0YTp0YXJnZXROYW1lc3BhY2U9IiIgbWluT2NjdXJzPSIwIiAvPg0KICAgICAgICAgICAgICA8eHM6ZWxlbWVudCBuYW1lPSJ0YXJ0aWIiIHR5cGU9InhzOmludCIgbXNkYXRhOnRhcmdldE5hbWVzcGFjZT0iIiBtaW5PY2N1cnM9IjAiIC8+DQogICAgICAgICAgICAgIDx4czplbGVtZW50IG5hbWU9InRha2hhbG9zIiB0eXBlPSJ4czpzdHJpbmciIG1zZGF0YTp0YXJnZXROYW1lc3BhY2U9IiIgbWluT2NjdXJzPSIwIiAvPg0KICAgICAgICAgICAgICA8eHM6ZWxlbWVudCBuYW1lPSJOdW1iZXJfQXNhcyIgdHlwZT0ieHM6aW50IiBtc2RhdGE6dGFyZ2V0TmFtZXNwYWNlPSIiIG1pbk9jY3Vycz0iMCIgLz4NCiAgICAgICAgICAgICAgPHhzOmVsZW1lbnQgbmFtZT0iTnVtYmVyX1RhemthcmUiIHR5cGU9InhzOnN0cmluZyIgbXNkYXRhOnRhcmdldE5hbWVzcGFjZT0iIiBtaW5PY2N1cnM9IjAiIC8+DQogICAgICAgICAgICAgIDx4czplbGVtZW50IG5hbWU9InRhcmlraF9zaG9tb2xpeWF0IiB0eXBlPSJ4czpzdHJpbmciIG1zZGF0YTp0YXJnZXROYW1lc3BhY2U9IiIgbWluT2NjdXJzPSIwIiAvPg0KICAgICAgICAgICAgICA8eHM6ZWxlbWVudCBuYW1lPSJuYW1lX0VuZ2xpc2giIHR5cGU9InhzOnN0cmluZyIgbXNkYXRhOnRhcmdldE5hbWVzcGFjZT0iIiBtaW5PY2N1cnM9IjAiIC8+DQogICAgICAgICAgICAgIDx4czplbGVtZW50IG5hbWU9InRha2hhbG9zX0VuZ2xpc2giIHR5cGU9InhzOnN0cmluZyIgbXNkYXRhOnRhcmdldE5hbWVzcGFjZT0iIiBtaW5PY2N1cnM9IjAiIC8+DQogICAgICAgICAgICAgIDx4czplbGVtZW50IG5hbWU9InBlZGFyX0VuZ2xpc2giIHR5cGU9InhzOnN0cmluZyIgbXNkYXRhOnRhcmdldE5hbWVzcGFjZT0iIiBtaW5PY2N1cnM9IjAiIC8+DQogICAgICAgICAgICAgIDx4czplbGVtZW50IG5hbWU9InRlbHBob25fcGVkYXIiIHR5cGU9InhzOnN0cmluZyIgbXNkYXRhOnRhcmdldE5hbWVzcGFjZT0iIiBtaW5PY2N1cnM9IjAiIC8+DQogICAgICAgICAgICAgIDx4czplbGVtZW50IG5hbWU9InRlbHBob25fbWFkYXIiIHR5cGU9InhzOnN0cmluZyIgbXNkYXRhOnRhcmdldE5hbWVzcGFjZT0iIiBtaW5PY2N1cnM9IjAiIC8+DQogICAgICAgICAgICAgIDx4czplbGVtZW50IG5hbWU9InNlbmYiIHR5cGU9InhzOnN0cmluZyIgbXNkYXRhOnRhcmdldE5hbWVzcGFjZT0iIiBtaW5PY2N1cnM9IjAiIC8+DQogICAgICAgICAgICAgIDx4czplbGVtZW50IG5hbWU9IlBheWUiIHR5cGU9InhzOnN0cmluZyIgbXNkYXRhOnRhcmdldE5hbWVzcGFjZT0iIiBtaW5PY2N1cnM9IjAiIC8+DQogICAgICAgICAgICAgIDx4czplbGVtZW50IG5hbWU9IkFrcyIgdHlwZT0ieHM6YmFzZTY0QmluYXJ5IiBtc2RhdGE6dGFyZ2V0TmFtZXNwYWNlPSIiIG1pbk9jY3Vycz0iMCIgLz4NCiAgICAgICAgICAgICAgPHhzOmVsZW1lbnQgbmFtZT0idGFyaWtoX3RhdmFsb2QiIHR5cGU9InhzOnN0cmluZyIgbXNkYXRhOnRhcmdldE5hbWVzcGFjZT0iIiBtaW5PY2N1cnM9IjAiIC8+DQogICAgICAgICAgICAgIDx4czplbGVtZW50IG5hbWU9InNlbiIgdHlwZT0ieHM6aW50IiBtc2RhdGE6dGFyZ2V0TmFtZXNwYWNlPSIiIG1pbk9jY3Vycz0iMCIgLz4NCiAgICAgICAgICAgICAgPHhzOmVsZW1lbnQgbmFtZT0iUm96X3RhdmFsb2QiIHR5cGU9InhzOnN0cmluZyIgbXNkYXRhOnRhcmdldE5hbWVzcGFjZT0iIiBtaW5PY2N1cnM9IjAiIC8+DQogICAgICAgICAgICAgIDx4czplbGVtZW50IG5hbWU9InNvcnRpZCIgdHlwZT0ieHM6c3RyaW5nIiBtc2RhdGE6dGFyZ2V0TmFtZXNwYWNlPSIiIG1pbk9jY3Vycz0iMCIgLz4NCiAgICAgICAgICAgIDwveHM6c2VxdWVuY2U+DQogICAgICAgICAgPC94czpjb21wbGV4VHlwZT4NCiAgICAgICAgPC94czplbGVtZW50Pg0KICAgICAgPC94czpjaG9pY2U+DQogICAgPC94czpjb21wbGV4VHlwZT4NCiAgPC94czplbGVtZW50Pg0KPC94czpzY2hlbWE+BgUAAAChJjxkaWZmZ3I6ZGlmZmdyYW0geG1sbnM6bXNkYXRhPSJ1cm46c2NoZW1hcy1taWNyb3NvZnQtY29tOnhtbC1tc2RhdGEiIHhtbG5zOmRpZmZncj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp4bWwtZGlmZmdyYW0tdjEiPjxOZXdEYXRhU2V0Pjx2X2RhdGEgZGlmZmdyOmlkPSJ2X2RhdGExIiBtc2RhdGE6cm93T3JkZXI9IjAiPjxjb2RlX21vdGFsZW0+OTkwMTEzNDA8L2NvZGVfbW90YWxlbT48TmFtZT7YudmE2Yo8L05hbWU+PHZhbGFkPtio2KfZgtixPC92YWxhZD48TmFtZV92YWxhZD7YudmE2Yog2KjYp9mC2LE8L05hbWVfdmFsYWQ+PHZhbGFkaXlhdD7YsdmF2LbYp9mGPC92YWxhZGl5YXQ+PHRha2hhbG9zPtin2K3Zhdiv2Yo8L3Rha2hhbG9zPjxOdW1iZXJfQXNhcz4xNzg4PC9OdW1iZXJfQXNhcz48TnVtYmVyX1RhemthcmUgLz48dGFyaWtoX3Nob21vbGl5YXQ+MTM5OS8wNS8yOTwvdGFyaWtoX3Nob21vbGl5YXQ+PG5hbWVfRW5nbGlzaCAvPjx0YWtoYWxvc19FbmdsaXNoIC8+PHBlZGFyX0VuZ2xpc2ggLz48dGVscGhvbl9wZWRhcj4wNzg1MjA1Njc3PC90ZWxwaG9uX3BlZGFyPjx0ZWxwaG9uX21hZGFyPjA3NzI0NjY2NTA8L3RlbHBob25fbWFkYXI+PHNlbmY+2KfZiNmEINm+2LPYsdin2YYgMTwvc2VuZj48UGF5ZT7Yp9mI2YQ8L1BheWU+PHRhcmlraF90YXZhbG9kPjEzOTIvMDgvMDU8L3RhcmlraF90YXZhbG9kPjxzZW4+Nzwvc2VuPjxSb3pfdGF2YWxvZD41INi52YLYsdioPC9Sb3pfdGF2YWxvZD48L3ZfZGF0YT48dl9kYXRhIGRpZmZncjppZD0idl9kYXRhMiIgbXNkYXRhOnJvd09yZGVyPSIxIj48Y29kZV9tb3RhbGVtPjk5MDExNDA2PC9jb2RlX21vdGFsZW0+PE5hbWU+2LnZhNmKINit2YXYstmHPC9OYW1lPjx2YWxhZD7Yrdio2YrYqCDYp9mE2YTZhzwvdmFsYWQ+PE5hbWVfdmFsYWQ+2LnZhNmKINit2YXYstmHINit2KjZitioINin2YTZhNmHPC9OYW1lX3ZhbGFkPjx2YWxhZGl5YXQgLz48dGFraGFsb3M+2LnZhNmKINiy2KfYr9mHPC90YWtoYWxvcz48TnVtYmVyX0FzYXM+MTc4MzwvTnVtYmVyX0FzYXM+PE51bWJlcl9UYXprYXJlIC8+PHRhcmlraF9zaG9tb2xpeWF0PjEzOTkvMDcvMTA8L3RhcmlraF9zaG9tb2xpeWF0PjxuYW1lX0VuZ2xpc2ggLz48dGFraGFsb3NfRW5nbGlzaCAvPjxwZWRhcl9FbmdsaXNoIC8+PHRlbHBob25fcGVkYXIgLz48dGVscGhvbl9tYWRhciAvPjxzZW5mPtin2YjZhCDZvtiz2LHYp9mGIDE8L3NlbmY+PFBheWU+2KfZiNmEPC9QYXllPjx0YXJpa2hfdGF2YWxvZCAvPjwvdl9kYXRhPjx2X2RhdGEgZGlmZmdyOmlkPSJ2X2RhdGEzIiBtc2RhdGE6cm93T3JkZXI9IjIiPjxjb2RlX21vdGFsZW0+OTkwMTEzMDk8L2NvZGVfbW90YWxlbT48TmFtZT7YudmE2Yog2LPYrNin2K88L05hbWU+PHZhbGFkPtit2KjZitioINin2YTZhNmHPC92YWxhZD48TmFtZV92YWxhZD7YudmE2Yog2LPYrNin2K8g2K3YqNmK2Kgg2KfZhNmE2Yc8L05hbWVfdmFsYWQ+PHZhbGFkaXlhdD7Zhdit2YXYryDYudmE2YU8L3ZhbGFkaXlhdD48dGFraGFsb3M+2KrZiNmB2YI8L3Rha2hhbG9zPjxOdW1iZXJfQXNhcz4xNzg1PC9OdW1iZXJfQXNhcz48TnVtYmVyX1RhemthcmUgLz48dGFyaWtoX3Nob21vbGl5YXQ+MTM5OS8wNS8xNTwvdGFyaWtoX3Nob21vbGl5YXQ+PG5hbWVfRW5nbGlzaCAvPjx0YWtoYWxvc19FbmdsaXNoIC8+PHBlZGFyX0VuZ2xpc2ggLz48dGVscGhvbl9wZWRhcj4wNzY3NzAwOTkzPC90ZWxwaG9uX3BlZGFyPjx0ZWxwaG9uX21hZGFyPjA3Njc3MDA5OTM8L3RlbHBob25fbWFkYXI+PHNlbmY+2KfZiNmEINm+2LPYsdin2YYgMTwvc2VuZj48UGF5ZT7Yp9mI2YQ8L1BheWU+PHRhcmlraF90YXZhbG9kPjEzOTIvMDYwOS88L3RhcmlraF90YXZhbG9kPjxzZW4+Nzwvc2VuPjwvdl9kYXRhPjx2X2RhdGEgZGlmZmdyOmlkPSJ2X2RhdGE0IiBtc2RhdGE6cm93T3JkZXI9IjMiPjxjb2RlX21vdGFsZW0+OTkwMTEzNDE8L2NvZGVfbW90YWxlbT48TmFtZT7YudmE2Yog2LHYttinPC9OYW1lPjx2YWxhZD7Yrdiz2YrZhiDYudmE2Yo8L3ZhbGFkPjxOYW1lX3ZhbGFkPti52YTZiiDYsdi22Kcg2K3Ys9mK2YYg2LnZhNmKPC9OYW1lX3ZhbGFkPjx2YWxhZGl5YXQ+2LnZiNi2INi52YTZijwvdmFsYWRpeWF0Pjx0YWtoYWxvcz7Zhdit2YXYr9mKPC90YWtoYWxvcz48TnVtYmVyX0FzYXM+MTc4NDwvTnVtYmVyX0FzYXM+PE51bWJlcl9UYXprYXJlPjE2OTg1MDQxPC9OdW1iZXJfVGF6a2FyZT48dGFyaWtoX3Nob21vbGl5YXQ+MTM5OS8wNS8yOTwvdGFyaWtoX3Nob21vbGl5YXQ+PG5hbWVfRW5nbGlzaCAvPjx0YWtoYWxvc19FbmdsaXNoIC8+PHBlZGFyX0VuZ2xpc2ggLz48dGVscGhvbl9wZWRhcj4wNzI5MTE5ODY1PC90ZWxwaG9uX3BlZGFyPjx0ZWxwaG9uX21hZGFyPjA3NzQ1MjgzNzA8L3RlbHBob25fbWFkYXI+PHNlbmY+2KfZiNmEINm+2LPYsdin2YYgMTwvc2VuZj48UGF5ZT7Yp9mI2YQ8L1BheWU+PHRhcmlraF90YXZhbG9kPjEzOTIvMDcvMDY8L3RhcmlraF90YXZhbG9kPjxzZW4+Nzwvc2VuPjxSb3pfdGF2YWxvZD42INmF24zYstin2YY8L1Jvel90YXZhbG9kPjwvdl9kYXRhPjx2X2RhdGEgZGlmZmdyOmlkPSJ2X2RhdGE1IiBtc2RhdGE6cm93T3JkZXI9IjQiPjxjb2RlX21vdGFsZW0+OTkwMTEzNTQ8L2NvZGVfbW90YWxlbT48TmFtZT7Ys9mK2K8g2KfYrdmF2K8g2LPZitixPC9OYW1lPjx2YWxhZD7Ys9mK2K8g2KfYs9mF2KfYudmK2YQ8L3ZhbGFkPjxOYW1lX3ZhbGFkPtiz2YrYryDYp9it2YXYryDYs9mK2LEg2LPZitivINin2LPZhdin2LnZitmEPC9OYW1lX3ZhbGFkPjx2YWxhZGl5YXQ+2LPZitivINin2K3ZhdivINi02KfZhzwvdmFsYWRpeWF0Pjx0YWtoYWxvcz7Yrdiz2YrZhtmKPC90YWtoYWxvcz48TnVtYmVyX0FzYXM+MTc3OTwvTnVtYmVyX0FzYXM+PE51bWJlcl9UYXprYXJlIC8+PHRhcmlraF9zaG9tb2xpeWF0PjEzOTkvMDYvMDQ8L3RhcmlraF9zaG9tb2xpeWF0PjxuYW1lX0VuZ2xpc2ggLz48dGFraGFsb3NfRW5nbGlzaCAvPjxwZWRhcl9FbmdsaXNoIC8+PHRlbHBob25fcGVkYXI+MDc3NDMwNDc1MTwvdGVscGhvbl9wZWRhcj48dGVscGhvbl9tYWRhcj4wNzc2OTY1Njg3PC90ZWxwaG9uX21hZGFyPjxzZW5mPtin2YjZhCDZvtiz2LHYp9mGIDE8L3NlbmY+PFBheWU+2KfZiNmEPC9QYXllPjx0YXJpa2hfdGF2YWxvZD4xMzkxLzEwLzAxPC90YXJpa2hfdGF2YWxvZD48c2VuPjg8L3Nlbj48Um96X3RhdmFsb2Q+MSDYrNiv24w8L1Jvel90YXZhbG9kPjwvdl9kYXRhPjx2X2RhdGEgZGlmZmdyOmlkPSJ2X2RhdGE2IiBtc2RhdGE6cm93T3JkZXI9IjUiPjxjb2RlX21vdGFsZW0+OTkwMTEyOTI8L2NvZGVfbW90YWxlbT48TmFtZT7Ys9mK2K8g2LnYsdmB2KfZhjwvTmFtZT48dmFsYWQ+2LPZitivINi22YrYp9in2YTZhNmHPC92YWxhZD48TmFtZV92YWxhZD7Ys9mK2K8g2LnYsdmB2KfZhiDYs9mK2K8g2LbZitin2KfZhNmE2Yc8L05hbWVfdmFsYWQ+PHZhbGFkaXlhdD7Ys9mE2LfYp9mGINi52YTZijwvdmFsYWRpeWF0Pjx0YWtoYWxvcyAvPjxOdW1iZXJfQXNhcz4xNzgyPC9OdW1iZXJfQXNhcz48TnVtYmVyX1RhemthcmUgLz48dGFyaWtoX3Nob21vbGl5YXQ+MTM5OC8xMi8yNDwvdGFyaWtoX3Nob21vbGl5YXQ+PG5hbWVfRW5nbGlzaCAvPjx0YWtoYWxvc19FbmdsaXNoIC8+PHBlZGFyX0VuZ2xpc2ggLz48dGVscGhvbl9wZWRhciAvPjx0ZWxwaG9uX21hZGFyIC8+PHNlbmY+2KfZiNmEINm+2LPYsdin2YYgMTwvc2VuZj48UGF5ZT7Yp9mI2YQ8L1BheWU+PHRhcmlraF90YXZhbG9kPjEzOTMvMjEvMDI8L3RhcmlraF90YXZhbG9kPjxzZW4+Njwvc2VuPjwvdl9kYXRhPjx2X2RhdGEgZGlmZmdyOmlkPSJ2X2RhdGE3IiBtc2RhdGE6cm93T3JkZXI9IjYiPjxOYW1lPtiz2YrYryDZhdi12LfZgdmKPC9OYW1lPjx2YWxhZD7Ys9mK2K8g2YbYudmK2YU8L3ZhbGFkPjxOYW1lX3ZhbGFkPtiz2YrYryDZhdi12LfZgdmKINiz2YrYryDZhti52YrZhTwvTmFtZV92YWxhZD48dmFsYWRpeWF0IC8+PHRha2hhbG9zIC8+PE51bWJlcl9UYXprYXJlIC8+PHRhcmlraF9zaG9tb2xpeWF0PjEzOTgvMTIvMTM8L3RhcmlraF9zaG9tb2xpeWF0PjxuYW1lX0VuZ2xpc2ggLz48dGFraGFsb3NfRW5nbGlzaCAvPjxwZWRhcl9FbmdsaXNoIC8+PHRlbHBob25fcGVkYXIgLz48dGVscGhvbl9tYWRhciAvPjxzZW5mPtin2YjZhCDZvtiz2LHYp9mGIDE8L3NlbmY+PFBheWU+2KfZiNmEPC9QYXllPjx0YXJpa2hfdGF2YWxvZCAvPjwvdl9kYXRhPjx2X2RhdGEgZGlmZmdyOmlkPSJ2X2RhdGE4IiBtc2RhdGE6cm93T3JkZXI9IjciPjxjb2RlX21vdGFsZW0+OTkwMTEzNTg8L2NvZGVfbW90YWxlbT48TmFtZT7Zhti12LHYp9mE2YTZhzwvTmFtZT48dmFsYWQ+2LbYp9mF2YYg2LnZhNmKPC92YWxhZD48TmFtZV92YWxhZD7Zhti12LHYp9mE2YTZhyDYttin2YXZhiDYudmE2Yo8L05hbWVfdmFsYWQ+PHZhbGFkaXlhdD7Zhdit2YXYryDYrdiz2YrZhjwvdmFsYWRpeWF0Pjx0YWtoYWxvcyAvPjxOdW1iZXJfQXNhcz4xNzk0PC9OdW1iZXJfQXNhcz48TnVtYmVyX1RhemthcmUgLz48dGFyaWtoX3Nob21vbGl5YXQ+MTM5OS8wNi8wNjwvdGFyaWtoX3Nob21vbGl5YXQ+PG5hbWVfRW5nbGlzaCAvPjx0YWtoYWxvc19FbmdsaXNoIC8+PHBlZGFyX0VuZ2xpc2ggLz48dGVscGhvbl9wZWRhcj4wNzc2NTgwNzU1PC90ZWxwaG9uX3BlZGFyPjx0ZWxwaG9uX21hZGFyPjA3NzY3NzM2MTU8L3RlbHBob25fbWFkYXI+PHNlbmY+2KfZiNmEINm+2LPYsdin2YYgMTwvc2VuZj48UGF5ZT7Yp9mI2YQ8L1BheWU+PHRhcmlraF90YXZhbG9kPjEzOTIvMDUvMTI8L3RhcmlraF90YXZhbG9kPjxzZW4+Nzwvc2VuPjxSb3pfdGF2YWxvZD4xMiDYp9iz2K88L1Jvel90YXZhbG9kPjwvdl9kYXRhPjwvTmV3RGF0YVNldD48L2RpZmZncjpkaWZmZ3JhbT4EAwAAAA5TeXN0ZW0uVmVyc2lvbgQAAAAGX01ham9yBl9NaW5vcgZfQnVpbGQJX1JldmlzaW9uAAAAAAgICAgCAAAAAAAAAP//////////Cw==</Binary>
+    </Property>
+    <Property name="Sections">
+      <Reference name="Detail1" />
+    </Property>
+    <Property name="PrintWidth">7.7</Property>
+    <Property name="PageSettings">
+      <Property name="Margins">
+        <Property name="Left">0.25</Property>
+        <Property name="Top">0.25</Property>
+        <Property name="Right">0.25</Property>
+        <Property name="Bottom">0.25</Property>
+      </Property>
+      <Property name="PaperWidth">8.5</Property>
+      <Property name="PaperHeight">11</Property>
+    </Property>
+    <Event name="ReportStart">handler_DataDynamics.ActiveReports.ActiveReport3_ReportStart</Event>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.Detail" name="Detail1">
+    <Property name="Height">2.79166675</Property>
+    <Property name="ColumnSpacing">0</Property>
+    <Property name="Name">Detail1</Property>
+    <Property name="Controls">
+      <Reference name="Shape2" />
+      <Reference name="Shape1" />
+      <Reference name="TextBox2" />
+      <Reference name="TextBox1" />
+      <Reference name="TextBox3" />
+      <Reference name="TextBox4" />
+      <Reference name="TextBox5" />
+      <Reference name="TextBox10" />
+      <Reference name="TextBox11" />
+      <Reference name="TextBox12" />
+      <Reference name="Line1" />
+      <Reference name="txtsenf1" />
+      <Reference name="txtvalad1" />
+      <Reference name="TextBox14" />
+      <Reference name="txtName1" />
+      <Reference name="TextBox6" />
+      <Reference name="TextBox7" />
+    </Property>
+    <Event name="Format">handler_DataDynamics.ActiveReports.Detail_Format</Event>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.Shape" name="Shape1">
+    <Property name="Border">
+      <Property name="TopStyle">None</Property>
+      <Property name="BottomStyle">None</Property>
+      <Property name="LeftStyle">None</Property>
+      <Property name="RightStyle">None</Property>
+    </Property>
+    <Property name="Name">Shape1</Property>
+    <Property name="Style">RoundRect</Property>
+    <Property name="Location">
+      <Binary>AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJhd2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAAAAPgAAgD0L</Binary>
+    </Property>
+    <Property name="Size">7.5, 2.6875</Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.TextBox" name="TextBox2">
+    <Property name="Text">محترم:</Property>
+    <Property name="Font">B Nazanin, 12pt, style=Bold</Property>
+    <Property name="Location">
+      <Binary>AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJhd2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAADcQAAAID4L</Binary>
+    </Property>
+    <Property name="OutputFormat" />
+    <Property name="RightToLeft">True</Property>
+    <Property name="Name">TextBox2</Property>
+    <Property name="DistinctField" />
+    <Property name="Size">0.5, 0.3125</Property>
+    <Property name="Border">
+      <Property name="TopStyle">None</Property>
+      <Property name="BottomStyle">None</Property>
+      <Property name="LeftStyle">None</Property>
+      <Property name="RightStyle">None</Property>
+    </Property>
+    <Property name="Alignment">Right</Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.TextBox" name="TextBox1">
+    <Property name="Text">دانش آموز صنف:</Property>
+    <Property name="Font">B Nazanin, 12pt, style=Bold</Property>
+    <Property name="Location">
+      <Binary>AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJhd2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAAAAQAAAID4L</Binary>
+    </Property>
+    <Property name="OutputFormat" />
+    <Property name="RightToLeft">True</Property>
+    <Property name="Name">TextBox1</Property>
+    <Property name="DistinctField" />
+    <Property name="Size">1, 0.3125</Property>
+    <Property name="Border">
+      <Property name="TopStyle">None</Property>
+      <Property name="BottomStyle">None</Property>
+      <Property name="LeftStyle">None</Property>
+      <Property name="RightStyle">None</Property>
+    </Property>
+    <Property name="Alignment">Justify</Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.TextBox" name="TextBox3">
+    <Property name="Text">خدمت والدین محترم عرض سلام و ارادت داریم و از خداوند مهربان سلامتی و توفیقات مزید برای تربیت سالم فرزندان تان آرزو داریم</Property>
+    <Property name="Font">B Nazanin, 11pt, style=Bold, Italic</Property>
+    <Property name="Location">
+      <Binary>AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJhd2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAABAPgAAED8L</Binary>
+    </Property>
+    <Property name="OutputFormat" />
+    <Property name="RightToLeft">True</Property>
+    <Property name="Name">TextBox3</Property>
+    <Property name="DistinctField" />
+    <Property name="Size">7.375, 0.3125</Property>
+    <Property name="Border">
+      <Property name="TopStyle">None</Property>
+      <Property name="BottomStyle">None</Property>
+      <Property name="LeftStyle">None</Property>
+      <Property name="RightStyle">None</Property>
+    </Property>
+    <Property name="Alignment">Justify</Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.TextBox" name="TextBox4">
+    <Property name="Text">اداره مکتب ستارگان تمدن با تاکید به نقش اساسی و سازنده خانواده ها در موفقیت برنامه های آموزشی و تربیتی دانش آموزان، جهت تقویت همکاری متقابل و موثر بین بین خانواده ها و مکتب، جلسه اولیا و مربیان را برگزار می کند. تا با هماهنگی و تلاش های مشترک بتوانیم  در امر تعلیمی و تربیتی نونهالان عزیز و آینده سازان جامعه خود موفق تر عمل کنیم.</Property>
+    <Property name="Font">B Nazanin, 14pt</Property>
+    <Property name="Location">
+      <Binary>AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJhd2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAq6oqPgAAYD8L</Binary>
+    </Property>
+    <Property name="OutputFormat" />
+    <Property name="RightToLeft">True</Property>
+    <Property name="Name">TextBox4</Property>
+    <Property name="DistinctField" />
+    <Property name="Size">7.4375, 0.875</Property>
+    <Property name="Border">
+      <Property name="TopStyle">None</Property>
+      <Property name="BottomStyle">None</Property>
+      <Property name="LeftStyle">None</Property>
+      <Property name="RightStyle">None</Property>
+    </Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.TextBox" name="TextBox5">
+    <Property name="Text">بدین وسیله از والدین گرامی دعوت به عمل می آید که در جلسه روز سه شنبه مورخ 1399/8/27 شرکت نموده ممنون سازید.</Property>
+    <Property name="Font">B Nazanin, 14pt</Property>
+    <Property name="Location">
+      <Binary>AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJhd2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAq6oqPgAA4D8L</Binary>
+    </Property>
+    <Property name="OutputFormat" />
+    <Property name="RightToLeft">True</Property>
+    <Property name="Name">TextBox5</Property>
+    <Property name="DistinctField" />
+    <Property name="Size">7.4375, 0.3125</Property>
+    <Property name="Border">
+      <Property name="TopStyle">None</Property>
+      <Property name="BottomStyle">None</Property>
+      <Property name="LeftStyle">None</Property>
+      <Property name="RightStyle">None</Property>
+    </Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.TextBox" name="TextBox10">
+    <Property name="Text">با احترام</Property>
+    <Property name="Font">B Nazanin, 10pt, style=Bold</Property>
+    <Property name="Location">
+      <Binary>AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJhd2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAADAPgAACEAL</Binary>
+    </Property>
+    <Property name="OutputFormat" />
+    <Property name="RightToLeft">True</Property>
+    <Property name="Name">TextBox10</Property>
+    <Property name="DistinctField" />
+    <Property name="Size">1.3125, 0.208333328</Property>
+    <Property name="Border">
+      <Property name="TopStyle">None</Property>
+      <Property name="BottomStyle">None</Property>
+      <Property name="LeftStyle">None</Property>
+      <Property name="RightStyle">None</Property>
+    </Property>
+    <Property name="Alignment">Center</Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.TextBox" name="TextBox11">
+    <Property name="Text">مدیریت لیسه ستارگان تمدن</Property>
+    <Property name="Font">B Nazanin, 10pt, style=Bold</Property>
+    <Property name="Location">
+      <Binary>AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJhd2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAACgPgAAGEAL</Binary>
+    </Property>
+    <Property name="OutputFormat" />
+    <Property name="RightToLeft">True</Property>
+    <Property name="Name">TextBox11</Property>
+    <Property name="DistinctField" />
+    <Property name="Size">1.4375, 0.25</Property>
+    <Property name="Border">
+      <Property name="TopStyle">None</Property>
+      <Property name="BottomStyle">None</Property>
+      <Property name="LeftStyle">None</Property>
+      <Property name="RightStyle">None</Property>
+    </Property>
+    <Property name="Alignment">Center</Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.TextBox" name="TextBox12">
+    <Property name="Text">نوت1: زمان جلسه صنوف قبل از ظهر ساعت 9:00 می باشد.</Property>
+    <Property name="Font">B Nazanin, 14pt</Property>
+    <Property name="Location">
+      <Binary>AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJhd2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAACAQAAABEAL</Binary>
+    </Property>
+    <Property name="OutputFormat" />
+    <Property name="ForeColor">Red</Property>
+    <Property name="RightToLeft">True</Property>
+    <Property name="Name">TextBox12</Property>
+    <Property name="DistinctField" />
+    <Property name="Size">3.5625, 0.3125</Property>
+    <Property name="Border">
+      <Property name="TopStyle">None</Property>
+      <Property name="BottomStyle">None</Property>
+      <Property name="LeftStyle">None</Property>
+      <Property name="RightStyle">None</Property>
+    </Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.Line" name="Line1">
+    <Property name="X2">7.5</Property>
+    <Property name="LineStyle">Dash</Property>
+    <Property name="Border">
+      <Property name="TopStyle">None</Property>
+      <Property name="BottomStyle">None</Property>
+      <Property name="LeftStyle">None</Property>
+      <Property name="RightStyle">None</Property>
+    </Property>
+    <Property name="Name">Line1</Property>
+    <Property name="X1">0</Property>
+    <Property name="Y1">2.75</Property>
+    <Property name="LineWeight">1</Property>
+    <Property name="Y2">2.75</Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.TextBox" name="txtsenf1">
+    <Property name="Text">txtsenf1</Property>
+    <Property name="DataField">senf</Property>
+    <Property name="Font">B Nazanin, 12pt, style=Bold</Property>
+    <Property name="Location">
+      <Binary>AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJhd2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAADAPgAAID4L</Binary>
+    </Property>
+    <Property name="OutputFormat" />
+    <Property name="RightToLeft">True</Property>
+    <Property name="Name">txtsenf1</Property>
+    <Property name="DistinctField" />
+    <Property name="Size">1.5625, 0.3125</Property>
+    <Property name="Border">
+      <Property name="TopStyle">None</Property>
+      <Property name="BottomStyle">None</Property>
+      <Property name="LeftStyle">None</Property>
+      <Property name="RightStyle">None</Property>
+    </Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.TextBox" name="txtvalad1">
+    <Property name="Text">txtvalad1</Property>
+    <Property name="DataField">valad</Property>
+    <Property name="Font">B Nazanin, 12pt, style=Bold</Property>
+    <Property name="Location">
+      <Binary>AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJhd2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAAC0QAAAID4L</Binary>
+    </Property>
+    <Property name="OutputFormat" />
+    <Property name="RightToLeft">True</Property>
+    <Property name="Name">txtvalad1</Property>
+    <Property name="DistinctField" />
+    <Property name="Size">1.25, 0.3125</Property>
+    <Property name="Border">
+      <Property name="TopStyle">None</Property>
+      <Property name="BottomStyle">None</Property>
+      <Property name="LeftStyle">None</Property>
+      <Property name="RightStyle">None</Property>
+    </Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.TextBox" name="TextBox14">
+    <Property name="Text">ولی ارجمند:</Property>
+    <Property name="Font">B Nazanin, 12pt, style=Bold</Property>
+    <Property name="Location">
+      <Binary>AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJhd2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAACOQAAAID4L</Binary>
+    </Property>
+    <Property name="OutputFormat" />
+    <Property name="RightToLeft">True</Property>
+    <Property name="Name">TextBox14</Property>
+    <Property name="DistinctField" />
+    <Property name="Size">0.875, 0.3125</Property>
+    <Property name="Border">
+      <Property name="TopStyle">None</Property>
+      <Property name="BottomStyle">None</Property>
+      <Property name="LeftStyle">None</Property>
+      <Property name="RightStyle">None</Property>
+    </Property>
+    <Property name="Alignment">Right</Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.TextBox" name="txtName1">
+    <Property name="Text">txtName1</Property>
+    <Property name="DataField">Name</Property>
+    <Property name="Font">B Nazanin, 12pt, style=Bold</Property>
+    <Property name="Location">
+      <Binary>AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJhd2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAABcQKuqKj4L</Binary>
+    </Property>
+    <Property name="OutputFormat" />
+    <Property name="RightToLeft">True</Property>
+    <Property name="Name">txtName1</Property>
+    <Property name="DistinctField" />
+    <Property name="Size">1, 0.3125</Property>
+    <Property name="Border">
+      <Property name="TopStyle">None</Property>
+      <Property name="BottomStyle">None</Property>
+      <Property name="LeftStyle">None</Property>
+      <Property name="RightStyle">None</Property>
+    </Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.Shape" name="Shape2">
+    <Property name="Border">
+      <Property name="TopStyle">None</Property>
+      <Property name="BottomStyle">None</Property>
+      <Property name="LeftStyle">None</Property>
+      <Property name="RightStyle">None</Property>
+    </Property>
+    <Property name="LineWeight">5</Property>
+    <Property name="BackColor">Bisque</Property>
+    <Property name="Name">Shape2</Property>
+    <Property name="Style">RoundRect</Property>
+    <Property name="Location">
+      <Binary>AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJhd2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAABAPgAAgD0L</Binary>
+    </Property>
+    <Property name="LineStyle">DashDot</Property>
+    <Property name="Size">7.4375, 0.4375</Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.TextBox" name="TextBox6">
+    <Property name="Text">نوت2: زمان جلسه صنوف بعد از ظهر ساعت 1:00 می باشد.</Property>
+    <Property name="Font">B Nazanin, 14pt</Property>
+    <Property name="Location">
+      <Binary>AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJhd2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAACAQKuqGkAL</Binary>
+    </Property>
+    <Property name="OutputFormat" />
+    <Property name="ForeColor">Red</Property>
+    <Property name="RightToLeft">True</Property>
+    <Property name="Name">TextBox6</Property>
+    <Property name="DistinctField" />
+    <Property name="Size">3.5625, 0.25</Property>
+    <Property name="Border">
+      <Property name="TopStyle">None</Property>
+      <Property name="BottomStyle">None</Property>
+      <Property name="LeftStyle">None</Property>
+      <Property name="RightStyle">None</Property>
+    </Property>
+  </Object>
+  <Object type="DataDynamics.ActiveReports.TextBox" name="TextBox7">
+    <Property name="Text"> .والدین محترم لطف نموده در تایم مکتب فرزند خود تشریف بیاورند.</Property>
+    <Property name="Font">B Nazanin, 11pt, style=Bold</Property>
+    <Property name="Location">
+      <Binary>AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJhd2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAADwPwAACEAL</Binary>
+    </Property>
+    <Property name="BackColor">Khaki</Property>
+    <Property name="OutputFormat" />
+    <Property name="Name">TextBox7</Property>
+    <Property name="DistinctField" />
+    <Property name="Size">2.0625, 0.5</Property>
+    <Property name="Border">
+      <Property name="TopStyle">None</Property>
+      <Property name="BottomStyle">None</Property>
+      <Property name="LeftStyle">None</Property>
+      <Property name="RightStyle">None</Property>
+    </Property>
+    <Property name="Alignment">Center</Property>
+  </Object>
+</ActiveReportsLayout>

@@ -1,0 +1,803 @@
+[
+  {
+    "class": "asda",
+    "form": "frmPrint",
+    "title": "پرینت",
+    "size": [
+      "498",
+      "431"
+    ]
+  },
+  {
+    "class": "asda0",
+    "form": "frmRpt",
+    "title": "گزارشات",
+    "size": [
+      "784",
+      "612"
+    ]
+  },
+  {
+    "class": "asda1",
+    "form": "frmHozeh",
+    "title": "تعریف حوزه امتحانی",
+    "size": [
+      "424",
+      "454"
+    ]
+  },
+  {
+    "class": "asda2",
+    "form": "frmCommentKoll",
+    "title": "ثبت نمرات دوره",
+    "size": [
+      "800",
+      "600"
+    ]
+  },
+  {
+    "class": "asda3",
+    "form": "frmLogin",
+    "title": "ورود به برنامه",
+    "size": [
+      "518",
+      "332"
+    ]
+  },
+  {
+    "class": "asda4",
+    "form": "frmCommentAdd",
+    "title": "لیست پرداخت های شاگرد",
+    "size": [
+      "400",
+      "300"
+    ]
+  },
+  {
+    "class": "asda5",
+    "form": "frmPaymentAdd",
+    "title": "لیست پرداخت های شاگرد",
+    "size": [
+      "400",
+      "300"
+    ]
+  },
+  {
+    "class": "asda6",
+    "form": "frmSetAcpTerm",
+    "title": "ثبت نتایج شاگردان",
+    "size": [
+      "1010",
+      "700"
+    ]
+  },
+  {
+    "class": "asda7",
+    "form": "frmSetMark100",
+    "title": "مشخصات مکتب",
+    "size": [
+      "482",
+      "314"
+    ]
+  },
+  {
+    "class": "asda8",
+    "form": "frmbackColor",
+    "title": "تعریف دوره",
+    "size": [
+      "456",
+      "407"
+    ]
+  },
+  {
+    "class": "asda9",
+    "form": "frmbackUp",
+    "title": "پیشتیبان",
+    "size": [
+      "514",
+      "445"
+    ]
+  },
+  {
+    "class": "asdaa",
+    "form": "frmYearMaghtaCountDay",
+    "title": "مدیریت صنوف",
+    "size": [
+      "400",
+      "300"
+    ]
+  },
+  {
+    "class": "asdac",
+    "form": "frmSchool",
+    "title": "مشخصات مکتب",
+    "size": [
+      "482",
+      "314"
+    ]
+  },
+  {
+    "class": "asdad",
+    "form": "frmDisciplinaryCases2",
+    "title": "تعریف حوزه امتحانی",
+    "size": [
+      "550",
+      "600"
+    ]
+  },
+  {
+    "class": "asdae",
+    "form": "frmPaymentInsertUpdate",
+    "title": "لیست پرداخت های شاگرد",
+    "size": [
+      "611",
+      "461"
+    ]
+  },
+  {
+    "class": "asdaf",
+    "form": "frmCommentListSelectDate",
+    "title": "انتخاب تاریخ",
+    "size": [
+      "332",
+      "312"
+    ]
+  },
+  {
+    "class": "asdag",
+    "form": "frmTosifConfig",
+    "title": "لیست تخفیف ها",
+    "size": [
+      "672",
+      "500"
+    ]
+  },
+  {
+    "class": "asdah",
+    "form": "frmImportSarbargFile",
+    "title": "سربرگ",
+    "size": [
+      "515",
+      "323"
+    ]
+  },
+  {
+    "class": "asdai",
+    "form": "frmlistStdSearch",
+    "title": "لیست شاگردان",
+    "size": [
+      "800",
+      "675"
+    ]
+  },
+  {
+    "class": "asdak",
+    "form": "frmMarkEntrySelect",
+    "title": "انتخاب دوره",
+    "size": [
+      "332",
+      "358"
+    ]
+  },
+  {
+    "class": "asdal",
+    "form": "frmsarbarg",
+    "title": "سربرگ",
+    "size": [
+      "801",
+      "640"
+    ]
+  },
+  {
+    "class": "asdam",
+    "form": "frmRptLable",
+    "title": "گزارشات",
+    "size": [
+      "581",
+      "384"
+    ]
+  },
+  {
+    "class": "asdao",
+    "form": "FrmEmpty",
+    "title": "خالی کردن بانک اطلاعاتی",
+    "size": [
+      "357",
+      "349"
+    ]
+  },
+  {
+    "class": "asdap",
+    "form": "frmRptChart",
+    "title": "گزارشات نموداری",
+    "size": [
+      "676",
+      "578"
+    ]
+  },
+  {
+    "class": "asdaq",
+    "form": "frmHazeriAgo",
+    "title": "ثبت نمرات دوره",
+    "size": [
+      "700",
+      "671"
+    ]
+  },
+  {
+    "class": "asdar",
+    "form": "frmPaymentList",
+    "title": "لیست پرداخت های شاگرد",
+    "size": [
+      "910",
+      "685"
+    ]
+  },
+  {
+    "class": "asdas",
+    "form": "frmRptDis",
+    "title": "گزارش موارد انضباطی",
+    "size": [
+      "792",
+      "566"
+    ]
+  },
+  {
+    "class": "asdat",
+    "form": "frmSabtenam",
+    "title": "ثبت نام ",
+    "size": [
+      "831",
+      "700"
+    ]
+  },
+  {
+    "class": "asdau",
+    "form": "frmActivStdSarbarg",
+    "title": "ثبت نمرات دوره",
+    "size": [
+      "719",
+      "671"
+    ]
+  },
+  {
+    "class": "asdav",
+    "form": "frmSetDefYear",
+    "title": "سال تعلیمی پیش فرض",
+    "size": [
+      "375",
+      "222"
+    ]
+  },
+  {
+    "class": "asdaz",
+    "form": "frmshaghe",
+    "title": "ثبت نمرات دوره",
+    "size": [
+      "586",
+      "600"
+    ]
+  },
+  {
+    "class": "asdb",
+    "form": "frmlistHozeh",
+    "title": "اختصاص شماره چوکی اتوماتیک",
+    "size": [
+      "697",
+      "650"
+    ]
+  },
+  {
+    "class": "asdb0",
+    "form": "frmSendSmsMark",
+    "title": "دریافت فایل اکسل نمرات برای ارسال پیامک",
+    "size": [
+      "767",
+      "633"
+    ]
+  },
+  {
+    "class": "asdb1",
+    "form": "frmSendSmsMarkTelegram",
+    "title": "دریافت فایل اکسل نمرات برای ارسال پیامک",
+    "size": [
+      "767",
+      "633"
+    ]
+  },
+  {
+    "class": "asdb2",
+    "form": "frmRptAFLsit",
+    "title": "گزارش",
+    "size": [
+      "792",
+      "566"
+    ]
+  },
+  {
+    "class": "asdb3",
+    "form": "frmMain",
+    "title": "SMS نرم افزار ",
+    "size": [
+      "994",
+      "672"
+    ]
+  },
+  {
+    "class": "asdb4",
+    "form": "frmAtach",
+    "title": "بارگزاری",
+    "size": [
+      "460",
+      "149"
+    ]
+  },
+  {
+    "class": "asdb5",
+    "form": "frmExpotMarkToXls",
+    "title": "دریافت فایل اکسل نمرات",
+    "size": [
+      "287",
+      "412"
+    ]
+  },
+  {
+    "class": "asdb6",
+    "form": "frmTelegramConfig",
+    "title": "تنظیمات ربات تلگرام",
+    "size": [
+      "448",
+      "116"
+    ]
+  },
+  {
+    "class": "asdb7",
+    "form": "frmImportStd",
+    "title": "ثبت شاگردان از فایل اکسل",
+    "size": [
+      "800",
+      "600"
+    ]
+  },
+  {
+    "class": "asdb8",
+    "form": "frmSetgTerm",
+    "title": "ثبت نمرات دوره",
+    "size": [
+      "751",
+      "700"
+    ]
+  },
+  {
+    "class": "asdba",
+    "form": "frmSummaryResults",
+    "title": "خلص نتایج",
+    "size": [
+      "482",
+      "567"
+    ]
+  },
+  {
+    "class": "asdbb",
+    "form": "frmCommentInsertUpdate",
+    "title": "لیست پرداخت های شاگرد",
+    "size": [
+      "611",
+      "461"
+    ]
+  },
+  {
+    "class": "asdbc",
+    "form": "frmPrintDis",
+    "title": "پرینت",
+    "size": [
+      "498",
+      "431"
+    ]
+  },
+  {
+    "class": "asdbd",
+    "form": "frmMarkEntry",
+    "title": "ثبت نمرات دوره",
+    "size": [
+      "800",
+      "600"
+    ]
+  },
+  {
+    "class": "asdbf",
+    "form": "frmRptPayment",
+    "title": "گزارش",
+    "size": [
+      "792",
+      "566"
+    ]
+  },
+  {
+    "class": "asdbh",
+    "form": "frmMarkEntryAgo",
+    "title": "اطلاعات داوطلبان",
+    "size": [
+      "706",
+      "714"
+    ]
+  },
+  {
+    "class": "asdbi",
+    "form": "frmTeacher",
+    "title": "اطلاعات معلمان",
+    "size": [
+      "400",
+      "300"
+    ]
+  },
+  {
+    "class": "asdbj",
+    "form": "frmlistTelegramMessage",
+    "title": "لیست شاگردان",
+    "size": [
+      "800",
+      "600"
+    ]
+  },
+  {
+    "class": "asdbk",
+    "form": "frmRegisterPak",
+    "title": "پیشتیبان",
+    "size": [
+      "514",
+      "307"
+    ]
+  },
+  {
+    "class": "asdbl",
+    "form": "frmbackUpClosing",
+    "title": "پیشتیبان",
+    "size": [
+      "514",
+      "242"
+    ]
+  },
+  {
+    "class": "asdbm",
+    "form": "frmDisciplinaryCases",
+    "title": "تعریف موارد انضباطی",
+    "size": [
+      "550",
+      "600"
+    ]
+  },
+  {
+    "class": "asdbn",
+    "form": "frmDisciplinaryAddAbsentSelectDate",
+    "title": "انتخاب تاریخ برای ثبت غیبت و تاخیر",
+    "size": [
+      "304",
+      "220"
+    ]
+  },
+  {
+    "class": "asdbo",
+    "form": "frmRptBalance",
+    "title": "ثبت نمرات دوره",
+    "size": [
+      "650",
+      "600"
+    ]
+  },
+  {
+    "class": "asdbp",
+    "form": "PrintRptDynamic",
+    "title": null,
+    "size": [
+      "478",
+      "513"
+    ]
+  },
+  {
+    "class": "asdbq",
+    "form": "frmExam",
+    "title": "تعریف دوره",
+    "size": [
+      "456",
+      "407"
+    ]
+  },
+  {
+    "class": "asdbr",
+    "form": "frmSelectStdNotShowBalance",
+    "title": "تنظیم عدم نمایش شاگرد در دعوت نامه بدهکاران",
+    "size": [
+      "784",
+      "573"
+    ]
+  },
+  {
+    "class": "asdbs",
+    "form": "frmPaymentListSelectDate",
+    "title": "انتخاب تاریخ",
+    "size": [
+      "332",
+      "228"
+    ]
+  },
+  {
+    "class": "asdbt",
+    "form": "frmSabtenamItemEnable",
+    "title": "لیست دروس",
+    "size": [
+      "312",
+      "584"
+    ]
+  },
+  {
+    "class": "asdbu",
+    "form": "frmDisciplinaryAddAbsent",
+    "title": "لیست شاگردان",
+    "size": [
+      "800",
+      "600"
+    ]
+  },
+  {
+    "class": "asdbv",
+    "form": "frmUpdate",
+    "title": "frmUpdate",
+    "size": [
+      "548",
+      "522"
+    ]
+  },
+  {
+    "class": "asdbw",
+    "form": "frmRptSelectStd",
+    "title": "گزارشات",
+    "size": [
+      "784",
+      "636"
+    ]
+  },
+  {
+    "class": "asdby",
+    "form": "frmMarkEntry2",
+    "title": "اطلاعات داوطلبان",
+    "size": [
+      "706",
+      "714"
+    ]
+  },
+  {
+    "class": "asdbz",
+    "form": "frmYear_Student",
+    "title": "انتقال به پایه بالاتر",
+    "size": [
+      "770",
+      "662"
+    ]
+  },
+  {
+    "class": "asdc",
+    "form": "frmCls",
+    "title": "مدیریت صنوف",
+    "size": [
+      "400",
+      "300"
+    ]
+  },
+  {
+    "class": "asdca",
+    "form": "frmbook",
+    "title": "لیست دروس",
+    "size": [
+      "550",
+      "585"
+    ]
+  },
+  {
+    "class": "asdcc",
+    "form": "frmExportMarkToSite",
+    "title": "ارسال نمرات به سایت",
+    "size": [
+      "800",
+      "600"
+    ]
+  },
+  {
+    "class": "asdcd",
+    "form": "frmPaye",
+    "title": "لیست پایه ها",
+    "size": [
+      "300",
+      "500"
+    ]
+  },
+  {
+    "class": "asdce",
+    "form": "frmSendSmsMark",
+    "title": "دریافت فایل اکسل نمرات برای ارسال پیامک",
+    "size": [
+      "767",
+      "633"
+    ]
+  },
+  {
+    "class": "asde",
+    "form": "frmcode_decode",
+    "title": "frmcode_decode",
+    "size": [
+      "510",
+      "425"
+    ]
+  },
+  {
+    "class": "asdf",
+    "form": "frmDriverStd",
+    "title": "لیست پرداخت های شاگرد",
+    "size": [
+      "800",
+      "600"
+    ]
+  },
+  {
+    "class": "asdg",
+    "form": "frmCreateXlsToMarkEntry",
+    "title": "ایجاد فایل اکسل شاگردان برای ورود نمره",
+    "size": [
+      "287",
+      "633"
+    ]
+  },
+  {
+    "class": "asdh",
+    "form": "frmTakhfif",
+    "title": "لیست تخفیف ها",
+    "size": [
+      "455",
+      "500"
+    ]
+  },
+  {
+    "class": "asdi",
+    "form": "frmUser",
+    "title": "اطلاعات اساتيد",
+    "size": [
+      "400",
+      "300"
+    ]
+  },
+  {
+    "class": "asdj",
+    "form": "frmTchClass",
+    "title": "معلم-صنف-درس",
+    "size": [
+      "792",
+      "459"
+    ]
+  },
+  {
+    "class": "asdk",
+    "form": "EndUserDesignerMainForm",
+    "title": "Data Dynamics ActiveReports 3.0 Report Designer",
+    "size": [
+      "800",
+      "600"
+    ]
+  },
+  {
+    "class": "asdl",
+    "form": "frmDriver",
+    "title": "اطلاعات معلمان",
+    "size": [
+      "400",
+      "300"
+    ]
+  },
+  {
+    "class": "asdm",
+    "form": "frmlistStd",
+    "title": "لیست شاگردان",
+    "size": [
+      "800",
+      "675"
+    ]
+  },
+  {
+    "class": "asdn",
+    "form": "frmDisciplinaryAdd",
+    "title": "لیست شاگردان",
+    "size": [
+      "800",
+      "600"
+    ]
+  },
+  {
+    "class": "asdo",
+    "form": "frmOst",
+    "title": " ولایت-ولسوالی",
+    "size": [
+      "573",
+      "506"
+    ]
+  },
+  {
+    "class": "asdp",
+    "form": "frmHazeri",
+    "title": "ثبت نمرات دوره",
+    "size": [
+      "700",
+      "671"
+    ]
+  },
+  {
+    "class": "asdq",
+    "form": "frmDisciplinaryCases3",
+    "title": "تعریف اخطارهای آموزشی",
+    "size": [
+      "550",
+      "600"
+    ]
+  },
+  {
+    "class": "asdr",
+    "form": "frmClsSort",
+    "title": "لیست صنف ها",
+    "size": [
+      "395",
+      "500"
+    ]
+  },
+  {
+    "class": "asds",
+    "form": "frmUserPermission",
+    "title": "اطلاعات اساتيد",
+    "size": [
+      "400",
+      "300"
+    ]
+  },
+  {
+    "class": "asdt",
+    "form": "frmsarbarg2",
+    "title": "سربرگ",
+    "size": [
+      "515",
+      "640"
+    ]
+  },
+  {
+    "class": "asdu",
+    "form": "frm_Year_Term",
+    "title": "ورود به برنامه",
+    "size": [
+      "515",
+      "418"
+    ]
+  },
+  {
+    "class": "asdv",
+    "form": "frmImportMark",
+    "title": "ثبت نمرات دوره از فایل اکسل",
+    "size": [
+      "798",
+      "598"
+    ]
+  },
+  {
+    "class": "asdw",
+    "form": "frmCommentList",
+    "title": "لیست پرداخت های شاگرد",
+    "size": [
+      "910",
+      "685"
+    ]
+  },
+  {
+    "class": "asdx",
+    "form": "frmCommentKollEntrySelect",
+    "title": "انتخاب دوره",
+    "size": [
+      "304",
+      "263"
+    ]
+  }
+]
