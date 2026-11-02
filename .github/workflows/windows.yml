@@ -20,6 +20,7 @@ jobs:
       - name: Verify native LocalDB and business workflows
         shell: pwsh
         run: |
+          Get-ChildItem 'C:/Program Files/Microsoft SQL Server/*/Tools/Binn/SqlLocalDB.exe' | ForEach-Object { $_.FullName; & $_.FullName versions }
           dotnet run --project dotnet/FreeSms.Checks/FreeSms.Checks.csproj -c Release -- --root . --integration 2>&1 | Tee-Object -FilePath validation/windows-native-checks.log
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
       - name: Publish self-contained Windows application
@@ -73,6 +74,7 @@ jobs:
           if (-not $process.WaitForExit(120000)) { $process.Kill(); throw 'Original form verification timed out.' }
           if ($process.ExitCode -ne 0) {
             Get-Content dist/FreeSMS-Original-Net10/original-runtime-error.txt -ErrorAction SilentlyContinue
+            Get-Content dist/FreeSMS-Original-Net10/original-forms-verification.txt -ErrorAction SilentlyContinue
             exit 1
           }
           Get-Content dist/FreeSMS-Original-Net10/original-forms-verification.txt

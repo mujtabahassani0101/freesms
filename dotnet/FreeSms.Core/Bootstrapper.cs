@@ -132,7 +132,7 @@ public static partial class Bootstrapper
         var output = process.StandardOutput.ReadToEndAsync(cancellation);
         var error = process.StandardError.ReadToEndAsync(cancellation);
         using var timeout = CancellationTokenSource.CreateLinkedTokenSource(cancellation);
-        timeout.CancelAfter(TimeSpan.FromSeconds(60));
+        timeout.CancelAfter(TimeSpan.FromSeconds(120));
         try { await process.WaitForExitAsync(timeout.Token); }
         catch { if (!process.HasExited) process.Kill(true); throw; }
         return (process.ExitCode, await output, await error);

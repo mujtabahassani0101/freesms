@@ -46,8 +46,11 @@ internal static class OriginalProgram
                 var assembly = typeof(OriginalProgram).Assembly;
                 using (var log = new StreamWriter(Path.Combine(AppContext.BaseDirectory, "original-forms-verification.txt")))
                 {
+                    int failures = 0;
                     foreach (var definition in catalog.Forms)
                     {
+                      try
+                      {
                         var type = assembly.GetType(definition.S("class"), true);
                         using (var form = (Form)Activator.CreateInstance(type))
                         {
@@ -57,8 +60,16 @@ internal static class OriginalProgram
                             log.WriteLine(definition.S("name") + ": constructed and rendered");
                             log.Flush();
                         }
+                      }
+                      catch (Exception error)
+                      {
+                          failures++;
+                          log.WriteLine("FAILED " + definition.S("class") + ": " + error);
+                          log.Flush();
+                      }
                     }
-                    log.WriteLine("SUCCESS " + catalog.Forms.Count);
+                    log.WriteLine(failures == 0 ? "SUCCESS " + catalog.Forms.Count : "FAILED " + failures + " of " + catalog.Forms.Count);
+                    if (failures != 0) return 1;
                 }
                 return 0;
             }
