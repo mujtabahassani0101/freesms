@@ -16,14 +16,16 @@ namespace FreeSms.Reporting
     {
         public virtual string ResourceName { get; set; }
         internal DataSet Data;
+        internal bool SingleTable;
         public SubreportCollection Subreports { get; } = new SubreportCollection();
         public ParameterCollection ParameterFields { get; } = new ParameterCollection();
         public void SetDataSource(DataTable table)
         {
             Data = new DataSet();
             Data.Tables.Add(table.Copy());
+            SingleTable = true;
         }
-        public void SetDataSource(DataSet data) { Data = data.Copy(); }
+        public void SetDataSource(DataSet data) { Data = data.Copy(); SingleTable = false; }
     }
 
     public sealed class SubreportCollection
@@ -147,6 +149,7 @@ namespace FreeSms.Reporting
             var file = name + ".xml";
             report.Data.WriteXml(Path.Combine(directory, file), XmlWriteMode.WriteSchema);
             node.Add(new XAttribute("data", file));
+            node.Add(new XAttribute("single-table", report.SingleTable));
         }
     }
 }

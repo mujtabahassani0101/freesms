@@ -173,4 +173,8 @@
     <EmbeddedResource Include="../FreeSms.Original.Windows/school_Af.Rpt.af.CrListStdMali.rpt" LogicalName="school_Af.Rpt.af.CrListStdMali.rpt" />
     <EmbeddedResource Include="../FreeSms.Original.Windows/school_Af.exe.licenses" LogicalName="FreeSms.ReportHost.exe.licenses" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="../../vendor/fonts/*" Link="fonts/%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
+    <Compile Include="../FreeSms.Original.Windows/Compatibility.Fonts.cs" Link="Compatibility.Fonts.cs" />
+  </ItemGroup>
 </Project>

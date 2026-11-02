@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <EnableWindowsTargeting>true</EnableWindowsTargeting>
+    <UseWindowsForms>true</UseWindowsForms>
+    <OutputType>WinExe</OutputType>
+    <AssemblyName>FreeSMS</AssemblyName>
+    <RuntimeFrameworkVersion>10.0.14</RuntimeFrameworkVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../FreeSms.Core/FreeSms.Core.csproj" />
+  </ItemGroup>
+</Project>

@@ -12,3 +12,7 @@ validation/wheels/
 validation/dotnet-data/
 *.zip
 validation/original-recovery/
+
+validation/ci-*/
+validation/*failure.log
+validation/*build.log

@@ -6,6 +6,48 @@ on:
 permissions:
   contents: read
 jobs:
+  compatible:
+    runs-on: windows-2025
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-dotnet@v6.0.0
+        with:
+          dotnet-version: '10.0.x'
+      - name: Build native compatible original application
+        shell: pwsh
+        run: ./scripts/build-native-compatible-windows.ps1
+      - name: Install native Crystal runtime
+        shell: pwsh
+        run: |
+          $installer = Join-Path $PWD 'vendor/runtime/CRRedist2005_x86.msi'
+          $log = Join-Path $PWD 'validation/compatible-crystal-install.log'
+          $process = Start-Process msiexec.exe -ArgumentList "/i `"$installer`" /qn /norestart /l*v `"$log`"" -Wait -PassThru
+          if ($process.ExitCode -notin @(0,3010)) { Get-Content $log -Tail 50; exit 1 }
+      - name: Render all original forms using supported legacy controls
+        shell: pwsh
+        run: |
+          $app = Join-Path $PWD 'dist/FreeSMS-Native-Compatible/FreeSMS.exe'
+          $process = Start-Process $app -ArgumentList '--verify-original-forms' -PassThru
+          if (-not $process.WaitForExit(180000)) { $process.Kill(); throw 'Compatible original form check timed out.' }
+          Get-Content dist/FreeSMS-Native-Compatible/legacy-ui/original-forms-verification.txt -ErrorAction SilentlyContinue
+          if ($process.ExitCode -ne 0) { Get-Content dist/FreeSMS-Native-Compatible/legacy-ui/original-runtime-error.txt -ErrorAction SilentlyContinue; exit 1 }
+      - name: Upload native compatibility evidence
+        if: always()
+        uses: actions/upload-artifact@v7.0.2
+        with:
+          name: compatible-original-verification
+          path: |
+            dist/FreeSMS-Native-Compatible/legacy-ui/*verification.txt
+            dist/FreeSMS-Native-Compatible/legacy-ui/original-runtime-error.txt
+            validation/compatible-crystal-install.log
+      - name: Upload native compatibility build
+        if: always()
+        uses: actions/upload-artifact@v7.0.2
+        with:
+          name: FreeSMS-native-compatible-candidate
+          path: dist/FreeSMS-Native-Compatible/
+          retention-days: 7
   windows:
     runs-on: windows-2025
     timeout-minutes: 20
@@ -61,14 +103,7 @@ jobs:
           dotnet-version: '10.0.x'
       - name: Build all recovered original Windows code
         shell: pwsh
-        run: |
-          dotnet publish dotnet/FreeSms.Original.Windows/FreeSms.Original.Windows.csproj -c Release -r win-x86 --self-contained true -o dist/FreeSMS-Original-Net10
-          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
-          dotnet build dotnet/FreeSms.ReportHost/FreeSms.ReportHost.csproj -c Release -o dist/FreeSMS-Original-Net10/report-host
-          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
-          $hostApp = Join-Path $PWD 'dist/FreeSMS-Original-Net10/report-host/FreeSms.ReportHost.exe'
-          $licenseProcess = Start-Process $hostApp -ArgumentList '--export-license-context' -Wait -PassThru
-          if ($licenseProcess.ExitCode -ne 0) { Get-Content dist/FreeSMS-Original-Net10/report-host/error.txt; exit 1 }
+        run: ./scripts/build-original-windows.ps1
       - name: Verify the original forms and vendor controls
         shell: pwsh
         run: |

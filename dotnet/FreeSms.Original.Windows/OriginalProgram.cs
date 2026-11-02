@@ -10,7 +10,8 @@ internal static class OriginalRuntime
     public static void Initialize()
     {
         var options = DatabaseOptions.Default with { Name = "school_af_kbr" };
-        var database = Bootstrapper.OpenAsync(AppContext.BaseDirectory, options).GetAwaiter().GetResult();
+        var database = Bootstrapper.OpenAsync(AppContext.BaseDirectory,
+            string.IsNullOrWhiteSpace(Environment.GetEnvironmentVariable("FREE_SMS_CONNECTION_STRING")) ? options : null).GetAwaiter().GetResult();
         Migrations.Apply(database, AppContext.BaseDirectory);
         ConnectionString = database.ConnectionString;
         KeylessRuntime.Enable();
@@ -42,6 +43,7 @@ internal static class OriginalProgram
         try
         {
             OriginalComponentLicenses.Initialize();
+            OriginalFonts.Initialize();
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             if (checking)
             {
@@ -56,6 +58,8 @@ internal static class OriginalProgram
                     {
                       try
                       {
+                        log.WriteLine("BEGIN " + definition.S("class"));
+                        log.Flush();
                         var type = assembly.GetType(definition.S("class"), true);
                         using (var form = (Form)Activator.CreateInstance(type))
                         {
@@ -84,7 +88,13 @@ internal static class OriginalProgram
         }
         catch (Exception error)
         {
-            File.AppendAllText(Path.Combine(AppContext.BaseDirectory, "original-runtime-error.txt"), error.ToString() + Environment.NewLine);
+            var directory = checking ? AppContext.BaseDirectory : Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "free-sms", "logs");
+            try
+            {
+                Directory.CreateDirectory(directory);
+                File.AppendAllText(Path.Combine(directory, "original-runtime-error.txt"), error.ToString() + Environment.NewLine);
+            }
+            catch (IOException) { }
             if (!checking) MessageBox.Show(error.Message, "برنامه باز نشد", MessageBoxButtons.OK, MessageBoxIcon.Error);
             return 1;
         }

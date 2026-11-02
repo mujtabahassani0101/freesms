@@ -253,4 +253,7 @@
     <Content Include="xls/*" Link="xls/%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
     <Content Include="../../original/update/rpt/*" Link="original/update/rpt/%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="../../vendor/fonts/*" Link="fonts/%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
 </Project>

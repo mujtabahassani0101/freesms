@@ -33,6 +33,7 @@ internal static class Program
                 }
                 return 0;
             }
+            OriginalFonts.Initialize();
             Application.EnableVisualStyles();
             if (args.Length == 1 && args[0] == "--verify-engine")
             {
@@ -97,7 +98,8 @@ internal static class Program
         using (var reader = XmlReader.Create(Path.Combine(directory, name), new XmlReaderSettings { DtdProcessing = DtdProcessing.Prohibit, XmlResolver = null }))
         {
             data.ReadXml(reader, XmlReadMode.ReadSchema);
-            report.SetDataSource(data);
+            if ((bool?)item.Attribute("single-table") == true) report.SetDataSource(data.Tables[0]);
+            else report.SetDataSource(data);
         }
     }
 }
