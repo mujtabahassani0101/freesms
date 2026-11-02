@@ -39,13 +39,16 @@ internal static class OriginalProgram
     [STAThread]
     public static int Main(string[] args)
     {
-        bool checking = args.Contains("--verify-original-forms") || args.Contains("--verify-native-startup");
+        bool checking = args.Any(arg => arg.StartsWith("--verify-", StringComparison.Ordinal));
         try
         {
             Application.SetCompatibleTextRenderingDefault(false);
             Application.SetUnhandledExceptionMode(UnhandledExceptionMode.ThrowException);
             OriginalFonts.Initialize();
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
+            if (args.Contains("--verify-navigation")) return OriginalNavigationCheck.Run();
+            int navigation = Array.IndexOf(args, "--verify-navigation-form");
+            if (navigation >= 0 && navigation + 1 < args.Length) return OriginalNavigationCheck.Worker(args[navigation + 1]);
             if (args.Contains("--preview"))
             {
                 KeylessRuntime.Enable();

@@ -1,0 +1,55 @@
+name: Investigate native form loading
+on:
+  workflow_dispatch:
+    inputs:
+      persist_evidence:
+        description: Commit isolated navigation diagnostic logs
+        type: boolean
+        default: false
+permissions:
+  contents: write
+jobs:
+  navigation:
+    runs-on: windows-2025
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-dotnet@v6.0.0
+        with:
+          dotnet-version: '10.0.x'
+      - name: Build native application
+        shell: pwsh
+        run: ./scripts/build-original-windows.ps1
+      - name: Open main menu destinations using a disposable database
+        continue-on-error: true
+        shell: pwsh
+        run: |
+          $app = Join-Path $PWD 'dist/FreeSMS-Net10/FreeSMS.exe'
+          $process = Start-Process $app -ArgumentList '--verify-navigation' -PassThru
+          if (-not $process.WaitForExit(900000)) { $process.Kill(); throw 'Navigation diagnosis timed out.' }
+          Get-Content dist/FreeSMS-Net10/navigation-checks/summary.log -ErrorAction SilentlyContinue
+          if ($process.ExitCode -ne 0) { Get-Content dist/FreeSMS-Net10/original-runtime-error.txt -ErrorAction SilentlyContinue; exit 1 }
+      - uses: actions/upload-artifact@v7.0.2
+        if: always()
+        with:
+          name: native-navigation-diagnostics
+          path: |
+            dist/FreeSMS-Net10/navigation-checks/
+            dist/FreeSMS-Net10/original-runtime-error.txt
+          retention-days: 7
+      - name: Save isolated diagnostic evidence
+        if: ${{ always() && inputs.persist_evidence }}
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force validation/navigation | Out-Null
+          Copy-Item dist/FreeSMS-Net10/navigation-checks/*.log validation/navigation/ -Force -ErrorAction SilentlyContinue
+          Copy-Item dist/FreeSMS-Net10/original-runtime-error.txt validation/navigation/ -Force -ErrorAction SilentlyContinue
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add validation/navigation
+          git diff --cached --quiet
+          if ($LASTEXITCODE -eq 1) {
+            git commit -m 'Record isolated native navigation diagnostics'
+            if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+            git push origin HEAD:main
+          }

@@ -84,6 +84,7 @@ public class asdcb
 
 	private static void a(SqlCommand A_0, SqlConnection A_1, SqlTransaction A_2, CommandType A_3, string A_4, SqlParameter[] A_5)
 	{
+		OriginalNavigationCheck.TraceCommand(A_4);
 		while (true)
 		{
 			bool flag = A_1.State == ConnectionState.Open;
