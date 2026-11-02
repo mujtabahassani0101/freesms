@@ -39,7 +39,7 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/build-original-w
 
 `check-windows.cmd` آزمون‌های بانک، محاسبات گزارش، کنترل‌ها، فرم‌ها و راه‌اندازی ورود را اجرا می‌کند. آزمون بانک فقط نمونهٔ موقت خودش با پیشوند `FreeSmsCheck_` را حذف می‌کند.
 
-در اجرای موفق [آزمون ویندوز](https://github.com/mujtabahassani0101/freesms/actions/runs/41473425592)، هر ۸۹ فرم اصلی روی .NET 10 رندر شدند، ۲۴ بررسی کنترل و قالب RPX و ۱۸ بررسی بانک موفق شدند و فرم ورود اصلی باز شد. آزمون‌های تکمیلی موتور گزارش در گردش کار [Windows verification](https://github.com/mujtabahassani0101/freesms/actions/workflows/windows.yml) اجرا می‌شوند.
+در اجرای موفق [آزمون ویندوز](https://github.com/mujtabahassani0101/freesms/actions/runs/41479209832)، هر ۸۹ فرم اصلی روی .NET 10 رندر شدند، بررسی کنترل و قالب RPX، رندر ۹۸ گزارش با دادهٔ نمونه و ادامهٔ زیرگزارش بلند موفق شدند. ۱۸ بررسی بانک و ۲۶ بررسی عبارت و تابع گزارش نیز گذشت و فرم ورود اصلی باز شد. نتایج هر نسخه در گردش کار [Windows verification](https://github.com/mujtabahassani0101/freesms/actions/workflows/windows.yml) اجرا می‌شوند.
 
 رندر فرم و دادهٔ نمونه، برابری همهٔ عملیات با نسخهٔ اصلی را ثابت نمی‌کند. تطبیق دستی همهٔ جریان‌های کاری، صفحه‌بندی گزارش‌ها با دادهٔ واقعی و عملیات Excel هنوز کامل نشده است.
 

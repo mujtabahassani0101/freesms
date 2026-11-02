@@ -1,7 +1,11 @@
 # Native Windows evidence
 
-Run `41448794495`, commit `ab4fa8e`, verified the native LocalDB path on Windows Server 2025: **18 checks passed**, and the separate reconstructed interface rendered successfully. The original application's Janus controls failed at this stage; the license context compatibility fix was introduced afterward. These results do not prove parity of the original application's 89 forms or its reports.
+The active application targets .NET 10. The default solution/build no longer starts the Framework interface or Crystal host. Earlier Python/container and Framework results in this directory are historical.
 
-The per-user data directory is intentional: SQL Server database files must reside on a writable Windows volume supported by the engine. The integration check creates a unique LocalDB instance under the current user's LocalAppData and deletes only that temporary instance.
+Windows Server 2025 run [41479209832](https://github.com/mujtabahassani0101/freesms/actions/runs/41479209832), commit `b9c9017`, passed the recovered 89-form render check, native initialization/original login, native control/RPX checks, rendering of all 98 migrated report templates with disconnected sample data, and a long-subreport pagination check. The separate database job passed 18 LocalDB integration/service checks and the report job passed 26 expression/lookup checks, including evaluation across every template.
 
-Current results are available in the repository's Native Windows verification workflow. Older Python/container checks in this directory are historical and do not verify the current native application.
+Fixtures exercise rendering and adapter contracts. They do not prove every recovered controller workflow, data-dependent report layout or Excel operation behaves identically to the original. Actual printers and all manual workflows have not been verified.
+
+The integration check creates a unique LocalDB instance under the current user's LocalAppData and deletes only that temporary instance. The application's own writable database is separate.
+
+Current evidence and the self-contained x86 Windows artifact are in the [Windows workflow](https://github.com/mujtabahassani0101/freesms/actions/workflows/windows.yml).

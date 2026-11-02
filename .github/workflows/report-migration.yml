@@ -1,13 +1,18 @@
 name: Extract portable report layouts
 on:
   workflow_dispatch:
+    inputs:
+      persist:
+        description: Commit the converted templates back to this repository
+        type: boolean
+        default: false
   push:
     branches: [main]
     paths:
       - 'dotnet/FreeSms.ReportHost/**'
       - '.github/workflows/report-migration.yml'
 permissions:
-  contents: read
+  contents: write
 jobs:
   extract:
     runs-on: windows-2025
@@ -39,3 +44,18 @@ jobs:
             dist/report-migration/portable-layouts/
             dist/report-migration/error.txt
           retention-days: 7
+      - name: Commit converted source templates when requested
+        if: ${{ success() && github.event_name == 'workflow_dispatch' && inputs.persist }}
+        shell: pwsh
+        run: |
+          Copy-Item dist/report-migration/portable-layouts/*.xml dotnet/FreeSms.Original.Windows/portable-layouts/ -Force
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add dotnet/FreeSms.Original.Windows/portable-layouts
+          git diff --cached --quiet
+          if ($LASTEXITCODE -eq 1) {
+            git commit -m 'Refresh report layouts from original templates'
+            if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+            git push origin HEAD:main
+            if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          }

@@ -697,11 +697,11 @@ protected override void Dispose(bool A_0)
 									num2 = 0;
 									continue;
 								case 6:
-									val2.Image = Image.FromFile(x);
+									using (var pictureImage = Image.FromFile(x)) val2.Image = pictureImage;
 									num2 = 4;
 									continue;
 								case 3:
-									val2.Image = Image.FromFile(x);
+									using (var pictureImage = Image.FromFile(x)) val2.Image = pictureImage;
 									num2 = 2;
 									continue;
 								case 0:
@@ -758,7 +758,7 @@ protected override void Dispose(bool A_0)
 									num2 = 3;
 									continue;
 								case 1:
-									val4.Image = Image.FromFile(v);
+									using (var pictureImage = Image.FromFile(v)) val4.Image = pictureImage;
 									num2 = 4;
 									continue;
 								case 3:
@@ -805,7 +805,7 @@ protected override void Dispose(bool A_0)
 									num2 = 2;
 									continue;
 								case 1:
-									val6.Image = Image.FromFile(y);
+									using (var pictureImage = Image.FromFile(y)) val6.Image = pictureImage;
 									num2 = 3;
 									continue;
 								case 2:
@@ -851,7 +851,7 @@ protected override void Dispose(bool A_0)
 									num2 = 3;
 									continue;
 								case 4:
-									val5.Image = Image.FromFile(z);
+									using (var pictureImage = Image.FromFile(z)) val5.Image = pictureImage;
 									num2 = 2;
 									continue;
 								case 2:
@@ -893,7 +893,7 @@ protected override void Dispose(bool A_0)
 									num2 = 2;
 									continue;
 								case 3:
-									val3.Image = Image.FromFile(u);
+									using (var pictureImage = Image.FromFile(u)) val3.Image = pictureImage;
 									num2 = 1;
 									continue;
 								case 1:
@@ -939,7 +939,7 @@ protected override void Dispose(bool A_0)
 									num2 = 1;
 									continue;
 								case 4:
-									val.Image = Image.FromFile(w);
+									using (var pictureImage = Image.FromFile(w)) val.Image = pictureImage;
 									num2 = 2;
 									continue;
 								case 1:

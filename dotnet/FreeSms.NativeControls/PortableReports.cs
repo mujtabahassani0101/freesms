@@ -31,6 +31,7 @@ namespace FreeSms.NativeControls
         {
             internal float Height;
             internal readonly Dictionary<XElement, Child> Children = new Dictionary<XElement, Child>();
+            internal readonly Dictionary<XElement, float> ObjectHeights = new Dictionary<XElement, float>();
         }
         private sealed class Child
         {
@@ -170,7 +171,7 @@ namespace FreeSms.NativeControls
                 foreach (var obj in band.Section.Elements("object"))
                 {
                     if (model.Flag(obj.Element("format"), "EnableSuppress", context)) continue;
-                    var rect = new RectangleF(N(obj, "Left") / 14.4f, ObjectTop(obj, band.Layout), Math.Max(.1f, N(obj, "Width") / 14.4f), Math.Max(.1f, N(obj, "Height") / 14.4f));
+                    var rect = new RectangleF(N(obj, "Left") / 14.4f, ObjectTop(obj, band.Layout), Math.Max(.1f, N(obj, "Width") / 14.4f), Math.Max(.1f, band.Layout.ObjectHeights.TryGetValue(obj, out var measuredHeight) ? measuredHeight : N(obj, "Height") / 14.4f));
                     var kind = obj.Element("Kind")?.Value;
                     if (kind == "LineObject") { using var pen = new Pen(ColorValue(obj.Element("LineColor"), Color.Black), Math.Max(.5f, N(obj, "LineThickness") / 14.4f)); graphics.DrawLine(pen, rect.Left, rect.Top, rect.Right, rect.Bottom); continue; }
                     DrawBackground(graphics, obj, rect);
@@ -186,7 +187,7 @@ namespace FreeSms.NativeControls
                         if (value is byte[] bytes) { using var image = DataDynamics.ActiveReports.Rpx.Image(bytes); graphics.DrawImage(image, rect); }
                         continue;
                     }
-                    string text = WebUtility.HtmlDecode(Regex.Replace(Formula.Text(value).Replace("<br>", "\n").Replace("<br/>", "\n"), "<[^>]*>", ""));
+                    string text = TextValue(value);
                     var fontNode = obj.Element("Font");
                     float size = (float?)fontNode?.Attribute("size") ?? 10;
                     using var font = new Font((string)fontNode?.Attribute("family") ?? "Tahoma", Math.Max(1, size * 100 / 72), (FontStyle)((int?)fontNode?.Attribute("style") ?? 0), GraphicsUnit.Pixel);
@@ -200,6 +201,7 @@ namespace FreeSms.NativeControls
                 graphics.Restore(state);
             }
         }
+        private static string TextValue(object value) => WebUtility.HtmlDecode(Regex.Replace(Formula.Text(value).Replace("<br>", "\n").Replace("<br/>", "\n"), "<[^>]*>", ""));
         private static Color ColorValue(XElement node, Color fallback) => int.TryParse(node?.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var argb) ? Color.FromArgb(argb) : fallback;
         private static void DrawBackground(Graphics g, XElement obj, RectangleF rect)
         {
@@ -251,9 +253,21 @@ namespace FreeSms.NativeControls
                 var placement = new Child { Document = document, Scale = scale, Height = document.height * scale };
                 layout.Children[obj] = placement;
             }
+            using var measureImage = new Bitmap(1, 1);
+            using var measureGraphics = Graphics.FromImage(measureImage);
             foreach (var obj in section.Elements("object"))
             {
-                float objectHeight = layout.Children.TryGetValue(obj, out var child) ? Math.Max(N(obj, "Height") / 14.4f, child.Height) : N(obj, "Height") / 14.4f;
+                var context = model.Context(input, row, rows);
+                if (model.Flag(obj.Element("format"), "EnableCanGrow", context) && obj.Element("Kind")?.Value is "TextObject" or "FieldObject")
+                {
+                    var source = obj.Element("source");
+                    var value = source == null ? obj.Element("Text")?.Value : model.Evaluate((string)source.Attribute("formula") ?? "", context);
+                    string text = TextValue(value);
+                    var fontNode = obj.Element("Font");
+                    using var font = new Font((string)fontNode?.Attribute("family") ?? "Tahoma", Math.Max(1, ((float?)fontNode?.Attribute("size") ?? 10) * 100 / 72), (FontStyle)((int?)fontNode?.Attribute("style") ?? 0), GraphicsUnit.Pixel);
+                    layout.ObjectHeights[obj] = Math.Max(N(obj, "Height") / 14.4f, measureGraphics.MeasureString(text, font, new SizeF(Math.Max(1, N(obj, "Width") / 14.4f), 100000)).Height);
+                }
+                float objectHeight = layout.Children.TryGetValue(obj, out var child) ? Math.Max(N(obj, "Height") / 14.4f, child.Height) : layout.ObjectHeights.GetValueOrDefault(obj, N(obj, "Height") / 14.4f);
                 layout.Height = Math.Max(layout.Height, ObjectTop(obj, layout) + objectHeight);
             }
             return layout;
@@ -264,8 +278,10 @@ namespace FreeSms.NativeControls
             if (layout == null) return top;
             // Objects beside a subreport remain aligned; objects below it move
             // down when its rows exceed the original design-time placeholder.
-            return top + layout.Children.Where(p => p.Key != obj && N(p.Key, "Top") + N(p.Key, "Height") <= N(obj, "Top") + .1f)
-                .Select(p => Math.Max(0, p.Value.Height - N(p.Key, "Height") / 14.4f)).DefaultIfEmpty(0).Max();
+            float textGrowth = layout.ObjectHeights.Where(p => p.Key != obj && N(p.Key, "Top") + N(p.Key, "Height") <= N(obj, "Top") + .1f)
+                .Select(p => Math.Max(0, p.Value - N(p.Key, "Height") / 14.4f)).DefaultIfEmpty(0).Max();
+            return top + Math.Max(textGrowth, layout.Children.Where(p => p.Key != obj && N(p.Key, "Top") + N(p.Key, "Height") <= N(obj, "Top") + .1f)
+                .Select(p => Math.Max(0, p.Value.Height - N(p.Key, "Height") / 14.4f)).DefaultIfEmpty(0).Max());
         }
         private static void DrawSubreport(Graphics graphics, XElement obj, RectangleF rect, Band band)
         {
@@ -280,10 +296,10 @@ namespace FreeSms.NativeControls
             var chart = obj.Element("chart");
             if (chart == null) throw new InvalidDataException("The migrated chart definition is missing: " + obj.Element("Name")?.Value);
             var scope = model.Scope(input, band.Row, rows, model.GroupLevel(band.Section));
-            string category = chart.Element("category")?.Value;
+            var categories = chart.Elements("category").Select(x => x.Value).ToArray();
             var series = chart.Elements("series").Select(x => x.Value).ToArray();
-            if (category == null || series.Length == 0) return;
-            var groups = scope.GroupBy(r => Formula.Text(model.Evaluate(category, model.Context(input, r, scope)))).ToArray();
+            if (categories.Length == 0 || series.Length == 0) throw new InvalidDataException("The migrated chart has no category or values.");
+            var groups = scope.GroupBy(r => string.Join(" / ", categories.Select(category => Formula.Text(model.Evaluate(category, model.Context(input, r, scope)))))).ToArray();
             var values = groups.Select(group => series.Select(s => Convert.ToDecimal(model.Evaluate(s, model.Context(input, group.First(), group.ToArray())) ?? 0, CultureInfo.InvariantCulture)).ToArray()).ToArray();
             decimal max = Math.Max(1, values.SelectMany(v => v).DefaultIfEmpty(1).Max());
             using var font = new Font("Tahoma", 7 * 100f / 72, FontStyle.Regular, GraphicsUnit.Pixel);
