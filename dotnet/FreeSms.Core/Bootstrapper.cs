@@ -28,12 +28,9 @@ public static partial class Bootstrapper
         Directory.CreateDirectory(options.DataDirectory);
         using var bootstrapLock = await AcquireLockAsync(Path.Combine(options.DataDirectory, "bootstrap.lock"), cancellation);
         progress?.Report("راه‌اندازی بانک بومی ویندوز...");
-        var info = await RunLocalDbAsync(utility, cancellation, "info", options.Instance);
-        if (info.Code != 0)
-        {
-            var created = await RunLocalDbAsync(utility, cancellation, "create", options.Instance);
-            if (created.Code != 0) throw new InvalidOperationException("نمونهٔ بانک محلی ساخته نشد: " + created.Error);
-        }
+        // Some SqlLocalDB utility versions return exit code zero even for a missing instance.
+        // 'create' is safe for an existing named instance; verify the actual running pipe below.
+        var created = await RunLocalDbAsync(utility, cancellation, "create", options.Instance);
         var started = await RunLocalDbAsync(utility, cancellation, "start", options.Instance);
         if (started.Code != 0) throw new InvalidOperationException("بانک محلی شروع نشد: " + started.Error);
         var running = await RunLocalDbAsync(utility, cancellation, "info", options.Instance);
