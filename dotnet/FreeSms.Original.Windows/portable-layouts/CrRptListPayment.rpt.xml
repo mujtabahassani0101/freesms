@@ -105,6 +105,9 @@ else if({vListPayment.dateFrom}&lt;&gt;'' and {vListPayment.dateTo}&lt;&gt;'') t
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
     </section>
     <section name="PageHeaderSection2" kind="PageHeader" height="480">
@@ -116,6 +119,9 @@ else if({vListPayment.dateFrom}&lt;&gt;'' and {vListPayment.dateTo}&lt;&gt;'') t
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
     </section>
     <section name="PageHeaderSection1" kind="PageHeader" height="395">
@@ -127,6 +133,9 @@ else if({vListPayment.dateFrom}&lt;&gt;'' and {vListPayment.dateTo}&lt;&gt;'') t
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
       <object>
         <Name>rptheder1</Name>
@@ -192,6 +201,9 @@ else if({vListPayment.dateFrom}&lt;&gt;'' and {vListPayment.dateTo}&lt;&gt;'') t
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
       <object>
         <Name>Box2</Name>
@@ -749,6 +761,9 @@ else if({vListPayment.dateFrom}&lt;&gt;'' and {vListPayment.dateTo}&lt;&gt;'') t
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
       <object>
         <Name>Line5</Name>
@@ -855,7 +870,18 @@ else if({vListPayment.dateFrom}&lt;&gt;'' and {vListPayment.dateTo}&lt;&gt;'') t
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="Fee" formula="{@Fee}" kind="FormulaField" />
-        <number />
+        <number>
+          <DecimalPlaces>0</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeBracketed</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>false</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>.</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>Transport1</Name>
@@ -882,7 +908,18 @@ else if({vListPayment.dateFrom}&lt;&gt;'' and {vListPayment.dateTo}&lt;&gt;'') t
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="Transport" formula="{@Transport}" kind="FormulaField" />
-        <number />
+        <number>
+          <DecimalPlaces>0</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeBracketed</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>false</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>.</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>Sumother1</Name>
@@ -909,7 +946,18 @@ else if({vListPayment.dateFrom}&lt;&gt;'' and {vListPayment.dateTo}&lt;&gt;'') t
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="Sumother" formula="{@Sumother}" kind="FormulaField" />
-        <number />
+        <number>
+          <DecimalPlaces>0</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeBracketed</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>false</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>.</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>SumPay1</Name>
@@ -936,7 +984,18 @@ else if({vListPayment.dateFrom}&lt;&gt;'' and {vListPayment.dateTo}&lt;&gt;'') t
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="SumPay" formula="{@SumPay}" kind="FormulaField" />
-        <number />
+        <number>
+          <DecimalPlaces>0</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeBracketed</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>false</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>.</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>comment1</Name>
@@ -1044,7 +1103,18 @@ else if({vListPayment.dateFrom}&lt;&gt;'' and {vListPayment.dateTo}&lt;&gt;'') t
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="RTotal0" formula="{#RTotal0}" kind="RunningTotalField" />
-        <number />
+        <number>
+          <DecimalPlaces>0</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeBracketed</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>false</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>.</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
     </section>
     <section name="Section4" kind="ReportFooter" height="825">
@@ -1056,6 +1126,9 @@ else if({vListPayment.dateFrom}&lt;&gt;'' and {vListPayment.dateTo}&lt;&gt;'') t
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
       <object>
         <Name>Text1</Name>
@@ -1108,7 +1181,18 @@ else if({vListPayment.dateFrom}&lt;&gt;'' and {vListPayment.dateTo}&lt;&gt;'') t
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="GroupSumTransport" formula="{@GroupSumTransport}" kind="FormulaField" />
-        <number />
+        <number>
+          <DecimalPlaces>0</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeBracketed</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>true</ThousandsSeparator>
+          <ThousandSymbol>/</ThousandSymbol>
+          <DecimalSymbol>.</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>GroupSumOther1</Name>
@@ -1135,7 +1219,18 @@ else if({vListPayment.dateFrom}&lt;&gt;'' and {vListPayment.dateTo}&lt;&gt;'') t
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="GroupSumOther" formula="{@GroupSumOther}" kind="FormulaField" />
-        <number />
+        <number>
+          <DecimalPlaces>0</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeBracketed</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>true</ThousandsSeparator>
+          <ThousandSymbol>/</ThousandSymbol>
+          <DecimalSymbol>.</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>GroupSumPay1</Name>
@@ -1162,7 +1257,18 @@ else if({vListPayment.dateFrom}&lt;&gt;'' and {vListPayment.dateTo}&lt;&gt;'') t
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="GroupSumPay" formula="{@GroupSumPay}" kind="FormulaField" />
-        <number />
+        <number>
+          <DecimalPlaces>0</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeBracketed</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>true</ThousandsSeparator>
+          <ThousandSymbol>/</ThousandSymbol>
+          <DecimalSymbol>.</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>GroupSumFee1</Name>
@@ -1189,7 +1295,18 @@ else if({vListPayment.dateFrom}&lt;&gt;'' and {vListPayment.dateTo}&lt;&gt;'') t
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="GroupSumFee" formula="{@GroupSumFee}" kind="FormulaField" />
-        <number />
+        <number>
+          <DecimalPlaces>0</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeBracketed</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>true</ThousandsSeparator>
+          <ThousandSymbol>/</ThousandSymbol>
+          <DecimalSymbol>.</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>Box3</Name>
@@ -1461,6 +1578,9 @@ else if({vListPayment.dateFrom}&lt;&gt;'' and {vListPayment.dateTo}&lt;&gt;'') t
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
     </section>
   </sections>

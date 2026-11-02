@@ -142,6 +142,9 @@ else
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
     </section>
     <section name="PageHeaderSection2" kind="PageHeader" height="510">
@@ -153,6 +156,9 @@ else
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
       <object>
         <Name>heder11</Name>
@@ -191,6 +197,9 @@ else
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
       <object>
         <Name>Box2</Name>
@@ -519,6 +528,9 @@ else
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
       <object>
         <Name>Box4</Name>
@@ -1277,7 +1289,7 @@ else
         </border>
       </object>
     </section>
-    <section name="GroupHeaderSection2" kind="GroupHeader" height="280">
+    <section name="GroupHeaderSection2" kind="GroupHeader" height="280" group-level="0">
       <format>
         <EnableSuppress>true</EnableSuppress>
         <EnableNewPageAfter>false</EnableNewPageAfter>
@@ -1286,6 +1298,9 @@ else
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
     </section>
     <section name="Section3" kind="Detail" height="291">
@@ -1297,6 +1312,9 @@ else
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
       <object>
         <Name>Mark11</Name>
@@ -1403,7 +1421,18 @@ else
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="gCls1" formula="{@gCls1}" kind="FormulaField" />
-        <number />
+        <number>
+          <DecimalPlaces>0</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeBracketed</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>false</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>.</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>gSch21</Name>
@@ -1430,7 +1459,18 @@ else
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="gCls2" formula="{@gCls2}" kind="FormulaField" />
-        <number />
+        <number>
+          <DecimalPlaces>0</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeBracketed</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>false</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>.</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>RTotal01</Name>
@@ -1457,7 +1497,18 @@ else
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="RTotal0" formula="{#RTotal0}" kind="RunningTotalField" />
-        <number />
+        <number>
+          <DecimalPlaces>0</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeBracketed</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>false</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>.</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>gSch12</Name>
@@ -1484,7 +1535,18 @@ else
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="gSch1" formula="{@gSch1}" kind="FormulaField" />
-        <number />
+        <number>
+          <DecimalPlaces>0</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeBracketed</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>false</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>.</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>gSch22</Name>
@@ -1511,7 +1573,18 @@ else
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="gSch2" formula="{@gSch2}" kind="FormulaField" />
-        <number />
+        <number>
+          <DecimalPlaces>0</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeBracketed</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>false</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>.</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>oFtRoshdText1</Name>
@@ -1622,7 +1695,7 @@ else
         <number />
       </object>
     </section>
-    <section name="GroupFooterSection1" kind="GroupFooter" height="1459">
+    <section name="GroupFooterSection1" kind="GroupFooter" height="1459" group-level="0">
       <format>
         <EnableSuppress>false</EnableSuppress>
         <EnableNewPageAfter>false</EnableNewPageAfter>
@@ -1631,6 +1704,9 @@ else
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
       <object>
         <Name>avgBook11</Name>
@@ -1657,7 +1733,18 @@ else
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="avgClsBook1" formula="{@avgClsBook1}" kind="FormulaField" />
-        <number />
+        <number>
+          <DecimalPlaces>2</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeLeadingMinus</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToHundredth</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>true</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>/</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>avgbook21</Name>
@@ -1684,7 +1771,18 @@ else
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="avgClsbook2" formula="{@avgClsbook2}" kind="FormulaField" />
-        <number />
+        <number>
+          <DecimalPlaces>2</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeLeadingMinus</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToHundredth</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>true</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>/</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>Line19</Name>
@@ -1971,7 +2069,18 @@ else
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="counRoshd" formula="{@counRoshd}" kind="FormulaField" />
-        <number />
+        <number>
+          <DecimalPlaces>0</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeBracketed</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>false</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>.</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>darsdRoshd1</Name>
@@ -1998,7 +2107,18 @@ else
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="darsdRoshd" formula="{@darsdRoshd}" kind="FormulaField" />
-        <number />
+        <number>
+          <DecimalPlaces>0</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeBracketed</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>false</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>.</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>avgClsMarkKoll1</Name>
@@ -2025,7 +2145,18 @@ else
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="avgClsMarkKoll" formula="{@avgClsMarkKoll}" kind="FormulaField" />
-        <number />
+        <number>
+          <DecimalPlaces>2</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeLeadingMinus</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToHundredth</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>true</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>/</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>Text68</Name>
@@ -2234,7 +2365,18 @@ else
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="countOft" formula="{@countOft}" kind="FormulaField" />
-        <number />
+        <number>
+          <DecimalPlaces>0</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeBracketed</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>false</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>.</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>darsadOft1</Name>
@@ -2261,7 +2403,18 @@ else
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="darsadOft" formula="{@darsadOft}" kind="FormulaField" />
-        <number />
+        <number>
+          <DecimalPlaces>0</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeBracketed</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>false</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>.</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>Text73</Name>
@@ -2470,7 +2623,18 @@ else
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="Count0" formula="{@Count0}" kind="FormulaField" />
-        <number />
+        <number>
+          <DecimalPlaces>0</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeBracketed</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>false</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>.</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>darsad01</Name>
@@ -2497,7 +2661,18 @@ else
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="darsad0" formula="{@darsad0}" kind="FormulaField" />
-        <number />
+        <number>
+          <DecimalPlaces>0</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeBracketed</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>false</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>.</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
     </section>
     <section name="Section4" kind="ReportFooter" height="325">
@@ -2509,6 +2684,9 @@ else
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
     </section>
     <section name="Section5" kind="PageFooter" height="581">
@@ -2520,6 +2698,9 @@ else
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
     </section>
   </sections>

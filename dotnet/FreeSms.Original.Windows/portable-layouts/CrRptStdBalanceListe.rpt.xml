@@ -106,6 +106,9 @@ else if {?type}=2 and ({sp_RptPaymentBalance.Fasl}=9) then 'ماه '+'قوس'</f
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
     </section>
     <section name="PageHeaderSection2" kind="PageHeader" height="480">
@@ -117,6 +120,9 @@ else if {?type}=2 and ({sp_RptPaymentBalance.Fasl}=9) then 'ماه '+'قوس'</f
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
     </section>
     <section name="PageHeaderSection1" kind="PageHeader" height="395">
@@ -128,6 +134,9 @@ else if {?type}=2 and ({sp_RptPaymentBalance.Fasl}=9) then 'ماه '+'قوس'</f
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
       <object>
         <Name>rptheder1</Name>
@@ -166,6 +175,9 @@ else if {?type}=2 and ({sp_RptPaymentBalance.Fasl}=9) then 'ماه '+'قوس'</f
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
       <object>
         <Name>Box2</Name>
@@ -766,7 +778,7 @@ else if {?type}=2 and ({sp_RptPaymentBalance.Fasl}=9) then 'ماه '+'قوس'</f
         </border>
       </object>
     </section>
-    <section name="GroupHeaderSection1" kind="GroupHeader" height="629">
+    <section name="GroupHeaderSection1" kind="GroupHeader" height="629" group-level="0">
       <format>
         <EnableSuppress>true</EnableSuppress>
         <EnableNewPageAfter>false</EnableNewPageAfter>
@@ -775,9 +787,12 @@ else if {?type}=2 and ({sp_RptPaymentBalance.Fasl}=9) then 'ماه '+'قوس'</f
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
     </section>
-    <section name="GroupHeaderSection2" kind="GroupHeader" height="230">
+    <section name="GroupHeaderSection2" kind="GroupHeader" height="230" group-level="1">
       <format>
         <EnableSuppress>true</EnableSuppress>
         <EnableNewPageAfter>false</EnableNewPageAfter>
@@ -786,6 +801,9 @@ else if {?type}=2 and ({sp_RptPaymentBalance.Fasl}=9) then 'ماه '+'قوس'</f
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
     </section>
     <section name="Section3" kind="Detail" height="341">
@@ -797,6 +815,9 @@ else if {?type}=2 and ({sp_RptPaymentBalance.Fasl}=9) then 'ماه '+'قوس'</f
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
       <object>
         <Name>fullname1</Name>
@@ -850,7 +871,18 @@ else if {?type}=2 and ({sp_RptPaymentBalance.Fasl}=9) then 'ماه '+'قوس'</f
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="balance" formula="{@balance}" kind="FormulaField" />
-        <number />
+        <number>
+          <DecimalPlaces>0</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeBracketed</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>true</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>.</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>stdpay1</Name>
@@ -877,7 +909,18 @@ else if {?type}=2 and ({sp_RptPaymentBalance.Fasl}=9) then 'ماه '+'قوس'</f
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="stdpay" formula="{@stdpay}" kind="FormulaField" />
-        <number />
+        <number>
+          <DecimalPlaces>0</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeBracketed</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>true</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>.</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>RTotal01</Name>
@@ -904,7 +947,18 @@ else if {?type}=2 and ({sp_RptPaymentBalance.Fasl}=9) then 'ماه '+'قوس'</f
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="RTotal0" formula="{#RTotal0}" kind="RunningTotalField" />
-        <number />
+        <number>
+          <DecimalPlaces>0</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeBracketed</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>false</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>.</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>Line5</Name>
@@ -957,7 +1011,18 @@ else if {?type}=2 and ({sp_RptPaymentBalance.Fasl}=9) then 'ماه '+'قوس'</f
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="balance_trans" formula="{@balance_trans}" kind="FormulaField" />
-        <number />
+        <number>
+          <DecimalPlaces>0</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeBracketed</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>true</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>.</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>balancefee1</Name>
@@ -984,7 +1049,18 @@ else if {?type}=2 and ({sp_RptPaymentBalance.Fasl}=9) then 'ماه '+'قوس'</f
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="balance_fee" formula="{@balance_fee}" kind="FormulaField" />
-        <number />
+        <number>
+          <DecimalPlaces>0</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeBracketed</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>true</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>.</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>stdPayFee1</Name>
@@ -1011,7 +1087,18 @@ else if {?type}=2 and ({sp_RptPaymentBalance.Fasl}=9) then 'ماه '+'قوس'</f
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="stdPayFee" formula="{@stdPayFee}" kind="FormulaField" />
-        <number />
+        <number>
+          <DecimalPlaces>0</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeBracketed</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>true</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>.</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>stdPayTrans1</Name>
@@ -1038,7 +1125,18 @@ else if {?type}=2 and ({sp_RptPaymentBalance.Fasl}=9) then 'ماه '+'قوس'</f
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="stdPayTrans" formula="{@stdPayTrans}" kind="FormulaField" />
-        <number />
+        <number>
+          <DecimalPlaces>0</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeBracketed</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>true</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>.</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>class1</Name>
@@ -1068,7 +1166,7 @@ else if {?type}=2 and ({sp_RptPaymentBalance.Fasl}=9) then 'ماه '+'قوس'</f
         <number />
       </object>
     </section>
-    <section name="GroupFooterSection2" kind="GroupFooter" height="20">
+    <section name="GroupFooterSection2" kind="GroupFooter" height="20" group-level="1">
       <format>
         <EnableSuppress>false</EnableSuppress>
         <EnableNewPageAfter>false</EnableNewPageAfter>
@@ -1077,9 +1175,12 @@ else if {?type}=2 and ({sp_RptPaymentBalance.Fasl}=9) then 'ماه '+'قوس'</f
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
     </section>
-    <section name="GroupFooterSection1" kind="GroupFooter" height="220">
+    <section name="GroupFooterSection1" kind="GroupFooter" height="220" group-level="0">
       <format>
         <EnableSuppress>true</EnableSuppress>
         <EnableNewPageAfter>false</EnableNewPageAfter>
@@ -1088,6 +1189,9 @@ else if {?type}=2 and ({sp_RptPaymentBalance.Fasl}=9) then 'ماه '+'قوس'</f
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
     </section>
     <section name="Section4" kind="ReportFooter" height="1369">
@@ -1099,6 +1203,9 @@ else if {?type}=2 and ({sp_RptPaymentBalance.Fasl}=9) then 'ماه '+'قوس'</f
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
     </section>
     <section name="Section5" kind="PageFooter" height="706">
@@ -1110,6 +1217,9 @@ else if {?type}=2 and ({sp_RptPaymentBalance.Fasl}=9) then 'ماه '+'قوس'</f
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
     </section>
   </sections>

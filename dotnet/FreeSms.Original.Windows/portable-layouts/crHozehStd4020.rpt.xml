@@ -64,6 +64,9 @@
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
     </section>
     <section name="Section2" kind="PageHeader" height="821">
@@ -75,6 +78,9 @@
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
       <object>
         <Name>Text14</Name>
@@ -192,6 +198,9 @@
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
       <object>
         <Name>Box1</Name>
@@ -506,7 +515,7 @@
         </border>
       </object>
     </section>
-    <section name="GroupHeaderSection2" kind="GroupHeader" height="221">
+    <section name="GroupHeaderSection2" kind="GroupHeader" height="221" group-level="0">
       <format>
         <EnableSuppress>true</EnableSuppress>
         <EnableNewPageAfter>false</EnableNewPageAfter>
@@ -515,6 +524,9 @@
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
       <object>
         <Name>GroupNamegroup1</Name>
@@ -553,6 +565,9 @@
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
       <object>
         <Name>idx1</Name>
@@ -579,7 +594,18 @@
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="idx" formula="{@idx}" kind="FormulaField" />
-        <number />
+        <number>
+          <DecimalPlaces>0</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeBracketed</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>false</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>.</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>fName1</Name>
@@ -743,7 +769,7 @@
         </border>
       </object>
     </section>
-    <section name="GroupFooterSection2" kind="GroupFooter" height="600">
+    <section name="GroupFooterSection2" kind="GroupFooter" height="600" group-level="0">
       <format>
         <EnableSuppress>false</EnableSuppress>
         <EnableNewPageAfter>false</EnableNewPageAfter>
@@ -752,6 +778,9 @@
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
       <object>
         <Name>countStdHozeh1</Name>
@@ -778,7 +807,18 @@
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="countStdHozeh" formula="{#countStdHozeh}" kind="RunningTotalField" />
-        <number />
+        <number>
+          <DecimalPlaces>0</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeBracketed</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>false</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>.</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>capacity1</Name>
@@ -805,7 +845,18 @@
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="capacity" formula="{@capacity}" kind="FormulaField" />
-        <number />
+        <number>
+          <DecimalPlaces>0</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeBracketed</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>false</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>.</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>Text17</Name>
@@ -869,6 +920,9 @@
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
     </section>
     <section name="Section5" kind="PageFooter" height="581">
@@ -880,6 +934,9 @@
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
     </section>
   </sections>

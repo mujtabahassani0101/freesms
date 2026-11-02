@@ -169,6 +169,9 @@ ToText( {spRpt_ListDabirKhamByTchNameAllBook.xPaye}*1000)+
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
     </section>
     <section name="PageHeaderSection3" kind="PageHeader" height="480">
@@ -180,6 +183,9 @@ ToText( {spRpt_ListDabirKhamByTchNameAllBook.xPaye}*1000)+
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
       <object>
         <Name>heder11</Name>
@@ -218,6 +224,9 @@ ToText( {spRpt_ListDabirKhamByTchNameAllBook.xPaye}*1000)+
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
       <object>
         <Name>Box2</Name>
@@ -468,6 +477,9 @@ ToText( {spRpt_ListDabirKhamByTchNameAllBook.xPaye}*1000)+
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
       <object>
         <Name>Text1</Name>
@@ -2092,7 +2104,7 @@ ToText( {spRpt_ListDabirKhamByTchNameAllBook.xPaye}*1000)+
         <number />
       </object>
     </section>
-    <section name="GroupHeaderSection2" kind="GroupHeader" height="175">
+    <section name="GroupHeaderSection2" kind="GroupHeader" height="175" group-level="0">
       <format>
         <EnableSuppress>true</EnableSuppress>
         <EnableNewPageAfter>false</EnableNewPageAfter>
@@ -2101,6 +2113,9 @@ ToText( {spRpt_ListDabirKhamByTchNameAllBook.xPaye}*1000)+
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
     </section>
     <section name="Section3" kind="Detail" height="290">
@@ -2112,6 +2127,9 @@ ToText( {spRpt_ListDabirKhamByTchNameAllBook.xPaye}*1000)+
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
         <condition name="BackgroundColor">if{#RTotal0}mod 2=0 then Color(230,230,230) else white</condition>
       </format>
       <object>
@@ -2192,7 +2210,18 @@ ToText( {spRpt_ListDabirKhamByTchNameAllBook.xPaye}*1000)+
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="RTotal0" formula="{#RTotal0}" kind="RunningTotalField" />
-        <number />
+        <number>
+          <DecimalPlaces>0</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeBracketed</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>false</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>.</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>Pname1</Name>
@@ -2274,7 +2303,7 @@ ToText( {spRpt_ListDabirKhamByTchNameAllBook.xPaye}*1000)+
         </border>
       </object>
     </section>
-    <section name="GroupFooterSection1" kind="GroupFooter" height="20">
+    <section name="GroupFooterSection1" kind="GroupFooter" height="20" group-level="0">
       <format>
         <EnableSuppress>false</EnableSuppress>
         <EnableNewPageAfter>false</EnableNewPageAfter>
@@ -2283,6 +2312,9 @@ ToText( {spRpt_ListDabirKhamByTchNameAllBook.xPaye}*1000)+
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
     </section>
     <section name="Section4" kind="ReportFooter" height="1600">
@@ -2294,6 +2326,9 @@ ToText( {spRpt_ListDabirKhamByTchNameAllBook.xPaye}*1000)+
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
     </section>
     <section name="Section5" kind="PageFooter" height="581">
@@ -2305,6 +2340,9 @@ ToText( {spRpt_ListDabirKhamByTchNameAllBook.xPaye}*1000)+
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
     </section>
   </sections>

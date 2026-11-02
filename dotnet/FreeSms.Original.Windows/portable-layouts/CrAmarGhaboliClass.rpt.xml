@@ -79,6 +79,9 @@ else if{spRpt_AmarGhaboliClass.typ}=5 then 'معدل' </formula>
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
     </section>
     <section name="PageHeaderSection1" kind="PageHeader" height="835">
@@ -90,6 +93,9 @@ else if{spRpt_AmarGhaboliClass.typ}=5 then 'معدل' </formula>
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
       <object>
         <Name>heder11</Name>
@@ -155,6 +161,9 @@ else if{spRpt_AmarGhaboliClass.typ}=5 then 'معدل' </formula>
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
       <object>
         <Name>paye1</Name>
@@ -325,6 +334,9 @@ else if{spRpt_AmarGhaboliClass.typ}=5 then 'معدل' </formula>
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
       <object>
         <Name>Text7</Name>
@@ -691,7 +703,7 @@ else if{spRpt_AmarGhaboliClass.typ}=5 then 'معدل' </formula>
         </border>
       </object>
     </section>
-    <section name="GroupHeaderSection1" kind="GroupHeader" height="265">
+    <section name="GroupHeaderSection1" kind="GroupHeader" height="265" group-level="0">
       <format>
         <EnableSuppress>true</EnableSuppress>
         <EnableNewPageAfter>false</EnableNewPageAfter>
@@ -700,6 +712,9 @@ else if{spRpt_AmarGhaboliClass.typ}=5 then 'معدل' </formula>
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
       <object>
         <Name>GroupNamegroup1</Name>
@@ -738,6 +753,9 @@ else if{spRpt_AmarGhaboliClass.typ}=5 then 'معدل' </formula>
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
       <object>
         <Name>book1</Name>
@@ -791,7 +809,18 @@ else if{spRpt_AmarGhaboliClass.typ}=5 then 'معدل' </formula>
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="countStd" formula="{@countStd}" kind="FormulaField" />
-        <number />
+        <number>
+          <DecimalPlaces>0</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeBracketed</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>false</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>.</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>countAcp1</Name>
@@ -818,7 +847,18 @@ else if{spRpt_AmarGhaboliClass.typ}=5 then 'معدل' </formula>
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="countAcp" formula="{@countAcp}" kind="FormulaField" />
-        <number />
+        <number>
+          <DecimalPlaces>0</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeBracketed</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>false</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>.</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>darsadAcp1</Name>
@@ -845,7 +885,18 @@ else if{spRpt_AmarGhaboliClass.typ}=5 then 'معدل' </formula>
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="darsadAcp" formula="{@darsadAcp}" kind="FormulaField" />
-        <number />
+        <number>
+          <DecimalPlaces>0</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeBracketed</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>false</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>.</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>radif1</Name>
@@ -872,7 +923,18 @@ else if{spRpt_AmarGhaboliClass.typ}=5 then 'معدل' </formula>
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="radif" formula="{#radif}" kind="RunningTotalField" />
-        <number />
+        <number>
+          <DecimalPlaces>0</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeBracketed</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>false</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>.</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>Line6</Name>
@@ -925,7 +987,18 @@ else if{spRpt_AmarGhaboliClass.typ}=5 then 'معدل' </formula>
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="Mark" formula="{@Mark}" kind="FormulaField" />
-        <number />
+        <number>
+          <DecimalPlaces>2</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeLeadingMinus</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToHundredth</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>false</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>/</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>tch1</Name>
@@ -955,7 +1028,7 @@ else if{spRpt_AmarGhaboliClass.typ}=5 then 'معدل' </formula>
         <number />
       </object>
     </section>
-    <section name="GroupFooterSection1" kind="GroupFooter" height="4711">
+    <section name="GroupFooterSection1" kind="GroupFooter" height="4711" group-level="0">
       <format>
         <EnableSuppress>false</EnableSuppress>
         <EnableNewPageAfter>false</EnableNewPageAfter>
@@ -964,6 +1037,9 @@ else if{spRpt_AmarGhaboliClass.typ}=5 then 'معدل' </formula>
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
       <object>
         <Name>Graph1</Name>
@@ -1019,7 +1095,7 @@ else if{spRpt_AmarGhaboliClass.typ}=5 then 'معدل' </formula>
         </border>
       </object>
     </section>
-    <section name="GroupFooterSection2" kind="GroupFooter" height="4125">
+    <section name="GroupFooterSection2" kind="GroupFooter" height="4125" group-level="0">
       <format>
         <EnableSuppress>false</EnableSuppress>
         <EnableNewPageAfter>false</EnableNewPageAfter>
@@ -1028,6 +1104,9 @@ else if{spRpt_AmarGhaboliClass.typ}=5 then 'معدل' </formula>
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
       <object>
         <Name>Graph2</Name>
@@ -1092,6 +1171,9 @@ else if{spRpt_AmarGhaboliClass.typ}=5 then 'معدل' </formula>
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
     </section>
     <section name="Section5" kind="PageFooter" height="676">
@@ -1103,6 +1185,9 @@ else if{spRpt_AmarGhaboliClass.typ}=5 then 'معدل' </formula>
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
       <object>
         <Name>PageNumber1</Name>
@@ -1129,7 +1214,18 @@ else if{spRpt_AmarGhaboliClass.typ}=5 then 'معدل' </formula>
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="PageNumber" formula="PageNumber" kind="SpecialVarField" />
-        <number />
+        <number>
+          <DecimalPlaces>0</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeLeadingMinus</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>true</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>.</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
     </section>
   </sections>

@@ -67,6 +67,9 @@ totext({spRpt_AvgClassBooksTch.xPaye}*1000)+'-'+
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
     </section>
     <section name="PageHeaderSection1" kind="PageHeader" height="581">
@@ -78,6 +81,9 @@ totext({spRpt_AvgClassBooksTch.xPaye}*1000)+'-'+
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
     </section>
     <section name="Section2" kind="PageHeader" height="1414">
@@ -89,6 +95,9 @@ totext({spRpt_AvgClassBooksTch.xPaye}*1000)+'-'+
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
       <object>
         <Name>sch1</Name>
@@ -249,7 +258,7 @@ totext({spRpt_AvgClassBooksTch.xPaye}*1000)+'-'+
         </border>
       </object>
     </section>
-    <section name="GroupHeaderSection1" kind="GroupHeader" height="226">
+    <section name="GroupHeaderSection1" kind="GroupHeader" height="226" group-level="0">
       <format>
         <EnableSuppress>true</EnableSuppress>
         <EnableNewPageAfter>false</EnableNewPageAfter>
@@ -258,6 +267,9 @@ totext({spRpt_AvgClassBooksTch.xPaye}*1000)+'-'+
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
       <object>
         <Name>GroupNamegroup1</Name>
@@ -287,7 +299,7 @@ totext({spRpt_AvgClassBooksTch.xPaye}*1000)+'-'+
         <number />
       </object>
     </section>
-    <section name="GroupHeaderSection2" kind="GroupHeader" height="224">
+    <section name="GroupHeaderSection2" kind="GroupHeader" height="224" group-level="1">
       <format>
         <EnableSuppress>true</EnableSuppress>
         <EnableNewPageAfter>false</EnableNewPageAfter>
@@ -296,6 +308,9 @@ totext({spRpt_AvgClassBooksTch.xPaye}*1000)+'-'+
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
       <object>
         <Name>GroupNamegroupLesson1</Name>
@@ -334,9 +349,12 @@ totext({spRpt_AvgClassBooksTch.xPaye}*1000)+'-'+
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
     </section>
-    <section name="GroupFooterSection2" kind="GroupFooter" height="4785">
+    <section name="GroupFooterSection2" kind="GroupFooter" height="4785" group-level="1">
       <format>
         <EnableSuppress>false</EnableSuppress>
         <EnableNewPageAfter>false</EnableNewPageAfter>
@@ -345,6 +363,9 @@ totext({spRpt_AvgClassBooksTch.xPaye}*1000)+'-'+
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
       <object>
         <Name>book1</Name>
@@ -560,7 +581,7 @@ totext({spRpt_AvgClassBooksTch.xPaye}*1000)+'-'+
         </border>
       </object>
     </section>
-    <section name="GroupFooterSection1" kind="GroupFooter" height="460">
+    <section name="GroupFooterSection1" kind="GroupFooter" height="460" group-level="0">
       <format>
         <EnableSuppress>true</EnableSuppress>
         <EnableNewPageAfter>false</EnableNewPageAfter>
@@ -569,6 +590,9 @@ totext({spRpt_AvgClassBooksTch.xPaye}*1000)+'-'+
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
     </section>
     <section name="Section4" kind="ReportFooter" height="405">
@@ -580,6 +604,9 @@ totext({spRpt_AvgClassBooksTch.xPaye}*1000)+'-'+
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
     </section>
     <section name="Section5" kind="PageFooter" height="676">
@@ -591,6 +618,9 @@ totext({spRpt_AvgClassBooksTch.xPaye}*1000)+'-'+
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
       <object>
         <Name>PageNumber1</Name>
@@ -617,7 +647,18 @@ totext({spRpt_AvgClassBooksTch.xPaye}*1000)+'-'+
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="PageNumber" formula="PageNumber" kind="SpecialVarField" />
-        <number />
+        <number>
+          <DecimalPlaces>0</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeLeadingMinus</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>true</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>.</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
     </section>
   </sections>

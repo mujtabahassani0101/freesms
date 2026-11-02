@@ -358,6 +358,9 @@ else totext({@sort}+100000)+'_'+{@fname}+'_'+{@lname}
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
     </section>
     <section name="PageHeaderSection3" kind="PageHeader" height="480">
@@ -369,6 +372,9 @@ else totext({@sort}+100000)+'_'+{@fname}+'_'+{@lname}
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
       <object>
         <Name>heder11</Name>
@@ -407,6 +413,9 @@ else totext({@sort}+100000)+'_'+{@fname}+'_'+{@lname}
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
       <object>
         <Name>Box2</Name>
@@ -630,6 +639,9 @@ else totext({@sort}+100000)+'_'+{@fname}+'_'+{@lname}
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
       <object>
         <Name>Text1</Name>
@@ -1686,7 +1698,7 @@ else totext({@sort}+100000)+'_'+{@fname}+'_'+{@lname}
         </border>
       </object>
     </section>
-    <section name="GroupHeaderSection2" kind="GroupHeader" height="580">
+    <section name="GroupHeaderSection2" kind="GroupHeader" height="580" group-level="0">
       <format>
         <EnableSuppress>true</EnableSuppress>
         <EnableNewPageAfter>false</EnableNewPageAfter>
@@ -1695,6 +1707,9 @@ else totext({@sort}+100000)+'_'+{@fname}+'_'+{@lname}
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
     </section>
     <section name="Section3" kind="Detail" height="361">
@@ -1706,6 +1721,9 @@ else totext({@sort}+100000)+'_'+{@fname}+'_'+{@lname}
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
       <object>
         <Name>fullName1</Name>
@@ -1893,7 +1911,18 @@ else totext({@sort}+100000)+'_'+{@fname}+'_'+{@lname}
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="RTotal0" formula="{#RTotal0}" kind="RunningTotalField" />
-        <number />
+        <number>
+          <DecimalPlaces>0</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeBracketed</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>false</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>.</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>Line20</Name>
@@ -2108,7 +2137,18 @@ else totext({@sort}+100000)+'_'+{@fname}+'_'+{@lname}
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="gSchKoll" formula="{@gSchKoll}" kind="FormulaField" />
-        <number />
+        <number>
+          <DecimalPlaces>0</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeBracketed</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>false</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>.</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>MarkKoll1</Name>
@@ -2300,7 +2340,7 @@ else totext({@sort}+100000)+'_'+{@fname}+'_'+{@lname}
         <number />
       </object>
     </section>
-    <section name="GroupFooterSection1" kind="GroupFooter" height="391">
+    <section name="GroupFooterSection1" kind="GroupFooter" height="391" group-level="0">
       <format>
         <EnableSuppress>false</EnableSuppress>
         <EnableNewPageAfter>false</EnableNewPageAfter>
@@ -2309,6 +2349,9 @@ else totext({@sort}+100000)+'_'+{@fname}+'_'+{@lname}
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
       <object>
         <Name>avgBook11</Name>
@@ -2335,7 +2378,18 @@ else totext({@sort}+100000)+'_'+{@fname}+'_'+{@lname}
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="avgClsBook1" formula="{@avgClsBook1}" kind="FormulaField" />
-        <number />
+        <number>
+          <DecimalPlaces>2</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeLeadingMinus</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToHundredth</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>true</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>/</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>avgbook21</Name>
@@ -2362,7 +2416,18 @@ else totext({@sort}+100000)+'_'+{@fname}+'_'+{@lname}
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="avgClsbook2" formula="{@avgClsbook2}" kind="FormulaField" />
-        <number />
+        <number>
+          <DecimalPlaces>2</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeLeadingMinus</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToHundredth</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>true</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>/</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>avgbook31</Name>
@@ -2389,7 +2454,18 @@ else totext({@sort}+100000)+'_'+{@fname}+'_'+{@lname}
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="avgclsbook3" formula="{@avgclsbook3}" kind="FormulaField" />
-        <number />
+        <number>
+          <DecimalPlaces>2</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeLeadingMinus</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToHundredth</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>true</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>/</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>avgbook41</Name>
@@ -2416,7 +2492,18 @@ else totext({@sort}+100000)+'_'+{@fname}+'_'+{@lname}
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="avgClsbook4" formula="{@avgClsbook4}" kind="FormulaField" />
-        <number />
+        <number>
+          <DecimalPlaces>2</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeLeadingMinus</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToHundredth</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>true</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>/</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>Line19</Name>
@@ -2495,7 +2582,18 @@ else totext({@sort}+100000)+'_'+{@fname}+'_'+{@lname}
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="avgClsMarkKoll" formula="{@avgClsMarkKoll}" kind="FormulaField" />
-        <number />
+        <number>
+          <DecimalPlaces>2</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeLeadingMinus</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToHundredth</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>true</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>/</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>avgClsbook51</Name>
@@ -2522,7 +2620,18 @@ else totext({@sort}+100000)+'_'+{@fname}+'_'+{@lname}
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="avgClsbook5" formula="{@avgClsbook5}" kind="FormulaField" />
-        <number />
+        <number>
+          <DecimalPlaces>2</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeLeadingMinus</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToHundredth</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>true</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>/</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>avgClsBook61</Name>
@@ -2549,7 +2658,18 @@ else totext({@sort}+100000)+'_'+{@fname}+'_'+{@lname}
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="avgClsBook6" formula="{@avgClsBook6}" kind="FormulaField" />
-        <number />
+        <number>
+          <DecimalPlaces>2</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeLeadingMinus</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToHundredth</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>true</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>/</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>avgClsBook71</Name>
@@ -2576,7 +2696,18 @@ else totext({@sort}+100000)+'_'+{@fname}+'_'+{@lname}
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="avgClsBook7" formula="{@avgClsBook7}" kind="FormulaField" />
-        <number />
+        <number>
+          <DecimalPlaces>2</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeLeadingMinus</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToHundredth</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>true</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>/</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>avgClsBook81</Name>
@@ -2603,7 +2734,18 @@ else totext({@sort}+100000)+'_'+{@fname}+'_'+{@lname}
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="avgClsBook8" formula="{@avgClsBook8}" kind="FormulaField" />
-        <number />
+        <number>
+          <DecimalPlaces>2</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeLeadingMinus</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToHundredth</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>true</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>/</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>avgClsBook91</Name>
@@ -2630,7 +2772,18 @@ else totext({@sort}+100000)+'_'+{@fname}+'_'+{@lname}
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="avgClsBook9" formula="{@avgClsBook9}" kind="FormulaField" />
-        <number />
+        <number>
+          <DecimalPlaces>2</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeLeadingMinus</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToHundredth</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>true</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>/</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>Box3</Name>
@@ -2683,7 +2836,18 @@ else totext({@sort}+100000)+'_'+{@fname}+'_'+{@lname}
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="avgClsBook10" formula="{@avgClsBook10}" kind="FormulaField" />
-        <number />
+        <number>
+          <DecimalPlaces>2</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeTrailingMinus</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToHundredth</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>true</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>/</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>avgClsBook111</Name>
@@ -2710,7 +2874,18 @@ else totext({@sort}+100000)+'_'+{@fname}+'_'+{@lname}
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="avgClsBook11" formula="{@avgClsBook11}" kind="FormulaField" />
-        <number />
+        <number>
+          <DecimalPlaces>2</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeTrailingMinus</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToHundredth</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>true</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>/</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>avgClsBook121</Name>
@@ -2737,7 +2912,18 @@ else totext({@sort}+100000)+'_'+{@fname}+'_'+{@lname}
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="avgClsBook12" formula="{@avgClsBook12}" kind="FormulaField" />
-        <number />
+        <number>
+          <DecimalPlaces>2</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeTrailingMinus</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToHundredth</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>true</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>/</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>avgClsBook131</Name>
@@ -2764,7 +2950,18 @@ else totext({@sort}+100000)+'_'+{@fname}+'_'+{@lname}
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="avgClsBook13" formula="{@avgClsBook13}" kind="FormulaField" />
-        <number />
+        <number>
+          <DecimalPlaces>2</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeTrailingMinus</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToHundredth</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>true</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>/</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>avgClsBook141</Name>
@@ -2791,7 +2988,18 @@ else totext({@sort}+100000)+'_'+{@fname}+'_'+{@lname}
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="avgClsBook14" formula="{@avgClsBook14}" kind="FormulaField" />
-        <number />
+        <number>
+          <DecimalPlaces>2</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeTrailingMinus</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToHundredth</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>true</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>/</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
     </section>
     <section name="Section4" kind="ReportFooter" height="1720">
@@ -2803,6 +3011,9 @@ else totext({@sort}+100000)+'_'+{@fname}+'_'+{@lname}
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
       <object>
         <Name>heder21</Name>
@@ -2937,7 +3148,18 @@ else totext({@sort}+100000)+'_'+{@fname}+'_'+{@lname}
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="sort" formula="{@sort}" kind="FormulaField" />
-        <number />
+        <number>
+          <DecimalPlaces>2</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeLeadingMinus</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToHundredth</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>true</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>.</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>orderbyname1</Name>
@@ -2976,6 +3198,9 @@ else totext({@sort}+100000)+'_'+{@fname}+'_'+{@lname}
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
     </section>
   </sections>

@@ -350,6 +350,9 @@ else {spRpt_StdKarnameDoreh1.CommentKoll}</formula>
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
     </section>
     <section name="PageHeaderSection1" kind="PageHeader" height="405">
@@ -361,6 +364,9 @@ else {spRpt_StdKarnameDoreh1.CommentKoll}</formula>
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
       <object>
         <Name>Text33</Name>
@@ -415,7 +421,7 @@ else {spRpt_StdKarnameDoreh1.CommentKoll}</formula>
         </border>
       </object>
     </section>
-    <section name="GroupHeaderSection1" kind="GroupHeader" height="581">
+    <section name="GroupHeaderSection1" kind="GroupHeader" height="581" group-level="0">
       <format>
         <EnableSuppress>true</EnableSuppress>
         <EnableNewPageAfter>false</EnableNewPageAfter>
@@ -424,9 +430,12 @@ else {spRpt_StdKarnameDoreh1.CommentKoll}</formula>
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
     </section>
-    <section name="GroupHeaderSection5" kind="GroupHeader" height="460">
+    <section name="GroupHeaderSection5" kind="GroupHeader" height="460" group-level="1">
       <format>
         <EnableSuppress>true</EnableSuppress>
         <EnableNewPageAfter>false</EnableNewPageAfter>
@@ -435,9 +444,12 @@ else {spRpt_StdKarnameDoreh1.CommentKoll}</formula>
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
     </section>
-    <section name="GroupHeaderSection4" kind="GroupHeader" height="354">
+    <section name="GroupHeaderSection4" kind="GroupHeader" height="354" group-level="1">
       <format>
         <EnableSuppress>false</EnableSuppress>
         <EnableNewPageAfter>false</EnableNewPageAfter>
@@ -446,6 +458,9 @@ else {spRpt_StdKarnameDoreh1.CommentKoll}</formula>
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
       <object>
         <Name>heder11</Name>
@@ -499,10 +514,21 @@ else {spRpt_StdKarnameDoreh1.CommentKoll}</formula>
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="PageNumber" formula="PageNumber" kind="SpecialVarField" />
-        <number />
+        <number>
+          <DecimalPlaces>0</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeLeadingMinus</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>true</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>.</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
     </section>
-    <section name="GroupHeaderSection2" kind="GroupHeader" height="1090">
+    <section name="GroupHeaderSection2" kind="GroupHeader" height="1090" group-level="1">
       <format>
         <EnableSuppress>false</EnableSuppress>
         <EnableNewPageAfter>false</EnableNewPageAfter>
@@ -511,6 +537,9 @@ else {spRpt_StdKarnameDoreh1.CommentKoll}</formula>
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
       <object>
         <Name>class1</Name>
@@ -1090,7 +1119,7 @@ else {spRpt_StdKarnameDoreh1.CommentKoll}</formula>
         <number />
       </object>
     </section>
-    <section name="GroupHeaderSection3" kind="GroupHeader" height="482">
+    <section name="GroupHeaderSection3" kind="GroupHeader" height="482" group-level="1">
       <format>
         <EnableSuppress>false</EnableSuppress>
         <EnableNewPageAfter>false</EnableNewPageAfter>
@@ -1099,6 +1128,9 @@ else {spRpt_StdKarnameDoreh1.CommentKoll}</formula>
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1776412</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
       <object>
         <Name>Line1</Name>
@@ -1682,6 +1714,9 @@ else {spRpt_StdKarnameDoreh1.CommentKoll}</formula>
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
       <object>
         <Name>tosif1</Name>
@@ -1735,7 +1770,18 @@ else {spRpt_StdKarnameDoreh1.CommentKoll}</formula>
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="gschool" formula="{@gschool}" kind="FormulaField" />
-        <number />
+        <number>
+          <DecimalPlaces>0</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeBracketed</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>false</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>.</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>mark1</Name>
@@ -1789,7 +1835,18 @@ else {spRpt_StdKarnameDoreh1.CommentKoll}</formula>
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="gClass" formula="{@gClass}" kind="FormulaField" />
-        <number />
+        <number>
+          <DecimalPlaces>0</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeBracketed</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>false</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>.</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>lesson1</Name>
@@ -1869,7 +1926,18 @@ else {spRpt_StdKarnameDoreh1.CommentKoll}</formula>
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="radif" formula="{#radif}" kind="RunningTotalField" />
-        <number />
+        <number>
+          <DecimalPlaces>0</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeBracketed</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>false</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>.</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>countAb1</Name>
@@ -1896,7 +1964,18 @@ else {spRpt_StdKarnameDoreh1.CommentKoll}</formula>
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="countAb" formula="{@countAb}" kind="FormulaField" />
-        <number />
+        <number>
+          <DecimalPlaces>0</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeBracketed</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>false</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>.</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>tch1</Name>
@@ -1950,10 +2029,21 @@ else {spRpt_StdKarnameDoreh1.CommentKoll}</formula>
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="vahed" formula="{spRpt_StdKarnameDoreh1.vahed}" kind="DatabaseField" />
-        <number />
+        <number>
+          <DecimalPlaces>0</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeBracketed</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>false</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>.</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
     </section>
-    <section name="GroupFooterSection2" kind="GroupFooter" height="60">
+    <section name="GroupFooterSection2" kind="GroupFooter" height="60" group-level="1">
       <format>
         <EnableSuppress>false</EnableSuppress>
         <EnableNewPageAfter>false</EnableNewPageAfter>
@@ -1962,9 +2052,12 @@ else {spRpt_StdKarnameDoreh1.CommentKoll}</formula>
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
     </section>
-    <section name="GroupFooterSection3" kind="GroupFooter" height="1120">
+    <section name="GroupFooterSection3" kind="GroupFooter" height="1120" group-level="1">
       <format>
         <EnableSuppress>false</EnableSuppress>
         <EnableNewPageAfter>false</EnableNewPageAfter>
@@ -1973,6 +2066,9 @@ else {spRpt_StdKarnameDoreh1.CommentKoll}</formula>
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
       <object>
         <Name>Box3</Name>
@@ -2741,7 +2837,18 @@ else {spRpt_StdKarnameDoreh1.CommentKoll}</formula>
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="gSch7" formula="{@gSch7}" kind="FormulaField" />
-        <number />
+        <number>
+          <DecimalPlaces>0</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeBracketed</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>false</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>.</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>gSch61</Name>
@@ -2768,7 +2875,18 @@ else {spRpt_StdKarnameDoreh1.CommentKoll}</formula>
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="gSch6" formula="{@gSch6}" kind="FormulaField" />
-        <number />
+        <number>
+          <DecimalPlaces>0</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeBracketed</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>false</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>.</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>gSch51</Name>
@@ -2795,7 +2913,18 @@ else {spRpt_StdKarnameDoreh1.CommentKoll}</formula>
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="gSch5" formula="{@gSch5}" kind="FormulaField" />
-        <number />
+        <number>
+          <DecimalPlaces>0</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeBracketed</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>false</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>.</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>gSch41</Name>
@@ -2822,7 +2951,18 @@ else {spRpt_StdKarnameDoreh1.CommentKoll}</formula>
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="gSch4" formula="{@gSch4}" kind="FormulaField" />
-        <number />
+        <number>
+          <DecimalPlaces>0</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeBracketed</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>false</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>.</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>gSch31</Name>
@@ -2849,7 +2989,18 @@ else {spRpt_StdKarnameDoreh1.CommentKoll}</formula>
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="gSch3" formula="{@gSch3}" kind="FormulaField" />
-        <number />
+        <number>
+          <DecimalPlaces>0</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeBracketed</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>false</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>.</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>gSch21</Name>
@@ -2876,7 +3027,18 @@ else {spRpt_StdKarnameDoreh1.CommentKoll}</formula>
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="gSch2" formula="{@gSch2}" kind="FormulaField" />
-        <number />
+        <number>
+          <DecimalPlaces>0</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeBracketed</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>false</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>.</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>gSch11</Name>
@@ -2903,7 +3065,18 @@ else {spRpt_StdKarnameDoreh1.CommentKoll}</formula>
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="gSch1" formula="{@gSch1}" kind="FormulaField" />
-        <number />
+        <number>
+          <DecimalPlaces>0</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeBracketed</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>false</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>.</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>gCls11</Name>
@@ -2930,7 +3103,18 @@ else {spRpt_StdKarnameDoreh1.CommentKoll}</formula>
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="gCls1" formula="{@gCls1}" kind="FormulaField" />
-        <number />
+        <number>
+          <DecimalPlaces>0</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeBracketed</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>false</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>.</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>gCls21</Name>
@@ -2957,7 +3141,18 @@ else {spRpt_StdKarnameDoreh1.CommentKoll}</formula>
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="gCls2" formula="{@gCls2}" kind="FormulaField" />
-        <number />
+        <number>
+          <DecimalPlaces>0</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeBracketed</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>false</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>.</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>gCls31</Name>
@@ -2984,7 +3179,18 @@ else {spRpt_StdKarnameDoreh1.CommentKoll}</formula>
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="gCls3" formula="{@gCls3}" kind="FormulaField" />
-        <number />
+        <number>
+          <DecimalPlaces>0</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeBracketed</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>false</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>.</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>gCls41</Name>
@@ -3011,7 +3217,18 @@ else {spRpt_StdKarnameDoreh1.CommentKoll}</formula>
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="gCls4" formula="{@gCls4}" kind="FormulaField" />
-        <number />
+        <number>
+          <DecimalPlaces>0</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeBracketed</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>false</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>.</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>gCls51</Name>
@@ -3038,7 +3255,18 @@ else {spRpt_StdKarnameDoreh1.CommentKoll}</formula>
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="gCls5" formula="{@gCls5}" kind="FormulaField" />
-        <number />
+        <number>
+          <DecimalPlaces>0</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeBracketed</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>false</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>.</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>gCls61</Name>
@@ -3065,7 +3293,18 @@ else {spRpt_StdKarnameDoreh1.CommentKoll}</formula>
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="gCls6" formula="{@gCls6}" kind="FormulaField" />
-        <number />
+        <number>
+          <DecimalPlaces>0</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeBracketed</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>false</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>.</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>gCls71</Name>
@@ -3092,7 +3331,18 @@ else {spRpt_StdKarnameDoreh1.CommentKoll}</formula>
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="gCls7" formula="{@gCls7}" kind="FormulaField" />
-        <number />
+        <number>
+          <DecimalPlaces>0</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeBracketed</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>false</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>.</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>Box7</Name>
@@ -3379,7 +3629,18 @@ else {spRpt_StdKarnameDoreh1.CommentKoll}</formula>
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="gClassKoll" formula="{@gClassKoll}" kind="FormulaField" />
-        <number />
+        <number>
+          <DecimalPlaces>0</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeBracketed</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>false</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>.</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>gPayeKoll1</Name>
@@ -3406,7 +3667,18 @@ else {spRpt_StdKarnameDoreh1.CommentKoll}</formula>
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="gPayeKoll" formula="{@gPayeKoll}" kind="FormulaField" />
-        <number />
+        <number>
+          <DecimalPlaces>0</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeBracketed</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>false</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>.</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>Box5</Name>
@@ -3512,7 +3784,18 @@ else {spRpt_StdKarnameDoreh1.CommentKoll}</formula>
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="countPaye" formula="{@countPaye}" kind="FormulaField" />
-        <number />
+        <number>
+          <DecimalPlaces>0</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeBracketed</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>false</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>.</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>countClass1</Name>
@@ -3539,7 +3822,18 @@ else {spRpt_StdKarnameDoreh1.CommentKoll}</formula>
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="countClass" formula="{@countClass}" kind="FormulaField" />
-        <number />
+        <number>
+          <DecimalPlaces>0</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeBracketed</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>false</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>.</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>Box8</Name>
@@ -3568,7 +3862,7 @@ else {spRpt_StdKarnameDoreh1.CommentKoll}</formula>
         </border>
       </object>
     </section>
-    <section name="GroupFooterSection6" kind="GroupFooter" height="990">
+    <section name="GroupFooterSection6" kind="GroupFooter" height="990" group-level="1">
       <format>
         <EnableSuppress>false</EnableSuppress>
         <EnableNewPageAfter>false</EnableNewPageAfter>
@@ -3577,6 +3871,9 @@ else {spRpt_StdKarnameDoreh1.CommentKoll}</formula>
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
       <object subreport="Sub2">
         <Name>Sub2</Name>
@@ -3642,6 +3939,9 @@ else {spRpt_StdKarnameDoreh1.CommentKoll}</formula>
                 <EnableUnderlaySection>false</EnableUnderlaySection>
                 <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
                 <BackgroundColor>-1</BackgroundColor>
+                <area-suppress>
+                  <EnableSuppress>false</EnableSuppress>
+                </area-suppress>
               </format>
             </section>
             <section name="ReportHeaderSection1" kind="ReportHeader" height="744">
@@ -3653,6 +3953,9 @@ else {spRpt_StdKarnameDoreh1.CommentKoll}</formula>
                 <EnableUnderlaySection>false</EnableUnderlaySection>
                 <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
                 <BackgroundColor>-1</BackgroundColor>
+                <area-suppress>
+                  <EnableSuppress>false</EnableSuppress>
+                </area-suppress>
               </format>
               <object>
                 <Name>Line4</Name>
@@ -3898,6 +4201,9 @@ else {spRpt_StdKarnameDoreh1.CommentKoll}</formula>
                 <EnableUnderlaySection>false</EnableUnderlaySection>
                 <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
                 <BackgroundColor>-1</BackgroundColor>
+                <area-suppress>
+                  <EnableSuppress>false</EnableSuppress>
+                </area-suppress>
               </format>
               <object>
                 <Name>MarkDoreh1</Name>
@@ -3924,7 +4230,18 @@ else {spRpt_StdKarnameDoreh1.CommentKoll}</formula>
                   <BottomLineStyle>NoLine</BottomLineStyle>
                 </border>
                 <source name="MarkDoreh" formula="{@MarkDoreh}" kind="FormulaField" />
-                <number />
+                <number>
+                  <DecimalPlaces>2</DecimalPlaces>
+                  <EnableUseLeadZero>true</EnableUseLeadZero>
+                  <NegativeFormat>crNegativeTypeLeadingMinus</NegativeFormat>
+                  <RoundingFormat>crRoundingTypeRoundToHundredth</RoundingFormat>
+                  <EnableSuppressIfZero>false</EnableSuppressIfZero>
+                  <ThousandsSeparator>true</ThousandsSeparator>
+                  <ThousandSymbol>,</ThousandSymbol>
+                  <DecimalSymbol>/</DecimalSymbol>
+                  <DisplayReverseSign>false</DisplayReverseSign>
+                  <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+                </number>
               </object>
               <object>
                 <Name>gClass1</Name>
@@ -3951,7 +4268,18 @@ else {spRpt_StdKarnameDoreh1.CommentKoll}</formula>
                   <BottomLineStyle>NoLine</BottomLineStyle>
                 </border>
                 <source name="gClass" formula="{@gClass}" kind="FormulaField" />
-                <number />
+                <number>
+                  <DecimalPlaces>0</DecimalPlaces>
+                  <EnableUseLeadZero>true</EnableUseLeadZero>
+                  <NegativeFormat>crNegativeTypeBracketed</NegativeFormat>
+                  <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+                  <EnableSuppressIfZero>false</EnableSuppressIfZero>
+                  <ThousandsSeparator>false</ThousandsSeparator>
+                  <ThousandSymbol>,</ThousandSymbol>
+                  <DecimalSymbol>.</DecimalSymbol>
+                  <DisplayReverseSign>false</DisplayReverseSign>
+                  <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+                </number>
               </object>
               <object>
                 <Name>Line1</Name>
@@ -4043,6 +4371,9 @@ else {spRpt_StdKarnameDoreh1.CommentKoll}</formula>
                 <EnableUnderlaySection>false</EnableUnderlaySection>
                 <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
                 <BackgroundColor>-1</BackgroundColor>
+                <area-suppress>
+                  <EnableSuppress>false</EnableSuppress>
+                </area-suppress>
               </format>
             </section>
             <section name="ReportFooterSection1" kind="ReportFooter" height="676">
@@ -4054,6 +4385,9 @@ else {spRpt_StdKarnameDoreh1.CommentKoll}</formula>
                 <EnableUnderlaySection>false</EnableUnderlaySection>
                 <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
                 <BackgroundColor>-1</BackgroundColor>
+                <area-suppress>
+                  <EnableSuppress>false</EnableSuppress>
+                </area-suppress>
               </format>
               <object>
                 <Name>PageNumber1</Name>
@@ -4080,7 +4414,18 @@ else {spRpt_StdKarnameDoreh1.CommentKoll}</formula>
                   <BottomLineStyle>NoLine</BottomLineStyle>
                 </border>
                 <source name="PageNumber" formula="PageNumber" kind="SpecialVarField" />
-                <number />
+                <number>
+                  <DecimalPlaces>0</DecimalPlaces>
+                  <EnableUseLeadZero>true</EnableUseLeadZero>
+                  <NegativeFormat>crNegativeTypeLeadingMinus</NegativeFormat>
+                  <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+                  <EnableSuppressIfZero>false</EnableSuppressIfZero>
+                  <ThousandsSeparator>true</ThousandsSeparator>
+                  <ThousandSymbol>,</ThousandSymbol>
+                  <DecimalSymbol>.</DecimalSymbol>
+                  <DisplayReverseSign>false</DisplayReverseSign>
+                  <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+                </number>
               </object>
             </section>
           </sections>
@@ -4157,6 +4502,9 @@ else {spRpt_StdKarnameDoreh1.CommentKoll}</formula>
                 <EnableUnderlaySection>false</EnableUnderlaySection>
                 <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
                 <BackgroundColor>-1</BackgroundColor>
+                <area-suppress>
+                  <EnableSuppress>false</EnableSuppress>
+                </area-suppress>
               </format>
             </section>
             <section name="ReportHeaderSection1" kind="ReportHeader" height="744">
@@ -4168,6 +4516,9 @@ else {spRpt_StdKarnameDoreh1.CommentKoll}</formula>
                 <EnableUnderlaySection>false</EnableUnderlaySection>
                 <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
                 <BackgroundColor>-1</BackgroundColor>
+                <area-suppress>
+                  <EnableSuppress>false</EnableSuppress>
+                </area-suppress>
               </format>
               <object>
                 <Name>Line4</Name>
@@ -4413,6 +4764,9 @@ else {spRpt_StdKarnameDoreh1.CommentKoll}</formula>
                 <EnableUnderlaySection>false</EnableUnderlaySection>
                 <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
                 <BackgroundColor>-1</BackgroundColor>
+                <area-suppress>
+                  <EnableSuppress>false</EnableSuppress>
+                </area-suppress>
               </format>
               <object>
                 <Name>MarkDoreh1</Name>
@@ -4439,7 +4793,18 @@ else {spRpt_StdKarnameDoreh1.CommentKoll}</formula>
                   <BottomLineStyle>NoLine</BottomLineStyle>
                 </border>
                 <source name="MarkDoreh" formula="{@MarkDoreh}" kind="FormulaField" />
-                <number />
+                <number>
+                  <DecimalPlaces>2</DecimalPlaces>
+                  <EnableUseLeadZero>true</EnableUseLeadZero>
+                  <NegativeFormat>crNegativeTypeLeadingMinus</NegativeFormat>
+                  <RoundingFormat>crRoundingTypeRoundToHundredth</RoundingFormat>
+                  <EnableSuppressIfZero>false</EnableSuppressIfZero>
+                  <ThousandsSeparator>true</ThousandsSeparator>
+                  <ThousandSymbol>,</ThousandSymbol>
+                  <DecimalSymbol>/</DecimalSymbol>
+                  <DisplayReverseSign>false</DisplayReverseSign>
+                  <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+                </number>
               </object>
               <object>
                 <Name>gClass1</Name>
@@ -4466,7 +4831,18 @@ else {spRpt_StdKarnameDoreh1.CommentKoll}</formula>
                   <BottomLineStyle>NoLine</BottomLineStyle>
                 </border>
                 <source name="gPaye" formula="{@gPaye}" kind="FormulaField" />
-                <number />
+                <number>
+                  <DecimalPlaces>0</DecimalPlaces>
+                  <EnableUseLeadZero>true</EnableUseLeadZero>
+                  <NegativeFormat>crNegativeTypeBracketed</NegativeFormat>
+                  <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+                  <EnableSuppressIfZero>false</EnableSuppressIfZero>
+                  <ThousandsSeparator>false</ThousandsSeparator>
+                  <ThousandSymbol>,</ThousandSymbol>
+                  <DecimalSymbol>.</DecimalSymbol>
+                  <DisplayReverseSign>false</DisplayReverseSign>
+                  <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+                </number>
               </object>
               <object>
                 <Name>Line1</Name>
@@ -4558,6 +4934,9 @@ else {spRpt_StdKarnameDoreh1.CommentKoll}</formula>
                 <EnableUnderlaySection>false</EnableUnderlaySection>
                 <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
                 <BackgroundColor>-1</BackgroundColor>
+                <area-suppress>
+                  <EnableSuppress>false</EnableSuppress>
+                </area-suppress>
               </format>
             </section>
             <section name="ReportFooterSection1" kind="ReportFooter" height="676">
@@ -4569,6 +4948,9 @@ else {spRpt_StdKarnameDoreh1.CommentKoll}</formula>
                 <EnableUnderlaySection>false</EnableUnderlaySection>
                 <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
                 <BackgroundColor>-1</BackgroundColor>
+                <area-suppress>
+                  <EnableSuppress>false</EnableSuppress>
+                </area-suppress>
               </format>
               <object>
                 <Name>PageNumber1</Name>
@@ -4595,7 +4977,18 @@ else {spRpt_StdKarnameDoreh1.CommentKoll}</formula>
                   <BottomLineStyle>NoLine</BottomLineStyle>
                 </border>
                 <source name="PageNumber" formula="PageNumber" kind="SpecialVarField" />
-                <number />
+                <number>
+                  <DecimalPlaces>0</DecimalPlaces>
+                  <EnableUseLeadZero>true</EnableUseLeadZero>
+                  <NegativeFormat>crNegativeTypeLeadingMinus</NegativeFormat>
+                  <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+                  <EnableSuppressIfZero>false</EnableSuppressIfZero>
+                  <ThousandsSeparator>true</ThousandsSeparator>
+                  <ThousandSymbol>,</ThousandSymbol>
+                  <DecimalSymbol>.</DecimalSymbol>
+                  <DisplayReverseSign>false</DisplayReverseSign>
+                  <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+                </number>
               </object>
             </section>
           </sections>
@@ -4606,7 +4999,7 @@ else {spRpt_StdKarnameDoreh1.CommentKoll}</formula>
         </links>
       </object>
     </section>
-    <section name="GroupFooterSection7" kind="GroupFooter" height="100">
+    <section name="GroupFooterSection7" kind="GroupFooter" height="100" group-level="1">
       <format>
         <EnableSuppress>false</EnableSuppress>
         <EnableNewPageAfter>false</EnableNewPageAfter>
@@ -4615,9 +5008,12 @@ else {spRpt_StdKarnameDoreh1.CommentKoll}</formula>
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
     </section>
-    <section name="GroupFooterSection4" kind="GroupFooter" height="1075">
+    <section name="GroupFooterSection4" kind="GroupFooter" height="1075" group-level="1">
       <format>
         <EnableSuppress>false</EnableSuppress>
         <EnableNewPageAfter>false</EnableNewPageAfter>
@@ -4626,6 +5022,9 @@ else {spRpt_StdKarnameDoreh1.CommentKoll}</formula>
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
       <object>
         <Name>foter11</Name>
@@ -4734,7 +5133,7 @@ else {spRpt_StdKarnameDoreh1.CommentKoll}</formula>
         <number />
       </object>
     </section>
-    <section name="GroupFooterSection1" kind="GroupFooter" height="220">
+    <section name="GroupFooterSection1" kind="GroupFooter" height="220" group-level="0">
       <format>
         <EnableSuppress>true</EnableSuppress>
         <EnableNewPageAfter>false</EnableNewPageAfter>
@@ -4743,6 +5142,9 @@ else {spRpt_StdKarnameDoreh1.CommentKoll}</formula>
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
     </section>
     <section name="Section4" kind="ReportFooter" height="220">
@@ -4754,6 +5156,9 @@ else {spRpt_StdKarnameDoreh1.CommentKoll}</formula>
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
     </section>
     <section name="Section5" kind="PageFooter" height="676">
@@ -4765,6 +5170,9 @@ else {spRpt_StdKarnameDoreh1.CommentKoll}</formula>
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
       <object>
         <Name>PageNumber1</Name>
@@ -4791,7 +5199,18 @@ else {spRpt_StdKarnameDoreh1.CommentKoll}</formula>
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="PageNumber" formula="PageNumber" kind="SpecialVarField" />
-        <number />
+        <number>
+          <DecimalPlaces>0</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeLeadingMinus</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>true</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>.</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
     </section>
   </sections>

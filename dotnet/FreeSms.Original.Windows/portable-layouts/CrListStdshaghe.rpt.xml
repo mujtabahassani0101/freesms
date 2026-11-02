@@ -56,6 +56,9 @@
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
     </section>
     <section name="PageHeaderSection1" kind="PageHeader" height="774">
@@ -67,6 +70,9 @@
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
     </section>
     <section name="Section2" kind="PageHeader" height="1480">
@@ -78,6 +84,9 @@
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
       <object>
         <Name>Text3</Name>
@@ -115,6 +124,9 @@
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
       <object subreport="Sub1">
         <Name>Sub1</Name>
@@ -206,6 +218,9 @@
                 <EnableUnderlaySection>false</EnableUnderlaySection>
                 <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
                 <BackgroundColor>-1</BackgroundColor>
+                <area-suppress>
+                  <EnableSuppress>false</EnableSuppress>
+                </area-suppress>
               </format>
             </section>
             <section name="ReportHeaderSection1" kind="ReportHeader" height="341">
@@ -217,6 +232,9 @@
                 <EnableUnderlaySection>false</EnableUnderlaySection>
                 <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
                 <BackgroundColor>-1</BackgroundColor>
+                <area-suppress>
+                  <EnableSuppress>false</EnableSuppress>
+                </area-suppress>
               </format>
             </section>
             <section name="ReportHeaderSection2" kind="ReportHeader" height="840">
@@ -228,6 +246,9 @@
                 <EnableUnderlaySection>false</EnableUnderlaySection>
                 <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
                 <BackgroundColor>-1</BackgroundColor>
+                <area-suppress>
+                  <EnableSuppress>false</EnableSuppress>
+                </area-suppress>
               </format>
               <object>
                 <Name>xYear1</Name>
@@ -425,6 +446,9 @@
                 <EnableUnderlaySection>false</EnableUnderlaySection>
                 <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
                 <BackgroundColor>-1</BackgroundColor>
+                <area-suppress>
+                  <EnableSuppress>false</EnableSuppress>
+                </area-suppress>
               </format>
               <object>
                 <Name>Line2</Name>
@@ -748,6 +772,9 @@
                 <EnableUnderlaySection>false</EnableUnderlaySection>
                 <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
                 <BackgroundColor>-1</BackgroundColor>
+                <area-suppress>
+                  <EnableSuppress>false</EnableSuppress>
+                </area-suppress>
               </format>
               <object>
                 <Name>lname1</Name>
@@ -828,7 +855,18 @@
                   <BottomLineStyle>NoLine</BottomLineStyle>
                 </border>
                 <source name="RTotal0" formula="{#RTotal0}" kind="RunningTotalField" />
-                <number />
+                <number>
+                  <DecimalPlaces>0</DecimalPlaces>
+                  <EnableUseLeadZero>true</EnableUseLeadZero>
+                  <NegativeFormat>crNegativeTypeBracketed</NegativeFormat>
+                  <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+                  <EnableSuppressIfZero>false</EnableSuppressIfZero>
+                  <ThousandsSeparator>false</ThousandsSeparator>
+                  <ThousandSymbol>,</ThousandSymbol>
+                  <DecimalSymbol>.</DecimalSymbol>
+                  <DisplayReverseSign>false</DisplayReverseSign>
+                  <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+                </number>
               </object>
               <object>
                 <Name>Line11</Name>
@@ -908,7 +946,18 @@
                   <BottomLineStyle>NoLine</BottomLineStyle>
                 </border>
                 <source name="Namberasas" formula="{@Namberasas}" kind="FormulaField" />
-                <number />
+                <number>
+                  <DecimalPlaces>0</DecimalPlaces>
+                  <EnableUseLeadZero>true</EnableUseLeadZero>
+                  <NegativeFormat>crNegativeTypeBracketed</NegativeFormat>
+                  <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+                  <EnableSuppressIfZero>false</EnableSuppressIfZero>
+                  <ThousandsSeparator>false</ThousandsSeparator>
+                  <ThousandSymbol>,</ThousandSymbol>
+                  <DecimalSymbol>.</DecimalSymbol>
+                  <DisplayReverseSign>false</DisplayReverseSign>
+                  <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+                </number>
               </object>
             </section>
             <section name="Section4" kind="ReportFooter" height="1369">
@@ -920,6 +969,9 @@
                 <EnableUnderlaySection>false</EnableUnderlaySection>
                 <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
                 <BackgroundColor>-1</BackgroundColor>
+                <area-suppress>
+                  <EnableSuppress>false</EnableSuppress>
+                </area-suppress>
               </format>
             </section>
             <section name="ReportFooterSection1" kind="ReportFooter" height="706">
@@ -931,6 +983,9 @@
                 <EnableUnderlaySection>false</EnableUnderlaySection>
                 <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
                 <BackgroundColor>-1</BackgroundColor>
+                <area-suppress>
+                  <EnableSuppress>false</EnableSuppress>
+                </area-suppress>
               </format>
             </section>
           </sections>
@@ -1031,6 +1086,9 @@
                 <EnableUnderlaySection>false</EnableUnderlaySection>
                 <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
                 <BackgroundColor>-1</BackgroundColor>
+                <area-suppress>
+                  <EnableSuppress>false</EnableSuppress>
+                </area-suppress>
               </format>
             </section>
             <section name="ReportHeaderSection1" kind="ReportHeader" height="341">
@@ -1042,6 +1100,9 @@
                 <EnableUnderlaySection>false</EnableUnderlaySection>
                 <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
                 <BackgroundColor>-1</BackgroundColor>
+                <area-suppress>
+                  <EnableSuppress>false</EnableSuppress>
+                </area-suppress>
               </format>
             </section>
             <section name="ReportHeaderSection2" kind="ReportHeader" height="840">
@@ -1053,6 +1114,9 @@
                 <EnableUnderlaySection>false</EnableUnderlaySection>
                 <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
                 <BackgroundColor>-1</BackgroundColor>
+                <area-suppress>
+                  <EnableSuppress>false</EnableSuppress>
+                </area-suppress>
               </format>
               <object>
                 <Name>xYear1</Name>
@@ -1250,6 +1314,9 @@
                 <EnableUnderlaySection>false</EnableUnderlaySection>
                 <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
                 <BackgroundColor>-1</BackgroundColor>
+                <area-suppress>
+                  <EnableSuppress>false</EnableSuppress>
+                </area-suppress>
               </format>
               <object>
                 <Name>Line2</Name>
@@ -1573,6 +1640,9 @@
                 <EnableUnderlaySection>false</EnableUnderlaySection>
                 <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
                 <BackgroundColor>-1</BackgroundColor>
+                <area-suppress>
+                  <EnableSuppress>false</EnableSuppress>
+                </area-suppress>
               </format>
               <object>
                 <Name>lname1</Name>
@@ -1653,7 +1723,18 @@
                   <BottomLineStyle>NoLine</BottomLineStyle>
                 </border>
                 <source name="RTotal0" formula="{#RTotal0}" kind="RunningTotalField" />
-                <number />
+                <number>
+                  <DecimalPlaces>0</DecimalPlaces>
+                  <EnableUseLeadZero>true</EnableUseLeadZero>
+                  <NegativeFormat>crNegativeTypeBracketed</NegativeFormat>
+                  <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+                  <EnableSuppressIfZero>false</EnableSuppressIfZero>
+                  <ThousandsSeparator>false</ThousandsSeparator>
+                  <ThousandSymbol>,</ThousandSymbol>
+                  <DecimalSymbol>.</DecimalSymbol>
+                  <DisplayReverseSign>false</DisplayReverseSign>
+                  <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+                </number>
               </object>
               <object>
                 <Name>Line11</Name>
@@ -1733,7 +1814,18 @@
                   <BottomLineStyle>NoLine</BottomLineStyle>
                 </border>
                 <source name="Namberasas" formula="{@Namberasas}" kind="FormulaField" />
-                <number />
+                <number>
+                  <DecimalPlaces>0</DecimalPlaces>
+                  <EnableUseLeadZero>true</EnableUseLeadZero>
+                  <NegativeFormat>crNegativeTypeBracketed</NegativeFormat>
+                  <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+                  <EnableSuppressIfZero>false</EnableSuppressIfZero>
+                  <ThousandsSeparator>false</ThousandsSeparator>
+                  <ThousandSymbol>,</ThousandSymbol>
+                  <DecimalSymbol>.</DecimalSymbol>
+                  <DisplayReverseSign>false</DisplayReverseSign>
+                  <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+                </number>
               </object>
             </section>
             <section name="Section4" kind="ReportFooter" height="1369">
@@ -1745,6 +1837,9 @@
                 <EnableUnderlaySection>false</EnableUnderlaySection>
                 <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
                 <BackgroundColor>-1</BackgroundColor>
+                <area-suppress>
+                  <EnableSuppress>false</EnableSuppress>
+                </area-suppress>
               </format>
             </section>
             <section name="ReportFooterSection1" kind="ReportFooter" height="706">
@@ -1756,6 +1851,9 @@
                 <EnableUnderlaySection>false</EnableUnderlaySection>
                 <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
                 <BackgroundColor>-1</BackgroundColor>
+                <area-suppress>
+                  <EnableSuppress>false</EnableSuppress>
+                </area-suppress>
               </format>
             </section>
           </sections>
@@ -1775,6 +1873,9 @@
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
     </section>
     <section name="Section5" kind="PageFooter" height="706">
@@ -1786,6 +1887,9 @@
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
     </section>
   </sections>

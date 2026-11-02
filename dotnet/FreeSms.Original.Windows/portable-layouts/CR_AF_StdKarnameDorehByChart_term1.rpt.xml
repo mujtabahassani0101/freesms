@@ -394,6 +394,9 @@ else if{spRpt_StdKarnameDoreh1.acp}=0 then 'تلاش بیشتر' </formula>
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
     </section>
     <section name="PageHeaderSection1" kind="PageHeader" height="405">
@@ -405,9 +408,12 @@ else if{spRpt_StdKarnameDoreh1.acp}=0 then 'تلاش بیشتر' </formula>
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
     </section>
-    <section name="GroupHeaderSection1" kind="GroupHeader" height="581">
+    <section name="GroupHeaderSection1" kind="GroupHeader" height="581" group-level="0">
       <format>
         <EnableSuppress>true</EnableSuppress>
         <EnableNewPageAfter>false</EnableNewPageAfter>
@@ -416,6 +422,9 @@ else if{spRpt_StdKarnameDoreh1.acp}=0 then 'تلاش بیشتر' </formula>
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
       <object>
         <Name>showGread1</Name>
@@ -445,7 +454,7 @@ else if{spRpt_StdKarnameDoreh1.acp}=0 then 'تلاش بیشتر' </formula>
         <number />
       </object>
     </section>
-    <section name="GroupHeaderSection5" kind="GroupHeader" height="460">
+    <section name="GroupHeaderSection5" kind="GroupHeader" height="460" group-level="1">
       <format>
         <EnableSuppress>true</EnableSuppress>
         <EnableNewPageAfter>false</EnableNewPageAfter>
@@ -454,9 +463,12 @@ else if{spRpt_StdKarnameDoreh1.acp}=0 then 'تلاش بیشتر' </formula>
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
     </section>
-    <section name="GroupHeaderSection4" kind="GroupHeader" height="420">
+    <section name="GroupHeaderSection4" kind="GroupHeader" height="420" group-level="1">
       <format>
         <EnableSuppress>false</EnableSuppress>
         <EnableNewPageAfter>false</EnableNewPageAfter>
@@ -465,6 +477,9 @@ else if{spRpt_StdKarnameDoreh1.acp}=0 then 'تلاش بیشتر' </formula>
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
       <object>
         <Name>PageNumber2</Name>
@@ -491,7 +506,18 @@ else if{spRpt_StdKarnameDoreh1.acp}=0 then 'تلاش بیشتر' </formula>
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="PageNumber" formula="PageNumber" kind="SpecialVarField" />
-        <number />
+        <number>
+          <DecimalPlaces>0</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeLeadingMinus</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>true</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>.</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>heder1</Name>
@@ -521,7 +547,7 @@ else if{spRpt_StdKarnameDoreh1.acp}=0 then 'تلاش بیشتر' </formula>
         <number />
       </object>
     </section>
-    <section name="GroupHeaderSection2" kind="GroupHeader" height="1089">
+    <section name="GroupHeaderSection2" kind="GroupHeader" height="1089" group-level="1">
       <format>
         <EnableSuppress>false</EnableSuppress>
         <EnableNewPageAfter>false</EnableNewPageAfter>
@@ -530,6 +556,9 @@ else if{spRpt_StdKarnameDoreh1.acp}=0 then 'تلاش بیشتر' </formula>
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
       <object>
         <Name>class1</Name>
@@ -1079,7 +1108,18 @@ else if{spRpt_StdKarnameDoreh1.acp}=0 then 'تلاش بیشتر' </formula>
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="code" formula="{@code}" kind="FormulaField" />
-        <number />
+        <number>
+          <DecimalPlaces>0</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeBracketed</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>false</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>.</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>Box1</Name>
@@ -1108,7 +1148,7 @@ else if{spRpt_StdKarnameDoreh1.acp}=0 then 'تلاش بیشتر' </formula>
         </border>
       </object>
     </section>
-    <section name="GroupHeaderSection3" kind="GroupHeader" height="484">
+    <section name="GroupHeaderSection3" kind="GroupHeader" height="484" group-level="1">
       <format>
         <EnableSuppress>false</EnableSuppress>
         <EnableNewPageAfter>false</EnableNewPageAfter>
@@ -1117,6 +1157,9 @@ else if{spRpt_StdKarnameDoreh1.acp}=0 then 'تلاش بیشتر' </formula>
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1776412</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
       <object>
         <Name>Line1</Name>
@@ -1544,6 +1587,9 @@ else if{spRpt_StdKarnameDoreh1.acp}=0 then 'تلاش بیشتر' </formula>
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
       <object>
         <Name>tosif1</Name>
@@ -1597,7 +1643,18 @@ else if{spRpt_StdKarnameDoreh1.acp}=0 then 'تلاش بیشتر' </formula>
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="gschool" formula="{@gschool}" kind="FormulaField" />
-        <number />
+        <number>
+          <DecimalPlaces>0</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeBracketed</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>false</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>.</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>mark1</Name>
@@ -1651,7 +1708,18 @@ else if{spRpt_StdKarnameDoreh1.acp}=0 then 'تلاش بیشتر' </formula>
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="gClass" formula="{@gClass}" kind="FormulaField" />
-        <number />
+        <number>
+          <DecimalPlaces>0</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeBracketed</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>false</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>.</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>lesson1</Name>
@@ -1731,10 +1799,21 @@ else if{spRpt_StdKarnameDoreh1.acp}=0 then 'تلاش بیشتر' </formula>
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="radif" formula="{#radif}" kind="RunningTotalField" />
-        <number />
+        <number>
+          <DecimalPlaces>0</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeBracketed</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>false</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>.</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
     </section>
-    <section name="GroupFooterSection2" kind="GroupFooter" height="133">
+    <section name="GroupFooterSection2" kind="GroupFooter" height="133" group-level="1">
       <format>
         <EnableSuppress>false</EnableSuppress>
         <EnableNewPageAfter>false</EnableNewPageAfter>
@@ -1743,9 +1822,12 @@ else if{spRpt_StdKarnameDoreh1.acp}=0 then 'تلاش بیشتر' </formula>
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
     </section>
-    <section name="GroupFooterSection3" kind="GroupFooter" height="1124">
+    <section name="GroupFooterSection3" kind="GroupFooter" height="1124" group-level="1">
       <format>
         <EnableSuppress>false</EnableSuppress>
         <EnableNewPageAfter>false</EnableNewPageAfter>
@@ -1754,6 +1836,9 @@ else if{spRpt_StdKarnameDoreh1.acp}=0 then 'تلاش بیشتر' </formula>
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
       <object>
         <Name>Box4</Name>
@@ -1988,7 +2073,18 @@ else if{spRpt_StdKarnameDoreh1.acp}=0 then 'تلاش بیشتر' </formula>
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="gClassKoll" formula="{@gClassKoll}" kind="FormulaField" />
-        <number />
+        <number>
+          <DecimalPlaces>0</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeBracketed</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>false</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>.</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>gPayeKoll1</Name>
@@ -2015,7 +2111,18 @@ else if{spRpt_StdKarnameDoreh1.acp}=0 then 'تلاش بیشتر' </formula>
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="gPayeKoll" formula="{@gPayeKoll}" kind="FormulaField" />
-        <number />
+        <number>
+          <DecimalPlaces>0</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeBracketed</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>false</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>.</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>Box5</Name>
@@ -2121,7 +2228,18 @@ else if{spRpt_StdKarnameDoreh1.acp}=0 then 'تلاش بیشتر' </formula>
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="countPaye" formula="{@countPaye}" kind="FormulaField" />
-        <number />
+        <number>
+          <DecimalPlaces>0</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeBracketed</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>false</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>.</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>countClass1</Name>
@@ -2148,7 +2266,18 @@ else if{spRpt_StdKarnameDoreh1.acp}=0 then 'تلاش بیشتر' </formula>
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="countClass" formula="{@countClass}" kind="FormulaField" />
-        <number />
+        <number>
+          <DecimalPlaces>0</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeBracketed</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>false</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>.</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>Box8</Name>
@@ -2279,7 +2408,18 @@ else if{spRpt_StdKarnameDoreh1.acp}=0 then 'تلاش بیشتر' </formula>
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="sumMark" formula="{@sumMark}" kind="FormulaField" />
-        <number />
+        <number>
+          <DecimalPlaces>0</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeBracketed</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>false</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>.</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>hazer11</Name>
@@ -2306,7 +2446,18 @@ else if{spRpt_StdKarnameDoreh1.acp}=0 then 'تلاش بیشتر' </formula>
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="hazer1" formula="{@hazer1}" kind="FormulaField" />
-        <number />
+        <number>
+          <DecimalPlaces>0</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeBracketed</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>false</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>.</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>Ghayeb11</Name>
@@ -2333,7 +2484,18 @@ else if{spRpt_StdKarnameDoreh1.acp}=0 then 'تلاش بیشتر' </formula>
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="Ghayeb1" formula="{@Ghayeb1}" kind="FormulaField" />
-        <number />
+        <number>
+          <DecimalPlaces>0</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeBracketed</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>false</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>.</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>Mariz11</Name>
@@ -2360,7 +2522,18 @@ else if{spRpt_StdKarnameDoreh1.acp}=0 then 'تلاش بیشتر' </formula>
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="Mariz1" formula="{@Mariz1}" kind="FormulaField" />
-        <number />
+        <number>
+          <DecimalPlaces>0</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeBracketed</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>false</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>.</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>rokhsat11</Name>
@@ -2387,7 +2560,18 @@ else if{spRpt_StdKarnameDoreh1.acp}=0 then 'تلاش بیشتر' </formula>
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="rokhsat1" formula="{@rokhsat1}" kind="FormulaField" />
-        <number />
+        <number>
+          <DecimalPlaces>0</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeBracketed</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>false</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>.</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>Line5</Name>
@@ -2809,7 +2993,7 @@ else if{spRpt_StdKarnameDoreh1.acp}=0 then 'تلاش بیشتر' </formula>
         </border>
       </object>
     </section>
-    <section name="GroupFooterSection8" kind="GroupFooter" height="515">
+    <section name="GroupFooterSection8" kind="GroupFooter" height="515" group-level="1">
       <format>
         <EnableSuppress>false</EnableSuppress>
         <EnableNewPageAfter>false</EnableNewPageAfter>
@@ -2818,6 +3002,9 @@ else if{spRpt_StdKarnameDoreh1.acp}=0 then 'تلاش بیشتر' </formula>
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
       <object>
         <Name>comment51</Name>
@@ -2847,7 +3034,7 @@ else if{spRpt_StdKarnameDoreh1.acp}=0 then 'تلاش بیشتر' </formula>
         <number />
       </object>
     </section>
-    <section name="GroupFooterSection5" kind="GroupFooter" height="4200">
+    <section name="GroupFooterSection5" kind="GroupFooter" height="4200" group-level="1">
       <format>
         <EnableSuppress>false</EnableSuppress>
         <EnableNewPageAfter>false</EnableNewPageAfter>
@@ -2856,6 +3043,9 @@ else if{spRpt_StdKarnameDoreh1.acp}=0 then 'تلاش بیشتر' </formula>
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
       <object subreport="Sub1">
         <Name>Sub1</Name>
@@ -2919,6 +3109,9 @@ else if{spRpt_StdKarnameDoreh1.acp}=0 then 'تلاش بیشتر' </formula>
                 <EnableUnderlaySection>false</EnableUnderlaySection>
                 <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
                 <BackgroundColor>-1</BackgroundColor>
+                <area-suppress>
+                  <EnableSuppress>false</EnableSuppress>
+                </area-suppress>
               </format>
             </section>
             <section name="ReportHeaderSection1" kind="ReportHeader" height="451">
@@ -2930,9 +3123,12 @@ else if{spRpt_StdKarnameDoreh1.acp}=0 then 'تلاش بیشتر' </formula>
                 <EnableUnderlaySection>false</EnableUnderlaySection>
                 <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
                 <BackgroundColor>-1</BackgroundColor>
+                <area-suppress>
+                  <EnableSuppress>false</EnableSuppress>
+                </area-suppress>
               </format>
             </section>
-            <section name="GroupHeaderSection2" kind="GroupHeader" height="4595">
+            <section name="GroupHeaderSection2" kind="GroupHeader" height="4595" group-level="0">
               <format>
                 <EnableSuppress>false</EnableSuppress>
                 <EnableNewPageAfter>false</EnableNewPageAfter>
@@ -2941,6 +3137,9 @@ else if{spRpt_StdKarnameDoreh1.acp}=0 then 'تلاش بیشتر' </formula>
                 <EnableUnderlaySection>false</EnableUnderlaySection>
                 <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
                 <BackgroundColor>-1</BackgroundColor>
+                <area-suppress>
+                  <EnableSuppress>false</EnableSuppress>
+                </area-suppress>
               </format>
               <object>
                 <Name>Graph1</Name>
@@ -3023,7 +3222,7 @@ else if{spRpt_StdKarnameDoreh1.acp}=0 then 'تلاش بیشتر' </formula>
                 </border>
               </object>
             </section>
-            <section name="GroupHeaderSection1" kind="GroupHeader" height="226">
+            <section name="GroupHeaderSection1" kind="GroupHeader" height="226" group-level="0">
               <format>
                 <EnableSuppress>true</EnableSuppress>
                 <EnableNewPageAfter>false</EnableNewPageAfter>
@@ -3032,6 +3231,9 @@ else if{spRpt_StdKarnameDoreh1.acp}=0 then 'تلاش بیشتر' </formula>
                 <EnableUnderlaySection>false</EnableUnderlaySection>
                 <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
                 <BackgroundColor>-1</BackgroundColor>
+                <area-suppress>
+                  <EnableSuppress>false</EnableSuppress>
+                </area-suppress>
               </format>
               <object>
                 <Name>GroupNamexStudent1</Name>
@@ -3070,9 +3272,12 @@ else if{spRpt_StdKarnameDoreh1.acp}=0 then 'تلاش بیشتر' </formula>
                 <EnableUnderlaySection>false</EnableUnderlaySection>
                 <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
                 <BackgroundColor>-1</BackgroundColor>
+                <area-suppress>
+                  <EnableSuppress>false</EnableSuppress>
+                </area-suppress>
               </format>
             </section>
-            <section name="GroupFooterSection1" kind="GroupFooter" height="2710">
+            <section name="GroupFooterSection1" kind="GroupFooter" height="2710" group-level="0">
               <format>
                 <EnableSuppress>true</EnableSuppress>
                 <EnableNewPageAfter>false</EnableNewPageAfter>
@@ -3081,6 +3286,9 @@ else if{spRpt_StdKarnameDoreh1.acp}=0 then 'تلاش بیشتر' </formula>
                 <EnableUnderlaySection>false</EnableUnderlaySection>
                 <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
                 <BackgroundColor>-1</BackgroundColor>
+                <area-suppress>
+                  <EnableSuppress>false</EnableSuppress>
+                </area-suppress>
               </format>
             </section>
             <section name="Section4" kind="ReportFooter" height="220">
@@ -3092,6 +3300,9 @@ else if{spRpt_StdKarnameDoreh1.acp}=0 then 'تلاش بیشتر' </formula>
                 <EnableUnderlaySection>false</EnableUnderlaySection>
                 <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
                 <BackgroundColor>-1</BackgroundColor>
+                <area-suppress>
+                  <EnableSuppress>false</EnableSuppress>
+                </area-suppress>
               </format>
             </section>
             <section name="ReportFooterSection1" kind="ReportFooter" height="676">
@@ -3103,6 +3314,9 @@ else if{spRpt_StdKarnameDoreh1.acp}=0 then 'تلاش بیشتر' </formula>
                 <EnableUnderlaySection>false</EnableUnderlaySection>
                 <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
                 <BackgroundColor>-1</BackgroundColor>
+                <area-suppress>
+                  <EnableSuppress>false</EnableSuppress>
+                </area-suppress>
               </format>
               <object>
                 <Name>PageNumber1</Name>
@@ -3129,7 +3343,18 @@ else if{spRpt_StdKarnameDoreh1.acp}=0 then 'تلاش بیشتر' </formula>
                   <BottomLineStyle>NoLine</BottomLineStyle>
                 </border>
                 <source name="PageNumber" formula="PageNumber" kind="SpecialVarField" />
-                <number />
+                <number>
+                  <DecimalPlaces>0</DecimalPlaces>
+                  <EnableUseLeadZero>true</EnableUseLeadZero>
+                  <NegativeFormat>crNegativeTypeLeadingMinus</NegativeFormat>
+                  <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+                  <EnableSuppressIfZero>false</EnableSuppressIfZero>
+                  <ThousandsSeparator>true</ThousandsSeparator>
+                  <ThousandSymbol>,</ThousandSymbol>
+                  <DecimalSymbol>.</DecimalSymbol>
+                  <DisplayReverseSign>false</DisplayReverseSign>
+                  <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+                </number>
               </object>
             </section>
           </sections>
@@ -3221,7 +3446,7 @@ else if{spRpt_StdKarnameDoreh1.acp}=0 then 'تلاش بیشتر' </formula>
         </border>
       </object>
     </section>
-    <section name="GroupFooterSection6" kind="GroupFooter" height="805">
+    <section name="GroupFooterSection6" kind="GroupFooter" height="805" group-level="1">
       <format>
         <EnableSuppress>false</EnableSuppress>
         <EnableNewPageAfter>false</EnableNewPageAfter>
@@ -3230,6 +3455,9 @@ else if{spRpt_StdKarnameDoreh1.acp}=0 then 'تلاش بیشتر' </formula>
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
         <condition name="EnableSuppress">if{?showBartar}='1' then false else true</condition>
       </format>
       <object subreport="Sub2">
@@ -3296,6 +3524,9 @@ else if{spRpt_StdKarnameDoreh1.acp}=0 then 'تلاش بیشتر' </formula>
                 <EnableUnderlaySection>false</EnableUnderlaySection>
                 <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
                 <BackgroundColor>-1</BackgroundColor>
+                <area-suppress>
+                  <EnableSuppress>false</EnableSuppress>
+                </area-suppress>
               </format>
             </section>
             <section name="ReportHeaderSection1" kind="ReportHeader" height="744">
@@ -3307,6 +3538,9 @@ else if{spRpt_StdKarnameDoreh1.acp}=0 then 'تلاش بیشتر' </formula>
                 <EnableUnderlaySection>false</EnableUnderlaySection>
                 <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
                 <BackgroundColor>-1</BackgroundColor>
+                <area-suppress>
+                  <EnableSuppress>false</EnableSuppress>
+                </area-suppress>
               </format>
               <object>
                 <Name>Box2</Name>
@@ -3578,6 +3812,9 @@ else if{spRpt_StdKarnameDoreh1.acp}=0 then 'تلاش بیشتر' </formula>
                 <EnableUnderlaySection>false</EnableUnderlaySection>
                 <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
                 <BackgroundColor>-1</BackgroundColor>
+                <area-suppress>
+                  <EnableSuppress>false</EnableSuppress>
+                </area-suppress>
               </format>
               <object>
                 <Name>MarkDoreh1</Name>
@@ -3604,7 +3841,18 @@ else if{spRpt_StdKarnameDoreh1.acp}=0 then 'تلاش بیشتر' </formula>
                   <BottomLineStyle>NoLine</BottomLineStyle>
                 </border>
                 <source name="MarkDoreh" formula="{@MarkDoreh}" kind="FormulaField" />
-                <number />
+                <number>
+                  <DecimalPlaces>2</DecimalPlaces>
+                  <EnableUseLeadZero>true</EnableUseLeadZero>
+                  <NegativeFormat>crNegativeTypeLeadingMinus</NegativeFormat>
+                  <RoundingFormat>crRoundingTypeRoundToHundredth</RoundingFormat>
+                  <EnableSuppressIfZero>false</EnableSuppressIfZero>
+                  <ThousandsSeparator>true</ThousandsSeparator>
+                  <ThousandSymbol>,</ThousandSymbol>
+                  <DecimalSymbol>/</DecimalSymbol>
+                  <DisplayReverseSign>false</DisplayReverseSign>
+                  <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+                </number>
               </object>
               <object>
                 <Name>gClass1</Name>
@@ -3631,7 +3879,18 @@ else if{spRpt_StdKarnameDoreh1.acp}=0 then 'تلاش بیشتر' </formula>
                   <BottomLineStyle>NoLine</BottomLineStyle>
                 </border>
                 <source name="gClass" formula="{@gClass}" kind="FormulaField" />
-                <number />
+                <number>
+                  <DecimalPlaces>0</DecimalPlaces>
+                  <EnableUseLeadZero>true</EnableUseLeadZero>
+                  <NegativeFormat>crNegativeTypeBracketed</NegativeFormat>
+                  <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+                  <EnableSuppressIfZero>false</EnableSuppressIfZero>
+                  <ThousandsSeparator>false</ThousandsSeparator>
+                  <ThousandSymbol>,</ThousandSymbol>
+                  <DecimalSymbol>.</DecimalSymbol>
+                  <DisplayReverseSign>false</DisplayReverseSign>
+                  <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+                </number>
               </object>
               <object>
                 <Name>Line1</Name>
@@ -3723,6 +3982,9 @@ else if{spRpt_StdKarnameDoreh1.acp}=0 then 'تلاش بیشتر' </formula>
                 <EnableUnderlaySection>false</EnableUnderlaySection>
                 <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
                 <BackgroundColor>-1</BackgroundColor>
+                <area-suppress>
+                  <EnableSuppress>false</EnableSuppress>
+                </area-suppress>
               </format>
             </section>
             <section name="ReportFooterSection1" kind="ReportFooter" height="676">
@@ -3734,6 +3996,9 @@ else if{spRpt_StdKarnameDoreh1.acp}=0 then 'تلاش بیشتر' </formula>
                 <EnableUnderlaySection>false</EnableUnderlaySection>
                 <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
                 <BackgroundColor>-1</BackgroundColor>
+                <area-suppress>
+                  <EnableSuppress>false</EnableSuppress>
+                </area-suppress>
               </format>
               <object>
                 <Name>PageNumber1</Name>
@@ -3760,7 +4025,18 @@ else if{spRpt_StdKarnameDoreh1.acp}=0 then 'تلاش بیشتر' </formula>
                   <BottomLineStyle>NoLine</BottomLineStyle>
                 </border>
                 <source name="PageNumber" formula="PageNumber" kind="SpecialVarField" />
-                <number />
+                <number>
+                  <DecimalPlaces>0</DecimalPlaces>
+                  <EnableUseLeadZero>true</EnableUseLeadZero>
+                  <NegativeFormat>crNegativeTypeLeadingMinus</NegativeFormat>
+                  <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+                  <EnableSuppressIfZero>false</EnableSuppressIfZero>
+                  <ThousandsSeparator>true</ThousandsSeparator>
+                  <ThousandSymbol>,</ThousandSymbol>
+                  <DecimalSymbol>.</DecimalSymbol>
+                  <DisplayReverseSign>false</DisplayReverseSign>
+                  <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+                </number>
               </object>
             </section>
           </sections>
@@ -3836,6 +4112,9 @@ else if{spRpt_StdKarnameDoreh1.acp}=0 then 'تلاش بیشتر' </formula>
                 <EnableUnderlaySection>false</EnableUnderlaySection>
                 <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
                 <BackgroundColor>-1</BackgroundColor>
+                <area-suppress>
+                  <EnableSuppress>false</EnableSuppress>
+                </area-suppress>
               </format>
             </section>
             <section name="ReportHeaderSection1" kind="ReportHeader" height="744">
@@ -3847,6 +4126,9 @@ else if{spRpt_StdKarnameDoreh1.acp}=0 then 'تلاش بیشتر' </formula>
                 <EnableUnderlaySection>false</EnableUnderlaySection>
                 <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
                 <BackgroundColor>-1</BackgroundColor>
+                <area-suppress>
+                  <EnableSuppress>false</EnableSuppress>
+                </area-suppress>
               </format>
               <object>
                 <Name>Box2</Name>
@@ -4118,6 +4400,9 @@ else if{spRpt_StdKarnameDoreh1.acp}=0 then 'تلاش بیشتر' </formula>
                 <EnableUnderlaySection>false</EnableUnderlaySection>
                 <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
                 <BackgroundColor>-1</BackgroundColor>
+                <area-suppress>
+                  <EnableSuppress>false</EnableSuppress>
+                </area-suppress>
               </format>
               <object>
                 <Name>MarkDoreh1</Name>
@@ -4144,7 +4429,18 @@ else if{spRpt_StdKarnameDoreh1.acp}=0 then 'تلاش بیشتر' </formula>
                   <BottomLineStyle>NoLine</BottomLineStyle>
                 </border>
                 <source name="MarkDoreh" formula="{@MarkDoreh}" kind="FormulaField" />
-                <number />
+                <number>
+                  <DecimalPlaces>2</DecimalPlaces>
+                  <EnableUseLeadZero>true</EnableUseLeadZero>
+                  <NegativeFormat>crNegativeTypeLeadingMinus</NegativeFormat>
+                  <RoundingFormat>crRoundingTypeRoundToHundredth</RoundingFormat>
+                  <EnableSuppressIfZero>false</EnableSuppressIfZero>
+                  <ThousandsSeparator>true</ThousandsSeparator>
+                  <ThousandSymbol>,</ThousandSymbol>
+                  <DecimalSymbol>/</DecimalSymbol>
+                  <DisplayReverseSign>false</DisplayReverseSign>
+                  <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+                </number>
               </object>
               <object>
                 <Name>gClass1</Name>
@@ -4171,7 +4467,18 @@ else if{spRpt_StdKarnameDoreh1.acp}=0 then 'تلاش بیشتر' </formula>
                   <BottomLineStyle>NoLine</BottomLineStyle>
                 </border>
                 <source name="gPaye" formula="{@gPaye}" kind="FormulaField" />
-                <number />
+                <number>
+                  <DecimalPlaces>0</DecimalPlaces>
+                  <EnableUseLeadZero>true</EnableUseLeadZero>
+                  <NegativeFormat>crNegativeTypeBracketed</NegativeFormat>
+                  <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+                  <EnableSuppressIfZero>false</EnableSuppressIfZero>
+                  <ThousandsSeparator>false</ThousandsSeparator>
+                  <ThousandSymbol>,</ThousandSymbol>
+                  <DecimalSymbol>.</DecimalSymbol>
+                  <DisplayReverseSign>false</DisplayReverseSign>
+                  <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+                </number>
               </object>
               <object>
                 <Name>Line1</Name>
@@ -4263,6 +4570,9 @@ else if{spRpt_StdKarnameDoreh1.acp}=0 then 'تلاش بیشتر' </formula>
                 <EnableUnderlaySection>false</EnableUnderlaySection>
                 <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
                 <BackgroundColor>-1</BackgroundColor>
+                <area-suppress>
+                  <EnableSuppress>false</EnableSuppress>
+                </area-suppress>
               </format>
             </section>
             <section name="ReportFooterSection1" kind="ReportFooter" height="676">
@@ -4274,6 +4584,9 @@ else if{spRpt_StdKarnameDoreh1.acp}=0 then 'تلاش بیشتر' </formula>
                 <EnableUnderlaySection>false</EnableUnderlaySection>
                 <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
                 <BackgroundColor>-1</BackgroundColor>
+                <area-suppress>
+                  <EnableSuppress>false</EnableSuppress>
+                </area-suppress>
               </format>
               <object>
                 <Name>PageNumber1</Name>
@@ -4300,7 +4613,18 @@ else if{spRpt_StdKarnameDoreh1.acp}=0 then 'تلاش بیشتر' </formula>
                   <BottomLineStyle>NoLine</BottomLineStyle>
                 </border>
                 <source name="PageNumber" formula="PageNumber" kind="SpecialVarField" />
-                <number />
+                <number>
+                  <DecimalPlaces>0</DecimalPlaces>
+                  <EnableUseLeadZero>true</EnableUseLeadZero>
+                  <NegativeFormat>crNegativeTypeLeadingMinus</NegativeFormat>
+                  <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+                  <EnableSuppressIfZero>false</EnableSuppressIfZero>
+                  <ThousandsSeparator>true</ThousandsSeparator>
+                  <ThousandSymbol>,</ThousandSymbol>
+                  <DecimalSymbol>.</DecimalSymbol>
+                  <DisplayReverseSign>false</DisplayReverseSign>
+                  <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+                </number>
               </object>
             </section>
           </sections>
@@ -4311,7 +4635,7 @@ else if{spRpt_StdKarnameDoreh1.acp}=0 then 'تلاش بیشتر' </formula>
         </links>
       </object>
     </section>
-    <section name="GroupFooterSection7" kind="GroupFooter" height="25">
+    <section name="GroupFooterSection7" kind="GroupFooter" height="25" group-level="1">
       <format>
         <EnableSuppress>false</EnableSuppress>
         <EnableNewPageAfter>false</EnableNewPageAfter>
@@ -4320,9 +4644,12 @@ else if{spRpt_StdKarnameDoreh1.acp}=0 then 'تلاش بیشتر' </formula>
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
     </section>
-    <section name="GroupFooterSection4" kind="GroupFooter" height="1107">
+    <section name="GroupFooterSection4" kind="GroupFooter" height="1107" group-level="1">
       <format>
         <EnableSuppress>false</EnableSuppress>
         <EnableNewPageAfter>false</EnableNewPageAfter>
@@ -4331,6 +4658,9 @@ else if{spRpt_StdKarnameDoreh1.acp}=0 then 'تلاش بیشتر' </formula>
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
       <object>
         <Name>foter11</Name>
@@ -4545,7 +4875,7 @@ else if{spRpt_StdKarnameDoreh1.acp}=0 then 'تلاش بیشتر' </formula>
         <number />
       </object>
     </section>
-    <section name="GroupFooterSection1" kind="GroupFooter" height="220">
+    <section name="GroupFooterSection1" kind="GroupFooter" height="220" group-level="0">
       <format>
         <EnableSuppress>true</EnableSuppress>
         <EnableNewPageAfter>false</EnableNewPageAfter>
@@ -4554,6 +4884,9 @@ else if{spRpt_StdKarnameDoreh1.acp}=0 then 'تلاش بیشتر' </formula>
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
     </section>
     <section name="Section4" kind="ReportFooter" height="220">
@@ -4565,6 +4898,9 @@ else if{spRpt_StdKarnameDoreh1.acp}=0 then 'تلاش بیشتر' </formula>
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
     </section>
     <section name="Section5" kind="PageFooter" height="676">
@@ -4576,6 +4912,9 @@ else if{spRpt_StdKarnameDoreh1.acp}=0 then 'تلاش بیشتر' </formula>
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
       <object>
         <Name>PageNumber1</Name>
@@ -4602,7 +4941,18 @@ else if{spRpt_StdKarnameDoreh1.acp}=0 then 'تلاش بیشتر' </formula>
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="PageNumber" formula="PageNumber" kind="SpecialVarField" />
-        <number />
+        <number>
+          <DecimalPlaces>0</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeLeadingMinus</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>true</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>.</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
     </section>
   </sections>

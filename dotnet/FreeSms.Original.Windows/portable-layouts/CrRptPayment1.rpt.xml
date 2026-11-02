@@ -156,6 +156,9 @@ else {sp_RptPayment.Pay_Fee}-({@fee1}+{@fee2}+{@fee3}+{@fee4}+{@fee5}+{@fee6}+{@
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
     </section>
     <section name="PageHeaderSection2" kind="PageHeader" height="480">
@@ -167,6 +170,9 @@ else {sp_RptPayment.Pay_Fee}-({@fee1}+{@fee2}+{@fee3}+{@fee4}+{@fee5}+{@fee6}+{@
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
     </section>
     <section name="PageHeaderSection1" kind="PageHeader" height="860">
@@ -178,6 +184,9 @@ else {sp_RptPayment.Pay_Fee}-({@fee1}+{@fee2}+{@fee3}+{@fee4}+{@fee5}+{@fee6}+{@
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
       <object>
         <Name>class1</Name>
@@ -243,6 +252,9 @@ else {sp_RptPayment.Pay_Fee}-({@fee1}+{@fee2}+{@fee3}+{@fee4}+{@fee5}+{@fee6}+{@
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
       <object>
         <Name>Box2</Name>
@@ -973,7 +985,7 @@ else {sp_RptPayment.Pay_Fee}-({@fee1}+{@fee2}+{@fee3}+{@fee4}+{@fee5}+{@fee6}+{@
         </border>
       </object>
     </section>
-    <section name="GroupHeaderSection1" kind="GroupHeader" height="230">
+    <section name="GroupHeaderSection1" kind="GroupHeader" height="230" group-level="0">
       <format>
         <EnableSuppress>true</EnableSuppress>
         <EnableNewPageAfter>false</EnableNewPageAfter>
@@ -982,6 +994,9 @@ else {sp_RptPayment.Pay_Fee}-({@fee1}+{@fee2}+{@fee3}+{@fee4}+{@fee5}+{@fee6}+{@
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
       <object>
         <Name>GroupNamexPaye1</Name>
@@ -1011,7 +1026,7 @@ else {sp_RptPayment.Pay_Fee}-({@fee1}+{@fee2}+{@fee3}+{@fee4}+{@fee5}+{@fee6}+{@
         <number />
       </object>
     </section>
-    <section name="GroupHeaderSection2" kind="GroupHeader" height="230">
+    <section name="GroupHeaderSection2" kind="GroupHeader" height="230" group-level="1">
       <format>
         <EnableSuppress>true</EnableSuppress>
         <EnableNewPageAfter>false</EnableNewPageAfter>
@@ -1020,6 +1035,9 @@ else {sp_RptPayment.Pay_Fee}-({@fee1}+{@fee2}+{@fee3}+{@fee4}+{@fee5}+{@fee6}+{@
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
       <object>
         <Name>GroupNamexClass1</Name>
@@ -1058,6 +1076,9 @@ else {sp_RptPayment.Pay_Fee}-({@fee1}+{@fee2}+{@fee3}+{@fee4}+{@fee5}+{@fee6}+{@
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
       <object>
         <Name>Line11</Name>
@@ -1137,7 +1158,18 @@ else {sp_RptPayment.Pay_Fee}-({@fee1}+{@fee2}+{@fee3}+{@fee4}+{@fee5}+{@fee6}+{@
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="SumFee" formula="{@SumFee}" kind="FormulaField" />
-        <number />
+        <number>
+          <DecimalPlaces>0</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeBracketed</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>false</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>.</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>fee11</Name>
@@ -1164,7 +1196,18 @@ else {sp_RptPayment.Pay_Fee}-({@fee1}+{@fee2}+{@fee3}+{@fee4}+{@fee5}+{@fee6}+{@
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="fee1" formula="{@fee1}" kind="FormulaField" />
-        <number />
+        <number>
+          <DecimalPlaces>0</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeBracketed</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>false</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>.</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>fee21</Name>
@@ -1191,7 +1234,18 @@ else {sp_RptPayment.Pay_Fee}-({@fee1}+{@fee2}+{@fee3}+{@fee4}+{@fee5}+{@fee6}+{@
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="fee2" formula="{@fee2}" kind="FormulaField" />
-        <number />
+        <number>
+          <DecimalPlaces>0</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeBracketed</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>false</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>.</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>fee31</Name>
@@ -1218,7 +1272,18 @@ else {sp_RptPayment.Pay_Fee}-({@fee1}+{@fee2}+{@fee3}+{@fee4}+{@fee5}+{@fee6}+{@
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="fee3" formula="{@fee3}" kind="FormulaField" />
-        <number />
+        <number>
+          <DecimalPlaces>0</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeBracketed</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>false</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>.</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>fee41</Name>
@@ -1245,7 +1310,18 @@ else {sp_RptPayment.Pay_Fee}-({@fee1}+{@fee2}+{@fee3}+{@fee4}+{@fee5}+{@fee6}+{@
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="fee4" formula="{@fee4}" kind="FormulaField" />
-        <number />
+        <number>
+          <DecimalPlaces>0</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeBracketed</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>false</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>.</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>fee51</Name>
@@ -1272,7 +1348,18 @@ else {sp_RptPayment.Pay_Fee}-({@fee1}+{@fee2}+{@fee3}+{@fee4}+{@fee5}+{@fee6}+{@
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="fee5" formula="{@fee5}" kind="FormulaField" />
-        <number />
+        <number>
+          <DecimalPlaces>0</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeBracketed</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>false</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>.</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>fee61</Name>
@@ -1299,7 +1386,18 @@ else {sp_RptPayment.Pay_Fee}-({@fee1}+{@fee2}+{@fee3}+{@fee4}+{@fee5}+{@fee6}+{@
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="fee6" formula="{@fee6}" kind="FormulaField" />
-        <number />
+        <number>
+          <DecimalPlaces>0</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeBracketed</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>false</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>.</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>fee71</Name>
@@ -1326,7 +1424,18 @@ else {sp_RptPayment.Pay_Fee}-({@fee1}+{@fee2}+{@fee3}+{@fee4}+{@fee5}+{@fee6}+{@
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="fee7" formula="{@fee7}" kind="FormulaField" />
-        <number />
+        <number>
+          <DecimalPlaces>0</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeBracketed</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>false</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>.</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>fee81</Name>
@@ -1353,7 +1462,18 @@ else {sp_RptPayment.Pay_Fee}-({@fee1}+{@fee2}+{@fee3}+{@fee4}+{@fee5}+{@fee6}+{@
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="fee8" formula="{@fee8}" kind="FormulaField" />
-        <number />
+        <number>
+          <DecimalPlaces>0</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeBracketed</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>false</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>.</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>fee91</Name>
@@ -1380,7 +1500,18 @@ else {sp_RptPayment.Pay_Fee}-({@fee1}+{@fee2}+{@fee3}+{@fee4}+{@fee5}+{@fee6}+{@
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="fee9" formula="{@fee9}" kind="FormulaField" />
-        <number />
+        <number>
+          <DecimalPlaces>0</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeBracketed</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>false</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>.</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>Payfee1</Name>
@@ -1407,7 +1538,18 @@ else {sp_RptPayment.Pay_Fee}-({@fee1}+{@fee2}+{@fee3}+{@fee4}+{@fee5}+{@fee6}+{@
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="Pay_fee" formula="{@Pay_fee}" kind="FormulaField" />
-        <number />
+        <number>
+          <DecimalPlaces>0</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeBracketed</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>false</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>.</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>RTotal01</Name>
@@ -1434,10 +1576,21 @@ else {sp_RptPayment.Pay_Fee}-({@fee1}+{@fee2}+{@fee3}+{@fee4}+{@fee5}+{@fee6}+{@
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="RTotal0" formula="{#RTotal0}" kind="RunningTotalField" />
-        <number />
+        <number>
+          <DecimalPlaces>0</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeBracketed</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>false</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>.</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
     </section>
-    <section name="GroupFooterSection2" kind="GroupFooter" height="359">
+    <section name="GroupFooterSection2" kind="GroupFooter" height="359" group-level="1">
       <format>
         <EnableSuppress>false</EnableSuppress>
         <EnableNewPageAfter>false</EnableNewPageAfter>
@@ -1446,6 +1599,9 @@ else {sp_RptPayment.Pay_Fee}-({@fee1}+{@fee2}+{@fee3}+{@fee4}+{@fee5}+{@fee6}+{@
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
       <object>
         <Name>Line15</Name>
@@ -1498,7 +1654,18 @@ else {sp_RptPayment.Pay_Fee}-({@fee1}+{@fee2}+{@fee3}+{@fee4}+{@fee5}+{@fee6}+{@
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="sum-sumFee" formula="{@sum-sumFee}" kind="FormulaField" />
-        <number />
+        <number>
+          <DecimalPlaces>0</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeBracketed</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>true</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>.</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>sumfee11</Name>
@@ -1525,7 +1692,18 @@ else {sp_RptPayment.Pay_Fee}-({@fee1}+{@fee2}+{@fee3}+{@fee4}+{@fee5}+{@fee6}+{@
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="sumfee1" formula="{@sumfee1}" kind="FormulaField" />
-        <number />
+        <number>
+          <DecimalPlaces>0</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeBracketed</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>true</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>.</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>sumfee21</Name>
@@ -1552,7 +1730,18 @@ else {sp_RptPayment.Pay_Fee}-({@fee1}+{@fee2}+{@fee3}+{@fee4}+{@fee5}+{@fee6}+{@
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="sumfee2" formula="{@sumfee2}" kind="FormulaField" />
-        <number />
+        <number>
+          <DecimalPlaces>0</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeBracketed</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>true</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>.</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>sumfee31</Name>
@@ -1579,7 +1768,18 @@ else {sp_RptPayment.Pay_Fee}-({@fee1}+{@fee2}+{@fee3}+{@fee4}+{@fee5}+{@fee6}+{@
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="sumfee3" formula="{@sumfee3}" kind="FormulaField" />
-        <number />
+        <number>
+          <DecimalPlaces>0</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeBracketed</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>true</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>.</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>sumfee41</Name>
@@ -1606,7 +1806,18 @@ else {sp_RptPayment.Pay_Fee}-({@fee1}+{@fee2}+{@fee3}+{@fee4}+{@fee5}+{@fee6}+{@
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="sumfee4" formula="{@sumfee4}" kind="FormulaField" />
-        <number />
+        <number>
+          <DecimalPlaces>0</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeBracketed</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>true</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>.</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>sumfee51</Name>
@@ -1633,7 +1844,18 @@ else {sp_RptPayment.Pay_Fee}-({@fee1}+{@fee2}+{@fee3}+{@fee4}+{@fee5}+{@fee6}+{@
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="sumfee5" formula="{@sumfee5}" kind="FormulaField" />
-        <number />
+        <number>
+          <DecimalPlaces>0</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeBracketed</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>true</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>.</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>sumfee61</Name>
@@ -1660,7 +1882,18 @@ else {sp_RptPayment.Pay_Fee}-({@fee1}+{@fee2}+{@fee3}+{@fee4}+{@fee5}+{@fee6}+{@
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="sumfee6" formula="{@sumfee6}" kind="FormulaField" />
-        <number />
+        <number>
+          <DecimalPlaces>0</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeBracketed</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>true</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>.</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>sumfee71</Name>
@@ -1687,7 +1920,18 @@ else {sp_RptPayment.Pay_Fee}-({@fee1}+{@fee2}+{@fee3}+{@fee4}+{@fee5}+{@fee6}+{@
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="sumfee7" formula="{@sumfee7}" kind="FormulaField" />
-        <number />
+        <number>
+          <DecimalPlaces>0</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeBracketed</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>true</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>.</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>sumfee81</Name>
@@ -1714,7 +1958,18 @@ else {sp_RptPayment.Pay_Fee}-({@fee1}+{@fee2}+{@fee3}+{@fee4}+{@fee5}+{@fee6}+{@
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="sumfee8" formula="{@sumfee8}" kind="FormulaField" />
-        <number />
+        <number>
+          <DecimalPlaces>0</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeBracketed</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>true</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>.</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>sumfee91</Name>
@@ -1741,7 +1996,18 @@ else {sp_RptPayment.Pay_Fee}-({@fee1}+{@fee2}+{@fee3}+{@fee4}+{@fee5}+{@fee6}+{@
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="sumfee9" formula="{@sumfee9}" kind="FormulaField" />
-        <number />
+        <number>
+          <DecimalPlaces>0</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeBracketed</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>true</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>.</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>sumPayfee1</Name>
@@ -1768,7 +2034,18 @@ else {sp_RptPayment.Pay_Fee}-({@fee1}+{@fee2}+{@fee3}+{@fee4}+{@fee5}+{@fee6}+{@
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="sumPay_fee" formula="{@sumPay_fee}" kind="FormulaField" />
-        <number />
+        <number>
+          <DecimalPlaces>0</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeBracketed</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>true</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>.</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>Text24</Name>
@@ -1797,7 +2074,7 @@ else {sp_RptPayment.Pay_Fee}-({@fee1}+{@fee2}+{@fee3}+{@fee4}+{@fee5}+{@fee6}+{@
         </border>
       </object>
     </section>
-    <section name="GroupFooterSection1" kind="GroupFooter" height="220">
+    <section name="GroupFooterSection1" kind="GroupFooter" height="220" group-level="0">
       <format>
         <EnableSuppress>true</EnableSuppress>
         <EnableNewPageAfter>false</EnableNewPageAfter>
@@ -1806,6 +2083,9 @@ else {sp_RptPayment.Pay_Fee}-({@fee1}+{@fee2}+{@fee3}+{@fee4}+{@fee5}+{@fee6}+{@
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
     </section>
     <section name="Section4" kind="ReportFooter" height="1369">
@@ -1817,6 +2097,9 @@ else {sp_RptPayment.Pay_Fee}-({@fee1}+{@fee2}+{@fee3}+{@fee4}+{@fee5}+{@fee6}+{@
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
     </section>
     <section name="Section5" kind="PageFooter" height="706">
@@ -1828,6 +2111,9 @@ else {sp_RptPayment.Pay_Fee}-({@fee1}+{@fee2}+{@fee3}+{@fee4}+{@fee5}+{@fee6}+{@
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
     </section>
   </sections>

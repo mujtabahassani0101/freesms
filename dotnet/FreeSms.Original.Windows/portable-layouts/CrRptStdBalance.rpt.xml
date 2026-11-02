@@ -104,6 +104,9 @@ else if {?type}=2 and ({sp_RptPaymentBalance.Fasl}=9) then 'ماه '+'قوس'</f
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
     </section>
     <section name="PageHeaderSection2" kind="PageHeader" height="135">
@@ -115,6 +118,9 @@ else if {?type}=2 and ({sp_RptPaymentBalance.Fasl}=9) then 'ماه '+'قوس'</f
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
     </section>
     <section name="PageHeaderSection1" kind="PageHeader" height="860">
@@ -126,6 +132,9 @@ else if {?type}=2 and ({sp_RptPaymentBalance.Fasl}=9) then 'ماه '+'قوس'</f
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
     </section>
     <section name="Section2" kind="PageHeader" height="450">
@@ -137,6 +146,9 @@ else if {?type}=2 and ({sp_RptPaymentBalance.Fasl}=9) then 'ماه '+'قوس'</f
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
       <object>
         <Name>Text4</Name>
@@ -191,7 +203,7 @@ else if {?type}=2 and ({sp_RptPaymentBalance.Fasl}=9) then 'ماه '+'قوس'</f
         </border>
       </object>
     </section>
-    <section name="GroupHeaderSection1" kind="GroupHeader" height="230">
+    <section name="GroupHeaderSection1" kind="GroupHeader" height="230" group-level="0">
       <format>
         <EnableSuppress>true</EnableSuppress>
         <EnableNewPageAfter>false</EnableNewPageAfter>
@@ -200,9 +212,12 @@ else if {?type}=2 and ({sp_RptPaymentBalance.Fasl}=9) then 'ماه '+'قوس'</f
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
     </section>
-    <section name="GroupHeaderSection2" kind="GroupHeader" height="230">
+    <section name="GroupHeaderSection2" kind="GroupHeader" height="230" group-level="1">
       <format>
         <EnableSuppress>true</EnableSuppress>
         <EnableNewPageAfter>false</EnableNewPageAfter>
@@ -211,6 +226,9 @@ else if {?type}=2 and ({sp_RptPaymentBalance.Fasl}=9) then 'ماه '+'قوس'</f
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
     </section>
     <section name="Section3" kind="Detail" height="3135">
@@ -222,6 +240,9 @@ else if {?type}=2 and ({sp_RptPaymentBalance.Fasl}=9) then 'ماه '+'قوس'</f
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
       <object>
         <Name>Text19</Name>
@@ -411,7 +432,7 @@ else if {?type}=2 and ({sp_RptPaymentBalance.Fasl}=9) then 'ماه '+'قوس'</f
         <number />
       </object>
     </section>
-    <section name="GroupFooterSection2" kind="GroupFooter" height="359">
+    <section name="GroupFooterSection2" kind="GroupFooter" height="359" group-level="1">
       <format>
         <EnableSuppress>true</EnableSuppress>
         <EnableNewPageAfter>false</EnableNewPageAfter>
@@ -420,9 +441,12 @@ else if {?type}=2 and ({sp_RptPaymentBalance.Fasl}=9) then 'ماه '+'قوس'</f
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
     </section>
-    <section name="GroupFooterSection1" kind="GroupFooter" height="220">
+    <section name="GroupFooterSection1" kind="GroupFooter" height="220" group-level="0">
       <format>
         <EnableSuppress>true</EnableSuppress>
         <EnableNewPageAfter>false</EnableNewPageAfter>
@@ -431,6 +455,9 @@ else if {?type}=2 and ({sp_RptPaymentBalance.Fasl}=9) then 'ماه '+'قوس'</f
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
     </section>
     <section name="Section4" kind="ReportFooter" height="1369">
@@ -442,6 +469,9 @@ else if {?type}=2 and ({sp_RptPaymentBalance.Fasl}=9) then 'ماه '+'قوس'</f
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
     </section>
     <section name="Section5" kind="PageFooter" height="706">
@@ -453,6 +483,9 @@ else if {?type}=2 and ({sp_RptPaymentBalance.Fasl}=9) then 'ماه '+'قوس'</f
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
     </section>
   </sections>

@@ -1,4 +1,4 @@
-﻿<?xml version='1.0' encoding='utf-8'?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <report type="school_Af.Rpt.CrListBooksRengMark1">
   <print>
     <PaperOrientation>DefaultPaperOrientation</PaperOrientation>
@@ -9,7 +9,7 @@
     <topMargin>-2147483648</topMargin>
     <bottomMargin>-2147483648</bottomMargin>
   </print>
-  <record-selection />
+  <record-selection></record-selection>
   <database>
     <table name="sp_List_books_RengMark">
       <field name="xStudent" type="Int32sField" />
@@ -85,6 +85,9 @@ else if{sp_List_books_RengMark.mark}&lt;=40 then 'الف'
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
     </section>
     <section name="PageHeaderSection1" kind="PageHeader" height="519">
@@ -96,6 +99,9 @@ else if{sp_List_books_RengMark.mark}&lt;=40 then 'الف'
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
       <object>
         <Name>heder11</Name>
@@ -134,6 +140,9 @@ else if{sp_List_books_RengMark.mark}&lt;=40 then 'الف'
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
       <object>
         <Name>paye1</Name>
@@ -322,7 +331,7 @@ else if{sp_List_books_RengMark.mark}&lt;=40 then 'الف'
         <number />
       </object>
     </section>
-    <section name="GroupHeaderSection1" kind="GroupHeader" height="226">
+    <section name="GroupHeaderSection1" kind="GroupHeader" height="226" group-level="0">
       <format>
         <EnableSuppress>true</EnableSuppress>
         <EnableNewPageAfter>false</EnableNewPageAfter>
@@ -331,6 +340,9 @@ else if{sp_List_books_RengMark.mark}&lt;=40 then 'الف'
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
       <object>
         <Name>GroupNamegroup1</Name>
@@ -369,9 +381,12 @@ else if{sp_List_books_RengMark.mark}&lt;=40 then 'الف'
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
     </section>
-    <section name="GroupFooterSection1" kind="GroupFooter" height="3655">
+    <section name="GroupFooterSection1" kind="GroupFooter" height="3655" group-level="0">
       <format>
         <EnableSuppress>false</EnableSuppress>
         <EnableNewPageAfter>false</EnableNewPageAfter>
@@ -380,6 +395,9 @@ else if{sp_List_books_RengMark.mark}&lt;=40 then 'الف'
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
       <object>
         <Name>CrossTab1</Name>
@@ -403,7 +421,13 @@ else if{sp_List_books_RengMark.mark}&lt;=40 then 'الف'
           <TopLineStyle>NoLine</TopLineStyle>
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
-      <pivot operation="Count" field="{@xstudent}" subtotal-level="1" subtotal-label="جمع"><row>{@book}</row><row>{@Class}</row><column>{@statusM}</column><column>{@status}</column></pivot></object>
+        <pivot operation="Count" field="{@xstudent}" subtotal-level="1" subtotal-label="جمع">
+          <row>{@book}</row>
+          <row>{@Class}</row>
+          <column>{@statusM}</column>
+          <column>{@status}</column>
+        </pivot>
+      </object>
     </section>
     <section name="Section4" kind="ReportFooter" height="220">
       <format>
@@ -414,6 +438,9 @@ else if{sp_List_books_RengMark.mark}&lt;=40 then 'الف'
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
     </section>
     <section name="Section5" kind="PageFooter" height="676">
@@ -425,6 +452,9 @@ else if{sp_List_books_RengMark.mark}&lt;=40 then 'الف'
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
       <object>
         <Name>PageNumber1</Name>
@@ -451,7 +481,18 @@ else if{sp_List_books_RengMark.mark}&lt;=40 then 'الف'
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="PageNumber" formula="PageNumber" kind="SpecialVarField" />
-        <number />
+        <number>
+          <DecimalPlaces>0</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeLeadingMinus</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>true</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>.</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
     </section>
   </sections>

@@ -77,6 +77,9 @@ else if({spRpt_ListClassOftRoshd.grp})=4 then 'دانش آموزانی که بی
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
     </section>
     <section name="PageHeaderSection1" kind="PageHeader" height="996">
@@ -88,6 +91,9 @@ else if({spRpt_ListClassOftRoshd.grp})=4 then 'دانش آموزانی که بی
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
       <object>
         <Name>sch2</Name>
@@ -275,7 +281,7 @@ else if({spRpt_ListClassOftRoshd.grp})=4 then 'دانش آموزانی که بی
         </border>
       </object>
     </section>
-    <section name="GroupHeaderSection1" kind="GroupHeader" height="221">
+    <section name="GroupHeaderSection1" kind="GroupHeader" height="221" group-level="0">
       <format>
         <EnableSuppress>true</EnableSuppress>
         <EnableNewPageAfter>false</EnableNewPageAfter>
@@ -284,6 +290,9 @@ else if({spRpt_ListClassOftRoshd.grp})=4 then 'دانش آموزانی که بی
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
       <object>
         <Name>GroupNamegroup11</Name>
@@ -313,7 +322,7 @@ else if({spRpt_ListClassOftRoshd.grp})=4 then 'دانش آموزانی که بی
         <number />
       </object>
     </section>
-    <section name="GroupHeaderSection2" kind="GroupHeader" height="600">
+    <section name="GroupHeaderSection2" kind="GroupHeader" height="600" group-level="1">
       <format>
         <EnableSuppress>false</EnableSuppress>
         <EnableNewPageAfter>false</EnableNewPageAfter>
@@ -322,6 +331,9 @@ else if({spRpt_ListClassOftRoshd.grp})=4 then 'دانش آموزانی که بی
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
       <object>
         <Name>hederGroup1</Name>
@@ -351,7 +363,7 @@ else if({spRpt_ListClassOftRoshd.grp})=4 then 'دانش آموزانی که بی
         <number />
       </object>
     </section>
-    <section name="GroupHeaderSection3" kind="GroupHeader" height="675">
+    <section name="GroupHeaderSection3" kind="GroupHeader" height="675" group-level="1">
       <format>
         <EnableSuppress>false</EnableSuppress>
         <EnableNewPageAfter>false</EnableNewPageAfter>
@@ -360,6 +372,9 @@ else if({spRpt_ListClassOftRoshd.grp})=4 then 'دانش آموزانی که بی
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
       <object>
         <Name>Box3</Name>
@@ -817,6 +832,9 @@ else if({spRpt_ListClassOftRoshd.grp})=4 then 'دانش آموزانی که بی
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
       <object>
         <Name>fullName1</Name>
@@ -870,7 +888,18 @@ else if({spRpt_ListClassOftRoshd.grp})=4 then 'دانش آموزانی که بی
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="mark1" formula="{@mark1}" kind="FormulaField" />
-        <number />
+        <number>
+          <DecimalPlaces>2</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeLeadingMinus</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToHundredth</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>true</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>/</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>gsch11</Name>
@@ -897,7 +926,18 @@ else if({spRpt_ListClassOftRoshd.grp})=4 then 'دانش آموزانی که بی
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="gsch1" formula="{@gsch1}" kind="FormulaField" />
-        <number />
+        <number>
+          <DecimalPlaces>0</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeBracketed</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>false</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>.</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>mark21</Name>
@@ -924,7 +964,18 @@ else if({spRpt_ListClassOftRoshd.grp})=4 then 'دانش آموزانی که بی
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="mark2" formula="{@mark2}" kind="FormulaField" />
-        <number />
+        <number>
+          <DecimalPlaces>2</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeLeadingMinus</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToHundredth</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>true</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>/</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>Line1</Name>
@@ -977,7 +1028,18 @@ else if({spRpt_ListClassOftRoshd.grp})=4 then 'دانش آموزانی که بی
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
         <source name="gsch2" formula="{@gsch2}" kind="FormulaField" />
-        <number />
+        <number>
+          <DecimalPlaces>0</DecimalPlaces>
+          <EnableUseLeadZero>true</EnableUseLeadZero>
+          <NegativeFormat>crNegativeTypeBracketed</NegativeFormat>
+          <RoundingFormat>crRoundingTypeRoundToUnit</RoundingFormat>
+          <EnableSuppressIfZero>false</EnableSuppressIfZero>
+          <ThousandsSeparator>false</ThousandsSeparator>
+          <ThousandSymbol>,</ThousandSymbol>
+          <DecimalSymbol>.</DecimalSymbol>
+          <DisplayReverseSign>false</DisplayReverseSign>
+          <ZeroValueString>&lt;Default Format&gt;</ZeroValueString>
+        </number>
       </object>
       <object>
         <Name>pname1</Name>
@@ -1007,7 +1069,7 @@ else if({spRpt_ListClassOftRoshd.grp})=4 then 'دانش آموزانی که بی
         <number />
       </object>
     </section>
-    <section name="GroupFooterSection2" kind="GroupFooter" height="280">
+    <section name="GroupFooterSection2" kind="GroupFooter" height="280" group-level="1">
       <format>
         <EnableSuppress>false</EnableSuppress>
         <EnableNewPageAfter>false</EnableNewPageAfter>
@@ -1016,9 +1078,12 @@ else if({spRpt_ListClassOftRoshd.grp})=4 then 'دانش آموزانی که بی
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
     </section>
-    <section name="GroupFooterSection1" kind="GroupFooter" height="220">
+    <section name="GroupFooterSection1" kind="GroupFooter" height="220" group-level="0">
       <format>
         <EnableSuppress>true</EnableSuppress>
         <EnableNewPageAfter>false</EnableNewPageAfter>
@@ -1027,6 +1092,9 @@ else if({spRpt_ListClassOftRoshd.grp})=4 then 'دانش آموزانی که بی
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
     </section>
     <section name="ReportFooterSection1" kind="ReportFooter" height="220">
@@ -1038,6 +1106,9 @@ else if({spRpt_ListClassOftRoshd.grp})=4 then 'دانش آموزانی که بی
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
     </section>
     <section name="PageFooterSection1" kind="PageFooter" height="663">
@@ -1049,6 +1120,9 @@ else if({spRpt_ListClassOftRoshd.grp})=4 then 'دانش آموزانی که بی
         <EnableUnderlaySection>false</EnableUnderlaySection>
         <EnablePrintAtBottomOfPage>false</EnablePrintAtBottomOfPage>
         <BackgroundColor>-1</BackgroundColor>
+        <area-suppress>
+          <EnableSuppress>false</EnableSuppress>
+        </area-suppress>
       </format>
     </section>
   </sections>
