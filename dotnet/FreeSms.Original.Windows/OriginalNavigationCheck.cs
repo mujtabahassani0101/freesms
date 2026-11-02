@@ -23,9 +23,11 @@ internal static class OriginalNavigationCheck
     }
     internal static int Worker(string route)
     {
+        int workflowMarker = route.IndexOf("_workflow_", StringComparison.Ordinal);
+        string workflow = workflowMarker < 0 ? null : route.Substring(workflowMarker + 10);
         int marker = route.IndexOf("_report_", StringComparison.Ordinal);
         string reportId = marker < 0 ? null : route.Substring(marker + 8);
-        string routeVariable = marker < 0 ? route : route.Substring(0, marker);
+        string routeVariable = workflowMarker >= 0 ? route.Substring(0, workflowMarker) : marker < 0 ? route : route.Substring(0, marker);
         var builder = new SqlConnectionStringBuilder(Environment.GetEnvironmentVariable(WorkerConnection) ?? "");
         if (!builder.InitialCatalog.StartsWith("free_sms_ui_", StringComparison.Ordinal) || builder.ApplicationName != "FreeSMS.NavigationCheck" || !builder.DataSource.StartsWith(@"np:\\.\pipe\LOCALDB#", StringComparison.OrdinalIgnoreCase))
             throw new InvalidOperationException("Navigation probes require their isolated test database.");
@@ -59,7 +61,7 @@ internal static class OriginalNavigationCheck
             File.AppendAllText(workerLog, "CONSTRUCT" + Environment.NewLine);
             using var main = new asdb3(); // Do not show the main form or invoke its login Load handler.
             using var timer = new Timer { Interval = 300 };
-            bool started = false, previewClicked = false;
+            bool started = false, previewClicked = false, workflowRunning = false;
             timer.Tick += (sender, e) =>
             {
                 if (!started)
@@ -71,6 +73,16 @@ internal static class OriginalNavigationCheck
                     return;
                 }
                 var windows = Application.OpenForms.Cast<Form>().Where(form => form.Visible).ToArray();
+                if (workflow != null)
+                {
+                    if (workflowRunning) return;
+                    var form = windows.FirstOrDefault(item => item.GetType().Name == className);
+                    if (form == null) return;
+                    workflowRunning = true;
+                    OriginalWorkflowChecks.Run(workflow, form, database, message => File.AppendAllText(workerLog, message + Environment.NewLine));
+                    File.AppendAllText(workerLog, "SUCCESS original workflow actions and persisted effects" + Environment.NewLine);
+                    Environment.Exit(0);
+                }
                 if (reportId != null)
                 {
                     var selector = windows.FirstOrDefault(form => form.GetType().Name == className);
@@ -171,36 +183,71 @@ internal static class OriginalNavigationCheck
         if (chosen == 0) throw new InvalidOperationException("Report fixture has no compatible exam.");
         File.AppendAllText(workerLog, "PREPARED classes=1 exams=" + chosen + " term=" + term + Environment.NewLine);
     }
-    internal static int Run(bool reportActions = false)
+    private static bool CheckReportCatalog(Database database, string directory)
+    {
+        string path = Path.Combine(directory, "report-catalog.log");
+        int failures = 0, count = 0;
+        using var log = new StreamWriter(path);
+        foreach (var row in database.Query("SELECT id,Rpt,sp,sp2,subReport FROM tRpt ORDER BY id"))
+        {
+            count++;
+            string id = Convert.ToString(row["id"]), name = Convert.ToString(row["Rpt"]);
+            var report = asdd.a(name);
+            if (report == null || !File.Exists(Path.Combine(AppContext.BaseDirectory, "portable-layouts", report.ResourceName + ".xml")))
+            { failures++; log.WriteLine("FAILED report=" + id + " missing factory/template: " + name); }
+            else log.WriteLine("PASS report=" + id + " original factory and migrated template: " + name);
+            var procedures = new System.Collections.Generic.List<string>();
+            foreach (string column in new[] { "sp", "sp2" })
+                if (!string.IsNullOrWhiteSpace(Convert.ToString(row[column]))) procedures.Add(Convert.ToString(row[column]));
+            string children = Convert.ToString(row["subReport"]);
+            if (children.Length > 0)
+            {
+                var parts = children.Split(',');
+                if (parts.Length % 2 != 0) { failures++; log.WriteLine("FAILED report=" + id + " malformed subreport pairs"); }
+                for (int i=1; i<parts.Length; i+=2) procedures.Add(parts[i]);
+            }
+            foreach (string procedure in procedures.Distinct())
+            {
+                bool exists = database.Scalar("SELECT OBJECT_ID(@p0,'P')", new object[] {procedure}) != null;
+                if (!exists) failures++;
+                log.WriteLine((exists ? "PASS " : "FAILED ") + "report=" + id + " procedure=" + procedure);
+            }
+        }
+        log.WriteLine("RESULT reports=" + count + " failures=" + failures + "; dependency checks only, not execution proof");
+        return count > 0 && failures == 0;
+    }
+    internal static int Run(bool reportActions = false, bool businessActions = false)
     {
         string suffix = Guid.NewGuid().ToString("N");
         string instance = "FreeSmsUiCheck_" + suffix;
         var options = new DatabaseOptions(Path.Combine(Path.GetTempPath(), instance), instance, "free_sms_ui_" + suffix);
         string directory = Path.Combine(AppContext.BaseDirectory, "navigation-checks");
         Directory.CreateDirectory(directory);
-        string summary = Path.Combine(directory, reportActions ? "report-actions-summary.log" : "summary.log");
-        File.WriteAllText(summary, "Isolated native form Load/Shown responsiveness checks" + Environment.NewLine);
+        string summary = Path.Combine(directory, businessActions ? "business-actions-summary.log" : reportActions ? "report-actions-summary.log" : "summary.log");
+        File.WriteAllText(summary, (businessActions ? "Original school/discount workflow actions and persisted effects" : reportActions ? "Original report preview action and generated pages" : "Isolated native form Load/Shown responsiveness checks") + Environment.NewLine);
         try
         {
             var database = Bootstrapper.OpenAsync(AppContext.BaseDirectory, options).GetAwaiter().GetResult();
             Migrations.Apply(database, AppContext.BaseDirectory);
             var connection = new SqlConnectionStringBuilder(database.ConnectionString) { ApplicationName = "FreeSMS.NavigationCheck" };
+            bool reportCatalogValid = !reportActions || CheckReportCatalog(database, directory);
             var catalog = new FormCatalog(AppContext.BaseDirectory);
             var main = catalog.ByName["frmMain"];
             var targets = main.A("controls").Where(control => catalog.Target(main, control) is var target && target.HasValue && target.Value.S("class") != "asdb3" && target.Value.S("class") != "asda3")
                 .GroupBy(control => control.S("click")).Select(group => group.First()).OrderBy(control => control.S("name")).ToArray();
             if (reportActions) targets = targets.Where(control => catalog.Target(main, control).Value.S("class") == "asda0").ToArray();
+            if (businessActions) targets = targets.Where(control => new[] { "asdh", "asdac" }.Contains(catalog.Target(main, control).Value.S("class"))).ToArray();
             if (targets.Length == 0) throw new InvalidOperationException("No verification routes were discovered.");
             int passed = 0, interaction = 0;
             foreach (var control in targets)
             {
-                string route = control.S("variable") + (reportActions ? "_report_101" : "");
+                string route = control.S("variable") + (businessActions ? "_workflow_" + (catalog.Target(main, control).Value.S("class") == "asdh" ? "discount" : "school") : reportActions ? "_report_101" : "");
                 var target = catalog.Target(main, control).Value;
                 var start = new ProcessStartInfo(Environment.ProcessPath) { UseShellExecute = false, CreateNoWindow = true };
                 start.ArgumentList.Add("--verify-navigation-form"); start.ArgumentList.Add(route);
                 start.Environment[WorkerConnection] = connection.ConnectionString;
                 using var process = Process.Start(start);
-                bool finished = process.WaitForExit(reportActions ? 60000 : 10000);
+                bool finished = process.WaitForExit(reportActions || businessActions ? 60000 : 10000);
                 if (!finished) { process.Kill(true); process.WaitForExit(); }
                 bool success = finished && process.ExitCode == 0;
                 bool waiting = finished && process.ExitCode == 2;
@@ -209,7 +256,7 @@ internal static class OriginalNavigationCheck
                 File.AppendAllText(summary, (success ? "PASS " : waiting ? "INTERACTION " : finished ? "FAILED " : "TIMEOUT ") + route + " " + control.S("name") + " -> " + target.S("name") + Environment.NewLine);
             }
             File.AppendAllText(summary, "RESULT loaded=" + passed + ", interaction=" + interaction + ", total=" + targets.Length + Environment.NewLine);
-            return passed + interaction == targets.Length ? 0 : 1;
+            return reportCatalogValid && passed + interaction == targets.Length ? 0 : 1;
         }
         finally
         {

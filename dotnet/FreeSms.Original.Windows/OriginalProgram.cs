@@ -46,6 +46,7 @@ internal static class OriginalProgram
             Application.SetUnhandledExceptionMode(UnhandledExceptionMode.ThrowException);
             OriginalFonts.Initialize();
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
+            if (args.Contains("--verify-business-actions")) return OriginalNavigationCheck.Run(businessActions: true);
             if (args.Contains("--verify-report-actions")) return OriginalNavigationCheck.Run(true);
             if (args.Contains("--verify-navigation")) return OriginalNavigationCheck.Run();
             int navigation = Array.IndexOf(args, "--verify-navigation-form");

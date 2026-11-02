@@ -445,7 +445,9 @@ protected override void Dispose(bool A_0)
 					num = 3;
 					continue;
 				case 4:
-					asdcb.d(asdab.e(), CommandType.Text, " insert into  tTakhfif (name,comment) values(N'" + asdaj.b(k.Text) + "',N'" + n.Text + "' )");
+					asdcb.d(asdab.e(), CommandType.Text, "INSERT INTO tTakhfif (name,comment) VALUES (@name,@comment)",
+                        asdcb.a("@name", SqlDbType.NVarChar, asdaj.b(k.Text)),
+                        asdcb.a("@comment", SqlDbType.NVarChar, n.Text));
 					k.Text = "";
 					n.Text = "";
 					k.Focus();
@@ -456,7 +458,10 @@ protected override void Dispose(bool A_0)
 					continue;
 				case 2:
 					text = this.m_b.SelectedItems[0].GetRow().Cells["id"].Value.ToString();
-					asdcb.d(asdab.e(), CommandType.Text, " update tTakhfif set name=N'" + asdaj.b(k.Text) + "',comment=N'" + n.Text + "' where id=" + text);
+					asdcb.d(asdab.e(), CommandType.Text, "UPDATE tTakhfif SET name=@name,comment=@comment WHERE id=@id",
+                        asdcb.a("@name", SqlDbType.NVarChar, asdaj.b(k.Text)),
+                        asdcb.a("@comment", SqlDbType.NVarChar, n.Text),
+                        asdcb.a("@id", SqlDbType.Int, int.Parse(text)));
 					h.Visible = false;
 					num = 0;
 					continue;
