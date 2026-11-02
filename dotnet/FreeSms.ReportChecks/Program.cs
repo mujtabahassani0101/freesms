@@ -5,7 +5,7 @@ using FreeSms.Reports;
 int count = 0;
 void Check(bool result, string name) { if (!result) throw new Exception(name); count++; Console.WriteLine("PASS " + name); }
 var root = Path.GetFullPath(args.FirstOrDefault() ?? ".");
-int formulas = 0, reportCount = 0, rebuiltCount = 0, pictures = 0;
+int formulas = 0, reportCount = 0, rebuiltCount = 0, pictures = 0, studentPhotos = 0;
 foreach (var path in Directory.GetFiles(Path.Combine(root, "dotnet", "FreeSms.Original.Windows", "portable-layouts"), "*.xml"))
 {
     var xml = XDocument.Load(path);
@@ -37,6 +37,11 @@ foreach (var path in Directory.GetFiles(Path.Combine(root, "dotnet", "FreeSms.Or
     foreach (var report in xml.Descendants("report"))
     {
         var model = new ReportModel(report);
+        foreach(var photo in model.Sections.SelectMany(section=>section.Elements("object")).Where(obj=>obj.Element("Kind")?.Value=="BlobFieldObject"))
+        {
+            if(photo.Element("source")?.Attribute("formula")?.Value.EndsWith(".Student_img}")!=true)throw new Exception("Missing student photo binding: "+path);
+            studentPhotos++;
+        }
         foreach (var function in report.Element("custom-functions")?.Elements("function") ?? [])
         {
             var ctx = model.Context(new ReportInput(), null, []);
@@ -51,6 +56,7 @@ foreach (var path in Directory.GetFiles(Path.Combine(root, "dotnet", "FreeSms.Or
 Check(pictures == 58, "all 58 original report images are present");
 Check(rebuiltCount == 2, "evaluate both reconstructed catalog reports with disconnected sample data");
 Check(reportCount == 98, "evaluate every original report with disconnected sample data: " + reportCount);
+Check(studentPhotos==21,"all 21 student-photo placeholders bind the declared database image field");
 Check(formulas >= 3000, "parse every original report expression: " + formulas);
 foreach (string rebuilt in new[] {"CStdKarnameDorehByChart", "CStdKarnameDorehByChart_byBestStd_OneMark"})
 {
@@ -85,6 +91,12 @@ foreach (string rebuilt in new[] {"CStdKarnameDorehByChart", "CStdKarnameDorehBy
     Check(childRows.Length==3 && childRows.All(row=>Convert.ToInt32(row["xStudent"])==1)
         && childRows.Select(row=>Convert.ToDecimal(row["MarkDoreh"])).SequenceEqual(new[]{30m,40m,70m}),"rebuilt progress subreport keeps all three terms and excludes the other student: "+rebuilt);
 }
+
+var ambiguousPhoto=XElement.Parse("<report><database><table name='one'><field name='Student_img' type='BlobField'/></table><table name='two'><field name='Student_img' type='BlobField'/></table></database><sections><section><object><Name>Studentimg1</Name><Kind>BlobFieldObject</Kind></object></section></sections></report>");
+bool rejectedAmbiguousPhoto=false;
+try{_ = new ReportModel(ambiguousPhoto);}
+catch(InvalidDataException){rejectedAmbiguousPhoto=true;}
+Check(rejectedAmbiguousPhoto,"ambiguous student photo metadata cannot silently bind another table");
 
 var data = new DataTable(); data.Columns.Add("mark", typeof(decimal)); data.Columns.Add("group", typeof(int)); data.Columns.Add("comment", typeof(string));
 data.Rows.Add(19.995m, 1, "نام"); data.Rows.Add(15m, 1, DBNull.Value); data.Rows.Add(-1m, 2, "");

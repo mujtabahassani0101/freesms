@@ -58,7 +58,33 @@ for name, base in BASES.items():
     parameter = 'Pm-@xstudent'
     if not any(p.get('name').lower() == parameter.lower() for p in root.findall('./parameters/parameter')):
         ET.SubElement(root.find('parameters'), 'parameter', name=parameter, type='NumberField')
+    # Replace the cramped inherited identity header in these reconstructed cards.
+    # One growable multi-line field avoids clipping long student/father names.
+    add_formula(root, 'nativeIdentity', "'مکتب: ' + {?sch} + '\nشاگرد: ' + {spRpt_StdKarnameDoreh1.FName} + '\nولد / بنت: ' + {spRpt_StdKarnameDoreh1.LName} + '\nولدیت: ' + {spRpt_StdKarnameDoreh1.PName} + '\nکد متعلم: ' + ToText({spRpt_StdKarnameDoreh1.Code},0)")
+    class_exam = "'پایه: ' + {spRpt_StdKarnameDoreh1.Paye} + '    صنف: ' + {spRpt_StdKarnameDoreh1.Class} + '\nکارنامه: ' + {spRpt_StdKarnameDoreh1.Exam}"
+    if root.find("./formulas/formula[@name='DateFrom']") is not None:
+        class_exam += " + '\n' + {@DateFrom}"
+    add_formula(root, 'nativeClassExam', class_exam)
     sections = root.find('sections')
+    identity = sections.find("section[@name='GroupHeaderSection2']")
+    photo = deepcopy(next(obj for obj in identity.findall('object') if obj.findtext('Name') == 'Studentimg1'))
+    for obj in identity.findall('object'):
+        identity.remove(obj)
+    identity.set('height', '1700')
+    geometry(photo, 210, 100, 1100, 1400)
+    identity.append(photo)
+    details = label('{@nativeIdentity}', 'NativeStudentIdentity')
+    geometry(details, 1600, 20, 9000, 1600)
+    set_text(details.find('format'), 'EnableCanGrow', 'true')
+    identity.append(details)
+    position = list(sections).index(identity) + 1
+    for offset, (key, formula, size) in enumerate((('NativeClassExamHeader', '{@nativeClassExam}', 850), ('NativeAdditionalHeader', '{?heder2}', 450))):
+        band = ET.Element('section', name=key, kind='GroupHeader', height=str(size + 50), **{'group-level':'1'})
+        obj = label(formula, key + 'Text')
+        geometry(obj, 210, 0, 10390, size)
+        set_text(obj.find('format'), 'EnableCanGrow', 'true')
+        band.append(obj)
+        sections.insert(position + offset, band)
     # A recovered student footer can break before the new chart bands. Move the
     # student boundary after the complete reconstructed card instead.
     for band in sections.findall('section'):

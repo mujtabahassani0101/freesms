@@ -24,6 +24,14 @@ internal static class OriginalWorkflowChecks
         throw new InvalidOperationException("Saved row was not reloaded into the original grid.");
     }
     internal static string ReportStudentName => "شاگرد آزمایشی گزارش";
+    private static readonly System.Drawing.Color FirstPhotoColor=System.Drawing.Color.FromArgb(31,211,73);
+    private static readonly System.Drawing.Color SecondPhotoColor=System.Drawing.Color.FromArgb(211,31,173);
+    private static byte[] FixturePhoto(System.Drawing.Color color)
+    {
+        using var bitmap=new System.Drawing.Bitmap(16,16);
+        using(var graphics=System.Drawing.Graphics.FromImage(bitmap))graphics.Clear(color);
+        using var stream=new System.IO.MemoryStream();bitmap.Save(stream,System.Drawing.Imaging.ImageFormat.Png);return stream.ToArray();
+    }
     internal static void PrepareReportFixture(Database db)
     {
         // The parent creates this database; it never uses OriginalRuntime's user connection.
@@ -36,8 +44,8 @@ internal static class OriginalWorkflowChecks
         int teacher = entities.Save("teachers",new Record { ["fNamF"]="استاد", ["fNamL"]="آزمایشی", ["fEmail"]="", ["fPassword"]="" });
         school.AssignTeacher(classroom,book,teacher);
         int customExam=entities.Save("exams",new Record {["Name"]="میان‌دورهٔ آزمایشی",["NumExam"]=100,["DateFrom"]="1410/02/01",["DateTo"]="1410/02/02"});
-        school.SaveStudent(new Record { ["FName"]=ReportStudentName, ["LName"]=asdaj.b("پدر آزمایشی"), ["PName"]=asdaj.b("پدرکلان آزمایشی"), ["Code"]=5991001, ["NumberAsas"]=5991001, ["xPaye"]=1, ["xClass"]=classroom, ["Status"]=1, ["Jens"]=0, ["Fee1"]=1000 });
-        school.SaveStudent(new Record { ["FName"]="شاگرد محفوظ", ["LName"]="پدر دوم", ["PName"]="پدرکلان دوم", ["Code"]=5991002, ["NumberAsas"]=5991002, ["xPaye"]=1, ["xClass"]=classroom, ["Status"]=1, ["Jens"]=1, ["Fee1"]=700 });
+        school.SaveStudent(new Record { ["Student_img"]=FixturePhoto(FirstPhotoColor), ["FName"]=ReportStudentName, ["LName"]=asdaj.b("پدر آزمایشی"), ["PName"]=asdaj.b("پدرکلان آزمایشی"), ["Code"]=5991001, ["NumberAsas"]=5991001, ["xPaye"]=1, ["xClass"]=classroom, ["Status"]=1, ["Jens"]=0, ["Fee1"]=1000 });
+        school.SaveStudent(new Record { ["Student_img"]=FixturePhoto(SecondPhotoColor), ["FName"]="شاگرد محفوظ", ["LName"]="پدر دوم", ["PName"]="پدرکلان دوم", ["Code"]=5991002, ["NumberAsas"]=5991002, ["xPaye"]=1, ["xClass"]=classroom, ["Status"]=1, ["Jens"]=1, ["Fee1"]=700 });
         foreach (var exam in db.Query("SELECT id,term FROM tExam WHERE xYear=1410 AND term IN(0,1,2)"))
             foreach (int code in new[] {5991001,5991002})
             {
@@ -79,6 +87,12 @@ internal static class OriginalWorkflowChecks
         var expected = database.Query("SELECT id,FName FROM tStudent WHERE Code=5991001").Single();
         bool found = input != null && input.Data != null && input.Data.Tables.Cast<System.Data.DataTable>().Any(table => table.Columns.Contains("xStudent") && table.Columns.Contains("FName") && table.Rows.Cast<System.Data.DataRow>().Any(row => Convert.ToInt32(row["xStudent"]) == Convert.ToInt32(expected["id"]) && Convert.ToString(row["FName"]) == Convert.ToString(expected["FName"])));
         Require(found,"Report preview did not receive the fixture student's actual database values.");
+        var model=(FreeSms.Reports.ReportModel)typeof(FreeSms.NativeControls.PortableReportViewer).GetField("model",BindingFlags.Instance|BindingFlags.NonPublic).GetValue(viewer);
+        if(model.Sections.SelectMany(section=>section.Elements("object")).Any(obj=>obj.Element("Kind")?.Value=="BlobFieldObject"))
+        {
+            var photo=new SchoolService(database,new Session(1410)).StudentImage(Convert.ToInt32(expected["id"]));
+            Require(photo!=null && input.Data.Tables.Cast<System.Data.DataTable>().Any(table=>table.Columns.Contains("Student_img") && table.Columns.Contains("xStudent") && table.Rows.Cast<System.Data.DataRow>().Any(row=>Convert.ToInt32(row["xStudent"])==Convert.ToInt32(expected["id"]) && row["Student_img"] is byte[] bytes && bytes.SequenceEqual(photo))),"Actual report input did not preserve the selected student's persisted photo bytes.");
+        }
         if(input.Subreports.TryGetValue("Sub1",out var progress))
         {
             var actual=progress.Data.Tables[0].Rows.Cast<System.Data.DataRow>().Where(row=>Convert.ToInt32(row["xStudent"])==Convert.ToInt32(expected["id"])).ToArray();
@@ -90,7 +104,22 @@ internal static class OriginalWorkflowChecks
     {
         var document = (FreeSms.NativeControls.PortableReportDocument)typeof(FreeSms.NativeControls.PortableReportViewer).GetField("document",BindingFlags.Instance|BindingFlags.NonPublic).GetValue(viewer);
         Require(document.PageCount>0 && document.PageCount<=20,"Small report fixture produced an invalid page count.");
-        for (int page=0; page<document.PageCount; page++) document.SavePageImage(System.IO.Path.Combine(directory,scenario+"-page-"+(page+1)+".png"),page,100);
+        var model=(FreeSms.Reports.ReportModel)typeof(FreeSms.NativeControls.PortableReportViewer).GetField("model",BindingFlags.Instance|BindingFlags.NonPublic).GetValue(viewer);
+        bool photos=model.Sections.SelectMany(section=>section.Elements("object")).Any(obj=>obj.Element("Kind")?.Value=="BlobFieldObject");
+        int firstPhoto=0,secondPhoto=0;
+        for(int page=0;page<document.PageCount;page++)
+        {
+            string path=System.IO.Path.Combine(directory,scenario+"-page-"+(page+1)+".png");document.SavePageImage(path,page,100);
+            if(!photos)continue;
+            using var bitmap=new System.Drawing.Bitmap(path);
+            for(int y=0;y<bitmap.Height;y+=4)for(int x=0;x<bitmap.Width;x+=4)
+            {
+                int pixel=bitmap.GetPixel(x,y).ToArgb();
+                if(pixel==FirstPhotoColor.ToArgb())firstPhoto++;
+                if(pixel==SecondPhotoColor.ToArgb())secondPhoto++;
+            }
+        }
+        if(photos)Require(firstPhoto>50 && secondPhoto>50,"Rendered report pages omitted or mixed the two students' persisted photos.");
     }
     internal static void Run(string scenario, Form form, Database db, Action<string> log)
     {
@@ -332,6 +361,9 @@ internal static class OriginalWorkflowChecks
         Require(Convert.ToInt32(db.Scalar("SELECT COUNT(*) FROM tStudent")) == before-1,"Student delete modified unrelated records.");
         Require(Convert.ToString(db.Scalar("SELECT FName FROM tStudent WHERE Code=5991002"))=="شاگرد محفوظ", "Deletion modified the other student's identity.");
         Require(Convert.ToInt32(db.Scalar("SELECT COUNT(*) FROM tYear_Student y JOIN tStudent s ON s.id=y.xStudent WHERE s.Code=5991002 AND y.xYear=1410"))==1, "Deletion removed another student's enrolment.");
+        Require(Convert.ToInt32(db.Scalar("SELECT COUNT(*) FROM tStudentImg WHERE xStudent=@p0",new object[]{id}))==0,"Student deletion left the selected photo behind.");
+        int peer=Convert.ToInt32(db.Scalar("SELECT id FROM tStudent WHERE Code=5991002"));
+        Require(new SchoolService(db,new Session(1410)).StudentImage(peer)?.SequenceEqual(FixturePhoto(SecondPhotoColor))==true,"Student deletion changed the other student's photo.");
         log("PASS original student deletion buttons preserve the other student and complete against the supplied database edition");
     }
     private static void School(Form form, Database db, Action<string> log)

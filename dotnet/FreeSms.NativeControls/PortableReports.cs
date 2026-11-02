@@ -191,7 +191,17 @@ namespace FreeSms.NativeControls
                     object value = source == null ? obj.Element("Text")?.Value : model.Evaluate((string)source.Attribute("formula") ?? "", context);
                     if (kind == "BlobFieldObject")
                     {
-                        if (value is byte[] bytes) { using var image = DataDynamics.ActiveReports.Rpx.Image(bytes); graphics.DrawImage(image, rect); }
+                        if (value is byte[] bytes && bytes.Length>0)
+                        {
+                            try {using var image=DataDynamics.ActiveReports.Rpx.Image(bytes);graphics.DrawImage(image,rect);}
+                            catch(InvalidDataException)
+                            {
+                                // One damaged student photo must not prevent the report.
+                                graphics.DrawRectangle(Pens.Gray,rect.X,rect.Y,rect.Width,rect.Height);
+                                graphics.DrawLine(Pens.Gray,rect.Left,rect.Top,rect.Right,rect.Bottom);
+                                graphics.DrawLine(Pens.Gray,rect.Left,rect.Bottom,rect.Right,rect.Top);
+                            }
+                        }
                         continue;
                     }
                     string text = TextValue(ReportValue.Format(obj, value));

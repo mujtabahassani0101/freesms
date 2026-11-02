@@ -43,6 +43,21 @@ internal static class Program
             Check((bool)table.Rows[0]["selected"], "checkbox write-through");
             ((DataGridView)grid.Controls.OfType<DataGridView>().Single()).Sort(((DataGridView)grid.Controls.OfType<DataGridView>().Single()).Columns["mark"]!, System.ComponentModel.ListSortDirection.Descending);
             Check(Convert.ToInt32(grid.GetRow(0).Cells["id"].Value) == 42, "sorted row identity");
+            using(var payments=new GridEX{Dock=DockStyle.Fill})
+            {
+                window.Controls.Add(payments);payments.BringToFront();
+                payments.DesignTimeLayout=new GridEXLayout{LayoutString="<GridEXLayoutData><RootTable><Columns><Column0><Key>date</Key><DataMember>date</DataMember><Caption>dates</Caption><AggregateFunction>Count</AggregateFunction></Column0><Column1><Key>fee</Key><DataMember>fee</DataMember><Caption>fees</Caption><AggregateFunction>Sum</AggregateFunction></Column1></Columns></RootTable></GridEXLayoutData>"};
+                payments.TotalRow=Janus.Windows.GridEX.InheritableBoolean.True;
+                var entries=new DataTable();entries.Columns.Add("date",typeof(string));entries.Columns.Add("fee",typeof(int));
+                entries.Rows.Add("1411/02/01",400);entries.Rows.Add("1411/02/02",200);entries.Rows.Add(DBNull.Value,DBNull.Value);
+                payments.DataSource=entries;Application.DoEvents();
+                var total=payments.Controls.OfType<Label>().Single();
+                Check(total.Text.Contains("dates: 2") && total.Text.Contains("fees: 600"),"payment grid counts string dates and sums numeric amounts without converting dates to numbers");
+                entries.DefaultView.RowFilter="fee >= 400";Application.DoEvents();
+                Check(total.Text.Contains("dates: 1") && total.Text.Contains("fees: 400"),"payment grid totals follow the visible filtered records");
+                entries.Clear();Application.DoEvents();
+                Check(total.Text.Contains("dates: 0") && total.Text.Contains("fees: 0"),"empty payment grid reports zero count and sum");
+            }
             using (var blobs = new GridEX { Dock = DockStyle.Fill })
             {
                 var records = new DataTable(); records.Columns.Add("id", typeof(int)); records.Columns.Add("Rpt", typeof(byte[]));
@@ -196,6 +211,24 @@ internal static class Program
                     if(bitmap.GetPixel(x,y).GetBrightness()<.6f){first=Math.Min(first,x);last=Math.Max(last,x);}
                 bool aligned=alignment=="LeftAlign" ? first>=10 && first<50 : alignment=="RightAlign" ? last>280 && last<=310 : first>100 && last<220;
                 Check(last>=first && aligned,"physical "+alignment+" preserved for "+(text=="School"?"Latin":"Persian")+" report text");
+            }
+            var photoTemplate=XElement.Parse("<report><database><table name='student'><field name='Student_img' type='BlobField'/></table></database><sections><section kind='Detail' height='720'><object><Name>Studentimg1</Name><Kind>BlobFieldObject</Kind><Left>144</Left><Top>0</Top><Width>720</Width><Height>720</Height></object></section></sections></report>");
+            var photoModel=new ReportModel(photoTemplate);var photoInput=ReportFixtures.Create(photoTemplate,4);
+            byte[] Photo(Color color)
+            {
+                using var bitmap=new Bitmap(8,8);using(var graphics=Graphics.FromImage(bitmap))graphics.Clear(color);
+                using var stream=new MemoryStream();bitmap.Save(stream,System.Drawing.Imaging.ImageFormat.Png);return stream.ToArray();
+            }
+            photoInput.Data!.Tables[0].Rows[0]["Student_img"]=Photo(Color.Lime);
+            photoInput.Data.Tables[0].Rows[1]["Student_img"]=Photo(Color.Red);
+            photoInput.Data.Tables[0].Rows[2]["Student_img"]=DBNull.Value;
+            photoInput.Data.Tables[0].Rows[3]["Student_img"]=new byte[]{1,2,3};
+            using(var document=new PortableReportDocument(photoModel,photoInput))
+            {
+                string path=Path.Combine(output,"student-photos.png");document.SavePageImage(path,0,100);using var bitmap=new Bitmap(path);
+                Check(bitmap.GetPixel(25,20).ToArgb()==Color.Lime.ToArgb() && bitmap.GetPixel(25,70).ToArgb()==Color.Red.ToArgb(),"each student report photo renders its own persisted image");
+                Check(bitmap.GetPixel(25,120).ToArgb()==Color.White.ToArgb(),"empty student report photo remains blank");
+                Check(bitmap.GetPixel(35,175).GetBrightness()<.9f,"damaged student report photo renders a placeholder without stopping the report");
             }
             var oversizedHeader = XElement.Parse("<report><sections><section kind='PageHeader' height='20000'/><section kind='Detail' height='720'/></sections></report>");
             bool rejectedHeader = false;

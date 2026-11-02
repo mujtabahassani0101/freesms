@@ -1,0 +1,916 @@
+BEGIN m_bq_workflow_payment
+toolPaymentAdd -> frmPaymentAdd
+CONSTRUCT
+CLICK ak
+SQL 1E846049AB9113F7D191CDB90D8974CFC5A20D31D8AB57E09CB9420C3FC6C490
+   at System.Environment.get_StackTrace()
+   at OriginalNavigationCheck.TraceCommand(String sql) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalNavigationCheck.cs:line 22
+   at asdcb.a(SqlCommand A_0, SqlConnection A_1, SqlTransaction A_2, CommandType A_3, String A_4, SqlParameter[] A_5) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdcb.cs:line 87
+   at asdcb.b(SqlConnection A_0, CommandType A_1, String A_2, SqlParameter[] A_3) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdcb.cs:line 408
+   at asdcb.c(String A_0, CommandType A_1, String A_2, SqlParameter[] A_3) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdcb.cs:line 356
+   at asda5.t(Object A_0, EventArgs A_1) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asda5.cs:line 115
+   at System.Windows.Forms.Form.OnLoad(EventArgs e)
+   at System.Windows.Forms.Form.OnCreateControl()
+   at System.Windows.Forms.Control.CreateControl(Boolean ignoreVisible)
+   at System.Windows.Forms.Control.CreateControl()
+   at System.Windows.Forms.Control.WmShowWindow(Message& m)
+   at System.Windows.Forms.Control.WndProc(Message& m)
+   at System.Windows.Forms.ScrollableControl.WndProc(Message& m)
+   at System.Windows.Forms.ContainerControl.WndProc(Message& m)
+   at System.Windows.Forms.Form.WmShowWindow(Message& m)
+   at System.Windows.Forms.Form.WndProc(Message& m)
+   at System.Windows.Forms.Control.ControlNativeWindow.OnMessage(Message& m)
+   at System.Windows.Forms.Control.ControlNativeWindow.WndProc(Message& m)
+   at System.Windows.Forms.NativeWindow.Callback(HWND hWnd, UInt32 msg, WPARAM wparam, LPARAM lparam)
+   at Windows.Win32.PInvoke.ShowWindow(HWND hWnd, SHOW_WINDOW_CMD nCmdShow)
+   at System.Windows.Forms.Control.SetVisibleCore(Boolean value)
+   at System.Windows.Forms.Form.SetVisibleCore(Boolean value)
+   at System.Windows.Forms.Application.ThreadContext.RunMessageLoopInner(msoloop reason, ApplicationContext context)
+   at System.Windows.Forms.Application.RunDialog(Form form)
+   at System.Windows.Forms.Form.ShowDialog(IWin32Window owner)
+   at System.Windows.Forms.Form.ShowDialog()
+   at asdb3.ak(Object A_0, EventArgs A_1) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdb3.cs:line 1831
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at OriginalNavigationCheck.<>c__DisplayClass3_1.<Worker>b__3(Object sender, EventArgs e) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalNavigationCheck.cs:line 74
+   at System.Windows.Forms.Timer.OnTick(EventArgs e)
+   at System.Windows.Forms.Timer.TimerNativeWindow.WndProc(Message& m)
+   at System.Windows.Forms.NativeWindow.Callback(HWND hWnd, UInt32 msg, WPARAM wparam, LPARAM lparam)
+   at Windows.Win32.PInvoke.DispatchMessage(MSG* lpMsg)
+   at System.Windows.Forms.Application.LightThreadContext.FPushMessageLoop(msoloop uReason)
+   at System.Windows.Forms.Application.LightThreadContext.RunMessageLoop(msoloop reason, Boolean fullModal)
+   at System.Windows.Forms.Application.ThreadContext.RunMessageLoopInner(msoloop reason, ApplicationContext context)
+   at System.Windows.Forms.Application.Run(ApplicationContext context)
+   at OriginalNavigationCheck.Worker(String route) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalNavigationCheck.cs:line 154
+   at OriginalProgram.Main(String[] args) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalProgram.cs:line 54
+SQL 70806F5C7D944B7B37DAB55DBFF438CB7EE92CED637664FB0628F0CEF1FA945D
+   at System.Environment.get_StackTrace()
+   at OriginalNavigationCheck.TraceCommand(String sql) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalNavigationCheck.cs:line 22
+   at asdcb.a(SqlCommand A_0, SqlConnection A_1, SqlTransaction A_2, CommandType A_3, String A_4, SqlParameter[] A_5) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdcb.cs:line 87
+   at asdcb.b(SqlConnection A_0, CommandType A_1, String A_2, SqlParameter[] A_3) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdcb.cs:line 408
+   at asdcb.c(String A_0, CommandType A_1, String A_2, SqlParameter[] A_3) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdcb.cs:line 356
+   at asda5.f() in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asda5.cs:line 172
+   at asda5.e(Object A_0, EventArgs A_1) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asda5.cs:line 1080
+   at System.Windows.Forms.ComboBox.OnSelectedIndexChanged(EventArgs e)
+   at Janus.Windows.EditControls.UIComboBox.FlushSelection() in D:\a\freesms\freesms\dotnet\FreeSms.NativeControls\Editors.cs:line 167
+   at Janus.Windows.EditControls.UIComboBox.SetItems(IEnumerable`1 options, Object selectedValue) in D:\a\freesms\freesms\dotnet\FreeSms.NativeControls\Editors.cs:line 131
+   at OriginalSchoolYears.Select(UIComboBox combo, String year) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalSchoolYears.cs:line 14
+   at asda5.t(Object A_0, EventArgs A_1) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asda5.cs:line 143
+   at System.Windows.Forms.Form.OnLoad(EventArgs e)
+   at System.Windows.Forms.Form.OnCreateControl()
+   at System.Windows.Forms.Control.CreateControl(Boolean ignoreVisible)
+   at System.Windows.Forms.Control.CreateControl()
+   at System.Windows.Forms.Control.WmShowWindow(Message& m)
+   at System.Windows.Forms.Control.WndProc(Message& m)
+   at System.Windows.Forms.ScrollableControl.WndProc(Message& m)
+   at System.Windows.Forms.ContainerControl.WndProc(Message& m)
+   at System.Windows.Forms.Form.WmShowWindow(Message& m)
+   at System.Windows.Forms.Form.WndProc(Message& m)
+   at System.Windows.Forms.Control.ControlNativeWindow.OnMessage(Message& m)
+   at System.Windows.Forms.Control.ControlNativeWindow.WndProc(Message& m)
+   at System.Windows.Forms.NativeWindow.Callback(HWND hWnd, UInt32 msg, WPARAM wparam, LPARAM lparam)
+   at Windows.Win32.PInvoke.ShowWindow(HWND hWnd, SHOW_WINDOW_CMD nCmdShow)
+   at System.Windows.Forms.Control.SetVisibleCore(Boolean value)
+   at System.Windows.Forms.Form.SetVisibleCore(Boolean value)
+   at System.Windows.Forms.Application.ThreadContext.RunMessageLoopInner(msoloop reason, ApplicationContext context)
+   at System.Windows.Forms.Application.RunDialog(Form form)
+   at System.Windows.Forms.Form.ShowDialog(IWin32Window owner)
+   at System.Windows.Forms.Form.ShowDialog()
+   at asdb3.ak(Object A_0, EventArgs A_1) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdb3.cs:line 1831
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at OriginalNavigationCheck.<>c__DisplayClass3_1.<Worker>b__3(Object sender, EventArgs e) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalNavigationCheck.cs:line 74
+   at System.Windows.Forms.Timer.OnTick(EventArgs e)
+   at System.Windows.Forms.Timer.TimerNativeWindow.WndProc(Message& m)
+   at System.Windows.Forms.NativeWindow.Callback(HWND hWnd, UInt32 msg, WPARAM wparam, LPARAM lparam)
+   at Windows.Win32.PInvoke.DispatchMessage(MSG* lpMsg)
+   at System.Windows.Forms.Application.LightThreadContext.FPushMessageLoop(msoloop uReason)
+   at System.Windows.Forms.Application.LightThreadContext.RunMessageLoop(msoloop reason, Boolean fullModal)
+   at System.Windows.Forms.Application.ThreadContext.RunMessageLoopInner(msoloop reason, ApplicationContext context)
+   at System.Windows.Forms.Application.Run(ApplicationContext context)
+   at OriginalNavigationCheck.Worker(String route) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalNavigationCheck.cs:line 154
+   at OriginalProgram.Main(String[] args) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalProgram.cs:line 54
+SQL 785E85DD6CF3A7E733B9889AE8DAF68A004EB3C1DBCC165A548736DAD5E92F54
+   at System.Environment.get_StackTrace()
+   at OriginalNavigationCheck.TraceCommand(String sql) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalNavigationCheck.cs:line 22
+   at asdcb.a(SqlCommand A_0, SqlConnection A_1, SqlTransaction A_2, CommandType A_3, String A_4, SqlParameter[] A_5) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdcb.cs:line 87
+   at asdcb.b(SqlConnection A_0, CommandType A_1, String A_2, SqlParameter[] A_3) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdcb.cs:line 408
+   at asdcb.c(String A_0, CommandType A_1, String A_2, SqlParameter[] A_3) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdcb.cs:line 356
+   at asda5.e() in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asda5.cs:line 239
+   at asda5.p(Object A_0, EventArgs A_1) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asda5.cs:line 843
+   at System.Windows.Forms.ComboBox.OnSelectedIndexChanged(EventArgs e)
+   at Janus.Windows.EditControls.UIComboBox.OnSelectedIndexChanged(EventArgs e) in D:\a\freesms\freesms\dotnet\FreeSms.NativeControls\Editors.cs:line 149
+   at System.Windows.Forms.ComboBox.set_SelectedIndex(Int32 value)
+   at asda5.f() in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asda5.cs:line 200
+   at asda5.e(Object A_0, EventArgs A_1) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asda5.cs:line 1080
+   at System.Windows.Forms.ComboBox.OnSelectedIndexChanged(EventArgs e)
+   at Janus.Windows.EditControls.UIComboBox.FlushSelection() in D:\a\freesms\freesms\dotnet\FreeSms.NativeControls\Editors.cs:line 167
+   at Janus.Windows.EditControls.UIComboBox.SetItems(IEnumerable`1 options, Object selectedValue) in D:\a\freesms\freesms\dotnet\FreeSms.NativeControls\Editors.cs:line 131
+   at OriginalSchoolYears.Select(UIComboBox combo, String year) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalSchoolYears.cs:line 14
+   at asda5.t(Object A_0, EventArgs A_1) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asda5.cs:line 143
+   at System.Windows.Forms.Form.OnLoad(EventArgs e)
+   at System.Windows.Forms.Form.OnCreateControl()
+   at System.Windows.Forms.Control.CreateControl(Boolean ignoreVisible)
+   at System.Windows.Forms.Control.CreateControl()
+   at System.Windows.Forms.Control.WmShowWindow(Message& m)
+   at System.Windows.Forms.Control.WndProc(Message& m)
+   at System.Windows.Forms.ScrollableControl.WndProc(Message& m)
+   at System.Windows.Forms.ContainerControl.WndProc(Message& m)
+   at System.Windows.Forms.Form.WmShowWindow(Message& m)
+   at System.Windows.Forms.Form.WndProc(Message& m)
+   at System.Windows.Forms.Control.ControlNativeWindow.OnMessage(Message& m)
+   at System.Windows.Forms.Control.ControlNativeWindow.WndProc(Message& m)
+   at System.Windows.Forms.NativeWindow.Callback(HWND hWnd, UInt32 msg, WPARAM wparam, LPARAM lparam)
+   at Windows.Win32.PInvoke.ShowWindow(HWND hWnd, SHOW_WINDOW_CMD nCmdShow)
+   at System.Windows.Forms.Control.SetVisibleCore(Boolean value)
+   at System.Windows.Forms.Form.SetVisibleCore(Boolean value)
+   at System.Windows.Forms.Application.ThreadContext.RunMessageLoopInner(msoloop reason, ApplicationContext context)
+   at System.Windows.Forms.Application.RunDialog(Form form)
+   at System.Windows.Forms.Form.ShowDialog(IWin32Window owner)
+   at System.Windows.Forms.Form.ShowDialog()
+   at asdb3.ak(Object A_0, EventArgs A_1) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdb3.cs:line 1831
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at OriginalNavigationCheck.<>c__DisplayClass3_1.<Worker>b__3(Object sender, EventArgs e) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalNavigationCheck.cs:line 74
+   at System.Windows.Forms.Timer.OnTick(EventArgs e)
+   at System.Windows.Forms.Timer.TimerNativeWindow.WndProc(Message& m)
+   at System.Windows.Forms.NativeWindow.Callback(HWND hWnd, UInt32 msg, WPARAM wparam, LPARAM lparam)
+   at Windows.Win32.PInvoke.DispatchMessage(MSG* lpMsg)
+   at System.Windows.Forms.Application.LightThreadContext.FPushMessageLoop(msoloop uReason)
+   at System.Windows.Forms.Application.LightThreadContext.RunMessageLoop(msoloop reason, Boolean fullModal)
+   at System.Windows.Forms.Application.ThreadContext.RunMessageLoopInner(msoloop reason, ApplicationContext context)
+   at System.Windows.Forms.Application.Run(ApplicationContext context)
+   at OriginalNavigationCheck.Worker(String route) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalNavigationCheck.cs:line 154
+   at OriginalProgram.Main(String[] args) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalProgram.cs:line 54
+SQL 785E85DD6CF3A7E733B9889AE8DAF68A004EB3C1DBCC165A548736DAD5E92F54
+   at System.Environment.get_StackTrace()
+   at OriginalNavigationCheck.TraceCommand(String sql) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalNavigationCheck.cs:line 22
+   at asdcb.a(SqlCommand A_0, SqlConnection A_1, SqlTransaction A_2, CommandType A_3, String A_4, SqlParameter[] A_5) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdcb.cs:line 87
+   at asdcb.b(SqlConnection A_0, CommandType A_1, String A_2, SqlParameter[] A_3) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdcb.cs:line 408
+   at asdcb.c(String A_0, CommandType A_1, String A_2, SqlParameter[] A_3) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdcb.cs:line 356
+   at asda5.e() in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asda5.cs:line 239
+   at asda5.e(Object A_0, EventArgs A_1) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asda5.cs:line 1081
+   at System.Windows.Forms.ComboBox.OnSelectedIndexChanged(EventArgs e)
+   at Janus.Windows.EditControls.UIComboBox.FlushSelection() in D:\a\freesms\freesms\dotnet\FreeSms.NativeControls\Editors.cs:line 167
+   at Janus.Windows.EditControls.UIComboBox.SetItems(IEnumerable`1 options, Object selectedValue) in D:\a\freesms\freesms\dotnet\FreeSms.NativeControls\Editors.cs:line 131
+   at OriginalSchoolYears.Select(UIComboBox combo, String year) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalSchoolYears.cs:line 14
+   at asda5.t(Object A_0, EventArgs A_1) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asda5.cs:line 143
+   at System.Windows.Forms.Form.OnLoad(EventArgs e)
+   at System.Windows.Forms.Form.OnCreateControl()
+   at System.Windows.Forms.Control.CreateControl(Boolean ignoreVisible)
+   at System.Windows.Forms.Control.CreateControl()
+   at System.Windows.Forms.Control.WmShowWindow(Message& m)
+   at System.Windows.Forms.Control.WndProc(Message& m)
+   at System.Windows.Forms.ScrollableControl.WndProc(Message& m)
+   at System.Windows.Forms.ContainerControl.WndProc(Message& m)
+   at System.Windows.Forms.Form.WmShowWindow(Message& m)
+   at System.Windows.Forms.Form.WndProc(Message& m)
+   at System.Windows.Forms.Control.ControlNativeWindow.OnMessage(Message& m)
+   at System.Windows.Forms.Control.ControlNativeWindow.WndProc(Message& m)
+   at System.Windows.Forms.NativeWindow.Callback(HWND hWnd, UInt32 msg, WPARAM wparam, LPARAM lparam)
+   at Windows.Win32.PInvoke.ShowWindow(HWND hWnd, SHOW_WINDOW_CMD nCmdShow)
+   at System.Windows.Forms.Control.SetVisibleCore(Boolean value)
+   at System.Windows.Forms.Form.SetVisibleCore(Boolean value)
+   at System.Windows.Forms.Application.ThreadContext.RunMessageLoopInner(msoloop reason, ApplicationContext context)
+   at System.Windows.Forms.Application.RunDialog(Form form)
+   at System.Windows.Forms.Form.ShowDialog(IWin32Window owner)
+   at System.Windows.Forms.Form.ShowDialog()
+   at asdb3.ak(Object A_0, EventArgs A_1) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdb3.cs:line 1831
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at OriginalNavigationCheck.<>c__DisplayClass3_1.<Worker>b__3(Object sender, EventArgs e) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalNavigationCheck.cs:line 74
+   at System.Windows.Forms.Timer.OnTick(EventArgs e)
+   at System.Windows.Forms.Timer.TimerNativeWindow.WndProc(Message& m)
+   at System.Windows.Forms.NativeWindow.Callback(HWND hWnd, UInt32 msg, WPARAM wparam, LPARAM lparam)
+   at Windows.Win32.PInvoke.DispatchMessage(MSG* lpMsg)
+   at System.Windows.Forms.Application.LightThreadContext.FPushMessageLoop(msoloop uReason)
+   at System.Windows.Forms.Application.LightThreadContext.RunMessageLoop(msoloop reason, Boolean fullModal)
+   at System.Windows.Forms.Application.ThreadContext.RunMessageLoopInner(msoloop reason, ApplicationContext context)
+   at System.Windows.Forms.Application.Run(ApplicationContext context)
+   at OriginalNavigationCheck.Worker(String route) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalNavigationCheck.cs:line 154
+   at OriginalProgram.Main(String[] args) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalProgram.cs:line 54
+SQL 785E85DD6CF3A7E733B9889AE8DAF68A004EB3C1DBCC165A548736DAD5E92F54
+   at System.Environment.get_StackTrace()
+   at OriginalNavigationCheck.TraceCommand(String sql) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalNavigationCheck.cs:line 22
+   at asdcb.a(SqlCommand A_0, SqlConnection A_1, SqlTransaction A_2, CommandType A_3, String A_4, SqlParameter[] A_5) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdcb.cs:line 87
+   at asdcb.b(SqlConnection A_0, CommandType A_1, String A_2, SqlParameter[] A_3) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdcb.cs:line 408
+   at asdcb.c(String A_0, CommandType A_1, String A_2, SqlParameter[] A_3) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdcb.cs:line 356
+   at asda5.e() in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asda5.cs:line 239
+   at asda5.t(Object A_0, EventArgs A_1) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asda5.cs:line 144
+   at System.Windows.Forms.Form.OnLoad(EventArgs e)
+   at System.Windows.Forms.Form.OnCreateControl()
+   at System.Windows.Forms.Control.CreateControl(Boolean ignoreVisible)
+   at System.Windows.Forms.Control.CreateControl()
+   at System.Windows.Forms.Control.WmShowWindow(Message& m)
+   at System.Windows.Forms.Control.WndProc(Message& m)
+   at System.Windows.Forms.ScrollableControl.WndProc(Message& m)
+   at System.Windows.Forms.ContainerControl.WndProc(Message& m)
+   at System.Windows.Forms.Form.WmShowWindow(Message& m)
+   at System.Windows.Forms.Form.WndProc(Message& m)
+   at System.Windows.Forms.Control.ControlNativeWindow.OnMessage(Message& m)
+   at System.Windows.Forms.Control.ControlNativeWindow.WndProc(Message& m)
+   at System.Windows.Forms.NativeWindow.Callback(HWND hWnd, UInt32 msg, WPARAM wparam, LPARAM lparam)
+   at Windows.Win32.PInvoke.ShowWindow(HWND hWnd, SHOW_WINDOW_CMD nCmdShow)
+   at System.Windows.Forms.Control.SetVisibleCore(Boolean value)
+   at System.Windows.Forms.Form.SetVisibleCore(Boolean value)
+   at System.Windows.Forms.Application.ThreadContext.RunMessageLoopInner(msoloop reason, ApplicationContext context)
+   at System.Windows.Forms.Application.RunDialog(Form form)
+   at System.Windows.Forms.Form.ShowDialog(IWin32Window owner)
+   at System.Windows.Forms.Form.ShowDialog()
+   at asdb3.ak(Object A_0, EventArgs A_1) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdb3.cs:line 1831
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at OriginalNavigationCheck.<>c__DisplayClass3_1.<Worker>b__3(Object sender, EventArgs e) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalNavigationCheck.cs:line 74
+   at System.Windows.Forms.Timer.OnTick(EventArgs e)
+   at System.Windows.Forms.Timer.TimerNativeWindow.WndProc(Message& m)
+   at System.Windows.Forms.NativeWindow.Callback(HWND hWnd, UInt32 msg, WPARAM wparam, LPARAM lparam)
+   at Windows.Win32.PInvoke.DispatchMessage(MSG* lpMsg)
+   at System.Windows.Forms.Application.LightThreadContext.FPushMessageLoop(msoloop uReason)
+   at System.Windows.Forms.Application.LightThreadContext.RunMessageLoop(msoloop reason, Boolean fullModal)
+   at System.Windows.Forms.Application.ThreadContext.RunMessageLoopInner(msoloop reason, ApplicationContext context)
+   at System.Windows.Forms.Application.Run(ApplicationContext context)
+   at OriginalNavigationCheck.Worker(String route) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalNavigationCheck.cs:line 154
+   at OriginalProgram.Main(String[] args) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalProgram.cs:line 54
+SQL 70806F5C7D944B7B37DAB55DBFF438CB7EE92CED637664FB0628F0CEF1FA945D
+   at System.Environment.get_StackTrace()
+   at OriginalNavigationCheck.TraceCommand(String sql) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalNavigationCheck.cs:line 22
+   at asdcb.a(SqlCommand A_0, SqlConnection A_1, SqlTransaction A_2, CommandType A_3, String A_4, SqlParameter[] A_5) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdcb.cs:line 87
+   at asdcb.b(SqlConnection A_0, CommandType A_1, String A_2, SqlParameter[] A_3) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdcb.cs:line 408
+   at asdcb.c(String A_0, CommandType A_1, String A_2, SqlParameter[] A_3) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdcb.cs:line 356
+   at asda5.f() in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asda5.cs:line 172
+   at asda5.t(Object A_0, EventArgs A_1) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asda5.cs:line 145
+   at System.Windows.Forms.Form.OnLoad(EventArgs e)
+   at System.Windows.Forms.Form.OnCreateControl()
+   at System.Windows.Forms.Control.CreateControl(Boolean ignoreVisible)
+   at System.Windows.Forms.Control.CreateControl()
+   at System.Windows.Forms.Control.WmShowWindow(Message& m)
+   at System.Windows.Forms.Control.WndProc(Message& m)
+   at System.Windows.Forms.ScrollableControl.WndProc(Message& m)
+   at System.Windows.Forms.ContainerControl.WndProc(Message& m)
+   at System.Windows.Forms.Form.WmShowWindow(Message& m)
+   at System.Windows.Forms.Form.WndProc(Message& m)
+   at System.Windows.Forms.Control.ControlNativeWindow.OnMessage(Message& m)
+   at System.Windows.Forms.Control.ControlNativeWindow.WndProc(Message& m)
+   at System.Windows.Forms.NativeWindow.Callback(HWND hWnd, UInt32 msg, WPARAM wparam, LPARAM lparam)
+   at Windows.Win32.PInvoke.ShowWindow(HWND hWnd, SHOW_WINDOW_CMD nCmdShow)
+   at System.Windows.Forms.Control.SetVisibleCore(Boolean value)
+   at System.Windows.Forms.Form.SetVisibleCore(Boolean value)
+   at System.Windows.Forms.Application.ThreadContext.RunMessageLoopInner(msoloop reason, ApplicationContext context)
+   at System.Windows.Forms.Application.RunDialog(Form form)
+   at System.Windows.Forms.Form.ShowDialog(IWin32Window owner)
+   at System.Windows.Forms.Form.ShowDialog()
+   at asdb3.ak(Object A_0, EventArgs A_1) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdb3.cs:line 1831
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at OriginalNavigationCheck.<>c__DisplayClass3_1.<Worker>b__3(Object sender, EventArgs e) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalNavigationCheck.cs:line 74
+   at System.Windows.Forms.Timer.OnTick(EventArgs e)
+   at System.Windows.Forms.Timer.TimerNativeWindow.WndProc(Message& m)
+   at System.Windows.Forms.NativeWindow.Callback(HWND hWnd, UInt32 msg, WPARAM wparam, LPARAM lparam)
+   at Windows.Win32.PInvoke.DispatchMessage(MSG* lpMsg)
+   at System.Windows.Forms.Application.LightThreadContext.FPushMessageLoop(msoloop uReason)
+   at System.Windows.Forms.Application.LightThreadContext.RunMessageLoop(msoloop reason, Boolean fullModal)
+   at System.Windows.Forms.Application.ThreadContext.RunMessageLoopInner(msoloop reason, ApplicationContext context)
+   at System.Windows.Forms.Application.Run(ApplicationContext context)
+   at OriginalNavigationCheck.Worker(String route) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalNavigationCheck.cs:line 154
+   at OriginalProgram.Main(String[] args) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalProgram.cs:line 54
+SQL 785E85DD6CF3A7E733B9889AE8DAF68A004EB3C1DBCC165A548736DAD5E92F54
+   at System.Environment.get_StackTrace()
+   at OriginalNavigationCheck.TraceCommand(String sql) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalNavigationCheck.cs:line 22
+   at asdcb.a(SqlCommand A_0, SqlConnection A_1, SqlTransaction A_2, CommandType A_3, String A_4, SqlParameter[] A_5) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdcb.cs:line 87
+   at asdcb.b(SqlConnection A_0, CommandType A_1, String A_2, SqlParameter[] A_3) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdcb.cs:line 408
+   at asdcb.c(String A_0, CommandType A_1, String A_2, SqlParameter[] A_3) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdcb.cs:line 356
+   at asda5.e() in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asda5.cs:line 239
+   at asda5.p(Object A_0, EventArgs A_1) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asda5.cs:line 843
+   at System.Windows.Forms.ComboBox.OnSelectedIndexChanged(EventArgs e)
+   at Janus.Windows.EditControls.UIComboBox.OnSelectedIndexChanged(EventArgs e) in D:\a\freesms\freesms\dotnet\FreeSms.NativeControls\Editors.cs:line 149
+   at System.Windows.Forms.ComboBox.set_SelectedIndex(Int32 value)
+   at asda5.f() in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asda5.cs:line 200
+   at asda5.t(Object A_0, EventArgs A_1) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asda5.cs:line 145
+   at System.Windows.Forms.Form.OnLoad(EventArgs e)
+   at System.Windows.Forms.Form.OnCreateControl()
+   at System.Windows.Forms.Control.CreateControl(Boolean ignoreVisible)
+   at System.Windows.Forms.Control.CreateControl()
+   at System.Windows.Forms.Control.WmShowWindow(Message& m)
+   at System.Windows.Forms.Control.WndProc(Message& m)
+   at System.Windows.Forms.ScrollableControl.WndProc(Message& m)
+   at System.Windows.Forms.ContainerControl.WndProc(Message& m)
+   at System.Windows.Forms.Form.WmShowWindow(Message& m)
+   at System.Windows.Forms.Form.WndProc(Message& m)
+   at System.Windows.Forms.Control.ControlNativeWindow.OnMessage(Message& m)
+   at System.Windows.Forms.Control.ControlNativeWindow.WndProc(Message& m)
+   at System.Windows.Forms.NativeWindow.Callback(HWND hWnd, UInt32 msg, WPARAM wparam, LPARAM lparam)
+   at Windows.Win32.PInvoke.ShowWindow(HWND hWnd, SHOW_WINDOW_CMD nCmdShow)
+   at System.Windows.Forms.Control.SetVisibleCore(Boolean value)
+   at System.Windows.Forms.Form.SetVisibleCore(Boolean value)
+   at System.Windows.Forms.Application.ThreadContext.RunMessageLoopInner(msoloop reason, ApplicationContext context)
+   at System.Windows.Forms.Application.RunDialog(Form form)
+   at System.Windows.Forms.Form.ShowDialog(IWin32Window owner)
+   at System.Windows.Forms.Form.ShowDialog()
+   at asdb3.ak(Object A_0, EventArgs A_1) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdb3.cs:line 1831
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at OriginalNavigationCheck.<>c__DisplayClass3_1.<Worker>b__3(Object sender, EventArgs e) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalNavigationCheck.cs:line 74
+   at System.Windows.Forms.Timer.OnTick(EventArgs e)
+   at System.Windows.Forms.Timer.TimerNativeWindow.WndProc(Message& m)
+   at System.Windows.Forms.NativeWindow.Callback(HWND hWnd, UInt32 msg, WPARAM wparam, LPARAM lparam)
+   at Windows.Win32.PInvoke.DispatchMessage(MSG* lpMsg)
+   at System.Windows.Forms.Application.LightThreadContext.FPushMessageLoop(msoloop uReason)
+   at System.Windows.Forms.Application.LightThreadContext.RunMessageLoop(msoloop reason, Boolean fullModal)
+   at System.Windows.Forms.Application.ThreadContext.RunMessageLoopInner(msoloop reason, ApplicationContext context)
+   at System.Windows.Forms.Application.Run(ApplicationContext context)
+   at OriginalNavigationCheck.Worker(String route) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalNavigationCheck.cs:line 154
+   at OriginalProgram.Main(String[] args) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalProgram.cs:line 54
+SQL C138E6B97BACC169F51257353EC81807C7950E217F2417F5E26B8E34B9159F57
+   at System.Environment.get_StackTrace()
+   at OriginalNavigationCheck.TraceCommand(String sql) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalNavigationCheck.cs:line 22
+   at asdcb.a(SqlCommand A_0, SqlConnection A_1, SqlTransaction A_2, CommandType A_3, String A_4, SqlParameter[] A_5) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdcb.cs:line 87
+   at asdcb.b(SqlConnection A_0, CommandType A_1, String A_2, SqlParameter[] A_3) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdcb.cs:line 408
+   at asdcb.c(String A_0, CommandType A_1, String A_2, SqlParameter[] A_3) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdcb.cs:line 356
+   at asda5.d() in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asda5.cs:line 320
+   at asda5.c(Object A_0, EventArgs A_1) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asda5.cs:line 1144
+   at System.Windows.Forms.Form.OnShown(EventArgs e)
+   at System.Windows.Forms.Form.CallShownEvent()
+   at System.Windows.Forms.Control.InvokeMarshaledCallbackDo(ThreadMethodEntry tme)
+   at System.Windows.Forms.Control.InvokeMarshaledCallbackHelper(Object obj)
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Windows.Forms.Control.InvokeMarshaledCallback(ThreadMethodEntry tme)
+   at System.Windows.Forms.Control.InvokeMarshaledCallbacks()
+   at System.Windows.Forms.Control.WndProc(Message& m)
+   at System.Windows.Forms.ScrollableControl.WndProc(Message& m)
+   at System.Windows.Forms.ContainerControl.WndProc(Message& m)
+   at System.Windows.Forms.Form.WndProc(Message& m)
+   at System.Windows.Forms.Control.ControlNativeWindow.OnMessage(Message& m)
+   at System.Windows.Forms.Control.ControlNativeWindow.WndProc(Message& m)
+   at System.Windows.Forms.NativeWindow.Callback(HWND hWnd, UInt32 msg, WPARAM wparam, LPARAM lparam)
+   at Windows.Win32.PInvoke.DispatchMessage(MSG* lpMsg)
+   at System.Windows.Forms.Application.LightThreadContext.FPushMessageLoop(msoloop uReason)
+   at System.Windows.Forms.Application.LightThreadContext.RunMessageLoop(msoloop reason, Boolean fullModal)
+   at System.Windows.Forms.Application.ThreadContext.RunMessageLoopInner(msoloop reason, ApplicationContext context)
+   at System.Windows.Forms.Application.RunDialog(Form form)
+   at System.Windows.Forms.Form.ShowDialog(IWin32Window owner)
+   at System.Windows.Forms.Form.ShowDialog()
+   at asdb3.ak(Object A_0, EventArgs A_1) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdb3.cs:line 1831
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at OriginalNavigationCheck.<>c__DisplayClass3_1.<Worker>b__3(Object sender, EventArgs e) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalNavigationCheck.cs:line 74
+   at System.Windows.Forms.Timer.OnTick(EventArgs e)
+   at System.Windows.Forms.Timer.TimerNativeWindow.WndProc(Message& m)
+   at System.Windows.Forms.NativeWindow.Callback(HWND hWnd, UInt32 msg, WPARAM wparam, LPARAM lparam)
+   at Windows.Win32.PInvoke.DispatchMessage(MSG* lpMsg)
+   at System.Windows.Forms.Application.LightThreadContext.FPushMessageLoop(msoloop uReason)
+   at System.Windows.Forms.Application.LightThreadContext.RunMessageLoop(msoloop reason, Boolean fullModal)
+   at System.Windows.Forms.Application.ThreadContext.RunMessageLoopInner(msoloop reason, ApplicationContext context)
+   at System.Windows.Forms.Application.Run(ApplicationContext context)
+   at OriginalNavigationCheck.Worker(String route) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalNavigationCheck.cs:line 154
+   at OriginalProgram.Main(String[] args) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalProgram.cs:line 54
+SQL C8D597985BA5C6C0BF0957D97E57E21CA22C2CC1F528378269B219CF2A7D4CEA
+   at System.Environment.get_StackTrace()
+   at OriginalNavigationCheck.TraceCommand(String sql) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalNavigationCheck.cs:line 22
+   at asdcb.a(SqlCommand A_0, SqlConnection A_1, SqlTransaction A_2, CommandType A_3, String A_4, SqlParameter[] A_5) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdcb.cs:line 87
+   at asdcb.b(SqlConnection A_0, CommandType A_1, String A_2, SqlParameter[] A_3) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdcb.cs:line 408
+   at asdcb.c(String A_0, CommandType A_1, String A_2, SqlParameter[] A_3) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdcb.cs:line 356
+   at asda5.c() in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asda5.cs:line 543
+   at asda5.m(Object A_0, EventArgs A_1) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asda5.cs:line 933
+   at Janus.Windows.GridEX.GridEX.Bind() in D:\a\freesms\freesms\dotnet\FreeSms.NativeControls\Grid.cs:line 393
+   at Janus.Windows.GridEX.GridEX.set_DataSource(Object value) in D:\a\freesms\freesms\dotnet\FreeSms.NativeControls\Grid.cs:line 292
+   at asda5.d() in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asda5.cs:line 321
+   at asda5.c(Object A_0, EventArgs A_1) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asda5.cs:line 1144
+   at System.Windows.Forms.Form.OnShown(EventArgs e)
+   at System.Windows.Forms.Form.CallShownEvent()
+   at System.Windows.Forms.Control.InvokeMarshaledCallbackDo(ThreadMethodEntry tme)
+   at System.Windows.Forms.Control.InvokeMarshaledCallbackHelper(Object obj)
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Windows.Forms.Control.InvokeMarshaledCallback(ThreadMethodEntry tme)
+   at System.Windows.Forms.Control.InvokeMarshaledCallbacks()
+   at System.Windows.Forms.Control.WndProc(Message& m)
+   at System.Windows.Forms.ScrollableControl.WndProc(Message& m)
+   at System.Windows.Forms.ContainerControl.WndProc(Message& m)
+   at System.Windows.Forms.Form.WndProc(Message& m)
+   at System.Windows.Forms.Control.ControlNativeWindow.OnMessage(Message& m)
+   at System.Windows.Forms.Control.ControlNativeWindow.WndProc(Message& m)
+   at System.Windows.Forms.NativeWindow.Callback(HWND hWnd, UInt32 msg, WPARAM wparam, LPARAM lparam)
+   at Windows.Win32.PInvoke.DispatchMessage(MSG* lpMsg)
+   at System.Windows.Forms.Application.LightThreadContext.FPushMessageLoop(msoloop uReason)
+   at System.Windows.Forms.Application.LightThreadContext.RunMessageLoop(msoloop reason, Boolean fullModal)
+   at System.Windows.Forms.Application.ThreadContext.RunMessageLoopInner(msoloop reason, ApplicationContext context)
+   at System.Windows.Forms.Application.RunDialog(Form form)
+   at System.Windows.Forms.Form.ShowDialog(IWin32Window owner)
+   at System.Windows.Forms.Form.ShowDialog()
+   at asdb3.ak(Object A_0, EventArgs A_1) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdb3.cs:line 1831
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at OriginalNavigationCheck.<>c__DisplayClass3_1.<Worker>b__3(Object sender, EventArgs e) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalNavigationCheck.cs:line 74
+   at System.Windows.Forms.Timer.OnTick(EventArgs e)
+   at System.Windows.Forms.Timer.TimerNativeWindow.WndProc(Message& m)
+   at System.Windows.Forms.NativeWindow.Callback(HWND hWnd, UInt32 msg, WPARAM wparam, LPARAM lparam)
+   at Windows.Win32.PInvoke.DispatchMessage(MSG* lpMsg)
+   at System.Windows.Forms.Application.LightThreadContext.FPushMessageLoop(msoloop uReason)
+   at System.Windows.Forms.Application.LightThreadContext.RunMessageLoop(msoloop reason, Boolean fullModal)
+   at System.Windows.Forms.Application.ThreadContext.RunMessageLoopInner(msoloop reason, ApplicationContext context)
+   at System.Windows.Forms.Application.Run(ApplicationContext context)
+   at OriginalNavigationCheck.Worker(String route) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalNavigationCheck.cs:line 154
+   at OriginalProgram.Main(String[] args) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalProgram.cs:line 54
+SQL 1E846049AB9113F7D191CDB90D8974CFC5A20D31D8AB57E09CB9420C3FC6C490
+   at System.Environment.get_StackTrace()
+   at OriginalNavigationCheck.TraceCommand(String sql) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalNavigationCheck.cs:line 22
+   at asdcb.a(SqlCommand A_0, SqlConnection A_1, SqlTransaction A_2, CommandType A_3, String A_4, SqlParameter[] A_5) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdcb.cs:line 87
+   at asdcb.b(SqlConnection A_0, CommandType A_1, String A_2, SqlParameter[] A_3) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdcb.cs:line 408
+   at asdcb.c(String A_0, CommandType A_1, String A_2, SqlParameter[] A_3) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdcb.cs:line 356
+   at asdae.g(Object A_0, EventArgs A_1) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdae.cs:line 794
+   at System.Windows.Forms.Form.OnLoad(EventArgs e)
+   at System.Windows.Forms.Form.OnCreateControl()
+   at System.Windows.Forms.Control.CreateControl(Boolean ignoreVisible)
+   at System.Windows.Forms.Control.CreateControl()
+   at System.Windows.Forms.Control.WmShowWindow(Message& m)
+   at System.Windows.Forms.Control.WndProc(Message& m)
+   at System.Windows.Forms.ScrollableControl.WndProc(Message& m)
+   at System.Windows.Forms.ContainerControl.WndProc(Message& m)
+   at System.Windows.Forms.Form.WmShowWindow(Message& m)
+   at System.Windows.Forms.Form.WndProc(Message& m)
+   at System.Windows.Forms.Control.ControlNativeWindow.OnMessage(Message& m)
+   at System.Windows.Forms.Control.ControlNativeWindow.WndProc(Message& m)
+   at System.Windows.Forms.NativeWindow.Callback(HWND hWnd, UInt32 msg, WPARAM wparam, LPARAM lparam)
+   at Windows.Win32.PInvoke.ShowWindow(HWND hWnd, SHOW_WINDOW_CMD nCmdShow)
+   at System.Windows.Forms.Control.SetVisibleCore(Boolean value)
+   at System.Windows.Forms.Form.SetVisibleCore(Boolean value)
+   at System.Windows.Forms.Application.ThreadContext.RunMessageLoopInner(msoloop reason, ApplicationContext context)
+   at System.Windows.Forms.Application.RunDialog(Form form)
+   at System.Windows.Forms.Form.ShowDialog(IWin32Window owner)
+   at System.Windows.Forms.Form.ShowDialog()
+   at asda5.s(Object A_0, EventArgs A_1) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asda5.cs:line 640
+   at System.Windows.Forms.Control.OnClick(EventArgs e)
+   at System.Windows.Forms.Button.OnClick(EventArgs e)
+   at System.Windows.Forms.Button.PerformClick()
+   at OriginalWorkflowChecks.<>c__DisplayClass14_0.<Payment>b__1() in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalWorkflowChecks.cs:line 164
+   at OriginalWorkflowChecks.ChildPayment(Action open, Action`1 exercise) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalWorkflowChecks.cs:line 152
+   at OriginalWorkflowChecks.Payment(Form form, Database db, Action`1 log) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalWorkflowChecks.cs:line 164
+   at OriginalWorkflowChecks.Run(String scenario, Form form, Database db, Action`1 log) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalWorkflowChecks.cs:line 103
+   at OriginalNavigationCheck.<>c__DisplayClass3_1.<Worker>b__3(Object sender, EventArgs e) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalNavigationCheck.cs:line 89
+   at System.Windows.Forms.Timer.OnTick(EventArgs e)
+   at System.Windows.Forms.Timer.TimerNativeWindow.WndProc(Message& m)
+   at System.Windows.Forms.NativeWindow.Callback(HWND hWnd, UInt32 msg, WPARAM wparam, LPARAM lparam)
+   at Windows.Win32.PInvoke.DispatchMessage(MSG* lpMsg)
+   at System.Windows.Forms.Application.LightThreadContext.FPushMessageLoop(msoloop uReason)
+   at System.Windows.Forms.Application.LightThreadContext.RunMessageLoop(msoloop reason, Boolean fullModal)
+   at System.Windows.Forms.Application.ThreadContext.RunMessageLoopInner(msoloop reason, ApplicationContext context)
+   at System.Windows.Forms.Application.RunDialog(Form form)
+   at System.Windows.Forms.Form.ShowDialog(IWin32Window owner)
+   at System.Windows.Forms.Form.ShowDialog()
+   at asdb3.ak(Object A_0, EventArgs A_1) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdb3.cs:line 1831
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at OriginalNavigationCheck.<>c__DisplayClass3_1.<Worker>b__3(Object sender, EventArgs e) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalNavigationCheck.cs:line 74
+   at System.Windows.Forms.Timer.OnTick(EventArgs e)
+   at System.Windows.Forms.Timer.TimerNativeWindow.WndProc(Message& m)
+   at System.Windows.Forms.NativeWindow.Callback(HWND hWnd, UInt32 msg, WPARAM wparam, LPARAM lparam)
+   at Windows.Win32.PInvoke.DispatchMessage(MSG* lpMsg)
+   at System.Windows.Forms.Application.LightThreadContext.FPushMessageLoop(msoloop uReason)
+   at System.Windows.Forms.Application.LightThreadContext.RunMessageLoop(msoloop reason, Boolean fullModal)
+   at System.Windows.Forms.Application.ThreadContext.RunMessageLoopInner(msoloop reason, ApplicationContext context)
+   at System.Windows.Forms.Application.Run(ApplicationContext context)
+   at OriginalNavigationCheck.Worker(String route) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalNavigationCheck.cs:line 154
+   at OriginalProgram.Main(String[] args) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalProgram.cs:line 54
+SQL 41C2BF83314BF407035D2F4DC7F8F3C9678BD1DE96EA1C19BDC88932C7A807F8
+   at System.Environment.get_StackTrace()
+   at OriginalNavigationCheck.TraceCommand(String sql) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalNavigationCheck.cs:line 22
+   at asdcb.a(SqlCommand A_0, SqlConnection A_1, SqlTransaction A_2, CommandType A_3, String A_4, SqlParameter[] A_5) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdcb.cs:line 87
+   at asdcb.b(SqlConnection A_0, CommandType A_1, String A_2, SqlParameter[] A_3) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdcb.cs:line 408
+   at asdcb.c(String A_0, CommandType A_1, String A_2, SqlParameter[] A_3) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdcb.cs:line 356
+   at asdae.g(Object A_0, EventArgs A_1) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdae.cs:line 802
+   at System.Windows.Forms.Form.OnLoad(EventArgs e)
+   at System.Windows.Forms.Form.OnCreateControl()
+   at System.Windows.Forms.Control.CreateControl(Boolean ignoreVisible)
+   at System.Windows.Forms.Control.CreateControl()
+   at System.Windows.Forms.Control.WmShowWindow(Message& m)
+   at System.Windows.Forms.Control.WndProc(Message& m)
+   at System.Windows.Forms.ScrollableControl.WndProc(Message& m)
+   at System.Windows.Forms.ContainerControl.WndProc(Message& m)
+   at System.Windows.Forms.Form.WmShowWindow(Message& m)
+   at System.Windows.Forms.Form.WndProc(Message& m)
+   at System.Windows.Forms.Control.ControlNativeWindow.OnMessage(Message& m)
+   at System.Windows.Forms.Control.ControlNativeWindow.WndProc(Message& m)
+   at System.Windows.Forms.NativeWindow.Callback(HWND hWnd, UInt32 msg, WPARAM wparam, LPARAM lparam)
+   at Windows.Win32.PInvoke.ShowWindow(HWND hWnd, SHOW_WINDOW_CMD nCmdShow)
+   at System.Windows.Forms.Control.SetVisibleCore(Boolean value)
+   at System.Windows.Forms.Form.SetVisibleCore(Boolean value)
+   at System.Windows.Forms.Application.ThreadContext.RunMessageLoopInner(msoloop reason, ApplicationContext context)
+   at System.Windows.Forms.Application.RunDialog(Form form)
+   at System.Windows.Forms.Form.ShowDialog(IWin32Window owner)
+   at System.Windows.Forms.Form.ShowDialog()
+   at asda5.s(Object A_0, EventArgs A_1) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asda5.cs:line 640
+   at System.Windows.Forms.Control.OnClick(EventArgs e)
+   at System.Windows.Forms.Button.OnClick(EventArgs e)
+   at System.Windows.Forms.Button.PerformClick()
+   at OriginalWorkflowChecks.<>c__DisplayClass14_0.<Payment>b__1() in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalWorkflowChecks.cs:line 164
+   at OriginalWorkflowChecks.ChildPayment(Action open, Action`1 exercise) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalWorkflowChecks.cs:line 152
+   at OriginalWorkflowChecks.Payment(Form form, Database db, Action`1 log) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalWorkflowChecks.cs:line 164
+   at OriginalWorkflowChecks.Run(String scenario, Form form, Database db, Action`1 log) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalWorkflowChecks.cs:line 103
+   at OriginalNavigationCheck.<>c__DisplayClass3_1.<Worker>b__3(Object sender, EventArgs e) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalNavigationCheck.cs:line 89
+   at System.Windows.Forms.Timer.OnTick(EventArgs e)
+   at System.Windows.Forms.Timer.TimerNativeWindow.WndProc(Message& m)
+   at System.Windows.Forms.NativeWindow.Callback(HWND hWnd, UInt32 msg, WPARAM wparam, LPARAM lparam)
+   at Windows.Win32.PInvoke.DispatchMessage(MSG* lpMsg)
+   at System.Windows.Forms.Application.LightThreadContext.FPushMessageLoop(msoloop uReason)
+   at System.Windows.Forms.Application.LightThreadContext.RunMessageLoop(msoloop reason, Boolean fullModal)
+   at System.Windows.Forms.Application.ThreadContext.RunMessageLoopInner(msoloop reason, ApplicationContext context)
+   at System.Windows.Forms.Application.RunDialog(Form form)
+   at System.Windows.Forms.Form.ShowDialog(IWin32Window owner)
+   at System.Windows.Forms.Form.ShowDialog()
+   at asdb3.ak(Object A_0, EventArgs A_1) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdb3.cs:line 1831
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at OriginalNavigationCheck.<>c__DisplayClass3_1.<Worker>b__3(Object sender, EventArgs e) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalNavigationCheck.cs:line 74
+   at System.Windows.Forms.Timer.OnTick(EventArgs e)
+   at System.Windows.Forms.Timer.TimerNativeWindow.WndProc(Message& m)
+   at System.Windows.Forms.NativeWindow.Callback(HWND hWnd, UInt32 msg, WPARAM wparam, LPARAM lparam)
+   at Windows.Win32.PInvoke.DispatchMessage(MSG* lpMsg)
+   at System.Windows.Forms.Application.LightThreadContext.FPushMessageLoop(msoloop uReason)
+   at System.Windows.Forms.Application.LightThreadContext.RunMessageLoop(msoloop reason, Boolean fullModal)
+   at System.Windows.Forms.Application.ThreadContext.RunMessageLoopInner(msoloop reason, ApplicationContext context)
+   at System.Windows.Forms.Application.Run(ApplicationContext context)
+   at OriginalNavigationCheck.Worker(String route) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalNavigationCheck.cs:line 154
+   at OriginalProgram.Main(String[] args) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalProgram.cs:line 54
+SQL E92BF895B0CEA1947214A73872AA74EA5834D4571C9F98D8A08C2D6115446D05
+   at System.Environment.get_StackTrace()
+   at OriginalNavigationCheck.TraceCommand(String sql) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalNavigationCheck.cs:line 22
+   at asdcb.a(SqlCommand A_0, SqlConnection A_1, SqlTransaction A_2, CommandType A_3, String A_4, SqlParameter[] A_5) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdcb.cs:line 87
+   at asdcb.a(SqlConnection A_0, CommandType A_1, String A_2, SqlParameter[] A_3) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdcb.cs:line 570
+   at asdcb.a(String A_0, CommandType A_1, String A_2, SqlParameter[] A_3) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdcb.cs:line 518
+   at asdae.b() in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdae.cs:line 897
+   at asdae.g(Object A_0, EventArgs A_1) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdae.cs:line 843
+   at System.Windows.Forms.Form.OnLoad(EventArgs e)
+   at System.Windows.Forms.Form.OnCreateControl()
+   at System.Windows.Forms.Control.CreateControl(Boolean ignoreVisible)
+   at System.Windows.Forms.Control.CreateControl()
+   at System.Windows.Forms.Control.WmShowWindow(Message& m)
+   at System.Windows.Forms.Control.WndProc(Message& m)
+   at System.Windows.Forms.ScrollableControl.WndProc(Message& m)
+   at System.Windows.Forms.ContainerControl.WndProc(Message& m)
+   at System.Windows.Forms.Form.WmShowWindow(Message& m)
+   at System.Windows.Forms.Form.WndProc(Message& m)
+   at System.Windows.Forms.Control.ControlNativeWindow.OnMessage(Message& m)
+   at System.Windows.Forms.Control.ControlNativeWindow.WndProc(Message& m)
+   at System.Windows.Forms.NativeWindow.Callback(HWND hWnd, UInt32 msg, WPARAM wparam, LPARAM lparam)
+   at Windows.Win32.PInvoke.ShowWindow(HWND hWnd, SHOW_WINDOW_CMD nCmdShow)
+   at System.Windows.Forms.Control.SetVisibleCore(Boolean value)
+   at System.Windows.Forms.Form.SetVisibleCore(Boolean value)
+   at System.Windows.Forms.Application.ThreadContext.RunMessageLoopInner(msoloop reason, ApplicationContext context)
+   at System.Windows.Forms.Application.RunDialog(Form form)
+   at System.Windows.Forms.Form.ShowDialog(IWin32Window owner)
+   at System.Windows.Forms.Form.ShowDialog()
+   at asda5.s(Object A_0, EventArgs A_1) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asda5.cs:line 640
+   at System.Windows.Forms.Control.OnClick(EventArgs e)
+   at System.Windows.Forms.Button.OnClick(EventArgs e)
+   at System.Windows.Forms.Button.PerformClick()
+   at OriginalWorkflowChecks.<>c__DisplayClass14_0.<Payment>b__1() in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalWorkflowChecks.cs:line 164
+   at OriginalWorkflowChecks.ChildPayment(Action open, Action`1 exercise) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalWorkflowChecks.cs:line 152
+   at OriginalWorkflowChecks.Payment(Form form, Database db, Action`1 log) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalWorkflowChecks.cs:line 164
+   at OriginalWorkflowChecks.Run(String scenario, Form form, Database db, Action`1 log) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalWorkflowChecks.cs:line 103
+   at OriginalNavigationCheck.<>c__DisplayClass3_1.<Worker>b__3(Object sender, EventArgs e) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalNavigationCheck.cs:line 89
+   at System.Windows.Forms.Timer.OnTick(EventArgs e)
+   at System.Windows.Forms.Timer.TimerNativeWindow.WndProc(Message& m)
+   at System.Windows.Forms.NativeWindow.Callback(HWND hWnd, UInt32 msg, WPARAM wparam, LPARAM lparam)
+   at Windows.Win32.PInvoke.DispatchMessage(MSG* lpMsg)
+   at System.Windows.Forms.Application.LightThreadContext.FPushMessageLoop(msoloop uReason)
+   at System.Windows.Forms.Application.LightThreadContext.RunMessageLoop(msoloop reason, Boolean fullModal)
+   at System.Windows.Forms.Application.ThreadContext.RunMessageLoopInner(msoloop reason, ApplicationContext context)
+   at System.Windows.Forms.Application.RunDialog(Form form)
+   at System.Windows.Forms.Form.ShowDialog(IWin32Window owner)
+   at System.Windows.Forms.Form.ShowDialog()
+   at asdb3.ak(Object A_0, EventArgs A_1) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdb3.cs:line 1831
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at OriginalNavigationCheck.<>c__DisplayClass3_1.<Worker>b__3(Object sender, EventArgs e) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalNavigationCheck.cs:line 74
+   at System.Windows.Forms.Timer.OnTick(EventArgs e)
+   at System.Windows.Forms.Timer.TimerNativeWindow.WndProc(Message& m)
+   at System.Windows.Forms.NativeWindow.Callback(HWND hWnd, UInt32 msg, WPARAM wparam, LPARAM lparam)
+   at Windows.Win32.PInvoke.DispatchMessage(MSG* lpMsg)
+   at System.Windows.Forms.Application.LightThreadContext.FPushMessageLoop(msoloop uReason)
+   at System.Windows.Forms.Application.LightThreadContext.RunMessageLoop(msoloop reason, Boolean fullModal)
+   at System.Windows.Forms.Application.ThreadContext.RunMessageLoopInner(msoloop reason, ApplicationContext context)
+   at System.Windows.Forms.Application.Run(ApplicationContext context)
+   at OriginalNavigationCheck.Worker(String route) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalNavigationCheck.cs:line 154
+   at OriginalProgram.Main(String[] args) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalProgram.cs:line 54
+SQL 9C1675BD14C003E78C66575F7FDF9E1ADD663A8067691E8181F9FFE70DA0905C
+   at System.Environment.get_StackTrace()
+   at OriginalNavigationCheck.TraceCommand(String sql) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalNavigationCheck.cs:line 22
+   at asdcb.a(SqlCommand A_0, SqlConnection A_1, SqlTransaction A_2, CommandType A_3, String A_4, SqlParameter[] A_5) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdcb.cs:line 87
+   at asdcb.a(SqlConnection A_0, CommandType A_1, String A_2, SqlParameter[] A_3) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdcb.cs:line 570
+   at asdcb.a(String A_0, CommandType A_1, String A_2, SqlParameter[] A_3) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdcb.cs:line 518
+   at asdae.b() in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdae.cs:line 898
+   at asdae.g(Object A_0, EventArgs A_1) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdae.cs:line 843
+   at System.Windows.Forms.Form.OnLoad(EventArgs e)
+   at System.Windows.Forms.Form.OnCreateControl()
+   at System.Windows.Forms.Control.CreateControl(Boolean ignoreVisible)
+   at System.Windows.Forms.Control.CreateControl()
+   at System.Windows.Forms.Control.WmShowWindow(Message& m)
+   at System.Windows.Forms.Control.WndProc(Message& m)
+   at System.Windows.Forms.ScrollableControl.WndProc(Message& m)
+   at System.Windows.Forms.ContainerControl.WndProc(Message& m)
+   at System.Windows.Forms.Form.WmShowWindow(Message& m)
+   at System.Windows.Forms.Form.WndProc(Message& m)
+   at System.Windows.Forms.Control.ControlNativeWindow.OnMessage(Message& m)
+   at System.Windows.Forms.Control.ControlNativeWindow.WndProc(Message& m)
+   at System.Windows.Forms.NativeWindow.Callback(HWND hWnd, UInt32 msg, WPARAM wparam, LPARAM lparam)
+   at Windows.Win32.PInvoke.ShowWindow(HWND hWnd, SHOW_WINDOW_CMD nCmdShow)
+   at System.Windows.Forms.Control.SetVisibleCore(Boolean value)
+   at System.Windows.Forms.Form.SetVisibleCore(Boolean value)
+   at System.Windows.Forms.Application.ThreadContext.RunMessageLoopInner(msoloop reason, ApplicationContext context)
+   at System.Windows.Forms.Application.RunDialog(Form form)
+   at System.Windows.Forms.Form.ShowDialog(IWin32Window owner)
+   at System.Windows.Forms.Form.ShowDialog()
+   at asda5.s(Object A_0, EventArgs A_1) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asda5.cs:line 640
+   at System.Windows.Forms.Control.OnClick(EventArgs e)
+   at System.Windows.Forms.Button.OnClick(EventArgs e)
+   at System.Windows.Forms.Button.PerformClick()
+   at OriginalWorkflowChecks.<>c__DisplayClass14_0.<Payment>b__1() in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalWorkflowChecks.cs:line 164
+   at OriginalWorkflowChecks.ChildPayment(Action open, Action`1 exercise) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalWorkflowChecks.cs:line 152
+   at OriginalWorkflowChecks.Payment(Form form, Database db, Action`1 log) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalWorkflowChecks.cs:line 164
+   at OriginalWorkflowChecks.Run(String scenario, Form form, Database db, Action`1 log) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalWorkflowChecks.cs:line 103
+   at OriginalNavigationCheck.<>c__DisplayClass3_1.<Worker>b__3(Object sender, EventArgs e) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalNavigationCheck.cs:line 89
+   at System.Windows.Forms.Timer.OnTick(EventArgs e)
+   at System.Windows.Forms.Timer.TimerNativeWindow.WndProc(Message& m)
+   at System.Windows.Forms.NativeWindow.Callback(HWND hWnd, UInt32 msg, WPARAM wparam, LPARAM lparam)
+   at Windows.Win32.PInvoke.DispatchMessage(MSG* lpMsg)
+   at System.Windows.Forms.Application.LightThreadContext.FPushMessageLoop(msoloop uReason)
+   at System.Windows.Forms.Application.LightThreadContext.RunMessageLoop(msoloop reason, Boolean fullModal)
+   at System.Windows.Forms.Application.ThreadContext.RunMessageLoopInner(msoloop reason, ApplicationContext context)
+   at System.Windows.Forms.Application.RunDialog(Form form)
+   at System.Windows.Forms.Form.ShowDialog(IWin32Window owner)
+   at System.Windows.Forms.Form.ShowDialog()
+   at asdb3.ak(Object A_0, EventArgs A_1) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdb3.cs:line 1831
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at OriginalNavigationCheck.<>c__DisplayClass3_1.<Worker>b__3(Object sender, EventArgs e) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalNavigationCheck.cs:line 74
+   at System.Windows.Forms.Timer.OnTick(EventArgs e)
+   at System.Windows.Forms.Timer.TimerNativeWindow.WndProc(Message& m)
+   at System.Windows.Forms.NativeWindow.Callback(HWND hWnd, UInt32 msg, WPARAM wparam, LPARAM lparam)
+   at Windows.Win32.PInvoke.DispatchMessage(MSG* lpMsg)
+   at System.Windows.Forms.Application.LightThreadContext.FPushMessageLoop(msoloop uReason)
+   at System.Windows.Forms.Application.LightThreadContext.RunMessageLoop(msoloop reason, Boolean fullModal)
+   at System.Windows.Forms.Application.ThreadContext.RunMessageLoopInner(msoloop reason, ApplicationContext context)
+   at System.Windows.Forms.Application.Run(ApplicationContext context)
+   at OriginalNavigationCheck.Worker(String route) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalNavigationCheck.cs:line 154
+   at OriginalProgram.Main(String[] args) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalProgram.cs:line 54
+EXPECT dialog: جهت ثبت پرداخت حداقل یکی از گزینه ها باید وارد شود
+OBSERVED dialog child texts: OK | جهت ثبت پرداخت حداقل یکی از گزینه ها باید وارد شود
+RESPOND expected dialog, requested=1 actual=2:OK
+EXPECT dialog: مبلغ باید عدد صحیح غیرمنفی باشد و مجموع پرداخت از ۲۱۴۷۴۸۳۶۴۷ بیشتر نباشد
+OBSERVED dialog child texts: OK | مبلغ باید عدد صحیح غیرمنفی باشد و مجموع پرداخت از ۲۱۴۷۴۸۳۶۴۷ بیشتر نباشد
+RESPOND expected dialog, requested=1 actual=2:OK
+EXPECT dialog: مبلغ باید عدد صحیح غیرمنفی باشد و مجموع پرداخت از ۲۱۴۷۴۸۳۶۴۷ بیشتر نباشد
+OBSERVED dialog child texts: OK | مبلغ باید عدد صحیح غیرمنفی باشد و مجموع پرداخت از ۲۱۴۷۴۸۳۶۴۷ بیشتر نباشد
+RESPOND expected dialog, requested=1 actual=2:OK
+EXPECT dialog: مبلغ باید عدد صحیح غیرمنفی باشد و مجموع پرداخت از ۲۱۴۷۴۸۳۶۴۷ بیشتر نباشد
+OBSERVED dialog child texts: OK | مبلغ باید عدد صحیح غیرمنفی باشد و مجموع پرداخت از ۲۱۴۷۴۸۳۶۴۷ بیشتر نباشد
+RESPOND expected dialog, requested=1 actual=2:OK
+EXPECT dialog: مبلغ باید عدد صحیح غیرمنفی باشد و مجموع پرداخت از ۲۱۴۷۴۸۳۶۴۷ بیشتر نباشد
+OBSERVED dialog child texts: OK | مبلغ باید عدد صحیح غیرمنفی باشد و مجموع پرداخت از ۲۱۴۷۴۸۳۶۴۷ بیشتر نباشد
+RESPOND expected dialog, requested=1 actual=2:OK
+EXPECT dialog: تاریخ پرداخت اشتباه است
+OBSERVED dialog child texts: OK | تاریخ پرداخت اشتباه است
+RESPOND expected dialog, requested=1 actual=2:OK
+EXPECT dialog: مبلغ وارد شده برای فیس بالاتر از مقدار باقی مانده است
+SQL 87A0953EA7A959E4F3167276A7D0FE135A71D827E8DB0486993845B5EAC31B78
+   at System.Environment.get_StackTrace()
+   at OriginalNavigationCheck.TraceCommand(String sql) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalNavigationCheck.cs:line 22
+   at asdcb.a(SqlCommand A_0, SqlConnection A_1, SqlTransaction A_2, CommandType A_3, String A_4, SqlParameter[] A_5) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdcb.cs:line 87
+   at asdcb.c(SqlConnection A_0, CommandType A_1, String A_2, SqlParameter[] A_3) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdcb.cs:line 313
+   at asdcb.d(String A_0, CommandType A_1, String A_2, SqlParameter[] A_3) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdcb.cs:line 253
+   at asdae.f(Object A_0, EventArgs A_1) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdae.cs:line 1101
+   at System.Windows.Forms.Control.OnClick(EventArgs e)
+   at System.Windows.Forms.Button.OnClick(EventArgs e)
+   at System.Windows.Forms.Button.PerformClick()
+   at OriginalWorkflowChecks.<>c__DisplayClass14_1.<Payment>b__14() in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalWorkflowChecks.cs:line 185
+   at OriginalWorkflowChecks.Dialog(Action action, String expectedText, Int32 buttonId) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalWorkflowChecks.cs:line 400
+   at OriginalWorkflowChecks.<>c__DisplayClass14_0.<Payment>b__2(Form child) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalWorkflowChecks.cs:line 185
+   at OriginalWorkflowChecks.<>c__DisplayClass13_0.<ChildPayment>b__0(Object sender, EventArgs args) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalWorkflowChecks.cs:line 148
+   at System.Windows.Forms.Timer.OnTick(EventArgs e)
+   at System.Windows.Forms.Timer.TimerNativeWindow.WndProc(Message& m)
+   at System.Windows.Forms.NativeWindow.Callback(HWND hWnd, UInt32 msg, WPARAM wparam, LPARAM lparam)
+   at Windows.Win32.PInvoke.DispatchMessage(MSG* lpMsg)
+   at System.Windows.Forms.Application.LightThreadContext.FPushMessageLoop(msoloop uReason)
+   at System.Windows.Forms.Application.LightThreadContext.RunMessageLoop(msoloop reason, Boolean fullModal)
+   at System.Windows.Forms.Application.ThreadContext.RunMessageLoopInner(msoloop reason, ApplicationContext context)
+   at System.Windows.Forms.Application.RunDialog(Form form)
+   at System.Windows.Forms.Form.ShowDialog(IWin32Window owner)
+   at System.Windows.Forms.Form.ShowDialog()
+   at asda5.s(Object A_0, EventArgs A_1) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asda5.cs:line 640
+   at System.Windows.Forms.Control.OnClick(EventArgs e)
+   at System.Windows.Forms.Button.OnClick(EventArgs e)
+   at System.Windows.Forms.Button.PerformClick()
+   at OriginalWorkflowChecks.<>c__DisplayClass14_0.<Payment>b__1() in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalWorkflowChecks.cs:line 164
+   at OriginalWorkflowChecks.ChildPayment(Action open, Action`1 exercise) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalWorkflowChecks.cs:line 152
+   at OriginalWorkflowChecks.Payment(Form form, Database db, Action`1 log) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalWorkflowChecks.cs:line 164
+   at OriginalWorkflowChecks.Run(String scenario, Form form, Database db, Action`1 log) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalWorkflowChecks.cs:line 103
+   at OriginalNavigationCheck.<>c__DisplayClass3_1.<Worker>b__3(Object sender, EventArgs e) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalNavigationCheck.cs:line 89
+   at System.Windows.Forms.Timer.OnTick(EventArgs e)
+   at System.Windows.Forms.Timer.TimerNativeWindow.WndProc(Message& m)
+   at System.Windows.Forms.NativeWindow.Callback(HWND hWnd, UInt32 msg, WPARAM wparam, LPARAM lparam)
+   at Windows.Win32.PInvoke.DispatchMessage(MSG* lpMsg)
+   at System.Windows.Forms.Application.LightThreadContext.FPushMessageLoop(msoloop uReason)
+   at System.Windows.Forms.Application.LightThreadContext.RunMessageLoop(msoloop reason, Boolean fullModal)
+   at System.Windows.Forms.Application.ThreadContext.RunMessageLoopInner(msoloop reason, ApplicationContext context)
+   at System.Windows.Forms.Application.RunDialog(Form form)
+   at System.Windows.Forms.Form.ShowDialog(IWin32Window owner)
+   at System.Windows.Forms.Form.ShowDialog()
+   at asdb3.ak(Object A_0, EventArgs A_1) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdb3.cs:line 1831
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at OriginalNavigationCheck.<>c__DisplayClass3_1.<Worker>b__3(Object sender, EventArgs e) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalNavigationCheck.cs:line 74
+   at System.Windows.Forms.Timer.OnTick(EventArgs e)
+   at System.Windows.Forms.Timer.TimerNativeWindow.WndProc(Message& m)
+   at System.Windows.Forms.NativeWindow.Callback(HWND hWnd, UInt32 msg, WPARAM wparam, LPARAM lparam)
+   at Windows.Win32.PInvoke.DispatchMessage(MSG* lpMsg)
+   at System.Windows.Forms.Application.LightThreadContext.FPushMessageLoop(msoloop uReason)
+   at System.Windows.Forms.Application.LightThreadContext.RunMessageLoop(msoloop reason, Boolean fullModal)
+   at System.Windows.Forms.Application.ThreadContext.RunMessageLoopInner(msoloop reason, ApplicationContext context)
+   at System.Windows.Forms.Application.Run(ApplicationContext context)
+   at OriginalNavigationCheck.Worker(String route) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalNavigationCheck.cs:line 154
+   at OriginalProgram.Main(String[] args) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalProgram.cs:line 54
+OBSERVED dialog child texts: OK | مبلغ وارد شده برای فیس بالاتر از مقدار باقی مانده است 
+RESPOND expected dialog, requested=1 actual=2:OK
+EXPECT dialog: ثبت شد
+SQL 87A0953EA7A959E4F3167276A7D0FE135A71D827E8DB0486993845B5EAC31B78
+   at System.Environment.get_StackTrace()
+   at OriginalNavigationCheck.TraceCommand(String sql) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalNavigationCheck.cs:line 22
+   at asdcb.a(SqlCommand A_0, SqlConnection A_1, SqlTransaction A_2, CommandType A_3, String A_4, SqlParameter[] A_5) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdcb.cs:line 87
+   at asdcb.c(SqlConnection A_0, CommandType A_1, String A_2, SqlParameter[] A_3) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdcb.cs:line 313
+   at asdcb.d(String A_0, CommandType A_1, String A_2, SqlParameter[] A_3) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdcb.cs:line 253
+   at asdae.f(Object A_0, EventArgs A_1) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdae.cs:line 1101
+   at System.Windows.Forms.Control.OnClick(EventArgs e)
+   at System.Windows.Forms.Button.OnClick(EventArgs e)
+   at System.Windows.Forms.Button.PerformClick()
+   at OriginalWorkflowChecks.<>c__DisplayClass14_1.<Payment>b__15() in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalWorkflowChecks.cs:line 190
+   at OriginalWorkflowChecks.Dialog(Action action, String expectedText, Int32 buttonId) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalWorkflowChecks.cs:line 400
+   at OriginalWorkflowChecks.<>c__DisplayClass14_0.<Payment>b__2(Form child) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalWorkflowChecks.cs:line 190
+   at OriginalWorkflowChecks.<>c__DisplayClass13_0.<ChildPayment>b__0(Object sender, EventArgs args) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalWorkflowChecks.cs:line 148
+   at System.Windows.Forms.Timer.OnTick(EventArgs e)
+   at System.Windows.Forms.Timer.TimerNativeWindow.WndProc(Message& m)
+   at System.Windows.Forms.NativeWindow.Callback(HWND hWnd, UInt32 msg, WPARAM wparam, LPARAM lparam)
+   at Windows.Win32.PInvoke.DispatchMessage(MSG* lpMsg)
+   at System.Windows.Forms.Application.LightThreadContext.FPushMessageLoop(msoloop uReason)
+   at System.Windows.Forms.Application.LightThreadContext.RunMessageLoop(msoloop reason, Boolean fullModal)
+   at System.Windows.Forms.Application.ThreadContext.RunMessageLoopInner(msoloop reason, ApplicationContext context)
+   at System.Windows.Forms.Application.RunDialog(Form form)
+   at System.Windows.Forms.Form.ShowDialog(IWin32Window owner)
+   at System.Windows.Forms.Form.ShowDialog()
+   at asda5.s(Object A_0, EventArgs A_1) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asda5.cs:line 640
+   at System.Windows.Forms.Control.OnClick(EventArgs e)
+   at System.Windows.Forms.Button.OnClick(EventArgs e)
+   at System.Windows.Forms.Button.PerformClick()
+   at OriginalWorkflowChecks.<>c__DisplayClass14_0.<Payment>b__1() in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalWorkflowChecks.cs:line 164
+   at OriginalWorkflowChecks.ChildPayment(Action open, Action`1 exercise) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalWorkflowChecks.cs:line 152
+   at OriginalWorkflowChecks.Payment(Form form, Database db, Action`1 log) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalWorkflowChecks.cs:line 164
+   at OriginalWorkflowChecks.Run(String scenario, Form form, Database db, Action`1 log) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalWorkflowChecks.cs:line 103
+   at OriginalNavigationCheck.<>c__DisplayClass3_1.<Worker>b__3(Object sender, EventArgs e) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalNavigationCheck.cs:line 89
+   at System.Windows.Forms.Timer.OnTick(EventArgs e)
+   at System.Windows.Forms.Timer.TimerNativeWindow.WndProc(Message& m)
+   at System.Windows.Forms.NativeWindow.Callback(HWND hWnd, UInt32 msg, WPARAM wparam, LPARAM lparam)
+   at Windows.Win32.PInvoke.DispatchMessage(MSG* lpMsg)
+   at System.Windows.Forms.Application.LightThreadContext.FPushMessageLoop(msoloop uReason)
+   at System.Windows.Forms.Application.LightThreadContext.RunMessageLoop(msoloop reason, Boolean fullModal)
+   at System.Windows.Forms.Application.ThreadContext.RunMessageLoopInner(msoloop reason, ApplicationContext context)
+   at System.Windows.Forms.Application.RunDialog(Form form)
+   at System.Windows.Forms.Form.ShowDialog(IWin32Window owner)
+   at System.Windows.Forms.Form.ShowDialog()
+   at asdb3.ak(Object A_0, EventArgs A_1) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdb3.cs:line 1831
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at OriginalNavigationCheck.<>c__DisplayClass3_1.<Worker>b__3(Object sender, EventArgs e) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalNavigationCheck.cs:line 74
+   at System.Windows.Forms.Timer.OnTick(EventArgs e)
+   at System.Windows.Forms.Timer.TimerNativeWindow.WndProc(Message& m)
+   at System.Windows.Forms.NativeWindow.Callback(HWND hWnd, UInt32 msg, WPARAM wparam, LPARAM lparam)
+   at Windows.Win32.PInvoke.DispatchMessage(MSG* lpMsg)
+   at System.Windows.Forms.Application.LightThreadContext.FPushMessageLoop(msoloop uReason)
+   at System.Windows.Forms.Application.LightThreadContext.RunMessageLoop(msoloop reason, Boolean fullModal)
+   at System.Windows.Forms.Application.ThreadContext.RunMessageLoopInner(msoloop reason, ApplicationContext context)
+   at System.Windows.Forms.Application.Run(ApplicationContext context)
+   at OriginalNavigationCheck.Worker(String route) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalNavigationCheck.cs:line 154
+   at OriginalProgram.Main(String[] args) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalProgram.cs:line 54
+OBSERVED dialog child texts: OK | ثبت شد
+RESPOND expected dialog, requested=1 actual=2:OK
+SQL C8D597985BA5C6C0BF0957D97E57E21CA22C2CC1F528378269B219CF2A7D4CEA
+   at System.Environment.get_StackTrace()
+   at OriginalNavigationCheck.TraceCommand(String sql) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalNavigationCheck.cs:line 22
+   at asdcb.a(SqlCommand A_0, SqlConnection A_1, SqlTransaction A_2, CommandType A_3, String A_4, SqlParameter[] A_5) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdcb.cs:line 87
+   at asdcb.b(SqlConnection A_0, CommandType A_1, String A_2, SqlParameter[] A_3) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdcb.cs:line 408
+   at asdcb.c(String A_0, CommandType A_1, String A_2, SqlParameter[] A_3) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdcb.cs:line 356
+   at asda5.c() in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asda5.cs:line 543
+   at asda5.s(Object A_0, EventArgs A_1) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asda5.cs:line 644
+   at System.Windows.Forms.Control.OnClick(EventArgs e)
+   at System.Windows.Forms.Button.OnClick(EventArgs e)
+   at System.Windows.Forms.Button.PerformClick()
+   at OriginalWorkflowChecks.<>c__DisplayClass14_0.<Payment>b__1() in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalWorkflowChecks.cs:line 164
+   at OriginalWorkflowChecks.ChildPayment(Action open, Action`1 exercise) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalWorkflowChecks.cs:line 152
+   at OriginalWorkflowChecks.Payment(Form form, Database db, Action`1 log) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalWorkflowChecks.cs:line 164
+   at OriginalWorkflowChecks.Run(String scenario, Form form, Database db, Action`1 log) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalWorkflowChecks.cs:line 103
+   at OriginalNavigationCheck.<>c__DisplayClass3_1.<Worker>b__3(Object sender, EventArgs e) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalNavigationCheck.cs:line 89
+   at System.Windows.Forms.Timer.OnTick(EventArgs e)
+   at System.Windows.Forms.Timer.TimerNativeWindow.WndProc(Message& m)
+   at System.Windows.Forms.NativeWindow.Callback(HWND hWnd, UInt32 msg, WPARAM wparam, LPARAM lparam)
+   at Windows.Win32.PInvoke.DispatchMessage(MSG* lpMsg)
+   at System.Windows.Forms.Application.LightThreadContext.FPushMessageLoop(msoloop uReason)
+   at System.Windows.Forms.Application.LightThreadContext.RunMessageLoop(msoloop reason, Boolean fullModal)
+   at System.Windows.Forms.Application.ThreadContext.RunMessageLoopInner(msoloop reason, ApplicationContext context)
+   at System.Windows.Forms.Application.RunDialog(Form form)
+   at System.Windows.Forms.Form.ShowDialog(IWin32Window owner)
+   at System.Windows.Forms.Form.ShowDialog()
+   at asdb3.ak(Object A_0, EventArgs A_1) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdb3.cs:line 1831
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at OriginalNavigationCheck.<>c__DisplayClass3_1.<Worker>b__3(Object sender, EventArgs e) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalNavigationCheck.cs:line 74
+   at System.Windows.Forms.Timer.OnTick(EventArgs e)
+   at System.Windows.Forms.Timer.TimerNativeWindow.WndProc(Message& m)
+   at System.Windows.Forms.NativeWindow.Callback(HWND hWnd, UInt32 msg, WPARAM wparam, LPARAM lparam)
+   at Windows.Win32.PInvoke.DispatchMessage(MSG* lpMsg)
+   at System.Windows.Forms.Application.LightThreadContext.FPushMessageLoop(msoloop uReason)
+   at System.Windows.Forms.Application.LightThreadContext.RunMessageLoop(msoloop reason, Boolean fullModal)
+   at System.Windows.Forms.Application.ThreadContext.RunMessageLoopInner(msoloop reason, ApplicationContext context)
+   at System.Windows.Forms.Application.Run(ApplicationContext context)
+   at OriginalNavigationCheck.Worker(String route) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalNavigationCheck.cs:line 154
+   at OriginalProgram.Main(String[] args) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalProgram.cs:line 54
+FAILED System.FormatException: The input string '1411/02/01' was not in a correct format.
+   at System.Number.ThrowFormatException[TChar](ReadOnlySpan`1 value)
+   at System.Number.ParseDecimal[TChar](ReadOnlySpan`1 value, NumberStyles styles, NumberFormatInfo info)
+   at System.Convert.ToDecimal(String value, IFormatProvider provider)
+   at System.String.System.IConvertible.ToDecimal(IFormatProvider provider)
+   at System.Convert.ToDecimal(Object value, IFormatProvider provider)
+   at Janus.Windows.GridEX.GridEX.<>c.<UpdateTotals>b__157_3(Object v) in D:\a\freesms\freesms\dotnet\FreeSms.NativeControls\Grid.cs:line 517
+   at System.Linq.Enumerable.IEnumerableWhereSelectIterator`2.ToArray()
+   at System.Linq.Enumerable.ToArray[TSource](IEnumerable`1 source)
+   at Janus.Windows.GridEX.GridEX.UpdateTotals() in D:\a\freesms\freesms\dotnet\FreeSms.NativeControls\Grid.cs:line 517
+   at Janus.Windows.GridEX.GridEX.<.ctor>b__136_14(Object s, DataGridViewBindingCompleteEventArgs e) in D:\a\freesms\freesms\dotnet\FreeSms.NativeControls\Grid.cs:line 340
+   at System.Windows.Forms.DataGridView.OnDataBindingComplete(DataGridViewBindingCompleteEventArgs e)
+   at System.Windows.Forms.DataGridView.DataGridViewDataConnection.currencyManager_ListChanged(Object sender, ListChangedEventArgs e)
+   at System.Windows.Forms.CurrencyManager.List_ListChanged(Object sender, ListChangedEventArgs e)
+   at System.Windows.Forms.BindingSource.OnListChanged(ListChangedEventArgs e)
+   at System.Windows.Forms.BindingSource.ResetBindings(Boolean metadataChanged)
+   at System.Windows.Forms.BindingSource.SetList(IList list, Boolean metaDataChanged, Boolean applySortAndFilter)
+   at System.Windows.Forms.BindingSource.ResetList()
+   at System.Windows.Forms.BindingSource.set_DataSource(Object value)
+   at Janus.Windows.GridEX.GridEX.Bind() in D:\a\freesms\freesms\dotnet\FreeSms.NativeControls\Grid.cs:line 389
+   at Janus.Windows.GridEX.GridEX.set_DataSource(Object value) in D:\a\freesms\freesms\dotnet\FreeSms.NativeControls\Grid.cs:line 292
+   at asda5.c() in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asda5.cs:line 544
+   at asda5.s(Object A_0, EventArgs A_1) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asda5.cs:line 644
+   at System.Windows.Forms.Control.OnClick(EventArgs e)
+   at System.Windows.Forms.Button.OnClick(EventArgs e)
+   at System.Windows.Forms.Button.PerformClick()
+   at OriginalWorkflowChecks.<>c__DisplayClass14_0.<Payment>b__1() in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalWorkflowChecks.cs:line 164
+   at OriginalWorkflowChecks.ChildPayment(Action open, Action`1 exercise) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalWorkflowChecks.cs:line 152
+   at OriginalWorkflowChecks.Payment(Form form, Database db, Action`1 log) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalWorkflowChecks.cs:line 164
+   at OriginalWorkflowChecks.Run(String scenario, Form form, Database db, Action`1 log) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalWorkflowChecks.cs:line 103
+   at OriginalNavigationCheck.<>c__DisplayClass3_1.<Worker>b__3(Object sender, EventArgs e) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalNavigationCheck.cs:line 89
+   at System.Windows.Forms.Timer.OnTick(EventArgs e)
+   at System.Windows.Forms.Timer.TimerNativeWindow.WndProc(Message& m)
+   at System.Windows.Forms.NativeWindow.Callback(HWND hWnd, UInt32 msg, WPARAM wparam, LPARAM lparam)

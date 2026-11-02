@@ -514,8 +514,15 @@ namespace Janus.Windows.GridEX
             if (binding.DataSource is DataView data)
                 foreach (var column in RootTable.Columns.Where(c => !string.IsNullOrEmpty(c.Aggregate) && c.Aggregate != "None" && data.Table.Columns.Contains(c.DataMember)))
                 {
-                    var values = data.Cast<DataRowView>().Select(r => r[column.DataMember]).Where(v => v != DBNull.Value).Select(v => Convert.ToDecimal(v, CultureInfo.InvariantCulture)).ToArray();
-                    decimal number = column.Aggregate == "Average" ? (values.Length == 0 ? 0 : values.Average()) : column.Aggregate == "Count" ? values.Length : values.Sum();
+                    var cells=data.Cast<DataRowView>().Select(row=>row[column.DataMember]).Where(value=>value!=DBNull.Value).ToArray();
+                    // Count applies to dates/text too; never convert those values to decimals.
+                    decimal number;
+                    if(column.Aggregate=="Count")number=cells.Length;
+                    else
+                    {
+                        var values=cells.Select(value=>Convert.ToDecimal(value,CultureInfo.InvariantCulture)).ToArray();
+                        number=column.Aggregate=="Average" ? (values.Length==0 ? 0 : values.Average()) : values.Sum();
+                    }
                     parts.Add(column.Caption + ": " + number.ToString("0.##", CultureInfo.CurrentCulture));
                 }
             totals.Text = string.Join("     ", parts);

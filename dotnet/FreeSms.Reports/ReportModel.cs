@@ -27,6 +27,18 @@ public sealed class ReportModel
         Formulas = (xml.Element("formulas")?.Elements("formula") ?? []).ToDictionary(x => (string)x.Attribute("name")!, x => Formula.Parse(x.Value), StringComparer.OrdinalIgnoreCase);
         Groups = (xml.Element("groups")?.Elements("group") ?? []).Select(x => (string)x.Attribute("field")!).ToArray();
         Sections = xml.Element("sections")?.Elements("section").ToArray() ?? [];
+        // The recovered exporter omitted BlobFieldObject.DataSource. These known
+        // student-photo controls have exactly one declared Student_img blob column.
+        // Repair the in-memory model; preserve the recovered XML files unchanged.
+        foreach(var image in Sections.SelectMany(section=>section.Elements("object"))
+            .Where(obj=>obj.Element("Kind")?.Value=="BlobFieldObject" && obj.Element("Name")?.Value=="Studentimg1" && obj.Element("source")==null))
+        {
+            var fields=xml.Element("database")?.Elements("table").SelectMany(table=>table.Elements("field")
+                .Where(field=>(string?)field.Attribute("name")=="Student_img" && (string?)field.Attribute("type")=="BlobField")
+                .Select(field=>(string?)table.Attribute("name"))).ToArray()??[];
+            if(fields.Length!=1 || string.IsNullOrEmpty(fields[0]))throw new InvalidDataException("Student photo binding requires one declared Student_img blob field.");
+            image.Add(new XElement("source",new XAttribute("name","Student_img"),new XAttribute("formula","{"+fields[0]+".Student_img}"),new XAttribute("kind","DatabaseField")));
+        }
         foreach (var scope in xml.Ancestors("report").Reverse().Append(xml))
             foreach (var function in scope.Element("custom-functions")?.Elements("function") ?? [])
                 functions[(string)function.Attribute("name")!] = CompileFunction(function.Value);
