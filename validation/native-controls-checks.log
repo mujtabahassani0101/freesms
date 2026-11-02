@@ -125,10 +125,11 @@ PASS native report CStdKarnameTajamoee2.rpt.xml
 PASS native report CStdKarnameTajamoee2ByChart.rpt.xml
 PASS native report CStdKarnameTajamoee3ByChart.rpt.xml
 PASS long subreport continues beyond its original placeholder
+PASS report background boxes cannot cover chart values
 PASS self-contained package uses only .NET 10 frameworks
 PASS release contains no old UI or report runtime
 PASS .NET 10 x86 ReadyToRun: FreeSMS.dll
 PASS .NET 10 x86 ReadyToRun: FreeSms.Core.dll
 PASS .NET 10 x86 ReadyToRun: FreeSms.NativeControls.dll
 PASS .NET 10 x86 ReadyToRun: FreeSms.Reports.dll
-SUCCESS 133
+SUCCESS 134
