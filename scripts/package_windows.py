@@ -1,5 +1,6 @@
 """Package the source and the self-contained .NET Windows release, excluding local state."""
 from pathlib import Path
+import argparse
 import hashlib
 import json
 import shutil
@@ -47,38 +48,46 @@ def ready_to_run(path):
 
 
 if __name__ == '__main__':
-    assert (RELEASE / 'FreeSMS.exe').read_bytes()[:2] == b'MZ'
-    report = {name: ready_to_run(RELEASE / name) for name in ['FreeSMS.dll', 'FreeSms.Core.dll', 'FreeSms.NativeControls.dll', 'FreeSms.Reports.dll']}
-    assert all(item['ready_to_run'] and item['machine'] == '0x14c' for item in report.values())
-    (ROOT / 'validation/dotnet-release.json').write_text(json.dumps(report, indent=2), encoding='utf-8')
-    for name, text in {
-        'Run.cmd': '@echo off\ncd /d "%~dp0"\n"%~dp0FreeSMS.exe" %*\n',
-        'Preview.cmd': '@echo off\ncd /d "%~dp0"\n"%~dp0FreeSMS.exe" --preview %*\n'
-    }.items():
-        (RELEASE / name).write_bytes(text.replace('\n', '\r\n').encode('ascii'))
-    shutil.copy2(ROOT / 'README.md', RELEASE / 'README-FA.md')
-    assert not any(RELEASE.rglob('CrystalDecisions*.dll'))
-    assert not any(RELEASE.rglob('Janus*.dll'))
-    assert not (RELEASE / 'legacy-ui').exists()
-    assert not (RELEASE / 'report-host').exists()
-    licenses = RELEASE / 'licenses'
-    licenses.mkdir(exist_ok=True)
-    package_root = ROOT / '.tools/nuget'
-    for package, version in [('microsoft.netcore.app.runtime.win-x86', '10.0.14'), ('microsoft.windowsdesktop.app.runtime.win-x86', '10.0.14')]:
-        for source in (package_root / package / version).glob('*'):
-            if source.is_file() and ('LICENSE' in source.name or 'THIRD-PARTY-NOTICES' in source.name):
-                shutil.copy2(source, licenses / (package + '-' + source.name))
-    inventory = {}
-    for source in (ROOT / 'dotnet').glob('FreeSms.*/obj/project.assets.json'):
-        assets = json.loads(source.read_text(encoding='utf-8'))
-        for name, item in assets['libraries'].items():
-            if item.get('type') == 'package':
-                directory = package_root / item['path']
-                inventory[name] = {'package': name, 'repository': 'https://www.nuget.org/packages/' + name}
-                for notice in directory.glob('*'):
-                    if notice.is_file() and notice.name.upper().startswith(('LICENSE', 'THIRD-PARTY', 'NOTICE')):
-                        shutil.copy2(notice, licenses / (name.replace('/', '-') + '-' + notice.name))
-    (licenses / 'packages.json').write_text(json.dumps(list(inventory.values()), indent=2), encoding='utf-8')
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--source-only', action='store_true', help='Create a complete source archive without a local Windows build.')
+    args = parser.parse_args()
+    if not args.source_only:
+        assert (RELEASE / 'FreeSMS.exe').read_bytes()[:2] == b'MZ'
+        report = {name: ready_to_run(RELEASE / name) for name in ['FreeSMS.dll', 'FreeSms.Core.dll', 'FreeSms.NativeControls.dll', 'FreeSms.Reports.dll']}
+        assert all(item['ready_to_run'] and item['machine'] == '0x14c' for item in report.values())
+        runtime = json.loads((RELEASE / 'FreeSMS.runtimeconfig.json').read_text(encoding='utf-8'))['runtimeOptions']
+        assert runtime['tfm'] == 'net10.0' and all(f['version'].startswith('10.0.') for f in runtime['includedFrameworks'])
+        (ROOT / 'validation/dotnet-release.json').write_text(json.dumps({'target': 'net10.0-windows', 'rid': 'win-x86', 'self_contained': True, 'assemblies': report}, indent=2), encoding='utf-8')
+        for name, text in {
+            'Run.cmd': '@echo off\ncd /d "%~dp0"\n"%~dp0FreeSMS.exe" %*\n',
+            'Preview.cmd': '@echo off\ncd /d "%~dp0"\n"%~dp0FreeSMS.exe" --preview %*\n'
+        }.items():
+            (RELEASE / name).write_bytes(text.replace('\n', '\r\n').encode('ascii'))
+        shutil.copy2(ROOT / 'README.md', RELEASE / 'README-FA.md')
+        assert not any(RELEASE.rglob('CrystalDecisions*.dll'))
+        assert not any(RELEASE.rglob('Janus*.dll'))
+        assert not (RELEASE / 'legacy-ui').exists()
+        assert not (RELEASE / 'report-host').exists()
+        licenses = RELEASE / 'licenses'
+        licenses.mkdir(exist_ok=True)
+        package_root = ROOT / '.tools/nuget'
+        for package, version in [('microsoft.netcore.app.runtime.win-x86', '10.0.14'), ('microsoft.windowsdesktop.app.runtime.win-x86', '10.0.14')]:
+            for source in (package_root / package / version).glob('*'):
+                if source.is_file() and ('LICENSE' in source.name or 'THIRD-PARTY-NOTICES' in source.name):
+                    shutil.copy2(source, licenses / (package + '-' + source.name))
+        inventory = {}
+        for source in (ROOT / 'dotnet').glob('FreeSms.*/obj/project.assets.json'):
+            if source.parent.parent.name not in {'FreeSms.Original.Windows', 'FreeSms.Core', 'FreeSms.NativeControls', 'FreeSms.Reports'}:
+                continue
+            assets = json.loads(source.read_text(encoding='utf-8'))
+            for name, item in assets['libraries'].items():
+                if item.get('type') == 'package':
+                    directory = package_root / item['path']
+                    inventory[name] = {'package': name, 'repository': 'https://www.nuget.org/packages/' + name}
+                    for notice in directory.glob('*'):
+                        if notice.is_file() and notice.name.upper().startswith(('LICENSE', 'THIRD-PARTY', 'NOTICE')):
+                            shutil.copy2(notice, licenses / (name.replace('/', '-') + '-' + notice.name))
+        (licenses / 'packages.json').write_text(json.dumps(list(inventory.values()), indent=2), encoding='utf-8')
     for cache in ROOT.rglob('__pycache__'):
         if '.tools' not in cache.relative_to(ROOT).parts:
             shutil.rmtree(cache)
@@ -89,11 +98,14 @@ if __name__ == '__main__':
         and Path(name).suffix not in {'.zip', '.pyc'}
         and Path(name).name not in {'SOURCE-MANIFEST.json', 'SHA256SUMS.txt'})
     manifest = ROOT / 'SOURCE-MANIFEST.json'
-    manifest.write_text(json.dumps({'format': 2, 'target': 'Windows x64: self-contained x86 .NET 10 application, controls and reports', 'files': [
+    manifest.write_text(json.dumps({'format': 3, 'source_commit': subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=ROOT, text=True).strip(), 'target': 'Windows x64: self-contained x86 .NET 10 application, controls and reports', 'files': [
         {'path': p.relative_to(ROOT).as_posix(), 'bytes': p.stat().st_size, 'sha256': digest(p)} for p in source_files
     ]}, ensure_ascii=False, indent=2), encoding='utf-8')
     zip_files(SOURCE_ZIP, source_files + [manifest], ROOT, 'free-sms')
-    zip_files(RELEASE_ZIP, sorted(p for p in RELEASE.rglob('*') if p.is_file()), RELEASE, 'FreeSMS-Windows')
-    (ROOT / 'SHA256SUMS.txt').write_text(''.join(digest(p) + '  ' + p.name + '\n' for p in [SOURCE_ZIP, RELEASE_ZIP]), encoding='ascii')
-    for path in [SOURCE_ZIP, RELEASE_ZIP]:
+    outputs = [SOURCE_ZIP]
+    if not args.source_only:
+        zip_files(RELEASE_ZIP, sorted(p for p in RELEASE.rglob('*') if p.is_file()), RELEASE, 'FreeSMS-Windows')
+        outputs.append(RELEASE_ZIP)
+    (ROOT / 'SHA256SUMS.txt').write_text(''.join(digest(p) + '  ' + p.name + '\n' for p in outputs), encoding='ascii')
+    for path in outputs:
         print(path.name, path.stat().st_size, 'bytes')

@@ -6,11 +6,6 @@ on:
         description: Commit the converted templates back to this repository
         type: boolean
         default: false
-  push:
-    branches: [main]
-    paths:
-      - 'dotnet/FreeSms.ReportHost/**'
-      - '.github/workflows/report-migration.yml'
 permissions:
   contents: write
 jobs:
