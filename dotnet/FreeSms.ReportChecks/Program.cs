@@ -70,6 +70,9 @@ foreach (string rebuilt in new[] {"CStdKarnameDorehByChart", "CStdKarnameDorehBy
     Check(scope.Length==1 && Equals(model.Evaluate(chart.Elements("series").First().Value,context),70m)
         && Equals(model.Evaluate(chart.Elements("series").Last().Value,context),50m),"rebuilt chart isolates student 70 from peer 30 and preserves class mean 50: "+rebuilt);
     var child = new ReportModel(model.Xml.Descendants("object").Single(obj=>(string?)obj.Attribute("subreport")=="Sub1").Element("report")!);
+    var endBand=model.Sections.Single(section=>(string?)section.Attribute("name")=="NativeStudentProgress");
+    Check(model.Flag(endBand.Element("format"),"EnableNewPageAfter",model.Context(fixture,rows[0],rows))
+        && !model.Flag(endBand.Element("format"),"EnableNewPageAfter",model.Context(fixture,rows[1],rows)),"rebuilt student card ends after its charts without creating a trailing blank page: "+rebuilt);
     var source = fixture.Subreports["Sub1"]; var table = source.Data!.Tables[0]; table.Clear();
     for(int student=1;student<=2;student++) for(int term=1;term<=3;term++)
     {

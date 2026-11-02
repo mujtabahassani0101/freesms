@@ -5200,10 +5200,10 @@ else {spRpt_StdKarnameDoreh1.CommentKoll}</formula>
           <TopLineStyle>NoLine</TopLineStyle>
           <BottomLineStyle>NoLine</BottomLineStyle>
         </border>
-        <chart type="crChartTypeDetail">
+        <chart type="crChartTypeDetail" show-values="true">
           <category>{@lesson}</category>
-          <series>Sum ({@markchart}, {@lesson})</series>
-          <series>Sum ({@avgClass}, {@lesson})</series>
+          <series label="نمرهٔ شاگرد">Sum ({@markchart}, {@lesson})</series>
+          <series label="اوسط صنف">Sum ({@avgClass}, {@lesson})</series>
         </chart>
       </object>
     </section>
@@ -5325,10 +5325,10 @@ else {spRpt_StdKarnameDoreh1.CommentKoll}</formula>
                   <TopLineStyle>NoLine</TopLineStyle>
                   <BottomLineStyle>NoLine</BottomLineStyle>
                 </border>
-                <chart type="crChartTypeDetail">
+                <chart type="crChartTypeDetail" show-values="true">
                   <category>{@Exam}</category>
-                  <series>Sum ({@mark}, {@Exam})</series>
-                  <series>Sum ({@avgClass}, {@Exam})</series>
+                  <series label="اوسط شاگرد">Sum ({@mark}, {@Exam})</series>
+                  <series label="اوسط صنف">Sum ({@avgClass}, {@Exam})</series>
                 </chart>
               </object>
             </section>
@@ -5338,6 +5338,9 @@ else {spRpt_StdKarnameDoreh1.CommentKoll}</formula>
           <link parent="{@xstudent}" child="{@xStudent}" />
         </links>
       </object>
+      <format>
+        <condition name="EnableNewPageAfter">not OnLastRecord</condition>
+      </format>
     </section>
     <section name="GroupFooterSection1" kind="GroupFooter" height="220" group-level="0">
       <format>

@@ -35,18 +35,19 @@ internal static class OriginalWorkflowChecks
         int book = entities.Save("books", new Record { ["xPaye"]=1, ["Name"]="مضمون آزمایشی", ["vahed"]=1, ["timeWeek"]=1, ["Type"]=1, ["sort"]=30000, ["SortOneEntry"]=30000, ["codedars"]=5991001, ["Vezarat"]=true });
         int teacher = entities.Save("teachers",new Record { ["fNamF"]="استاد", ["fNamL"]="آزمایشی", ["fEmail"]="", ["fPassword"]="" });
         school.AssignTeacher(classroom,book,teacher);
+        int customExam=entities.Save("exams",new Record {["Name"]="میان‌دورهٔ آزمایشی",["NumExam"]=100,["DateFrom"]="1410/02/01",["DateTo"]="1410/02/02"});
         school.SaveStudent(new Record { ["FName"]=ReportStudentName, ["LName"]=asdaj.b("پدر آزمایشی"), ["PName"]=asdaj.b("پدرکلان آزمایشی"), ["Code"]=5991001, ["NumberAsas"]=5991001, ["xPaye"]=1, ["xClass"]=classroom, ["Status"]=1, ["Jens"]=0, ["Fee1"]=1000 });
         school.SaveStudent(new Record { ["FName"]="شاگرد محفوظ", ["LName"]="پدر دوم", ["PName"]="پدرکلان دوم", ["Code"]=5991002, ["NumberAsas"]=5991002, ["xPaye"]=1, ["xClass"]=classroom, ["Status"]=1, ["Jens"]=1, ["Fee1"]=700 });
-        foreach (var exam in db.Query("SELECT id,term FROM tExam WHERE xYear=1410 AND term IN(1,2)"))
+        foreach (var exam in db.Query("SELECT id,term FROM tExam WHERE xYear=1410 AND term IN(0,1,2)"))
             foreach (int code in new[] {5991001,5991002})
             {
                 int term = Convert.ToInt32(exam["term"]);
-                double mark = code == 5991001 ? term == 1 ? 30 : 40 : term == 1 ? 10 : 20;
+                double mark = code == 5991001 ? term == 0 ? 20 : term == 1 ? 30 : 40 : term == 0 ? 10 : term == 1 ? 10 : 20;
                 var result = db.Call("sp_tMark_insertUpdate_FromXls_Af",new Record { ["xuser"]=1, ["code"]=code.ToString(), ["codedars"]=5991001, ["Xtest"]=exam["id"], ["xYear"]=1410, ["Mark"]=mark });
                 Require(string.IsNullOrEmpty(Convert.ToString(result.Output["err"])),"Valid fixture marks were rejected by the original import procedure.");
             }
         // Calculate using the original SQL, in term order. Assert independent known totals.
-        foreach (var exam in db.Query("SELECT id FROM tExam WHERE xYear=1410 AND term IN(1,2,3) ORDER BY term"))
+        foreach (var exam in db.Query("SELECT id FROM tExam WHERE xYear=1410 AND term IN(0,1,2,3) ORDER BY term"))
         {
             db.Call("sp_Procc",new Record {["Exam"]=exam["id"]});
             db.Call("sp_CalcMarkDoreh",new Record {["Exam"]=exam["id"]});
@@ -61,6 +62,8 @@ internal static class OriginalWorkflowChecks
         var averages = db.Call("spRpt_StdListTestMark_AvgClass_AllExam",new Record {["Exam"]=Convert.ToString(finalExam),["Class"]=classroom.ToString(),["xYear"]=1410}).Sets[0];
         var finals = averages.Where(row=>Convert.ToInt32(row["Xtest"])==Convert.ToInt32(finalExam)).ToArray();
         Require(finals.Length==2 && finals.All(row=>Convert.ToDecimal(row["AvgClass"])==50m),"Original progress report did not return the known class mean of 50.");
+        var custom=averages.Where(row=>Convert.ToInt32(row["Xtest"])==customExam).ToArray();
+        Require(custom.Length==2 && custom.All(row=>Convert.ToDecimal(row["AvgClass"])==15m),"Original progress report did not include the additional exam with mean15.");
 
     }
     internal static void AssertReportFixture(FreeSms.NativeControls.PortableReportViewer viewer, Database database)
@@ -69,6 +72,11 @@ internal static class OriginalWorkflowChecks
         var expected = database.Query("SELECT id,FName FROM tStudent WHERE Code=5991001").Single();
         bool found = input != null && input.Data != null && input.Data.Tables.Cast<System.Data.DataTable>().Any(table => table.Columns.Contains("xStudent") && table.Columns.Contains("FName") && table.Rows.Cast<System.Data.DataRow>().Any(row => Convert.ToInt32(row["xStudent"]) == Convert.ToInt32(expected["id"]) && Convert.ToString(row["FName"]) == Convert.ToString(expected["FName"])));
         Require(found,"Report preview did not receive the fixture student's actual database values.");
+        if(input.Subreports.TryGetValue("Sub1",out var progress))
+        {
+            var actual=progress.Data.Tables[0].Rows.Cast<System.Data.DataRow>().Where(row=>Convert.ToInt32(row["xStudent"])==Convert.ToInt32(expected["id"])).ToArray();
+            Require(actual.Length==2 && actual.Select(row=>Convert.ToDecimal(row["MarkDoreh"])).OrderBy(value=>value).SequenceEqual(new[]{20m,70m}),"Actual progress input omitted or changed an eligible exam.");
+        }
         Require(input.Parameters.Values.Any(value => Convert.ToString(value).Contains("مکتب آزمایشی گزارش")), "Report preview did not receive the fixture school header.");
     }
     internal static void SaveReportPages(FreeSms.NativeControls.PortableReportViewer viewer, string directory, string scenario)
@@ -84,6 +92,7 @@ internal static class OriginalWorkflowChecks
         else if (scenario == "school") School(form, db, log);
         else if (scenario == "student-delete") StudentDelete(form, db, log);
         else if (scenario == "backup") Backup(form,db,log);
+        else if (scenario == "teacher" || scenario == "driver") People(scenario,form,db,log);
         else throw new ArgumentException("Unknown workflow scenario: " + scenario);
     }
     private static void Discount(Form form, Database db, Action<string> log)
@@ -118,6 +127,61 @@ internal static class OriginalWorkflowChecks
         Dialog(() => Click(form,"m_e"), "آيا از حذف تخفیف مطمئن هستيد؟", 6);
         Require(Convert.ToInt32(db.Scalar("SELECT COUNT(*) FROM tTakhfif")) == before, "Confirmed deletion did not remove exactly the new record.");
         log("PASS deletion respects No/Yes and removes only the selected record");
+    }
+    private static void People(string scenario,Form form,Database db,Action<string> log)
+    {
+        bool teacher=scenario=="teacher";
+        string table=teacher ? "tTeacher" : "tDriver";
+        string save=teacher ? "o" : "m_k";
+        string nameField=teacher ? "m_n" : "m_j";
+        string valueField=teacher ? "m_l" : "w";
+        string valueColumn=teacher ? "fEmail" : "comment";
+        int before=Convert.ToInt32(db.Scalar("SELECT COUNT(*) FROM "+table));
+        Click(form,"m_d");
+        if(teacher)
+        {
+            Field<CheckBox>(form,"z").Checked=true;
+            Dialog(()=>Click(form,save),"نام خانوادگي را وارد کنيد",1);
+            Field<Control>(form,"m_m").Text="آزمایشی";
+        }
+        string name=asdaj.b("آزمون ثبت "+scenario);
+        string value=teacher ? "o'neil@example.invalid" : "توضیح ' فارسی ; SELECT 1 --";
+        string secret="test'only";
+        Field<Control>(form,nameField).Text=name;
+        Field<Control>(form,valueField).Text=value;
+        if(teacher)Field<Control>(form,"w").Text=secret;
+        Click(form,save);
+        var saved=db.Query("SELECT * FROM "+table+" WHERE "+(teacher ? "fNamF" : "name")+"=@p0",new object[]{name}).Single();
+        int id=Convert.ToInt32(saved["id"]);
+        Require(Convert.ToString(saved[valueColumn])==value,"Quoted input was not saved as data.");
+        Require(Convert.ToInt32(db.Scalar("SELECT COUNT(*) FROM "+table))==before+1,"New did not insert exactly one record.");
+        // A second teacher must not inherit the first teacher's credentials from stale controls.
+        if(teacher)
+        {
+            Click(form,"m_d");
+            Require(Field<Control>(form,"m_l").Text=="" && Field<Control>(form,"w").Text=="","New teacher retained another teacher's credentials.");
+            Click(form,"m_g");
+        }
+        Select(form,id,"m_h"); Click(form,"m_e");
+        Require(Field<Control>(form,valueField).Text==value,"Edit did not load the selected record's saved fields.");
+        if(teacher)Require(Field<Control>(form,"w").Text==secret,"Edit did not load the selected teacher's credentials.");
+        string edited=teacher ? "edited'person@example.invalid" : "اصلاح ' دوم ; --";
+        Field<Control>(form,valueField).Text=edited;
+        Click(form,save);
+        Require(Convert.ToInt32(db.Scalar("SELECT COUNT(*) FROM "+table))==before+1,"Edit inserted a duplicate record.");
+        Require(Convert.ToString(db.Scalar("SELECT "+valueColumn+" FROM "+table+" WHERE id=@p0",new object[]{id}))==edited,"Edit did not update the selected record.");
+        if(teacher)Require(Convert.ToString(db.Scalar("SELECT fPassword FROM tTeacher WHERE id=@p0",new object[]{id}))==secret,"Editing teacher details changed the saved password.");
+        Select(form,id,"m_h"); Click(form,"m_e");
+        Field<Control>(form,valueField).Text="cancelled";Click(form,"m_g");
+        Require(Convert.ToString(db.Scalar("SELECT "+valueColumn+" FROM "+table+" WHERE id=@p0",new object[]{id}))==edited,"Cancel saved unsaved changes.");
+        Select(form,id,"m_h");
+        string question=teacher ? "آيا از حذف معلم مطمئن هستيد؟" : "آيا از حذف راننده مطمئن هستيد؟";
+        Dialog(()=>Click(form,"m_c"),question,7);
+        Require(Convert.ToInt32(db.Scalar("SELECT COUNT(*) FROM "+table+" WHERE id=@p0",new object[]{id}))==1,"Declining deletion removed the record.");
+        Dialog(()=>Click(form,"m_c"),question,6);
+        Require(Convert.ToInt32(db.Scalar("SELECT COUNT(*) FROM "+table))==before,"Deletion removed the wrong records.");
+        Require(Convert.ToInt32(db.Scalar("SELECT COUNT(*) FROM "+table+" WHERE id=@p0",new object[]{id}))==0,"Deletion did not remove the selected record.");
+        log("PASS original "+scenario+" New/Edit/Save/Cancel/Delete buttons preserve quoted text, update exactly one selected record and respect deletion confirmation");
     }
     private static void Backup(Form form,Database db,Action<string> log)
     {

@@ -639,6 +639,8 @@ protected override void Dispose(bool A_0)
 		this.m_f.Visible = true;
 		this.m_n.Text = "";
 		this.m_m.Text = "";
+        this.m_l.Text = "";
+        w.Text = "";
 		this.m_n.Focus();
 	}
 
@@ -663,7 +665,12 @@ protected override void Dispose(bool A_0)
 						num = 24;
 						continue;
 					}
-					asdcb.d(asdab.e(), CommandType.Text, "UPDATE tTeacher SET fNamF = N'" + this.m_n.Text.Trim() + "',fNamL = N'" + this.m_m.Text.Trim() + "',fEmail = N'" + this.m_l.Text.Trim() + "',fPassword = N'" + w.Text.Trim() + "',xExportRpt=null where id=" + this.m_h.SelectedItems[0].GetRow().Cells["id"].Value.ToString());
+					asdcb.d(asdab.e(), CommandType.Text, "UPDATE tTeacher SET fNamF=@fNamF,fNamL=@fNamL,fEmail=@fEmail,fPassword=@fPassword,xExportRpt=null WHERE id=@id",
+                        asdcb.a("@fNamF", SqlDbType.NVarChar, this.m_n.Text.Trim()),
+                        asdcb.a("@fNamL", SqlDbType.NVarChar, this.m_m.Text.Trim()),
+                        asdcb.a("@fEmail", SqlDbType.NVarChar, this.m_l.Text.Trim()),
+                        asdcb.a("@fPassword", SqlDbType.NVarChar, w.Text.Trim()),
+                        asdcb.a("@id", SqlDbType.Int, Convert.ToInt32(this.m_h.SelectedItems[0].GetRow().Cells["id"].Value)));
 					this.m_f.Visible = false;
 					this.m_n.Text = "";
 					this.m_m.Text = "";
@@ -700,7 +707,7 @@ protected override void Dispose(bool A_0)
 						continue;
 					}
 					text = y.Text;
-					flag = !("0" != asdcb.a(asdab.e(), CommandType.Text, "select count(id) from tTeacher where id=" + text).ToString());
+					flag = !("0" != asdcb.a(asdab.e(), CommandType.Text, "select count(id) from tTeacher where id=@id", asdcb.a("@id", SqlDbType.Int, int.Parse(text))).ToString());
 					num = 19;
 					continue;
 				case 20:
@@ -722,7 +729,12 @@ protected override void Dispose(bool A_0)
 					return;
 				case 9:
 				case 27:
-					asdcb.d(asdab.e(), CommandType.Text, "INSERT INTO tTeacher (id, fNamF, fNamL,fEmail,fPassword)VALUES(" + text + ", N'" + this.m_n.Text.Trim() + "', N'" + this.m_m.Text.Trim() + "',N'" + this.m_l.Text.Trim() + "', N'" + w.Text.Trim() + "')");
+					asdcb.d(asdab.e(), CommandType.Text, "INSERT INTO tTeacher (id,fNamF,fNamL,fEmail,fPassword) VALUES (@id,@fNamF,@fNamL,@fEmail,@fPassword)",
+                        asdcb.a("@id", SqlDbType.Int, int.Parse(text)),
+                        asdcb.a("@fNamF", SqlDbType.NVarChar, this.m_n.Text.Trim()),
+                        asdcb.a("@fNamL", SqlDbType.NVarChar, this.m_m.Text.Trim()),
+                        asdcb.a("@fEmail", SqlDbType.NVarChar, this.m_l.Text.Trim()),
+                        asdcb.a("@fPassword", SqlDbType.NVarChar, w.Text.Trim()));
 					this.m_n.Text = "";
 					this.m_m.Text = "";
 					y.Text = "";
@@ -851,6 +863,10 @@ protected override void Dispose(bool A_0)
 					ad = 2;
 					this.m_n.Text = this.m_h.SelectedItems[0].GetRow().Cells["fNamF"].Value.ToString();
 					this.m_m.Text = this.m_h.SelectedItems[0].GetRow().Cells["fNamL"].Value.ToString();
+                    var teacher = asdcb.c(asdab.e(), CommandType.Text, "SELECT fEmail,fPassword FROM tTeacher WHERE id=@id",
+                        asdcb.a("@id", SqlDbType.Int, Convert.ToInt32(this.m_h.SelectedItems[0].GetRow().Cells["id"].Value))).Rows[0];
+                    this.m_l.Text = Convert.ToString(teacher["fEmail"]);
+                    w.Text = Convert.ToString(teacher["fPassword"]);
 					this.m_f.Visible = true;
 					num = 3;
 					continue;

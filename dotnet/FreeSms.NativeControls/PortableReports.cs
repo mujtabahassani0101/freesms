@@ -310,21 +310,45 @@ namespace FreeSms.NativeControls
             decimal max = Math.Max(1, values.SelectMany(v => v).DefaultIfEmpty(1).Max());
             using var font = new Font("Tahoma", 7 * 100f / 72, FontStyle.Regular, GraphicsUnit.Pixel);
             Color[] colors = { Color.SteelBlue, Color.OrangeRed, Color.ForestGreen, Color.Goldenrod };
-            float labelHeight = Math.Min(45, rect.Height / 3), plotHeight = Math.Max(1, rect.Height - labelHeight);
-            float slot = rect.Width / Math.Max(1, groups.Length);
-            graphics.DrawLine(Pens.Gray, rect.Left, rect.Top + plotHeight, rect.Right, rect.Top + plotHeight);
-            for (int i = 0; i < groups.Length; i++)
+            var labels=chart.Elements("series").Select(node=>(string)node.Attribute("label")).ToArray();
+            bool legend=labels.All(label=>!string.IsNullOrWhiteSpace(label));
+            bool showValues=string.Equals((string)chart.Attribute("show-values"),"true",StringComparison.OrdinalIgnoreCase);
+            float legendHeight=legend?20:0, valueHeight=showValues?font.GetHeight(graphics)+4:0;
+            float labelHeight=Math.Min(45,rect.Height/3),plotTop=rect.Top+legendHeight+valueHeight;
+            float plotHeight=Math.Max(1,rect.Height-labelHeight-legendHeight-valueHeight);
+            float slot=rect.Width/Math.Max(1,groups.Length);
+            if(legend)
             {
-                for (int s = 0; s < series.Length; s++)
+                float itemWidth=rect.Width/labels.Length;
+                using var align=new StringFormat{Alignment=StringAlignment.Near,LineAlignment=StringAlignment.Center,FormatFlags=StringFormatFlags.DirectionRightToLeft};
+                for(int s=0;s<labels.Length;s++)
                 {
-                    float barWidth = slot / (series.Length + 1), barHeight = plotHeight * (float)(values[i][s] / max);
-                    using var brush = new SolidBrush(colors[s % colors.Length]);
-                    graphics.FillRectangle(brush, rect.Left + i * slot + s * barWidth, rect.Top + plotHeight - barHeight, barWidth - 1, Math.Max(0, barHeight));
+                    float right=rect.Right-s*itemWidth;
+                    using var brush=new SolidBrush(colors[s%colors.Length]);
+                    graphics.FillRectangle(brush,right-12,rect.Top+5,12,8);
+                    graphics.DrawString(labels[s],font,Brushes.Black,new RectangleF(right-itemWidth,rect.Top,itemWidth-18,legendHeight),align);
                 }
-                using var format = new StringFormat { Alignment = StringAlignment.Center, FormatFlags = StringFormatFlags.DirectionRightToLeft };
-                graphics.DrawString(groups[i].Key, font, Brushes.Black, new RectangleF(rect.Left + i * slot, rect.Top + plotHeight, slot, labelHeight), format);
+            }
+            graphics.DrawLine(Pens.Gray,rect.Left,plotTop+plotHeight,rect.Right,plotTop+plotHeight);
+            for(int i=0;i<groups.Length;i++)
+            {
+                for(int s=0;s<series.Length;s++)
+                {
+                    float barWidth=slot/(series.Length+1),barHeight=plotHeight*(float)(values[i][s]/max);
+                    float left=rect.Left+i*slot+s*barWidth,top=plotTop+plotHeight-barHeight;
+                    using var brush=new SolidBrush(colors[s%colors.Length]);
+                    graphics.FillRectangle(brush,left,top,Math.Max(0,barWidth-1),Math.Max(0,barHeight));
+                    if(showValues)
+                    {
+                        using var numberAlign=new StringFormat{Alignment=StringAlignment.Center};
+                        graphics.DrawString(values[i][s].ToString("0.##",CultureInfo.InvariantCulture),font,Brushes.Black,new RectangleF(left,Math.Max(rect.Top+legendHeight,top-valueHeight),barWidth,valueHeight),numberAlign);
+                    }
+                }
+                using var format=new StringFormat{Alignment=StringAlignment.Center,FormatFlags=StringFormatFlags.DirectionRightToLeft};
+                graphics.DrawString(groups[i].Key,font,Brushes.Black,new RectangleF(rect.Left+i*slot,plotTop+plotHeight,slot,labelHeight),format);
             }
         }
+
         private static void DrawPivot(Graphics graphics, XElement obj, RectangleF rect, Band band)
         {
             var pivot = band.Layout.Pivots[obj];

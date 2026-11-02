@@ -215,13 +215,10 @@ internal static class OriginalNavigationCheck
         var exams = Field<Janus.Windows.GridEX.GridEX>(selector, "m_f");
         string term = Convert.ToString(reports.GetRow(selected).Cells["term"].Value);
         int count = Convert.ToInt32(reports.GetRow(selected).Cells["countExam"].Value);
-        int chosen = 0;
-        for (int i = 0; i < exams.RowCount; i++)
-        {
-            bool pick = chosen < Math.Max(1, count) && (term.Length == 0 || term == Convert.ToString(exams.GetRow(i).Cells["term"].Value));
-            exams.GetRow(i).Cells["Selector"].Value = pick;
-            if (pick) chosen++;
-        }
+        var compatible=Enumerable.Range(0,exams.RowCount).Where(index=>term.Length==0 || term==Convert.ToString(exams.GetRow(index).Cells["term"].Value))
+            .OrderBy(index=>term.Length==0 && Convert.ToString(exams.GetRow(index).Cells["term"].Value)=="3"?0:1).Take(Math.Max(1,count)).ToArray();
+        for(int i=0;i<exams.RowCount;i++)exams.GetRow(i).Cells["Selector"].Value=compatible.Contains(i);
+        int chosen=compatible.Length;
         if (chosen == 0) throw new InvalidOperationException("Report fixture has no compatible exam.");
         File.AppendAllText(workerLog, "PREPARED classes=1 exams=" + chosen + " term=" + term + Environment.NewLine);
     }
@@ -283,16 +280,16 @@ internal static class OriginalNavigationCheck
             var targets = main.A("controls").Where(control => catalog.Target(main, control) is var target && target.HasValue && target.Value.S("class") != "asdb3" && target.Value.S("class") != "asda3")
                 .GroupBy(control => control.S("click")).Select(group => group.First()).OrderBy(control => control.S("name")).ToArray();
             if (reportActions) targets = targets.Where(control => catalog.Target(main, control).Value.S("class") == "asda0").ToArray();
-            if (businessActions) targets = targets.Where(control => new[] { "asdh", "asdac", "asdm", "asda9" }.Contains(catalog.Target(main, control).Value.S("class"))).ToArray();
-            if (businessActions && targets.Select(control => catalog.Target(main,control).Value.S("class")).Distinct().Count() != 4)
-                throw new InvalidOperationException("School, discount, backup and student deletion workflow routes are required.");
+            if (businessActions) targets = targets.Where(control => new[] { "asdh", "asdac", "asdm", "asda9", "asdbi", "asdl" }.Contains(catalog.Target(main, control).Value.S("class"))).ToArray();
+            if (businessActions && targets.Select(control => catalog.Target(main,control).Value.S("class")).Distinct().Count() != 6)
+                throw new InvalidOperationException("School, discount, backup, teacher, driver and student deletion workflow routes are required.");
             if (targets.Length == 0) throw new InvalidOperationException("No verification routes were discovered.");
             int passed = 0, interaction = 0;
             var reportCases = reportActions ? new[] { "101", "1024", "1032" } : new[] { "" };
             foreach (string reportCase in reportCases)
             foreach (var control in targets)
             {
-                string route = control.S("variable") + (businessActions ? "_workflow_" + (catalog.Target(main, control).Value.S("class") == "asdh" ? "discount" : catalog.Target(main, control).Value.S("class") == "asdm" ? "student-delete" : catalog.Target(main, control).Value.S("class") == "asda9" ? "backup" : "school") : reportActions ? "_report_" + reportCase : "");
+                string route = control.S("variable") + (businessActions ? "_workflow_" + (catalog.Target(main, control).Value.S("class") == "asdh" ? "discount" : catalog.Target(main, control).Value.S("class") == "asdm" ? "student-delete" : catalog.Target(main, control).Value.S("class") == "asda9" ? "backup" : catalog.Target(main, control).Value.S("class") == "asdbi" ? "teacher" : catalog.Target(main, control).Value.S("class") == "asdl" ? "driver" : "school") : reportActions ? "_report_" + reportCase : "");
                 var target = catalog.Target(main, control).Value;
                 var start = new ProcessStartInfo(Environment.ProcessPath) { UseShellExecute = false, CreateNoWindow = true };
                 start.ArgumentList.Add("--verify-navigation-form"); start.ArgumentList.Add(route);

@@ -579,12 +579,21 @@ protected override void Dispose(bool A_0)
 						num = 2;
 						continue;
 					}
-					asdcb.d(asdab.e(), CommandType.Text, "UPDATE tDriver SET name = N'" + this.m_j.Text.Trim() + "',mobil = N'" + u.Text.Trim() + "',mobil2 = N'" + t.Text.Trim() + "',comment = N'" + w.Text.Trim() + "' where id=" + this.m_h.SelectedItems[0].GetRow().Cells["id"].Value.ToString());
+					asdcb.d(asdab.e(), CommandType.Text, "UPDATE tDriver SET name=@name,mobil=@mobil,mobil2=@mobil2,comment=@comment WHERE id=@id",
+                        asdcb.a("@name", SqlDbType.NVarChar, this.m_j.Text.Trim()),
+                        asdcb.a("@mobil", SqlDbType.NVarChar, u.Text.Trim()),
+                        asdcb.a("@mobil2", SqlDbType.NVarChar, t.Text.Trim()),
+                        asdcb.a("@comment", SqlDbType.NVarChar, w.Text.Trim()),
+                        asdcb.a("@id", SqlDbType.Int, Convert.ToInt32(this.m_h.SelectedItems[0].GetRow().Cells["id"].Value)));
 					this.m_f.Visible = false;
 					num = 1;
 					continue;
 				case 2:
-					asdcb.d(asdab.e(), CommandType.Text, "INSERT INTO tDriver ( name, mobil,mobil2,comment)VALUES( N'" + this.m_j.Text + "',N'" + u.Text + "', N'" + t.Text + "', N'" + w.Text + "')");
+					asdcb.d(asdab.e(), CommandType.Text, "INSERT INTO tDriver (name,mobil,mobil2,comment) VALUES (@name,@mobil,@mobil2,@comment)",
+                        asdcb.a("@name", SqlDbType.NVarChar, this.m_j.Text.Trim()),
+                        asdcb.a("@mobil", SqlDbType.NVarChar, u.Text.Trim()),
+                        asdcb.a("@mobil2", SqlDbType.NVarChar, t.Text.Trim()),
+                        asdcb.a("@comment", SqlDbType.NVarChar, w.Text.Trim()));
 					a();
 					this.m_j.Focus();
 					num = 3;
@@ -622,6 +631,7 @@ protected override void Dispose(bool A_0)
 				case 0:
 				{
 					DataTable dataTable = asdcb.c(asdab.e(), CommandType.Text, "select * from tDriver where id=" + this.m_h.SelectedItems[0].GetRow().Cells["id"].Value.ToString());
+                    y = 2; // Editing must update the selected driver, not insert another one.
 					this.m_j.Text = dataTable.Rows[0]["name"].ToString();
 					u.Text = dataTable.Rows[0]["mobil"].ToString();
 					t.Text = dataTable.Rows[0]["mobil2"].ToString();

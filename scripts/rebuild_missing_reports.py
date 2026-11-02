@@ -59,6 +59,13 @@ for name, base in BASES.items():
     if not any(p.get('name').lower() == parameter.lower() for p in root.findall('./parameters/parameter')):
         ET.SubElement(root.find('parameters'), 'parameter', name=parameter, type='NumberField')
     sections = root.find('sections')
+    # A recovered student footer can break before the new chart bands. Move the
+    # student boundary after the complete reconstructed card instead.
+    for band in sections.findall('section'):
+        if band.get('kind') == 'GroupFooter' and band.get('group-level') == '1':
+            flag = band.find('./format/EnableNewPageAfter')
+            if flag is not None and flag.text == 'true':
+                flag.text = 'false'
     # Insert chart bands within the student's group, before the outer class footer.
     insert = next(i for i, band in enumerate(sections) if band.get('kind') == 'GroupFooter' and band.get('group-level') == '0')
     course = ET.Element('section', name='NativeCourseComparison', kind='GroupFooter', height='3200', **{'group-level':'1'})
@@ -68,7 +75,11 @@ for name, base in BASES.items():
     title.find('source').set('formula', '{@nativeCourseCaption}')
     course.append(title)
     chart = deepcopy(next(o for o in donor_band.findall('object') if o.find('chart') is not None))
-    geometry(chart, 210, 850, 10800, 2200); course.append(chart)
+    geometry(chart, 210, 850, 10800, 2200)
+    chart.find('chart').set('show-values', 'true')
+    for series, caption in zip(chart.findall('./chart/series'), ('نمرهٔ شاگرد', 'اوسط صنف')):
+        series.set('label', caption)
+    course.append(chart)
     sections.insert(insert, course)
     progress = ET.Element('section', name='NativeStudentProgress', kind='GroupFooter', height='3700', **{'group-level':'1'})
     progress.append(label('{@nativeChartStudent}', 'NativeProgressStudent'))
@@ -81,6 +92,9 @@ for name, base in BASES.items():
     legacy_sections = child_report.find('sections')
     graph = deepcopy(legacy_sections.find(".//object[Kind='ChartObject']"))
     geometry(graph, 0, 650, 10800, 2200)
+    graph.find('chart').set('show-values', 'true')
+    for series, caption in zip(graph.findall('./chart/series'), ('اوسط شاگرد', 'اوسط صنف')):
+        series.set('label', caption)
     native_sections = ET.Element('sections')
     band = ET.SubElement(native_sections, 'section', name='NativeProgressPlot', kind='GroupHeader', height='3000', **{'group-level':'0'})
     for i, text in enumerate(('پیشرفت اوسط شاگرد', 'مقایسهٔ اوسط شاگرد و اوسط صنف در دوره‌ها')):
@@ -90,7 +104,10 @@ for name, base in BASES.items():
         set_text(ET.SubElement(obj, 'format'), 'HorizontalAlignment', 'HorizontalCenterAlign')
     band.append(graph)
     child_report.remove(legacy_sections); child_report.append(native_sections)
-    progress.append(child); sections.insert(insert + 1, progress)
+    progress.append(child)
+    progress_format = ET.SubElement(progress, 'format')
+    ET.SubElement(progress_format, 'condition', name='EnableNewPageAfter').text = 'not OnLastRecord'
+    sections.insert(insert + 1, progress)
     ET.indent(root, space='  ')
     target = LAYOUTS / (name + '.rpt.xml')
     ET.ElementTree(root).write(target, encoding='utf-8', xml_declaration=True)

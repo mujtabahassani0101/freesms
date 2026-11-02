@@ -10,17 +10,18 @@ The full application goal is not complete. The 448-click inventory is a starting
 - The native Core suite in run 41511439779 verifies rollback when a late foreign-key rejection occurs after earlier enrolment/image deletes. Original deletion now uses that transaction and handles the optional disciplinary table when present.
 - Native OK dialogs use button ID2 on this runner. The probe now locates the actual descendant button by label/id and clicks it after matching the expected message; the earlier school/discount probe timeouts were resolved.
 
+## Additional verified workflows
+
+- Run 41518278379 (285d624) passed reconstructed report 1024/1032 previews and every-page rendering, known original SQL marks70/30 and class mean50, and peer preservation during student deletion.
+- Run 41522307571 (ee2e060) passed native backup/restore with configured catalog, quoted Persian paths, appended backup sets, malformed media and unrelated-schema rejection, recovery after replacement failure, and actual asynchronous backup/admin-restore buttons. See MAINTENANCE.md and the archived artifact receipts/logs.
+
 ## Repairs awaiting Windows evidence
 
-- Catalog reports 1024 and 1032 reference classes/RPTs absent even from the original executable; both are active under the current edition. Two native layouts have been reconstructed from the recovered mark-table and chart components, with existing SQL contracts and base formulas retained. They pass 46 disconnected calculation/expression checks locally. Real original-button previews, every rendered page and the original SQL calculations still require Windows verification. See REBUILT-REPORTS.md.
-- The report/deletion fixture now includes two students and real term marks. It independently requires final marks70/30, class mean50 and preservation of the peer's identity/enrolment after deletion. This stronger fixture has not yet passed Windows verification.
+- Rebuilt report legends/numeric chart labels, student page boundaries and a populated progress chart including an additional eligible exam (mean15) pass 48 local report checks. Native preview/rendering is pending.
+- Teacher/driver text saves now bind SQL parameters. Driver Edit now switches to update mode. Teacher Edit reloads saved email/password and New clears stale credentials. New original-button CRUD/cancel/confirmation scenarios compile but have not yet run on Windows.
 
 ## Other open work
 
-- Backup/restore code still hardcodes `school_af_kbr` and concatenates backup file paths in asda9/asdbl/asdao/asda7/asdbv. Test the configured catalog, quoted paths, invalid backups and actual restored records before claiming repair.
 - Visible disciplinary menus still require schemas/procedures missing from the supplied Afghan database. Existing compatibility messages do not implement those workflows.
 - Student registration/editing/moves, original mark entry, attendance, payments, non-admin authentication/permissions, imports/exports and remaining report/editor workflows are not proven complete. Preserve all requirements in PLAN.md.
 - Exact empty-fixture warnings (no lessons or no configured school-day counts) are classified as expected validation only when the matching database prerequisite is absent; they do not prove populated workflows.
-
-- Run 41518278379 (285d624) passed the reconstructed report previews and every-page rendering, known SQL marks70/30 and class mean50, and preservation of the peer during deletion. The full Windows workflow succeeded for this revision. This does not complete the application-wide scope.
-- Native backup/restore now has staged validation, configured-catalog/path handling, recovery and asynchronous original buttons. Fresh Windows evidence for these new changes is pending; see MAINTENANCE.md.
