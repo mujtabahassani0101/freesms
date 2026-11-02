@@ -89,7 +89,7 @@ try
         var suffix = Guid.NewGuid().ToString("N")[..10];
         if (!OperatingSystem.IsWindows()) throw new PlatformNotSupportedException("Run native LocalDB integration checks on Windows.");
         var instance = "FreeSmsCheck_" + suffix;
-        var options = new DatabaseOptions(Path.Combine(root, "validation/dotnet-data", suffix), instance, "free_sms_check_" + suffix);
+        var options = new DatabaseOptions(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "free-sms", "verification", suffix), instance, "free_sms_check_" + suffix);
         try
         {
             var db = await Bootstrapper.OpenAsync(root, options);
@@ -182,6 +182,15 @@ try
                 school.DeleteStudent(student); Require(school.Student(student) is null && school.StudentImage(student) is null);
                 school.DeleteClass(classroom);
             });
+        }
+        catch (Microsoft.Data.SqlClient.SqlException error)
+        {
+            foreach (Microsoft.Data.SqlClient.SqlError detail in error.Errors)
+                Console.Error.WriteLine($"SQL {detail.Number}: {detail.Message}");
+            var logs = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Microsoft", "Microsoft SQL Server Local DB", "Instances", instance);
+            foreach (var log in Directory.Exists(logs) ? Directory.GetFiles(logs, "error.log*") : [])
+                Console.Error.WriteLine(File.ReadAllText(log));
+            throw;
         }
         finally
         {
