@@ -23,9 +23,13 @@ internal static class KeylessRuntime
     {
         asdu.o = new string('1', 32);
         asdab.__field_d = "school_af_kbr";
-        asdab.n = "FreeSMS";
+        // These values used to come from the dongle. The numeric school identifier is
+        // also interpolated into the original optional export queries.
+        asdab.n = "0";
+        asdab.q = asdab.n;
         asdab.m = "3";
         asdab.o = "10";
+        asdab.p = int.MaxValue;
     }
 }
 

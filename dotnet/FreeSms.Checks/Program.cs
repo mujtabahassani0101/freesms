@@ -183,13 +183,23 @@ try
                 school.DeleteClass(classroom);
             });
         }
-        catch (Microsoft.Data.SqlClient.SqlException error)
+        catch (Exception error)
         {
-            foreach (Microsoft.Data.SqlClient.SqlError detail in error.Errors)
-                Console.Error.WriteLine($"SQL {detail.Number}: {detail.Message}");
+            Console.Error.WriteLine(error);
+            if (error is Microsoft.Data.SqlClient.SqlException sqlError)
+                foreach (Microsoft.Data.SqlClient.SqlError detail in sqlError.Errors)
+                    Console.Error.WriteLine($"SQL {detail.Number}: {detail.Message}");
             var logs = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Microsoft", "Microsoft SQL Server Local DB", "Instances", instance);
             foreach (var log in Directory.Exists(logs) ? Directory.GetFiles(logs, "error.log*") : [])
-                Console.Error.WriteLine(File.ReadAllText(log));
+            {
+                try
+                {
+                    using var stream = new FileStream(log, FileMode.Open, FileAccess.Read, FileShare.ReadWrite | FileShare.Delete);
+                    using var reader = new StreamReader(stream);
+                    Console.Error.WriteLine(reader.ReadToEnd());
+                }
+                catch (IOException diagnosticError) { Console.Error.WriteLine(diagnosticError.Message); }
+            }
             throw;
         }
         finally
