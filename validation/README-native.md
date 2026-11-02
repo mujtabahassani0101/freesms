@@ -13,4 +13,4 @@ Selected synthetic previews, package metadata, startup evidence and check logs a
 
 The integration check creates a unique LocalDB instance under the current user's LocalAppData and deletes only that temporary instance. The application's own writable database is separate.
 
-The [self-contained Windows artifact](https://github.com/mujtabahassani0101/freesms/actions/runs/41490887246/artifacts/13163848205) is retained by GitHub for seven days. The checked-in source can rebuild it on Windows using `build-windows.cmd`.
+The checked-in source can rebuild the self-contained Windows application using `build-windows.cmd`.
