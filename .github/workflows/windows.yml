@@ -5,6 +5,9 @@ on:
   workflow_dispatch:
 permissions:
   contents: read
+concurrency:
+  group: native-windows-${{ github.ref }}
+  cancel-in-progress: true
 jobs:
   compatible:
     runs-on: windows-2025
@@ -31,7 +34,15 @@ jobs:
           $process = Start-Process $app -ArgumentList '--verify-original-forms' -PassThru
           if (-not $process.WaitForExit(180000)) { $process.Kill(); throw 'Compatible original form check timed out.' }
           Get-Content dist/FreeSMS-Native-Compatible/legacy-ui/original-forms-verification.txt -ErrorAction SilentlyContinue
+          if ($process.ExitCode -ne 0) { Get-Content dist/FreeSMS-Native-Compatible/legacy-ui/original-runtime-error.txt -ErrorAction SilentlyContinue; Get-Content dist/FreeSMS-Native-Compatible/native-launcher-error.txt -ErrorAction SilentlyContinue; exit 1 }
+      - name: Verify native initialization and the original login
+        shell: pwsh
+        run: |
+          $app = Join-Path $PWD 'dist/FreeSMS-Native-Compatible/FreeSMS.exe'
+          $process = Start-Process $app -ArgumentList '--verify-native-startup' -PassThru
+          if (-not $process.WaitForExit(180000)) { $process.Kill(); throw 'Native startup check timed out.' }
           if ($process.ExitCode -ne 0) { Get-Content dist/FreeSMS-Native-Compatible/legacy-ui/original-runtime-error.txt -ErrorAction SilentlyContinue; exit 1 }
+          Get-Content dist/FreeSMS-Native-Compatible/legacy-ui/native-startup-verification.txt
       - name: Upload native compatibility evidence
         if: always()
         uses: actions/upload-artifact@v7.0.2
@@ -40,6 +51,8 @@ jobs:
           path: |
             dist/FreeSMS-Native-Compatible/legacy-ui/*verification.txt
             dist/FreeSMS-Native-Compatible/legacy-ui/original-runtime-error.txt
+            dist/FreeSMS-Native-Compatible/legacy-ui/startup-*.png
+            dist/FreeSMS-Native-Compatible/native-launcher-error.txt
             validation/compatible-crystal-install.log
       - name: Upload native compatibility build
         if: always()

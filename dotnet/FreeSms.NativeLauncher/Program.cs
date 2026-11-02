@@ -30,7 +30,9 @@ internal static class Program
             var directory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "free-sms", "logs");
             Directory.CreateDirectory(directory);
             File.AppendAllText(Path.Combine(directory, "native-startup-error.txt"), error + Environment.NewLine);
-            MessageBox.Show(error.Message, "برنامه باز نشد", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            if (args.Any(argument => argument.StartsWith("--verify-", StringComparison.Ordinal)))
+                File.WriteAllText(Path.Combine(AppContext.BaseDirectory, "native-launcher-error.txt"), error.ToString());
+            else MessageBox.Show(error.Message, "برنامه باز نشد", MessageBoxButtons.OK, MessageBoxIcon.Error);
             return 1;
         }
     }

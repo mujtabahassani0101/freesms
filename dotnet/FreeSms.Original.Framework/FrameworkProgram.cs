@@ -46,12 +46,12 @@ internal static class FrameworkProgram
     [STAThread]
     public static int Main(string[] args)
     {
-        bool checking = args.Contains("--verify-original-forms");
+        bool checking = args.Contains("--verify-original-forms") || args.Contains("--verify-native-startup");
         try
         {
             OriginalFonts.Initialize();
             KeylessRuntime.Enable();
-            if (checking)
+            if (args.Contains("--verify-original-forms"))
             {
                 Application.EnableVisualStyles();
                 int failures = 0;
@@ -81,6 +81,36 @@ internal static class FrameworkProgram
                 return failures == 0 ? 0 : 1;
             }
             if (string.IsNullOrWhiteSpace(OriginalRuntime.ConnectionString)) throw new InvalidOperationException("برنامه را از FreeSMS.exe اجرا کنید تا بانک بومی آماده شود.");
+            if (args.Contains("--verify-native-startup"))
+            {
+                Application.EnableVisualStyles();
+                Application.SetUnhandledExceptionMode(UnhandledExceptionMode.ThrowException);
+                bool seenLogin = false;
+                using (var timer = new Timer { Interval = 3000 })
+                {
+                    timer.Tick += (sender, eventArgs) =>
+                    {
+                        timer.Stop();
+                        var windows = Application.OpenForms.Cast<Form>().ToArray();
+                        seenLogin = windows.Any(form => form is asda3);
+                        foreach (var form in windows.Where(form => form is asda3 || form is asdb3))
+                        {
+                            using (var image = new System.Drawing.Bitmap(form.Width, form.Height))
+                            {
+                                form.DrawToBitmap(image, new System.Drawing.Rectangle(System.Drawing.Point.Empty, image.Size));
+                                image.Save(Path.Combine(AppContext.BaseDirectory, "startup-" + form.GetType().Name + ".png"));
+                            }
+                        }
+                        foreach (var form in windows.Reverse()) form.Close();
+                        Application.Exit();
+                    };
+                    timer.Start();
+                    asdbx.RunOriginal();
+                }
+                if (!seenLogin) throw new InvalidOperationException("Original login did not open after native database initialization.");
+                File.WriteAllText(Path.Combine(AppContext.BaseDirectory, "native-startup-verification.txt"), "SUCCESS: native database initialized and the original account login opened. No user authentication was bypassed.");
+                return 0;
+            }
             asdbx.RunOriginal();
             return 0;
         }
