@@ -1,0 +1,311 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+    <EnableWindowsTargeting>true</EnableWindowsTargeting>
+    <OutputType>WinExe</OutputType>
+    <AssemblyName>school_Af</AssemblyName>
+    <RootNamespace />
+    <StartupObject>OriginalProgram</StartupObject>
+    <PlatformTarget>x86</PlatformTarget>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
+    <EnableDefaultEmbeddedResourceItems>false</EnableDefaultEmbeddedResourceItems>
+    <ApplicationIcon>app.ico</ApplicationIcon>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <NoWarn>CS8981;CS0162;CS0219;CS0649;CS0414;SYSLIB0001;SYSLIB0014;WFDEV006</NoWarn>
+    <TieredPGO>true</TieredPGO>
+    <PublishTrimmed>false</PublishTrimmed>
+    <RuntimeFrameworkVersion>10.0.14</RuntimeFrameworkVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../FreeSms.Core/FreeSms.Core.csproj" />
+    <PackageReference Include="System.Data.OleDb" Version="10.0.14" />
+    <PackageReference Include="System.Resources.Extensions" Version="10.0.14" />
+    <Reference Include="ActiveReports.Viewer3">
+      <HintPath>../../vendor/legacy/ActiveReports.Viewer3.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine">
+      <HintPath>../../vendor/legacy/CrystalDecisions.CrystalReports.Engine.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportSource">
+      <HintPath>../../vendor/legacy/CrystalDecisions.ReportSource.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.Shared">
+      <HintPath>../../vendor/legacy/CrystalDecisions.Shared.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.Windows.Forms">
+      <HintPath>../../vendor/legacy/CrystalDecisions.Windows.Forms.dll</HintPath>
+    </Reference>
+    <Reference Include="DataDynamics.ActiveReports.ToolBoxClassLib">
+      <HintPath>../../vendor/legacy/DataDynamics.ActiveReports.ToolBoxClassLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Janus.Windows.Common.v2">
+      <HintPath>../../vendor/legacy/Janus.Windows.Common.v2.dll</HintPath>
+    </Reference>
+    <Reference Include="Janus.Windows.GridEX.v2">
+      <HintPath>../../vendor/legacy/Janus.Windows.GridEX.v2.dll</HintPath>
+    </Reference>
+    <Reference Include="Janus.Windows.UI.v2">
+      <HintPath>../../vendor/legacy/Janus.Windows.UI.v2.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel">
+      <HintPath>../../vendor/legacy/Microsoft.Office.Interop.Excel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Vbe.Interop">
+      <HintPath>../../vendor/legacy/Microsoft.Vbe.Interop.dll</HintPath>
+    </Reference>
+    <Reference Include="ShamsiDate">
+      <HintPath>../../vendor/legacy/ShamsiDate.dll</HintPath>
+    </Reference>
+    <Reference Include="office">
+      <HintPath>../../vendor/legacy/office.dll</HintPath>
+    </Reference>
+    <Reference Include="ActiveReports3">
+      <HintPath>../../vendor/legacy/ActiveReports3.DLL</HintPath>
+    </Reference>
+    <Reference Include="ActiveReports.Design3">
+      <HintPath>../../vendor/legacy/ActiveReports.Design3.DLL</HintPath>
+    </Reference>
+    <Reference Include="ActiveReports.Interop">
+      <HintPath>../../vendor/legacy/ActiveReports.Interop.DLL</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.KeyCode">
+      <HintPath>../../vendor/legacy/CrystalDecisions.KeyCode.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportAppServer.CommonObjectModel">
+      <HintPath>../../vendor/legacy/CrystalDecisions.ReportAppServer.CommonObjectModel.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportAppServer.ReportDefModel">
+      <HintPath>../../vendor/legacy/CrystalDecisions.ReportAppServer.ReportDefModel.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportAppServer.CubeDefModel">
+      <HintPath>../../vendor/legacy/CrystalDecisions.ReportAppServer.CubeDefModel.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportAppServer.Controllers">
+      <HintPath>../../vendor/legacy/CrystalDecisions.ReportAppServer.Controllers.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.Data.AdoDotNetInterop">
+      <HintPath>../../vendor/legacy/CrystalDecisions.Data.AdoDotNetInterop.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportAppServer.DataSetConversion">
+      <HintPath>../../vendor/legacy/CrystalDecisions.ReportAppServer.DataSetConversion.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportAppServer.DataDefModel">
+      <HintPath>../../vendor/legacy/CrystalDecisions.ReportAppServer.DataDefModel.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportAppServer.ObjectFactory">
+      <HintPath>../../vendor/legacy/CrystalDecisions.ReportAppServer.ObjectFactory.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportAppServer.CommLayer">
+      <HintPath>../../vendor/legacy/CrystalDecisions.ReportAppServer.CommLayer.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportAppServer.CommonControls">
+      <HintPath>../../vendor/legacy/CrystalDecisions.ReportAppServer.CommonControls.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.Web">
+      <HintPath>../../vendor/legacy/CrystalDecisions.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportAppServer.XmlSerialize">
+      <HintPath>../../vendor/legacy/CrystalDecisions.ReportAppServer.XmlSerialize.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportAppServer.ClientDoc">
+      <HintPath>../../vendor/legacy/CrystalDecisions.ReportAppServer.ClientDoc.dll</HintPath>
+    </Reference>
+    <EmbeddedResource Include="school_Af.Rpt.CrListstd_books10.rpt" LogicalName="school_Af.Rpt.CrListstd_books10.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.CrListBooksRengMark1.rpt" LogicalName="school_Af.Rpt.CrListBooksRengMark1.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.karname.CR_AF_StdKarnameDorehByChart_term1.rpt" LogicalName="school_Af.Rpt.karname.CR_AF_StdKarnameDorehByChart_term1.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.karname.CR_AF_ListFinal.rpt" LogicalName="school_Af.Rpt.karname.CR_AF_ListFinal.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.karname.CR_AF_StdKarnameFinal_12.rpt" LogicalName="school_Af.Rpt.karname.CR_AF_StdKarnameFinal_12.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.Dis.crDis_AmarAbsentClass.rpt" LogicalName="school_Af.Rpt.Dis.crDis_AmarAbsentClass.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.af.CrChapShagheHzeri2.rpt" LogicalName="school_Af.Rpt.af.CrChapShagheHzeri2.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.CrListBooksRengMark2.rpt" LogicalName="school_Af.Rpt.CrListBooksRengMark2.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.RptLable._4020.crHozehStd4020_2.rpt" LogicalName="school_Af.Rpt.RptLable._4020.crHozehStd4020_2.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.karname.CStdKarnameDoreh2.rpt" LogicalName="school_Af.Rpt.karname.CStdKarnameDoreh2.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.CrListDabirKham20.rpt" LogicalName="school_Af.Rpt.CrListDabirKham20.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.karname.CStdKarnameDoreh_byBestStd_OneMark.rpt" LogicalName="school_Af.Rpt.karname.CStdKarnameDoreh_byBestStd_OneMark.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.karname.CR_AF_StdKarnameDorehByChart_term3.rpt" LogicalName="school_Af.Rpt.karname.CR_AF_StdKarnameDorehByChart_term3.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.CrListStdOftRoshdBooks.rpt" LogicalName="school_Af.Rpt.CrListStdOftRoshdBooks.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.CrListStdMoadelGroupByClass.rpt" LogicalName="school_Af.Rpt.CrListStdMoadelGroupByClass.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.CrListBooksRengMark_class.rpt" LogicalName="school_Af.Rpt.CrListBooksRengMark_class.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.karname.CStdKarnameDoreh3.rpt" LogicalName="school_Af.Rpt.karname.CStdKarnameDoreh3.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.CrListstd_books10_class.rpt" LogicalName="school_Af.Rpt.CrListstd_books10_class.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.RptLable._4020.CrStdCardidx4020.rpt" LogicalName="school_Af.Rpt.RptLable._4020.CrStdCardidx4020.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.amar.CrAmarGhaboliClass.rpt" LogicalName="school_Af.Rpt.amar.CrAmarGhaboliClass.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.CrListstd_books14.rpt" LogicalName="school_Af.Rpt.CrListstd_books14.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.RptLable.crStdIdx_Class2.rpt" LogicalName="school_Af.Rpt.RptLable.crStdIdx_Class2.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.karname.CStdKarnameTajamoee2ByChart.rpt" LogicalName="school_Af.Rpt.karname.CStdKarnameTajamoee2ByChart.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.af.CrChapShagheHzeri.rpt" LogicalName="school_Af.Rpt.af.CrChapShagheHzeri.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.afPayment.CrRptStdBalance.rpt" LogicalName="school_Af.Rpt.afPayment.CrRptStdBalance.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.RptLable.CrStdCardidx.rpt" LogicalName="school_Af.Rpt.RptLable.CrStdCardidx.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.af.CrStdCard.rpt" LogicalName="school_Af.Rpt.af.CrStdCard.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.karname.CR_AF_StdKarnameDorehByChart_term3_land.rpt" LogicalName="school_Af.Rpt.karname.CR_AF_StdKarnameDorehByChart_term3_land.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.karname.CR_AF_ListFinal9.rpt" LogicalName="school_Af.Rpt.karname.CR_AF_ListFinal9.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.CrListDabirKhamByTchNameAllBook18.rpt" LogicalName="school_Af.Rpt.CrListDabirKhamByTchNameAllBook18.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.CrListstd_booksAlarm.rpt" LogicalName="school_Af.Rpt.CrListstd_booksAlarm.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.RptLable.crHozehStd.rpt" LogicalName="school_Af.Rpt.RptLable.crHozehStd.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.RptLable.crAmarHozeh.rpt" LogicalName="school_Af.Rpt.RptLable.crAmarHozeh.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.Dis.crDis_ListStdAbsent2.rpt" LogicalName="school_Af.Rpt.Dis.crDis_ListStdAbsent2.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.CrStdMoadelMarkGroupByPaye.rpt" LogicalName="school_Af.Rpt.CrStdMoadelMarkGroupByPaye.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.CrListStdBookMarks5.rpt" LogicalName="school_Af.Rpt.CrListStdBookMarks5.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.RptLable.crHozehStd2.rpt" LogicalName="school_Af.Rpt.RptLable.crHozehStd2.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.RptLable.CrHozehMinMax.rpt" LogicalName="school_Af.Rpt.RptLable.CrHozehMinMax.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.karname.Copy-of-CR_AF_StdKarnameDorehByChart_term1.rpt" LogicalName="school_Af.Rpt.karname.Copy of CR_AF_StdKarnameDorehByChart_term1.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.CrDabirAvgClassMark.rpt" LogicalName="school_Af.Rpt.CrDabirAvgClassMark.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.CrListstd_books21_class33.rpt" LogicalName="school_Af.Rpt.CrListstd_books21_class33.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.amar.CrAmarGhaboliPaye.rpt" LogicalName="school_Af.Rpt.amar.CrAmarGhaboliPaye.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.af.CrChapShaghe.rpt" LogicalName="school_Af.Rpt.af.CrChapShaghe.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.af.CrListStdHazer.rpt" LogicalName="school_Af.Rpt.af.CrListStdHazer.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.afPayment.CrRptPayment1.rpt" LogicalName="school_Af.Rpt.afPayment.CrRptPayment1.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.CrListstd_books18.rpt" LogicalName="school_Af.Rpt.CrListstd_books18.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.CrAvgClassBooks_1.rpt" LogicalName="school_Af.Rpt.CrAvgClassBooks_1.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.RptLable.crHozehAlbom.rpt" LogicalName="school_Af.Rpt.RptLable.crHozehAlbom.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.RptLable._4020.crHozehStd4020.rpt" LogicalName="school_Af.Rpt.RptLable._4020.crHozehStd4020.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.chart.CrChartAvgClassDorehBooksTch.rpt" LogicalName="school_Af.Rpt.chart.CrChartAvgClassDorehBooksTch.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.CrAvgClassBooks_2.rpt" LogicalName="school_Af.Rpt.CrAvgClassBooks_2.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.CrListDabirKham16.rpt" LogicalName="school_Af.Rpt.CrListDabirKham16.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.chart.CrChartAvgClassBooks_1.rpt" LogicalName="school_Af.Rpt.chart.CrChartAvgClassBooks_1.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.karname.CStdKarnameTajamoee3ByChart.rpt" LogicalName="school_Af.Rpt.karname.CStdKarnameTajamoee3ByChart.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.karname.CR_AF_ListFinal10_11.rpt" LogicalName="school_Af.Rpt.karname.CR_AF_ListFinal10_11.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.CrListStdOftRoshdMoadel.rpt" LogicalName="school_Af.Rpt.CrListStdOftRoshdMoadel.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.CrListStdMoadelGroupBySch.rpt" LogicalName="school_Af.Rpt.CrListStdMoadelGroupBySch.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.afPayment.CrRptSumPaymentKoll.rpt" LogicalName="school_Af.Rpt.afPayment.CrRptSumPaymentKoll.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.RptLable.crStdIdx_Class.rpt" LogicalName="school_Af.Rpt.RptLable.crStdIdx_Class.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.chart.CrChartAvgClassBooks_2.rpt" LogicalName="school_Af.Rpt.chart.CrChartAvgClassBooks_2.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.chart.CrChartAvgOneClassBooks_1.rpt" LogicalName="school_Af.Rpt.chart.CrChartAvgOneClassBooks_1.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.CrListstd_books18_class.rpt" LogicalName="school_Af.Rpt.CrListstd_books18_class.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.karname.CR_AF_StdKarnameFinal_10_11.rpt" LogicalName="school_Af.Rpt.karname.CR_AF_StdKarnameFinal_10_11.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.karname.CR_AF_ListFinal12.rpt" LogicalName="school_Af.Rpt.karname.CR_AF_ListFinal12.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.CrListDabirKham.rpt" LogicalName="school_Af.Rpt.CrListDabirKham.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.chart.CrChartAvgClassBooks_3.rpt" LogicalName="school_Af.Rpt.chart.CrChartAvgClassBooks_3.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.chart.CrChartAvgOneClassBooks_2.rpt" LogicalName="school_Af.Rpt.chart.CrChartAvgOneClassBooks_2.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.chart.CrChartAvgPayeBooks_1.rpt" LogicalName="school_Af.Rpt.chart.CrChartAvgPayeBooks_1.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.karname.CStdKarnameTajamoee2.rpt" LogicalName="school_Af.Rpt.karname.CStdKarnameTajamoee2.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.Dis.crDis_KarnameStd.rpt" LogicalName="school_Af.Rpt.Dis.crDis_KarnameStd.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.CrListDabirKham18.rpt" LogicalName="school_Af.Rpt.CrListDabirKham18.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.CrListStdMoadelGroupByPaye.rpt" LogicalName="school_Af.Rpt.CrListStdMoadelGroupByPaye.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.af.CrListStdTransport.rpt" LogicalName="school_Af.Rpt.af.CrListStdTransport.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.afPayment.CrRptStdBalanceListe.rpt" LogicalName="school_Af.Rpt.afPayment.CrRptStdBalanceListe.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.chart.CrChartAvgClassDorehBooks.rpt" LogicalName="school_Af.Rpt.chart.CrChartAvgClassDorehBooks.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.chart.CrChartAvgPayeBooks_2.rpt" LogicalName="school_Af.Rpt.chart.CrChartAvgPayeBooks_2.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.CrListDabirKhamByTchName.rpt" LogicalName="school_Af.Rpt.CrListDabirKhamByTchName.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.karname.CR_AF_StdKarnameDorehByChart_term1_land.rpt" LogicalName="school_Af.Rpt.karname.CR_AF_StdKarnameDorehByChart_term1_land.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.karname.CR_AF_StdKarnameFinal.rpt" LogicalName="school_Af.Rpt.karname.CR_AF_StdKarnameFinal.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.CrListstd_books18_class33.rpt" LogicalName="school_Af.Rpt.CrListstd_books18_class33.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.af.CrChapShaghe2.rpt" LogicalName="school_Af.Rpt.af.CrChapShaghe2.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.afPayment.CrRptSumPaymentGroupByClass.rpt" LogicalName="school_Af.Rpt.afPayment.CrRptSumPaymentGroupByClass.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.CrClslistOftRoshd.rpt" LogicalName="school_Af.Rpt.CrClslistOftRoshd.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.CrStdMoadelMarkGroupByClass.rpt" LogicalName="school_Af.Rpt.CrStdMoadelMarkGroupByClass.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.af.CrListStdshaghe.rpt" LogicalName="school_Af.Rpt.af.CrListStdshaghe.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.afPayment.CrRptListPayment.rpt" LogicalName="school_Af.Rpt.afPayment.CrRptListPayment.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.RptLable.crHozehLabelByName.rpt" LogicalName="school_Af.Rpt.RptLable.crHozehLabelByName.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.RptLable.crHozehLabel.rpt" LogicalName="school_Af.Rpt.RptLable.crHozehLabel.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.chart.CrChartAvgStdClassBooks_1.rpt" LogicalName="school_Af.Rpt.chart.CrChartAvgStdClassBooks_1.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.af.CrListStdTransportDriver.rpt" LogicalName="school_Af.Rpt.af.CrListStdTransportDriver.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.CrListDabir_1.rpt" LogicalName="school_Af.Rpt.CrListDabir_1.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.karname.CStdKarnameTajamoee.rpt" LogicalName="school_Af.Rpt.karname.CStdKarnameTajamoee.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.chart.CrChartAvgStdClassBooks_2.rpt" LogicalName="school_Af.Rpt.chart.CrChartAvgStdClassBooks_2.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.RptLable.CrHozehMinMax2.rpt" LogicalName="school_Af.Rpt.RptLable.CrHozehMinMax2.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.RptLable._4020.crStdIdx_Class4020_2.rpt" LogicalName="school_Af.Rpt.RptLable._4020.crStdIdx_Class4020_2.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.karname.CR_AF_StdKarnameFinalAll.rpt" LogicalName="school_Af.Rpt.karname.CR_AF_StdKarnameFinalAll.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.Dis.crDis_ListStdAbsent.rpt" LogicalName="school_Af.Rpt.Dis.crDis_ListStdAbsent.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.af.CrListStdKoll.rpt" LogicalName="school_Af.Rpt.af.CrListStdKoll.rpt" />
+    <EmbeddedResource Include="school_Af.Rpt.af.CrListStdMali.rpt" LogicalName="school_Af.Rpt.af.CrListStdMali.rpt" />
+    <EmbeddedResource Include="asdbd.resx" LogicalName="asdbd.resources" />
+    <EmbeddedResource Include="asdcd.resx" LogicalName="asdcd.resources" />
+    <EmbeddedResource Include="asdx.resx" LogicalName="asdx.resources" />
+    <EmbeddedResource Include="asdaf.resx" LogicalName="asdaf.resources" />
+    <EmbeddedResource Include="asdo.resx" LogicalName="asdo.resources" />
+    <EmbeddedResource Include="asdba.resx" LogicalName="asdba.resources" />
+    <EmbeddedResource Include="asdbv.resx" LogicalName="asdbv.resources" />
+    <EmbeddedResource Include="asdbj.resx" LogicalName="asdbj.resources" />
+    <EmbeddedResource Include="asdbn.resx" LogicalName="asdbn.resources" />
+    <EmbeddedResource Include="asdbw.resx" LogicalName="asdbw.resources" />
+    <EmbeddedResource Include="asdag.resx" LogicalName="asdag.resources" />
+    <EmbeddedResource Include="asdaq.resx" LogicalName="asdaq.resources" />
+    <EmbeddedResource Include="asda7.resx" LogicalName="asda7.resources" />
+    <EmbeddedResource Include="asdf.resx" LogicalName="asdf.resources" />
+    <EmbeddedResource Include="asdq.resx" LogicalName="asdq.resources" />
+    <EmbeddedResource Include="asda4.resx" LogicalName="asda4.resources" />
+    <EmbeddedResource Include="asda8.resx" LogicalName="asda8.resources" />
+    <EmbeddedResource Include="asdp.resx" LogicalName="asdp.resources" />
+    <EmbeddedResource Include="asda0.resx" LogicalName="asda0.resources" />
+    <EmbeddedResource Include="asdar.resx" LogicalName="asdar.resources" />
+    <EmbeddedResource Include="asdw.resx" LogicalName="asdw.resources" />
+    <EmbeddedResource Include="asdaz.resx" LogicalName="asdaz.resources" />
+    <EmbeddedResource Include="asda6.resx" LogicalName="asda6.resources" />
+    <EmbeddedResource Include="asdbk.resx" LogicalName="asdbk.resources" />
+    <EmbeddedResource Include="asdbi.resx" LogicalName="asdbi.resources" />
+    <EmbeddedResource Include="asdb5.resx" LogicalName="asdb5.resources" />
+    <EmbeddedResource Include="asdca.resx" LogicalName="asdca.resources" />
+    <EmbeddedResource Include="asda9.resx" LogicalName="asda9.resources" />
+    <EmbeddedResource Include="asdbm.resx" LogicalName="asdbm.resources" />
+    <EmbeddedResource Include="asdbz.resx" LogicalName="asdbz.resources" />
+    <EmbeddedResource Include="asdc.resx" LogicalName="asdc.resources" />
+    <EmbeddedResource Include="asdbf.resx" LogicalName="asdbf.resources" />
+    <EmbeddedResource Include="asdr.resx" LogicalName="asdr.resources" />
+    <EmbeddedResource Include="asdi.resx" LogicalName="asdi.resources" />
+    <EmbeddedResource Include="asdai.resx" LogicalName="asdai.resources" />
+    <EmbeddedResource Include="asdb3.resx" LogicalName="asdb3.resources" />
+    <EmbeddedResource Include="asdv.resx" LogicalName="asdv.resources" />
+    <EmbeddedResource Include="asda5.resx" LogicalName="asda5.resources" />
+    <EmbeddedResource Include="asdas.resx" LogicalName="asdas.resources" />
+    <EmbeddedResource Include="asdce.resx" LogicalName="asdce.resources" />
+    <EmbeddedResource Include="asdac.resx" LogicalName="asdac.resources" />
+    <EmbeddedResource Include="asdam.resx" LogicalName="asdam.resources" />
+    <EmbeddedResource Include="school_Af.Properties.Resources.resx" LogicalName="school_Af.Properties.Resources.resources" />
+    <EmbeddedResource Include="asdj.resx" LogicalName="asdj.resources" />
+    <EmbeddedResource Include="asdg.resx" LogicalName="asdg.resources" />
+    <EmbeddedResource Include="asdah.resx" LogicalName="asdah.resources" />
+    <EmbeddedResource Include="asdad.resx" LogicalName="asdad.resources" />
+    <EmbeddedResource Include="asdb.resx" LogicalName="asdb.resources" />
+    <EmbeddedResource Include="asdb7.resx" LogicalName="asdb7.resources" />
+    <EmbeddedResource Include="asds.resx" LogicalName="asds.resources" />
+    <EmbeddedResource Include="asdav.resx" LogicalName="asdav.resources" />
+    <EmbeddedResource Include="asdu.resx" LogicalName="asdu.resources" />
+    <EmbeddedResource Include="asdb0.resx" LogicalName="asdb0.resources" />
+    <EmbeddedResource Include="asdcc.resx" LogicalName="asdcc.resources" />
+    <EmbeddedResource Include="asdb1.resx" LogicalName="asdb1.resources" />
+    <EmbeddedResource Include="asdbr.resx" LogicalName="asdbr.resources" />
+    <EmbeddedResource Include="asdae.resx" LogicalName="asdae.resources" />
+    <EmbeddedResource Include="asdbs.resx" LogicalName="asdbs.resources" />
+    <EmbeddedResource Include="school_Af.menu.resx" LogicalName="school_Af.menu.resources" />
+    <EmbeddedResource Include="asdb2.resx" LogicalName="asdb2.resources" />
+    <EmbeddedResource Include="asda3.resx" LogicalName="asda3.resources" />
+    <EmbeddedResource Include="asdao.resx" LogicalName="asdao.resources" />
+    <EmbeddedResource Include="asdt.resx" LogicalName="asdt.resources" />
+    <EmbeddedResource Include="asdau.resx" LogicalName="asdau.resources" />
+    <EmbeddedResource Include="asdb4.resx" LogicalName="asdb4.resources" />
+    <EmbeddedResource Include="asdbl.resx" LogicalName="asdbl.resources" />
+    <EmbeddedResource Include="asdn.resx" LogicalName="asdn.resources" />
+    <EmbeddedResource Include="asdby.resx" LogicalName="asdby.resources" />
+    <EmbeddedResource Include="asdbt.resx" LogicalName="asdbt.resources" />
+    <EmbeddedResource Include="asdat.resx" LogicalName="asdat.resources" />
+    <EmbeddedResource Include="asda2.resx" LogicalName="asda2.resources" />
+    <EmbeddedResource Include="asdbu.resx" LogicalName="asdbu.resources" />
+    <EmbeddedResource Include="asdh.resx" LogicalName="asdh.resources" />
+    <EmbeddedResource Include="asdb8.resx" LogicalName="asdb8.resources" />
+    <EmbeddedResource Include="asda1.resx" LogicalName="asda1.resources" />
+    <EmbeddedResource Include="asdbq.resx" LogicalName="asdbq.resources" />
+    <EmbeddedResource Include="asdap.resx" LogicalName="asdap.resources" />
+    <EmbeddedResource Include="asdbo.resx" LogicalName="asdbo.resources" />
+    <EmbeddedResource Include="asdal.resx" LogicalName="asdal.resources" />
+    <EmbeddedResource Include="asdm.resx" LogicalName="asdm.resources" />
+    <EmbeddedResource Include="asdak.resx" LogicalName="asdak.resources" />
+    <EmbeddedResource Include="asdb6.resx" LogicalName="asdb6.resources" />
+    <EmbeddedResource Include="asdbb.resx" LogicalName="asdbb.resources" />
+    <EmbeddedResource Include="asdaa.resx" LogicalName="asdaa.resources" />
+    <EmbeddedResource Include="asdl.resx" LogicalName="asdl.resources" />
+    <EmbeddedResource Include="asdbh.resx" LogicalName="asdbh.resources" />
+    <EmbeddedResource Include="school_Af.exe.licenses" LogicalName="school_Af.exe.licenses" />
+    <Content Include="../../native/assets/**/*" Link="native/assets/%(RecursiveDir)%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="../../analysis/sql-resources/**/*" Link="analysis/sql-resources/%(RecursiveDir)%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="../../original/installed/db/*" Link="original/installed/db/%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="../../original/update/rpt/*" Link="rpt/%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="*.xls" Link="%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="xls/*" Link="xls/%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="../../original/update/rpt/*" Link="original/update/rpt/%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>

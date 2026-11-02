@@ -50,3 +50,41 @@ jobs:
           name: FreeSMS-Net10-native-Windows-x64
           path: dist/FreeSMS-Net10/
           retention-days: 7
+  original:
+    runs-on: windows-2025
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-dotnet@v6.0.0
+        with:
+          dotnet-version: '10.0.x'
+      - name: Build all recovered original Windows code
+        shell: pwsh
+        run: dotnet publish dotnet/FreeSms.Original.Windows/FreeSms.Original.Windows.csproj -c Release -r win-x86 --self-contained true -o dist/FreeSMS-Original-Net10
+      - name: Verify the original forms and vendor controls
+        shell: pwsh
+        run: |
+          $app = Join-Path $PWD 'dist/FreeSMS-Original-Net10/school_Af.exe'
+          $process = Start-Process -FilePath $app -ArgumentList '--verify-original-forms' -PassThru
+          if (-not $process.WaitForExit(120000)) { $process.Kill(); throw 'Original form verification timed out.' }
+          if ($process.ExitCode -ne 0) {
+            Get-Content dist/FreeSMS-Original-Net10/original-runtime-error.txt -ErrorAction SilentlyContinue
+            exit 1
+          }
+          Get-Content dist/FreeSMS-Original-Net10/original-forms-verification.txt
+      - name: Upload original verification evidence
+        if: always()
+        uses: actions/upload-artifact@v7.0.2
+        with:
+          name: original-windows-verification
+          path: |
+            dist/FreeSMS-Original-Net10/*verification*.txt
+            dist/FreeSMS-Original-Net10/original-runtime-error.txt
+          retention-days: 7
+      - name: Upload original application build
+        if: always()
+        uses: actions/upload-artifact@v7.0.2
+        with:
+          name: FreeSMS-Original-Net10-Windows-x86-candidate
+          path: dist/FreeSMS-Original-Net10/
+          retention-days: 7

@@ -120,9 +120,11 @@ public static partial class Bootstrapper
 
     public static string PipeFromInstanceInfo(string output)
     {
-        var match = LocalPipe().Match(output);
-        if (!match.Success) throw new InvalidOperationException("آدرس ارتباط نمونهٔ LocalDB در خروجی ابزار پیدا نشد.");
-        return match.Value.Trim();
+        // SqlLocalDB may emit UTF-16 text to a redirected stream; the pipe itself is ASCII.
+        var match = LocalPipe().Match(output.Replace("\0", ""));
+        if (!match.Success) throw new InvalidOperationException("آدرس ارتباط نمونهٔ LocalDB پیدا نشد: " + output[..Math.Min(output.Length, 2000)]);
+        var value = match.Value.Trim();
+        return value.StartsWith("np:", StringComparison.OrdinalIgnoreCase) ? value : "np:" + value;
     }
 
     public static async Task<(int Code, string Output, string Error)> RunLocalDbAsync(string utility, CancellationToken cancellation, params string[] arguments)
@@ -155,5 +157,5 @@ public static partial class Bootstrapper
         if (string.IsNullOrWhiteSpace(options.DataDirectory)) throw new ArgumentException("مسیر بانک مشخص نشده است.");
     }
     [GeneratedRegex(@"^[A-Za-z_][A-Za-z0-9_]{0,79}$")] private static partial Regex SimpleName();
-    [GeneratedRegex(@"np:\\\\\.\\pipe\\[^\r\n]+", RegexOptions.IgnoreCase)] private static partial Regex LocalPipe();
+    [GeneratedRegex(@"(?:np:)?\\\\\.\\pipe\\[^\r\n]+", RegexOptions.IgnoreCase)] private static partial Regex LocalPipe();
 }

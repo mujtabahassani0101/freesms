@@ -61,6 +61,7 @@ try
         Require(builder.Password.Length == 0 && builder.UserID.Length == 0);
         var pipe = @"np:\\.\pipe\LOCALDB#sample\tsql\query";
         Require(Bootstrapper.PipeFromInstanceInfo("Instance pipe name: " + pipe + "\r\n") == pipe);
+        Require(Bootstrapper.PipeFromInstanceInfo(string.Join("\0", ("Instance pipe name: " + pipe[3..]).ToCharArray()) + "\0") == pipe);
         try { Bootstrapper.LocalConnectionString(new DatabaseOptions("unused", "FreeSMS", "master")); throw new Exception("Unsafe database accepted"); }
         catch (ArgumentException) { }
     });
