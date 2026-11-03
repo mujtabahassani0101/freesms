@@ -108,6 +108,26 @@ The original mark-entry baseline finally passed after the hidden-editor guard. T
 
 Original104/105 previews passed known marks30/10, class mean20, configured subreport checks, SQL photo bytes and every-page photo-color checks. Manual inspection of every resulting first-term card page found substantive presentation defects:104 clips the first student's identity and starts the next student's repeated title at the previous page's tail;105 splits student cards/chart/rankings across three pages for two students and mixes the previous card's continuation with the next card. Narrow ranking cells clip names/values; charts lack useful legends/value labels. These remain open despite successful data assertions. The original XML/report inputs are preserved; no print-readiness or fully verified release claim is made.
 
+## First-term layout adaptation prepared
+
+The new in-memory FirstTermCardLayouts adapter reflows only104/105, preserving recovered files and data/calculation/link contracts. It adds growable identity fields, reflowed tables/summary/attendance/rankings, named/value-labelled chart series and a page boundary after all student content. Landscape orientation and the distinct meanings of Sub1 remain. All56 report checks pass, including long-name/ID retention and original formula/group preservation. The original-button fixture now enforces two separate pages for its two one-course students, stable orientation, no mixed parent-band student IDs and one photo per page. Native rendering/visual review remain pending.
+
+## Latest class fixture and account results (run 41562748761)
+
+Twelve of13 business workflows passed again. The new malformed pwd/per/xPaye, recovered-account login and deleted-selected-account cases passed through the actual original buttons, alongside the previously verified login/limited-user checks. Class stopped before duplicate-order Save: its diagnostic proved peer=0, stored-order empty. The fixture lookup passed Arabic-normalized text to a Core-created Persian-normalized name, then Convert.ToInt32(null) silently returned0. It now queries the Core-canonical name with Single(), reads the persisted ID/order and requires a positive ID. The retained order-collision precondition and original dependency/delete assertions must run on Windows; no legacy SQL failure is inferred from that invalid fixture.
+
+## Populated gallery capture prepared
+
+Business probes now save actual, visible, reloaded fixture forms under navigation-checks/docs-gallery: student list/edit, mark entry, class and payment. A small original-populated-gallery artifact is uploaded independently of the final full evidence bundle. No constructed empty form or fake logged-in main window is substituted. Captures still need Windows execution and review. README/docs screenshots are being handled in the other user chat; this work does not edit those files.
+
+## Complete bounded workflow result (run 41568720739)
+
+Sourceef6188c completed both Windows jobs successfully. Verified evidence confirms174 native component/package/render checks,28 Core/database checks,50 report checks, all13 original business workflows and all5 populated report preview/data/photo/every-page cases. Class now reached and passed its duplicate-order, occupied/dependent deletion rejection and confirmed/canceled deletion assertions after the canonical fixture lookup was corrected. This is the bounded scenario set, not the full PLAN.md scope. Original source104/105 layouts still have the previously documented visual defects; the new in-memory layout is not in this run.
+
+The populated gallery was SHA256-verified and extracted. Manual inspection found a real mark-form usability issue: its student grid paints over the mark editor. The editor now comes to the front when opened; its workflow tests actual visible hit targets for the Save button and mark cell, in addition to persisted effects. A new gallery will provide visual verification. The earlier gallery captures and native/core/functional receipts/logs are archived in runs/41568720739; README/docs screenshots remain owned by the other user chat and are excluded from these code commits.
+
+Local validation of the pending layout adapter passes56 report checks and the main application builds with0 warnings/errors. Original preview workers will render all diagnostic pages before checking two-page/two-student/orientation/photo separation assertions, so failures retain their visual evidence. Native execution of the layout and mark-panel visibility repair is pending.
+
 ## Other open work
 
 - Visible disciplinary menus still require schemas/procedures missing from the supplied Afghan database. Existing compatibility messages do not implement those workflows.

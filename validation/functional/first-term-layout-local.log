@@ -1,0 +1,57 @@
+PASS original descriptive grade CR_AF_ListFinal.rpt.xml
+PASS original descriptive grade CR_AF_ListFinal10_11.rpt.xml
+PASS original descriptive grade CR_AF_ListFinal12.rpt.xml
+PASS original descriptive grade CR_AF_ListFinal9.rpt.xml
+PASS original descriptive grade CR_AF_StdKarnameDorehByChart_term1.rpt.xml
+PASS original descriptive grade CR_AF_StdKarnameDorehByChart_term1_land.rpt.xml
+PASS original descriptive grade CR_AF_StdKarnameDorehByChart_term3.rpt.xml
+PASS original descriptive grade CR_AF_StdKarnameDorehByChart_term3_land.rpt.xml
+PASS original descriptive grade CR_AF_StdKarnameFinal.rpt.xml
+PASS original descriptive grade CR_AF_StdKarnameFinalAll.rpt.xml
+PASS original descriptive grade CR_AF_StdKarnameFinal_10_11.rpt.xml
+PASS original descriptive grade CR_AF_StdKarnameFinal_12.rpt.xml
+PASS original descriptive grade CStdKarnameDoreh_byBestStd_OneMark.rpt.xml
+PASS original descriptive grade CStdKarnameDorehByChart_byBestStd_OneMark.rpt.xml
+PASS all 58 original report images are present
+PASS evaluate both reconstructed catalog reports with disconnected sample data
+PASS evaluate every original report with disconnected sample data: 98
+PASS all 21 student-photo placeholders bind the declared database image field
+PASS parse every original report expression: 4121
+PASS rebuilt chart isolates student 70 from peer 30 and preserves class mean 50: CStdKarnameDorehByChart
+PASS rebuilt student card ends after its charts without creating a trailing blank page: CStdKarnameDorehByChart
+PASS rebuilt progress subreport keeps all three terms and excludes the other student: CStdKarnameDorehByChart
+PASS rebuilt chart isolates student 70 from peer 30 and preserves class mean 50: CStdKarnameDorehByChart_byBestStd_OneMark
+PASS rebuilt student card ends after its charts without creating a trailing blank page: CStdKarnameDorehByChart_byBestStd_OneMark
+PASS rebuilt progress subreport keeps all three terms and excludes the other student: CStdKarnameDorehByChart_byBestStd_OneMark
+PASS first-term identity retains complete long names and ungrouped identifiers: CR_AF_StdKarnameDorehByChart_term1
+PASS first-term layout preserves the original grouping and every recovered calculation: CR_AF_StdKarnameDorehByChart_term1
+PASS first-term student boundary follows all content without a trailing blank page: CR_AF_StdKarnameDorehByChart_term1
+PASS first-term identity retains complete long names and ungrouped identifiers: CR_AF_StdKarnameDorehByChart_term1_land
+PASS first-term layout preserves the original grouping and every recovered calculation: CR_AF_StdKarnameDorehByChart_term1_land
+PASS first-term student boundary follows all content without a trailing blank page: CR_AF_StdKarnameDorehByChart_term1_land
+PASS ambiguous student photo metadata cannot silently bind another table
+PASS original 19.99 boundary
+PASS conditional fallback
+PASS conditional evaluates selected branch only
+PASS Crystal default negative number format
+PASS original mark text conversion
+PASS group average excludes other groups
+PASS report total
+PASS database null detection
+PASS Persian text concatenation
+PASS one-based date substring
+PASS nested conditions
+PASS original field references permit surrounding whitespace
+PASS subreport selection binds the original linked parent parameter
+PASS running total resets when a field changes back to an earlier value
+PASS distinct original formula names retain trailing spaces
+PASS match original engine cross-tab reference: CrAvgClassBooks_1.rpt
+PASS match original engine cross-tab reference: CrAvgClassBooks_2.rpt
+PASS match original engine cross-tab reference: CrListBooksRengMark1.rpt
+PASS match original engine cross-tab reference: CrListBooksRengMark2.rpt
+PASS match original engine cross-tab reference: CrListBooksRengMark_class.rpt
+PASS match original engine cross-tab reference: crAmarHozeh.rpt
+PASS original report separators, precision and negative format
+PASS Excel export preserves every record and decimal value
+PASS Excel export preserves Persian text without generated formulas
+SUCCESS 56

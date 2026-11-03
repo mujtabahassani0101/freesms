@@ -196,7 +196,7 @@ internal static class OriginalWorkflowChecks
         var model=(FreeSms.Reports.ReportModel)typeof(FreeSms.NativeControls.PortableReportViewer).GetField("model",BindingFlags.Instance|BindingFlags.NonPublic).GetValue(viewer);
         bool photos=model.Sections.SelectMany(section=>section.Elements("object")).Any(obj=>obj.Element("Kind")?.Value=="BlobFieldObject");
         bool firstTerm=model.Xml.Attribute("native-first-term-layout")!=null;
-        if(firstTerm)
+        Action verifyFirstTerm=()=>
         {
             Require(document.PageCount==2,"Two one-course first-term cards must render on exactly two separate pages; actual="+document.PageCount);
             Require(document.DefaultPageSettings.Landscape==model.Name.EndsWith("_land",StringComparison.Ordinal),"First-term card changed its configured paper orientation.");
@@ -213,7 +213,8 @@ internal static class OriginalWorkflowChecks
                 Require(ids.Count==1,"First-term page mixed parent card bands belonging to different students.");identities.Add(ids.Single());
             }
             Require(identities.Distinct().Count()==2,"First-term pagination omitted a student or repeated the same card.");
-        }
+        };
+        var singlePhotos=new List<bool>();
         int firstPhoto=0,secondPhoto=0;
         for(int page=0;page<document.PageCount;page++)
         {
@@ -226,8 +227,10 @@ internal static class OriginalWorkflowChecks
                 if(pixel==FirstPhotoColor.ToArgb()){firstPhoto++;pageFirst++;}
                 if(pixel==SecondPhotoColor.ToArgb()){secondPhoto++;pageSecond++;}
             }
-            if(firstTerm)Require((pageFirst>50) != (pageSecond>50),"First-term page must show exactly one student's photo.");
+            if(firstTerm)singlePhotos.Add((pageFirst>50) != (pageSecond>50));
         }
+        // Keep every rendered page as diagnostic evidence before rejecting its layout.
+        if(firstTerm){verifyFirstTerm();Require(singlePhotos.Count==document.PageCount && singlePhotos.All(value=>value),"First-term page must show exactly one student's photo.");}
         if(photos)Require(firstPhoto>50 && secondPhoto>50,"Rendered report pages omitted or mixed the two students' persisted photos.");
     }
     internal static void Run(string scenario, Form form, Database db, Action<string> log)
@@ -580,6 +583,22 @@ internal static class OriginalWorkflowChecks
         {
             Select(form,student,"m_i");Click(form,"m_c");Select(form,book,"w","xbook");
             Require(Field<Control>(form,"m_k").Visible,"Mark entry panel did not open.");
+            bool Reachable(Control target,System.Drawing.Point point)
+            {
+                Control hit=form;
+                while(true)
+                {
+                    var child=hit.GetChildAtPoint(hit.PointToClient(point),GetChildAtPointSkip.Invisible);
+                    if(child==null)break;hit=child;
+                }
+                while(hit!=null && hit!=target)hit=hit.Parent;
+                return hit==target;
+            }
+            var save=Field<UIButton>(form,"o");
+            Require(Reachable(save,save.PointToScreen(new System.Drawing.Point(save.Width/2,save.Height/2))),"Mark Save is covered by another panel or outside the form.");
+            var native=Field<GridEX>(form,"w").Controls.OfType<DataGridView>().Single();
+            var cell=native.GetCellDisplayRectangle(native.CurrentCell.ColumnIndex,native.CurrentCell.RowIndex,false);
+            Require(Reachable(native,native.PointToScreen(new System.Drawing.Point(cell.Left+cell.Width/2,cell.Top+cell.Height/2))),"The selected mark cell is covered by the student list or another control.");
         }
         void Save()
         {

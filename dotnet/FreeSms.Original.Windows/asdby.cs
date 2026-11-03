@@ -1145,6 +1145,7 @@ protected override void Dispose(bool A_0)
 					return;
 				case 0:
 					this.m_k.Visible = true;
+                    this.m_k.BringToFront();
 					ah = this.m_i.SelectedItems[0].GetRow().Cells["id"].Value.ToString();
 					b();
 					w.Row = 0;

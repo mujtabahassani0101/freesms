@@ -92,6 +92,23 @@ foreach (string rebuilt in new[] {"CStdKarnameDorehByChart", "CStdKarnameDorehBy
         && childRows.Select(row=>Convert.ToDecimal(row["MarkDoreh"])).SequenceEqual(new[]{30m,40m,70m}),"rebuilt progress subreport keeps all three terms and excludes the other student: "+rebuilt);
 }
 
+foreach(string name in new[]{"CR_AF_StdKarnameDorehByChart_term1","CR_AF_StdKarnameDorehByChart_term1_land"})
+{
+    var original=XDocument.Load(Path.Combine(root,"dotnet","FreeSms.Original.Windows","portable-layouts",name+".rpt.xml")).Root!;
+    var formulasBefore=original.Element("formulas")!.Elements("formula").ToDictionary(f=>(string)f.Attribute("name")!,f=>f.Value);
+    string groupsBefore=original.Element("groups")!.ToString();
+    var model=new ReportModel(original);var fixture=ReportFixtures.Create(model.Xml,2);var table=fixture.Data!.Tables[0];
+    string longName="شاگرد با نام طولانی برای بررسی کامل معلومات "+new string('ن',35);
+    table.Rows[0]["FName"]=longName;table.Rows[0]["LName"]="پدر آزمایشی";table.Rows[0]["PName"]="پدرکلان آزمایشی";
+    table.Rows[0]["Code"]=5991001;table.Rows[0]["NumberAsas"]=5991001;table.Rows[0]["xStudent"]=1;table.Rows[1]["xStudent"]=2;
+    var rows=table.Rows.Cast<DataRow>().ToArray();
+    string identity=Convert.ToString(model.Evaluate("{@nativeCardIdentity}",model.Context(fixture,rows[0],rows)))!;
+    Check(identity.Contains(longName) && identity.Contains("پدر آزمایشی") && identity.Contains("پدرکلان آزمایشی") && identity.Contains("5991001") && !identity.Contains("5,991,001"),"first-term identity retains complete long names and ungrouped identifiers: "+name);
+    Check(groupsBefore==model.Xml.Element("groups")!.ToString() && formulasBefore.All(pair=>model.Formulas.ContainsKey(pair.Key) && model.Xml.Element("formulas")!.Elements("formula").Single(f=>(string?)f.Attribute("name")==pair.Key).Value==pair.Value),"first-term layout preserves the original grouping and every recovered calculation: "+name);
+    var end=model.Sections.Single(section=>(string?)section.Attribute("name")=="NativeCardEnd");
+    Check(model.Flag(end.Element("format"),"EnableNewPageAfter",model.Context(fixture,rows[0],rows)) && !model.Flag(end.Element("format"),"EnableNewPageAfter",model.Context(fixture,rows[1],rows)),"first-term student boundary follows all content without a trailing blank page: "+name);
+}
+
 var ambiguousPhoto=XElement.Parse("<report><database><table name='one'><field name='Student_img' type='BlobField'/></table><table name='two'><field name='Student_img' type='BlobField'/></table></database><sections><section><object><Name>Studentimg1</Name><Kind>BlobFieldObject</Kind></object></section></sections></report>");
 bool rejectedAmbiguousPhoto=false;
 try{_ = new ReportModel(ambiguousPhoto);}
