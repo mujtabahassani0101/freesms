@@ -40,6 +40,27 @@ try
         Reject(()=>AttendanceCounts.Parse(int.MaxValue,int.MaxValue,int.MaxValue,0,0));
         Reject(()=>AttendanceCounts.FromAbsences(0,0,0,0));
     });
+    Check("Individual mark components retain fractions, Persian digits, zero and original averaging",()=>
+    {
+        var row=IndividualMark.Create(1,"۲",new object?[]{"۲۵٫۵",30,null,null,null,null,null,null,null,null},0,40,1);
+        Require(row.Components[0]==25.5 && row.Total==27.75 && row.Absences==2);
+        Require(IndividualMark.Number("۰",0,40)==0 && IndividualMark.Number(DBNull.Value,0,40)==null);
+    });
+    Check("Individual marks reject malformed, nonfinite, out-of-range and invalid absence input",()=>
+    {
+        foreach(var value in new[]{"-1","41","NaN","Infinity","text","1,5"})Reject(()=>IndividualMark.Number(value,0,40));
+        Reject(()=>IndividualMark.Number(1,40,0));
+        Reject(()=>IndividualMark.Create(1,-1,new object?[10],0,40,1));
+        Reject(()=>IndividualMark.Create(1,"1.5",new object?[10],0,40,1));
+        Reject(()=>IndividualMark.Create(1,32768,new object?[10],0,40,1));
+    });
+    Check("Annual manual marks preserve original M2 storage and empty versus zero semantics",()=>
+    {
+        var annual=IndividualMark.Create(1,null,new object?[]{"۷۵",null,null,null,null,null,null,null,null,null},0,100,3);
+        Require(annual.Total==75 && annual.Components[0]==null && annual.Components[1]==75);
+        Require(IndividualMark.Create(1,null,new object?[10],0,40,1).Total==null);
+        Require(IndividualMark.Create(1,null,new object?[]{0,null,null,null,null,null,null,null,null,null},0,40,1).Total==0);
+    });
     Check("BigInt identifiers preserve Persian digits and reject 64-bit overflow",()=>
     {
         Require(Values.LongNumber("۵۹۹۴۰۰۰۰۰۱")==5994000001L && Values.LongNumber("") is null);
