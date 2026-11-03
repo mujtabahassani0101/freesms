@@ -720,9 +720,11 @@ internal static class OriginalWorkflowChecks
         Open();grid=Field<GridEX>(form,"w");EditGridCell(grid,grid.Row,"m1","101");
         Dialog(()=>Click(form,"o"),"نمره وارد شده خارج از محدوده است",1);
         Require(db.Scalar("SELECT id FROM tMark WHERE xStudent=@p0 AND Xtest=@p1 AND xbook=@p2",new object[]{student,annual,book})==null,"Out-of-range annual mark was stored.");
-        EditGridCell(grid,grid.Row,"m1","75");Save();
-        var annualMark=db.Query("SELECT M1,M2,Mark FROM tMark WHERE xStudent=@p0 AND Xtest=@p1 AND xbook=@p2",new object[]{student,annual,book}).Single();
-        Require(annualMark["M1"]==null && Convert.ToDecimal(annualMark["M2"])==75 && Convert.ToDecimal(annualMark["Mark"])==75,"Annual manual mark did not preserve the original M2/total convention.");
+        Click(form,"p");
+        db.Execute("INSERT INTO tMark(xStudent,Xtest,xbook,typ,M3,Mark) VALUES(@p0,@p1,@p2,1,5,5)",new object[]{student,annual,book});
+        Open();grid=Field<GridEX>(form,"w");EditGridCell(grid,grid.Row,"m1","75");Save();
+        var annualMark=db.Query("SELECT M1,M2,M3,Mark FROM tMark WHERE xStudent=@p0 AND Xtest=@p1 AND xbook=@p2",new object[]{student,annual,book}).Single();
+        Require(annualMark["M1"]==null && Convert.ToDecimal(annualMark["M2"])==75 && Convert.ToDecimal(annualMark["Mark"])==75 && Convert.ToDecimal(annualMark["M3"])==5,"Annual manual mark did not preserve the original M2/total convention and hidden component.");
         Open();grid=Field<GridEX>(form,"w");
         Require(Convert.ToDecimal(grid.GetRow(grid.Row).Cells["m1"].Value)==75,"Annual mark did not reload in its displayed input column.");
         EditGridCell(grid,grid.Row,"m1","80");Click(form,"p");

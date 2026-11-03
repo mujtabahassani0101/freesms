@@ -3,7 +3,7 @@ using System.Globalization;
 namespace FreeSms.Core;
 
 // The recovered individual-entry handler averages populated components, except
-// term 3, whose displayed M1 is stored as M2 and whose total is not averaged.
+// term 3, whose displayed M1 is stored as M2 and replaces the total when present.
 public sealed class IndividualMark
 {
     public int Book { get; }
@@ -35,7 +35,11 @@ public sealed class IndividualMark
         var count=Values.Number(absences is DBNull?null:absences,0,short.MaxValue);
         int populated=components.Count(value=>value.HasValue);
         double? total=populated==0?null:components.Sum(value=>value??0)/(term==3?1:populated);
-        if(term==3){components[1]=components[0];components[0]=null;}
+        if(term==3)
+        {
+            if(components[0] is double entered)total=entered;
+            components[1]=components[0];components[0]=null;
+        }
         return new(book,count is null?null:(short)count,components,total,term);
     }
 }

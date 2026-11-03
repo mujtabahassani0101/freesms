@@ -58,6 +58,8 @@ try
     {
         var annual=IndividualMark.Create(1,null,new object?[]{"۷۵",null,null,null,null,null,null,null,null,null},0,100,3);
         Require(annual.Total==75 && annual.Components[0]==null && annual.Components[1]==75);
+        var retained=IndividualMark.Create(1,null,new object?[]{75,null,5,null,null,null,null,null,null,null},0,100,3);
+        Require(retained.Total==75 && retained.Components[2]==5,"Annual input must replace the total while retaining hidden components, as the recovered handler does.");
         Require(IndividualMark.Create(1,null,new object?[10],0,40,1).Total==null);
         Require(IndividualMark.Create(1,null,new object?[]{0,null,null,null,null,null,null,null,null,null},0,40,1).Total==0);
     });
