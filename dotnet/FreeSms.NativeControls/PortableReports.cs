@@ -228,21 +228,30 @@ namespace FreeSms.NativeControls
                         : alignment == "RightAlign" ? (rightToLeft ? StringAlignment.Near : StringAlignment.Far)
                         : (rightToLeft ? StringAlignment.Far : StringAlignment.Near);
                     if (rightToLeft) format.FormatFlags |= StringFormatFlags.DirectionRightToLeft;
+                    using var fitted=FitShortCaption(graphics,obj,text,rect,font,format,model.Flag(obj.Element("format"),"EnableCanGrow",context));
+                    var drawingFont=fitted??font;
                     string rotation=obj.Element("TextRotationAngle")?.Value;
                     if (rotation is "Rotate90" or "Rotate270")
                     {
                         var textState=graphics.Save();
                         graphics.TranslateTransform(rotation=="Rotate90"?rect.Left:rect.Right,rotation=="Rotate90"?rect.Bottom:rect.Top);
                         graphics.RotateTransform(rotation=="Rotate90"?-90:90);
-                        graphics.DrawString(text,font,brush,new RectangleF(0,0,rect.Height,rect.Width),format);
+                        graphics.DrawString(text,drawingFont,brush,new RectangleF(0,0,rect.Height,rect.Width),format);
                         graphics.Restore(textState);
                         continue;
                     }
-                    graphics.DrawString(text, font, brush, rect, format);
+                    graphics.DrawString(text, drawingFont, brush, rect, format);
                 }
                 graphics.Restore(state);
             }
             DrawSpanningShapes(graphics,index);
+        }
+        private static Font FitShortCaption(Graphics graphics,XElement obj,string text,RectangleF rect,Font font,StringFormat format,bool canGrow)
+        {
+            if(obj.Element("Kind")?.Value!="TextObject" || canGrow || text.Contains('\n') || obj.Element("TextRotationAngle")!=null || rect.Height>=font.GetHeight(graphics))return null;
+            using var measurement=(StringFormat)format.Clone();measurement.FormatFlags|=StringFormatFlags.NoWrap;
+            float advance=graphics.MeasureString(text,font,PointF.Empty,measurement).Width;
+            return advance>rect.Width ? ReportFonts.Create(font.FontFamily.Name,Math.Max(1,font.Size*Math.Max(.1f,rect.Width-.5f)/advance),font.Style) : null;
         }
         private static bool SpansSections(XElement obj,XElement section) => obj.Element("EndSectionName")?.Value is string end && end!=(string)section.Attribute("name");
         private void DrawSpanningShapes(Graphics graphics,int pageIndex)

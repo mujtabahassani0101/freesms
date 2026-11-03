@@ -31,3 +31,7 @@ The original templates also requestXB Titre, which the old installer did not bun
 ## Font visual review
 
 Run41597222702 (7e01ffa) passed all181 native checks, all5 original previews, all13 original business scenarios, and the complete workflow. However, rendered images revealed missing short Persian captions despite successful font-family loading. GenericTypographic'sLineLimit omitted entire fixed-height fields when the original font's line-cell metrics exceeded their height, although its visible glyphs fit. The next correction clears that flag without changing the recovered field/font geometry. A native pixel test requires actual ink inside a shortB Badr field, and its image is uploaded for inspection. This visual correction still needs fresh Windows evidence.
+
+## Fixed-caption fit
+
+Run41598232448 (53c3a2c) completed successfully, including182 native checks and the new short-field ink regression. Visual inspection confirmed restored card titles and the original twelve-subject table. Some narrow, fixed-height static attendance captions still ellipsized. The next renderer adjustment fits only single-line static captions whose original field is shorter than the GDI+ line cell. It measures the real advance and reduces only overflowing caption text inside its original cell. Names, data fields, multiline text, rotated text, fonts and section positions are not reflowed. This last caption adjustment requires a fresh native run and visual check.
