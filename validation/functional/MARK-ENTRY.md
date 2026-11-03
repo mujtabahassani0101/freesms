@@ -1,6 +1,6 @@
 # Original individual mark entry regression
 
-Status: prepared and locally compiled; native Windows execution pending. This is not proof that the mark-entry section is complete.
+Status: first Windows execution in41557658288 failed on a native grid exception during student selection, before entering the first mark. A recursive-end-edit guard and a native regression are prepared; the baseline has not passed. This is not proof that the mark-entry section is complete.
 
 The guarded navigation worker opens the original main-menu route to asdby/frmMarkEntry2. Its disposable database receives year1414, one class with a unique display order, one visible individual-entry subject, its teacher, and two registered students. A peer has half-year M1=10; the edited student has annual M1=15. These sentinel rows must remain unchanged.
 

@@ -38,6 +38,16 @@ Source25d32bd passed the same initial registration and rejection checks and nine
 - Student/enrolment, optional photo and confirmed grade-dependent mark removal share one asynchronous transaction; the old pre-save mark deletes were removed. The pending scenario covers required name, negative fee, zero gender, exact fee/transport totals, selected photo, duplicate code/number, cancel, edit/class move and both rejected/successful grade changes. A real class lock tests responsiveness; an owned rejecting photo trigger must preserve prior class/fees/raw and calculated marks/calculation flags/photo. File-picker interaction itself remains untested: the fixture seeds the selected path.
 - Whole-section readiness remains unproven despite the passing limited scenarios. Native metadata/render checks do not establish every report's populated content or every control workflow.
 
+## Original mark and student diagnostics (run 41557658288)
+
+Source4cda39b ran11 business cases. Nine passed. Student Edit now reached and acknowledged the exact single-student success confirmation, then failed the persisted class/fee350 assertion. The next run logs the editor's selected ID/class/first two fee inputs and reports actual persisted class/Fee1/Fee2/SumFee on failure; the assertion has not been relaxed. Grade-change rollback assertions remain unexecuted.
+
+The new mark baseline found a real native DataGridView NullReferenceException when changing student selection: the original controller rebinds the mark grid and sets CurrentColumn while its prior edit is ending. The compatibility CellEndEdit handler called EndEdit again, and recovered CellUpdated handlers also end row edits. CellEndEdit now commits binding and publishes the change under a guard, so recursive row-end calls cannot re-enter native editor disposal. A native regression changes cells while its update handler also ends the row edit. Both this native regression and the original mark workflow require Windows execution. All functional logs and the SHA256-verified receipt are archived in runs/41557658288.
+
+## Authentication repair awaiting Windows execution
+
+The original login and password-change entry handlers had fixed vendor-override branches that bypassed the selected account's saved password. Both now always call the original password validator. No production credentials or permission records are migrated by this patch. AUTHENTICATION.md describes the original-button regression for rejected credentials, password editing, mismatch/cancel/confirm persistence and old/new password verification in the disposable bank. Local build passed with0 warnings/errors; native execution is pending. Non-admin permission coverage remains open.
+
 ## Other open work
 
 - Visible disciplinary menus still require schemas/procedures missing from the supplied Afghan database. Existing compatibility messages do not implement those workflows.

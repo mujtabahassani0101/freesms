@@ -294,11 +294,11 @@ internal static class OriginalNavigationCheck
             var reportCases = reportActions ? new[] { "101", "1024", "1032" } : new[] { "" };
             foreach (string reportCase in reportCases)
             foreach (var control in targets)
-            foreach(string studentCase in businessActions && catalog.Target(main,control).Value.S("class")=="asdm"?new[]{"student-delete","student-edit"}:new[]{""})
+            foreach(string studentCase in businessActions ? catalog.Target(main,control).Value.S("class") switch {"asdm"=>new[]{"student-delete","student-edit"},"asdac"=>new[]{"school","authentication"},_=>new[]{""}} : new[]{""})
             {
                 string scenario=businessActions ? catalog.Target(main,control).Value.S("class") switch
                 {
-                    "asdh"=>"discount", "asdm"=>studentCase, "asda9"=>"backup", "asdbi"=>"teacher", "asdl"=>"driver", "asda5"=>"payment", "asdac"=>"school", "asdby"=>"mark-entry",
+                    "asdh"=>"discount", "asdm"=>studentCase, "asda9"=>"backup", "asdbi"=>"teacher", "asdl"=>"driver", "asda5"=>"payment", "asdac"=>studentCase, "asdby"=>"mark-entry",
                     "asdp"=>control.S("click")=="ap"?"attendance1":"attendance2",
                     _=>throw new InvalidOperationException("Unknown business workflow target.")
                 } : "";
@@ -316,8 +316,8 @@ internal static class OriginalNavigationCheck
                 if (waiting) interaction++;
                 File.AppendAllText(summary, (success ? "PASS " : waiting ? "INTERACTION " : finished ? "FAILED " : "TIMEOUT ") + route + " " + control.S("name") + " -> " + target.S("name") + Environment.NewLine);
             }
-            File.AppendAllText(summary, "RESULT loaded=" + passed + ", interaction=" + interaction + ", total=" + (targets.Length*reportCases.Length+(businessActions?1:0)) + Environment.NewLine);
-            return reportCatalogValid && passed + interaction == targets.Length*reportCases.Length+(businessActions?1:0) ? 0 : 1;
+            File.AppendAllText(summary, "RESULT loaded=" + passed + ", interaction=" + interaction + ", total=" + (targets.Length*reportCases.Length+(businessActions?2:0)) + Environment.NewLine);
+            return reportCatalogValid && passed + interaction == targets.Length*reportCases.Length+(businessActions?2:0) ? 0 : 1;
         }
         finally
         {

@@ -75,6 +75,10 @@ internal static class Program
                 Check(Enter("count","123") && editNotifications==2,"ending an unchanged grid edit does not publish a false modification");
                 Check(!Enter("count","1.5") && (int)values.Rows[0]["count"]==123,"integer grid mask rejects fractions without changing the saved cell");
                 Check(!Enter("count","2147483648") && (int)values.Rows[0]["count"]==123 && errors==0 && editNotifications==2,"out-of-range integer edits reject before binding without native data-error dialogs");
+                numbers.CellUpdated+=(sender,args)=>numbers.GetRow(numbers.Row).EndEdit();
+                view.CurrentCell=view.Rows[0].Cells["count"];RequireEditor();((TextBox)view.EditingControl!).Text="124";
+                view.CurrentCell=view.Rows[0].Cells["mark"];
+                Check((int)values.Rows[0]["count"]==124 && editNotifications==3 && errors==0,"changing cells safely commits edits when the recovered update handler also ends the row edit");
             }
             using (var blobs = new GridEX { Dock = DockStyle.Fill })
             {

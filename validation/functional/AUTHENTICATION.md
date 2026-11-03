@@ -1,0 +1,9 @@
+# Original login and password-change regression
+
+Status: prepared, compiled locally; native Windows execution pending. Opening the login window alone is not a credential or permissions test.
+
+The recovered login button and password-change entry button contained special branches accepting a fixed vendor override without checking the selected account's saved password. Those two branches have been removed. Both buttons now use the existing account-password validation, including its original legacy-format migration and permission-loading logic. Stored production passwords, accounts and permissions are not rewritten by this patch.
+
+The authentication worker runs only under the guarded disposable navigation database. It snapshots the fixture administrator's pwd/pw, assigns an owned test password using the existing encoder and format398, and drives the actual login/password buttons. Empty, incorrect and former override values must show the exact rejection and leave the session unauthenticated. An incorrect current password must not open password editing; the correct one must open it. Mismatched new passwords and declining confirmation must preserve the saved password. Confirming a matching replacement must persist the encoded account-specific value; on reopening login, the old password must fail and the new password must authenticate the selected administrator. Finally the fixture password and session fields are restored.
+
+This baseline does not yet verify non-admin permission matrices, malformed encrypted permission payloads, legacy-format migration, account management, logout, session switching, all password lengths/characters or every keyboard path. Those remain required by PLAN.md. No real user's account is used by this test.

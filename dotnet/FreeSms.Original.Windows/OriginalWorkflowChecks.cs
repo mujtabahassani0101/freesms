@@ -176,6 +176,7 @@ internal static class OriginalWorkflowChecks
         diagnostic = log;
         if (scenario == "discount") Discount(form, db, log);
         else if (scenario == "school") School(form, db, log);
+        else if (scenario == "authentication") Authentication(db,log);
         else if (scenario == "student-delete") StudentDelete(form, db, log);
         else if (scenario == "student-edit") StudentEdit(form,db,log);
         else if (scenario == "backup") Backup(form,db,log);
@@ -281,9 +282,12 @@ internal static class OriginalWorkflowChecks
             ChildForm<asdat>(()=>Click(form,"v"),child=>
             {
                 Require(Field<Control>(child,"m_w").Text==asdaj.b("شاگرد ثبت نام"),"Edit did not reload the saved student.");
-                Field<UIComboBox>(child,"m_d").SelectedValue=moved.ToString();Field<Control>(child,"b4").Text="250";EditSave(child);
+                Field<UIComboBox>(child,"m_d").SelectedValue=moved.ToString();Field<Control>(child,"b4").Text="250";
+                log("EDIT INPUT id="+((asdat)child).__field_a+" class="+Field<UIComboBox>(child,"m_d").SelectedValue+" fee1="+Field<Control>(child,"b7").Text+" fee2="+Field<Control>(child,"b4").Text);
+                EditSave(child);
             });
-            Require(Convert.ToInt32(db.Scalar("SELECT xClass FROM tYear_Student WHERE xStudent=@p0 AND xYear=1413",new object[]{id}))==moved && Convert.ToInt32(db.Scalar("SELECT SumFee FROM tYear_Student WHERE xStudent=@p0 AND xYear=1413",new object[]{id}))==350,"Edit/class move changed the wrong record or totals.");
+            var edited=db.Query("SELECT xClass,Fee1,Fee2,SumFee FROM tYear_Student WHERE xStudent=@p0 AND xYear=1413",new object[]{id}).Single();
+            Require(edited.Int("xClass")==moved && edited.Int("SumFee")==350,"Edit/class move changed the wrong record or totals: class="+edited["xClass"]+" expected="+moved+" fee1="+edited["Fee1"]+" fee2="+edited["Fee2"]+" total="+edited["SumFee"]);
             var school=new SchoolService(db,new Session(1413));var entities=new EntityService(school);
             int book=entities.Save("books",new Record{["xPaye"]=1,["Name"]="مضمون انتقال",["vahed"]=1,["timeWeek"]=1,["Type"]=1,["sort"]=30000,["SortOneEntry"]=30000,["codedars"]=5994001,["Vezarat"]=true});
             int teacher=entities.Save("teachers",new Record{["fNamF"]="استاد انتقال",["fNamL"]="آزمون",["fEmail"]="",["fPassword"]=""});school.AssignTeacher(moved,book,teacher);
@@ -330,6 +334,55 @@ internal static class OriginalWorkflowChecks
         Require(view.EditingControl is TextBox,"Grid did not open a text editor.");
         ((TextBox)view.EditingControl).Text=value;
         Require(grid.TryEndEdit(),"Grid rejected a valid input: "+key);
+    }
+    private static void Authentication(Database db,Action<string> log)
+    {
+        var original=db.Query("SELECT pwd,pw FROM tuser WHERE id=1").Single();
+        const string first="Native-login-test-1415",second="Native-login-changed-1415";
+        string beforeUser=asdaj.l,beforePermissions=asdaj.m,beforeGrades=asdaj.n;
+        void Open(Action<Form> exercise)
+        {
+            ChildForm<asda3>(()=>{using var login=new asda3();login.ShowDialog();},child=>
+            {Field<UIComboBox>(child,"m_e").SelectedValue="1";exercise(child);});
+        }
+        try
+        {
+            db.Execute("UPDATE tuser SET pwd=@p0,pw=398 WHERE id=1",new object[]{asdab.d("1kbr63"+first)});
+            asdaj.l="";
+            Open(child=>
+            {
+                foreach(string wrong in new[]{"", "wrong-password", "arya13880307zx"})
+                {
+                    Field<Control>(child,"m_f").Text=wrong;
+                    Dialog(()=>Click(child,"m_c"),"کلمه عبور اشتباه است",1);
+                    Require(child.Visible && asdaj.l=="","Rejected password authenticated a session.");
+                }
+                Dialog(()=>Click(child,"p"),"کلمه عبور اشتباه است",1);
+                Require(!Field<Control>(child,"i").Visible,"Incorrect password opened password editing.");
+                Field<Control>(child,"m_f").Text=first;Click(child,"p");
+                Require(Field<Control>(child,"i").Visible,"Correct password did not open password editing.");
+                Field<Control>(child,"k").Text=second;Field<Control>(child,"j").Text="mismatch";
+                Dialog(()=>Click(child,"o"),"رمز عبور را با دقت وارد کنید",1);
+                Require(Convert.ToString(db.Scalar("SELECT pwd FROM tuser WHERE id=1"))==asdab.d("1kbr63"+first),"Mismatched password confirmation changed the account.");
+                Field<Control>(child,"j").Text=second;
+                Dialog(()=>Click(child,"o"),"آيا از تغییر کلمه عبور مطمئن هستيد؟",7);
+                Require(Convert.ToString(db.Scalar("SELECT pwd FROM tuser WHERE id=1"))==asdab.d("1kbr63"+first),"Declining password change changed the account.");
+                Dialog(()=>Dialog(()=>Click(child,"o"),"آيا از تغییر کلمه عبور مطمئن هستيد؟",6),"تغییر ثبت شد",1);
+                Require(Convert.ToString(db.Scalar("SELECT pwd FROM tuser WHERE id=1"))==asdab.d("1kbr63"+second),"Confirmed password change was not stored.");
+            });
+            Open(child=>
+            {
+                Field<Control>(child,"m_f").Text=first;Dialog(()=>Click(child,"m_c"),"کلمه عبور اشتباه است",1);
+                Field<Control>(child,"m_f").Text=second;Click(child,"m_c");
+                Require(!child.Visible && asdaj.l=="1","New password did not authenticate the selected account.");
+            });
+            log("PASS original login rejects empty/wrong/legacy override passwords; password editing requires authentication, preserves mismatched/declined changes, and accepts only the confirmed new password");
+        }
+        finally
+        {
+            db.Execute("UPDATE tuser SET pwd=@p0,pw=@p1 WHERE id=1",new object[]{original["pwd"],original["pw"]});
+            asdaj.l=beforeUser;asdaj.m=beforePermissions;asdaj.n=beforeGrades;
+        }
     }
     private static void MarkEntry(Form form,Database db,Action<string> log)
     {

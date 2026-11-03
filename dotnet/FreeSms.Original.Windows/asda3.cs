@@ -534,8 +534,7 @@ protected override void Dispose(bool A_0)
 						num = 13;
 						continue;
 					}
-					flag = !(this.m_f.Text != "arya13880307zx");
-					num = 16;
+					num = 25;
 					continue;
 				case 20:
 					num2 = 0;
@@ -620,17 +619,6 @@ protected override void Dispose(bool A_0)
 					continue;
 				case 26:
 					return;
-				case 16:
-					if (flag)
-					{
-						asdaj.l = "999";
-						num = 14;
-					}
-					else
-					{
-						num = 25;
-					}
-					continue;
 				case 10:
 					if (flag)
 					{
@@ -1050,8 +1038,7 @@ protected override void Dispose(bool A_0)
 						num = 0;
 						continue;
 					}
-					flag = !(this.m_f.Text != "arya13880307zx");
-					num = 8;
+					num = 9;
 					continue;
 				case 9:
 					flag = a();
@@ -1082,13 +1069,6 @@ protected override void Dispose(bool A_0)
 					continue;
 				case 7:
 					return;
-				case 8:
-					if (!flag)
-					{
-						num = 9;
-						continue;
-					}
-					goto case 4;
 				case 5:
 					MessageBox.Show("کلمه عبور اشتباه است");
 					num = 3;

@@ -226,6 +226,7 @@ namespace Janus.Windows.GridEX
         private readonly Label totals = new Label { Dock = DockStyle.Bottom, AutoSize = false, Height = 26, TextAlign = ContentAlignment.MiddleRight, Visible = false };
         private readonly Dictionary<DataGridViewRow, GridEXRow> rows = new Dictionary<DataGridViewRow, GridEXRow>();
         private bool loading;
+        private bool endingCellEdit;
         private DataGridViewCell editingCell;
         private object editingOriginalValue;
         private bool building;
@@ -325,7 +326,14 @@ namespace Janus.Windows.GridEX
                 bool changed=ReferenceEquals(editingCell,cell) && !Equals(editingOriginalValue,cell.Value);
                 editingCell=null;editingOriginalValue=null;View.Rows[e.RowIndex].ErrorText="";
                 if(!loading && e.ColumnIndex>=0)
-                {EndEdit();if(changed)CellUpdated?.Invoke(this,new ColumnActionEventArgs(RootTable.Columns[View.Columns[e.ColumnIndex].Name]));}
+                {
+                    // DataGridView is already ending the editor here. Re-entering
+                    // EndEdit from a recovered CellUpdated handler can destroy its
+                    // editing control while the outer native operation still uses it.
+                    endingCellEdit=true;
+                    try{binding.EndEdit();if(changed)CellUpdated?.Invoke(this,new ColumnActionEventArgs(RootTable.Columns[View.Columns[e.ColumnIndex].Name]));}
+                    finally{endingCellEdit=false;}
+                }
             };
             View.CurrentCellDirtyStateChanged += (s, e) => { if (View.CurrentCell is DataGridViewCheckBoxCell && View.IsCurrentCellDirty) View.CommitEdit(DataGridViewDataErrorContexts.Commit); };
             View.Sorted += (s, e) => SortKeysChanged?.Invoke(this, e);
@@ -380,6 +388,7 @@ namespace Janus.Windows.GridEX
         public void EndEdit(){TryEndEdit();}
         public bool TryEndEdit()
         {
+            if(endingCellEdit)return true;
             // Native EndEdit skips CellValidating. Explicit Save needs the same guard.
             if(View.CurrentCell!=null && View.IsCurrentCellInEditMode && View.EditingControl is TextBox editor)
                 if(!ValidateNumber(RootTable.Columns[View.CurrentCell.OwningColumn.Name],editor.Text,View.CurrentCell.RowIndex))return false;
