@@ -21,6 +21,16 @@ internal static class OriginalWorkflowChecks
             : throw new InvalidOperationException("Original workflow field has an unexpected type or null value: "+form.GetType().Name+"."+name);
     }
     private static void Click(Form form, string name) => Field<UIButton>(form, name).PerformClick();
+    private static void SaveGallery(Form form,string name)
+    {
+        Require(form.Visible && form.Width>0 && form.Height>0,"Gallery capture requires a visible populated form.");
+        string directory=System.IO.Path.Combine(AppContext.BaseDirectory,"navigation-checks","docs-gallery");
+        System.IO.Directory.CreateDirectory(directory);form.Refresh();form.Update();
+        using var bitmap=new System.Drawing.Bitmap(form.Width,form.Height);
+        form.DrawToBitmap(bitmap,new System.Drawing.Rectangle(System.Drawing.Point.Empty,bitmap.Size));
+        bitmap.Save(System.IO.Path.Combine(directory,"gallery-"+name+".png"),System.Drawing.Imaging.ImageFormat.Png);
+        diagnostic("CAPTURE populated original form: gallery-"+name+".png (disposable fixture data)");
+    }
     private static void Require(bool condition, string message) { if (!condition) throw new InvalidOperationException(message); }
     private static void Select(Form form, int id, string field = "m_b", string key = "id")
     {
@@ -185,18 +195,38 @@ internal static class OriginalWorkflowChecks
         Require(document.PageCount>0 && document.PageCount<=20,"Small report fixture produced an invalid page count.");
         var model=(FreeSms.Reports.ReportModel)typeof(FreeSms.NativeControls.PortableReportViewer).GetField("model",BindingFlags.Instance|BindingFlags.NonPublic).GetValue(viewer);
         bool photos=model.Sections.SelectMany(section=>section.Elements("object")).Any(obj=>obj.Element("Kind")?.Value=="BlobFieldObject");
+        bool firstTerm=model.Xml.Attribute("native-first-term-layout")!=null;
+        if(firstTerm)
+        {
+            Require(document.PageCount==2,"Two one-course first-term cards must render on exactly two separate pages; actual="+document.PageCount);
+            Require(document.DefaultPageSettings.Landscape==model.Name.EndsWith("_land",StringComparison.Ordinal),"First-term card changed its configured paper orientation.");
+            var pages=(System.Collections.IEnumerable)document.GetType().GetField("pages",BindingFlags.Instance|BindingFlags.NonPublic).GetValue(document);
+            var identities=new List<int>();
+            foreach(System.Collections.IEnumerable pageBands in pages)
+            {
+                var ids=new HashSet<int>();
+                foreach(object band in pageBands)
+                {
+                    var row=band.GetType().GetField("Row",BindingFlags.Instance|BindingFlags.NonPublic).GetValue(band) as System.Data.DataRow;
+                    if(row!=null && row.Table.Columns.Contains("xStudent"))ids.Add(Convert.ToInt32(row["xStudent"]));
+                }
+                Require(ids.Count==1,"First-term page mixed parent card bands belonging to different students.");identities.Add(ids.Single());
+            }
+            Require(identities.Distinct().Count()==2,"First-term pagination omitted a student or repeated the same card.");
+        }
         int firstPhoto=0,secondPhoto=0;
         for(int page=0;page<document.PageCount;page++)
         {
             string path=System.IO.Path.Combine(directory,scenario+"-page-"+(page+1)+".png");document.SavePageImage(path,page,100);
             if(!photos)continue;
-            using var bitmap=new System.Drawing.Bitmap(path);
+            using var bitmap=new System.Drawing.Bitmap(path);int pageFirst=0,pageSecond=0;
             for(int y=0;y<bitmap.Height;y+=4)for(int x=0;x<bitmap.Width;x+=4)
             {
                 int pixel=bitmap.GetPixel(x,y).ToArgb();
-                if(pixel==FirstPhotoColor.ToArgb())firstPhoto++;
-                if(pixel==SecondPhotoColor.ToArgb())secondPhoto++;
+                if(pixel==FirstPhotoColor.ToArgb()){firstPhoto++;pageFirst++;}
+                if(pixel==SecondPhotoColor.ToArgb()){secondPhoto++;pageSecond++;}
             }
+            if(firstTerm)Require((pageFirst>50) != (pageSecond>50),"First-term page must show exactly one student's photo.");
         }
         if(photos)Require(firstPhoto>50 && secondPhoto>50,"Rendered report pages omitted or mixed the two students' persisted photos.");
     }
@@ -308,10 +338,11 @@ internal static class OriginalWorkflowChecks
                 });
             ChildForm<asdat>(()=>Click(form,"m_h"),child=>{Fill(child,5994002,5994002);Click(child,"m_g");});
             Require(Convert.ToInt32(db.Scalar("SELECT COUNT(*) FROM tStudent"))==before+1,"Cancel registered a student.");
-            Select(form,id,"av");
+            Select(form,id,"av");SaveGallery(form,"students");
             ChildForm<asdat>(()=>Click(form,"v"),child=>
             {
                 Require(Field<Control>(child,"m_w").Text==asdaj.b("شاگرد ثبت نام"),"Edit did not reload the saved student.");
+                SaveGallery(child,"student-edit");
                 Field<UIComboBox>(child,"m_d").SelectedValue=moved.ToString();
                 // The recovered class selector applies the new class fee template.
                 // Enter the intended monthly amounts after that selection.
@@ -371,8 +402,9 @@ internal static class OriginalWorkflowChecks
     }
     private static void ClassManagement(Form form,Database db,Action<string> log)
     {
-        int peer=Convert.ToInt32(db.Scalar("SELECT id FROM tClass WHERE xYear=1416 AND name=@p0",new object[]{asdaj.b("صنف محفوظ مدیریت")}));
-        int peerOrder=Convert.ToInt32(db.Scalar("SELECT sortRpt FROM tClass WHERE id=@p0",new object[]{peer}));
+        var peerRecord=db.Query("SELECT id,sortRpt FROM tClass WHERE xYear=1416 AND name=@p0",new object[]{Values.Text("صنف محفوظ مدیریت")}).Single();
+        int peer=peerRecord.Int("id"),peerOrder=peerRecord.Int("sortRpt");
+        Require(peer>0,"Class fixture did not return a persisted peer identity.");
         var used=new HashSet<int>(db.Query("SELECT sortRpt FROM tClass WHERE sortRpt IS NOT NULL").Select(row=>Convert.ToInt32(row["sortRpt"])));
         int order=30000;while(used.Contains(order))order++;
         Require(order<=32767,"No available class entry order.");
@@ -398,7 +430,7 @@ internal static class OriginalWorkflowChecks
         Field<Control>(form,"ab").Text=order.ToString();Click(form,"k");
         var row=db.Query("SELECT id,fee,answerable FROM tClass WHERE xYear=1416 AND name=@p0",new object[]{asdaj.b("صنف مدیریت آزمایشی")}).Single();int id=row.Int("id");
         Require(Count()==before+1 && row.Int("fee")==150 && row.Text("answerable")==asdaj.b("نگران آزمایشی"),"Class Save did not preserve normalized fee and supervisor.");
-        Select(form,id,"m_c");Click(form,"m_h");Require(Field<Control>(form,"ad").Text=="150","Class Edit did not reload the fee.");
+        Select(form,id,"m_c");Click(form,"m_h");Require(Field<Control>(form,"ad").Text=="150","Class Edit did not reload the fee.");SaveGallery(form,"class");
         Field<Control>(form,"ad").Text="200";Click(form,"n");
         Require(Convert.ToInt32(db.Scalar("SELECT fee FROM tClass WHERE id=@p0",new object[]{id}))==150,"Class Cancel changed the saved fee.");
         Select(form,id,"m_c");Click(form,"m_h");Field<Control>(form,"ad").Text="200";Click(form,"k");
@@ -559,7 +591,7 @@ internal static class OriginalWorkflowChecks
         EditGridCell(grid,grid.Row,"m1","۲۵");Save();
         Require(Convert.ToDecimal(Value(student,exam))==25,"Original mark Save did not persist the entered Persian digits.");
         Open();grid=Field<GridEX>(form,"w");
-        Require(Convert.ToDecimal(grid.GetRow(grid.Row).Cells["m1"].Value)==25,"Mark entry did not reload the saved mark.");
+        Require(Convert.ToDecimal(grid.GetRow(grid.Row).Cells["m1"].Value)==25,"Mark entry did not reload the saved mark.");SaveGallery(form,"mark-entry");
         EditGridCell(grid,grid.Row,"m1","28");Click(form,"p");
         Require(Convert.ToDecimal(Value(student,exam))==25,"Cancel committed an edited mark.");
         Open();grid=Field<GridEX>(form,"w");EditGridCell(grid,grid.Row,"m1","28");Save();
@@ -683,7 +715,7 @@ internal static class OriginalWorkflowChecks
         Select(form,id,"x");
         ChildPayment(()=>Click(form,"u"),child=>
         {
-            Require(Field<Control>(child,"q").Text=="400" && Field<Control>(child,"h").Text==comment,"Payment Edit did not reload the selected payment.");
+            Require(Field<Control>(child,"q").Text=="400" && Field<Control>(child,"h").Text==comment,"Payment Edit did not reload the selected payment.");SaveGallery(child,"payment");
             Field<Control>(child,"q").Text="600";Dialog(()=>Click(child,"k"),"ثبت شد",1);
         });
         Require(Count()==before+1 && Convert.ToInt32(db.Scalar("SELECT Fee FROM tPaymentStudent WHERE id=@p0",new object[]{id}))==600,"Payment Edit did not update exactly the selected record.");

@@ -98,6 +98,14 @@ jobs:
           Get-Content dist/FreeSMS-Net10/navigation-checks/business-actions-summary.log -ErrorAction SilentlyContinue
           Get-Content dist/FreeSMS-Net10/navigation-checks/*_workflow_*.log -ErrorAction SilentlyContinue
           if ($process.ExitCode -ne 0) { exit 1 }
+      - name: Upload populated workflow gallery
+        if: always()
+        uses: actions/upload-artifact@v7.0.2
+        with:
+          name: original-populated-gallery
+          path: dist/FreeSMS-Net10/navigation-checks/docs-gallery/
+          if-no-files-found: warn
+          retention-days: 7
       - name: Upload functional action diagnostics before remaining checks
         if: always()
         uses: actions/upload-artifact@v7.0.2
