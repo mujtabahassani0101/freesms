@@ -114,11 +114,16 @@ public sealed class SchoolService(Database database, Session session)
         });
     }
     public byte[]? StudentImage(int id) => Db.Scalar("SELECT Student_img FROM tStudentImg WHERE xStudent=@p0", [id]) as byte[];
-    public void DeleteClass(int id)
+    public void DeleteClass(int id) => Db.Transaction((connection,transaction) =>
     {
-        if (Convert.ToInt32(Db.Scalar("SELECT COUNT(*) FROM tYear_Student WHERE xClass=@p0", [id])) > 0) throw new ValidationException("این صنف شاگرد دارد و قابل حذف نیست.");
-        Db.Execute("DELETE FROM tClass WHERE id=@p0 AND xYear=@p1", [id, Session.Year]);
-    }
+        if (Convert.ToInt32(Db.Scalar("SELECT COUNT(*) FROM tClass WHERE id=@p0 AND xYear=@p1", [id,Session.Year],connection,transaction))!=1)
+            throw new ValidationException("صنف در سال تعلیمی انتخاب‌شده یافت نشد.");
+        if (Convert.ToInt32(Db.Scalar("SELECT COUNT(*) FROM tYear_Student WHERE xClass=@p0", [id],connection,transaction)) > 0)
+            throw new ValidationException("این صنف شاگرد دارد و قابل حذف نیست.");
+        if (Convert.ToInt32(Db.Scalar("SELECT COUNT(*) FROM tTch_Cls WHERE xCls=@p0", [id],connection,transaction)) > 0)
+            throw new ValidationException("این صنف ارتباط معلم و مضمون دارد؛ ابتدا ارتباط‌ها را حذف کنید.");
+        return Db.Execute("DELETE FROM tClass WHERE id=@p0 AND xYear=@p1", [id, Session.Year],connection,transaction);
+    });
     public void DeleteStudent(int id) => Db.Transaction((c, t) =>
     {
         Db.Execute("UPDATE tExam SET procc=0 WHERE id IN(SELECT Xtest FROM tMarkDoreh WHERE xStudent=@p0)", [id], c, t);

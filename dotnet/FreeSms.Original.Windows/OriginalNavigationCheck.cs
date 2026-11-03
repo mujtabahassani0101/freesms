@@ -59,6 +59,7 @@ internal static class OriginalNavigationCheck
             if (workflow == "payment") OriginalWorkflowChecks.PreparePaymentFixture(database);
             if (workflow == "student-edit") OriginalWorkflowChecks.PrepareStudentEditFixture(database);
             if (workflow == "mark-entry") OriginalWorkflowChecks.PrepareMarkEntryFixture(database);
+            if (workflow == "class") OriginalWorkflowChecks.PrepareClassFixture(database);
             if (workflow == "attendance1" || workflow == "attendance2") OriginalWorkflowChecks.PrepareAttendanceFixture(database);
             asdaj.__field_a = Convert.ToString(database.Scalar("SELECT xYear FROM tDefYear"));
             // Test-only context; connection guard above excludes the user's database.
@@ -284,8 +285,8 @@ internal static class OriginalNavigationCheck
             var targets = main.A("controls").Where(control => catalog.Target(main, control) is var target && target.HasValue && target.Value.S("class") != "asdb3" && target.Value.S("class") != "asda3")
                 .GroupBy(control => control.S("click")).Select(group => group.First()).OrderBy(control => control.S("name")).ToArray();
             if (reportActions) targets = targets.Where(control => catalog.Target(main, control).Value.S("class") == "asda0").ToArray();
-            if (businessActions) targets = targets.Where(control => new[] { "asdh", "asdac", "asdm", "asda9", "asdbi", "asdl", "asda5", "asdp", "asdby" }.Contains(catalog.Target(main, control).Value.S("class"))).ToArray();
-            if (businessActions && targets.Select(control => catalog.Target(main,control).Value.S("class")).Distinct().Count() != 9)
+            if (businessActions) targets = targets.Where(control => new[] { "asdh", "asdac", "asdm", "asda9", "asdbi", "asdl", "asda5", "asdp", "asdby", "asdc" }.Contains(catalog.Target(main, control).Value.S("class"))).ToArray();
+            if (businessActions && targets.Select(control => catalog.Target(main,control).Value.S("class")).Distinct().Count() != 10)
                 throw new InvalidOperationException("School, discount, backup, teacher, driver, payment, attendance, individual marks and student deletion workflow routes are required.");
             if(businessActions && !targets.Where(item=>catalog.Target(main,item).Value.S("class")=="asdp").Select(item=>item.S("click")).OrderBy(value=>value).SequenceEqual(new[]{"ao","ap"}))
                 throw new InvalidOperationException("Both half-year and annual attendance routes must be tested.");
@@ -298,7 +299,7 @@ internal static class OriginalNavigationCheck
             {
                 string scenario=businessActions ? catalog.Target(main,control).Value.S("class") switch
                 {
-                    "asdh"=>"discount", "asdm"=>studentCase, "asda9"=>"backup", "asdbi"=>"teacher", "asdl"=>"driver", "asda5"=>"payment", "asdac"=>studentCase, "asdby"=>"mark-entry",
+                    "asdh"=>"discount", "asdm"=>studentCase, "asda9"=>"backup", "asdbi"=>"teacher", "asdl"=>"driver", "asda5"=>"payment", "asdac"=>studentCase, "asdby"=>"mark-entry", "asdc"=>"class",
                     "asdp"=>control.S("click")=="ap"?"attendance1":"attendance2",
                     _=>throw new InvalidOperationException("Unknown business workflow target.")
                 } : "";

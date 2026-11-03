@@ -178,6 +178,7 @@ public class asdc : Form
 		r.Enabled = true;
 		y.Visible = true;
 		m.Text = "";
+        w.Text="";ad.Text="0";ab.Text="";aa.SelectedIndex=0;
 		m.Focus();
 	}
 
@@ -343,11 +344,11 @@ public class asdc : Form
 					}
 					try
 					{
-						int num4 = int.Parse(ab.Text.Trim());
+						ab.Text = FreeSms.Core.Values.Number(ab.Text,0,32767).Value.ToString(System.Globalization.CultureInfo.InvariantCulture);
 					}
 					catch
 					{
-						MessageBox.Show("برای شماره فقط عدد وارد کنید");
+						MessageBox.Show("شماره باید عدد صحیح بین ۰ و ۳۲۷۶۷ باشد");
 						ab.Focus();
 						return;
 					}
@@ -369,11 +370,11 @@ public class asdc : Form
 					}
 					try
 					{
-						int num3 = int.Parse(ad.Text.Trim());
+						ad.Text = FreeSms.Core.Values.Number(ad.Text,0).Value.ToString(System.Globalization.CultureInfo.InvariantCulture);
 					}
 					catch
 					{
-						MessageBox.Show("برای مبلغ فقط عدد وارد کنید");
+						MessageBox.Show("مبلغ باید عدد صحیح غیرمنفی باشد");
 						ad.Focus();
 						return;
 					}
@@ -514,7 +515,13 @@ public class asdc : Form
 					num2 = ((this.m_c.SelectedItems[0].RowType != RowType.Record) ? 1 : 0);
 					goto IL_0211;
 				case 2:
-					asdcb.d(asdab.e(), CommandType.Text, "delete from tclass where id=" + this.m_c.SelectedItems[0].GetRow().Cells["id"].Value.ToString());
+                    try
+                    {
+                        var service=new FreeSms.Core.SchoolService(new FreeSms.Core.Database(OriginalRuntime.ConnectionString),new FreeSms.Core.Session(int.Parse(af.Text)));
+                        service.DeleteClass(Convert.ToInt32(this.m_c.SelectedItems[0].GetRow().Cells["id"].Value));
+                    }
+                    catch(Exception error) when(error is FreeSms.Core.ValidationException || error is SqlException)
+                    {MessageBox.Show(error.Message,"حذف صنف",MessageBoxButtons.OK,MessageBoxIcon.Warning);return;}
 					b();
 					num = 0;
 					continue;

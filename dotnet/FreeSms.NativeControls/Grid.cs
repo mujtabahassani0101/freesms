@@ -405,6 +405,10 @@ namespace Janus.Windows.GridEX
             loading = true;
             try
             {
+                // A replacement source invalidates the old native editing control.
+                // Cancel it before rebinding/rebuilding columns, while callbacks
+                // are suppressed, so subsequent focus/cell changes use the new grid.
+                View.CancelEdit();editingCell=null;editingOriginalValue=null;
                 object table = source;
                 if (source is DataSet ds) table = !string.IsNullOrEmpty(dataMember) && ds.Tables.Contains(dataMember) ? ds.Tables[dataMember] : ds.Tables.Count > 0 ? ds.Tables[0] : null;
                 if (table is DataTable dt) table = new DataView(dt);

@@ -111,6 +111,15 @@ internal static class OriginalWorkflowChecks
             usedOrders.Add(order++);
         }
     }
+    internal static void PrepareClassFixture(Database db)
+    {
+        var school=new SchoolService(db,new Session(1416));school.SetYear(1416);
+        var used=new HashSet<int>(db.Query("SELECT sortRpt FROM tClass WHERE sortRpt IS NOT NULL").Select(row=>Convert.ToInt32(row["sortRpt"])));
+        int order=30000;while(used.Contains(order))order++;
+        Require(order<32767,"No available class fixture display order.");
+        int classroom=school.SaveClass(new Record{["name"]=asdaj.b("صنف محفوظ مدیریت"),["xpaye"]=1,["fee"]=100,["shift"]=1,["sortRpt"]=order});
+        school.SaveStudent(new Record{["FName"]="شاگرد محفوظ مدیریت",["LName"]="پدر مدیریت",["Code"]=5996001,["NumberAsas"]=5996001,["xPaye"]=1,["xClass"]=classroom,["Status"]=1,["Jens"]=0,["Fee1"]=0});
+    }
     internal static void PrepareMarkEntryFixture(Database db)
     {
         var school=new SchoolService(db,new Session(1414));school.SetYear(1414);
@@ -176,6 +185,7 @@ internal static class OriginalWorkflowChecks
         diagnostic = log;
         if (scenario == "discount") Discount(form, db, log);
         else if (scenario == "school") School(form, db, log);
+        else if (scenario == "class") ClassManagement(form,db,log);
         else if (scenario == "authentication") Authentication(db,log);
         else if (scenario == "student-delete") StudentDelete(form, db, log);
         else if (scenario == "student-edit") StudentEdit(form,db,log);
@@ -282,7 +292,11 @@ internal static class OriginalWorkflowChecks
             ChildForm<asdat>(()=>Click(form,"v"),child=>
             {
                 Require(Field<Control>(child,"m_w").Text==asdaj.b("شاگرد ثبت نام"),"Edit did not reload the saved student.");
-                Field<UIComboBox>(child,"m_d").SelectedValue=moved.ToString();Field<Control>(child,"b4").Text="250";
+                Field<UIComboBox>(child,"m_d").SelectedValue=moved.ToString();
+                // The recovered class selector applies the new class fee template.
+                // Enter the intended monthly amounts after that selection.
+                for(int month=1;month<=9;month++)child.Controls.Find("txtFee"+month,true).Single().Text="0";
+                Field<Control>(child,"b7").Text="100";Field<Control>(child,"b4").Text="250";
                 log("EDIT INPUT id="+((asdat)child).__field_a+" class="+Field<UIComboBox>(child,"m_d").SelectedValue+" fee1="+Field<Control>(child,"b7").Text+" fee2="+Field<Control>(child,"b4").Text);
                 EditSave(child);
             });
@@ -335,6 +349,59 @@ internal static class OriginalWorkflowChecks
         ((TextBox)view.EditingControl).Text=value;
         Require(grid.TryEndEdit(),"Grid rejected a valid input: "+key);
     }
+    private static void ClassManagement(Form form,Database db,Action<string> log)
+    {
+        int peer=Convert.ToInt32(db.Scalar("SELECT id FROM tClass WHERE xYear=1416 AND name=@p0",new object[]{asdaj.b("صنف محفوظ مدیریت")}));
+        int peerOrder=Convert.ToInt32(db.Scalar("SELECT sortRpt FROM tClass WHERE id=@p0",new object[]{peer}));
+        var used=new HashSet<int>(db.Query("SELECT sortRpt FROM tClass WHERE sortRpt IS NOT NULL").Select(row=>Convert.ToInt32(row["sortRpt"])));
+        int order=30000;while(used.Contains(order))order++;
+        Require(order<=32767,"No available class entry order.");
+        int Count()=>Convert.ToInt32(db.Scalar("SELECT COUNT(*) FROM tClass WHERE xYear=1416"));
+        int before=Count();
+        Click(form,"m_g");Field<UIComboBox>(form,"r").SelectedValue="1";
+        Dialog(()=>Click(form,"k"),"عنوان صنف را وارد کنید",1);
+        Field<Control>(form,"m").Text="صنف مدیریت آزمایشی";
+        Dialog(()=>Click(form,"k"),"نگران را وارد کنید",1);
+        Field<Control>(form,"w").Text="نگران آزمایشی";Field<UIComboBox>(form,"aa").SelectedValue="1";
+        Field<Control>(form,"ab").Text=order.ToString();
+        foreach(string invalid in new[]{"-1","1.5","2147483648"})
+        {
+            Field<Control>(form,"ad").Text=invalid;Dialog(()=>Click(form,"k"),"مبلغ باید عدد صحیح غیرمنفی باشد",1);
+            Require(Count()==before,"Invalid class fee inserted a class.");
+        }
+        Field<Control>(form,"ad").Text="۱۵۰";
+        foreach(string invalid in new[]{"-1","1.5","32768"})
+        {
+            Field<Control>(form,"ab").Text=invalid;Dialog(()=>Click(form,"k"),"شماره باید عدد صحیح بین ۰ و ۳۲۷۶۷ باشد",1);
+            Require(Count()==before,"Invalid class display order inserted a class.");
+        }
+        Field<Control>(form,"ab").Text=order.ToString();Click(form,"k");
+        var row=db.Query("SELECT id,fee,answerable FROM tClass WHERE xYear=1416 AND name=@p0",new object[]{asdaj.b("صنف مدیریت آزمایشی")}).Single();int id=row.Int("id");
+        Require(Count()==before+1 && row.Int("fee")==150 && row.Text("answerable")==asdaj.b("نگران آزمایشی"),"Class Save did not preserve normalized fee and supervisor.");
+        Select(form,id,"m_c");Click(form,"m_h");Require(Field<Control>(form,"ad").Text=="150","Class Edit did not reload the fee.");
+        Field<Control>(form,"ad").Text="200";Click(form,"n");
+        Require(Convert.ToInt32(db.Scalar("SELECT fee FROM tClass WHERE id=@p0",new object[]{id}))==150,"Class Cancel changed the saved fee.");
+        Select(form,id,"m_c");Click(form,"m_h");Field<Control>(form,"ad").Text="200";Click(form,"k");
+        Require(Convert.ToInt32(db.Scalar("SELECT fee FROM tClass WHERE id=@p0",new object[]{id}))==200 && Count()==before+1,"Class Edit did not update exactly one class.");
+        Click(form,"m_g");Require(Field<Control>(form,"w").Text=="" && Field<Control>(form,"ad").Text=="0" && Field<Control>(form,"ab").Text=="","New class retained previous class details.");
+        Field<Control>(form,"m").Text="صنف محفوظ مدیریت";Field<Control>(form,"w").Text="نگران";Field<Control>(form,"ab").Text=order.ToString();
+        Dialog(()=>Click(form,"k"),"عنوان صنف تکراری است",1);
+        Field<Control>(form,"m").Text="صنف شماره تکراری";Field<Control>(form,"ab").Text=peerOrder.ToString();
+        Dialog(()=>Click(form,"k"),"شماره تکراری است",1);Click(form,"n");
+        Require(Count()==before+1,"Duplicate class validation inserted a record.");
+        Select(form,peer,"m_c");Dialog(()=>Click(form,"m_f"),"تعداد 1 شاگرد در این صنف وجود دارد.امکان حذف وجود ندارد",1);
+        Require(Convert.ToInt32(db.Scalar("SELECT COUNT(*) FROM tClass WHERE id=@p0",new object[]{peer}))==1,"Occupied class was removed.");
+        var school=new SchoolService(db,new Session(1416));var entities=new EntityService(school);
+        int book=entities.Save("books",new Record{["xPaye"]=1,["Name"]="مضمون مدیریت صنف",["vahed"]=1,["timeWeek"]=1,["Type"]=1,["sort"]=30002,["SortOneEntry"]=30002,["codedars"]=5996001,["Vezarat"]=true});
+        int teacher=entities.Save("teachers",new Record{["fNamF"]="استاد مدیریت صنف",["fNamL"]="آزمون",["fEmail"]="",["fPassword"]=""});school.AssignTeacher(id,book,teacher);
+        Select(form,id,"m_c");
+        Dialog(()=>Dialog(()=>Click(form,"m_f"),"آيا از حذف صنف مطمئن هستيد؟",6),"این صنف ارتباط معلم و مضمون دارد؛ ابتدا ارتباط‌ها را حذف کنید.",1);
+        Require(Count()==before+1 && school.TeacherAssignments(id).Single().Int("xTch")==teacher,"Rejected class deletion changed the class or teacher assignment.");
+        school.UnassignTeacher(id,book);
+        Dialog(()=>Click(form,"m_f"),"آيا از حذف صنف مطمئن هستيد؟",7);Require(Count()==before+1,"Declining class deletion removed a class.");
+        Dialog(()=>Click(form,"m_f"),"آيا از حذف صنف مطمئن هستيد؟",6);Require(Count()==before,"Confirmed class deletion did not remove exactly the selected empty class.");
+        Click(form,"j");log("PASS original class buttons validate fees/orders and duplicates, save Persian digits, edit/cancel, clear New fields, preserve occupied classes and respect deletion confirmation");
+    }
     private static void Authentication(Database db,Action<string> log)
     {
         var original=db.Query("SELECT pwd,pw FROM tuser WHERE id=1").Single();
@@ -374,7 +441,7 @@ internal static class OriginalWorkflowChecks
             {
                 Field<Control>(child,"m_f").Text=first;Dialog(()=>Click(child,"m_c"),"کلمه عبور اشتباه است",1);
                 Field<Control>(child,"m_f").Text=second;Click(child,"m_c");
-                Require(!child.Visible && asdaj.l=="1","New password did not authenticate the selected account.");
+                Require(asdaj.l=="1" && child.DialogResult!=DialogResult.None,"New password did not authenticate and request closure of the selected account login: user="+asdaj.l+" dialog="+child.DialogResult);
             });
             log("PASS original login rejects empty/wrong/legacy override passwords; password editing requires authentication, preserves mismatched/declined changes, and accepts only the confirmed new password");
         }

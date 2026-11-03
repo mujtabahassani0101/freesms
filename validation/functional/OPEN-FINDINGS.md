@@ -42,11 +42,25 @@ Source25d32bd passed the same initial registration and rejection checks and nine
 
 Source4cda39b ran11 business cases. Nine passed. Student Edit now reached and acknowledged the exact single-student success confirmation, then failed the persisted class/fee350 assertion. The next run logs the editor's selected ID/class/first two fee inputs and reports actual persisted class/Fee1/Fee2/SumFee on failure; the assertion has not been relaxed. Grade-change rollback assertions remain unexecuted.
 
-The new mark baseline found a real native DataGridView NullReferenceException when changing student selection: the original controller rebinds the mark grid and sets CurrentColumn while its prior edit is ending. The compatibility CellEndEdit handler called EndEdit again, and recovered CellUpdated handlers also end row edits. CellEndEdit now commits binding and publishes the change under a guard, so recursive row-end calls cannot re-enter native editor disposal. A native regression changes cells while its update handler also ends the row edit. Both this native regression and the original mark workflow require Windows execution. All functional logs and the SHA256-verified receipt are archived in runs/41557658288.
+The new mark baseline found a real native DataGridView NullReferenceException when changing student selection: the original controller rebinds the mark grid and sets CurrentColumn while its prior edit is ending. The compatibility CellEndEdit handler called EndEdit again, and recovered CellUpdated handlers also end row edits. CellEndEdit now commits binding and publishes the change under a guard, so recursive row-end calls cannot re-enter native editor disposal. A native regression changes cells while its update handler also ends the row edit. The native recursive-end-edit regression passed in run41558287376 (168 native checks); the original mark workflow still requires its result to be inspected. All functional logs and the SHA256-verified receipt are archived in runs/41557658288.
 
 ## Authentication repair awaiting Windows execution
 
 The original login and password-change entry handlers had fixed vendor-override branches that bypassed the selected account's saved password. Both now always call the original password validator. No production credentials or permission records are migrated by this patch. AUTHENTICATION.md describes the original-button regression for rejected credentials, password editing, mismatch/cancel/confirm persistence and old/new password verification in the disposable bank. Local build passed with0 warnings/errors; native execution is pending. Non-admin permission coverage remains open.
+
+## Latest functional diagnostics (run 41558287376)
+
+Source48ab851 passed168 native checks including recursive edit completion; nine of12 business cases passed. Original individual mark entry still failed while replacing the marks grid data and changing its active column. Bind now explicitly cancels the old native editor before replacing the source/columns, with a separate native regression for stale text/focus after rebinding. This change still needs Windows verification; the narrower passing168-check result did not prove the original workflow fixed.
+
+The student diagnostic showed the selected class was saved correctly and fee1=1000/fee2=250/total8250 matched the actual editor inputs: the recovered class selector applies its new monthly class-fee template. The test now enters all nine intended fees explicitly after selecting the new class, retaining its expected total350 and the later grade/photo/mark rollback assertions. Production fee-template behavior is unchanged.
+
+Authentication correctly rejected empty/incorrect/former-override passwords and incorrect password-edit access, preserved mismatched/declined replacements and stored the confirmed replacement; reopening rejected the old password. Its final assertion required both the account ID and immediate modal invisibility, without reporting which condition failed. Modal closure can finish after ShowDialog unwinds; the revised assertion checks the authenticated account and non-None dialog result (closure requested), with diagnostic values if either fails. This is a test-lifecycle hypothesis, not yet a proven diagnosis of the final failure. Successful new-password login still requires the next native result; it is not claimed passed here.
+
+Functional logs and native168 logs with verified artifact receipts are archived in runs/41558287376.
+
+## Class-management repair prepared
+
+Original class Save now validates nonnegative Int32 fees and display orders0–32767 and normalizes Persian/Arabic digits before SQL. Previously int.Parse accepted negative/out-of-range-for-smallint orders. New clears the prior supervisor/fee/order/shift. Class deletion is year-scoped and transactional and rejects enrolled students and teacher/subject dependencies; the original form displays validation/SQL failures safely. CLASS-MANAGEMENT.md defines the original-button validation/CRUD/cancel/occupied-delete/duplicate regression in a disposable year1416. It compiles locally; Windows execution is pending.
 
 ## Other open work
 
