@@ -407,10 +407,11 @@ internal static class OriginalWorkflowChecks
         var original=db.Query("SELECT pwd,pw FROM tuser WHERE id=1").Single();
         const string first="Native-login-test-1415",second="Native-login-changed-1415";
         string beforeUser=asdaj.l,beforePermissions=asdaj.m,beforeGrades=asdaj.n;
-        void Open(Action<Form> exercise)
+        int temporaryUser=0;
+        void Open(Action<Form> exercise,string user="1")
         {
             ChildForm<asda3>(()=>{using var login=new asda3();login.ShowDialog();},child=>
-            {Field<UIComboBox>(child,"m_e").SelectedValue="1";exercise(child);});
+            {Field<UIComboBox>(child,"m_e").SelectedValue=user;exercise(child);});
         }
         try
         {
@@ -443,10 +444,40 @@ internal static class OriginalWorkflowChecks
                 Field<Control>(child,"m_f").Text=second;Click(child,"m_c");
                 Require(asdaj.l=="1" && child.DialogResult!=DialogResult.None,"New password did not authenticate and request closure of the selected account login: user="+asdaj.l+" dialog="+child.DialogResult);
             });
-            log("PASS original login rejects empty/wrong/legacy override passwords; password editing requires authentication, preserves mismatched/declined changes, and accepts only the confirmed new password");
+            temporaryUser=Convert.ToInt32(db.Scalar("SELECT ISNULL(MAX(id),1)+1 FROM tuser"));
+            string user=temporaryUser.ToString(),prefix=user+"kbr63";
+            db.Execute("INSERT INTO tuser(id,uid,pwd,pw,per,xPaye) VALUES(@p0,@p1,@p2,398,@p3,@p4)",new object[]{temporaryUser,"native limited user",asdab.d(prefix+first),asdab.d(prefix+",1,"),asdab.d(prefix+",1,")});
+            asdaj.l="";
+            Open(child=>
+            {
+                Field<Control>(child,"m_f").Text=first;Click(child,"m_c");
+                Require(asdaj.l==user && child.DialogResult!=DialogResult.None,"Limited account did not authenticate and request login closure.");
+            },user);
+            Require(asdaj.a("1") && !asdaj.a("2") && !asdaj.a("3") && asdaj.n=="1","Limited login did not load exact section/grade permissions.");
+            ChildForm<asdc>(()=>{using var allowed=new asdc();allowed.ShowDialog();},allowed=>
+                Require(Field<Control>(allowed,"af").Text==asdaj.__field_a,"Permitted class form did not initialize for the selected year."));
+            Dialog(()=>{using var denied=new asdat();denied.ShowDialog();},"شما مجوز ورود به این بخش را ندارید",1);
+            Require(asdaj.l==user,"Denied section changed the logged-in account.");
+            db.Execute("UPDATE tuser SET per=@p0 WHERE id=@p1",new object[]{asdab.d(prefix),temporaryUser});
+            asdaj.l="";
+            Open(child=>
+            {
+                Field<Control>(child,"m_f").Text=first;
+                Dialog(()=>Click(child,"m_c"),"شما مجوزی برای ورود به برنامه ندارید\n\nباید برای شما مجوز صادر کند admin کاربر\n\nبرای این کار باید از منوی مدیریت کاربران و دکمه مجوز ها اقدام شود",1);
+                Require(asdaj.l=="" && child.DialogResult==DialogResult.None,"An account without section permissions was logged in.");
+            },user);
+            db.Execute("UPDATE tuser SET per=@p0,xPaye=@p1 WHERE id=@p2",new object[]{asdab.d(prefix+",1,"),asdab.d(prefix+",,"),temporaryUser});
+            Open(child=>
+            {
+                Field<Control>(child,"m_f").Text=first;
+                Dialog(()=>Click(child,"m_c"),"برای شما در قسمت مجوزها هیچ صنفی انتخاب نشده است\n\nباید برای شما مجوز صنف های مورد نیاز را صادر کند admin کاربر\n\nبرای این کار باید از منوی مدیریت کاربران و دکمه مجوز ها اقدام شود",1);
+                Require(asdaj.l=="" && child.DialogResult==DialogResult.None,"An account without grade permissions was logged in.");
+            },user);
+            log("PASS original login rejects empty/wrong/legacy override passwords, changes passwords safely, authenticates the new password, loads limited section/grade permissions, opens permitted forms and rejects forbidden sections and unconfigured accounts");
         }
         finally
         {
+            if(temporaryUser>0)db.Execute("DELETE FROM tuser WHERE id=@p0",new object[]{temporaryUser});
             db.Execute("UPDATE tuser SET pwd=@p0,pw=@p1 WHERE id=1",new object[]{original["pwd"],original["pw"]});
             asdaj.l=beforeUser;asdaj.m=beforePermissions;asdaj.n=beforeGrades;
         }
