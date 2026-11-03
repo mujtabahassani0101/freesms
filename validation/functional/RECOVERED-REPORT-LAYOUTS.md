@@ -11,3 +11,11 @@ Synthetic native regressions exercise a three-row table with a deliberately enor
 Local source/build and57 formula checks passed. Windows rendering, original-button output and visual comparison remain pending until the new CI artifacts are inspected. Do not describe this as full report or application parity.
 
 An analysis-only helper independently loaded the original annual RPT through the bundled Crystal engine, supplied two synthetic students with12 subjects each, and exported a two-page reference. It ran in a separate copied analysis prefix under this checkout; the other chat's source and environment were not changed. This reference is for layout inspection, not an application runtime dependency.
+
+## Follow-up rendering corrections
+
+Windows run41592972051 (ff8af82) passed the native component step and the separate Core/formula job, but its original-preview step failed. The detailed archive could not be retrieved during a GitHub connectivity outage; do not assign a specific failed scenario without that evidence.
+
+Source review independently identified two further faults. ObjectTop previously shifted objects in the left column when a right-column subreport grew; growth now affects only horizontally overlapping objects, with a native pixel regression. The two absent-resource aliases also inherited positional parameter5 from the missing templates; the intact annual card uses that slot for showBartar. Their bridge now enables the original ranking band only when both configured ranking datasets are available. This avoids requiring absent Sub2/Sub3 data for1024 while retaining them for1032.
+
+The next native artifact includes both twelve-subject card pages and the table-anchor regression image. The latest follow-up builds successfully locally; Windows verification is still required.

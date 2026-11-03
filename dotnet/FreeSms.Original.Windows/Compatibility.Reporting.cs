@@ -126,6 +126,13 @@ namespace FreeSms.Reporting
                 if (node == null) throw new InvalidDataException("Unknown subreport: " + child.Key);
                 input.Subreports[child.Key] = ToInput(child.Value, node);
             }
+            if(template.Attribute("recovered-alias")!=null)
+            {
+                // The legacy absent templates used parameter5 for a different
+                // display option. The intact annual card uses it for rankings.
+                // Only enable that original band when its configured SQL data exists.
+                input.Parameters["showBartar"]=input.Subreports.ContainsKey("Sub2") && input.Subreports.ContainsKey("Sub3") ? "1" : "0";
+            }
             return input;
         }
     }

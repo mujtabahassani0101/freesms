@@ -7,3 +7,5 @@ The current source removes those compositions. Both resource names now use the i
 This is an explicit fallback to an available original report, not recovery of the absent1024/1032-specific designs. In particular,1032's absent single-mark chart layout has not been recovered; its catalog label still describes that missing design. Both entries currently display the original annual-card layout, with its original conditional visibility. SQL data preparation is unchanged.
 
 `scripts/rebuild_missing_reports.py` reproduces these aliases and records source digests in rebuilt-reports.json. The98 recovered layouts are unchanged on disk. Runtime recovery of missing original line anchors, rotated text and area pagination is described in RECOVERED-REPORT-LAYOUTS.md.
+
+The compatibility bridge maps the aliases' ranking visibility to their actual subreport contract:1024 supplies only Sub1, so the original optional best-student band stays hidden;1032 supplies Sub2/Sub3 as well, so that band is enabled. It does not reuse the absent templates' positional parameter5 as if it had the same meaning in the original annual card.

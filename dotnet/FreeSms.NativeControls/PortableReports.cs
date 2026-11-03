@@ -349,11 +349,12 @@ namespace FreeSms.NativeControls
         {
             float top = N(obj, "Top") / 14.4f;
             if (layout == null) return top;
+            bool Overlaps(XElement other)=>N(other,"Left")<N(obj,"Left")+N(obj,"Width") && N(obj,"Left")<N(other,"Left")+N(other,"Width");
             // Objects beside a subreport remain aligned; objects below it move
             // down when its rows exceed the original design-time placeholder.
-            float textGrowth = layout.ObjectHeights.Where(p => p.Key != obj && N(p.Key, "Top") + N(p.Key, "Height") <= N(obj, "Top") + .1f)
+            float textGrowth = layout.ObjectHeights.Where(p => p.Key != obj && Overlaps(p.Key) && N(p.Key, "Top") + N(p.Key, "Height") <= N(obj, "Top") + .1f)
                 .Select(p => Math.Max(0, p.Value - N(p.Key, "Height") / 14.4f)).DefaultIfEmpty(0).Max();
-            return top + Math.Max(textGrowth, layout.Children.Where(p => p.Key != obj && N(p.Key, "Top") + N(p.Key, "Height") <= N(obj, "Top") + .1f)
+            return top + Math.Max(textGrowth, layout.Children.Where(p => p.Key != obj && Overlaps(p.Key) && N(p.Key, "Top") + N(p.Key, "Height") <= N(obj, "Top") + .1f)
                 .Select(p => Math.Max(0, p.Value.Height - N(p.Key, "Height") / 14.4f)).DefaultIfEmpty(0).Max());
         }
         private static void DrawSubreport(Graphics graphics, XElement obj, RectangleF rect, Band band)

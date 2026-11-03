@@ -295,6 +295,13 @@ internal static class Program
                 bool aligned=alignment=="LeftAlign" ? first>=10 && first<50 : alignment=="RightAlign" ? last>280 && last<=310 : first>100 && last<220;
                 Check(last>=first && aligned,"physical "+alignment+" preserved for "+(text=="School"?"Latin":"Persian")+" report text");
             }
+            var columns=XElement.Parse("<report><sections><section kind='Detail' height='1440'><object subreport='Sub1'><Kind>SubreportObject</Kind><Left>1440</Left><Top>0</Top><Width>3000</Width><Height>144</Height><report><sections><section kind='Detail' height='720'/></sections></report></object><object><Kind>BoxObject</Kind><Left>0</Left><Top>720</Top><Width>720</Width><Height>720</Height><border><BackgroundColor>-16711936</BackgroundColor></border></object></section></sections></report>");
+            var columnsInput=ReportFixtures.Create(columns,1);columnsInput.Subreports["Sub1"]=ReportFixtures.Create(columns.Descendants("report").Single(),20);
+            using(var document=new PortableReportDocument(new ReportModel(columns),columnsInput))
+            {
+                string path=Path.Combine(output,"independent-report-columns.png");document.SavePageImage(path,0,100);using var bitmap=new Bitmap(path);
+                Check(bitmap.GetPixel(25,75).ToArgb()==Color.Lime.ToArgb(),"growing right-hand subreport does not move the independent left-hand column");
+            }
             var columnTemplate=XElement.Parse("<report><sections><section name='TableHeader' kind='ReportHeader' height='288'><object><Name>ColumnEdge</Name><Kind>LineObject</Kind><LineThickness>20</LineThickness><Left>1440</Left><Top>0</Top><Width>0</Width><Height>16000</Height><EndSectionName>TableEnd</EndSectionName><Right>1440</Right><Bottom>0</Bottom></object></section><section name='Rows' kind='Detail' height='288'/><section name='TableEnd' kind='ReportFooter' height='288'><object><Kind>LineObject</Kind><LineThickness>20</LineThickness><Left>0</Left><Top>0</Top><Width>2880</Width><Height>0</Height></object></section></sections></report>");
             using(var document=new PortableReportDocument(new ReportModel(columnTemplate),ReportFixtures.Create(columnTemplate,3)))
             {
