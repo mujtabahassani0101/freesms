@@ -1,0 +1,48 @@
+{
+  "screenshots": [
+    {
+      "file": "main-window.png",
+      "source": "user-provided screenshot",
+      "sha256": "3a501e8a15766154390718e2b99476f1823cb6df5391dc07d623b100620e0cc1",
+      "width": 1040,
+      "height": 736,
+      "modified": false
+    },
+    {
+      "file": "students.png",
+      "source_run": 41568720739,
+      "source_commit": "ef6188c1a3703aa0cb57b76bb90cfaf7fff7213b",
+      "artifact_id": 13200372059,
+      "source_file": "gallery-students.png",
+      "sha256": "90bf1ba18268322f784b1558fb1f92f71376b1d9e33c79456d657b9fc22d4b73",
+      "width": 933,
+      "height": 779,
+      "synthetic_data": true,
+      "modified": false
+    },
+    {
+      "file": "student-details.png",
+      "source_run": 41568720739,
+      "source_commit": "ef6188c1a3703aa0cb57b76bb90cfaf7fff7213b",
+      "artifact_id": 13200372059,
+      "source_file": "gallery-student-edit.png",
+      "sha256": "44cc312d21a3c93e29e2e1131975c8aada9c88f34407473a83924bbf775444b8",
+      "width": 831,
+      "height": 700,
+      "synthetic_data": true,
+      "modified": false
+    },
+    {
+      "file": "classes.png",
+      "source_run": 41568720739,
+      "source_commit": "ef6188c1a3703aa0cb57b76bb90cfaf7fff7213b",
+      "artifact_id": 13200372059,
+      "source_file": "gallery-class.png",
+      "sha256": "9bdc5a700d3c95e3173a09e11b3424ca07e7057e30f9f6e1265b8d65b65ca5fa",
+      "width": 766,
+      "height": 742,
+      "synthetic_data": true,
+      "modified": false
+    }
+  ]
+}
