@@ -495,7 +495,34 @@ internal static class OriginalWorkflowChecks
                 Dialog(()=>Click(child,"m_c"),"برای شما در قسمت مجوزها هیچ صنفی انتخاب نشده است\n\nباید برای شما مجوز صنف های مورد نیاز را صادر کند admin کاربر\n\nبرای این کار باید از منوی مدیریت کاربران و دکمه مجوز ها اقدام شود",1);
                 Require(asdaj.l=="" && child.DialogResult==DialogResult.None,"An account without grade permissions was logged in.");
             },user);
-            log("PASS original login rejects empty/wrong/legacy override passwords, changes passwords safely, authenticates the new password, loads limited section/grade permissions, opens permitted forms and rejects forbidden sections and unconfigured accounts");
+            const string invalidAccount="معلومات ذخیره‌شدهٔ حساب معتبر نیست؛ با مدیر برنامه تماس بگیرید.";
+            foreach(string damaged in new[]{"pwd","per","xPaye"})
+            {
+                db.Execute("UPDATE tuser SET pwd=@p0,per=@p1,xPaye=@p2 WHERE id=@p3",new object[]{damaged=="pwd"?"not encoded":asdab.d(prefix+first),damaged=="per"?"not encoded":asdab.d(prefix+",1,"),damaged=="xPaye"?"not encoded":asdab.d(prefix+",1,"),temporaryUser});
+                asdaj.l="";asdaj.m=",2,";asdaj.n="2";
+                Open(child=>
+                {
+                    Field<Control>(child,"m_f").Text=first;
+                    Dialog(()=>Click(child,"m_c"),invalidAccount,1);
+                    Require(asdaj.l=="" && child.DialogResult==DialogResult.None && asdaj.m==",2," && asdaj.n=="2","Damaged "+damaged+" authenticated a session or left partially loaded permissions.");
+                    Dialog(()=>Click(child,"p"),invalidAccount,1);
+                    Require(!Field<Control>(child,"i").Visible,"Damaged account opened password editing.");
+                },user);
+            }
+            db.Execute("UPDATE tuser SET pwd=@p0,per=@p1,xPaye=@p2 WHERE id=@p3",new object[]{asdab.d(prefix+first),asdab.d(prefix+",1,"),asdab.d(prefix+",1,"),temporaryUser});
+            Open(child=>
+            {
+                Field<Control>(child,"m_f").Text=first;Click(child,"m_c");
+                Require(asdaj.l==user && child.DialogResult!=DialogResult.None && asdaj.a("1") && !asdaj.a("2") && asdaj.n=="1","Corrected account did not recover after invalid account data.");
+            },user);
+            asdaj.l="";
+            Open(child=>
+            {
+                db.Execute("DELETE FROM tuser WHERE id=@p0",new object[]{temporaryUser});
+                Field<Control>(child,"m_f").Text=first;Dialog(()=>Click(child,"m_c"),invalidAccount,1);
+                Require(asdaj.l=="" && child.DialogResult==DialogResult.None,"A deleted selected account authenticated a session.");
+            },user);
+            log("PASS original login rejects incorrect/override credentials, changes passwords safely, enforces limited section/grade access, rejects malformed/deleted accounts without partial permission changes and recovers with valid account data");
         }
         finally
         {

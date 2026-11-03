@@ -94,6 +94,10 @@ Verified artifact receipts, native171 log and full functional logs are archived 
 
 The original-button preview matrix now includes first-term cards104 (portrait) and105 (landscape), in addition to101/1024/1032. They use the existing SQL fixture's raw marks30/10 and independently known class mean20, requiring actual main input values, student photos and every-page rendering. The landscape card's configured course Sub1 is checked separately; it is not treated as the progress Sub1 used by other layouts. These scenarios compile locally but have not run on Windows. Five60-second worker bounds plus initialization are accommodated by the report parent420-second bound. This does not establish all report selectors or print/export correctness.
 
+## Malformed account-data repair prepared
+
+The recovered account decoder directly parses nested Base64 and indexed substrings. Account validation now handles malformed format/argument/index data with a specific rejection message and restores prior section/grade context on failed validation, while preserving the original accepted-format logic. The owned-account original-button scenario independently corrupts pwd/per/xPaye, checks Login and password-edit rejection without partial permissions, repairs the data and logs in, then tests a selected account deleted after the login window opened. Local build passed with0 warnings/errors; these native cases are pending.
+
 ## Other open work
 
 - Visible disciplinary menus still require schemas/procedures missing from the supplied Afghan database. Existing compatibility messages do not implement those workflows.

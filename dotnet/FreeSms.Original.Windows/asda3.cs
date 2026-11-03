@@ -12,6 +12,7 @@ using Janus.Windows.UI;
 
 public class asda3 : Form
 {
+    private string authenticationError;
 	private Panel m_a;
 
 	private UIButton m_b;
@@ -549,7 +550,7 @@ protected override void Dispose(bool A_0)
 					num = ((!(asdaj.m == "")) ? 17 : 20);
 					continue;
 				case 6:
-					MessageBox.Show("کلمه عبور اشتباه است");
+					MessageBox.Show(authenticationError ?? "کلمه عبور اشتباه است");
 					this.m_f.SelectAll();
 					this.m_f.Focus();
 					num = 24;
@@ -652,7 +653,19 @@ protected override void Dispose(bool A_0)
 		}
 	}
 
-	private bool a()
+    private bool a()
+    {
+        string permissions=asdaj.m,grades=asdaj.n;
+        bool accepted=false;authenticationError=null;
+        try{accepted=ValidateStoredAccount();return accepted;}
+        catch(Exception error) when(error is FormatException || error is ArgumentException || error is IndexOutOfRangeException)
+        {
+            authenticationError="معلومات ذخیره‌شدهٔ حساب معتبر نیست؛ با مدیر برنامه تماس بگیرید.";
+            return false;
+        }
+        finally{if(!accepted){asdaj.m=permissions;asdaj.n=grades;}}
+    }
+    private bool ValidateStoredAccount()
 	{
 		int num3 = default;
 		string text4 = default;
@@ -1070,7 +1083,7 @@ protected override void Dispose(bool A_0)
 				case 7:
 					return;
 				case 5:
-					MessageBox.Show("کلمه عبور اشتباه است");
+					MessageBox.Show(authenticationError ?? "کلمه عبور اشتباه است");
 					num = 3;
 					continue;
 				case 3:
