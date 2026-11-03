@@ -384,7 +384,9 @@ internal static class OriginalWorkflowChecks
         Select(form,id,"m_c");Click(form,"m_h");Field<Control>(form,"ad").Text="200";Click(form,"k");
         Require(Convert.ToInt32(db.Scalar("SELECT fee FROM tClass WHERE id=@p0",new object[]{id}))==200 && Count()==before+1,"Class Edit did not update exactly one class.");
         Click(form,"m_g");Require(Field<Control>(form,"w").Text=="" && Field<Control>(form,"ad").Text=="0" && Field<Control>(form,"ab").Text=="","New class retained previous class details.");
-        Field<Control>(form,"m").Text="صنف محفوظ مدیریت";Field<Control>(form,"w").Text="نگران";Field<Control>(form,"ab").Text=order.ToString();
+        int duplicateNameOrder=order+1;while(used.Contains(duplicateNameOrder))duplicateNameOrder++;
+        Require(duplicateNameOrder<=32767,"No free display order to isolate duplicate-name validation.");
+        Field<Control>(form,"m").Text="صنف محفوظ مدیریت";Field<Control>(form,"w").Text="نگران";Field<Control>(form,"ab").Text=duplicateNameOrder.ToString();
         Dialog(()=>Click(form,"k"),"عنوان صنف تکراری است",1);
         Field<Control>(form,"m").Text="صنف شماره تکراری";Field<Control>(form,"ab").Text=peerOrder.ToString();
         Dialog(()=>Click(form,"k"),"شماره تکراری است",1);Click(form,"n");

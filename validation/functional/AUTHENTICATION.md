@@ -1,6 +1,6 @@
 # Original login and password-change regression
 
-Status: run41558287376 passed credential rejection and password-change persistence, then failed the final modal visibility assertion. The assertion now checks authenticated account and requested dialog closure; full native success is pending. Opening the login window alone is not a credential or permissions test.
+Status: the administrator/password-change baseline passed in run41559110225 (sourcecf7dfd7). The non-admin extension below has compiled but still needs native execution.
 
 The recovered login button and password-change entry button contained special branches accepting a fixed vendor override without checking the selected account's saved password. Those two branches have been removed. Both buttons now use the existing account-password validation, including its original legacy-format migration and permission-loading logic. Stored production passwords, accounts and permissions are not rewritten by this patch.
 

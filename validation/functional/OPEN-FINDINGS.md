@@ -62,6 +62,20 @@ Functional logs and native168 logs with verified artifact receipts are archived 
 
 Original class Save now validates nonnegative Int32 fees and display orders0–32767 and normalizes Persian/Arabic digits before SQL. Previously int.Parse accepted negative/out-of-range-for-smallint orders. New clears the prior supervisor/fee/order/shift. Class deletion is year-scoped and transactional and rejects enrolled students and teacher/subject dependencies; the original form displays validation/SQL failures safely. CLASS-MANAGEMENT.md defines the original-button validation/CRUD/cancel/occupied-delete/duplicate regression in a disposable year1416. It compiles locally; Windows execution is pending.
 
+## Native component evidence (run 41559110225)
+
+Sourcecf7dfd7 passed169 native component/package/render checks, including the new stale-editor rebind/focus regression and recursive edit completion. It also passed28 Core/database checks and50 report checks. Verified artifact receipts and full logs are archived in runs/41559110225. The subsequent functional artifact is reviewed below; component results alone do not establish original workflow completion.
+
+## Latest original-button results (run 41559110225)
+
+Sourcecf7dfd7 passed11 of13 original business cases. The complete student registration/edit/class/grade-change scenario now passed, including the real SQL wait/UI heartbeat, exact explicitly entered monthly totals/photo, duplicate/cancel behavior, late photo-trigger rollback preserving old raw/calculated marks/fees/flags and successful confirmed grade-change cleanup. This proves that scenario, not every registration or new-year path. The original administrator authentication/password-change baseline also passed, including rejection of the former override and old password, persisted confirmed replacement and successful new-password login. The non-admin extension is newer and still pending.
+
+Class management passed missing fields, negative/fraction/overflow fee/order rejection, Save, Edit, Cancel and clearing New fields, then timed out because the duplicate-name test also reused the already-saved class's order. The procedure reported duplicate order first. The test now uses a fresh order to isolate duplicate-name validation, followed by a separate duplicate-order case. Occupied/dependent/delete assertions have not yet run.
+
+Individual mark entry still failed from the native SelectionChanged callback while CurrentCell was being assigned and a dependent grid was focused. GRID-SELECTION.md records the documented event order and revised compatibility dispatch: native selection notifications are queued until the operation completes; public Row/CurrentColumn setters publish after their native assignment returns. Two dependent-grid regressions check the new row identity and editor focus. The real original mark workflow remains unverified.
+
+Full functional logs and the verified artifact receipt are archived in runs/41559110225. The overall workflow failed; its binary is not a verified release.
+
 ## Limited-user permission regression prepared
 
 The authentication scenario now creates an owned non-admin account with section1/grade1, checks its actual login and exact loaded permissions, opens the allowed original class form and verifies the original student form denies section2. Separate logins with missing section permissions and missing grade permissions must show their original warnings without authenticating. Cleanup deletes the owned account and restores prior session/password state. The extension compiles locally; native execution and the rest of the permission matrix remain pending.

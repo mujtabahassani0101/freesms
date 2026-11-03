@@ -1,6 +1,6 @@
 # Original individual mark entry regression
 
-Status: first Windows execution in41557658288 failed on a native grid exception during student selection, before entering the first mark. The recursive-end-edit native regression passed in41558287376, but the original baseline still failed while replacing a bound grid with an active editor. Bind now cancels that stale editor, with a separate native regression; the baseline has not passed. This is not proof that the mark-entry section is complete.
+Status: first Windows execution in41557658288 failed on a native grid exception during student selection, before entering the first mark. The recursive-end-edit native regression passed in41558287376, but the original baseline still failed while replacing a bound grid with an active editor. Bind now cancels that stale editor, with a separate native regression; the baseline has not passed. Run41559110225 still failed on native selection/focus; GRID-SELECTION.md describes the next dispatch repair and dependent-grid regressions. This is not proof that the mark-entry section is complete.
 
 The guarded navigation worker opens the original main-menu route to asdby/frmMarkEntry2. Its disposable database receives year1414, one class with a unique display order, one visible individual-entry subject, its teacher, and two registered students. A peer has half-year M1=10; the edited student has annual M1=15. These sentinel rows must remain unchanged.
 

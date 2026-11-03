@@ -43,6 +43,29 @@ internal static class Program
             Check((bool)table.Rows[0]["selected"], "checkbox write-through");
             ((DataGridView)grid.Controls.OfType<DataGridView>().Single()).Sort(((DataGridView)grid.Controls.OfType<DataGridView>().Single()).Columns["mark"]!, System.ComponentModel.ListSortDirection.Descending);
             Check(Convert.ToInt32(grid.GetRow(0).Cells["id"].Value) == 42, "sorted row identity");
+            using(var pair=new Panel{Dock=DockStyle.Fill})
+            using(var students=new GridEX{Dock=DockStyle.Left,Width=180})
+            using(var details=new GridEX{Dock=DockStyle.Fill})
+            {
+                pair.Controls.Add(details);pair.Controls.Add(students);window.Controls.Add(pair);pair.BringToFront();
+                var identities=new DataTable();identities.Columns.Add("id",typeof(int));identities.Rows.Add(51);identities.Rows.Add(52);students.DataSource=identities;
+                var initial=new DataTable();initial.Columns.Add("mark",typeof(int));initial.Rows.Add(10);details.DataSource=initial;
+                Application.DoEvents();int callbacks=0;bool stable=true;
+                students.SelectionChanged+=(sender,args)=>
+                {
+                    callbacks++;stable&=students.SelectedItems.Count==1 && students.Row>=0;
+                    if(students.SelectedItems.Count!=1 || students.Row<0)return;
+                    int selected=Convert.ToInt32(students.SelectedItems[0].GetRow().Cells["id"].Value);
+                    stable&=selected==Convert.ToInt32(students.GetRow(students.Row).Cells["id"].Value);
+                    var data=initial.Clone();data.Rows.Add(selected);details.DataSource=data;
+                    details.CurrentColumn=details.RootTable.Columns["mark"];details.Select();details.SelectCurrentCellText();
+                };
+                details.Select();details.SelectCurrentCellText();students.Row=1;
+                Check(stable && callbacks==1 && Convert.ToInt32(details.GetRow(0).Cells["mark"].Value)==52,"programmatic selection publishes the new row once before rebinding and focusing its dependent grid");
+                students.Controls.OfType<DataGridView>().Single().CurrentCell=students.Controls.OfType<DataGridView>().Single().Rows[0].Cells["id"];
+                Application.DoEvents();
+                Check(stable && callbacks==2 && Convert.ToInt32(details.GetRow(0).Cells["mark"].Value)==51,"native selection completes before dependent grid rebinding and editor focus");
+            }
             using(var payments=new GridEX{Dock=DockStyle.Fill})
             {
                 window.Controls.Add(payments);payments.BringToFront();

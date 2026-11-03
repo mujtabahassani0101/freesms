@@ -1,6 +1,6 @@
 # Original class management
 
-Status: prepared and locally compiled; native Windows execution pending.
+Status: run41559110225 passed initial validation/Save/Edit/Cancel/New assertions, then the duplicate-name test timed out because its order was also duplicated and the procedure reported that first. A fresh order now isolates name rejection; later dependency/deletion assertions still require native execution.
 
 The original class Save accepted negative fees and display orders outside the SQL smallint domain, because it only used int.Parse. It now validates nonnegative Int32 fees and display orders0–32767, normalizes Persian/Arabic digits and sends normalized values to the original procedure. Class deletion now uses a year-scoped transaction and rejects existing enrolments and teacher/subject assignments with a clear message; the original form handles validation and SQL errors instead of allowing an unhandled exception. The New button clears supervisor, fee and display order and resets the shift, so details of the previously edited class are not carried into a new class.
 

@@ -227,6 +227,7 @@ namespace Janus.Windows.GridEX
         private readonly Dictionary<DataGridViewRow, GridEXRow> rows = new Dictionary<DataGridViewRow, GridEXRow>();
         private bool loading;
         private bool endingCellEdit;
+        private bool selectionPending,selectionQueued,publishingSelection;
         private DataGridViewCell editingCell;
         private object editingOriginalValue;
         private bool building;
@@ -283,13 +284,13 @@ namespace Janus.Windows.GridEX
             {
                 if (value < 0 || value >= View.Rows.Count) return;
                 var column = View.CurrentCell?.OwningColumn ?? View.Columns.Cast<DataGridViewColumn>().FirstOrDefault(c => c.Visible);
-                if (column != null) View.CurrentCell = View.Rows[value].Cells[column.Index];
+                if (column != null) {View.CurrentCell = View.Rows[value].Cells[column.Index];PublishSelectionChanged();}
             }
         }
         public GridEXColumn CurrentColumn
         {
             get => View.CurrentCell == null ? null : RootTable.Columns[View.CurrentCell.OwningColumn.Name];
-            set { if (value != null && Row >= 0 && View.Columns.Contains(value.Key) && View.Columns[value.Key].Visible) View.CurrentCell = View.Rows[Row].Cells[value.Key]; }
+            set { if (value != null && Row >= 0 && View.Columns.Contains(value.Key) && View.Columns[value.Key].Visible) {View.CurrentCell = View.Rows[Row].Cells[value.Key];PublishSelectionChanged();} }
         }
         public string DataMember { get => dataMember; set { dataMember = value; Bind(); } }
         public object DataSource { get => source; set { source = value; Bind(); } }
@@ -309,7 +310,11 @@ namespace Janus.Windows.GridEX
             foreach (ToolStripItem item in navigator.Items.Cast<ToolStripItem>().Where(i => i.Name.Contains("AddNew") || i.Name.Contains("Delete")).ToArray()) navigator.Items.Remove(item);
             Controls.Add(View); Controls.Add(search); Controls.Add(totals); Controls.Add(navigator);
             View.DataSource = binding;
-            View.SelectionChanged += (s, e) => { if (!loading && !building) SelectionChanged?.Invoke(this, e); };
+            // Native SelectionChanged can run before CurrentCell is updated.
+            // Recovered handlers rebind/focus other grids: publish only once the
+            // native selection operation has finished, never from its middle.
+            View.SelectionChanged += (s, e) =>
+            {if(!loading && !building){selectionPending=true;QueueSelectionChanged();}};
             View.CellValueChanged += (s, e) =>
             {
                 if (loading || building || e.RowIndex < 0 || e.ColumnIndex < 0) return;
@@ -399,6 +404,21 @@ namespace Janus.Windows.GridEX
         public override void Refresh() { View.Refresh(); base.Refresh(); }
         protected override void OnFontChanged(EventArgs e) { base.OnFontChanged(e); if (View != null) View.Font = Font; }
         protected override void OnRightToLeftChanged(EventArgs e) { base.OnRightToLeftChanged(e); if (View != null) View.RightToLeft = RightToLeft; }
+        private void QueueSelectionChanged()
+        {
+            if(selectionQueued || !IsHandleCreated || IsDisposed)return;
+            selectionQueued=true;
+            BeginInvoke((Action)(()=>{selectionQueued=false;if(selectionPending && !IsDisposed)PublishSelectionChanged();}));
+        }
+        private void PublishSelectionChanged(bool force=false)
+        {
+            if(loading || building || IsDisposed)return;
+            if(!force && !selectionPending)return;
+            if(publishingSelection){selectionPending=true;QueueSelectionChanged();return;}
+            selectionPending=false;publishingSelection=true;
+            try{SelectionChanged?.Invoke(this,EventArgs.Empty);}
+            finally{publishingSelection=false;}
+        }
         private void Bind()
         {
             if (RootTable == null) return;
@@ -429,7 +449,7 @@ namespace Janus.Windows.GridEX
                 RebuildColumns(); Filter();
             }
             finally { loading = false; }
-            SelectionChanged?.Invoke(this, EventArgs.Empty);
+            PublishSelectionChanged(true);
         }
         private void LoadLayout(string xml)
         {
