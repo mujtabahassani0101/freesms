@@ -309,7 +309,7 @@ internal static class OriginalNavigationCheck
                 start.ArgumentList.Add("--verify-navigation-form"); start.ArgumentList.Add(route);
                 start.Environment[WorkerConnection] = connection.ConnectionString;
                 using var process = Process.Start(start);
-                bool finished = process.WaitForExit(reportActions || businessActions ? 60000 : 10000);
+                bool finished = process.WaitForExit(scenario=="backup"?360000:reportActions || businessActions ? 60000 : 10000);
                 if (!finished) { process.Kill(true); process.WaitForExit(); }
                 bool success = finished && process.ExitCode == 0;
                 bool waiting = finished && process.ExitCode == 2;

@@ -35,10 +35,23 @@ def recover(data, target):
         rotation = obj.findtext(namespace + 'ObjectFormat/' + namespace + 'TextRotationAngle')
         if rotation not in (None, 'Rotate0'):
             properties['TextRotationAngle'] = rotation
-        if properties:
+        fonts = obj.findall('.//' + namespace + 'Font')
+        font_definitions = {
+            (font.findtext(namespace + 'Name'), font.findtext(namespace + 'Size.Low'),
+             *(font.findtext(namespace + flag) for flag in ('Bold', 'Italic', 'Underline', 'Strikethrough')))
+            for font in fonts
+        }
+        # A uniformly formatted field/text can use its authored font directly.
+        # Mixed rich-text runs are not flattened into a guessed uniform font.
+        if properties or len(font_definitions) == 1:
             node = ET.SubElement(target, 'object', name=name)
             for key, value in properties.items():
                 ET.SubElement(node, key).text = value
+            if len(font_definitions) == 1:
+                family, low, *flags = next(iter(font_definitions))
+                if family and low:
+                    style = sum(bit for bit, enabled in zip((1, 2, 4, 8), flags) if enabled == 'true')
+                    ET.SubElement(node, 'Font', family=family, size=str(int(low) / 10000), style=str(style))
     for name, child in data.get('subreports', {}).items():
         if child.get('layout_xml'):
             recover(child, ET.SubElement(target, 'subreport', name=name))

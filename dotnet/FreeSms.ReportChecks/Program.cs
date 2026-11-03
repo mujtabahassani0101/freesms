@@ -102,6 +102,10 @@ foreach(string name in new[]{"CR_AF_StdKarnameDorehByChart_term1","CR_AF_StdKarn
     Check(model.Xml.Attribute("native-first-term-layout")==null && model.Sections.Any(section=>model.Flag(section.Element("area-format"),"EnableNewPageAfter",model.Context(ReportFixtures.Create(model.Xml),null,[]))),"original area page breaks recovered without replacing the card: "+name);
 }
 
+var authoredFonts=ReportModel.Load(Path.Combine(root,"dotnet","FreeSms.Original.Windows","portable-layouts","CR_AF_StdKarnameDorehByChart_term3.rpt.xml"));
+var authoredObjects=authoredFonts.Sections.SelectMany(section=>section.Elements("object")).ToArray();
+Check(authoredObjects.Single(obj=>obj.Element("Name")?.Value=="Text6").Element("Font")?.Attribute("family")?.Value=="B Badr" && authoredObjects.Single(obj=>obj.Element("Name")?.Value=="Text29").Element("Font")?.Attribute("family")?.Value=="B Nazanin","recover authored Persian attendance and subject fonts instead of analysis-machine substitutions");
+
 var ambiguousPhoto=XElement.Parse("<report><database><table name='one'><field name='Student_img' type='BlobField'/></table><table name='two'><field name='Student_img' type='BlobField'/></table></database><sections><section><object><Name>Studentimg1</Name><Kind>BlobFieldObject</Kind></object></section></sections></report>");
 bool rejectedAmbiguousPhoto=false;
 try{_ = new ReportModel(ambiguousPhoto);}

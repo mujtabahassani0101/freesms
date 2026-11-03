@@ -214,7 +214,7 @@ namespace FreeSms.NativeControls
                     string text = TextValue(ReportValue.Format(obj, value));
                     var fontNode = obj.Element("Font");
                     float size = (float?)fontNode?.Attribute("size") ?? 10;
-                    using var font = new Font((string)fontNode?.Attribute("family") ?? "Tahoma", Math.Max(1, size * 100 / 72), (FontStyle)((int?)fontNode?.Attribute("style") ?? 0), GraphicsUnit.Pixel);
+                    using var font = ReportFonts.Create((string)fontNode?.Attribute("family") ?? "Tahoma", Math.Max(1, size * 100 / 72), (FontStyle)((int?)fontNode?.Attribute("style") ?? 0));
                     using var brush = new SolidBrush(ColorValue(obj.Element("Color"), Color.Black));
                     using var format = new StringFormat(StringFormat.GenericTypographic) { Trimming = StringTrimming.EllipsisCharacter };
                     var alignment = obj.Element("format")?.Element("HorizontalAlignment")?.Value;
@@ -329,7 +329,7 @@ namespace FreeSms.NativeControls
                     var value = source == null ? obj.Element("Text")?.Value : model.Evaluate((string)source.Attribute("formula") ?? "", context);
                     string text = TextValue(ReportValue.Format(obj, value));
                     var fontNode = obj.Element("Font");
-                    using var font = new Font((string)fontNode?.Attribute("family") ?? "Tahoma", Math.Max(1, ((float?)fontNode?.Attribute("size") ?? 10) * 100 / 72), (FontStyle)((int?)fontNode?.Attribute("style") ?? 0), GraphicsUnit.Pixel);
+                    using var font = ReportFonts.Create((string)fontNode?.Attribute("family") ?? "Tahoma", Math.Max(1, ((float?)fontNode?.Attribute("size") ?? 10) * 100 / 72), (FontStyle)((int?)fontNode?.Attribute("style") ?? 0));
                     layout.ObjectHeights[obj] = Math.Max(N(obj, "Height") / 14.4f, measureGraphics.MeasureString(text, font, new SizeF(Math.Max(1, N(obj, "Width") / 14.4f), 100000)).Height);
                 }
                 if (obj.Element("Kind")?.Value == "CrossTabObject")

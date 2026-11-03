@@ -24,6 +24,11 @@ internal static class Program
             Application.EnableVisualStyles();
             int count = 0;
             void Check(bool result, string name) { if (!result) throw new InvalidOperationException(name); Console.WriteLine("PASS " + name); count++; }
+            foreach(string family in new[]{"B Badr","B Nazanin","XB Titre"})
+            {
+                using var privateFont=ReportFonts.Create(family,16,FontStyle.Regular);
+                Check(privateFont.FontFamily.Name==family,"authored report font loaded from its bundled TTF: "+family);
+            }
             using var window = new Form { Width = 800, Height = 600 };
             using var grid = new GridEX { Dock = DockStyle.Fill };
             window.Controls.Add(grid);

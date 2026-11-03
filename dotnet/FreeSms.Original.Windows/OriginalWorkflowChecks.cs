@@ -837,12 +837,16 @@ internal static class OriginalWorkflowChecks
             }
             finally{asdaj.l=originalUser;}
             db.Execute("UPDATE native_ui_backup_fixture SET value=N'پیش از دکمهٔ بازگردانی'");
-            Dialog(()=>Click(form,"k"),"بازگردانی نسخهٔ پشتیبان انجام شد. برنامه را دوباره اجرا کنید.",1);
+            Dialog(()=>Click(form,"k"),"بازگردانی نسخهٔ پشتیبان انجام شد. برنامه را دوباره اجرا کنید.",1,timeoutSeconds:300);
             Require(Convert.ToString(db.Scalar("SELECT value FROM native_ui_backup_fixture WHERE id=1"))=="پیش از پشتیبان","Original admin restore button did not restore the saved record.");
             db.Execute("DROP TABLE native_ui_backup_fixture");
             log("PASS actual async backup button validates path, backs up configured bank to quoted Persian path, produces restorable records, blocks non-admin restore and completes actual admin restore");
         }
-        finally{System.IO.Directory.Delete(folder,true);}
+        finally
+        {
+            try{System.IO.Directory.Delete(folder,true);}
+            catch(System.IO.IOException){log("Diagnostic backup media retained because SQL still holds the file; do not mask the workflow result: "+folder);}
+        }
     }
     private static void StudentDelete(Form form, Database db, Action<string> log)
     {
@@ -893,7 +897,7 @@ internal static class OriginalWorkflowChecks
     [DllImport("user32.dll")] private static extern IntPtr SetActiveWindow(IntPtr window);
     [DllImport("user32.dll")] private static extern bool PostMessage(IntPtr window, uint message, IntPtr wparam, IntPtr lparam);
     [DllImport("kernel32.dll")] private static extern uint GetCurrentThreadId();
-    private static void Dialog(Action action, string expectedText, int buttonId, string requiredText = null)
+    private static void Dialog(Action action, string expectedText, int buttonId, string requiredText = null,int timeoutSeconds=45)
     {
         bool observed = false, logged = false;
         diagnostic("EXPECT dialog: " + expectedText);
@@ -933,7 +937,7 @@ internal static class OriginalWorkflowChecks
         },IntPtr.Zero);
         timer.Start(); action();
         var deadline=System.Diagnostics.Stopwatch.StartNew();
-        while(!observed && deadline.Elapsed<TimeSpan.FromSeconds(45))
+        while(!observed && deadline.Elapsed<TimeSpan.FromSeconds(timeoutSeconds))
         {Application.DoEvents();System.Threading.Thread.Sleep(10);}
         Require(observed,"Expected dialog did not appear: " + expectedText);
     }

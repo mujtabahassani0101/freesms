@@ -11,6 +11,7 @@ internal static class OriginalFonts
     public static void InitializeFromDirectory(string directory)
     {
         if (!Directory.Exists(directory)) return;
+        FreeSms.NativeControls.ReportFonts.Initialize(directory);
         foreach (var path in Directory.GetFiles(directory, "*.ttf"))
             AddFontResourceEx(path, 0x10, IntPtr.Zero);
     }

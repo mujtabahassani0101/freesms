@@ -33,7 +33,11 @@ internal static class RecoveredGeometry
         {
             var recovered = definition.Elements("object").SingleOrDefault(o => (string?)o.Attribute("name") == obj.Element("Name")?.Value);
             if (recovered != null)
-                foreach (var property in recovered.Elements()) obj.SetElementValue(property.Name, property.Value);
+                foreach (var property in recovered.Elements())
+                {
+                    obj.Element(property.Name)?.Remove();
+                    obj.Add(new XElement(property));
+                }
             if (obj.Element("report") is XElement child)
             {
                 var childDefinition = definition.Elements("subreport").SingleOrDefault(s => (string?)s.Attribute("name") == (string?)obj.Attribute("subreport"));

@@ -1,0 +1,15 @@
+Original business workflow actions and persisted effects
+FAILED m_aj_workflow_backup toolBackUp -> frmbackUp
+FAILED m_bt_workflow_driver toolDriver -> frmDriver
+FAILED m_l_workflow_class toolfrmCls -> frmCls
+FAILED b6_workflow_school toolfrmSchool -> frmSchool
+FAILED b6_workflow_authentication toolfrmSchool -> frmSchool
+FAILED m_j_workflow_teacher toolfrmTeacher -> frmTeacher
+FAILED m_bm_workflow_attendance1 toolHazeri1 -> frmHazeri
+FAILED m_bn_workflow_attendance2 toolHazeri2 -> frmHazeri
+FAILED m_a4_workflow_mark-entry toolMarkEntryOne -> frmMarkEntry2
+FAILED m_bq_workflow_payment toolPaymentAdd -> frmPaymentAdd
+FAILED m_e_workflow_student-delete toolStd -> frmlistStd
+FAILED m_e_workflow_student-edit toolStd -> frmlistStd
+FAILED d8_workflow_discount toolTakhfif -> frmTakhfif
+RESULT loaded=0, interaction=0, total=13
