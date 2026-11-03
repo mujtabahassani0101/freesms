@@ -1,0 +1,7 @@
+{
+  "original_resource": "school_Af.Rpt.karname.CR_AF_StdKarnameDorehByChart_term3.rpt",
+  "resource_sha256": "fd4937427792ff4e6df2898d843a14d7c4f3e6eb8ee4c410322e5e17a1d8e5e8",
+  "pdf_sha256": "c6aa4539c635bc9f8e328056e47fce9069c72e5f95a86bc32b356006ddb6b989",
+  "fixture": "Two synthetic students, twelve subject rows each; in-memory only; no database connection.",
+  "limitations": "Some original font families are unavailable in the analysis runtime. This PDF establishes section geometry/pagination; glyph/font parity is not certified."
+}

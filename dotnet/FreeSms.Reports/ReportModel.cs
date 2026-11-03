@@ -23,7 +23,7 @@ public sealed class ReportModel
     public XElement[] Sections { get; }
     public ReportModel(XElement xml)
     {
-        FirstTermCardLayouts.Apply(xml);
+        RecoveredGeometry.Apply(xml);
         Xml = xml;
         Formulas = (xml.Element("formulas")?.Elements("formula") ?? []).ToDictionary(x => (string)x.Attribute("name")!, x => Formula.Parse(x.Value), StringComparer.OrdinalIgnoreCase);
         Groups = (xml.Element("groups")?.Elements("group") ?? []).Select(x => (string)x.Attribute("field")!).ToArray();

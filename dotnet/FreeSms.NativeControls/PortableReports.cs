@@ -90,11 +90,17 @@ namespace FreeSms.NativeControls
             void Add(XElement section, DataRow record, bool paginate = true)
             {
                 var context = model.Context(input, record, rows, pages.Count, pages.Count);
-                if (model.Flag(section.Element("format"), "EnableSuppress", context)) return;
+                bool areaBefore=model.Flag(section.Element("area-format"),"EnableNewPageBefore",context);
+                bool areaAfter=model.Flag(section.Element("area-format"),"EnableNewPageAfter",context);
+                if (model.Flag(section.Element("format"), "EnableSuppress", context))
+                {
+                    if(paginate && (areaBefore || areaAfter))pendingPage=true;
+                    return;
+                }
                 var layout = Measure(section, record);
                 float size = layout.Height;
-                bool before = model.Flag(section.Element("format"), "EnableNewPageBefore", context);
-                if (!flow && paginate && top > 0 && (pendingPage || before || size <= height - footerHeight && top + size > height - footerHeight)) NewPage(record);
+                bool before = areaBefore || model.Flag(section.Element("format"), "EnableNewPageBefore", context);
+                if (!flow && paginate && top > 0 && current.Any(b=>Kind(b.Section)!="PageHeader") && (pendingPage || before || size <= height - footerHeight && top + size > height - footerHeight)) NewPage(record);
                 pendingPage = false;
                 float remaining = size, offset = 0;
                 do
@@ -107,7 +113,7 @@ namespace FreeSms.NativeControls
                     offset += part; remaining -= part;
                     if (remaining > 0) NewPage(record);
                 } while (remaining > 0);
-                if (paginate && model.Flag(section.Element("format"), "EnableNewPageAfter", context)) pendingPage = true;
+                if (paginate && (areaAfter || model.Flag(section.Element("format"), "EnableNewPageAfter", context))) pendingPage = true;
             }
             bool Boundary(DataRow row, DataRow other, int level) => other == null || Enumerable.Range(0, Math.Min(model.Groups.Length, level + 1)).Any(i => !Equals(model.Evaluate(model.Groups[i], model.Context(input, row, rows)), model.Evaluate(model.Groups[i], model.Context(input, other, rows))));
             NewPage(first);
@@ -180,6 +186,7 @@ namespace FreeSms.NativeControls
                     if (model.Flag(obj.Element("format"), "EnableSuppress", context)) continue;
                     var rect = new RectangleF(N(obj, "Left") / 14.4f, ObjectTop(obj, band.Layout), Math.Max(.1f, N(obj, "Width") / 14.4f), Math.Max(.1f, band.Layout.ObjectHeights.TryGetValue(obj, out var measuredHeight) ? measuredHeight : N(obj, "Height") / 14.4f));
                     var kind = obj.Element("Kind")?.Value;
+                    if (kind is "LineObject" or "BoxObject" && SpansSections(obj, band.Section)) continue;
                     if (kind == "LineObject") { using var pen = new Pen(ColorValue(obj.Element("LineColor"), Color.Black), Math.Max(.5f, N(obj, "LineThickness") / 14.4f)); graphics.DrawLine(pen, rect.Left, rect.Top, rect.Right, rect.Bottom); continue; }
                     DrawBackground(graphics, obj, rect);
                     if (kind == "BoxObject") { graphics.DrawRectangle(Pens.Gray, rect.X, rect.Y, rect.Width, rect.Height); continue; }
@@ -209,17 +216,59 @@ namespace FreeSms.NativeControls
                     float size = (float?)fontNode?.Attribute("size") ?? 10;
                     using var font = new Font((string)fontNode?.Attribute("family") ?? "Tahoma", Math.Max(1, size * 100 / 72), (FontStyle)((int?)fontNode?.Attribute("style") ?? 0), GraphicsUnit.Pixel);
                     using var brush = new SolidBrush(ColorValue(obj.Element("Color"), Color.Black));
-                    using var format = new StringFormat { Trimming = StringTrimming.EllipsisCharacter };
+                    using var format = new StringFormat(StringFormat.GenericTypographic) { Trimming = StringTrimming.EllipsisCharacter };
                     var alignment = obj.Element("format")?.Element("HorizontalAlignment")?.Value;
                     bool rightToLeft=Regex.IsMatch(text, "[\u0600-\u06ff]");
                     // GDI+ Near/Far follow reading direction; report alignments are physical.
                     format.Alignment = alignment == "HorizontalCenterAlign" ? StringAlignment.Center
                         : alignment == "RightAlign" ? (rightToLeft ? StringAlignment.Near : StringAlignment.Far)
                         : (rightToLeft ? StringAlignment.Far : StringAlignment.Near);
-                    if (rightToLeft) format.FormatFlags = StringFormatFlags.DirectionRightToLeft;
+                    if (rightToLeft) format.FormatFlags |= StringFormatFlags.DirectionRightToLeft;
+                    string rotation=obj.Element("TextRotationAngle")?.Value;
+                    if (rotation is "Rotate90" or "Rotate270")
+                    {
+                        var textState=graphics.Save();
+                        graphics.TranslateTransform(rotation=="Rotate90"?rect.Left:rect.Right,rotation=="Rotate90"?rect.Bottom:rect.Top);
+                        graphics.RotateTransform(rotation=="Rotate90"?-90:90);
+                        graphics.DrawString(text,font,brush,new RectangleF(0,0,rect.Height,rect.Width),format);
+                        graphics.Restore(textState);
+                        continue;
+                    }
                     graphics.DrawString(text, font, brush, rect, format);
                 }
                 graphics.Restore(state);
+            }
+            DrawSpanningShapes(graphics,index);
+        }
+        private static bool SpansSections(XElement obj,XElement section) => obj.Element("EndSectionName")?.Value is string end && end!=(string)section.Attribute("name");
+        private void DrawSpanningShapes(Graphics graphics,int pageIndex)
+        {
+            var ordered=pages.SelectMany((bands,index)=>bands.Select(band=>(Band:band,Page:index))).ToArray();
+            for(int start=0;start<ordered.Length;start++)
+            {
+                var origin=ordered[start];
+                if(origin.Band.Offset!=0 || origin.Page>pageIndex)continue;
+                foreach(var obj in origin.Band.Section.Elements("object").Where(o=>o.Element("Kind")?.Value is "LineObject" or "BoxObject" && SpansSections(o,origin.Band.Section)))
+                {
+                    if(model.Flag(obj.Element("format"),"EnableSuppress",model.Context(input,origin.Band.Row,rows,origin.Page+1,pages.Count)))continue;
+                    var scope=model.Scope(input,origin.Band.Row,rows,model.GroupLevel(origin.Band.Section));
+                    int end=Array.FindIndex(ordered,start,item=>scope.Contains(item.Band.Row) && (string)item.Band.Section.Attribute("name")==obj.Element("EndSectionName")!.Value);
+                    if(end<0)
+                    {
+                        int target=Array.FindIndex(model.Sections,s=>(string)s.Attribute("name")==obj.Element("EndSectionName")!.Value);
+                        if(target<0)throw new InvalidDataException("Missing original shape end section: "+obj.Element("EndSectionName")!.Value);
+                        end=Array.FindIndex(ordered,start,item=>scope.Contains(item.Band.Row) && Array.IndexOf(model.Sections,item.Band.Section)>=target);
+                        if(end<0)continue;
+                    }
+                    var destination=ordered[end];
+                    if(destination.Page<pageIndex)continue;
+                    float top=origin.Page==pageIndex?origin.Band.Top+N(obj,"Top")/14.4f:pages[pageIndex].Where(b=>Kind(b.Section)=="PageHeader").Select(b=>b.Top+b.Height).DefaultIfEmpty(0).Max();
+                    float bottom=destination.Page==pageIndex?destination.Band.Top+N(obj,"Bottom")/14.4f:pages[pageIndex].Where(b=>Kind(b.Section)!="PageFooter").Select(b=>b.Top+b.Height).DefaultIfEmpty(height).Max();
+                    float left=N(obj,"Left")/14.4f,right=N(obj,"Right")/14.4f;
+                    using var pen=new Pen(ColorValue(obj.Element("LineColor"),Color.Black),Math.Max(.5f,N(obj,"LineThickness")/14.4f));
+                    if(obj.Element("Kind")?.Value=="LineObject")graphics.DrawLine(pen,left,top,right,bottom);
+                    else graphics.DrawRectangle(pen,left,top,Math.Max(0,right-left),Math.Max(0,bottom-top));
+                }
             }
         }
         private static string TextValue(object value) => WebUtility.HtmlDecode(Regex.Replace(Formula.Text(value).Replace("<br>", "\n").Replace("<br/>", "\n"), "<[^>]*>", ""));
@@ -270,6 +319,10 @@ namespace FreeSms.NativeControls
             foreach (var obj in section.Elements("object"))
             {
                 var context = model.Context(input, row, rows);
+                if(model.Flag(obj.Element("format"),"EnableSuppress",context))continue;
+                // Crystal shapes can end in a later section; their design-time
+                // Height must never enlarge the header containing their origin.
+                if(obj.Element("Kind")?.Value is "LineObject" or "BoxObject")continue;
                 if (model.Flag(obj.Element("format"), "EnableCanGrow", context) && obj.Element("Kind")?.Value is "TextObject" or "FieldObject")
                 {
                     var source = obj.Element("source");

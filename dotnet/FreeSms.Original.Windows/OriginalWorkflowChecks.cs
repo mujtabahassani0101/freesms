@@ -195,10 +195,10 @@ internal static class OriginalWorkflowChecks
         Require(document.PageCount>0 && document.PageCount<=20,"Small report fixture produced an invalid page count.");
         var model=(FreeSms.Reports.ReportModel)typeof(FreeSms.NativeControls.PortableReportViewer).GetField("model",BindingFlags.Instance|BindingFlags.NonPublic).GetValue(viewer);
         bool photos=model.Sections.SelectMany(section=>section.Elements("object")).Any(obj=>obj.Element("Kind")?.Value=="BlobFieldObject");
-        bool firstTerm=model.Xml.Attribute("native-first-term-layout")!=null;
+        bool firstTerm=model.Name.Contains("CR_AF_StdKarnameDorehByChart_",StringComparison.Ordinal);
         Action verifyFirstTerm=()=>
         {
-            Require(document.PageCount==2,"Two one-course first-term cards must render on exactly two separate pages; actual="+document.PageCount);
+            Require(document.PageCount==2,"Two one-course original student cards must render on exactly two separate pages; actual="+document.PageCount);
             Require(document.DefaultPageSettings.Landscape==model.Name.EndsWith("_land",StringComparison.Ordinal),"First-term card changed its configured paper orientation.");
             var pages=(System.Collections.IEnumerable)document.GetType().GetField("pages",BindingFlags.Instance|BindingFlags.NonPublic).GetValue(document);
             var identities=new List<int>();

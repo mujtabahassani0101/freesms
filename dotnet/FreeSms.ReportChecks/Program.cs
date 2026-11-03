@@ -9,7 +9,7 @@ int formulas = 0, reportCount = 0, rebuiltCount = 0, pictures = 0, studentPhotos
 foreach (var path in Directory.GetFiles(Path.Combine(root, "dotnet", "FreeSms.Original.Windows", "portable-layouts"), "*.xml"))
 {
     var xml = XDocument.Load(path);
-    bool rebuilt = xml.Root!.Attribute("reconstruction") != null;
+    bool rebuilt = xml.Root!.Attribute("recovered-alias") != null;
     if (rebuilt) rebuiltCount++; else reportCount++;
     foreach (var picture in xml.Descendants("object").Where(o => o.Element("Kind")?.Value == "PictureObject"))
     {
@@ -54,7 +54,7 @@ foreach (var path in Directory.GetFiles(Path.Combine(root, "dotnet", "FreeSms.Or
     foreach (var source in xml.Descendants("source")) Formula.Parse((string?)source.Attribute("formula") ?? "");
 }
 Check(pictures == 58, "all 58 original report images are present");
-Check(rebuiltCount == 2, "evaluate both reconstructed catalog reports with disconnected sample data");
+Check(rebuiltCount == 2, "evaluate both original annual-card aliases with disconnected sample data");
 Check(reportCount == 98, "evaluate every original report with disconnected sample data: " + reportCount);
 Check(studentPhotos==21,"all 21 student-photo placeholders bind the declared database image field");
 Check(formulas >= 3000, "parse every original report expression: " + formulas);
@@ -69,16 +69,17 @@ foreach (string rebuilt in new[] {"CStdKarnameDorehByChart", "CStdKarnameDorehBy
         main.Rows[i]["Mark"]=i==0?70m:30m; main.Rows[i]["avgClass"]=50m;
     }
     var rows = model.Rows(fixture);
-    var chartBand = model.Sections.Single(section=>(string?)section.Attribute("name")=="NativeCourseComparison");
-    var chart = chartBand.Descendants("chart").First();
+    var chartBand = model.Sections.Single(section=>section.Elements("object").Any(obj=>obj.Element("Name")?.Value=="Graph1"));
+    var chart = chartBand.Elements("object").Single(obj=>obj.Element("Name")?.Value=="Graph1").Element("chart")!;
     var scope = model.Scope(fixture,rows[0],rows,model.GroupLevel(chartBand));
     var context = model.Context(fixture,scope[0],scope);
     Check(scope.Length==1 && Equals(model.Evaluate(chart.Elements("series").First().Value,context),70m)
         && Equals(model.Evaluate(chart.Elements("series").Last().Value,context),50m),"rebuilt chart isolates student 70 from peer 30 and preserves class mean 50: "+rebuilt);
     var child = new ReportModel(model.Xml.Descendants("object").Single(obj=>(string?)obj.Attribute("subreport")=="Sub1").Element("report")!);
-    var endBand=model.Sections.Single(section=>(string?)section.Attribute("name")=="NativeStudentProgress");
-    Check(model.Flag(endBand.Element("format"),"EnableNewPageAfter",model.Context(fixture,rows[0],rows))
-        && !model.Flag(endBand.Element("format"),"EnableNewPageAfter",model.Context(fixture,rows[1],rows)),"rebuilt student card ends after its charts without creating a trailing blank page: "+rebuilt);
+    var originalAlias=XDocument.Load(Path.Combine(root,"dotnet","FreeSms.Original.Windows","portable-layouts","CR_AF_StdKarnameDorehByChart_term3.rpt.xml")).Root!;
+    var savedAlias=XDocument.Load(Path.Combine(root,"dotnet","FreeSms.Original.Windows","portable-layouts",rebuilt+".rpt.xml")).Root!;
+    savedAlias.Attribute("recovered-alias")!.Remove();
+    Check(XNode.DeepEquals(originalAlias,savedAlias),"catalog alias retains every original section, field, position and formula: "+rebuilt);
     var source = fixture.Subreports["Sub1"]; var table = source.Data!.Tables[0]; table.Clear();
     for(int student=1;student<=2;student++) for(int term=1;term<=3;term++)
     {
@@ -92,21 +93,13 @@ foreach (string rebuilt in new[] {"CStdKarnameDorehByChart", "CStdKarnameDorehBy
         && childRows.Select(row=>Convert.ToDecimal(row["MarkDoreh"])).SequenceEqual(new[]{30m,40m,70m}),"rebuilt progress subreport keeps all three terms and excludes the other student: "+rebuilt);
 }
 
-foreach(string name in new[]{"CR_AF_StdKarnameDorehByChart_term1","CR_AF_StdKarnameDorehByChart_term1_land"})
+foreach(string name in new[]{"CR_AF_StdKarnameDorehByChart_term1","CR_AF_StdKarnameDorehByChart_term1_land","CR_AF_StdKarnameDorehByChart_term3"})
 {
     var original=XDocument.Load(Path.Combine(root,"dotnet","FreeSms.Original.Windows","portable-layouts",name+".rpt.xml")).Root!;
-    var formulasBefore=original.Element("formulas")!.Elements("formula").ToDictionary(f=>(string)f.Attribute("name")!,f=>f.Value);
-    string groupsBefore=original.Element("groups")!.ToString();
-    var model=new ReportModel(original);var fixture=ReportFixtures.Create(model.Xml,2);var table=fixture.Data!.Tables[0];
-    string longName="شاگرد با نام طولانی برای بررسی کامل معلومات "+new string('ن',35);
-    table.Rows[0]["FName"]=longName;table.Rows[0]["LName"]="پدر آزمایشی";table.Rows[0]["PName"]="پدرکلان آزمایشی";
-    table.Rows[0]["Code"]=5991001;table.Rows[0]["NumberAsas"]=5991001;table.Rows[0]["xStudent"]=1;table.Rows[1]["xStudent"]=2;
-    var rows=table.Rows.Cast<DataRow>().ToArray();
-    string identity=Convert.ToString(model.Evaluate("{@nativeCardIdentity}",model.Context(fixture,rows[0],rows)))!;
-    Check(identity.Contains(longName) && identity.Contains("پدر آزمایشی") && identity.Contains("پدرکلان آزمایشی") && identity.Contains("5991001") && !identity.Contains("5,991,001"),"first-term identity retains complete long names and ungrouped identifiers: "+name);
-    Check(groupsBefore==model.Xml.Element("groups")!.ToString() && formulasBefore.All(pair=>model.Formulas.ContainsKey(pair.Key) && model.Xml.Element("formulas")!.Elements("formula").Single(f=>(string?)f.Attribute("name")==pair.Key).Value==pair.Value),"first-term layout preserves the original grouping and every recovered calculation: "+name);
-    var end=model.Sections.Single(section=>(string?)section.Attribute("name")=="NativeCardEnd");
-    Check(model.Flag(end.Element("format"),"EnableNewPageAfter",model.Context(fixture,rows[0],rows)) && !model.Flag(end.Element("format"),"EnableNewPageAfter",model.Context(fixture,rows[1],rows)),"first-term student boundary follows all content without a trailing blank page: "+name);
+    var sectionsBefore=original.Element("sections")!.Elements("section").Select(section=>new {Name=(string?)section.Attribute("name"),Height=(string?)section.Attribute("height"),Objects=section.Elements("object").Select(obj=>string.Join("|",new[]{"Name","Left","Top","Width","Height"}.Select(key=>obj.Element(key)?.Value))).ToArray()}).ToArray();
+    var model=new ReportModel(original);
+    Check(sectionsBefore.Select(s=>s.Name+":"+s.Height+":"+string.Join(";",s.Objects)).SequenceEqual(model.Sections.Select(section=>(string?)section.Attribute("name")+":"+(string?)section.Attribute("height")+":"+string.Join(";",section.Elements("object").Select(obj=>string.Join("|",new[]{"Name","Left","Top","Width","Height"}.Select(key=>obj.Element(key)?.Value)))))),"original card sections and object geometry remain unchanged: "+name);
+    Check(model.Xml.Attribute("native-first-term-layout")==null && model.Sections.Any(section=>model.Flag(section.Element("area-format"),"EnableNewPageAfter",model.Context(ReportFixtures.Create(model.Xml),null,[]))),"original area page breaks recovered without replacing the card: "+name);
 }
 
 var ambiguousPhoto=XElement.Parse("<report><database><table name='one'><field name='Student_img' type='BlobField'/></table><table name='two'><field name='Student_img' type='BlobField'/></table></database><sections><section><object><Name>Studentimg1</Name><Kind>BlobFieldObject</Kind></object></section></sections></report>");

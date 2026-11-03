@@ -2,19 +2,15 @@
   {
     "name": "CStdKarnameDorehByChart",
     "layout": "dotnet/FreeSms.Original.Windows/portable-layouts/CStdKarnameDorehByChart.rpt.xml",
-    "source_sha256": {
-      "CStdKarnameDoreh3.rpt.xml": "34eea813385d0c80845ddfd4a624ca24193fc0588815f4ffe6c8eeb9b66d88cc",
-      "CR_AF_StdKarnameDorehByChart_term3.rpt.xml": "51bf5c99dd4fcb4dc31bdfdd70a1f15e781ac432b8aad17f5a0d2e17ace6498a"
-    },
-    "scope": "Base table/formulas and existing best-student subreports preserved; native course comparison and linked student-progress chart added."
+    "source": "CR_AF_StdKarnameDorehByChart_term3.rpt.xml",
+    "source_sha256": "51bf5c99dd4fcb4dc31bdfdd70a1f15e781ac432b8aad17f5a0d2e17ace6498a",
+    "scope": "Unmodified original Afghan annual card. The absent catalog-specific RPT and exact appearance are not recovered."
   },
   {
     "name": "CStdKarnameDorehByChart_byBestStd_OneMark",
     "layout": "dotnet/FreeSms.Original.Windows/portable-layouts/CStdKarnameDorehByChart_byBestStd_OneMark.rpt.xml",
-    "source_sha256": {
-      "CStdKarnameDoreh_byBestStd_OneMark.rpt.xml": "194ec4dc3c3e843930fa0cfb3d13f1bfdc68a3db5c5568327f0b130b803ecd99",
-      "CR_AF_StdKarnameDorehByChart_term3.rpt.xml": "51bf5c99dd4fcb4dc31bdfdd70a1f15e781ac432b8aad17f5a0d2e17ace6498a"
-    },
-    "scope": "Base table/formulas and existing best-student subreports preserved; native course comparison and linked student-progress chart added."
+    "source": "CR_AF_StdKarnameDorehByChart_term3.rpt.xml",
+    "source_sha256": "51bf5c99dd4fcb4dc31bdfdd70a1f15e781ac432b8aad17f5a0d2e17ace6498a",
+    "scope": "Unmodified original Afghan annual card. The absent catalog-specific RPT and exact appearance are not recovered."
   }
 ]

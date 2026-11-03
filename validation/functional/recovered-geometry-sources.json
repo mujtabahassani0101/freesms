@@ -1,0 +1,394 @@
+[
+  {
+    "source": "school_Af.Rpt.CrAvgClassBooks_1.rpt.json",
+    "sha256": "455ca51b20ee440558b887e065be307cbfa7be9b0d77269deba2e8ed4cf11f74"
+  },
+  {
+    "source": "school_Af.Rpt.CrAvgClassBooks_2.rpt.json",
+    "sha256": "7f67141d006a71b3255a06ba93f115f655e31a40250b21e4c9eb9a5efcecb389"
+  },
+  {
+    "source": "school_Af.Rpt.CrClslistOftRoshd.rpt.json",
+    "sha256": "57cdf6c8f06dd9afd9076e58590776674c624e65b88f57ea45e426ee063c7a4d"
+  },
+  {
+    "source": "school_Af.Rpt.CrDabirAvgClassMark.rpt.json",
+    "sha256": "6e15d38e42f86f052c3fe16e0fee0f894ede6385ee2c789f37ada117af58e9d5"
+  },
+  {
+    "source": "school_Af.Rpt.CrListBooksRengMark1.rpt.json",
+    "sha256": "d5e78ddcb1696b19ef8a7eaec964fb691335997ab7039abb89859585c9326a91"
+  },
+  {
+    "source": "school_Af.Rpt.CrListBooksRengMark2.rpt.json",
+    "sha256": "0fd5b46907cf41aca86c5e4e33f12ff9c796f3df2abdcddc6c22fde92a3671f8"
+  },
+  {
+    "source": "school_Af.Rpt.CrListBooksRengMark_class.rpt.json",
+    "sha256": "c22a3ccca20dc8216e2fcaafb4a4b63d854dcff933b09a7ce3cd85247194b4fd"
+  },
+  {
+    "source": "school_Af.Rpt.CrListDabirKham.rpt.json",
+    "sha256": "3dc5fae1e65171f75690812ff4e3c6deb37b8aac74b6f7ebdc62b37d556602b4"
+  },
+  {
+    "source": "school_Af.Rpt.CrListDabirKham16.rpt.json",
+    "sha256": "6cd8c174f5b8a28e43ad10b3d72c7217103f5754b2a8258eb7e546d95c8aa8c3"
+  },
+  {
+    "source": "school_Af.Rpt.CrListDabirKham18.rpt.json",
+    "sha256": "31d9941956e860f37bfcab86bda2f589b1653c1714bdf33c7c05ed18dcab5216"
+  },
+  {
+    "source": "school_Af.Rpt.CrListDabirKham20.rpt.json",
+    "sha256": "a982d0877901fc254b0c99aa7e7bfe2bf24f2d45f06eaef1475547f72cd067f0"
+  },
+  {
+    "source": "school_Af.Rpt.CrListDabirKhamByTchName.rpt.json",
+    "sha256": "feaa45637993afb55defcce5489cdc840935ca1c6570a594c7888c6a805d4cec"
+  },
+  {
+    "source": "school_Af.Rpt.CrListDabirKhamByTchNameAllBook18.rpt.json",
+    "sha256": "5b0075ea1f98974eaf094102d0ab3c7ef72d6929fa1c41c7dd588ca0d8c8aa67"
+  },
+  {
+    "source": "school_Af.Rpt.CrListDabir_1.rpt.json",
+    "sha256": "8d441f09b7370b7454c61afb7feb4a85f3c6c00308c2211d2ca75b38b90fc6bc"
+  },
+  {
+    "source": "school_Af.Rpt.CrListStdBookMarks5.rpt.json",
+    "sha256": "e9920cb81ca7f0e1ed69e511e2a9928d718ed17b9643e45153dc6bdec9941722"
+  },
+  {
+    "source": "school_Af.Rpt.CrListStdMoadelGroupByClass.rpt.json",
+    "sha256": "12759dd790189a2207c0a01f2488c293ed78026c2be70de9a3f916386daaf51d"
+  },
+  {
+    "source": "school_Af.Rpt.CrListStdMoadelGroupByPaye.rpt.json",
+    "sha256": "6bab586ca3a6e6b7133d821470eb0fc7c2d7cf232d256f2f4eb2922992657af0"
+  },
+  {
+    "source": "school_Af.Rpt.CrListStdMoadelGroupBySch.rpt.json",
+    "sha256": "5a34f572e9f7d6cb70124e73f03ff5fc4ba0cdef9d74d694dfd640654704028a"
+  },
+  {
+    "source": "school_Af.Rpt.CrListStdOftRoshdBooks.rpt.json",
+    "sha256": "e30257214be0a5275bbff4112ff883d59587c728f4dca626ae327efa6f9a3bed"
+  },
+  {
+    "source": "school_Af.Rpt.CrListStdOftRoshdMoadel.rpt.json",
+    "sha256": "e8edc44b8c749693895715079c28580e7c923465e95c394fe6adf456604ec1c6"
+  },
+  {
+    "source": "school_Af.Rpt.CrListstd_books10.rpt.json",
+    "sha256": "6355b73db2d363fa2c4b1c51cfd3781ad7ff0f671cee57428e378e499ff1d47b"
+  },
+  {
+    "source": "school_Af.Rpt.CrListstd_books10_class.rpt.json",
+    "sha256": "0a3cae85f04d6dd99350d3dd3cd994bd5ce5075743e0ee3a8c2c7d29ae27f585"
+  },
+  {
+    "source": "school_Af.Rpt.CrListstd_books14.rpt.json",
+    "sha256": "b59c7c3678baeeea1e963ff444f53d6bba8adc6b7da7cc75a3d34f7a41ca129f"
+  },
+  {
+    "source": "school_Af.Rpt.CrListstd_books18.rpt.json",
+    "sha256": "7cebcdcb9254f3273a288f06bfc8008fa613887b9b082d5f65de5fb0048fee80"
+  },
+  {
+    "source": "school_Af.Rpt.CrListstd_books18_class.rpt.json",
+    "sha256": "7250eba0ee6c3023629432c296265a4da03f11a639b34db8fe66d7cdcd53f1be"
+  },
+  {
+    "source": "school_Af.Rpt.CrListstd_books18_class33.rpt.json",
+    "sha256": "0985bf45650954cc3c67eeb6e16db0b12aa1ed44d879c3834906c8d8629410df"
+  },
+  {
+    "source": "school_Af.Rpt.CrListstd_books21_class33.rpt.json",
+    "sha256": "7f46c6835f0937d142e927d25070ae6fabe1f314f6b289355a8ef0fdd468d4d3"
+  },
+  {
+    "source": "school_Af.Rpt.CrListstd_booksAlarm.rpt.json",
+    "sha256": "b70fea7db9bec5f594e26715bb3b66575e019ba300c569c6ec980a329df29ba0"
+  },
+  {
+    "source": "school_Af.Rpt.CrStdMoadelMarkGroupByClass.rpt.json",
+    "sha256": "7b1896d19e0290079c387cda32861c176e5efb5057329b69b09058946ec03567"
+  },
+  {
+    "source": "school_Af.Rpt.CrStdMoadelMarkGroupByPaye.rpt.json",
+    "sha256": "2ca92a37d2bdaabb1145bd907e9d54cef01bdca5854276e859d5176169258a0c"
+  },
+  {
+    "source": "school_Af.Rpt.Dis.crDis_AmarAbsentClass.rpt.json",
+    "sha256": "763c2e4fd0146205ea50a2a915e38d55b44772b88f2aa16c86be4c7643e75aab"
+  },
+  {
+    "source": "school_Af.Rpt.Dis.crDis_KarnameStd.rpt.json",
+    "sha256": "e127a1b71199ff7ffb68e9bb6230196fc1c32202433aa33244a20b06c8d75d33"
+  },
+  {
+    "source": "school_Af.Rpt.Dis.crDis_ListStdAbsent.rpt.json",
+    "sha256": "a8afa97a43ef8d5cdf64ebaf9ebec3ddab1841775bc4380f7717eb7f28b00d24"
+  },
+  {
+    "source": "school_Af.Rpt.Dis.crDis_ListStdAbsent2.rpt.json",
+    "sha256": "19325a9d2696863d93b1442229dbecdae0e5478467e1c0ce420f6b3a6e6279fc"
+  },
+  {
+    "source": "school_Af.Rpt.RptLable.CrHozehMinMax.rpt.json",
+    "sha256": "20bb285c0d4572acc3766c4625a4dcc90bc0c8ba05a54eaa4f8f7851c79b8922"
+  },
+  {
+    "source": "school_Af.Rpt.RptLable.CrHozehMinMax2.rpt.json",
+    "sha256": "b87926e621f7cbdb5338a8a9eb92dff58854b1c0995d1d9cf3d379e062c382a2"
+  },
+  {
+    "source": "school_Af.Rpt.RptLable.CrStdCardidx.rpt.json",
+    "sha256": "d0e43ea22191fb2375bcae3dc8f2e44d8281cbcfe3c080187175e0ecd3e229c6"
+  },
+  {
+    "source": "school_Af.Rpt.RptLable._4020.CrStdCardidx4020.rpt.json",
+    "sha256": "dc2ec28f342c7d59344db1afa556f724dfceeb28da117266ad739cad7bec5f23"
+  },
+  {
+    "source": "school_Af.Rpt.RptLable._4020.crHozehStd4020.rpt.json",
+    "sha256": "3aefdc211f6e000999b94f0564dbacca1e7647417c44c4ca00decf6ea2d8efc2"
+  },
+  {
+    "source": "school_Af.Rpt.RptLable._4020.crHozehStd4020_2.rpt.json",
+    "sha256": "aebac8d73ddb09d84848a4eb4a3b36b0fb680c988a2b0232595bffdbd426e3dd"
+  },
+  {
+    "source": "school_Af.Rpt.RptLable._4020.crStdIdx_Class4020_2.rpt.json",
+    "sha256": "bb5fb8cb846581aa081f9de7ed983f82c637f27eceaa784e19bda97f650f50d7"
+  },
+  {
+    "source": "school_Af.Rpt.RptLable.crAmarHozeh.rpt.json",
+    "sha256": "9e6f595eebaf8b52544ee94cedd5fccef3283fdd74bba5403186f973a74b9c30"
+  },
+  {
+    "source": "school_Af.Rpt.RptLable.crHozehAlbom.rpt.json",
+    "sha256": "4d89e596cc753fbde664eb57c09a67929ac81b2387c6e7bdfede2ebbc518ccc4"
+  },
+  {
+    "source": "school_Af.Rpt.RptLable.crHozehLabel.rpt.json",
+    "sha256": "33dbe1b49fc5544080f3e9520e5569112bca50c2b4bde0c0abfa915b06160857"
+  },
+  {
+    "source": "school_Af.Rpt.RptLable.crHozehLabelByName.rpt.json",
+    "sha256": "db77c720a7dca1c188a737fa1a8acb2ce0e2f1423745a095224b8b52615f38db"
+  },
+  {
+    "source": "school_Af.Rpt.RptLable.crHozehStd.rpt.json",
+    "sha256": "004226b74aca33d49df9e2290a5ea32da119d9690265454f039a837534e7057d"
+  },
+  {
+    "source": "school_Af.Rpt.RptLable.crHozehStd2.rpt.json",
+    "sha256": "04d15d57dac816ea569798d8ac6d3c6bc1951c6a03e965953262af9d411cc0a3"
+  },
+  {
+    "source": "school_Af.Rpt.RptLable.crStdIdx_Class.rpt.json",
+    "sha256": "d830d730536947b1cba2b111a94091b0d68a9c9d4e99d971ec412c1613af08d9"
+  },
+  {
+    "source": "school_Af.Rpt.RptLable.crStdIdx_Class2.rpt.json",
+    "sha256": "3d011329464c14ab6a000b96b154bec139ff31bb2d901401cfedce895f17987e"
+  },
+  {
+    "source": "school_Af.Rpt.af.CrChapShaghe.rpt.json",
+    "sha256": "2e56f29ad7ee3d125e79151e63fdb17c1c2d2dc8dba6072962339fd81d89e0fd"
+  },
+  {
+    "source": "school_Af.Rpt.af.CrChapShaghe2.rpt.json",
+    "sha256": "089e8000efc053132f625637591654e7bc2b03d476ebc4ba92168cc23407b976"
+  },
+  {
+    "source": "school_Af.Rpt.af.CrChapShagheHzeri.rpt.json",
+    "sha256": "c828f59fa7654e3444f7969b89bd1170174425d760ef82369612cce623d4f097"
+  },
+  {
+    "source": "school_Af.Rpt.af.CrChapShagheHzeri2.rpt.json",
+    "sha256": "a111c69b2151294c3584ffa518d6494de78b284c042916265cab6f04b0d0f6a1"
+  },
+  {
+    "source": "school_Af.Rpt.af.CrListStdHazer.rpt.json",
+    "sha256": "d033cc837fce155c1c13facf5a09ed618e4c97abec42f492b86e52d0a45fa425"
+  },
+  {
+    "source": "school_Af.Rpt.af.CrListStdKoll.rpt.json",
+    "sha256": "8115ef825f9f24eac057585354f36cae18b248c583ee86e1127d3d48a56d5df5"
+  },
+  {
+    "source": "school_Af.Rpt.af.CrListStdMali.rpt.json",
+    "sha256": "10331cf4b8484264fd564ccadb4dc90e1d203ddb8d37fb269893fb406c216f19"
+  },
+  {
+    "source": "school_Af.Rpt.af.CrListStdTransport.rpt.json",
+    "sha256": "8f8e5027fc3b522d6f8a279fb8907605db20c0b7fa433d857a92b15e1edd6a6e"
+  },
+  {
+    "source": "school_Af.Rpt.af.CrListStdTransportDriver.rpt.json",
+    "sha256": "b49a1dc1467deeba04dc51095946ad6c72feefe12e8eff78b34bd20dfde2edbc"
+  },
+  {
+    "source": "school_Af.Rpt.af.CrListStdshaghe.rpt.json",
+    "sha256": "cecdd8defc33009aceb40d092b47c26a1694d3e4687ad7c2310481116ccde99e"
+  },
+  {
+    "source": "school_Af.Rpt.af.CrStdCard.rpt.json",
+    "sha256": "95638bcdcb421c22f00568150cb7c38d1d68d56f482a62d2205fc3d40edbb6d1"
+  },
+  {
+    "source": "school_Af.Rpt.afPayment.CrRptListPayment.rpt.json",
+    "sha256": "3c00925779499bc1e26f19ff28760deb4e0f8a2fdd8880eed5b125a48983020e"
+  },
+  {
+    "source": "school_Af.Rpt.afPayment.CrRptPayment1.rpt.json",
+    "sha256": "694008d35f3ed588bc6764f3a3f4804dd9383deb8e9d4c5771cdd3a148885263"
+  },
+  {
+    "source": "school_Af.Rpt.afPayment.CrRptStdBalance.rpt.json",
+    "sha256": "39988de7eba28a1a23bcfbd55ac10a3ec79ca49ea41cfefa963824d91baef120"
+  },
+  {
+    "source": "school_Af.Rpt.afPayment.CrRptStdBalanceListe.rpt.json",
+    "sha256": "2725cc3cb68edc3b1d95293544866cbe358530f9fd13b775fd78d3a13a521b95"
+  },
+  {
+    "source": "school_Af.Rpt.afPayment.CrRptSumPaymentGroupByClass.rpt.json",
+    "sha256": "00661cf4d88659b8b856406accecc7d788d14a45300b55e89c6c1cf7ed225f31"
+  },
+  {
+    "source": "school_Af.Rpt.afPayment.CrRptSumPaymentKoll.rpt.json",
+    "sha256": "4ca7deeeb1f412b5f8f0e1af72003042d146e791408a80de205b5fb076a196ac"
+  },
+  {
+    "source": "school_Af.Rpt.amar.CrAmarGhaboliClass.rpt.json",
+    "sha256": "50c35db4a811240b33c48fbc407a60eacfb181e04ad63695d5150cf9998bec36"
+  },
+  {
+    "source": "school_Af.Rpt.amar.CrAmarGhaboliPaye.rpt.json",
+    "sha256": "6c49280d81c5874c13faad91d48686cbdb21516646977bf0f048c0b879d76878"
+  },
+  {
+    "source": "school_Af.Rpt.chart.CrChartAvgClassBooks_1.rpt.json",
+    "sha256": "bb9b25e45c92fe32c58e6827bc3ff516703462d48c837fb254101c194fa52c51"
+  },
+  {
+    "source": "school_Af.Rpt.chart.CrChartAvgClassBooks_2.rpt.json",
+    "sha256": "c58c063a960c8eae3490b8ee6b96bb7a0723b69dc3c89366ae795ceae076bb17"
+  },
+  {
+    "source": "school_Af.Rpt.chart.CrChartAvgClassBooks_3.rpt.json",
+    "sha256": "0ba229959ddb419561e7500b34b556904ad23c07ef0ef811e3ee0f9959b761c6"
+  },
+  {
+    "source": "school_Af.Rpt.chart.CrChartAvgClassDorehBooks.rpt.json",
+    "sha256": "9af60331e0c45f1aed1401dccde7166b8924c67e02e5b6e6fa033d54b4eec8bf"
+  },
+  {
+    "source": "school_Af.Rpt.chart.CrChartAvgClassDorehBooksTch.rpt.json",
+    "sha256": "c40ee2bff8da6f318c9d204c1d0f652071097115033bf5b6497f487aa69a213b"
+  },
+  {
+    "source": "school_Af.Rpt.chart.CrChartAvgOneClassBooks_1.rpt.json",
+    "sha256": "43bfccea336dae72f931157782b6bfd1f31e3f20055256db2e441c70fff6d4cd"
+  },
+  {
+    "source": "school_Af.Rpt.chart.CrChartAvgOneClassBooks_2.rpt.json",
+    "sha256": "975c7ed70efd5caaf3a0af521018f8d27ae45f79d58971ab93a888736cb3b4a3"
+  },
+  {
+    "source": "school_Af.Rpt.chart.CrChartAvgPayeBooks_1.rpt.json",
+    "sha256": "082de3f5ca2ca4d4e8a1d7d0dbac7ce956a86a817ce8b7f7ab5b786231e88d4c"
+  },
+  {
+    "source": "school_Af.Rpt.chart.CrChartAvgPayeBooks_2.rpt.json",
+    "sha256": "3e3956ec537d2aa57aab4cc367252e56f37364c76464221f62de58c90769d431"
+  },
+  {
+    "source": "school_Af.Rpt.chart.CrChartAvgStdClassBooks_1.rpt.json",
+    "sha256": "3f785fe5c2dea963f3ddecaf1eef4c8bf7f4f3dc6c14702e9e4ee50a19ef46ad"
+  },
+  {
+    "source": "school_Af.Rpt.chart.CrChartAvgStdClassBooks_2.rpt.json",
+    "sha256": "20f58a8c7527c4c895c824758984e5bb882e440bed7ad4423f4496efeb466d7a"
+  },
+  {
+    "source": "school_Af.Rpt.karname.CR_AF_ListFinal.rpt.json",
+    "sha256": "93f2b52a0e556c4d5bf93dc6000565154e3be061fb321ea8baa4ea70426719aa"
+  },
+  {
+    "source": "school_Af.Rpt.karname.CR_AF_ListFinal10_11.rpt.json",
+    "sha256": "c970bcb473b07067ea300b1433ff2163bf358576c20dd9852fb96ba3e43d2d18"
+  },
+  {
+    "source": "school_Af.Rpt.karname.CR_AF_ListFinal12.rpt.json",
+    "sha256": "bbbad912f649e37a4c6cef23097d2fc866cfae731f40cb4dfe57e5476b14940f"
+  },
+  {
+    "source": "school_Af.Rpt.karname.CR_AF_ListFinal9.rpt.json",
+    "sha256": "cd173278ac0ff3fa28661212bf5c42bd8036c1520eb3a8cd266163c492caa68d"
+  },
+  {
+    "source": "school_Af.Rpt.karname.CR_AF_StdKarnameDorehByChart_term1.rpt.json",
+    "sha256": "b4497a655c6588280e2d735ce5c26993bdf9c3bceeeb1014f84e35440546db54"
+  },
+  {
+    "source": "school_Af.Rpt.karname.CR_AF_StdKarnameDorehByChart_term1_land.rpt.json",
+    "sha256": "0286264654713554fab6cfcdbe7368b21307a92e1693528b9c8ce8c4e978dace"
+  },
+  {
+    "source": "school_Af.Rpt.karname.CR_AF_StdKarnameDorehByChart_term3.rpt.json",
+    "sha256": "69f878cbbad89497c6b9b38d0e0846918a68790970cad2ea4c50f1b7bcc5d96e"
+  },
+  {
+    "source": "school_Af.Rpt.karname.CR_AF_StdKarnameDorehByChart_term3_land.rpt.json",
+    "sha256": "66177ada85d974fe2a40e23ea6a4fa9b163907a499f64f89938f32fa6c136a65"
+  },
+  {
+    "source": "school_Af.Rpt.karname.CR_AF_StdKarnameFinal.rpt.json",
+    "sha256": "1feb4d485ead72bde540ae513db5090dad6adc9e85b83897d3c3e9b766e69c67"
+  },
+  {
+    "source": "school_Af.Rpt.karname.CR_AF_StdKarnameFinalAll.rpt.json",
+    "sha256": "b93c514d94cd6dfffb7371f7c2a5365d1c764bddd3d4e55013d13ab6873d2744"
+  },
+  {
+    "source": "school_Af.Rpt.karname.CR_AF_StdKarnameFinal_10_11.rpt.json",
+    "sha256": "8f145931cea9493b4efc40c61996bddb5562f58366709e07ca8ca0bf61b49b81"
+  },
+  {
+    "source": "school_Af.Rpt.karname.CR_AF_StdKarnameFinal_12.rpt.json",
+    "sha256": "5beb768165cd1fed927d7b3a81fadfdf4a53b2d19932d156f7951795c9ea81d4"
+  },
+  {
+    "source": "school_Af.Rpt.karname.CStdKarnameDoreh2.rpt.json",
+    "sha256": "8565fe5693ae3d4c93bd0a53d7b8c9ffbd0d9df98d970a2ebee812871edf5494"
+  },
+  {
+    "source": "school_Af.Rpt.karname.CStdKarnameDoreh3.rpt.json",
+    "sha256": "de8bb50e7d50b01a0ca904e797aeff1e67f7b45ea0a5243e10462f6e07151867"
+  },
+  {
+    "source": "school_Af.Rpt.karname.CStdKarnameDoreh_byBestStd_OneMark.rpt.json",
+    "sha256": "0a909a4743a491d677437fb0915fed150b57c34d73724b7fab90d09fcc5602c8"
+  },
+  {
+    "source": "school_Af.Rpt.karname.CStdKarnameTajamoee.rpt.json",
+    "sha256": "0df31703bae57ee6bb3841ebce10790647dd7aa389150b1da55de4c8633a7621"
+  },
+  {
+    "source": "school_Af.Rpt.karname.CStdKarnameTajamoee2.rpt.json",
+    "sha256": "9bceb3f388cfd7d2670797d9d92026384a3da5d6661a53dda2b12ae37f40a227"
+  },
+  {
+    "source": "school_Af.Rpt.karname.CStdKarnameTajamoee2ByChart.rpt.json",
+    "sha256": "85c19042ead033a99fbf28711932edd68c7eaee308dfebdde0d136bdd5a4a5ff"
+  },
+  {
+    "source": "school_Af.Rpt.karname.CStdKarnameTajamoee3ByChart.rpt.json",
+    "sha256": "5bc8a69da34c8c086b32d220e74c844ff1db17798cad58acee5f87cc44c7ab2d"
+  }
+]

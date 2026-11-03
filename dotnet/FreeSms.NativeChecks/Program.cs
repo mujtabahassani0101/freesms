@@ -245,6 +245,21 @@ internal static class Program
                 }
                 catch (Exception error) { throw new Exception(Path.GetFileName(path), error); }
             }
+            var annualModel=ReportModel.Load(Path.Combine(root,"dotnet","FreeSms.Original.Windows","portable-layouts","CR_AF_StdKarnameDorehByChart_term3.rpt.xml"));
+            var annualInput=ReportFixtures.Create(annualModel.Xml,24);
+            annualInput.Parameters["showBartar"]="0";annualInput.Parameters["showGread"]="0";
+            for(int i=0;i<24;i++)
+            {
+                var row=annualInput.Data!.Tables[0].Rows[i];
+                row["xStudent"]=i/12+1;row["Code"]=5991001+i/12;row["sort"]=i%12+1;
+                row["FName"]="شاگرد "+(i/12+1);row["LName"]="پدر شاگرد";row["PName"]="پدرکلان";
+                row["Book"]="مضمون "+(i%12+1);row["Mark"]=i<12?70m:30m;row["avgClass"]=50m;
+            }
+            using(var document=new PortableReportDocument(annualModel,annualInput))
+            {
+                Check(document.PageCount==2,"intact original annual card keeps two students with twelve subjects each on separate pages");
+                for(int i=0;i<document.PageCount;i++)document.SavePageImage(Path.Combine(output,"original-annual-twelve-subjects-page-"+(i+1)+".png"),i,120);
+            }
             var childTemplate = XElement.Parse("<report><sections><section kind='Detail' height='720'><object><Kind>FieldObject</Kind><Left>0</Left><Top>0</Top><Width>3000</Width><Height>720</Height><source formula='{data.mark}'/></object></section></sections></report>");
             var parentTemplate = XElement.Parse("<report><sections><section kind='Detail' height='144'><object subreport='Sub1'><Kind>SubreportObject</Kind><Left>0</Left><Top>0</Top><Width>10000</Width><Height>144</Height></object></section></sections></report>");
             parentTemplate.Descendants("object").First().Add(childTemplate);
@@ -279,6 +294,13 @@ internal static class Program
                     if(bitmap.GetPixel(x,y).GetBrightness()<.6f){first=Math.Min(first,x);last=Math.Max(last,x);}
                 bool aligned=alignment=="LeftAlign" ? first>=10 && first<50 : alignment=="RightAlign" ? last>280 && last<=310 : first>100 && last<220;
                 Check(last>=first && aligned,"physical "+alignment+" preserved for "+(text=="School"?"Latin":"Persian")+" report text");
+            }
+            var columnTemplate=XElement.Parse("<report><sections><section name='TableHeader' kind='ReportHeader' height='288'><object><Name>ColumnEdge</Name><Kind>LineObject</Kind><LineThickness>20</LineThickness><Left>1440</Left><Top>0</Top><Width>0</Width><Height>16000</Height><EndSectionName>TableEnd</EndSectionName><Right>1440</Right><Bottom>0</Bottom></object></section><section name='Rows' kind='Detail' height='288'/><section name='TableEnd' kind='ReportFooter' height='288'><object><Kind>LineObject</Kind><LineThickness>20</LineThickness><Left>0</Left><Top>0</Top><Width>2880</Width><Height>0</Height></object></section></sections></report>");
+            using(var document=new PortableReportDocument(new ReportModel(columnTemplate),ReportFixtures.Create(columnTemplate,3)))
+            {
+                Check(document.PageCount==1,"cross-section table lines do not stretch the original header or add pages");
+                string path=Path.Combine(output,"original-column-anchors.png");document.SavePageImage(path,0,100);using var bitmap=new Bitmap(path);
+                Check(bitmap.GetPixel(100,10).GetBrightness()<.6f && bitmap.GetPixel(100,70).GetBrightness()<.6f && bitmap.GetPixel(150,80).GetBrightness()<.6f && bitmap.GetPixel(100,90).ToArgb()==Color.White.ToArgb(),"table column ends at the footer after all three rows, using the recovered section anchor");
             }
             var photoTemplate=XElement.Parse("<report><database><table name='student'><field name='Student_img' type='BlobField'/></table></database><sections><section kind='Detail' height='720'><object><Name>Studentimg1</Name><Kind>BlobFieldObject</Kind><Left>144</Left><Top>0</Top><Width>720</Width><Height>720</Height></object></section></sections></report>");
             var photoModel=new ReportModel(photoTemplate);var photoInput=ReportFixtures.Create(photoTemplate,4);

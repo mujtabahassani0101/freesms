@@ -133,3 +133,7 @@ Local validation of the pending layout adapter passes56 report checks and the ma
 - Visible disciplinary menus still require schemas/procedures missing from the supplied Afghan database. Existing compatibility messages do not implement those workflows.
 - Student registration/editing/moves, original mark entry, attendance, payments, non-admin authentication/permissions, imports/exports and remaining report/editor workflows are not proven complete. Preserve all requirements in PLAN.md.
 - Exact empty-fixture warnings (no lessons or no configured school-day counts) are classified as expected validation only when the matching database prerequisite is absent; they do not prove populated workflows.
+
+## User-reported card layout / original reference
+
+The attached1024 card remains unacceptable. Run41589840339 also failed the invented105 reflow's page-count check; business actions and native component checks passed in that run. The next change removes the invented104/105 reflow and1024/1032 compositions, uses the available intact original annual card for the two absent resources, and restores omitted original shape/rotation/area properties.57 disconnected checks and builds passed locally. Windows rendering and visual review remain required. The exact missing1024/1032 designs are still not recovered.
