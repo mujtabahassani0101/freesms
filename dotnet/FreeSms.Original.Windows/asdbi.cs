@@ -1,3 +1,4 @@
+using Microsoft.Data.SqlClient;
 using System;
 using System.ComponentModel;
 using System.Data;
@@ -1053,7 +1054,7 @@ protected override void Dispose(bool A_0)
 					num4 = ((this.m_h.RecordCount != num) ? 1 : 0);
 					goto IL_01e9;
 				case 18:
-					text = text + "tTeacher.fNamF like N'%" + asdaj.b(u.Text.Trim()) + "%'";
+					text = text + "tTeacher.fNamF like @FirstName";
 					num2 = 3;
 					continue;
 				case 11:
@@ -1068,7 +1069,7 @@ protected override void Dispose(bool A_0)
 					goto case 14;
 				case 20:
 				{
-					DataTable dataSource = asdcb.c(asdab.e(), CommandType.Text, "select * from tteacher" + text);
+					DataTable dataSource = asdcb.c(asdab.e(), CommandType.Text, "select * from tteacher" + text, new SqlParameter("@FirstName", "%"+asdaj.b(u.Text.Trim())+"%"), new SqlParameter("@LastName", "%"+asdaj.b(t.Text.Trim())+"%"));
 					this.m_h.DataSource = dataSource;
 					num2 = 26;
 					continue;
@@ -1096,7 +1097,7 @@ protected override void Dispose(bool A_0)
 					num2 = 14;
 					continue;
 				case 2:
-					text = text + "tTeacher.fNamL like N'%" + asdaj.b(t.Text.Trim()) + "%'";
+					text = text + "tTeacher.fNamL like @LastName";
 					num2 = 1;
 					continue;
 				case 16:

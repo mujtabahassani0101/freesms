@@ -1,3 +1,4 @@
+using Microsoft.Data.SqlClient;
 using System;
 using System.ComponentModel;
 using System.Data;
@@ -727,7 +728,7 @@ protected override void Dispose(bool A_0)
 					num = ((this.m_g.SelectedIndex < 0) ? 18 : 3);
 					continue;
 				case 5:
-					text = " tbook.name like N'%" + asdaj.b(this.m_i.Text) + "%'";
+					text = " tbook.name like @SearchName";
 					num = 4;
 					continue;
 				case 3:
@@ -789,7 +790,7 @@ protected override void Dispose(bool A_0)
 					goto case 0;
 				case 0:
 					{
-						DataTable dataSource = asdcb.c(asdab.e(), CommandType.Text, "SELECT     tbook.id,tbook.CodeDars,tbook.Vezarat,  tbook.sort,tbook.Type, tbook.Name,tbook.xpaye,tbook.vahed,tbook.timeWeek,tpaye.name as paye  FROM tBook inner join tpaye on tbook.xpaye=tpaye.id" + text + " order by tbook.sort");
+						DataTable dataSource = asdcb.c(asdab.e(), CommandType.Text, "SELECT     tbook.id,tbook.CodeDars,tbook.Vezarat,  tbook.sort,tbook.Type, tbook.Name,tbook.xpaye,tbook.vahed,tbook.timeWeek,tpaye.name as paye  FROM tBook inner join tpaye on tbook.xpaye=tpaye.id" + text + " order by tbook.sort", new SqlParameter("@SearchName", "%"+asdaj.b(this.m_i.Text)+"%"));
 						y.DataSource = dataSource;
 						return;
 					}

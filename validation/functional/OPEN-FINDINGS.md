@@ -141,3 +141,11 @@ The attached1024 card remains unacceptable. Run41589840339 also failed the inven
 ## Original-card layout resolution (b2517de)
 
 Run41599723649 completed successfully:182 native checks,28 Core,58 reports,5/5 original report actions,13/13 original business actions,89forms, initialization/login and menu responsiveness. Actual original annual/first-term layouts replace the invented reflows/compositions; recovered drawing anchors, area pagination and authored fonts are in use. Final pages were inspected, including independent landscape columns and the12-subject native fixture. See RECOVERED-REPORT-LAYOUTS.md and the final run receipts/logs/images. The two absent catalog-specific layouts are explicit aliases of the available original annual card, not newly claimed recoveries. Existing full-application scope limits above remain open.
+
+## Expanded individual marks and cross-form search (83e87fc follow-up)
+
+Windows run41608010590 passed the original mark Save/Edit/Cancel baseline and out-of-range rejection, but the new harness then incorrectly tried to commit a fractional value into the authored M1 Number0 column. Native validation correctly rejected that edit. The test now asserts rejection without rounding/data loss and uses an integer for the later transaction/lock scenarios. No claim is made that those later assertions passed in this failed run. Its functional summary and full mark log/verified artifact receipt are archived.
+
+The pending extension includes a real annual 100-point entry/reopen/Cancel and the recovered M2/Mark persistence convention. Local compilation passes. Windows execution remains required.
+
+Static cross-section review also found raw text concatenation in eight name filters across teacher, driver, subject, individual marks and previous-grade marks. These queries now pass search text as SQL parameters. The original teacher/driver/mark button scenarios include apostrophe/SQL-punctuation searches; subject and previous-grade populated searches still need dedicated native cases. Office-dependent import/export and missing discipline schemas remain open alongside PLAN.md.

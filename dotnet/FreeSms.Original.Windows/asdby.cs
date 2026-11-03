@@ -804,11 +804,11 @@ protected override void Dispose(bool A_0)
 					}
 					continue;
 				case 28:
-					text = text + " tStudent.FName Like N'%" + this.m_e.Text + "%'";
+					text = text + " tStudent.FName Like @FirstName";
 					num = 35;
 					continue;
 				case 27:
-					dataTable = asdcb.c(asdab.e(), CommandType.Text, "SELECT     tmpstd.sort, tmpstd.id, tmpstd.Code, tmpstd.FName, tmpstd.LName, tmpstd.PName,round( tmpMark.MarkDoreh,2) Mark,tmpMark.gpaye,tmpMark.gclass from\r\n                    (SELECT     tYear_Student.sort, tStudent.id, tStudent.Code, tStudent.FName, tStudent.LName, tStudent.PName, tStudent.NumberAsas\r\nFROM         tStudent INNER JOIN\r\n                      tYear_Student ON tStudent.id = tYear_Student.xStudent\r\n                    WHERE   (tYear_Student.xYear = " + asdaj.__field_a + ")  and   (tYear_Student.xPaye = " + u.SelectedValue.ToString() + ") AND tYear_Student.xClass = " + s.SelectedValue.ToString() + text + ") tmpstd left outer join\r\n                    (SELECT     xStudent, MarkDoreh,gClass,gPaye\r\n                    FROM         tMarkDoreh\r\n                    WHERE     (typ = 5) AND (Xtest = " + q.SelectedValue.ToString() + ")) tmpMark on tmpstd.id=tmpMark.xStudent");
+					dataTable = asdcb.c(asdab.e(), CommandType.Text, "SELECT     tmpstd.sort, tmpstd.id, tmpstd.Code, tmpstd.FName, tmpstd.LName, tmpstd.PName,round( tmpMark.MarkDoreh,2) Mark,tmpMark.gpaye,tmpMark.gclass from\r\n                    (SELECT     tYear_Student.sort, tStudent.id, tStudent.Code, tStudent.FName, tStudent.LName, tStudent.PName, tStudent.NumberAsas\r\nFROM         tStudent INNER JOIN\r\n                      tYear_Student ON tStudent.id = tYear_Student.xStudent\r\n                    WHERE   (tYear_Student.xYear = " + asdaj.__field_a + ")  and   (tYear_Student.xPaye = " + u.SelectedValue.ToString() + ") AND tYear_Student.xClass = " + s.SelectedValue.ToString() + text + ") tmpstd left outer join\r\n                    (SELECT     xStudent, MarkDoreh,gClass,gPaye\r\n                    FROM         tMarkDoreh\r\n                    WHERE     (typ = 5) AND (Xtest = " + q.SelectedValue.ToString() + ")) tmpMark on tmpstd.id=tmpMark.xStudent", new SqlParameter("@FirstName", "%"+this.m_e.Text+"%"), new SqlParameter("@LastName", "%"+this.m_g.Text+"%"));
 					flag = dataTable.Rows.Count <= 0;
 					num = 30;
 					continue;
@@ -869,7 +869,7 @@ protected override void Dispose(bool A_0)
 					}
 					goto case 13;
 				case 14:
-					text = text + " tStudent.LName Like N'%" + this.m_g.Text + "%'";
+					text = text + " tStudent.LName Like @LastName";
 					num = 34;
 					continue;
 				case 32:
@@ -1675,7 +1675,7 @@ protected override void Dispose(bool A_0)
             return;
         }
         // Validate without rewriting the edited value. The recovered integer
-        // parser silently replaced valid fractional marks with an empty cell.
+        // parser rewrote M1 even when another component was being edited.
         if(!args.Column.Key.StartsWith("m",StringComparison.OrdinalIgnoreCase) && !args.Column.Key.Equals("CountAb",StringComparison.OrdinalIgnoreCase))return;
         try
         {

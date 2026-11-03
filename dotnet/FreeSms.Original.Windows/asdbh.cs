@@ -707,7 +707,7 @@ protected override void Dispose(bool A_0)
 					}
 					goto case 16;
 				case 0:
-					dataTable = asdcb.c(asdab.e(), CommandType.Text, "SELECT     tmpstd.sort, tmpstd.id, tmpstd.Code, tmpstd.FName, tmpstd.LName, tmpstd.PName,tmpMark.Mark,tmpMark.gclass from\r\n                    (SELECT     tYear_Student.sort, tStudent.id, tStudent.Code, tStudent.FName, tStudent.LName, tStudent.PName, tStudent.NumberAsas\r\n                    FROM tStudent INNER JOIN\r\n                      tYear_Student ON tStudent.id = tYear_Student.xStudent\r\n                    WHERE   (tYear_Student.xYear = " + asdaj.__field_a + ") AND tYear_Student.xClass = " + r.SelectedValue.ToString() + text + ") tmpstd left outer join\r\n                    (SELECT     xStudent, mark,gClass\r\n                    FROM         tMarkAgo\r\n                    WHERE     (typ = 5) AND (xpaye = " + text2 + ")) tmpMark on tmpstd.id=tmpMark.xStudent");
+					dataTable = asdcb.c(asdab.e(), CommandType.Text, "SELECT     tmpstd.sort, tmpstd.id, tmpstd.Code, tmpstd.FName, tmpstd.LName, tmpstd.PName,tmpMark.Mark,tmpMark.gclass from\r\n                    (SELECT     tYear_Student.sort, tStudent.id, tStudent.Code, tStudent.FName, tStudent.LName, tStudent.PName, tStudent.NumberAsas\r\n                    FROM tStudent INNER JOIN\r\n                      tYear_Student ON tStudent.id = tYear_Student.xStudent\r\n                    WHERE   (tYear_Student.xYear = " + asdaj.__field_a + ") AND tYear_Student.xClass = " + r.SelectedValue.ToString() + text + ") tmpstd left outer join\r\n                    (SELECT     xStudent, mark,gClass\r\n                    FROM         tMarkAgo\r\n                    WHERE     (typ = 5) AND (xpaye = " + text2 + ")) tmpMark on tmpstd.id=tmpMark.xStudent", new SqlParameter("@FirstName", "%"+this.m_e.Text+"%"), new SqlParameter("@LastName", "%"+this.m_g.Text+"%"));
 					flag = dataTable.Rows.Count <= 0;
 					num = 17;
 					continue;
@@ -760,11 +760,11 @@ protected override void Dispose(bool A_0)
 				case 15:
 					return;
 				case 3:
-					text = text + " tStudent.LName Like N'%" + this.m_g.Text + "%'";
+					text = text + " tStudent.LName Like @LastName";
 					num = 18;
 					continue;
 				case 16:
-					text = text + " tStudent.FName Like N'%" + this.m_e.Text + "%'";
+					text = text + " tStudent.FName Like @FirstName";
 					num = 6;
 					continue;
 				case 6:

@@ -1,3 +1,4 @@
+using Microsoft.Data.SqlClient;
 using System;
 using System.ComponentModel;
 using System.Data;
@@ -814,7 +815,7 @@ protected override void Dispose(bool A_0)
 					goto IL_0152;
 				case 12:
 				{
-					DataTable dataSource = asdcb.c(asdab.e(), CommandType.Text, "select * from tDriver" + text);
+					DataTable dataSource = asdcb.c(asdab.e(), CommandType.Text, "select * from tDriver" + text, new SqlParameter("@SearchName", "%"+asdaj.b(p.Text.Trim())+"%"));
 					this.m_h.DataSource = dataSource;
 					num2 = 7;
 					continue;
@@ -870,7 +871,7 @@ protected override void Dispose(bool A_0)
 					num2 = ((y != 2) ? 20 : 14);
 					continue;
 				case 0:
-					text = text + "name like N'%" + asdaj.b(p.Text.Trim()) + "%'";
+					text = text + "name like @SearchName";
 					num2 = 10;
 					continue;
 				case 6:

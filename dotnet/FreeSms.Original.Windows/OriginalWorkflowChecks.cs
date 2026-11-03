@@ -608,6 +608,9 @@ internal static class OriginalWorkflowChecks
             Dialog(()=>Click(form,"o"),next?"اطلاعات ذخیره شد . آیا مایل هستید نفر بعدی نمایش داده شود":"اطلاعات ذخیره شد",next?7:1);
         }
         object Value(int id,int test)=>db.Scalar("SELECT M1 FROM tMark WHERE xStudent=@p0 AND Xtest=@p1 AND xbook=@p2",new object[]{id,test,book});
+        Field<Control>(form,"m_e").Text="' AND 1=0 --";Click(form,"m_j");
+        Require(Field<GridEX>(form,"m_i").RowCount==0,"Mark-entry search punctuation was executed as SQL.");
+        Field<Control>(form,"m_e").Text="";Click(form,"m_j");
         Open();var grid=Field<GridEX>(form,"w");
         EditGridCell(grid,grid.Row,"m1","۲۵");Save();
         Require(Convert.ToDecimal(Value(student,exam))==25,"Original mark Save did not persist the entered Persian digits.");
@@ -625,8 +628,12 @@ internal static class OriginalWorkflowChecks
         db.Execute("UPDATE tExam SET procc=1 WHERE id=@p0",new object[]{exam});
         Dialog(()=>Click(form,"o"),"نمره وارد شده خارج از محدوده است",1);
         Require(Convert.ToDecimal(Value(student,exam))==28 && Convert.ToInt32(db.Scalar("SELECT procc FROM tExam WHERE id=@p0",new object[]{exam}))==1,"Rejected mark changed persisted data or processing status.");
-        EditGridCell(grid,grid.Row,"m1","27.5");
-        Require(Convert.ToDecimal(grid.GetRow(grid.Row).Cells["m1"].Value)==27.5m,"Fractional editing silently erased or rounded a valid mark.");
+        EditGridCell(grid,grid.Row,"m1","28");
+        var markView=grid.Controls.OfType<DataGridView>().Single();
+        Require(markView.BeginEdit(true),"Mark cell did not open for rejected-input check.");
+        ((TextBox)markView.EditingControl).Text="27.5";
+        Require(!grid.TryEndEdit() && Convert.ToDecimal(grid.GetRow(grid.Row).Cells["m1"].Value)==28,"Integer mark column accepted or rounded fractional input.");
+        markView.CancelEdit();EditGridCell(grid,grid.Row,"m1","27");
         int secondBook=Convert.ToInt32(db.Scalar("SELECT id FROM tBook WHERE codedars=5995002"));
         Select(form,secondBook,"w","xbook");EditGridCell(grid,grid.Row,"m1","30");
         db.Execute("CREATE TRIGGER native_mark_ui_abort ON tMark AFTER INSERT,UPDATE AS BEGIN IF EXISTS(SELECT 1 FROM inserted WHERE xbook="+secondBook+" AND xStudent="+student+") THROW 51002,'owned mark rollback fixture',1; END");
@@ -648,13 +655,28 @@ internal static class OriginalWorkflowChecks
             release.Tick+=(sender,args)=>{release.Stop();transaction.Rollback();heartbeat=true;};release.Start();Save();
             Require(heartbeat,"Mark Save blocked the UI while waiting for SQL.");
         }
-        Require(Convert.ToDecimal(Value(student,exam))==27.5m && Convert.ToDecimal(db.Scalar("SELECT M1 FROM tMark WHERE xStudent=@p0 AND Xtest=@p1 AND xbook=@p2",new object[]{student,exam,secondBook}))==30,"Retry did not commit the complete batch.");
+        Require(Convert.ToDecimal(Value(student,exam))==27m && Convert.ToDecimal(db.Scalar("SELECT M1 FROM tMark WHERE xStudent=@p0 AND Xtest=@p1 AND xbook=@p2",new object[]{student,exam,secondBook}))==30,"Retry did not commit the complete batch.");
         Require(Convert.ToInt32(db.Scalar("SELECT procc FROM tExam WHERE id=@p0",new object[]{exam}))==0,"Successful marks did not invalidate calculated results.");
         Open();Select(form,secondBook,"w","xbook");EditGridCell(grid,grid.Row,"m1","");Save();
         Require(db.Scalar("SELECT id FROM tMark WHERE xStudent=@p0 AND Xtest=@p1 AND xbook=@p2",new object[]{student,exam,secondBook})==null,"Clearing all components did not delete the selected subject's mark.");
-        Require(Convert.ToDecimal(Value(student,exam))==27.5m && Convert.ToDecimal(Value(peer,exam))==10 && Convert.ToDecimal(Value(student,other))==15,"Clearing changed another subject, student or exam.");
-        Click(form,"p");Click(form,"m_d");
-        log("PASS original individual mark entry validates bounds, retains fractional values, rolls back all subjects on late SQL failure, retries pending edits, remains responsive under a row lock, clears only the selected mark, reloads edits and preserves peer/other-exam marks");
+        Require(Convert.ToDecimal(Value(student,exam))==27m && Convert.ToDecimal(Value(peer,exam))==10 && Convert.ToDecimal(Value(student,other))==15,"Clearing changed another subject, student or exam.");
+        Click(form,"p");
+        int annual=Convert.ToInt32(db.Scalar("SELECT id FROM tExam WHERE xYear=1414 AND term=3"));
+        db.Execute("UPDATE tYear_Student SET MarkTerm3_From100=1 WHERE xStudent=@p0 AND xYear=1414",new object[]{student});
+        Field<UIComboBox>(form,"q").SelectedValue=annual.ToString();
+        Require(Field<Control>(form,"y").Text=="100","Annual manual-entry limit differs from the original 100-point mode.");
+        Open();grid=Field<GridEX>(form,"w");EditGridCell(grid,grid.Row,"m1","101");
+        Dialog(()=>Click(form,"o"),"نمره وارد شده خارج از محدوده است",1);
+        Require(db.Scalar("SELECT id FROM tMark WHERE xStudent=@p0 AND Xtest=@p1 AND xbook=@p2",new object[]{student,annual,book})==null,"Out-of-range annual mark was stored.");
+        EditGridCell(grid,grid.Row,"m1","75");Save();
+        var annualMark=db.Query("SELECT M1,M2,Mark FROM tMark WHERE xStudent=@p0 AND Xtest=@p1 AND xbook=@p2",new object[]{student,annual,book}).Single();
+        Require(annualMark["M1"]==null && Convert.ToDecimal(annualMark["M2"])==75 && Convert.ToDecimal(annualMark["Mark"])==75,"Annual manual mark did not preserve the original M2/total convention.");
+        Open();grid=Field<GridEX>(form,"w");
+        Require(Convert.ToDecimal(grid.GetRow(grid.Row).Cells["m1"].Value)==75,"Annual mark did not reload in its displayed input column.");
+        EditGridCell(grid,grid.Row,"m1","80");Click(form,"p");
+        Require(Convert.ToDecimal(db.Scalar("SELECT Mark FROM tMark WHERE xStudent=@p0 AND Xtest=@p1 AND xbook=@p2",new object[]{student,annual,book}))==75 && Convert.ToDecimal(Value(student,exam))==27m,"Annual Cancel modified saved annual or half-year marks.");
+        Click(form,"m_d");
+        log("PASS original individual mark entry validates bounds, rejects fractional input without data loss, rolls back all subjects on late SQL failure, retries pending edits, remains responsive under a row lock, verifies actual annual 100-point M2 storage, clears only the selected mark, reloads edits and preserves peer/other-exam marks");
     }
     private static void Attendance(Form form,Database db,Action<string> log)
     {
@@ -802,7 +824,7 @@ internal static class OriginalWorkflowChecks
             Dialog(()=>Click(form,save),"نام خانوادگي را وارد کنيد",1);
             Field<Control>(form,"m_m").Text="آزمایشی";
         }
-        string name=asdaj.b("آزمون ثبت "+scenario);
+        string name=asdaj.b("آزمون ثبت "+scenario+" ' نقل");
         string value=teacher ? "o'neil@example.invalid" : "توضیح ' فارسی ; SELECT 1 --";
         string secret="test'only";
         Field<Control>(form,nameField).Text=name;
@@ -813,6 +835,13 @@ internal static class OriginalWorkflowChecks
         int id=Convert.ToInt32(saved["id"]);
         Require(Convert.ToString(saved[valueColumn])==value,"Quoted input was not saved as data.");
         Require(Convert.ToInt32(db.Scalar("SELECT COUNT(*) FROM "+table))==before+1,"New did not insert exactly one record.");
+        string searchField=teacher?"u":"p";
+        Field<Control>(form,searchField).Text="'";
+        Require(Field<GridEX>(form,"m_h").RowCount>0,"Quoted name search lost the matching persisted person.");
+        Select(form,id,"m_h");
+        Field<Control>(form,searchField).Text="' AND 1=0 --";
+        Require(Field<GridEX>(form,"m_h").RowCount==0,"Search punctuation was executed as SQL instead of treated as data.");
+        Field<Control>(form,searchField).Text="";
         // A second teacher must not inherit the first teacher's credentials from stale controls.
         if(teacher)
         {
