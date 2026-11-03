@@ -241,6 +241,7 @@ internal static class OriginalWorkflowChecks
         if (scenario == "discount") Discount(form, db, log);
         else if (scenario == "school") School(form, db, log);
         else if (scenario == "class") ClassManagement(form,db,log);
+        else if (scenario == "subject") Subject(form,db,log);
         else if (scenario == "authentication") Authentication(db,log);
         else if (scenario == "student-delete") StudentDelete(form, db, log);
         else if (scenario == "student-edit") StudentEdit(form,db,log);
@@ -404,6 +405,44 @@ internal static class OriginalWorkflowChecks
         Require(view.EditingControl is TextBox,"Grid did not open a text editor.");
         ((TextBox)view.EditingControl).Text=value;
         Require(grid.TryEndEdit(),"Grid rejected a valid input: "+key);
+    }
+    private static void Subject(Form form,Database db,Action<string> log)
+    {
+        int Count()=>Convert.ToInt32(db.Scalar("SELECT COUNT(*) FROM tBook"));
+        int before=Count();string name=asdaj.b("مضمون ' آزمایشی");
+        Click(form,"w");Field<UIComboBox>(form,"n").SelectedValue="1";
+        Dialog(()=>Click(form,"s"),"نام درس را وارد کنيد",1);
+        Field<Control>(form,"t").Text=name;Field<Control>(form,"ad").Text="1";Field<Control>(form,"ac").Text="1";
+        Field<Control>(form,"z").Text="30000";Field<Control>(form,"ae").Text="5997001";
+        Field<CheckBox>(form,"ag").Checked=true;Click(form,"s");
+        var saved=db.Query("SELECT id,Name,CodeDars,Vezarat FROM tBook WHERE xPaye=1 AND CodeDars=5997001").Single();int id=saved.Int("id");
+        Require(Count()==before+1 && saved.Text("Name")==name && Convert.ToBoolean(saved["Vezarat"]),"Subject Save did not preserve the quoted name/code/ministry flag.");
+        void Search(string text)
+        {
+            var input=Field<Control>(form,"m_i");input.Text=text;
+            typeof(Control).GetMethod("OnKeyUp",BindingFlags.Instance|BindingFlags.NonPublic).Invoke(input,new object[]{new KeyEventArgs(Keys.A)});
+        }
+        Search("'");
+        Select(form,id,"y");
+        Search("' AND 1=0 --");
+        Require(Field<GridEX>(form,"y").RowCount==0,"Subject search treated punctuation as SQL.");
+        Search("");Select(form,id,"y");Click(form,"x");
+        Require(Field<Control>(form,"t").Text==name && !Field<UIComboBox>(form,"n").Enabled,"Subject Edit did not reload the selected name and preserve its grade.");
+        string edited=asdaj.b("اصلاح ' مضمون");Field<Control>(form,"t").Text=edited;Click(form,"s");
+        Require(Count()==before+1 && Convert.ToString(db.Scalar("SELECT Name FROM tBook WHERE id=@p0",new object[]{id}))==edited,"Subject Edit did not update the selected identity.");
+        Select(form,id,"y");Click(form,"x");Field<Control>(form,"t").Text="لغو";Click(form,"r");
+        Require(Convert.ToString(db.Scalar("SELECT Name FROM tBook WHERE id=@p0",new object[]{id}))==edited,"Subject Cancel changed saved data.");
+        Click(form,"w");Field<UIComboBox>(form,"n").SelectedValue="1";Field<Control>(form,"t").Text=edited;
+        Field<Control>(form,"ad").Text="1";Field<Control>(form,"ac").Text="1";Field<Control>(form,"z").Text="30001";Field<Control>(form,"ae").Text="5997002";
+        Dialog(()=>Click(form,"s"),"نام درس را تکراری می باشد",1);Require(Count()==before+1,"Duplicate subject name inserted another row.");
+        Field<Control>(form,"t").Text="مضمون متفاوت";Field<Control>(form,"ae").Text="5997001";
+        Dialog(()=>Click(form,"s"),"کد درس را تکراری می باشد",1);Click(form,"r");
+        Select(form,id,"y");Dialog(()=>Click(form,"v"),"آیا از حذف درس اطمینان دارید",7);
+        Require(Count()==before+1,"Declining subject deletion removed the row.");
+        Dialog(()=>Click(form,"v"),"آیا از حذف درس اطمینان دارید",6);
+        Require(Count()==before && db.Scalar("SELECT id FROM tBook WHERE id=@p0",new object[]{id})==null,"Confirmed subject deletion did not remove only its own row.");
+        log("PASS original subject required-name/quoted Save/Edit/Cancel/duplicate-name/duplicate-code/search/delete-confirmation workflow preserves identity, grade and unrelated subjects");
+        Click(form,"j");
     }
     private static void ClassManagement(Form form,Database db,Action<string> log)
     {

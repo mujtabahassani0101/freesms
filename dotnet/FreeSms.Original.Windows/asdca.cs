@@ -1099,7 +1099,7 @@ protected override void Dispose(bool A_0)
 					return;
 				case 24:
 				{
-					string text2 = asdcb.a(asdab.e(), CommandType.Text, "SELECT     COUNT(id) AS countId FROM tBook WHERE     (xPaye = " + n.SelectedValue.ToString() + ") AND (Name = N'" + asdaj.b(t.Text) + "')").ToString();
+					string text2 = asdcb.a(asdab.e(), CommandType.Text, "SELECT     COUNT(id) AS countId FROM tBook WHERE     (xPaye = " + n.SelectedValue.ToString() + ") AND (Name = @Name)", new SqlParameter("@Name", asdaj.b(t.Text))).ToString();
 					flag = !(text2 != "0");
 					num = 55;
 					continue;
@@ -1149,7 +1149,7 @@ protected override void Dispose(bool A_0)
 				case 17:
 					if (flag)
 					{
-						string text2 = asdcb.a(asdab.e(), CommandType.Text, "SELECT     COUNT(id) AS countId FROM tBook WHERE  id<>" + y.SelectedItems[0].GetRow().Cells["id"].Value.ToString() + " and (xPaye = " + n.SelectedValue.ToString() + ") AND (Name = N'" + asdaj.b(t.Text) + "')").ToString();
+						string text2 = asdcb.a(asdab.e(), CommandType.Text, "SELECT     COUNT(id) AS countId FROM tBook WHERE  id<>" + y.SelectedItems[0].GetRow().Cells["id"].Value.ToString() + " and (xPaye = " + n.SelectedValue.ToString() + ") AND (Name = @Name)", new SqlParameter("@Name", asdaj.b(t.Text))).ToString();
 						flag = !(text2 != "0");
 						num = 13;
 					}
@@ -1209,7 +1209,7 @@ protected override void Dispose(bool A_0)
 				case 6:
 					if (flag)
 					{
-						asdcb.d(asdab.e(), CommandType.Text, "update tbook set Name=N'" + asdaj.b(t.Text) + "',Type=" + text + ",vahed=" + ad.Text + ",timeWeek=" + ac.Text + ",sort=" + z.Text + ",codeDars = " + ae.Text + ",Vezarat=" + text3 + ",xExportRpt=null where id=" + y.SelectedItems[0].GetRow().Cells["id"].Value.ToString());
+						asdcb.d(asdab.e(), CommandType.Text, "update tbook set Name=@Name,Type=" + text + ",vahed=" + ad.Text + ",timeWeek=" + ac.Text + ",sort=" + z.Text + ",codeDars = " + ae.Text + ",Vezarat=" + text3 + ",xExportRpt=null where id=" + y.SelectedItems[0].GetRow().Cells["id"].Value.ToString(), new SqlParameter("@Name", asdaj.b(t.Text)));
 						num = 44;
 					}
 					else
@@ -1223,7 +1223,7 @@ protected override void Dispose(bool A_0)
 						num = 18;
 						continue;
 					}
-					asdcb.d(asdab.e(), CommandType.Text, "INSERT INTO tbook (xPaye,Name,vahed,timeWeek,Type,sort,SortOneEntry,CodeDars,Vezarat)VALUES(" + n.SelectedValue.ToString() + ", N'" + asdaj.b(t.Text) + "'," + ad.Text + "," + ac.Text + "," + text + "," + z.Text + "," + z.Text + "," + ae.Text + "," + text3 + ")");
+					asdcb.d(asdab.e(), CommandType.Text, "INSERT INTO tbook (xPaye,Name,vahed,timeWeek,Type,sort,SortOneEntry,CodeDars,Vezarat)VALUES(" + n.SelectedValue.ToString() + ", @Name," + ad.Text + "," + ac.Text + "," + text + "," + z.Text + "," + z.Text + "," + ae.Text + "," + text3 + ")", new SqlParameter("@Name", asdaj.b(t.Text)));
 					t.Text = "";
 					t.Focus();
 					num = 47;

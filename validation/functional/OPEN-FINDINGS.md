@@ -149,3 +149,9 @@ Windows run41608010590 passed the original mark Save/Edit/Cancel baseline and ou
 The pending extension includes a real annual 100-point entry/reopen/Cancel and the recovered M2/Mark persistence convention. Local compilation passes. Windows execution remains required.
 
 Static cross-section review also found raw text concatenation in eight name filters across teacher, driver, subject, individual marks and previous-grade marks. These queries now pass search text as SQL parameters. The original teacher/driver/mark button scenarios include apostrophe/SQL-punctuation searches; subject and previous-grade populated searches still need dedicated native cases. Office-dependent import/export and missing discipline schemas remain open alongside PLAN.md.
+
+## Expanded marks/search confirmed; subjects under test
+
+Run41608908198 passed all13 business and5 report scenarios. Its full individual-mark, teacher/driver quoted-search logs and verified artifact receipt are archived. Individual marks passed the new multi-subject rollback/retry, SQL-lock/UI heartbeat, bound/fraction rejection, clearing and actual annual100-point M2 storage checks. These replace the earlier pending status for those specific assertions.
+
+Subject Save/Edit/duplicate-name checks also concatenated the title directly into SQL. Their names are now parameters, preserving the existing numeric/type/calculation branches. The next Windows scenario exercises required name, quoted Save/Edit, exact identity/grade/flag persistence, Cancel, duplicate name/code, actual KeyUp search and both delete confirmation choices. Subject dependency protection, numeric rejection, responsiveness and concurrent changes still need deeper coverage; the whole application remains incomplete.
