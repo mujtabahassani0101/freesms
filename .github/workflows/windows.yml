@@ -76,6 +76,7 @@ jobs:
             validation/native-controls/persian-*.png
             validation/native-controls/latin-*.png
             validation/native-controls/original-column-anchors.png
+            validation/native-controls/original-short-persian-field.png
             validation/native-controls/original-annual-twelve-subjects-page-*.png
           if-no-files-found: warn
       - name: Exercise original report preview action with an isolated database

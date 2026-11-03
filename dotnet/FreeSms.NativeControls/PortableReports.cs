@@ -217,6 +217,10 @@ namespace FreeSms.NativeControls
                     using var font = ReportFonts.Create((string)fontNode?.Attribute("family") ?? "Tahoma", Math.Max(1, size * 100 / 72), (FontStyle)((int?)fontNode?.Attribute("style") ?? 0));
                     using var brush = new SolidBrush(ColorValue(obj.Element("Color"), Color.Black));
                     using var format = new StringFormat(StringFormat.GenericTypographic) { Trimming = StringTrimming.EllipsisCharacter };
+                    // Original Persian fonts have generous line-cell metrics.
+                    // Their glyphs fit short Crystal fields even when a complete
+                    // GDI+ line cell does not; LineLimit would omit the text entirely.
+                    format.FormatFlags &= ~StringFormatFlags.LineLimit;
                     var alignment = obj.Element("format")?.Element("HorizontalAlignment")?.Value;
                     bool rightToLeft=Regex.IsMatch(text, "[\u0600-\u06ff]");
                     // GDI+ Near/Far follow reading direction; report alignments are physical.

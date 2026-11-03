@@ -300,6 +300,13 @@ internal static class Program
                 bool aligned=alignment=="LeftAlign" ? first>=10 && first<50 : alignment=="RightAlign" ? last>280 && last<=310 : first>100 && last<220;
                 Check(last>=first && aligned,"physical "+alignment+" preserved for "+(text=="School"?"Latin":"Persian")+" report text");
             }
+            var shortPersianField=XElement.Parse("<report><sections><section kind='Detail' height='600'><object><Kind>TextObject</Kind><Left>144</Left><Top>0</Top><Width>1440</Width><Height>360</Height><Font family='B Badr' size='12' style='1'/><Text>حاضر</Text></object></section></sections></report>");
+            using(var document=new PortableReportDocument(new ReportModel(shortPersianField),ReportFixtures.Create(shortPersianField,1)))
+            {
+                string path=Path.Combine(output,"original-short-persian-field.png");document.SavePageImage(path,0,100);using var bitmap=new Bitmap(path);int ink=0;
+                for(int y=0;y<25;y++)for(int x=10;x<110;x++)if(bitmap.GetPixel(x,y).GetBrightness()<.6f)ink++;
+                Check(ink>20,"original Persian glyphs remain visible in a short fixed-height field despite larger font line metrics");
+            }
             var columns=XElement.Parse("<report><sections><section kind='Detail' height='1440'><object subreport='Sub1'><Kind>SubreportObject</Kind><Left>1440</Left><Top>0</Top><Width>3000</Width><Height>144</Height><report><sections><section kind='Detail' height='720'/></sections></report></object><object><Kind>BoxObject</Kind><Left>0</Left><Top>720</Top><Width>720</Width><Height>720</Height><border><BackgroundColor>-16711936</BackgroundColor></border></object></section></sections></report>");
             var columnsInput=ReportFixtures.Create(columns,1);columnsInput.Subreports["Sub1"]=ReportFixtures.Create(columns.Descendants("report").Single(),20);
             using(var document=new PortableReportDocument(new ReportModel(columns),columnsInput))
