@@ -13,7 +13,13 @@ using Janus.Windows.GridEX;
 internal static class OriginalWorkflowChecks
 {
     private static Action<string> diagnostic = message => { };
-    private static T Field<T>(Form form, string name) => (T)form.GetType().GetField(name, BindingFlags.Instance | BindingFlags.NonPublic).GetValue(form);
+    private static T Field<T>(Form form, string name)
+    {
+        var field=form.GetType().GetField(name,BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public)
+            ?? throw new InvalidOperationException("Original workflow field was not found: "+form.GetType().Name+"."+name);
+        return field.GetValue(form) is T value ? value
+            : throw new InvalidOperationException("Original workflow field has an unexpected type or null value: "+form.GetType().Name+"."+name);
+    }
     private static void Click(Form form, string name) => Field<UIButton>(form, name).PerformClick();
     private static void Require(bool condition, string message) { if (!condition) throw new InvalidOperationException(message); }
     private static void Select(Form form, int id, string field = "m_b", string key = "id")

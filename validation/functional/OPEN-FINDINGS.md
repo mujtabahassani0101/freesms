@@ -28,6 +28,10 @@ The full application goal is not complete. The 448-click inventory is a starting
 - The single-student successful-save branch now displays the same edit confirmation as the last student in a populated list, before closing. The harness selects the exact expected message using both navigation-list contents and button state. Class/grade changes, persistence and late photo-failure rollback assertions are retained. This repair requires another Windows execution.
 - Nine other business scenarios passed, as did report previews, native components, Core/database, original-form rendering, login and menu probes. Functional logs and the SHA256-verified artifact receipt are archived in runs/41537278992; this failed run is not a verified release.
 
+## Follow-up registration diagnostic (run 41538737957)
+
+Source25d32bd passed the same initial registration and rejection checks and nine other workflows. Edit then stopped in the test helper before Save: Field<T> searched only non-public fields, but asdat.ce is public. The actual stack identifies Field<T>/EditSave, not the production save handler. The helper now resolves both public and non-public instance fields and reports missing/null/type errors explicitly. The single-student confirmation and downstream class/grade/rollback checks remain awaiting Windows verification. Functional logs and their verified artifact receipt are archived in runs/41538737957. The new individual-mark baseline in MARK-ENTRY.md is also queued for native execution.
+
 ## Repairs awaiting a fresh Windows run
 
 - The student fixture now allocates three unused, in-range display orders from the disposable bank. Production class validation was retained. Registration and its initial rejection/persistence checks ran in41537278992 as detailed above; edit/class/grade-change completion still needs a passing Windows run.
