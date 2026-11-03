@@ -66,6 +66,19 @@ internal static class Program
                 Application.DoEvents();
                 Check(stable && callbacks==2 && Convert.ToInt32(details.GetRow(0).Cells["mark"].Value)==51,"native selection completes before dependent grid rebinding and editor focus");
             }
+            using(var hiddenPanel=new Panel{Dock=DockStyle.Fill,Visible=false})
+            using(var hiddenDetails=new GridEX{Dock=DockStyle.Fill})
+            {
+                hiddenPanel.Controls.Add(hiddenDetails);window.Controls.Add(hiddenPanel);
+                DataTable Data(int mark){var result=new DataTable();result.Columns.Add("mark",typeof(int));result.Rows.Add(mark);return result;}
+                hiddenDetails.DataSource=Data(15);hiddenDetails.CurrentColumn=hiddenDetails.RootTable.Columns["mark"];hiddenDetails.SelectCurrentCellText();
+                var native=hiddenDetails.Controls.OfType<DataGridView>().Single();
+                Check(native.EditingControl==null,"a hidden dependent grid does not create a native editor before its panel is opened");
+                hiddenDetails.DataSource=Data(25);hiddenDetails.CurrentColumn=hiddenDetails.RootTable.Columns["mark"];hiddenDetails.SelectCurrentCellText();
+                Check(native.EditingControl==null && Convert.ToInt32(hiddenDetails.GetRow(0).Cells["mark"].Value)==25,"hidden dependent data can be replaced and its column selected without a stale editing control");
+                hiddenPanel.Visible=true;hiddenPanel.BringToFront();Application.DoEvents();hiddenDetails.Select();hiddenDetails.SelectCurrentCellText();
+                Check(native.IsCurrentCellInEditMode && native.EditingControl is TextBox,"opening the dependent panel still enables normal cell editing");hiddenDetails.EndEdit();
+            }
             using(var payments=new GridEX{Dock=DockStyle.Fill})
             {
                 window.Controls.Add(payments);payments.BringToFront();

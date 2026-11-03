@@ -82,7 +82,7 @@ jobs:
         run: |
           $app = Join-Path $PWD 'dist/FreeSMS-Net10/FreeSMS.exe'
           $process = Start-Process $app -ArgumentList '--verify-report-actions' -PassThru
-          if (-not $process.WaitForExit(300000)) { $process.Kill(); throw 'Report action verification timed out.' }
+          if (-not $process.WaitForExit(420000)) { $process.Kill(); throw 'Report action verification timed out.' }
           Get-Content dist/FreeSMS-Net10/navigation-checks/report-actions-summary.log -ErrorAction SilentlyContinue
           if ($process.ExitCode -ne 0) {
             Get-Content dist/FreeSMS-Net10/navigation-checks/*_report_*.log -ErrorAction SilentlyContinue

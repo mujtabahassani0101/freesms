@@ -80,6 +80,20 @@ Full functional logs and the verified artifact receipt are archived in runs/4155
 
 The authentication scenario now creates an owned non-admin account with section1/grade1, checks its actual login and exact loaded permissions, opens the allowed original class form and verifies the original student form denies section2. Separate logins with missing section permissions and missing grade permissions must show their original warnings without authenticating. Cleanup deletes the owned account and restores prior session/password state. The extension compiles locally; native execution and the rest of the permission matrix remain pending.
 
+## Latest native and functional evidence (run 41560201196)
+
+Source4a3a0eb passed171 native checks, including both dependent-grid selection regressions. Eleven of13 business cases passed again. The complete administrator/password-change and limited-user scenario passed: an owned non-admin authenticated with section1/grade1, the allowed original class form loaded, the original student form denied access, and accounts lacking section/grade permissions remained unauthenticated. Student registration/edit/grade rollback also passed again.
+
+The original mark workflow still failed when selecting a student and changing a column in its hidden mark panel. SelectCurrentCellText previously began native editing even for an invisible grid with no handle. It now skips editor creation until the grid is visible and its handle exists. A dedicated hidden-panel regression verifies source/column replacement while hidden and normal editing after opening. This is the next repair to test, not a claim that171 green component checks proved the original workflow fixed.
+
+Class duplicate-name validation still did not report a collision. Static inspection found Core Values.Text normalizes Arabic letters to Persian, whereas recovered asdaj.b normalizes Persian letters to Arabic. The fixture created through Core and entry through the original UI therefore differed in code points. A shared year-scoped, parameterized ClassNameExists comparison now normalizes both forms and spaces; both Core SaveClass and original class Save use it. The fixture/test retains the mixed-route input and expected duplicate rejection. Dependency/deletion assertions remain pending.
+
+Verified artifact receipts, native171 log and full functional logs are archived in runs/41560201196. The overall failed binary is not a verified release.
+
+## Additional populated report scenarios prepared
+
+The original-button preview matrix now includes first-term cards104 (portrait) and105 (landscape), in addition to101/1024/1032. They use the existing SQL fixture's raw marks30/10 and independently known class mean20, requiring actual main input values, student photos and every-page rendering. The landscape card's configured course Sub1 is checked separately; it is not treated as the progress Sub1 used by other layouts. These scenarios compile locally but have not run on Windows. Five60-second worker bounds plus initialization are accommodated by the report parent420-second bound. This does not establish all report selectors or print/export correctness.
+
 ## Other open work
 
 - Visible disciplinary menus still require schemas/procedures missing from the supplied Afghan database. Existing compatibility messages do not implement those workflows.

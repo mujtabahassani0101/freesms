@@ -140,7 +140,7 @@ internal static class OriginalWorkflowChecks
             Require(string.IsNullOrEmpty(Convert.ToString(result.Output["err"])),"Mark entry fixture rejected an owned mark.");
         }
     }
-    internal static void AssertReportFixture(FreeSms.NativeControls.PortableReportViewer viewer, Database database)
+    internal static void AssertReportFixture(FreeSms.NativeControls.PortableReportViewer viewer, Database database,string reportId)
     {
         var input = (FreeSms.Reports.ReportInput)typeof(FreeSms.NativeControls.PortableReportViewer).GetField("input",BindingFlags.Instance|BindingFlags.NonPublic).GetValue(viewer);
         var expected = database.Query("SELECT id,FName FROM tStudent WHERE Code=5991001").Single();
@@ -152,10 +152,30 @@ internal static class OriginalWorkflowChecks
             var photo=new SchoolService(database,new Session(1410)).StudentImage(Convert.ToInt32(expected["id"]));
             Require(photo!=null && input.Data.Tables.Cast<System.Data.DataTable>().Any(table=>table.Columns.Contains("Student_img") && table.Columns.Contains("xStudent") && table.Rows.Cast<System.Data.DataRow>().Any(row=>Convert.ToInt32(row["xStudent"])==Convert.ToInt32(expected["id"]) && row["Student_img"] is byte[] bytes && bytes.SequenceEqual(photo))),"Actual report input did not preserve the selected student's persisted photo bytes.");
         }
-        if(input.Subreports.TryGetValue("Sub1",out var progress))
+        if(reportId!="105" && input.Subreports.TryGetValue("Sub1",out var progress))
         {
             var actual=progress.Data.Tables[0].Rows.Cast<System.Data.DataRow>().Where(row=>Convert.ToInt32(row["xStudent"])==Convert.ToInt32(expected["id"])).ToArray();
             Require(actual.Length==2 && actual.Select(row=>Convert.ToDecimal(row["MarkDoreh"])).OrderBy(value=>value).SequenceEqual(new[]{20m,70m}),"Actual progress input omitted or changed an eligible exam.");
+        }
+        if(reportId=="104" || reportId=="105")
+        {
+            void AssertMarks(FreeSms.Reports.ReportInput data,string location)
+            {
+                var table=data.Data.Tables.Cast<System.Data.DataTable>().FirstOrDefault(item=>item.Columns.Contains("xStudent") && item.Columns.Contains("Mark") && item.Columns.Contains("AvgClass"));
+                Require(table!=null,"First-term report omitted course mark/class average at "+location);
+                foreach(var student in database.Query("SELECT id,Code FROM tStudent WHERE Code IN(5991001,5991002)"))
+                {
+                    var rows=table.Rows.Cast<System.Data.DataRow>().Where(row=>Convert.ToInt32(row["xStudent"])==student.Int("id")).ToArray();
+                    decimal mark=Convert.ToInt64(student["Code"])==5991001?30m:10m;
+                    Require(rows.Length>0 && rows.All(row=>Convert.ToDecimal(row["Mark"])==mark && Convert.ToDecimal(row["AvgClass"])==20m),"First-term report changed the known student mark or class average at "+location);
+                }
+            }
+            AssertMarks(input,"main report");
+            if(reportId=="105")
+            {
+                Require(input.Subreports.ContainsKey("Sub1"),"Landscape first-term card omitted its configured course subreport.");
+                AssertMarks(input.Subreports["Sub1"],"landscape course subreport");
+            }
         }
         Require(input.Parameters.Values.Any(value => Convert.ToString(value).Contains("مکتب آزمایشی گزارش")), "Report preview did not receive the fixture school header.");
     }

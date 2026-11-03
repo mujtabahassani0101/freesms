@@ -389,7 +389,14 @@ namespace Janus.Windows.GridEX
         public GridEXRow GetRow() => GetRow(Row);
         public void MoveNext() { Row = Math.Min(RowCount - 1, Row + 1); }
         public void MovePrevious() { Row = Math.Max(0, Row - 1); }
-        public void SelectCurrentCellText() { View.BeginEdit(true); (View.EditingControl as TextBox)?.SelectAll(); }
+        public void SelectCurrentCellText()
+        {
+            // Recovered selection handlers also run while their edit panel is
+            // hidden. Creating an editor before its grid handle exists leaves
+            // native EndEdit with a partially initialized editing control.
+            if(!Visible || !View.Visible || !View.IsHandleCreated)return;
+            View.BeginEdit(true);(View.EditingControl as TextBox)?.SelectAll();
+        }
         public void EndEdit(){TryEndEdit();}
         public bool TryEndEdit()
         {

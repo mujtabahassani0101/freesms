@@ -120,7 +120,7 @@ internal static class OriginalNavigationCheck
                         using var image = new System.Drawing.Bitmap(viewer.Width, viewer.Height);
                         viewer.DrawToBitmap(image, new System.Drawing.Rectangle(System.Drawing.Point.Empty, image.Size));
                         image.Save(Path.Combine(directory, route + ".png"));
-                        OriginalWorkflowChecks.AssertReportFixture(viewer, database);
+                        OriginalWorkflowChecks.AssertReportFixture(viewer, database,reportId);
                         OriginalWorkflowChecks.SaveReportPages(viewer,directory,route);
                         File.AppendAllText(workerLog, "PASS actual report input contains the fixture student's persisted identity and name" + Environment.NewLine);
                         File.AppendAllText(workerLog, "SUCCESS actual report controller and preview; pages=" + viewer.ReportPageCount + Environment.NewLine);
@@ -292,7 +292,7 @@ internal static class OriginalNavigationCheck
                 throw new InvalidOperationException("Both half-year and annual attendance routes must be tested.");
             if (targets.Length == 0) throw new InvalidOperationException("No verification routes were discovered.");
             int passed = 0, interaction = 0;
-            var reportCases = reportActions ? new[] { "101", "1024", "1032" } : new[] { "" };
+            var reportCases = reportActions ? new[] { "101", "104", "105", "1024", "1032" } : new[] { "" };
             foreach (string reportCase in reportCases)
             foreach (var control in targets)
             foreach(string studentCase in businessActions ? catalog.Target(main,control).Value.S("class") switch {"asdm"=>new[]{"student-delete","student-edit"},"asdac"=>new[]{"school","authentication"},_=>new[]{""}} : new[]{""})

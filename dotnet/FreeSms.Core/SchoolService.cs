@@ -39,11 +39,15 @@ public sealed class SchoolService(Database database, Session session)
         _ => throw new ArgumentException("Unknown choice source: " + source)
     };
     public List<Record> Classes() => Db.Query("SELECT c.*,p.Name AS Paye,CASE c.shift WHEN 1 THEN N'صبح' WHEN 2 THEN N'عصر' END AS shifttext FROM tClass c JOIN tPaye p ON p.id=c.xpaye WHERE c.xYear=@p0 ORDER BY c.sortRpt,c.id", [Session.Year]);
+    public bool ClassNameExists(string name,int id=0) => Convert.ToInt32(Db.Scalar(
+        "SELECT COUNT(*) FROM tClass WHERE xYear=@p0 AND id<>@p1 AND REPLACE(REPLACE(REPLACE(name,N' ',N''),N'ي',N'ی'),N'ك',N'ک')=REPLACE(REPLACE(REPLACE(@p2,N' ',N''),N'ي',N'ی'),N'ك',N'ک')",
+        [Session.Year,id,name]))>0;
     public int SaveClass(Record values, int id = 0)
     {
         var name = Values.Text(values.Value("name"));
         var grade = Values.Number(values.Value("xpaye"));
         if (name.Length == 0 || grade is null) throw new ValidationException("نام صنف و پایه را مشخص کنید.");
+        if(ClassNameExists(name,id))throw new ValidationException("نام صنف تکراری است.");
         var output = Db.Call("sp_tClass_insertUpdate", new()
         {
             ["id"] = id, ["xYear"] = Session.Year, ["xpaye"] = grade, ["name"] = name,

@@ -246,6 +246,9 @@ public class asdc : Form
 					num = 27;
 					continue;
 				case 13:
+                    var classService=new FreeSms.Core.SchoolService(new FreeSms.Core.Database(OriginalRuntime.ConnectionString),new FreeSms.Core.Session(int.Parse(af.Text)));
+                    if(classService.ClassNameExists(m.Text,int.Parse(a_)))
+                    {MessageBox.Show("عنوان صنف تکراری است");m.SelectAll();return;}
 					array = new SqlParameter[9]
 					{
 						asdcb.a("@Code", SqlDbType.Int),
