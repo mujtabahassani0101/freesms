@@ -1,6 +1,6 @@
 # Populated original first-term cards
 
-Status: prepared and locally compiled; native execution and visual inspection pending.
+Status: data/photo/every-page assertions passed in run41561544090, and all five first-term card pages were visually inspected. Print layout is not ready: identity/ranking fields clip,104 starts the next card title at the previous page tail,105 splits/mixes card continuations across pages, and charts lack useful legends/value labels. Rendered evidence is archived in runs/41561544090.
 
 The original main-menu report selector now previews configured cards104 and105 as additional independent workers. The actual catalog filters select a compatible term1 exam and the owned year1410 class. The shared fixture has two students, distinct persisted photos, one subject/teacher and known raw marks30/10; their class mean is20. Original calculation procedures populate the report data.
 

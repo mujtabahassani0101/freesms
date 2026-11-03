@@ -409,6 +409,8 @@ internal static class OriginalWorkflowChecks
         Field<Control>(form,"m").Text="صنف محفوظ مدیریت";Field<Control>(form,"w").Text="نگران";Field<Control>(form,"ab").Text=duplicateNameOrder.ToString();
         Dialog(()=>Click(form,"k"),"عنوان صنف تکراری است",1);
         Field<Control>(form,"m").Text="صنف شماره تکراری";Field<Control>(form,"ab").Text=peerOrder.ToString();
+        log("CLASS duplicate order input="+Field<Control>(form,"ab").Text+" year="+Field<Control>(form,"af").Text+" peer="+peer+" stored="+db.Scalar("SELECT sortRpt FROM tClass WHERE id=@p0",new object[]{peer}));
+        Require(Convert.ToInt32(db.Scalar("SELECT COUNT(*) FROM tClass WHERE xYear=1416 AND sortRpt=@p0",new object[]{peerOrder}))>0,"Duplicate-order fixture no longer has an existing matching class.");
         Dialog(()=>Click(form,"k"),"شماره تکراری است",1);Click(form,"n");
         Require(Count()==before+1,"Duplicate class validation inserted a record.");
         Select(form,peer,"m_c");Dialog(()=>Click(form,"m_f"),"تعداد 1 شاگرد در این صنف وجود دارد.امکان حذف وجود ندارد",1);

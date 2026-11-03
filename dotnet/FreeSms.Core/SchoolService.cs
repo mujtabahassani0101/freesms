@@ -42,17 +42,21 @@ public sealed class SchoolService(Database database, Session session)
     public bool ClassNameExists(string name,int id=0) => Convert.ToInt32(Db.Scalar(
         "SELECT COUNT(*) FROM tClass WHERE xYear=@p0 AND id<>@p1 AND REPLACE(REPLACE(REPLACE(name,N' ',N''),N'ي',N'ی'),N'ك',N'ک')=REPLACE(REPLACE(REPLACE(@p2,N' ',N''),N'ي',N'ی'),N'ك',N'ک')",
         [Session.Year,id,name]))>0;
+    public bool ClassOrderExists(int order,int id=0) => Convert.ToInt32(Db.Scalar(
+        "SELECT COUNT(*) FROM tClass WHERE xYear=@p0 AND id<>@p1 AND sortRpt=@p2",[Session.Year,id,order]))>0;
     public int SaveClass(Record values, int id = 0)
     {
         var name = Values.Text(values.Value("name"));
         var grade = Values.Number(values.Value("xpaye"));
         if (name.Length == 0 || grade is null) throw new ValidationException("نام صنف و پایه را مشخص کنید.");
         if(ClassNameExists(name,id))throw new ValidationException("نام صنف تکراری است.");
+        int order=Values.Number(values.Value("sortRpt"),0,32767)??0;
+        if(ClassOrderExists(order,id))throw new ValidationException("ترتیب نمایش صنف تکراری است.");
         var output = Db.Call("sp_tClass_insertUpdate", new()
         {
             ["id"] = id, ["xYear"] = Session.Year, ["xpaye"] = grade, ["name"] = name,
             ["answerable"] = Values.Text(values.Value("answerable")), ["fee"] = Values.Number(values.Value("fee"), 0) ?? 0,
-            ["shift"] = Values.Number(values.Value("shift")) ?? 0, ["sortRpt"] = Values.Number(values.Value("sortRpt"), 0, 32767) ?? 0
+            ["shift"] = Values.Number(values.Value("shift")) ?? 0, ["sortRpt"] = order
         }).Output;
         if (output.Int("code") < 0) throw new ValidationException(output.Int("code") == -100 ? "نام صنف تکراری است." : "ترتیب نمایش صنف تکراری است.");
         return id > 0 ? id : Convert.ToInt32(Db.Scalar("SELECT id FROM tClass WHERE xYear=@p0 AND REPLACE(name,N' ',N'')=REPLACE(@p1,N' ',N'')", [Session.Year, name]));
