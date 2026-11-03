@@ -15,3 +15,5 @@ Six new disconnected assertions preserve full long names and ungrouped IDs, ever
 ## Original-template correction
 
 The user rejected newly invented card layouts. FirstTermCardLayouts is removed; the next source restores original bands instead of continuing the6b4d155 reflow. Windows run41589840339 failed the landscape two-card assertion (four pages). That failure is retained, not treated as successful verification. The replacement repairs omitted original geometry and area-level pagination; see RECOVERED-REPORT-LAYOUTS.md. Native rendering and visual review of the replacement are pending.
+
+Final sourceb2517de passed the full Windows run41599723649, including all5 report previews and actual first-term course marks/class means. Portrait104 and landscape105 use their original recovered sections and pass two separate student pages with distinct photos. Final images were inspected after the original fonts and fixed-caption rendering corrections. The annual missing-resource fallbacks use the intact original annual template as documented separately.

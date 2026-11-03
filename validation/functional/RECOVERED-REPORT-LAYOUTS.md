@@ -35,3 +35,11 @@ Run41597222702 (7e01ffa) passed all181 native checks, all5 original previews, al
 ## Fixed-caption fit
 
 Run41598232448 (53c3a2c) completed successfully, including182 native checks and the new short-field ink regression. Visual inspection confirmed restored card titles and the original twelve-subject table. Some narrow, fixed-height static attendance captions still ellipsized. The next renderer adjustment fits only single-line static captions whose original field is shorter than the GDI+ line cell. It measures the real advance and reduces only overflowing caption text inside its original cell. Names, data fields, multiline text, rotated text, fonts and section positions are not reflowed. This last caption adjustment requires a fresh native run and visual check.
+
+## Final checked runtime
+
+Windows run41599723649, sourceb2517de, completed successfully. It passed182 native component/package/render checks,28 Core/database checks,58 disconnected report checks, all5 original report actions, all13 original business scenarios, the89-form constructor/render audit, original initialization/login, and the menu-responsiveness audit. Receipts and relevant logs are retained in runs/41599723649. The12-subject two-student native fixture and every original report page were exported.
+
+Visual review of the final annual1024 fallback and landscape105 pages confirmed visible original titles, intact table borders, fitted attendance captions and independent columns. All five preview cases passed the actual stored-data and photo tests; the student-card cases have one parent student per page and distinct photo pixels. This completes the reported layout correction for those checked cards, not full application or every-template parity. Long values still obey the original fixed-field ellipsis; the exact absent1024/1032 resources remain unavailable.
+
+The packaged runtime is native self-containedWindows x86/.NET10, with the four own assemblies checked asx86 ReadyToRun and no legacy UI/report runtime. The release download is checked against its artifact SHA256 and ZIP integrity before replacing the local package.

@@ -1,0 +1,26 @@
+{
+  "source_commit": "b2517de384a8e9746924582a2dace513097573b7",
+  "workflow_run": 41599723649,
+  "artifact_id": 13213788826,
+  "bytes": 78160544,
+  "sha256": "dcc0871327695d95ec1b8cbc19f830fc280480374701d6f5257da5d89552d05e",
+  "assemblies": {
+    "FreeSMS.dll": {
+      "machine": "0x14c",
+      "ready_to_run": true
+    },
+    "FreeSms.Core.dll": {
+      "machine": "0x14c",
+      "ready_to_run": true
+    },
+    "FreeSms.NativeControls.dll": {
+      "machine": "0x14c",
+      "ready_to_run": true
+    },
+    "FreeSms.Reports.dll": {
+      "machine": "0x14c",
+      "ready_to_run": true
+    }
+  },
+  "executable": "/home/you/Projects/\u0645\u062f\u06cc\u0631\u06cc\u0627\u0631/free-sms/dist/FreeSMS-Net10/FreeSMS.exe"
+}

@@ -137,3 +137,7 @@ Local validation of the pending layout adapter passes56 report checks and the ma
 ## User-reported card layout / original reference
 
 The attached1024 card remains unacceptable. Run41589840339 also failed the invented105 reflow's page-count check; business actions and native component checks passed in that run. The next change removes the invented104/105 reflow and1024/1032 compositions, uses the available intact original annual card for the two absent resources, and restores omitted original shape/rotation/area properties.57 disconnected checks and builds passed locally. Windows rendering and visual review remain required. The exact missing1024/1032 designs are still not recovered.
+
+## Original-card layout resolution (b2517de)
+
+Run41599723649 completed successfully:182 native checks,28 Core,58 reports,5/5 original report actions,13/13 original business actions,89forms, initialization/login and menu responsiveness. Actual original annual/first-term layouts replace the invented reflows/compositions; recovered drawing anchors, area pagination and authored fonts are in use. Final pages were inspected, including independent landscape columns and the12-subject native fixture. See RECOVERED-REPORT-LAYOUTS.md and the final run receipts/logs/images. The two absent catalog-specific layouts are explicit aliases of the available original annual card, not newly claimed recoveries. Existing full-application scope limits above remain open.
