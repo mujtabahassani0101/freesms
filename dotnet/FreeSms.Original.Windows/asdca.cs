@@ -742,7 +742,7 @@ protected override void Dispose(bool A_0)
 					num = 0;
 					continue;
 				case 14:
-					text = "  tbook.xPaye=" + this.m_g.SelectedValue.ToString();
+					text += "  tbook.xPaye=@SearchGrade";
 					num = 7;
 					continue;
 				case 6:
@@ -790,7 +790,7 @@ protected override void Dispose(bool A_0)
 					goto case 0;
 				case 0:
 					{
-						DataTable dataSource = asdcb.c(asdab.e(), CommandType.Text, "SELECT     tbook.id,tbook.CodeDars,tbook.Vezarat,  tbook.sort,tbook.Type, tbook.Name,tbook.xpaye,tbook.vahed,tbook.timeWeek,tpaye.name as paye  FROM tBook inner join tpaye on tbook.xpaye=tpaye.id" + text + " order by tbook.sort", new SqlParameter("@SearchName", "%"+asdaj.b(this.m_i.Text)+"%"));
+						DataTable dataSource = asdcb.c(asdab.e(), CommandType.Text, "SELECT     tbook.id,tbook.CodeDars,tbook.Vezarat,  tbook.sort,tbook.Type, tbook.Name,tbook.xpaye,tbook.vahed,tbook.timeWeek,tpaye.name as paye  FROM tBook inner join tpaye on tbook.xpaye=tpaye.id" + text + " order by tbook.sort", new SqlParameter("@SearchName", "%"+asdaj.b(this.m_i.Text)+"%"), new SqlParameter("@SearchGrade", this.m_g.SelectedValue??"0"));
 						y.DataSource = dataSource;
 						return;
 					}

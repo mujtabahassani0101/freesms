@@ -417,6 +417,7 @@ internal static class OriginalWorkflowChecks
         Field<CheckBox>(form,"ag").Checked=true;Click(form,"s");
         var saved=db.Query("SELECT id,Name,CodeDars,Vezarat FROM tBook WHERE xPaye=1 AND CodeDars=5997001").Single();int id=saved.Int("id");
         Require(Count()==before+1 && saved.Text("Name")==name && Convert.ToBoolean(saved["Vezarat"]),"Subject Save did not preserve the quoted name/code/ministry flag.");
+        Click(form,"r");
         void Search(string text)
         {
             var input=Field<Control>(form,"m_i");input.Text=text;
@@ -424,8 +425,10 @@ internal static class OriginalWorkflowChecks
         }
         Search("'");
         Select(form,id,"y");
+        var subjects=Field<GridEX>(form,"y");
+        Require(Enumerable.Range(0,subjects.RowCount).All(index=>Convert.ToString(subjects.GetRow(index).Cells["Name"].Value).Contains("'")),"Selecting a grade discarded the subject-name filter.");
         Search("' AND 1=0 --");
-        Require(Field<GridEX>(form,"y").RowCount==0,"Subject search treated punctuation as SQL.");
+        Require(Field<GridEX>(form,"y").RowCount==0,"Subject search failed to combine name punctuation with the selected grade.");
         Search("");Select(form,id,"y");Click(form,"x");
         Require(Field<Control>(form,"t").Text==name && !Field<UIComboBox>(form,"n").Enabled,"Subject Edit did not reload the selected name and preserve its grade.");
         string edited=asdaj.b("اصلاح ' مضمون");Field<Control>(form,"t").Text=edited;Click(form,"s");
@@ -556,7 +559,17 @@ internal static class OriginalWorkflowChecks
             Require(asdaj.a("1") && !asdaj.a("2") && !asdaj.a("3") && asdaj.n=="1","Limited login did not load exact section/grade permissions.");
             ChildForm<asdc>(()=>{using var allowed=new asdc();allowed.ShowDialog();},allowed=>
                 Require(Field<Control>(allowed,"af").Text==asdaj.__field_a,"Permitted class form did not initialize for the selected year."));
-            Dialog(()=>{using var denied=new asdat();denied.ShowDialog();},"شما مجوز ورود به این بخش را ندارید",1);
+            // Exercise every recovered guarded form outside this account's
+            // section 1, not just one representative registration window.
+            var deniedForms=new Type[]{typeof(asda0),typeof(asda1),typeof(asda2),typeof(asda5),typeof(asda6),typeof(asdae),typeof(asdah),typeof(asdai),typeof(asdak),typeof(asdam),typeof(asdap),typeof(asdaq),typeof(asdar),typeof(asdat),typeof(asdau),typeof(asdaz),typeof(asdb),typeof(asdb1),typeof(asdb2),typeof(asdb5),typeof(asdb7),typeof(asdb8),typeof(asdba),typeof(asdbd),typeof(asdbf),typeof(asdbh),typeof(asdbj),typeof(asdbo),typeof(asdbr),typeof(asdbs),typeof(asdbw),typeof(asdby),typeof(asdf),typeof(asdg),typeof(asdk),typeof(asdm),typeof(asdp),typeof(asdt),typeof(asdv),typeof(asdx)};
+            foreach(var deniedType in deniedForms)
+            {
+                log("VERIFY limited account denied form: "+deniedType.Name);
+                using var denied=(Form)Activator.CreateInstance(deniedType);
+                Dialog(()=>denied.ShowDialog(),"شما مجوز ورود به این بخش را ندارید",1);
+                Require(!denied.Visible && asdaj.l==user && asdaj.n=="1" && !asdaj.a("3"),"Denied form changed the authenticated session or remained open: "+deniedType.Name);
+            }
+            log("PASS all40 recovered guarded forms outside section1 reject the limited authenticated account before entry");
             Require(asdaj.l==user,"Denied section changed the logged-in account.");
             db.Execute("UPDATE tuser SET per=@p0 WHERE id=@p1",new object[]{asdab.d(prefix),temporaryUser});
             asdaj.l="";
