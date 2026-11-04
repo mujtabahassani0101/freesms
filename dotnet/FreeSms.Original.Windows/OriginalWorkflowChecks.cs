@@ -144,6 +144,27 @@ internal static class OriginalWorkflowChecks
         }
         db.Execute("DELETE FROM tmpStdforPrint WHERE xUser=1");
     }
+    internal static void PrepareWorkbookMarkFixture(Database db)
+    {
+        var school=new SchoolService(db,new Session(1419));school.SetYear(1419);
+        var used=new HashSet<int>(db.Query("SELECT sortRpt FROM tClass WHERE sortRpt IS NOT NULL").Select(row=>Convert.ToInt32(row["sortRpt"])));
+        int order=30000;while(used.Contains(order))order++;
+        Require(order<=32767,"No available workbook fixture class display order.");
+        int classroom=school.SaveClass(new Record{["name"]="صنف آزمون ورود اکسل",["xpaye"]=1,["fee"]=0,["shift"]=1,["sortRpt"]=order});
+        int book=new EntityService(school).Save("books",new Record{["xPaye"]=1,["Name"]="مضمون آزمون ورود اکسل",["vahed"]=1,["timeWeek"]=1,["Type"]=1,["sort"]=30000,["SortOneEntry"]=30000,["codedars"]=6000101,["Vezarat"]=true});
+        int exam=Convert.ToInt32(db.Scalar("SELECT id FROM tExam WHERE xYear=1419 AND term=1"));
+        foreach(int code in new[]{6000101,6000102,6000103})
+        {
+            int student=school.SaveStudent(new Record{["FName"]="شاگرد آزمون اکسل "+code,["LName"]="پدر",["PName"]="پدرکلان",["Code"]=code,["NumberAsas"]=code,["xPaye"]=1,["xClass"]=classroom,["Status"]=1,["Jens"]=0,["Fee1"]=0});
+            foreach(var test in db.Query("SELECT id FROM tExam WHERE xYear=1419 AND term IN(1,2)"))
+            {
+                var result=db.Call("sp_tMark_insertUpdate_FromXls_Af",new Record{["xuser"]=1,["code"]=code.ToString(),["codedars"]=6000101,["Xtest"]=test["id"],["xYear"]=1419,["Mark"]=code==6000103?20:10});
+                Require(string.IsNullOrEmpty(result.Output.Text("err")),"Workbook mark fixture was rejected.");
+            }
+            db.Execute("UPDATE tMark SET M2=7 WHERE xStudent=@p0 AND Xtest=@p1 AND xbook=@p2",new object[]{student,exam,book});
+        }
+        db.Execute("UPDATE tExam SET procc=1 WHERE xYear=1419");
+    }
     internal static void PrepareMarkEntryFixture(Database db,bool bulk=false)
     {
         int year=bulk?1417:1414,firstCode=bulk?5998001:5995001;
@@ -724,8 +745,60 @@ internal static class OriginalWorkflowChecks
         Open(valid);WaitReady();Require(grid.RowCount==(students?2:3),"Reload appended rows instead of replacing the preview.");
         string after=System.Text.Json.JsonSerializer.Serialize(new[]{db.Query("SELECT COUNT(*) AS total FROM tStudent"),db.Query("SELECT COUNT(*) AS total FROM tMark"),db.Query("SELECT id,procc FROM tExam ORDER BY id")});
         Require(before==after,"Preview/cancel/rejected workbooks changed database rows or processing state.");
+        if(!students)WorkbookMarkSave(form,db,log,()=>{Open(System.IO.Path.Combine(fixtures,"marks-save.xlsx"));WaitReady();});
         Click(form,students?"m_d":"m_c");
-        log("PASS actual XLSX preview, repeat-load row isolation, file chooser Cancel, corrupt/missing-column rejection and previous preview/database preservation; Save/import transactions are separate unverified cases");
+        log("PASS actual XLSX preview, repeat-load row isolation, file chooser Cancel, corrupt/missing-column rejection and previous preview/database preservation; student Save/import transactions are separate unverified cases");
+    }
+    private static void WorkbookMarkSave(Form form,Database db,Action<string> log,Action load)
+    {
+        load();var grid=Field<GridEX>(form,"m_d");var table=(System.Data.DataTable)grid.DataSource;
+        int exam=Convert.ToInt32(db.Scalar("SELECT id FROM tExam WHERE xYear=1419 AND term=1"));
+        int annual=Convert.ToInt32(db.Scalar("SELECT id FROM tExam WHERE xYear=1419 AND term=3"));
+        int peer=Convert.ToInt32(db.Scalar("SELECT id FROM tStudent WHERE Code=6000102"));
+        Field<UIComboBox>(form,"k").SelectedValue=exam.ToString();
+        string confirm="آيا از انتقال نمرات به  "+Field<UIComboBox>(form,"k").SelectedItem.Text+" مطمئن هستيد؟";
+        string Snapshot()=>System.Text.Json.JsonSerializer.Serialize(new[]{db.Query("SELECT id,xStudent,Xtest,xbook,M1,M2,Mark FROM tMark ORDER BY id"),db.Query("SELECT id,procc FROM tExam ORDER BY id")});
+        void Set(int row,string column,string value)=>EditGridCell(grid,row,column,value);
+        void Confirm()=>Dialog(()=>Field<Button>(form,"m_e").PerformClick(),confirm,6);
+        void Save()=>Dialog(Confirm,"انجام شد",1);
+        void Reject(string text)=>Dialog(Confirm,"خطا در ثبت نمرات:",1,requiredText:text);
+        string before=Snapshot();
+        Dialog(()=>Field<Button>(form,"m_e").PerformClick(),confirm,7);
+        Require(Snapshot()==before,"Declining workbook Save invalidated calculations or wrote marks.");
+        Set(1,"mark","41");Dialog(()=>Field<Button>(form,"m_e").PerformClick(),"ردیف 2 فهرست: نمره وارد شده خارج از محدوده است",1);
+        Require(Snapshot()==before,"Invalid late workbook input wrote a preceding row.");Set(1,"mark","0");
+        Set(1,"code","6000199");Reject("کد متعلم در سال انتخاب‌شده ثبت‌نام معتبر ندارد");
+        Require(Snapshot()==before,"Unknown late student left a partially imported file or invalidated calculations.");Set(1,"code","6000102");
+        Set(1,"code","6000101");Reject("کد متعلم و مضمون در فایل تکرار شده است");
+        Require(Snapshot()==before,"Duplicate workbook rows changed the bank.");Set(1,"code","6000102");
+        string grades=asdaj.n;asdaj.n="2";
+        try{Reject("مجوز ورود نمرات پایهٔ این متعلم را ندارید");Require(Snapshot()==before,"Forbidden workbook grade wrote marks.");}
+        finally{asdaj.n=grades;}
+        db.Execute("CREATE TRIGGER native_workbook_fail ON dbo.tMark AFTER UPDATE AS IF EXISTS(SELECT 1 FROM inserted WHERE xStudent="+peer+" AND Xtest="+exam+") THROW 51000,'native workbook late-row failure',1");
+        try{Reject("native workbook late-row failure");Require(Snapshot()==before,"Late workbook SQL failure left prior rows or invalidated processing.");}
+        finally{db.Execute("DROP TRIGGER native_workbook_fail");}
+        Require((string)table.Rows[0]["mark"]=="۲۵٫۵" && (string)table.Rows[1]["mark"]=="0","Failed workbook Save discarded pending file input.");
+        using(var connection=db.Open())
+        using(var transaction=connection.BeginTransaction())
+        using(var command=new Microsoft.Data.SqlClient.SqlCommand("UPDATE tExam SET procc=1 WHERE id=@id",connection,transaction))
+        {
+            command.Parameters.AddWithValue("@id",exam);command.ExecuteNonQuery();bool released=false;
+            using var timer=new Timer{Interval=500};
+            timer.Tick+=(s,e)=>
+            {
+                timer.Stop();Require(!form.Enabled,"Workbook Save did not enter its asynchronous busy state while SQL was locked.");
+                form.Close();Require(form.Visible,"Workbook Save allowed closing during an active transaction.");
+                transaction.Rollback();released=true;
+            };
+            timer.Start();Save();Require(released,"Workbook UI heartbeat did not release the real SQL lock.");
+        }
+        var records=db.Query("SELECT s.Code,m.M1,m.M2,m.Mark FROM tMark m JOIN tStudent s ON s.id=m.xStudent WHERE m.Xtest=@p0 AND s.Code IN(6000101,6000102,6000103) ORDER BY s.Code",new object[]{exam});
+        Require(records.Count==3 && Convert.ToDecimal(records[0]["M1"])==25.5m && Convert.ToDecimal(records[0]["Mark"])==25.5m && Convert.ToDecimal(records[1]["M1"])==0 && Convert.ToDecimal(records[2]["M1"])==20 && records.All(row=>Convert.ToDecimal(row["M2"])==7),"Workbook Save lost fractions/zero, cleared blank input or overwrote hidden components.");
+        Require(Convert.ToInt32(db.Scalar("SELECT COUNT(*) FROM tMark m JOIN tStudent s ON s.id=m.xStudent JOIN tExam e ON e.id=m.Xtest WHERE e.xYear=1419 AND e.term=2 AND s.Code IN(6000101,6000102,6000103) AND m.M1=CASE WHEN s.Code=6000103 THEN 20 ELSE 10 END"))==3,"Workbook Save changed another exam.");
+        Require(Convert.ToInt32(db.Scalar("SELECT procc FROM tExam WHERE id=@p0",new object[]{exam}))==0 && Convert.ToInt32(db.Scalar("SELECT procc FROM tExam WHERE id=@p0",new object[]{annual}))==0,"Workbook Save did not invalidate both selected and annual calculations.");
+        Require((string)table.Rows[0]["acp"]=="1" && (string)table.Rows[1]["acp"]=="1" && (string)table.Rows[2]["acp"]=="0","Workbook preview marked an unsaved blank row as saved.");
+        string saved=Snapshot();Save();Require(Snapshot()==saved,"Repeating workbook Save duplicated or changed already imported marks.");
+        log("PASS actual workbook Save confirmation No/Yes, bounds/unknown student/duplicate/grade rejection, late SQL rollback and retry, pending input, real SQL-lock UI heartbeat/close guard, fractional/zero/blank/hidden component semantics and repeated import with selected/annual invalidation and other-exam preservation");
     }
     private static void BatchPrintList(Form form,Database db,Action<string> log)
     {

@@ -1,5 +1,5 @@
 from pathlib import Path
-from zipfile import ZipFile,ZIP_DEFLATED
+from zipfile import ZipFile,ZipInfo,ZIP_DEFLATED
 from xml.etree.ElementTree import Element,SubElement,tostring
 import json,hashlib
 base=Path(__file__).resolve().parent
@@ -14,6 +14,8 @@ def col(i):
  return s
 def workbook(name,rows,sheet='Sheet1',extra=False):
  with ZipFile(base/name,'w',ZIP_DEFLATED) as z:
+  def write(path,data):
+   item=ZipInfo(path,(2020,1,1,0,0,0));item.compress_type=ZIP_DEFLATED;z.writestr(item,data)
   types=Element('Types',xmlns=ct)
   for ext,typ in [('xml','application/xml'),('rels','application/vnd.openxmlformats-package.relationships+xml')]:SubElement(types,'Default',Extension=ext,ContentType=typ)
   SubElement(types,'Override',PartName='/xl/workbook.xml',ContentType='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml')
@@ -32,15 +34,16 @@ def workbook(name,rows,sheet='Sheet1',extra=False):
      elif isinstance(value,tuple):cell.set('t','e');SubElement(cell,'v').text=value[1]
      else:
       cell.set('t','inlineStr');t=SubElement(SubElement(cell,'is'),'t');t.set('{http://www.w3.org/XML/1998/namespace}space','preserve');t.text=value
-   z.writestr('xl/worksheets/sheet'+str(idx)+'.xml',tostring(root))
-  z.writestr('xl/workbook.xml',tostring(wb));z.writestr('xl/_rels/workbook.xml.rels',tostring(rels));z.writestr('[Content_Types].xml',tostring(types))
-  rootrel=Element('Relationships',xmlns=pkg);SubElement(rootrel,'Relationship',Id='rId1',Type=rel+'/officeDocument',Target='xl/workbook.xml');z.writestr('_rels/.rels',tostring(rootrel))
+   write('xl/worksheets/sheet'+str(idx)+'.xml',tostring(root))
+  write('xl/workbook.xml',tostring(wb));write('xl/_rels/workbook.xml.rels',tostring(rels));write('[Content_Types].xml',tostring(types))
+  rootrel=Element('Relationships',xmlns=pkg);SubElement(rootrel,'Relationship',Id='rId1',Type=rel+'/officeDocument',Target='xl/workbook.xml');write('_rels/.rels',tostring(rootrel))
 headers=['Sort','Code','Paye','Class','Name','Family','Father','Jens','NumberAsas','MainFees','StdFees','StdFeesKoll','Payment','Dakhele','Exam','Uniform','MobileFather','MobileMother']
 student=[1,'001234',1,'صنف آزمایشی',"نام ' آزمون",'پدر','پدرکلان',0,1234,1000,50,100,0,0,0,0,'0700000000','']
 second=student.copy();second[0]=2;second[1]='۱۲۳۵';second[4]='شاگرد دوم';second[8]=1235
 skipped=student.copy();skipped[1]='999999';skipped[3]=None
 workbook('students-valid.xlsx',[headers,student,[None]*18,second,skipped],extra=True)
 workbook('marks-valid.xlsx',[[' Code ','CODEDARS','Mark'],['001234',5998001,25.5],[None,None,None],['۱۲۳۵','۵۹۹۸۰۰۱',0],['1236',5998001,None]],extra=True)
+workbook('marks-save.xlsx',[['Code','CodeDars','Mark'],['۶۰۰۰۱۰۱','۶۰۰۰۱۰۱','۲۵٫۵'],[6000102,6000101,0],[6000103,6000101,None]])
 workbook('duplicate-header.xlsx',[['Code','codedars','mark','CODE'],['1234',1,25,'1234']])
 workbook('missing-header.xlsx',[['Code','mark'],['1234',25]])
 workbook('unnamed-data.xlsx',[['code','codedars','mark',None],['1234',1,25,'lost']])

@@ -38,5 +38,18 @@ internal static class WorkbookChecks
                 if (table.Columns.Count < 5) throw new Exception("Recovered XLS contract was lost: " + item.Item1);
             }
         });
+        check("Workbook mark input preserves Persian fractions/zero/blank and rejects overflow, nonfinite and invalid identifiers", () =>
+        {
+            var row=WorkbookMarkEntry.Create("۶۰۰۰۱۰۱","۶۰۰۰۱۰۱","۲۵٫۵",0,40);
+            if(row.Code!=6000101 || row.CourseCode!=6000101 || row.Mark!=25.5
+                || WorkbookMarkEntry.Create(1,1,0,0,40).Mark!=0 || WorkbookMarkEntry.Create(1,1,DBNull.Value,0,40).Mark!=null)
+                throw new Exception("Workbook mark input changed its values.");
+            foreach(var invalid in new object?[][]{["100000000000000",1,1],[0,1,1],[1,0,1],[1,1,"NaN"],[1,1,"Infinity"],[1,1,41],[1,1,-1]})
+            {
+                try { WorkbookMarkEntry.Create(invalid[0],invalid[1],invalid[2],0,40); }
+                catch(ValidationException){continue;}
+                throw new Exception("Accepted invalid workbook mark input.");
+            }
+        });
     }
 }

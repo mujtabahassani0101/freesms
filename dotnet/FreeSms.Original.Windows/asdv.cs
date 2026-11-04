@@ -1,5 +1,9 @@
 using System;
 using System.ComponentModel;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using FreeSms.Core;
 using System.Data;
 using Microsoft.Data.SqlClient;
 using System.Drawing;
@@ -12,6 +16,7 @@ using Janus.Windows.GridEX.EditControls;
 public class asdv : Form
 {
 	private readonly OriginalWorkbookImport workbookImport;
+	private bool savingWorkbook;
 	private IContainer m_a = null;
 
 	private Panel m_b;
@@ -306,6 +311,7 @@ protected override void Dispose(bool A_0)
 	{
 		b();
 		workbookImport = new OriginalWorkbookImport(this);
+		FormClosing += (sender, args) => { if (savingWorkbook) args.Cancel = true; };
 	}
 
 	private void e(object A_0, EventArgs A_1)
@@ -354,388 +360,56 @@ protected override void Dispose(bool A_0)
 		}
 	}
 
-	private void c(object A_0, EventArgs A_1)
-	{
-		SqlCommand sqlCommand = default;
-		int num13 = default;
-		int num8 = default;
-		int num2 = default;
-		string value = default;
-		string text = default;
-		string text2 = default;
-		float num5 = default;
-		float num6 = default;
-		int num7 = default;
-		int num3 = default;
-		int num4 = default;
-		while (true)
-		{
-			bool flag = k.SelectedIndex > 0;
-			int num = 20;
-			while (true)
-			{
-				int num9;
-				switch (num)
-				{
-				case 20:
-					if (!flag)
-					{
-						num = 25;
-						continue;
-					}
-					sqlCommand = null;
-					num = 31;
-					continue;
-				case 10:
-				case 35:
-					num = 36;
-					continue;
-				case 2:
-					flag = MessageBox.Show("آيا از انتقال نمرات به  " + k.SelectedItem.Text + " مطمئن هستيد؟", "", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) != DialogResult.Yes;
-					num = 41;
-					continue;
-				case 41:
-					if (!flag)
-					{
-						num = 8;
-						continue;
-					}
-					return;
-				case 30:
-					flag = r.State == ConnectionState.Open;
-					num = 39;
-					continue;
-				case 39:
-					if (!flag)
-					{
-						num = 16;
-						continue;
-					}
-					goto case 3;
-				case 17:
-					if (!flag)
-					{
-						num = 5;
-						continue;
-					}
-					flag = num13 >= 1;
-					num = 22;
-					continue;
-				case 33:
-					num = 13;
-					continue;
-				case 13:
-					num9 = ((!(s == "2")) ? 1 : 0);
-					goto IL_05a9;
-				case 16:
-					r.Open();
-					num = 3;
-					continue;
-				case 4:
-					r.Open();
-					num = 23;
-					continue;
-				case 22:
-					if (!flag)
-					{
-						num = 24;
-						continue;
-					}
-					num8++;
-					num = 10;
-					continue;
-				case 37:
-					num = 0;
-					continue;
-				case 24:
-					num = 35;
-					continue;
-				case 3:
-					sqlCommand = new SqlCommand("UPDATE tExam SET procc = 0 WHERE term=3 and xYear=" + p.Text, r);
-					sqlCommand.ExecuteNonQuery();
-					num = 2;
-					continue;
-				case 29:
-					num = (flag ? 27 : 7);
-					continue;
-				case 9:
-					this.m_d.GetRow(num2).BeginEdit();
-					this.m_d.GetRow(num2).Cells["acp"].Value = "-1";
-					this.m_d.GetRow(num2).Cells["status"].Value = "کد درس خالی است";
-					this.m_d.GetRow(num2).EndEdit();
-					num = 34;
-					continue;
-				case 21:
-					if (!flag)
-					{
-						num = 30;
-						continue;
-					}
-					goto case 2;
-				case 42:
-					if (flag)
-					{
-						this.m_d.GetRow(num2).BeginEdit();
-						this.m_d.GetRow(num2).Cells["acp"].Value = "1";
-						this.m_d.GetRow(num2).Cells["status"].Value = "";
-						this.m_d.GetRow(num2).EndEdit();
-						sqlCommand = new SqlCommand("sp_tMark_insertUpdate_FromXls_Af", r);
-						sqlCommand.CommandType = CommandType.StoredProcedure;
-						sqlCommand.Parameters.Add("@err", SqlDbType.NVarChar, 100);
-						sqlCommand.Parameters.AddWithValue("@xuser", asdaj.l);
-						sqlCommand.Parameters.AddWithValue("@code", text);
-						sqlCommand.Parameters.AddWithValue("@Xtest", k.SelectedValue.ToString());
-						sqlCommand.Parameters.AddWithValue("@xYear", p.Text);
-						sqlCommand.Parameters.AddWithValue("@codedars", text2);
-						sqlCommand.Parameters.AddWithValue("@mark", value);
-						sqlCommand.Parameters[0].Direction = ParameterDirection.Output;
-						num13 = sqlCommand.ExecuteNonQuery();
-						flag = !(sqlCommand.Parameters[0].Value.ToString() != "");
-						num = 17;
-					}
-					else
-					{
-						num = 37;
-					}
-					continue;
-				case 38:
-					try
-					{
-						int num12 = int.Parse(text2);
-					}
-					catch
-					{
-						this.m_d.GetRow(num2).BeginEdit();
-						this.m_d.GetRow(num2).Cells["acp"].Value = "-1";
-						this.m_d.GetRow(num2).Cells["status"].Value = "کد درس اشتباه است";
-						this.m_d.GetRow(num2).EndEdit();
-						goto case 0;
-					}
-					num = 14;
-					continue;
-				case 7:
-					this.m_d.GetRow(num2).BeginEdit();
-					this.m_d.GetRow(num2).Cells["acp"].Value = "-1";
-					this.m_d.GetRow(num2).Cells["status"].Value = "کد متعلم خالی است";
-					this.m_d.GetRow(num2).EndEdit();
-					num = 18;
-					continue;
-				case 27:
-					try
-					{
-						long num11 = long.Parse(text);
-					}
-					catch
-					{
-						this.m_d.GetRow(num2).BeginEdit();
-						this.m_d.GetRow(num2).Cells["acp"].Value = "-1";
-						this.m_d.GetRow(num2).Cells["status"].Value = "کد متعلم اشتباه است";
-						this.m_d.GetRow(num2).EndEdit();
-						goto case 0;
-					}
-					flag = !(text2 == "");
-					num = 11;
-					continue;
-				case 1:
-				case 15:
-					flag = num2 < this.m_d.RowCount;
-					if (true)
-					{
-					}
-					num = 26;
-					continue;
-				case 26:
-					if (flag)
-					{
-						text = "";
-						text2 = "";
-						string text3 = "";
-						value = "";
-						num5 = 0f;
-						num6 = 0f;
-						num5 = 0f;
-						num6 = 0f;
-						num7 = 0;
-						text = asdaj.b(this.m_d.GetRow(num2).Cells["code"].Value.ToString());
-						text2 = asdaj.b(this.m_d.GetRow(num2).Cells["codedars"].Value.ToString());
-						flag = !(text == "");
-						num = 29;
-					}
-					else
-					{
-						num = 6;
-					}
-					continue;
-				case 23:
-					sqlCommand = new SqlCommand("UPDATE tExam SET procc = 0 WHERE  (id = " + k.SelectedValue.ToString() + ")", r);
-					sqlCommand.ExecuteNonQuery();
-					num2 = 0;
-					num = 15;
-					continue;
-				case 14:
-					try
-					{
-						while (true)
-						{
-							IL_0890:
-							flag = !(this.m_d.GetRow(num2).Cells["mark"].Text != "");
-							num = 6;
-							while (true)
-							{
-								int num10;
-								switch (num)
-								{
-								case 8:
-									goto end_IL_0857;
-								case 6:
-									if (!flag)
-									{
-										num = 10;
-										continue;
-									}
-									value = null;
-									num = 1;
-									continue;
-								case 4:
-									num = 7;
-									continue;
-								case 7:
-									num10 = ((!(num5 < (float)num3)) ? 1 : 0);
-									goto IL_08ff;
-								case 5:
-									if (!flag)
-									{
-										num = 2;
-										continue;
-									}
-									value = num5.ToString();
-									num6 += num5;
-									num7++;
-									num = 9;
-									continue;
-								case 2:
-									this.m_d.GetRow(num2).BeginEdit();
-									this.m_d.GetRow(num2).Cells["acp"].Value = "-1";
-									this.m_d.GetRow(num2).Cells["status"].Value = "نمره خارج از محدوده است";
-									this.m_d.GetRow(num2).EndEdit();
-									num = 11;
-									continue;
-								case 11:
-									goto end_IL_0855;
-								case 0:
-									num10 = 0;
-									goto IL_08ff;
-								case 10:
-									num5 = float.Parse(this.m_d.GetRow(num2).Cells["mark"].Text.ToString());
-									num = 3;
-									continue;
-								case 3:
-									num = ((!(num5 > (float)num4)) ? 4 : 0);
-									continue;
-								case 1:
-								case 9:
-									{
-										num = 8;
-										continue;
-									}
-									IL_08ff:
-									flag = (byte)num10 != 0;
-									num = 5;
-									continue;
-								}
-								goto IL_0890;
-								continue;
-								end_IL_0857:
-								break;
-							}
-							break;
-						}
-						goto IL_05d3;
-						end_IL_0855:;
-					}
-					catch
-					{
-						this.m_d.GetRow(num2).BeginEdit();
-						this.m_d.GetRow(num2).Cells["acp"].Value = "-1";
-						this.m_d.GetRow(num2).Cells["status"].Value = "نمره اشتباه است";
-						this.m_d.GetRow(num2).EndEdit();
-					}
-					goto case 0;
-				case 0:
-				case 18:
-				case 19:
-				case 34:
-				case 36:
-					num2++;
-					num = 1;
-					continue;
-				case 11:
-					num = ((!flag) ? 9 : 38);
-					continue;
-				case 31:
-					num = ((s == "1") ? 40 : 33);
-					continue;
-				case 25:
-					MessageBox.Show("دوره را انتخاب کنید");
-					k.Focus();
-					num = 32;
-					continue;
-				case 32:
-					return;
-				case 40:
-					num9 = 0;
-					goto IL_05a9;
-				case 8:
-				{
-					num3 = int.Parse(n.Text);
-					num4 = int.Parse(m.Text);
-					text = "";
-					text2 = "";
-					string text3 = "";
-					value = "";
-					num5 = 0f;
-					num6 = 0f;
-					num7 = 0;
-					num8 = 0;
-					flag = r.State == ConnectionState.Open;
-					num = 28;
-					continue;
-				}
-				case 28:
-					if (!flag)
-					{
-						num = 4;
-						continue;
-					}
-					goto case 23;
-				case 5:
-					this.m_d.GetRow(num2).BeginEdit();
-					this.m_d.GetRow(num2).Cells["acp"].Value = "-1";
-					this.m_d.GetRow(num2).Cells["status"].Value = sqlCommand.Parameters[0].Value.ToString();
-					this.m_d.GetRow(num2).EndEdit();
-					num = 19;
-					continue;
-				case 6:
-					r.Close();
-					this.m_d.Refetch();
-					MessageBox.Show("انجام شد");
-					num = 12;
-					continue;
-				case 12:
-					return;
-					IL_05d3:
-					flag = num7 != 0;
-					num = 42;
-					continue;
-					IL_05a9:
-					flag = (byte)num9 != 0;
-					num = 21;
-					continue;
-				}
-				break;
-			}
-		}
-	}
+	private async void c(object A_0, EventArgs A_1)
+    {
+        if(savingWorkbook)return;
+        if(k.SelectedIndex<=0){MessageBox.Show("دوره را انتخاب کنید");k.Focus();return;}
+        if(!this.m_d.TryEndEdit())return;
+        if(this.m_d.DataSource is not DataTable table || table.Rows.Count==0){MessageBox.Show("ابتدا فایل اکسل را انتخاب کنید.");return;}
+        var entries=new List<WorkbookMarkEntry>();
+        int year,exam,user;
+        int[] grades;
+        try
+        {
+            if(!asdaj.a("3"))throw new ValidationException("شما مجوز ورود به این بخش را ندارید");
+            year=Values.Number(p.Text,1000,9999) ?? throw new ValidationException("سال معتبر نیست.");
+            exam=Values.Number(k.SelectedValue,1) ?? throw new ValidationException("دوره معتبر نیست.");
+            user=Values.Number(asdaj.l,1) ?? throw new ValidationException("کاربر معتبر نیست.");
+            grades=asdaj.n.Split(',').Where(value=>int.TryParse(value,out _)).Select(int.Parse).ToArray();
+            int minimum=Values.Number(n.Text,0,100) ?? 0;
+            int maximum=Values.Number(m.Text,minimum,100) ?? throw new ValidationException("محدودهٔ نمره معتبر نیست.");
+            for(int index=0;index<table.Rows.Count;index++)
+            {
+                var row=table.Rows[index];row["acp"]=DBNull.Value;row["status"]=DBNull.Value;
+                try{entries.Add(WorkbookMarkEntry.Create(row["code"],row["codedars"],row["mark"],minimum,maximum));}
+                catch(ValidationException error)
+                {
+                    row["acp"]="-1";row["status"]=error.Message;
+                    throw new ValidationException("ردیف "+(index+1)+" فهرست: "+error.Message);
+                }
+            }
+        }
+        catch(Exception error){MessageBox.Show(error.Message);return;}
+        if(MessageBox.Show("آيا از انتقال نمرات به  "+k.SelectedItem.Text+" مطمئن هستيد؟","",MessageBoxButtons.YesNo,MessageBoxIcon.Exclamation)!=DialogResult.Yes)return;
+        bool enabled=Enabled,wait=UseWaitCursor;savingWorkbook=true;Enabled=false;UseWaitCursor=true;
+        try
+        {
+            var service=new WorkbookMarks(new Database(asdab.e()));
+            await Task.Run(()=>service.Save(year,exam,user,grades,entries));
+            for(int index=0;index<entries.Count;index++)
+            {
+                table.Rows[index]["acp"]=entries[index].Mark.HasValue?"1":"0";
+                table.Rows[index]["status"]=entries[index].Mark.HasValue?"":"نمره خالی است؛ تغییری ثبت نشد.";
+            }
+            this.m_d.Refetch();MessageBox.Show("انجام شد");
+        }
+        catch(Exception error)
+        {
+            foreach(DataRow row in table.Rows){row["acp"]="-1";row["status"]=error.Message;}
+            this.m_d.Refetch();MessageBox.Show("خطا در ثبت نمرات:\n"+error.Message);
+        }
+        finally{Enabled=enabled;UseWaitCursor=wait;savingWorkbook=false;}
+    }
 
 	private void b(object A_0, EventArgs A_1)
 	{
