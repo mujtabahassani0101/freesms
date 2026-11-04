@@ -91,7 +91,7 @@ jobs:
             Get-Content dist/FreeSMS-Net10/navigation-checks/*_report_*.log -ErrorAction SilentlyContinue
             exit 1
           }
-      - name: Exercise original business buttons, subject management and cross-section permission denials
+      - name: Exercise original business buttons, bulk marks, batch print lists and permissions
         if: ${{ !cancelled() }}
         shell: pwsh
         run: |

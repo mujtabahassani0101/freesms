@@ -557,7 +557,7 @@ public class asdbw : Form
 						num2 = 19;
 						continue;
 					}
-					dataTable2 = asdcb.c(asdab.e(), CommandType.Text, "select distinct xclass from tYear_Student where xyear=" + aq.SelectedValue.ToString() + " and  xstudent in(select id from tmpStdforPrint)");
+					dataTable2 = asdcb.c(asdab.e(), CommandType.Text, "select distinct xClass from tYear_Student where xYear=@Year and xStudent in(select id from tmpStdforPrint where xUser=@User)", new[]{asdcb.a("@Year",SqlDbType.Int,Convert.ToInt32(aq.SelectedValue)),asdcb.a("@User",SqlDbType.Int,Convert.ToInt32(asdaj.l))});
 					num = 0;
 					num2 = 36;
 					continue;
@@ -1513,7 +1513,7 @@ public class asdbw : Form
 				case 5:
 				{
 					string text = ak.SelectedItems[0].GetRow().Cells["id"].Value.ToString();
-					asdcb.d(asdab.e(), CommandType.Text, "delete from tmpStdforPrint where id=" + text);
+					asdcb.d(asdab.e(), CommandType.Text, "delete from tmpStdforPrint where id=@Student and xUser=@User", new[]{asdcb.a("@Student",SqlDbType.Int,Convert.ToInt32(text)),asdcb.a("@User",SqlDbType.Int,Convert.ToInt32(asdaj.l))});
 					c();
 					ad.Focus();
 					num = 2;

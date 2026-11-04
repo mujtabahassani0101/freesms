@@ -172,6 +172,12 @@ Source3618a96 passed183 native component checks, including explicit invalid-edit
 
 Further bulk review also repairs rejected immediate ordering: restore the last loaded/saved order in the grid, and prevent Save/uniform-fill from starting while ending a sort edit launches its async update. The all-class fixture now includes an unrelated grade2 student and checks invalid-order restoration. Windows verification is still pending.
 
+## Bulk save stages pass; repeated dirty close stalls (run41796057403)
+
+Sourcea7f2369 passed the previous14 business cases and all5 report previews. Its bulk scenario reached successful Save, stale-enrollment rejection, bound rejection, a late-student trigger rollback, complete retry and both processing invalidations while a UI timer released a real SQL lock. The worker then timed out after both unsaved-close No and Yes were acknowledged. The recovered close handler left its dirty flag false after confirmed discard, so subsequent owned-form cleanup requested another unsaved-close dialog. Confirmed discard now cancels the editor and marks the exiting form clean; the Close button bypasses validation so malformed editor text can be discarded too. The scenario now explicitly discards an invalid editor after rejecting the first close. Remaining reopen/fill/clear/order/annual assertions still require their own native pass. Full failed bulk log and verified receipt are archived.
+
+Static batch-report review also found that removing one selected student deleted that student's rows for every user, and report class selection read every user's temporary list. Both queries now include a typed current-user parameter. A new independent year1418 fixture exercises the actual batch selector's grade filter, Add/duplicate/Remove/Clear/Close buttons with overlapping selections belonging to another user. It also checks unchanged report settings. That scenario covers selection management; actual populated batch-report rendering/export remains open.
+
 ## Expanded marks/search confirmed; subjects under test
 
 Run41608908198 passed all13 business and5 report scenarios. Its full individual-mark, teacher/driver quoted-search logs and verified artifact receipt are archived. Individual marks passed the new multi-subject rollback/retry, SQL-lock/UI heartbeat, bound/fraction rejection, clearing and actual annual100-point M2 storage checks. These replace the earlier pending status for those specific assertions.

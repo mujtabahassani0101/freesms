@@ -130,6 +130,20 @@ internal static class OriginalWorkflowChecks
         int classroom=school.SaveClass(new Record{["name"]=asdaj.b("صنف محفوظ مدیریت"),["xpaye"]=1,["fee"]=100,["shift"]=1,["sortRpt"]=order});
         school.SaveStudent(new Record{["FName"]="شاگرد محفوظ مدیریت",["LName"]="پدر مدیریت",["Code"]=5996001,["NumberAsas"]=5996001,["xPaye"]=1,["xClass"]=classroom,["Status"]=1,["Jens"]=0,["Fee1"]=0});
     }
+    internal static void PrepareBatchPrintFixture(Database db)
+    {
+        var school=new SchoolService(db,new Session(1418));school.SetYear(1418);
+        var used=new HashSet<int>(db.Query("SELECT sortRpt FROM tClass WHERE sortRpt IS NOT NULL").Select(row=>Convert.ToInt32(row["sortRpt"])));
+        int order=30000;
+        foreach(int grade in new[]{1,2})
+        {
+            while(used.Contains(order))order++;used.Add(order);
+            int classroom=school.SaveClass(new Record{["name"]="صنف چاپ گروهی "+grade,["xpaye"]=grade,["fee"]=0,["sortRpt"]=order});
+            foreach(int code in grade==1?new[]{5999001,5999002}:new[]{5999003})
+                school.SaveStudent(new Record{["FName"]="شاگرد چاپ گروهی "+code,["LName"]="پدر چاپ",["Code"]=code,["NumberAsas"]=code,["xPaye"]=grade,["xClass"]=classroom,["Status"]=1,["Jens"]=0,["Fee1"]=0});
+        }
+        db.Execute("DELETE FROM tmpStdforPrint WHERE xUser=1");
+    }
     internal static void PrepareMarkEntryFixture(Database db,bool bulk=false)
     {
         int year=bulk?1417:1414,firstCode=bulk?5998001:5995001;
@@ -251,6 +265,7 @@ internal static class OriginalWorkflowChecks
         else if (scenario == "payment") Payment(form,db,log);
         else if (scenario == "mark-entry") MarkEntry(form,db,log);
         else if (scenario == "bulk-marks") BulkMarkEntry(form,db,log);
+        else if (scenario == "batch-print-list") BatchPrintList(form,db,log);
         else if (scenario == "attendance1" || scenario == "attendance2") Attendance(form,db,log);
         else throw new ArgumentException("Unknown workflow scenario: " + scenario);
     }
@@ -632,6 +647,35 @@ internal static class OriginalWorkflowChecks
             asdaj.l=beforeUser;asdaj.m=beforePermissions;asdaj.n=beforeGrades;
         }
     }
+    private static void BatchPrintList(Form form,Database db,Action<string> log)
+    {
+        int student=Convert.ToInt32(db.Scalar("SELECT id FROM tStudent WHERE Code=5999001"));
+        int second=Convert.ToInt32(db.Scalar("SELECT id FROM tStudent WHERE Code=5999002"));
+        int otherGrade=Convert.ToInt32(db.Scalar("SELECT id FROM tStudent WHERE Code=5999003"));
+        const int otherUser=5999000;
+        string settingsBefore=System.Text.Json.JsonSerializer.Serialize(db.Query("SELECT * FROM tParmetr"));
+        db.Execute("INSERT INTO tmpStdforPrint(id,xUser) VALUES(@p0,@p2),(@p1,@p2)",new object[]{student,otherGrade,otherUser});
+        int Count(int user)=>Convert.ToInt32(db.Scalar("SELECT COUNT(*) FROM tmpStdforPrint WHERE xUser=@p0",new object[]{user}));
+        try
+        {
+            Field<UIComboBox>(form,"aq").SelectedValue="1418";
+            Field<UIComboBox>(form,"ai").SelectedValue="1";
+            Require(Field<GridEX>(form,"ak").RowCount==0 && Field<GridEX>(form,"ac").RowCount==2,"Print lists did not isolate current-user selection and selected grade.");
+            Select(form,student,"ac");Click(form,"am");
+            Require(Count(1)==1 && Count(otherUser)==2 && Field<GridEX>(form,"ak").RowCount==1,"Adding a print selection changed another user's list.");
+            Dialog(()=>Click(form,"am"),"این شاگرد قبلا به لیست پرینت اضافه شده است",1);
+            Require(Count(1)==1,"Duplicate selection added a second print row.");
+            Select(form,student,"ak");Click(form,"al");
+            Require(Count(1)==0 && Count(otherUser)==2 && Field<GridEX>(form,"ak").RowCount==0,"Removing a selected student deleted another user's print selection.");
+            Select(form,student,"ac");Click(form,"am");Select(form,second,"ac");Click(form,"am");
+            Require(Count(1)==2 && Field<GridEX>(form,"ak").RowCount==2,"Print list did not reload both selected students.");
+            Click(form,"an");Require(Count(1)==0 && Count(otherUser)==2,"Clearing the print list changed another user's selections.");
+            Select(form,second,"ac");Click(form,"am");Click(form,"m_e");
+            Require(Count(1)==0 && Count(otherUser)==2 && System.Text.Json.JsonSerializer.Serialize(db.Query("SELECT * FROM tParmetr"))==settingsBefore,"Closing a print selector changed another user's selections or unchanged report settings.");
+            log("PASS original batch print list grade filtering, add/duplicate/remove/clear/close buttons preserve another user's selections and unchanged report settings; populated report rendering remains separate");
+        }
+        finally{db.Execute("DELETE FROM tmpStdforPrint WHERE xUser=@p0",new object[]{otherUser});}
+    }
     private static void BulkMarkEntry(Form selector,Database db,Action<string> log)
     {
         int classroom=Convert.ToInt32(db.Scalar("SELECT id FROM tClass WHERE xYear=1417 AND name=N'صنف ورود گروهی نمره'"));
@@ -689,6 +733,7 @@ internal static class OriginalWorkflowChecks
             Select(form,student,"ab");EditGridCell(grid,grid.Row,"m1","29");
             const string unsaved="آخرین تغییرات شما ثبت نشده است.\nآیا میخواهید بدون ثبت آخرین تغییرات از این صفحه خارج شود؟";
             Dialog(()=>Click(form,"aa"),unsaved,7);Require(form.Visible,"Declining unsaved-close still closed bulk entry.");
+            var editor=grid.Controls.OfType<DataGridView>().Single();Require(editor.BeginEdit(true),"Bulk cell did not open for invalid-editor discard.");((TextBox)editor.EditingControl).Text="bad";
             Dialog(()=>Click(form,"aa"),unsaved,6);
             Require(Convert.ToDecimal(Value(student,exam))==26,"Discarding bulk edits saved pending marks.");
         });

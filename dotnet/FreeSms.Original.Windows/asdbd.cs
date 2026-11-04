@@ -486,6 +486,7 @@ protected override void Dispose(bool A_0)
 		z.TextAlign = ContentAlignment.MiddleLeft;
 		aa.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
 		aa.DialogResult = DialogResult.Cancel;
+		aa.CausesValidation = false;
 		aa.Image = (Image)componentResourceManager.GetObject("btnClose.Image");
 		aa.ImageSize = new Size(40, 40);
 		aa.Location = new Point(11, 552);
@@ -826,47 +827,14 @@ protected override void Dispose(bool A_0)
         am=false;
     }
 
-	private void a(object A_0, FormClosingEventArgs A_1)
-	{
-        if(savingMarks){A_1.Cancel=true;return;}
-		while (true)
-		{
-			bool flag = am;
-			int num = 4;
-			while (true)
-			{
-				switch (num)
-				{
-				case 4:
-					if (!flag)
-					{
-						num = 5;
-						continue;
-					}
-					return;
-				case 1:
-					return;
-				case 0:
-					A_1.Cancel = true;
-					num = 3;
-					continue;
-				case 3:
-					return;
-				case 5:
-					flag = DialogResult.Yes == MessageBox.Show("آخرین تغییرات شما ثبت نشده است.\nآیا میخواهید بدون ثبت آخرین تغییرات از این صفحه خارج شود؟", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
-					num = 2;
-					continue;
-				case 2:
-					if (true)
-					{
-					}
-					num = (flag ? 1 : 0);
-					continue;
-				}
-				break;
-			}
-		}
-	}
+    private void a(object sender,FormClosingEventArgs args)
+    {
+        if(savingMarks){args.Cancel=true;return;}
+        if(am)return;
+        if(MessageBox.Show("آخرین تغییرات شما ثبت نشده است.\nآیا میخواهید بدون ثبت آخرین تغییرات از این صفحه خارج شود؟","",MessageBoxButtons.YesNo,MessageBoxIcon.Question,MessageBoxDefaultButton.Button2)!=DialogResult.Yes)
+        {args.Cancel=true;return;}
+        ab.CancelEdit();am=true;
+    }
 
 	private void a(object A_0, KeyEventArgs A_1)
 	{
