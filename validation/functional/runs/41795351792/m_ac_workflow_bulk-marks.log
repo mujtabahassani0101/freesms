@@ -1,0 +1,6 @@
+BEGIN m_ac_workflow_bulk-marks
+toolStripMenuItem7 -> frmMarkEntrySelect
+FAILED FreeSms.Core.ValidationException: نام صنف تکراری است.
+   at FreeSms.Core.SchoolService.SaveClass(Record values, Int32 id) in D:\a\freesms\freesms\dotnet\FreeSms.Core\SchoolService.cs:line 52
+   at OriginalWorkflowChecks.PrepareMarkEntryFixture(Database db) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalWorkflowChecks.cs:line 139
+   at OriginalNavigationCheck.Worker(String route) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalNavigationCheck.cs:line 61

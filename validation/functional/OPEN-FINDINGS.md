@@ -166,6 +166,12 @@ The recovered bulk mark controller separately wrote/deleted each student's mark 
 
 A new actual selector/button workflow is queued for Save/reopen, stale enrollment, bounds, late-student SQL failure with complete rollback, pending-edit retry, both calculation invalidations, a real SQL lock released by the UI timer, unsaved-close Yes/No, uniform Persian input, clear Yes/No, other-exam preservation, duplicate historical enrollment exclusion, year-scoped order and annual100-point M2 storage with retained hidden component. These changes are not yet certified by Windows evidence; other PLAN.md sections remain open.
 
+## Native Cancel passes; bulk fixture collision (run41795351792)
+
+Source3618a96 passed183 native component checks, including explicit invalid-editor Cancel and subsequent rebind. All14 previously covered business scenarios and5 report previews passed. The new fifteenth bulk scenario failed during setup before its selector opened: it reused the individual-entry fixture's class name/year. Bulk now uses independent year1417 and student/subject codes5998001/2 with distinct names; individual entry remains year1414/codes5995001/2. This is a harness setup repair, not evidence of a passing bulk Save. Verified receipts and exact native/functional logs are archived.
+
+Further bulk review also repairs rejected immediate ordering: restore the last loaded/saved order in the grid, and prevent Save/uniform-fill from starting while ending a sort edit launches its async update. The all-class fixture now includes an unrelated grade2 student and checks invalid-order restoration. Windows verification is still pending.
+
 ## Expanded marks/search confirmed; subjects under test
 
 Run41608908198 passed all13 business and5 report scenarios. Its full individual-mark, teacher/driver quoted-search logs and verified artifact receipt are archived. Individual marks passed the new multi-subject rollback/retry, SQL-lock/UI heartbeat, bound/fraction rejection, clearing and actual annual100-point M2 storage checks. These replace the earlier pending status for those specific assertions.

@@ -130,25 +130,26 @@ internal static class OriginalWorkflowChecks
         int classroom=school.SaveClass(new Record{["name"]=asdaj.b("صنف محفوظ مدیریت"),["xpaye"]=1,["fee"]=100,["shift"]=1,["sortRpt"]=order});
         school.SaveStudent(new Record{["FName"]="شاگرد محفوظ مدیریت",["LName"]="پدر مدیریت",["Code"]=5996001,["NumberAsas"]=5996001,["xPaye"]=1,["xClass"]=classroom,["Status"]=1,["Jens"]=0,["Fee1"]=0});
     }
-    internal static void PrepareMarkEntryFixture(Database db)
+    internal static void PrepareMarkEntryFixture(Database db,bool bulk=false)
     {
-        var school=new SchoolService(db,new Session(1414));school.SetYear(1414);
+        int year=bulk?1417:1414,firstCode=bulk?5998001:5995001;
+        var school=new SchoolService(db,new Session(year));school.SetYear(year);
         var used=new HashSet<int>(db.Query("SELECT sortRpt FROM tClass WHERE sortRpt IS NOT NULL").Select(row=>Convert.ToInt32(row["sortRpt"])));
         int order=30000;while(used.Contains(order))order++;
         Require(order<=32767,"No available mark fixture class order.");
-        int classroom=school.SaveClass(new Record{["name"]="صنف ورود نمره",["xpaye"]=1,["fee"]=0,["shift"]=1,["sortRpt"]=order});
+        int classroom=school.SaveClass(new Record{["name"]=bulk?"صنف ورود گروهی نمره":"صنف ورود نمره",["xpaye"]=1,["fee"]=0,["shift"]=1,["sortRpt"]=order});
         var entities=new EntityService(school);
-        int book=entities.Save("books",new Record{["xPaye"]=1,["Name"]="مضمون ورود نمره",["vahed"]=1,["timeWeek"]=1,["Type"]=1,["sort"]=30001,["SortOneEntry"]=30001,["codedars"]=5995001,["Vezarat"]=true});
+        int book=entities.Save("books",new Record{["xPaye"]=1,["Name"]=bulk?"مضمون ورود گروهی نمره":"مضمون ورود نمره",["vahed"]=1,["timeWeek"]=1,["Type"]=1,["sort"]=30001,["SortOneEntry"]=30001,["codedars"]=firstCode,["Vezarat"]=true});
         db.Execute("UPDATE tBook SET showOneEntry=1 WHERE id=@p0",new object[]{book});
-        int secondBook=entities.Save("books",new Record{["xPaye"]=1,["Name"]="مضمون دوم ورود نمره",["vahed"]=1,["timeWeek"]=1,["Type"]=1,["sort"]=30002,["SortOneEntry"]=30002,["codedars"]=5995002,["Vezarat"]=true});
+        int secondBook=entities.Save("books",new Record{["xPaye"]=1,["Name"]=bulk?"مضمون دوم گروهی نمره":"مضمون دوم ورود نمره",["vahed"]=1,["timeWeek"]=1,["Type"]=1,["sort"]=30002,["SortOneEntry"]=30002,["codedars"]=firstCode+1,["Vezarat"]=true});
         db.Execute("UPDATE tBook SET showOneEntry=1 WHERE id=@p0",new object[]{secondBook});
         int teacher=entities.Save("teachers",new Record{["fNamF"]="استاد نمره",["fNamL"]="آزمون",["fEmail"]="",["fPassword"]=""});school.AssignTeacher(classroom,book,teacher);
-        foreach(int code in new[]{5995001,5995002})
-            school.SaveStudent(new Record{["FName"]=code==5995001?"شاگرد محفوظ نمره":"شاگرد ورود نمره",["LName"]="پدر نمره",["PName"]="پدرکلان نمره",["Code"]=code,["NumberAsas"]=code,["xPaye"]=1,["xClass"]=classroom,["Status"]=1,["Jens"]=0,["Fee1"]=0});
-        foreach(var item in new[]{(5995001,1,10),(5995002,2,15)})
+        foreach(int code in new[]{firstCode,firstCode+1})
+            school.SaveStudent(new Record{["FName"]=code==firstCode?"شاگرد محفوظ نمره":"شاگرد ورود نمره",["LName"]="پدر نمره",["PName"]="پدرکلان نمره",["Code"]=code,["NumberAsas"]=code,["xPaye"]=1,["xClass"]=classroom,["Status"]=1,["Jens"]=0,["Fee1"]=0});
+        foreach(var item in new[]{(firstCode,1,10),(firstCode+1,2,15)})
         {
-            int exam=Convert.ToInt32(db.Scalar("SELECT id FROM tExam WHERE xYear=1414 AND term=@p0",new object[]{item.Item2}));
-            var result=db.Call("sp_tMark_insertUpdate_FromXls_Af",new Record{["xuser"]=1,["code"]=item.Item1.ToString(),["codedars"]=5995001,["Xtest"]=exam,["xYear"]=1414,["Mark"]=item.Item3});
+            int exam=Convert.ToInt32(db.Scalar("SELECT id FROM tExam WHERE xYear=@p0 AND term=@p1",new object[]{year,item.Item2}));
+            var result=db.Call("sp_tMark_insertUpdate_FromXls_Af",new Record{["xuser"]=1,["code"]=item.Item1.ToString(),["codedars"]=firstCode,["Xtest"]=exam,["xYear"]=year,["Mark"]=item.Item3});
             Require(string.IsNullOrEmpty(Convert.ToString(result.Output["err"])),"Mark entry fixture rejected an owned mark.");
         }
     }
@@ -633,13 +634,13 @@ internal static class OriginalWorkflowChecks
     }
     private static void BulkMarkEntry(Form selector,Database db,Action<string> log)
     {
-        int classroom=Convert.ToInt32(db.Scalar("SELECT id FROM tClass WHERE xYear=1414 AND name=N'صنف ورود نمره'"));
-        int student=Convert.ToInt32(db.Scalar("SELECT id FROM tStudent WHERE Code=5995002"));
-        int peer=Convert.ToInt32(db.Scalar("SELECT id FROM tStudent WHERE Code=5995001"));
-        int book=Convert.ToInt32(db.Scalar("SELECT id FROM tBook WHERE codedars=5995001"));
-        int exam=Convert.ToInt32(db.Scalar("SELECT id FROM tExam WHERE xYear=1414 AND term=1"));
-        int annual=Convert.ToInt32(db.Scalar("SELECT id FROM tExam WHERE xYear=1414 AND term=3"));
-        int other=Convert.ToInt32(db.Scalar("SELECT id FROM tExam WHERE xYear=1414 AND term=2"));
+        int classroom=Convert.ToInt32(db.Scalar("SELECT id FROM tClass WHERE xYear=1417 AND name=N'صنف ورود گروهی نمره'"));
+        int student=Convert.ToInt32(db.Scalar("SELECT id FROM tStudent WHERE Code=5998002"));
+        int peer=Convert.ToInt32(db.Scalar("SELECT id FROM tStudent WHERE Code=5998001"));
+        int book=Convert.ToInt32(db.Scalar("SELECT id FROM tBook WHERE codedars=5998001"));
+        int exam=Convert.ToInt32(db.Scalar("SELECT id FROM tExam WHERE xYear=1417 AND term=1"));
+        int annual=Convert.ToInt32(db.Scalar("SELECT id FROM tExam WHERE xYear=1417 AND term=3"));
+        int other=Convert.ToInt32(db.Scalar("SELECT id FROM tExam WHERE xYear=1417 AND term=2"));
         Field<UIComboBox>(selector,"l").SelectedValue="1";
         Field<UIComboBox>(selector,"f").SelectedValue=exam.ToString();
         Field<UIComboBox>(selector,"j").SelectedValue=classroom.ToString();
@@ -653,7 +654,7 @@ internal static class OriginalWorkflowChecks
             Select(form,student,"ab");EditGridCell(grid,grid.Row,"m1","۲۵");
             Select(form,peer,"ab");EditGridCell(grid,grid.Row,"m1","۳۰");Save(form);
             Require(Convert.ToDecimal(Value(student,exam))==25 && Convert.ToDecimal(Value(peer,exam))==30 && Convert.ToDecimal(Value(student,other))==15,"Bulk Save mixed students or exams.");
-            db.Execute("UPDATE tYear_Student SET Status=2 WHERE xYear=1414 AND xStudent=@p0",new object[]{student});
+            db.Execute("UPDATE tYear_Student SET Status=2 WHERE xYear=1417 AND xStudent=@p0",new object[]{student});
             try
             {
                 Select(form,peer,"ab");EditGridCell(grid,grid.Row,"m1","32");
@@ -661,7 +662,7 @@ internal static class OriginalWorkflowChecks
                 Require(Convert.ToDecimal(Value(student,exam))==25 && Convert.ToDecimal(Value(peer,exam))==30,"Stale enrollment allowed a partial bulk Save.");
                 EditGridCell(grid,grid.Row,"m1","30");
             }
-            finally{db.Execute("UPDATE tYear_Student SET Status=1 WHERE xYear=1414 AND xStudent=@p0",new object[]{student});}
+            finally{db.Execute("UPDATE tYear_Student SET Status=1 WHERE xYear=1417 AND xStudent=@p0",new object[]{student});}
             Select(form,student,"ab");EditGridCell(grid,grid.Row,"m1","41");
             db.Execute("UPDATE tExam SET procc=1 WHERE id IN(@p0,@p1)",new object[]{exam,annual});
             Dialog(()=>Field<Button>(form,"m").PerformClick(),"نمره وارد شده خارج از محدوده است",1);
@@ -705,16 +706,23 @@ internal static class OriginalWorkflowChecks
             Require(Convert.ToDecimal(Value(student,other))==15,"Bulk clear changed another exam.");Click(form,"aa");
         });
         // The all-class branch must still isolate the selected year and grade.
-        db.Execute("INSERT INTO tYear_Student(xYear,xStudent,xPaye,xClass,Status,MarkTerm3_From100,sort) SELECT 1413,xStudent,xPaye,xClass,Status,MarkTerm3_From100,7 FROM tYear_Student WHERE xYear=1414 AND xStudent=@p0",new object[]{student});
-        using(var all=new asdbd{af="0",ag="1",ah=exam.ToString(),ai=book.ToString(),aj="1414",ak="1"})
+        db.Execute("INSERT INTO tYear_Student(xYear,xStudent,xPaye,xClass,Status,MarkTerm3_From100,sort) SELECT 1416,xStudent,xPaye,xClass,Status,MarkTerm3_From100,7 FROM tYear_Student WHERE xYear=1417 AND xStudent=@p0",new object[]{student});
+        var school=new SchoolService(db,new Session(1417));
+        int order=30000;while(Convert.ToInt32(db.Scalar("SELECT COUNT(*) FROM tClass WHERE sortRpt=@p0",new object[]{order}))>0)order++;
+        int otherClass=school.SaveClass(new Record{["name"]="صنف محفوظ گروهی پایه دوم",["xpaye"]=2,["fee"]=0,["sortRpt"]=order});
+        school.SaveStudent(new Record{["FName"]="شاگرد محفوظ پایه دوم",["LName"]="پدر گروهی",["Code"]=5998003,["NumberAsas"]=5998003,["xPaye"]=2,["xClass"]=otherClass,["Status"]=1,["Jens"]=0,["Fee1"]=0});
+        using(var all=new asdbd{af="0",ag="1",ah=exam.ToString(),ai=book.ToString(),aj="1417",ak="1"})
         {
             all.Show();var grid=Field<GridEX>(all,"ab");Require(grid.RowCount==2,"All-class bulk entry included duplicate previous-year enrollment rows.");
             Field<CheckBox>(all,"l").Checked=true;Select(all,student,"ab");EditGridCell(grid,grid.Row,"sort","12");
             var timeout=System.Diagnostics.Stopwatch.StartNew();while(Field<bool>(all,"savingMarks") && timeout.ElapsedMilliseconds<5000){Application.DoEvents();System.Threading.Thread.Sleep(10);}Application.DoEvents();
-            Require(Convert.ToInt32(db.Scalar("SELECT sort FROM tYear_Student WHERE xYear=1414 AND xStudent=@p0",new object[]{student}))==12 && Convert.ToInt32(db.Scalar("SELECT sort FROM tYear_Student WHERE xYear=1413 AND xStudent=@p0",new object[]{student}))==7,"Bulk display-order edit did not isolate the enrollment year.");
+            Require(Convert.ToInt32(db.Scalar("SELECT sort FROM tYear_Student WHERE xYear=1417 AND xStudent=@p0",new object[]{student}))==12 && Convert.ToInt32(db.Scalar("SELECT sort FROM tYear_Student WHERE xYear=1416 AND xStudent=@p0",new object[]{student}))==7,"Bulk display-order edit did not isolate the enrollment year.");
+            Select(all,student,"ab");
+            Dialog(()=>EditGridCell(grid,grid.Row,"sort","-1"),"",1,requiredText:"ترتیب شاگرد ثبت نشد؛ مقدار قبلی حفظ شد.");
+            Require(Convert.ToInt32(grid.GetRow(grid.Row).Cells["sort"].Value)==12 && Convert.ToInt32(db.Scalar("SELECT sort FROM tYear_Student WHERE xYear=1417 AND xStudent=@p0",new object[]{student}))==12,"Rejected order did not restore the displayed/saved order.");
             Click(all,"aa");
         }
-        db.Execute("UPDATE tYear_Student SET MarkTerm3_From100=1 WHERE xYear=1414 AND xStudent=@p0",new object[]{student});
+        db.Execute("UPDATE tYear_Student SET MarkTerm3_From100=1 WHERE xYear=1417 AND xStudent=@p0",new object[]{student});
         db.Execute("INSERT INTO tMark(xStudent,Xtest,xbook,typ,M3,Mark) VALUES(@p0,@p1,@p2,1,5,5)",new object[]{student,annual,book});
         Field<UIComboBox>(selector,"f").SelectedValue=annual.ToString();Field<UIComboBox>(selector,"h").SelectedValue=book.ToString();
         Open(form=>

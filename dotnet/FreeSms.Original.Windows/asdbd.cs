@@ -92,6 +92,7 @@ public class asdbd : Form
 
 	private bool savingMarks;
 	private bool updatingRowState;
+	private readonly Dictionary<int,object> savedOrders = new Dictionary<int,object>();
 
 	private bool am = true;
 
@@ -645,7 +646,7 @@ protected override void Dispose(bool A_0)
 				case 4:
 					return;
 				case 13:
-					ad.Text = asdaj.__field_a;
+					ad.Text = aj;
 					am = true;
 					flag = !(ak == "1");
 					num = 5;
@@ -681,6 +682,8 @@ protected override void Dispose(bool A_0)
         var data=asdcb.c(asdab.e(),CommandType.Text,
             "SELECT 0 AS acp,tStudent.id,tStudent.NumberAsas,tYear_Student.sort,tStudent.Code,tStudent.FName,tStudent.LName,tStudent.PName,tmpMark.CountAb,"+first+",tmpMark.M3,tmpMark.M4,tmpMark.M5,tmpMark.M6,tmpMark.M7,tmpMark.M8,tmpMark.M9,tmpMark.M10 FROM tStudent INNER JOIN tYear_Student ON tStudent.id=tYear_Student.xStudent LEFT JOIN tMark tmpMark ON tStudent.id=tmpMark.xStudent AND tmpMark.Xtest=@Exam AND tmpMark.xbook=@Book WHERE tYear_Student.xYear=@Year AND tYear_Student.xPaye=@Grade AND (@Class=0 OR tYear_Student.xClass=@Class) AND tYear_Student.Status IN(1,4) AND (@Term NOT IN(1,2,3) OR tYear_Student.MarkTerm3_From100=CASE WHEN @Term=3 THEN 1 ELSE 0 END) ORDER BY tYear_Student.sort,tStudent.LName,tStudent.FName,tStudent.id",
             new[]{asdcb.a("@Year",SqlDbType.Int,year),asdcb.a("@Grade",SqlDbType.Int,grade),asdcb.a("@Class",SqlDbType.Int,classroom),asdcb.a("@Exam",SqlDbType.Int,exam),asdcb.a("@Book",SqlDbType.Int,book),asdcb.a("@Term",SqlDbType.Int,term)});
+        savedOrders.Clear();
+        foreach(DataRow row in data.Rows)savedOrders[Convert.ToInt32(row["id"])]=row["sort"];
         ab.DataSource=data;
         foreach(var item in new[]{(1,Color.FromArgb(0,200,0)),(-1,Color.FromArgb(250,0,150))})
         {
@@ -698,7 +701,7 @@ protected override void Dispose(bool A_0)
 
     private async void d(object sender,EventArgs args)
     {
-        if(savingMarks || !ab.TryEndEdit())return;
+        if(savingMarks || !ab.TryEndEdit() || savingMarks)return;
         int year=int.Parse(aj),grade=int.Parse(ag),classroom=int.Parse(af),exam=int.Parse(ah),book=int.Parse(ai),term=int.Parse(ak);
         var entries=new List<BulkMark>();
         try
@@ -740,7 +743,7 @@ protected override void Dispose(bool A_0)
 
     private async void a(object sender,ColumnActionEventArgs args)
     {
-        if(updatingRowState || ab.Row<0 || args.Column.Key=="acp")return;
+        if(updatingRowState || savingMarks || ab.Row<0 || args.Column.Key=="acp")return;
         var row=ab.GetRow(ab.Row);
         if(args.Column.Key=="sort")
         {
@@ -755,9 +758,15 @@ protected override void Dispose(bool A_0)
                 if(!asdaj.a("3") || !asdaj.n.Split(',').Any(value=>int.TryParse(value,out int allowed) && allowed==grade))
                     throw new ValidationException("اجازهٔ ثبت نمره برای این پایه را ندارید.");
                 await Task.Run(()=>new BulkMarks(new Database(OriginalRuntime.ConnectionString)).SaveOrder(year,grade,classroom,student,order));
+                savedOrders[student]=order;
             }
             catch(Exception error) when(error is SqlException || error is ValidationException)
-            {MessageBox.Show("ترتیب شاگرد ثبت نشد؛ مقدار را اصلاح و دوباره وارد کنید.\n"+error.Message,"خطا",MessageBoxButtons.OK,MessageBoxIcon.Error);}
+            {
+                updatingRowState=true;
+                try{if(savedOrders.TryGetValue(student,out var previous))row.Cells["sort"].Value=previous;}
+                finally{updatingRowState=false;}
+                MessageBox.Show("ترتیب شاگرد ثبت نشد؛ مقدار قبلی حفظ شد.\n"+error.Message,"خطا",MessageBoxButtons.OK,MessageBoxIcon.Error);
+            }
             finally{savingMarks=false;if(!IsDisposed){Enabled=true;UseWaitCursor=false;}}
             return;
         }
@@ -785,7 +794,7 @@ protected override void Dispose(bool A_0)
 
     private void b(object sender,EventArgs args)
     {
-        if(savingMarks || !ab.TryEndEdit())return;
+        if(savingMarks || !ab.TryEndEdit() || savingMarks)return;
         if(k.SelectedIndex<0)k.SelectedIndex=0;
         string key=Convert.ToString(k.SelectedValue);string text=g.Text.Trim();
         object value=DBNull.Value;
