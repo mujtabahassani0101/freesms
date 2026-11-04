@@ -178,6 +178,18 @@ Sourcea7f2369 passed the previous14 business cases and all5 report previews. Its
 
 Static batch-report review also found that removing one selected student deleted that student's rows for every user, and report class selection read every user's temporary list. Both queries now include a typed current-user parameter. A new independent year1418 fixture exercises the actual batch selector's grade filter, Add/duplicate/Remove/Clear/Close buttons with overlapping selections belonging to another user. It also checks unchanged report settings. That scenario covers selection management; actual populated batch-report rendering/export remains open.
 
+## Expanded workflows verified (run41797019414)
+
+Runtime sourcec7efb21 completed both Windows jobs successfully:16/16 business cases,5/5 populated original previews,183 native component checks,31 Core/database checks and58 report checks, plus original-form construction, initialization/login and menu responsiveness. SHA256/CRC-verified receipts and full new bulk/print-selection logs are archived alongside authentication, marks, subjects and summaries.
+
+The bulk workflow now completes its formerly blocked close/discard/reopen stages, including malformed editor text, uniform Persian input, clear No/Yes, all-class year/grade isolation, persisted ordering and invalid-order restoration, and annual M2/total storage with retained M3. The actual batch list buttons preserve another user's overlapping selections through Add/duplicate/Remove/Clear/Close, with unchanged report settings. The native Cancel/rebind regression also passes.
+
+These results supersede the specific pending assertions above. They do not prove all448 click actions, history marks, actual batch-report rendering, native Excel import/export, missing disciplinary workflows or the remaining PLAN.md requirements. Whole-application completion remains unproven.
+
+## Hidden-form capture limitation
+
+Review of both the earlier and current c7efb21 packaged original-forms/asdbd.png found a uniformly gray image (933x692, RGB240 throughout). OriginalProgram's89-form probe creates each hidden form and calls DrawToBitmap without showing it, so its successful result proves construction/drawing-call completion, not visible control layout. Earlier references to the constructor/render audit must be read with this limitation. The separate populated SaveGallery cases require a visible form and retain useful UI evidence, as do actual report pages. Bulk/list visual captures and real hit-target checks must be expanded alongside the remaining application workflows; the blank constructor capture is not accepted as UI fidelity evidence.
+
 ## Expanded marks/search confirmed; subjects under test
 
 Run41608908198 passed all13 business and5 report scenarios. Its full individual-mark, teacher/driver quoted-search logs and verified artifact receipt are archived. Individual marks passed the new multi-subject rollback/retry, SQL-lock/UI heartbeat, bound/fraction rejection, clearing and actual annual100-point M2 storage checks. These replace the earlier pending status for those specific assertions.

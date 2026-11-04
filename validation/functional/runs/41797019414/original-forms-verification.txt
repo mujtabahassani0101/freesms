@@ -1,0 +1,179 @@
+BEGIN asda
+frmPrint: constructed and rendered
+BEGIN asda0
+frmRpt: constructed and rendered
+BEGIN asda1
+frmHozeh: constructed and rendered
+BEGIN asda2
+frmCommentKoll: constructed and rendered
+BEGIN asda3
+frmLogin: constructed and rendered
+BEGIN asda4
+frmCommentAdd: constructed and rendered
+BEGIN asda5
+frmPaymentAdd: constructed and rendered
+BEGIN asda6
+frmSetAcpTerm: constructed and rendered
+BEGIN asda7
+frmSetMark100: constructed and rendered
+BEGIN asda8
+frmbackColor: constructed and rendered
+BEGIN asda9
+frmbackUp: constructed and rendered
+BEGIN asdaa
+frmYearMaghtaCountDay: constructed and rendered
+BEGIN asdac
+frmSchool: constructed and rendered
+BEGIN asdad
+frmDisciplinaryCases2: constructed and rendered
+BEGIN asdae
+frmPaymentInsertUpdate: constructed and rendered
+BEGIN asdaf
+frmCommentListSelectDate: constructed and rendered
+BEGIN asdag
+frmTosifConfig: constructed and rendered
+BEGIN asdah
+frmImportSarbargFile: constructed and rendered
+BEGIN asdai
+frmlistStdSearch: constructed and rendered
+BEGIN asdak
+frmMarkEntrySelect: constructed and rendered
+BEGIN asdal
+frmsarbarg: constructed and rendered
+BEGIN asdam
+frmRptLable: constructed and rendered
+BEGIN asdao
+FrmEmpty: constructed and rendered
+BEGIN asdap
+frmRptChart: constructed and rendered
+BEGIN asdaq
+frmHazeriAgo: constructed and rendered
+BEGIN asdar
+frmPaymentList: constructed and rendered
+BEGIN asdas
+frmRptDis: constructed and rendered
+BEGIN asdat
+frmSabtenam: constructed and rendered
+BEGIN asdau
+frmActivStdSarbarg: constructed and rendered
+BEGIN asdav
+frmSetDefYear: constructed and rendered
+BEGIN asdaz
+frmshaghe: constructed and rendered
+BEGIN asdb
+frmlistHozeh: constructed and rendered
+BEGIN asdb0
+frmSendSmsMark: constructed and rendered
+BEGIN asdb1
+frmSendSmsMarkTelegram: constructed and rendered
+BEGIN asdb2
+frmRptAFLsit: constructed and rendered
+BEGIN asdb3
+frmMain: constructed and rendered
+BEGIN asdb4
+frmAtach: constructed and rendered
+BEGIN asdb5
+frmExpotMarkToXls: constructed and rendered
+BEGIN asdb6
+frmTelegramConfig: constructed and rendered
+BEGIN asdb7
+frmImportStd: constructed and rendered
+BEGIN asdb8
+frmSetgTerm: constructed and rendered
+BEGIN asdba
+frmSummaryResults: constructed and rendered
+BEGIN asdbb
+frmCommentInsertUpdate: constructed and rendered
+BEGIN asdbc
+frmPrintDis: constructed and rendered
+BEGIN asdbd
+frmMarkEntry: constructed and rendered
+BEGIN asdbf
+frmRptPayment: constructed and rendered
+BEGIN asdbh
+frmMarkEntryAgo: constructed and rendered
+BEGIN asdbi
+frmTeacher: constructed and rendered
+BEGIN asdbj
+frmlistTelegramMessage: constructed and rendered
+BEGIN asdbk
+frmRegisterPak: constructed and rendered
+BEGIN asdbl
+frmbackUpClosing: constructed and rendered
+BEGIN asdbm
+frmDisciplinaryCases: constructed and rendered
+BEGIN asdbn
+frmDisciplinaryAddAbsentSelectDate: constructed and rendered
+BEGIN asdbo
+frmRptBalance: constructed and rendered
+BEGIN asdbp
+PrintRptDynamic: constructed and rendered
+BEGIN asdbq
+frmExam: constructed and rendered
+BEGIN asdbr
+frmSelectStdNotShowBalance: constructed and rendered
+BEGIN asdbs
+frmPaymentListSelectDate: constructed and rendered
+BEGIN asdbt
+frmSabtenamItemEnable: constructed and rendered
+BEGIN asdbu
+frmDisciplinaryAddAbsent: constructed and rendered
+BEGIN asdbv
+frmUpdate: constructed and rendered
+BEGIN asdbw
+frmRptSelectStd: constructed and rendered
+BEGIN asdby
+frmMarkEntry2: constructed and rendered
+BEGIN asdbz
+frmYear_Student: constructed and rendered
+BEGIN asdc
+frmCls: constructed and rendered
+BEGIN asdca
+frmbook: constructed and rendered
+BEGIN asdcc
+frmExportMarkToSite: constructed and rendered
+BEGIN asdcd
+frmPaye: constructed and rendered
+BEGIN asdce
+frmSendSmsMark: constructed and rendered
+BEGIN asde
+frmcode_decode: constructed and rendered
+BEGIN asdf
+frmDriverStd: constructed and rendered
+BEGIN asdg
+frmCreateXlsToMarkEntry: constructed and rendered
+BEGIN asdh
+frmTakhfif: constructed and rendered
+BEGIN asdi
+frmUser: constructed and rendered
+BEGIN asdj
+frmTchClass: constructed and rendered
+BEGIN asdk
+EndUserDesignerMainForm: constructed and rendered
+BEGIN asdl
+frmDriver: constructed and rendered
+BEGIN asdm
+frmlistStd: constructed and rendered
+BEGIN asdn
+frmDisciplinaryAdd: constructed and rendered
+BEGIN asdo
+frmOst: constructed and rendered
+BEGIN asdp
+frmHazeri: constructed and rendered
+BEGIN asdq
+frmDisciplinaryCases3: constructed and rendered
+BEGIN asdr
+frmClsSort: constructed and rendered
+BEGIN asds
+frmUserPermission: constructed and rendered
+BEGIN asdt
+frmsarbarg2: constructed and rendered
+BEGIN asdu
+frm_Year_Term: constructed and rendered
+BEGIN asdv
+frmImportMark: constructed and rendered
+BEGIN asdw
+frmCommentList: constructed and rendered
+BEGIN asdx
+frmCommentKollEntrySelect: constructed and rendered
+SUCCESS 89
