@@ -44,6 +44,12 @@ skipped=student.copy();skipped[1]='999999';skipped[3]=None
 workbook('students-valid.xlsx',[headers,student,[None]*18,second,skipped],extra=True)
 workbook('marks-valid.xlsx',[[' Code ','CODEDARS','Mark'],['001234',5998001,25.5],[None,None,None],['۱۲۳۵','۵۹۹۸۰۰۱',0],['1236',5998001,None]],extra=True)
 workbook('marks-save.xlsx',[['Code','CodeDars','Mark'],['۶۰۰۰۱۰۱','۶۰۰۰۱۰۱','۲۵٫۵'],[6000102,6000101,0],[6000103,6000101,None]])
+student_save=[]
+for index,(grade,total,monthly,payment) in enumerate([(1,900,100,200),(2,250,100,50),(0,0,0,0),(1,25,100,30),(1,1000,100,0),(1,900,0,0)],1):
+ row=[index,str(60002000000+index*10001),grade,"صنف ' اکسل" if grade else 'کودکستان اکسل',"نام ' محفوظ "+str(index),'پدر محفوظ','پدرکلان',index%2,6000200+index,100,monthly,total,payment,10 if index==1 else 0,20 if index==1 else 0,30 if index==1 else 0,'0700000000','0790000000']
+ if index==2:row[0]=None;row[7]=None;row[8]=None
+ student_save.append(row)
+workbook('students-save.xlsx',[headers]+student_save)
 workbook('duplicate-header.xlsx',[['Code','codedars','mark','CODE'],['1234',1,25,'1234']])
 workbook('missing-header.xlsx',[['Code','mark'],['1234',25]])
 workbook('unnamed-data.xlsx',[['code','codedars','mark',None],['1234',1,25,'lost']])

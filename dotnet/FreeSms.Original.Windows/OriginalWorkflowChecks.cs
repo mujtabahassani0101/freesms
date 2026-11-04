@@ -144,6 +144,12 @@ internal static class OriginalWorkflowChecks
         }
         db.Execute("DELETE FROM tmpStdforPrint WHERE xUser=1");
     }
+    internal static void PrepareWorkbookStudentFixture(Database db)
+    {
+        var school=new SchoolService(db,new Session(1420));school.SetYear(1420);
+        new EntityService(school).Save("discounts",new Record{["name"]="تخفیف آزمون ورود شاگردان اکسل",["comment"]="دادهٔ آزمایشی"});
+        db.Execute("INSERT INTO tClass(xYear,xPaye,name,fee) VALUES(1420,1,@p0,777),(1421,2,@p0,888)",new object[]{"صنف ' اکسل"});
+    }
     internal static void PrepareWorkbookMarkFixture(Database db)
     {
         var school=new SchoolService(db,new Session(1419));school.SetYear(1419);
@@ -745,9 +751,87 @@ internal static class OriginalWorkflowChecks
         Open(valid);WaitReady();Require(grid.RowCount==(students?2:3),"Reload appended rows instead of replacing the preview.");
         string after=System.Text.Json.JsonSerializer.Serialize(new[]{db.Query("SELECT COUNT(*) AS total FROM tStudent"),db.Query("SELECT COUNT(*) AS total FROM tMark"),db.Query("SELECT id,procc FROM tExam ORDER BY id")});
         Require(before==after,"Preview/cancel/rejected workbooks changed database rows or processing state.");
-        if(!students)WorkbookMarkSave(form,db,log,()=>{Open(System.IO.Path.Combine(fixtures,"marks-save.xlsx"));WaitReady();});
+        if(students)WorkbookStudentSave(form,db,log,()=>{Open(System.IO.Path.Combine(fixtures,"students-save.xlsx"));WaitReady();});
+        else WorkbookMarkSave(form,db,log,()=>{Open(System.IO.Path.Combine(fixtures,"marks-save.xlsx"));WaitReady();});
         Click(form,students?"m_d":"m_c");
-        log("PASS actual XLSX preview, repeat-load row isolation, file chooser Cancel, corrupt/missing-column rejection and previous preview/database preservation; student Save/import transactions are separate unverified cases");
+        log("PASS actual XLSX preview, repeat-load row isolation, file chooser Cancel, corrupt/missing-column rejection and previous preview/database preservation; import transaction assertions are recorded separately above");
+    }
+    private static void WorkbookStudentSave(Form form,Database db,Action<string> log,Action load)
+    {
+        load();var grid=Field<GridEX>(form,"e");var table=(System.Data.DataTable)grid.DataSource;
+        int discount=Convert.ToInt32(db.Scalar("SELECT id FROM tTakhfif WHERE name=N'تخفیف آزمون ورود شاگردان اکسل'"));
+        Field<UIComboBox>(form,"m").SelectedValue=discount.ToString();
+        Field<Control>(form,"p").Text="1420/01/02";
+        string Snapshot()=>System.Text.Json.JsonSerializer.Serialize(new[]{db.Query("SELECT * FROM tStudent ORDER BY id"),db.Query("SELECT * FROM tYear_Student ORDER BY xYear,xStudent"),db.Query("SELECT * FROM tClass ORDER BY id"),db.Query("SELECT * FROM tPaymentStudent ORDER BY id")});
+        string Peers()=>System.Text.Json.JsonSerializer.Serialize(new[]{db.Query("SELECT * FROM tStudent WHERE Code IS NULL OR Code NOT BETWEEN 60002010001 AND 60002060006 ORDER BY id"),db.Query("SELECT y.* FROM tYear_Student y JOIN tStudent s ON s.id=y.xStudent WHERE s.Code IS NULL OR s.Code NOT BETWEEN 60002010001 AND 60002060006 ORDER BY y.xYear,y.xStudent"),db.Query("SELECT p.* FROM tPaymentStudent p JOIN tStudent s ON s.id=p.xStudent WHERE s.Code IS NULL OR s.Code NOT BETWEEN 60002010001 AND 60002060006 ORDER BY p.id")});
+        void Set(int row,string column,string value)=>EditGridCell(grid,row,column,value);
+        void Confirm()=>Dialog(()=>Field<Button>(form,"f").PerformClick(),"آيا از انتقال مطمئن هستيد؟",6);
+        void Save()=>Dialog(Confirm,"انجام شد",1);
+        void Reject(string text)=>Dialog(Confirm,"خطا در ثبت شاگردان:",1,requiredText:text);
+        string before=Snapshot(),peers=Peers();
+        Dialog(()=>Field<Button>(form,"f").PerformClick(),"آيا از انتقال مطمئن هستيد؟",7);
+        Require(Snapshot()==before,"Declining student workbook Save changed database rows.");
+        Field<Control>(form,"p").Text="1420/07/31";
+        Dialog(()=>Field<Button>(form,"f").PerformClick(),"تاریخ پرداخت اشتباه است",1);
+        Require(Snapshot()==before,"Invalid payment date wrote student rows.");Field<Control>(form,"p").Text="1420/01/02";
+        Set(5,"payment","-1");Dialog(()=>Field<Button>(form,"f").PerformClick(),"ردیف 6 فهرست:",1);
+        Require(Snapshot()==before,"Invalid late payment input left a partial student workbook.");Set(5,"payment","0");
+        Set(1,"code","60002010001");Reject("کد متعلم در فایل تکراری است");
+        Require(Snapshot()==before,"Duplicate workbook code changed the bank.");Set(1,"code","60002020002");
+        Set(1,"numberasas","6000201");Reject("نمبر اساس در فایل تکراری است");
+        Require(Snapshot()==before,"Duplicate workbook NumberAsas changed the bank.");Set(1,"numberasas","");
+        string grades=asdaj.n;asdaj.n="1";
+        try{Reject("مجوز ثبت شاگردان این پایه را ندارید");Require(Snapshot()==before,"Late forbidden grade left an earlier student/payment or class.");}
+        finally{asdaj.n=grades;}
+        string existingCode=Convert.ToString(db.Scalar("SELECT TOP(1) Code FROM tStudent WHERE Code IS NOT NULL ORDER BY id"));
+        Require(!string.IsNullOrEmpty(existingCode),"Existing student code fixture is required.");
+        Set(5,"code",existingCode);Reject("کد متعلم تکراری است");
+        Require(Snapshot()==before,"Late existing code left student/payment/class writes.");Set(5,"code","60002060006");
+        string existingNumber=Convert.ToString(db.Scalar("SELECT TOP(1) NumberAsas FROM tStudent WHERE NumberAsas IS NOT NULL ORDER BY id"));
+        if(!string.IsNullOrEmpty(existingNumber))
+        {
+            Set(5,"numberasas",existingNumber);Reject("نمبر اساس تکراری است");
+            Require(Snapshot()==before,"Late existing NumberAsas left student/payment/class writes.");Set(5,"numberasas","6000206");
+        }
+        db.Execute("CREATE TRIGGER native_student_workbook_fail ON dbo.tPaymentStudent AFTER INSERT AS IF EXISTS(SELECT 1 FROM inserted p JOIN tStudent s ON s.id=p.xStudent WHERE s.Code=60002020002) THROW 51000,'native student workbook late payment failure',1");
+        try{Reject("native student workbook late payment failure");Require(Snapshot()==before,"Late SQL payment failure left classes, students, enrolments or earlier payments.");}
+        finally{db.Execute("DROP TRIGGER native_student_workbook_fail");}
+        db.Execute("CREATE TRIGGER native_student_workbook_student_fail ON dbo.tStudent AFTER INSERT AS IF EXISTS(SELECT 1 FROM inserted WHERE Code=60002060006) THROW 51000,'native student workbook late student failure',1");
+        try{Reject("native student workbook late student failure");Require(Snapshot()==before,"Late SQL student failure left classes, earlier students, enrolments or payments.");}
+        finally{db.Execute("DROP TRIGGER native_student_workbook_student_fail");}
+        Require((string)table.Rows[0]["name"]=="نام ' محفوظ 1" && (string)table.Rows[1]["code"]=="60002020002","Failed import discarded pending input.");
+        using(var connection=db.Open())
+        using(var transaction=connection.BeginTransaction())
+        using(var command=new Microsoft.Data.SqlClient.SqlCommand("UPDATE tClass SET fee=fee WHERE xYear=1420 AND xPaye=1 AND name=@name",connection,transaction))
+        {
+            command.Parameters.AddWithValue("@name","صنف ' اکسل");command.ExecuteNonQuery();bool released=false;
+            using var timer=new Timer{Interval=500};
+            timer.Tick+=(s,e)=>
+            {
+                timer.Stop();Require(!form.Enabled,"Student import blocked the UI or did not enter the busy state.");
+                form.Close();Require(form.Visible,"Student import allowed closing during its transaction.");
+                transaction.Rollback();released=true;
+            };
+            timer.Start();Save();Require(released,"Student import UI heartbeat did not release the real SQL lock.");
+        }
+        var saved=db.Query("SELECT s.*,y.*,c.name AS ClassName,c.xPaye AS ClassGrade,c.fee AS ClassFee,c.xYear AS ClassYear FROM tStudent s JOIN tYear_Student y ON y.xStudent=s.id JOIN tClass c ON c.id=y.xClass WHERE s.Code BETWEEN 60002010001 AND 60002060006 ORDER BY s.Code");
+        int[][] expected={Enumerable.Repeat(100,9).ToArray(),new[]{100,100,50,0,0,0,0,0,0},new int[9],new[]{25,0,0,0,0,0,0,0,0},new[]{100,100,100,100,100,100,100,100,200},Enumerable.Repeat(100,9).ToArray()};
+        Require(saved.Count==6,"Student workbook did not create exactly six enrolments.");
+        for(int index=0;index<6;index++)
+        {
+            var row=saved[index];int grade=index==1?2:index==2?100:1;
+            Require(row.Int("xYear")==1420 && row.Int("ClassYear")==1420 && row.Int("xPaye")==grade && row.Int("ClassGrade")==grade,"Same-title classes crossed grade/year boundaries.");
+            Require(Enumerable.Range(1,9).Select(month=>row.Int("Fee"+month)).SequenceEqual(expected[index]) && row.Int("SumFee")==expected[index].Sum() && row.Int("xTakhfif")==((index==0 || index==5)?0:discount),"Persisted import fee/discount allocation changed.");
+            Require(row.Text("FName")=="نام ' محفوظ "+(index+1) && row.Text("MobileFather")=="0700000000" && row.Text("RegDate")=="1420/01/01","Imported identity, phone or registration date changed.");
+        }
+        Require(saved[1].Value("NumberAsas")==null && saved[1].Value("Sort")==null && saved[1].Int("Jens")==-1,"Missing optional student fields changed.");
+        Require(saved[0].Int("xClass")!=saved[1].Int("xClass") && saved[0].Int("ClassFee")==777 && Convert.ToInt32(db.Scalar("SELECT fee FROM tClass WHERE xYear=1421 AND name=@p0",new object[]{"صنف ' اکسل"}))==888,"Existing class fees or another year's same-title class changed.");
+        var payments=db.Query("SELECT s.Code,p.* FROM tPaymentStudent p JOIN tStudent s ON s.id=p.xStudent WHERE s.Code BETWEEN 60002010001 AND 60002060006 ORDER BY s.Code");
+        Require(payments.Count==3 && payments[0].Int("Fee")==200 && payments[0].Int("dakhle")==10 && payments[0].Int("Exam")==20 && payments[0].Int("uniform")==30 && payments[1].Int("Fee")==50 && payments[2].Int("Fee")==30 && payments.All(row=>row.Int("xYear")==1420 && row.Int("xUserInsert")==1 && row.Text("PaynemtDate")=="1420/01/02" && row.Text("dayOfWeek")==WorkbookPaymentDate.Parse("1420/01/02").Weekday),"Imported payment amounts/date/user/weekday or zero-payment skip changed.");
+        Require(table.Rows.Cast<System.Data.DataRow>().All(row=>(string)row["acp"]=="1"),"Committed student rows were not marked saved.");
+        string after=Snapshot();Reject("کد متعلم تکراری است");Require(Snapshot()==after,"Repeating student import duplicated payment/enrolment/class rows.");
+        Require(Peers()==peers,"Student workbook changed unrelated students, enrolments or payments.");
+        log("PASS actual student workbook Save No/Yes; date/amount/duplicate/grade validation; late existing-code/NumberAsas and SQL-payment rollback; preserved pending values; real SQL-lock heartbeat/close guard; BigInt/quotes/phones/optional fields; kindergarten and same-title cross-grade/year classes; exact nine-month full/discount/zero/partial/remainder fees and original payment semantics; repeat import rejection");
     }
     private static void WorkbookMarkSave(Form form,Database db,Action<string> log,Action load)
     {

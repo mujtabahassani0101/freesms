@@ -1,6 +1,6 @@
 # Remaining student workbook Save contract
 
-This is a static audit of the recovered Save handler, not a new implementation or a passing import test. Native file selection/preview is verified separately. The old student Save button still performs synchronous, independent class/student/payment writes.
+This records the recovered contract and its defects at ab3e0d8. The current replacement is implemented below; its new native Windows assertions are pending until a successful workflow is linked. Native file selection/preview already has separate verified evidence.
 
 The authoritative sources at runtime revision ab3e0d8 are:
 
@@ -32,3 +32,11 @@ Important implementation gaps found by inspection:
 - sp_tStudent_insert_FromXls rejects duplicate student code with CodeOut=-100 and duplicate NumberAsas with-200, returns the student identifier on success, and internally starts/commits a transaction. The outer transaction must handle its server-aborted failure path without masking the original error.
 
 Required next native cases: actual Save No/Yes; full-fee/discount/zero/partial/large-remainder allocation; preserved quotes, BigInt codes and phone text; optional values; kindergarten/grade restrictions; same-title cross-grade class separation; duplicate code/NumberAsas; malformed dates and amounts; late student/payment SQL failure and complete retry; real SQL-wait UI heartbeat and close guard; reopening persisted students/fees/payments; repeat-import rejection without changes; unrelated students/years and backup/restore preservation. No student Save scenario is currently certified by this document.
+
+## Replacement awaiting native verification
+
+WorkbookStudents and the original asdb7 Save button now capture validated immutable rows before starting one asynchronous database transaction. Class lookup uses year+grade+parameterized title; newly created classes use OUTPUT INSERTED.id. The recovered student and payment procedures run inside that same transaction. Grade permissions, existing grade/discount, duplicate code/NumberAsas, BigInt/phone/name limits and enrollment identity are checked. Pending preview values survive errors; success status is assigned only after commit, and closing is blocked while saving.
+
+The original fee allocation and payment import semantics are preserved, including a ninth-month remainder larger than the monthly amount and import payments exceeding the imported tuition. Payment amount validation is nonnegative integer validation; this does not certify the separate manual-payment or balance-report paths. Full-fee rows no longer require selecting an unused discount; discounted/zero-fee rows still require one. Blank NumberAsas/sort/gender retain null/null/-1. Grade0 maps to100.
+
+Three independent Core checks pass locally for fee branches, identity/validation and Persian dates. Native assertions use students-save.xlsx in an isolated year1420: real Save No/Yes, late validation/duplicate/grade failures, both late student and payment SQL triggers, complete rollback/retry, a real SQL-lock UI heartbeat/close guard, persisted values and fee allocation, same-title classes across grades/years, kindergarten, unrelated-record preservation and repeat-import rejection. These cases are not certified until the Windows run succeeds.

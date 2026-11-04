@@ -61,6 +61,7 @@ internal static class OriginalNavigationCheck
             if (workflow == "mark-entry" || workflow == "bulk-marks") OriginalWorkflowChecks.PrepareMarkEntryFixture(database,workflow=="bulk-marks");
             if (workflow == "batch-print-list") OriginalWorkflowChecks.PrepareBatchPrintFixture(database);
             if (workflow == "mark-workbook") OriginalWorkflowChecks.PrepareWorkbookMarkFixture(database);
+            if (workflow == "student-workbook") OriginalWorkflowChecks.PrepareWorkbookStudentFixture(database);
             if (workflow == "class") OriginalWorkflowChecks.PrepareClassFixture(database);
             if (workflow == "attendance1" || workflow == "attendance2") OriginalWorkflowChecks.PrepareAttendanceFixture(database);
             asdaj.__field_a = Convert.ToString(database.Scalar("SELECT xYear FROM tDefYear"));
