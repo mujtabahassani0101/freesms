@@ -249,6 +249,7 @@ internal static class OriginalWorkflowChecks
         else if (scenario == "teacher" || scenario == "driver") People(scenario,form,db,log);
         else if (scenario == "payment") Payment(form,db,log);
         else if (scenario == "mark-entry") MarkEntry(form,db,log);
+        else if (scenario == "bulk-marks") BulkMarkEntry(form,db,log);
         else if (scenario == "attendance1" || scenario == "attendance2") Attendance(form,db,log);
         else throw new ArgumentException("Unknown workflow scenario: " + scenario);
     }
@@ -630,6 +631,101 @@ internal static class OriginalWorkflowChecks
             asdaj.l=beforeUser;asdaj.m=beforePermissions;asdaj.n=beforeGrades;
         }
     }
+    private static void BulkMarkEntry(Form selector,Database db,Action<string> log)
+    {
+        int classroom=Convert.ToInt32(db.Scalar("SELECT id FROM tClass WHERE xYear=1414 AND name=N'صنف ورود نمره'"));
+        int student=Convert.ToInt32(db.Scalar("SELECT id FROM tStudent WHERE Code=5995002"));
+        int peer=Convert.ToInt32(db.Scalar("SELECT id FROM tStudent WHERE Code=5995001"));
+        int book=Convert.ToInt32(db.Scalar("SELECT id FROM tBook WHERE codedars=5995001"));
+        int exam=Convert.ToInt32(db.Scalar("SELECT id FROM tExam WHERE xYear=1414 AND term=1"));
+        int annual=Convert.ToInt32(db.Scalar("SELECT id FROM tExam WHERE xYear=1414 AND term=3"));
+        int other=Convert.ToInt32(db.Scalar("SELECT id FROM tExam WHERE xYear=1414 AND term=2"));
+        Field<UIComboBox>(selector,"l").SelectedValue="1";
+        Field<UIComboBox>(selector,"f").SelectedValue=exam.ToString();
+        Field<UIComboBox>(selector,"j").SelectedValue=classroom.ToString();
+        Field<UIComboBox>(selector,"h").SelectedValue=book.ToString();
+        void Open(Action<Form> exercise)=>ChildForm<asdbd>(()=>Field<Button>(selector,"o").PerformClick(),exercise);
+        object Value(int id,int test)=>db.Scalar("SELECT M1 FROM tMark WHERE xStudent=@p0 AND Xtest=@p1 AND xbook=@p2",new object[]{id,test,book});
+        void Save(Form form,int count=2)=>Dialog(()=>Field<Button>(form,"m").PerformClick(),"تعداد "+count+" ردیف انجام شد",1);
+        Open(form=>
+        {
+            var grid=Field<GridEX>(form,"ab");Require(grid.RowCount==2,"Bulk entry did not load exactly the selected class.");
+            Select(form,student,"ab");EditGridCell(grid,grid.Row,"m1","۲۵");
+            Select(form,peer,"ab");EditGridCell(grid,grid.Row,"m1","۳۰");Save(form);
+            Require(Convert.ToDecimal(Value(student,exam))==25 && Convert.ToDecimal(Value(peer,exam))==30 && Convert.ToDecimal(Value(student,other))==15,"Bulk Save mixed students or exams.");
+            db.Execute("UPDATE tYear_Student SET Status=2 WHERE xYear=1414 AND xStudent=@p0",new object[]{student});
+            try
+            {
+                Select(form,peer,"ab");EditGridCell(grid,grid.Row,"m1","32");
+                Dialog(()=>Field<Button>(form,"m").PerformClick(),"",1,requiredText:"فهرست شاگردان تغییر کرده است");
+                Require(Convert.ToDecimal(Value(student,exam))==25 && Convert.ToDecimal(Value(peer,exam))==30,"Stale enrollment allowed a partial bulk Save.");
+                EditGridCell(grid,grid.Row,"m1","30");
+            }
+            finally{db.Execute("UPDATE tYear_Student SET Status=1 WHERE xYear=1414 AND xStudent=@p0",new object[]{student});}
+            Select(form,student,"ab");EditGridCell(grid,grid.Row,"m1","41");
+            db.Execute("UPDATE tExam SET procc=1 WHERE id IN(@p0,@p1)",new object[]{exam,annual});
+            Dialog(()=>Field<Button>(form,"m").PerformClick(),"نمره وارد شده خارج از محدوده است",1);
+            Require(Convert.ToDecimal(Value(student,exam))==25 && Convert.ToInt32(db.Scalar("SELECT procc FROM tExam WHERE id=@p0",new object[]{exam}))==1,"Invalid bulk mark changed data or processing status.");
+            EditGridCell(grid,grid.Row,"m1","26");Select(form,peer,"ab");EditGridCell(grid,grid.Row,"m1","31");
+            int failStudent=Convert.ToInt32(grid.GetRow(grid.RowCount-1).Cells["id"].Value);
+            db.Execute("CREATE TRIGGER native_bulk_ui_abort ON tMark AFTER INSERT,UPDATE AS BEGIN IF EXISTS(SELECT 1 FROM inserted WHERE xStudent="+failStudent+" AND Xtest="+exam+") THROW 51003,'owned bulk rollback fixture',1; END");
+            try
+            {
+                Dialog(()=>Field<Button>(form,"m").PerformClick(),"",1,requiredText:"نمره‌ها ذخیره نشد.");
+                Require(Convert.ToDecimal(Value(student,exam))==25 && Convert.ToDecimal(Value(peer,exam))==30,"A late bulk SQL failure partially saved earlier students.");
+                Require(Convert.ToInt32(db.Scalar("SELECT SUM(CONVERT(int,procc)) FROM tExam WHERE id IN(@p0,@p1)",new object[]{exam,annual}))==2,"A failed bulk Save invalidated calculated results.");
+            }
+            finally{db.Execute("DROP TRIGGER native_bulk_ui_abort");}
+            using(var connection=db.Open())
+            using(var transaction=connection.BeginTransaction())
+            {
+                using var command=connection.CreateCommand();command.Transaction=transaction;command.CommandText="UPDATE tExam SET procc=procc WHERE id=@exam";command.Parameters.AddWithValue("@exam",exam);command.ExecuteNonQuery();
+                bool heartbeat=false;using var release=new Timer{Interval=350};release.Tick+=(sender,args)=>{release.Stop();transaction.Rollback();heartbeat=true;};release.Start();Save(form);
+                Require(heartbeat,"Bulk Save blocked the Windows UI while waiting for SQL.");
+            }
+            Require(Convert.ToDecimal(Value(student,exam))==26 && Convert.ToDecimal(Value(peer,exam))==31,"Bulk retry discarded the pending edited marks.");
+            Require(Convert.ToInt32(db.Scalar("SELECT SUM(CONVERT(int,procc)) FROM tExam WHERE id IN(@p0,@p1)",new object[]{exam,annual}))==0,"Bulk Save did not invalidate both selected and annual results.");
+            Select(form,student,"ab");EditGridCell(grid,grid.Row,"m1","29");
+            const string unsaved="آخرین تغییرات شما ثبت نشده است.\nآیا میخواهید بدون ثبت آخرین تغییرات از این صفحه خارج شود؟";
+            Dialog(()=>Click(form,"aa"),unsaved,7);Require(form.Visible,"Declining unsaved-close still closed bulk entry.");
+            Dialog(()=>Click(form,"aa"),unsaved,6);
+            Require(Convert.ToDecimal(Value(student,exam))==26,"Discarding bulk edits saved pending marks.");
+        });
+        Open(form=>
+        {
+            var grid=Field<GridEX>(form,"ab");Select(form,student,"ab");Require(Convert.ToDecimal(grid.GetRow(grid.Row).Cells["m1"].Value)==26,"Bulk reopen did not reload committed marks.");
+            Field<Control>(form,"g").Text="۲۸";Field<Button>(form,"i").PerformClick();Save(form);
+            Require(Convert.ToDecimal(Value(student,exam))==28 && Convert.ToDecimal(Value(peer,exam))==28,"Uniform Persian bulk input did not update every displayed row.");
+            Field<Control>(form,"g").Text="";
+            string clear="آیا میخواهید نمرات "+Field<UIComboBox>(form,"k").SelectedItem.Text+" خالی شود";
+            Dialog(()=>Field<Button>(form,"i").PerformClick(),clear,7);
+            Require(grid.GetRow(0).Cells["m1"].Text!="","Declining bulk clear removed pending marks.");
+            Dialog(()=>Field<Button>(form,"i").PerformClick(),clear,6);Save(form);
+            Require(db.Scalar("SELECT id FROM tMark WHERE xStudent=@p0 AND Xtest=@p1 AND xbook=@p2",new object[]{student,exam,book})==null && db.Scalar("SELECT id FROM tMark WHERE xStudent=@p0 AND Xtest=@p1 AND xbook=@p2",new object[]{peer,exam,book})==null,"Clearing bulk marks did not delete exactly the selected subject/exam marks.");
+            Require(Convert.ToDecimal(Value(student,other))==15,"Bulk clear changed another exam.");Click(form,"aa");
+        });
+        // The all-class branch must still isolate the selected year and grade.
+        db.Execute("INSERT INTO tYear_Student(xYear,xStudent,xPaye,xClass,Status,MarkTerm3_From100,sort) SELECT 1413,xStudent,xPaye,xClass,Status,MarkTerm3_From100,7 FROM tYear_Student WHERE xYear=1414 AND xStudent=@p0",new object[]{student});
+        using(var all=new asdbd{af="0",ag="1",ah=exam.ToString(),ai=book.ToString(),aj="1414",ak="1"})
+        {
+            all.Show();var grid=Field<GridEX>(all,"ab");Require(grid.RowCount==2,"All-class bulk entry included duplicate previous-year enrollment rows.");
+            Field<CheckBox>(all,"l").Checked=true;Select(all,student,"ab");EditGridCell(grid,grid.Row,"sort","12");
+            var timeout=System.Diagnostics.Stopwatch.StartNew();while(Field<bool>(all,"savingMarks") && timeout.ElapsedMilliseconds<5000){Application.DoEvents();System.Threading.Thread.Sleep(10);}Application.DoEvents();
+            Require(Convert.ToInt32(db.Scalar("SELECT sort FROM tYear_Student WHERE xYear=1414 AND xStudent=@p0",new object[]{student}))==12 && Convert.ToInt32(db.Scalar("SELECT sort FROM tYear_Student WHERE xYear=1413 AND xStudent=@p0",new object[]{student}))==7,"Bulk display-order edit did not isolate the enrollment year.");
+            Click(all,"aa");
+        }
+        db.Execute("UPDATE tYear_Student SET MarkTerm3_From100=1 WHERE xYear=1414 AND xStudent=@p0",new object[]{student});
+        db.Execute("INSERT INTO tMark(xStudent,Xtest,xbook,typ,M3,Mark) VALUES(@p0,@p1,@p2,1,5,5)",new object[]{student,annual,book});
+        Field<UIComboBox>(selector,"f").SelectedValue=annual.ToString();Field<UIComboBox>(selector,"h").SelectedValue=book.ToString();
+        Open(form=>
+        {
+            var grid=Field<GridEX>(form,"ab");Require(grid.RowCount==1 && Convert.ToInt32(grid.GetRow(0).Cells["id"].Value)==student,"Annual bulk entry included students outside 100-point mode.");
+            EditGridCell(grid,0,"m1","75");Save(form,1);
+            var mark=db.Query("SELECT M1,M2,M3,Mark FROM tMark WHERE xStudent=@p0 AND Xtest=@p1 AND xbook=@p2",new object[]{student,annual,book}).Single();
+            Require(mark["M1"]==null && Convert.ToDecimal(mark["M2"])==75 && Convert.ToDecimal(mark["M3"])==5 && Convert.ToDecimal(mark["Mark"])==75,"Annual bulk Save changed the recovered total/storage convention.");Click(form,"aa");
+        });
+        Click(selector,"m_c");log("PASS original bulk marks Save/reopen/unsaved-close/clear/uniform Persian input/bounds/stale enrollment/late SQL rollback/retry/UI lock heartbeat/annual M2 convention and year-scoped display ordering");
+    }
     private static void MarkEntry(Form form,Database db,Action<string> log)
     {
         int classroom=Convert.ToInt32(db.Scalar("SELECT id FROM tClass WHERE xYear=1414 AND name=N'صنف ورود نمره'"));
@@ -796,8 +892,13 @@ internal static class OriginalWorkflowChecks
             if(child==null)return;
             timer.Stop();exercised=true;
             try{exercise(child);}
-            catch(Exception error){failure=error;}
-            finally{if(!child.IsDisposed)child.Close();}
+            catch(Exception error){failure=error;diagnostic("FAILED child workflow: "+error);}
+            finally
+            {
+                // Preserve the first assertion failure instead of hiding it
+                // behind a second unsaved-close dialog in this owned fixture.
+                if(!child.IsDisposed){if(failure!=null)child.Dispose();else child.Close();}
+            }
         };
         timer.Start();open();timer.Stop();
         Require(exercised,"Original button did not open the expected editor: "+typeof(T).Name+".");

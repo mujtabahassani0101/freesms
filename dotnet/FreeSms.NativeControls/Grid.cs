@@ -403,9 +403,11 @@ namespace Janus.Windows.GridEX
             bool previous=loading;loading=true;
             try
             {
-                // Discard the native cell editor, as Bind does. Canceling the
-                // BindingSource can also undo earlier edits to the current row.
+                // Native CancelEdit restores the original editor text but keeps
+                // editing active. End that restored editor without canceling
+                // the BindingSource's earlier row edits.
                 View.CancelEdit();
+                View.EndEdit();
                 editingCell=null;editingOriginalValue=null;
             }
             finally{loading=previous;}
