@@ -266,6 +266,7 @@ internal static class OriginalWorkflowChecks
         else if (scenario == "mark-entry") MarkEntry(form,db,log);
         else if (scenario == "bulk-marks") BulkMarkEntry(form,db,log);
         else if (scenario == "batch-print-list") BatchPrintList(form,db,log);
+        else if (scenario == "student-workbook" || scenario == "mark-workbook") WorkbookPreview(form,db,log,scenario=="student-workbook");
         else if (scenario == "attendance1" || scenario == "attendance2") Attendance(form,db,log);
         else throw new ArgumentException("Unknown workflow scenario: " + scenario);
     }
@@ -647,6 +648,85 @@ internal static class OriginalWorkflowChecks
             asdaj.l=beforeUser;asdaj.m=beforePermissions;asdaj.n=beforeGrades;
         }
     }
+    private static void RequireReachable(Form form, Control target)
+    {
+        Require(target.Visible && target.Enabled && target.Width > 0 && target.Height > 0, "Original control is unavailable: "+target.Name);
+        var point=target.PointToScreen(new System.Drawing.Point(target.Width/2,target.Height/2));
+        Control hit=form;
+        while(true)
+        {
+            var child=hit.GetChildAtPoint(hit.PointToClient(point),GetChildAtPointSkip.Invisible);
+            if(child==null)break;hit=child;
+        }
+        while(hit!=null && hit!=target)hit=hit.Parent;
+        Require(hit==target,"Original control is covered or outside the form: "+target.Name);
+    }
+    private static void WorkbookPreview(Form form, Database db, Action<string> log, bool students)
+    {
+        string gridField=students?"e":"m_d", pickerField=students?"h":"g", buttonField=students?"g":"f";
+        var grid=Field<GridEX>(form,gridField);
+        var picker=Field<OpenFileDialog>(form,pickerField);
+        var button=Field<Button>(form,buttonField);
+        string before=System.Text.Json.JsonSerializer.Serialize(new[]{db.Query("SELECT COUNT(*) AS total FROM tStudent"),db.Query("SELECT COUNT(*) AS total FROM tMark"),db.Query("SELECT id,procc FROM tExam ORDER BY id")});
+        string fixtures=System.IO.Path.Combine(AppContext.BaseDirectory,"verification-workbooks");
+        void WaitReady()
+        {
+            var elapsed=System.Diagnostics.Stopwatch.StartNew();
+            while(!form.Enabled && elapsed.Elapsed<TimeSpan.FromSeconds(10)) {Application.DoEvents();System.Threading.Thread.Sleep(10);}
+            Require(form.Enabled,"Workbook preview did not restore the enabled form.");
+        }
+        void Open(string path,bool cancel=false)
+        {
+            picker.FileName=path;RequireReachable(form,button);
+            bool observed=false;
+            using var timer=new Timer {Interval=100};
+            timer.Tick+=(s,e)=>EnumThreadWindows(GetCurrentThreadId(),(window,p)=>
+            {
+                var kind=new StringBuilder(128);GetClassName(window,kind,kind.Capacity);
+                var title=new StringBuilder(256);GetWindowText(window,title,title.Capacity);
+                if(!IsWindowVisible(window) || kind.ToString()!="#32770" || title.ToString()!="انتخاب فایل اکسل")return true;
+                IntPtr selected=IntPtr.Zero;
+                EnumChildWindows(window,(child,unused)=>
+                {
+                    var name=new StringBuilder(128);GetClassName(child,name,name.Capacity);
+                    if(name.ToString().Equals("Button",StringComparison.OrdinalIgnoreCase) && GetDlgCtrlID(child)==(cancel?2:1))selected=child;
+                    return true;
+                },IntPtr.Zero);
+                if(selected==IntPtr.Zero)return true;
+                observed=true;timer.Stop();SetActiveWindow(window);
+                Require(PostMessage(selected,0x00F5,IntPtr.Zero,IntPtr.Zero),"Could not click the actual file chooser button.");
+                return false;
+            },IntPtr.Zero);
+            timer.Start();button.PerformClick();Require(observed,"Actual workbook file chooser did not appear.");
+        }
+        Open(System.IO.Path.Combine(AppContext.BaseDirectory,"xls",students?"Example.xls":"ExampleMark.xls"));WaitReady();
+        Require(grid.DataSource is System.Data.DataTable,"Recovered binary XLS did not load through the actual file button.");
+        log("PASS original XLS example loads through the actual native file chooser without an Office provider");
+        string valid=System.IO.Path.Combine(fixtures,students?"students-valid.xlsx":"marks-valid.xlsx");
+        Open(valid);WaitReady();
+        var table=(System.Data.DataTable)grid.DataSource;
+        Require(grid.RowCount==(students?2:3) && (string)table.Rows[0]["code"]=="001234","Workbook preview lost leading zeros or duplicated its first row.");
+        if(students)Require((string)table.Rows[0]["name"]=="نام ' آزمون" && (string)table.Rows[0]["mobilefather"]=="0700000000","Student preview changed quoted names/telephone text.");
+        else Require((string)table.Rows[0]["mark"]=="25.5" && (string)table.Rows[1]["mark"]=="0" && table.Rows[2].IsNull("mark"),"Mark preview changed fractions, zero or a blank mark.");
+        RequireReachable(form,grid);SaveGallery(form,students?"student-import":"mark-import");
+        Open(valid,cancel:true);Require(ReferenceEquals(table,grid.DataSource),"Cancelling the file chooser changed the old preview.");
+        Dialog(()=>Open(System.IO.Path.Combine(fixtures,"corrupt.xlsx")),"فایل اکسل قابل خواندن نیست؛ فایل سالم و بدون گذرواژه را انتخاب کنید.",1);WaitReady();
+        Require(ReferenceEquals(table,grid.DataSource),"A corrupt workbook replaced the valid preview.");
+        Dialog(()=>Open(System.IO.Path.Combine(fixtures,"missing-header.xlsx")),"ستون‌های لازم در فایل اکسل وجود ندارند:",1,requiredText:students?"class":"codedars");WaitReady();
+        Require(ReferenceEquals(table,grid.DataSource),"A missing-column workbook replaced the valid preview.");
+        if(!students)
+        {
+            Dialog(()=>Open(System.IO.Path.Combine(fixtures,"duplicate-header.xlsx")),"عنوان ستون تکراری یا رزروشده است: code",1);WaitReady();
+            Require(ReferenceEquals(table,grid.DataSource),"Duplicate columns replaced the valid mark preview.");
+            Dialog(()=>Open(System.IO.Path.Combine(fixtures,"cell-error.xlsx")),"خانهٔ اکسل در ردیف 2 و ستون 3 خطا دارد.",1);WaitReady();
+            Require(ReferenceEquals(table,grid.DataSource),"An Excel error cell replaced the valid mark preview.");
+        }
+        Open(valid);WaitReady();Require(grid.RowCount==(students?2:3),"Reload appended rows instead of replacing the preview.");
+        string after=System.Text.Json.JsonSerializer.Serialize(new[]{db.Query("SELECT COUNT(*) AS total FROM tStudent"),db.Query("SELECT COUNT(*) AS total FROM tMark"),db.Query("SELECT id,procc FROM tExam ORDER BY id")});
+        Require(before==after,"Preview/cancel/rejected workbooks changed database rows or processing state.");
+        Click(form,students?"m_d":"m_c");
+        log("PASS actual XLSX preview, repeat-load row isolation, file chooser Cancel, corrupt/missing-column rejection and previous preview/database preservation; Save/import transactions are separate unverified cases");
+    }
     private static void BatchPrintList(Form form,Database db,Action<string> log)
     {
         int student=Convert.ToInt32(db.Scalar("SELECT id FROM tStudent WHERE Code=5999001"));
@@ -669,6 +749,8 @@ internal static class OriginalWorkflowChecks
             Require(Count(1)==0 && Count(otherUser)==2 && Field<GridEX>(form,"ak").RowCount==0,"Removing a selected student deleted another user's print selection.");
             Select(form,student,"ac");Click(form,"am");Select(form,second,"ac");Click(form,"am");
             Require(Count(1)==2 && Field<GridEX>(form,"ak").RowCount==2,"Print list did not reload both selected students.");
+            RequireReachable(form,Field<UIButton>(form,"am"));RequireReachable(form,Field<UIButton>(form,"al"));
+            SaveGallery(form,"batch-print-list");
             Click(form,"an");Require(Count(1)==0 && Count(otherUser)==2,"Clearing the print list changed another user's selections.");
             Select(form,second,"ac");Click(form,"am");Click(form,"m_e");
             Require(Count(1)==0 && Count(otherUser)==2 && System.Text.Json.JsonSerializer.Serialize(db.Query("SELECT * FROM tParmetr"))==settingsBefore,"Closing a print selector changed another user's selections or unchanged report settings.");
@@ -695,6 +777,8 @@ internal static class OriginalWorkflowChecks
         Open(form=>
         {
             var grid=Field<GridEX>(form,"ab");Require(grid.RowCount==2,"Bulk entry did not load exactly the selected class.");
+            RequireReachable(form,grid);RequireReachable(form,Field<Button>(form,"m"));
+            SaveGallery(form,"bulk-mark-entry");
             Select(form,student,"ab");EditGridCell(grid,grid.Row,"m1","۲۵");
             Select(form,peer,"ab");EditGridCell(grid,grid.Row,"m1","۳۰");Save(form);
             Require(Convert.ToDecimal(Value(student,exam))==25 && Convert.ToDecimal(Value(peer,exam))==30 && Convert.ToDecimal(Value(student,other))==15,"Bulk Save mixed students or exams.");

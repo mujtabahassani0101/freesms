@@ -1,0 +1,9 @@
+# Workbook import fixtures
+
+These files contain synthetic data only. `generate-fixtures.py` writes independent minimal OOXML packages using the Python standard library; it is a development utility and is not used by the Windows application. `SHA256.json` records the resulting inputs.
+
+`students-valid.xlsx` has two accepted rows, an empty row and one row without a class, in Sheet1 after an unrelated sheet. Leading-zero code/telephone text, Persian digits and an apostrophe must survive. `marks-valid.xlsx` has three rows: a fractional mark, zero and a missing mark. The other files exercise empty input, malformed data, required/duplicate/reserved/unnamed columns, cell errors and a missing Sheet1. Parsing must either produce the entire preview or reject; it must never return a partial preview.
+
+`FreeSms.Checks/WorkbookChecks.cs` also reads the recovered binary `xls/Example.xls` and `xls/ExampleMark.xls` directly. Native workflow checks open both formats through the original file chooser/buttons, verify preview preservation after rejected/cancelled files, and keep database row counts and processing flags unchanged. Save/import database effects are separate acceptance cases.
+
+The application uses ExcelDataReader3.9.0 ([upstream documentation](https://github.com/ExcelDataReader/ExcelDataReader), package source commit `f3343f5524518923bdeb4801e5003c0417fd35f3`). Its MIT notice is copied verbatim from that commit's LICENSE into `vendor/licenses/ExcelDataReader-MIT.txt` and included in the Windows package. Its parser does not start Excel or execute workbook formulas.

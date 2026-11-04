@@ -93,7 +93,7 @@ internal static class OriginalProgram
                                 Directory.CreateDirectory(pictures);
                                 image.Save(Path.Combine(pictures, definition.S("class") + ".png"));
                             }
-                            log.WriteLine(definition.S("name") + ": constructed and rendered");
+                            log.WriteLine(definition.S("name") + ": constructed; hidden draw probe completed (visible layout unverified)");
                             log.Flush();
                         }
                       }

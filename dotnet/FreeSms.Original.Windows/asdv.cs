@@ -1,7 +1,6 @@
 using System;
 using System.ComponentModel;
 using System.Data;
-using System.Data.OleDb;
 using Microsoft.Data.SqlClient;
 using System.Drawing;
 using System.Drawing.Text;
@@ -12,6 +11,7 @@ using Janus.Windows.GridEX.EditControls;
 
 public class asdv : Form
 {
+	private readonly OriginalWorkbookImport workbookImport;
 	private IContainer m_a = null;
 
 	private Panel m_b;
@@ -272,7 +272,7 @@ protected override void Dispose(bool A_0)
 		this.m_d.Size = new Size(780, 385);
 		this.m_d.TabIndex = 5;
 		this.m_d.VisualStyle = VisualStyle.Office2003;
-		g.Filter = "اکسل 2003 |*.xls";
+		g.Filter = "Excel (*.xlsx;*.xls)|*.xlsx;*.xls";
 		p.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 		p.Location = new Point(646, 505);
 		p.Name = "lYear";
@@ -305,6 +305,7 @@ protected override void Dispose(bool A_0)
 	public asdv()
 	{
 		b();
+		workbookImport = new OriginalWorkbookImport(this);
 	}
 
 	private void e(object A_0, EventArgs A_1)
@@ -312,257 +313,9 @@ protected override void Dispose(bool A_0)
 		Close();
 	}
 
-	private void d(object A_0, EventArgs A_1)
+	private async void d(object A_0, EventArgs A_1)
 	{
-		string text = default;
-		bool flag4 = default;
-		int num2 = default;
-		bool flag3 = default;
-		string text3 = default;
-		OleDbConnection oleDbConnection = default;
-		OleDbDataAdapter oleDbDataAdapter = default;
-		DataSet dataSet = default;
-		bool flag2 = default;
-		while (true)
-		{
-			bool flag = DialogResult.OK != g.ShowDialog();
-			int num = 25;
-			while (true)
-			{
-				switch (num)
-				{
-				case 25:
-					if (!flag)
-					{
-						num = 8;
-						continue;
-					}
-					return;
-				case 30:
-					text += "\nفیلد نمره وجود ندارد(mark)";
-					num = 11;
-					continue;
-				case 24:
-					text += "\nفیلد کد متعلم وجود ندارد(Code)";
-					num = 15;
-					continue;
-				case 0:
-					if (!flag)
-					{
-						num = 33;
-						continue;
-					}
-					goto case 9;
-				case 3:
-					flag = flag4;
-					num = 13;
-					continue;
-				case 13:
-					if (!flag)
-					{
-						num = 30;
-						continue;
-					}
-					goto case 11;
-				case 9:
-					num2++;
-					num = 10;
-					continue;
-				case 21:
-					text = "";
-					flag = flag3;
-					num = 12;
-					continue;
-				case 12:
-					if (!flag)
-					{
-						num = 24;
-						continue;
-					}
-					goto case 15;
-				case 17:
-					if (!flag)
-					{
-						num = 7;
-						continue;
-					}
-					goto case 2;
-				case 33:
-					this.m_d.RootTable.Columns[num2].Width = 200;
-					num = 9;
-					continue;
-				case 28:
-				{
-					GridEXFormatCondition gridEXFormatCondition = new GridEXFormatCondition(this.m_d.RootTable.Columns["acp"], ConditionOperator.Equal, "1");
-					gridEXFormatCondition.FormatStyle.ForeColor = SystemColors.WindowText;
-					gridEXFormatCondition.FormatStyle.BackColor = Color.FromArgb(0, 200, 0);
-					this.m_d.RootTable.FormatConditions.Add(gridEXFormatCondition);
-					GridEXFormatCondition gridEXFormatCondition2 = new GridEXFormatCondition(this.m_d.RootTable.Columns["acp"], ConditionOperator.Equal, "-1");
-					gridEXFormatCondition2.FormatStyle.ForeColor = SystemColors.WindowText;
-					gridEXFormatCondition2.FormatStyle.BackColor = Color.FromArgb(250, 0, 150);
-					this.m_d.RootTable.FormatConditions.Add(gridEXFormatCondition2);
-					num = 6;
-					continue;
-				}
-				case 6:
-					return;
-				case 14:
-					if (!flag)
-					{
-						num = 16;
-						continue;
-					}
-					goto case 31;
-				case 8:
-					text3 = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + g.FileName + ";Extended Properties=Excel 12.0;";
-					oleDbConnection = new OleDbConnection(text3);
-					num = 27;
-					continue;
-				case 5:
-					try
-					{
-						oleDbDataAdapter.Fill(dataSet);
-					}
-					catch (Exception ex)
-					{
-						MessageBox.Show(ex.Message);
-						return;
-					}
-					dataSet.Tables[0].Columns.Add("status");
-					dataSet.Tables[0].Columns.Add("acp");
-					flag3 = false;
-					flag2 = false;
-					flag4 = false;
-					num2 = 0;
-					num = 35;
-					continue;
-				case 2:
-					flag = !(dataSet.Tables[0].Columns[num2].Caption.ToLower() == "codedars");
-					num = 4;
-					continue;
-				case 4:
-					if (flag)
-					{
-						flag = !(dataSet.Tables[0].Columns[num2].Caption.ToLower() == "mark");
-						num = 14;
-					}
-					else
-					{
-						num = 19;
-					}
-					continue;
-				case 11:
-					flag = !(text != "");
-					num = 34;
-					continue;
-				case 34:
-					if (flag)
-					{
-						this.m_d.DataSource = dataSet.Tables[0];
-						this.m_d.RootTable.Columns.Clear();
-						string text2 = "";
-						num2 = 0;
-						num = 29;
-					}
-					else
-					{
-						num = 20;
-					}
-					continue;
-				case 16:
-					flag4 = true;
-					num = 31;
-					continue;
-				case 19:
-					flag2 = true;
-					num = 36;
-					continue;
-				case 15:
-					flag = flag2;
-					num = 26;
-					continue;
-				case 26:
-					if (!flag)
-					{
-						num = 22;
-						continue;
-					}
-					goto case 3;
-				case 7:
-					flag3 = true;
-					num = 2;
-					continue;
-				case 20:
-					MessageBox.Show(text);
-					num = 32;
-					continue;
-				case 32:
-					if (1 == 0)
-					{
-					}
-					return;
-				case 31:
-				case 36:
-					num2++;
-					num = 23;
-					continue;
-				case 23:
-				case 35:
-					flag = num2 < dataSet.Tables[0].Columns.Count;
-					num = 18;
-					continue;
-				case 18:
-					if (flag)
-					{
-						flag = !(dataSet.Tables[0].Columns[num2].Caption.ToLower() == "code");
-						num = 17;
-					}
-					else
-					{
-						num = 21;
-					}
-					continue;
-				case 27:
-					try
-					{
-						oleDbConnection.Open();
-						oleDbConnection.Close();
-					}
-					catch
-					{
-						text3 = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + g.FileName + ";Extended Properties=Excel 8.0;";
-					}
-					oleDbDataAdapter = new OleDbDataAdapter("select * from [Sheet1$]", text3);
-					dataSet = new DataSet();
-					num = 5;
-					continue;
-				case 10:
-				case 29:
-					flag = num2 < dataSet.Tables[0].Columns.Count;
-					num = 1;
-					continue;
-				case 1:
-					if (flag)
-					{
-						string text2 = dataSet.Tables[0].Columns[num2].Caption.ToLower();
-						this.m_d.RootTable.Columns.Add(text2, ColumnType.Text);
-						this.m_d.RootTable.Columns[num2].AllowSort = false;
-						flag = !(text2 == "status");
-						num = 0;
-					}
-					else
-					{
-						num = 28;
-					}
-					continue;
-				case 22:
-					text += "\nفیلد کد درس وجود ندارد(codedars)";
-					num = 3;
-					continue;
-				}
-				break;
-			}
-		}
+		await workbookImport.OpenAsync(g, this.m_d, FreeSms.Core.WorkbookImportKind.Marks);
 	}
 
 	private void a()
