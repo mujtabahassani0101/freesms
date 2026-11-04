@@ -1,0 +1,30 @@
+PASS authored report font loaded from its bundled TTF: B Badr
+PASS authored report font loaded from its bundled TTF: B Nazanin
+PASS authored report font loaded from its bundled TTF: XB Titre
+PASS bind two records
+PASS preserve layout metadata
+PASS selected row preserves database identity
+PASS typed mark edits update source data
+PASS checkbox write-through
+PASS sorted row identity
+PASS programmatic selection publishes the new row once before rebinding and focusing its dependent grid
+PASS native selection completes before dependent grid rebinding and editor focus
+PASS a hidden dependent grid does not create a native editor before its panel is opened
+PASS hidden dependent data can be replaced and its column selected without a stale editing control
+PASS opening the dependent panel still enables normal cell editing
+PASS payment grid counts string dates and sums numeric amounts without converting dates to numbers
+PASS payment grid totals follow the visible filtered records
+PASS empty payment grid reports zero count and sum
+NUMERIC key=count input=۱۲٣ accepted=True stored=123
+NUMERIC key=mark input=۱۲.۵ accepted=True stored=12.5
+PASS native numeric grid edits preserve typed Persian/Arabic integers and decimal marks
+NUMERIC key=count input=123 accepted=True stored=123
+PASS ending an unchanged grid edit does not publish a false modification
+NUMERIC key=count input=1.5 accepted=False stored=123
+PASS integer grid mask rejects fractions without changing the saved cell
+NUMERIC key=count input=2147483648 accepted=False stored=123
+PASS out-of-range integer edits reject before binding without native data-error dialogs
+PASS changing cells safely commits edits when the recovered update handler also ends the row edit
+System.InvalidOperationException: canceling an invalid editor preserves committed values without publishing an update
+   at Program.<>c__DisplayClass0_0.<Main>g__Check|0(Boolean result, String name) in D:\a\freesms\freesms\dotnet\FreeSms.NativeChecks\Program.cs:line 26
+   at Program.Main(String[] args) in D:\a\freesms\freesms\dotnet\FreeSms.NativeChecks\Program.cs:line 17

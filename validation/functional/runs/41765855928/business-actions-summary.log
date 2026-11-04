@@ -1,0 +1,16 @@
+Original business workflow actions and persisted effects
+PASS m_aj_workflow_backup toolBackUp -> frmbackUp
+PASS m_bt_workflow_driver toolDriver -> frmDriver
+PASS m_k_workflow_subject toolfrBook -> frmbook
+PASS m_l_workflow_class toolfrmCls -> frmCls
+PASS b6_workflow_school toolfrmSchool -> frmSchool
+FAILED b6_workflow_authentication toolfrmSchool -> frmSchool
+PASS m_j_workflow_teacher toolfrmTeacher -> frmTeacher
+PASS m_bm_workflow_attendance1 toolHazeri1 -> frmHazeri
+PASS m_bn_workflow_attendance2 toolHazeri2 -> frmHazeri
+PASS m_a4_workflow_mark-entry toolMarkEntryOne -> frmMarkEntry2
+PASS m_bq_workflow_payment toolPaymentAdd -> frmPaymentAdd
+PASS m_e_workflow_student-delete toolStd -> frmlistStd
+PASS m_e_workflow_student-edit toolStd -> frmlistStd
+PASS d8_workflow_discount toolTakhfif -> frmTakhfif
+RESULT loaded=13, interaction=0, total=14

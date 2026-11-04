@@ -122,6 +122,7 @@ internal static class Program
                 Check((int)values.Rows[0]["count"]==124 && editNotifications==3 && errors==0,"changing cells safely commits edits when the recovered update handler also ends the row edit");
                 view.CurrentCell=view.Rows[0].Cells["count"];RequireEditor();((TextBox)view.EditingControl!).Text="invalid";
                 numbers.CancelEdit();
+                Console.WriteLine("CANCEL stored="+values.Rows[0]["count"]+" updates="+editNotifications+" editing="+view.IsCurrentCellInEditMode);
                 Check((int)values.Rows[0]["count"]==124 && editNotifications==3 && !view.IsCurrentCellInEditMode,"canceling an invalid editor preserves committed values without publishing an update");
                 view.CurrentCell=view.Rows[0].Cells["count"];RequireEditor();((TextBox)view.EditingControl!).Text="999";
                 var replacement=values.Clone();replacement.Rows.Add(7,8m);numbers.DataSource=replacement;

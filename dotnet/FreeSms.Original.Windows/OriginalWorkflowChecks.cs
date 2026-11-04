@@ -561,6 +561,8 @@ internal static class OriginalWorkflowChecks
                 Require(Field<Control>(allowed,"af").Text==asdaj.__field_a,"Permitted class form did not initialize for the selected year."));
             // Exercise every recovered guarded form outside this account's
             // section 1, not just one representative registration window.
+            db.Execute("INSERT INTO tmpStdforPrint(id,xUser) VALUES(5997999,@p0)",new object[]{temporaryUser});
+            string settingsBefore=System.Text.Json.JsonSerializer.Serialize(db.Query("SELECT * FROM tParmetr"));
             var deniedForms=new Type[]{typeof(asda0),typeof(asda1),typeof(asda2),typeof(asda5),typeof(asda6),typeof(asdae),typeof(asdah),typeof(asdai),typeof(asdak),typeof(asdam),typeof(asdap),typeof(asdaq),typeof(asdar),typeof(asdat),typeof(asdau),typeof(asdaz),typeof(asdb),typeof(asdb1),typeof(asdb2),typeof(asdb5),typeof(asdb7),typeof(asdb8),typeof(asdba),typeof(asdbd),typeof(asdbf),typeof(asdbh),typeof(asdbj),typeof(asdbo),typeof(asdbr),typeof(asdbs),typeof(asdbw),typeof(asdby),typeof(asdf),typeof(asdg),typeof(asdk),typeof(asdm),typeof(asdp),typeof(asdt),typeof(asdv),typeof(asdx)};
             foreach(var deniedType in deniedForms)
             {
@@ -568,6 +570,8 @@ internal static class OriginalWorkflowChecks
                 using var denied=(Form)Activator.CreateInstance(deniedType);
                 Dialog(()=>denied.ShowDialog(),"شما مجوز ورود به این بخش را ندارید",1);
                 Require(!denied.Visible && asdaj.l==user && asdaj.n=="1" && !asdaj.a("3"),"Denied form changed the authenticated session or remained open: "+deniedType.Name);
+                Require(Convert.ToInt32(db.Scalar("SELECT COUNT(*) FROM tmpStdforPrint WHERE id=5997999 AND xUser=@p0",new object[]{temporaryUser}))==1
+                    && System.Text.Json.JsonSerializer.Serialize(db.Query("SELECT * FROM tParmetr"))==settingsBefore,"Denied form changed the user's print selection or report settings: "+deniedType.Name);
             }
             log("PASS all40 recovered guarded forms outside section1 reject the limited authenticated account before entry");
             Require(asdaj.l==user,"Denied section changed the logged-in account.");
@@ -617,7 +621,11 @@ internal static class OriginalWorkflowChecks
         }
         finally
         {
-            if(temporaryUser>0)db.Execute("DELETE FROM tuser WHERE id=@p0",new object[]{temporaryUser});
+            if(temporaryUser>0)
+            {
+                db.Execute("DELETE FROM tmpStdforPrint WHERE xUser=@p0",new object[]{temporaryUser});
+                db.Execute("DELETE FROM tuser WHERE id=@p0",new object[]{temporaryUser});
+            }
             db.Execute("UPDATE tuser SET pwd=@p0,pw=@p1 WHERE id=1",new object[]{original["pwd"],original["pw"]});
             asdaj.l=beforeUser;asdaj.m=beforePermissions;asdaj.n=beforeGrades;
         }

@@ -12,6 +12,9 @@ using Janus.Windows.GridEX.EditControls;
 
 public class asdbw : Form
 {
+	private bool sectionOpened;
+	private bool reportSettingsLoaded;
+
 	private string m_a = "";
 
 	private IContainer m_b = null;
@@ -1210,6 +1213,13 @@ public class asdbw : Form
 
 	private void a(object A_0, FormClosingEventArgs A_1)
 	{
+		// A denied form has not initialized its print list or settings.
+		if (!sectionOpened) return;
+		if (!reportSettingsLoaded)
+		{
+			asdcb.d(asdab.e(), CommandType.Text, "delete from tmpStdforPrint where xUser=" + asdaj.l);
+			return;
+		}
 		bool flag = default;
 		while (true)
 		{
@@ -1652,6 +1662,7 @@ public class asdbw : Form
 						num = 9;
 						continue;
 					}
+					sectionOpened = true;
 					OriginalSchoolYears.Select(aq, asdaj.__field_a);
 					dataTable = asdcb.c(asdab.e(), CommandType.Text, "select * from tFormColor");
 					flag = dataTable.Rows.Count <= 0;
@@ -1712,6 +1723,7 @@ public class asdbw : Form
 					this.m_l.Tag = dataTable2.Rows[0]["heder1"].ToString();
 					n.Tag = dataTable2.Rows[0]["heder2"].ToString();
 					this.m_g.Tag = dataTable2.Rows[0]["sch"].ToString();
+					reportSettingsLoaded = true;
 					num = 0;
 					continue;
 				case 11:

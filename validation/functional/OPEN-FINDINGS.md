@@ -150,6 +150,14 @@ The pending extension includes a real annual 100-point entry/reopen/Cancel and t
 
 Static cross-section review also found raw text concatenation in eight name filters across teacher, driver, subject, individual marks and previous-grade marks. These queries now pass search text as SQL parameters. The original teacher/driver/mark button scenarios include apostrophe/SQL-punctuation searches; subject and previous-grade populated searches still need dedicated native cases. Office-dependent import/export and missing discipline schemas remain open alongside PLAN.md.
 
+## Further native results (run41765855928)
+
+Source08da312 passed13/14 business scenarios and5/5 report previews. The expanded individual-mark case now passes invalid annual Cancel/reopen and actual hidden M3 preservation with the recovered M2/Mark annual-total convention. Subject CRUD, combined grade/name filtering and real apostrophe preservation pass. Their full logs, summaries and SHA256-verified artifact receipts are archived in runs/41765855928.
+
+The restricted-account sweep progressed through30 denied forms, then asdbw (batch report selector) threw NullReferenceException while closing without initialized settings tags. Its close handler also deleted the denied user's print selection before failing. Closing now skips all work until entry was authorized, and skips settings persistence until those settings were loaded. Each denied-form case additionally checks unchanged print selection and report parameters, not just the dialog/session. The rest of the sweep remains unproven.
+
+The new native invalid-editor Cancel check failed in this run. GridEX.CancelEdit no longer calls BindingSource.CancelEdit, which can roll back other current-row edits; it discards only the active cell editor, matching the existing rebind path. A temporary diagnostic records stored value/event count/editor state for the next Windows run. This repair is not yet verified on Windows. Full application scope remains open.
+
 ## Expanded marks/search confirmed; subjects under test
 
 Run41608908198 passed all13 business and5 report scenarios. Its full individual-mark, teacher/driver quoted-search logs and verified artifact receipt are archived. Individual marks passed the new multi-subject rollback/retry, SQL-lock/UI heartbeat, bound/fraction rejection, clearing and actual annual100-point M2 storage checks. These replace the earlier pending status for those specific assertions.
