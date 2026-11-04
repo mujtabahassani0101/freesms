@@ -13,7 +13,7 @@ public class asdau : Form
 {
 	private SqlConnection m_a = new SqlConnection(asdab.e());
 
-	private bool m_b;
+	private bool m_b = true;
 
 	private int m_c;
 

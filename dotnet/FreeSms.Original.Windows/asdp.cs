@@ -45,7 +45,7 @@ public class asdp : Form
 
 	public string q;
 
-	private bool r;
+	private bool r = true;
 
 	private int s;
 

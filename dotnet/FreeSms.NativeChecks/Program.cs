@@ -120,6 +120,9 @@ internal static class Program
                 view.CurrentCell=view.Rows[0].Cells["count"];RequireEditor();((TextBox)view.EditingControl!).Text="124";
                 view.CurrentCell=view.Rows[0].Cells["mark"];
                 Check((int)values.Rows[0]["count"]==124 && editNotifications==3 && errors==0,"changing cells safely commits edits when the recovered update handler also ends the row edit");
+                view.CurrentCell=view.Rows[0].Cells["count"];RequireEditor();((TextBox)view.EditingControl!).Text="invalid";
+                numbers.CancelEdit();
+                Check((int)values.Rows[0]["count"]==124 && editNotifications==3 && !view.IsCurrentCellInEditMode,"canceling an invalid editor preserves committed values without publishing an update");
                 view.CurrentCell=view.Rows[0].Cells["count"];RequireEditor();((TextBox)view.EditingControl!).Text="999";
                 var replacement=values.Clone();replacement.Rows.Add(7,8m);numbers.DataSource=replacement;
                 numbers.CurrentColumn=numbers.RootTable.Columns["mark"];numbers.SelectCurrentCellText();numbers.EndEdit();

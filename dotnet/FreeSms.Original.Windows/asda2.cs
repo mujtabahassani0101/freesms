@@ -55,7 +55,7 @@ public class asda2 : Form
 
 	private SqlConnection w = new SqlConnection(asdab.e());
 
-	private bool x;
+	private bool x = true;
 protected override void Dispose(bool A_0)
 	{
 		bool flag = default;

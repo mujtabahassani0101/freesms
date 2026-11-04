@@ -873,7 +873,7 @@ protected override void Dispose(bool A_0)
 					num = 34;
 					continue;
 				case 32:
-					this.m_g.Text = asdaj.b(this.m_g.Text.Trim());
+					this.m_g.Text = OriginalText.Normalize(this.m_g.Text.Trim());
 					flag = !(text != "");
 					num = 4;
 					continue;
@@ -896,7 +896,7 @@ protected override void Dispose(bool A_0)
 					num = 13;
 					continue;
 				case 8:
-					this.m_e.Text = asdaj.b(this.m_e.Text.Trim());
+					this.m_e.Text = OriginalText.Normalize(this.m_e.Text.Trim());
 					flag = !(text != "");
 					num = 7;
 					continue;
@@ -977,6 +977,7 @@ protected override void Dispose(bool A_0)
 
 	private void b()
 	{
+        al=-1;ai=false;
 		DataTable dataTable = default;
 		while (true)
 		{
@@ -1110,6 +1111,7 @@ protected override void Dispose(bool A_0)
 
 	private void m(object A_0, EventArgs A_1)
 	{
+        al=-1;ai=false;w.CancelEdit();
 		this.m_k.Visible = false;
 	}
 

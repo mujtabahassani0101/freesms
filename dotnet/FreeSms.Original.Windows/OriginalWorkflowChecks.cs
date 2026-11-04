@@ -409,7 +409,7 @@ internal static class OriginalWorkflowChecks
     private static void Subject(Form form,Database db,Action<string> log)
     {
         int Count()=>Convert.ToInt32(db.Scalar("SELECT COUNT(*) FROM tBook"));
-        int before=Count();string name=asdaj.b("مضمون ' آزمایشی");
+        int before=Count();string name=OriginalText.Normalize("مضمون ' آزمایشی");
         Click(form,"w");Field<UIComboBox>(form,"n").SelectedValue="1";
         Dialog(()=>Click(form,"s"),"نام درس را وارد کنيد",1);
         Field<Control>(form,"t").Text=name;Field<Control>(form,"ad").Text="1";Field<Control>(form,"ac").Text="1";
@@ -431,7 +431,7 @@ internal static class OriginalWorkflowChecks
         Require(Field<GridEX>(form,"y").RowCount==0,"Subject search failed to combine name punctuation with the selected grade.");
         Search("");Select(form,id,"y");Click(form,"x");
         Require(Field<Control>(form,"t").Text==name && !Field<UIComboBox>(form,"n").Enabled,"Subject Edit did not reload the selected name and preserve its grade.");
-        string edited=asdaj.b("اصلاح ' مضمون");Field<Control>(form,"t").Text=edited;Click(form,"s");
+        string edited=OriginalText.Normalize("اصلاح ' مضمون");Field<Control>(form,"t").Text=edited;Click(form,"s");
         Require(Count()==before+1 && Convert.ToString(db.Scalar("SELECT Name FROM tBook WHERE id=@p0",new object[]{id}))==edited,"Subject Edit did not update the selected identity.");
         Select(form,id,"y");Click(form,"x");Field<Control>(form,"t").Text="لغو";Click(form,"r");
         Require(Convert.ToString(db.Scalar("SELECT Name FROM tBook WHERE id=@p0",new object[]{id}))==edited,"Subject Cancel changed saved data.");
@@ -878,7 +878,7 @@ internal static class OriginalWorkflowChecks
             Dialog(()=>Click(form,save),"نام خانوادگي را وارد کنيد",1);
             Field<Control>(form,"m_m").Text="آزمایشی";
         }
-        string name=asdaj.b("آزمون ثبت "+scenario+" ' نقل");
+        string name=OriginalText.Normalize("آزمون ثبت "+scenario+" ' نقل");
         string value=teacher ? "o'neil@example.invalid" : "توضیح ' فارسی ; SELECT 1 --";
         string secret="test'only";
         Field<Control>(form,nameField).Text=name;

@@ -398,6 +398,16 @@ namespace Janus.Windows.GridEX
             View.BeginEdit(true);(View.EditingControl as TextBox)?.SelectAll();
         }
         public void EndEdit(){TryEndEdit();}
+        public void CancelEdit()
+        {
+            bool previous=loading;loading=true;
+            try
+            {
+                View.CancelEdit();binding.CancelEdit();
+                editingCell=null;editingOriginalValue=null;
+            }
+            finally{loading=previous;}
+        }
         public bool TryEndEdit()
         {
             if(endingCellEdit)return true;

@@ -16,7 +16,7 @@ public class asdaq : Form
 
 	public string __field_b;
 
-	private bool m_c;
+	private bool m_c = true;
 
 	private int m_d;
 

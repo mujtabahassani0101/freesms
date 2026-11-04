@@ -681,8 +681,8 @@ protected override void Dispose(bool A_0)
 				case 7:
 					if (flag)
 					{
-						this.m_n.Text = asdaj.b(this.m_n.Text.Trim());
-						this.m_m.Text = asdaj.b(this.m_m.Text.Trim());
+						this.m_n.Text = OriginalText.Normalize(this.m_n.Text.Trim());
+						this.m_m.Text = OriginalText.Normalize(this.m_m.Text.Trim());
 						flag = ad != 1;
 						num = 25;
 					}
@@ -1069,7 +1069,7 @@ protected override void Dispose(bool A_0)
 					goto case 14;
 				case 20:
 				{
-					DataTable dataSource = asdcb.c(asdab.e(), CommandType.Text, "select * from tteacher" + text, new SqlParameter("@FirstName", "%"+asdaj.b(u.Text.Trim())+"%"), new SqlParameter("@LastName", "%"+asdaj.b(t.Text.Trim())+"%"));
+					DataTable dataSource = asdcb.c(asdab.e(), CommandType.Text, "select * from tteacher" + text, new SqlParameter("@FirstName", "%"+OriginalText.Normalize(u.Text.Trim())+"%"), new SqlParameter("@LastName", "%"+OriginalText.Normalize(t.Text.Trim())+"%"));
 					this.m_h.DataSource = dataSource;
 					num2 = 26;
 					continue;

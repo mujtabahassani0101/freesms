@@ -564,7 +564,7 @@ protected override void Dispose(bool A_0)
 	{
 		while (true)
 		{
-			this.m_j.Text = asdaj.b(this.m_j.Text.Trim());
+			this.m_j.Text = OriginalText.Normalize(this.m_j.Text.Trim());
 			bool flag = y != 1;
 			if (true)
 			{
@@ -815,7 +815,7 @@ protected override void Dispose(bool A_0)
 					goto IL_0152;
 				case 12:
 				{
-					DataTable dataSource = asdcb.c(asdab.e(), CommandType.Text, "select * from tDriver" + text, new SqlParameter("@SearchName", "%"+asdaj.b(p.Text.Trim())+"%"));
+					DataTable dataSource = asdcb.c(asdab.e(), CommandType.Text, "select * from tDriver" + text, new SqlParameter("@SearchName", "%"+OriginalText.Normalize(p.Text.Trim())+"%"));
 					this.m_h.DataSource = dataSource;
 					num2 = 7;
 					continue;

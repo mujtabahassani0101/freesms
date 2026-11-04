@@ -88,7 +88,7 @@ public class asdbd : Form
 
 	private SqlConnection al = new SqlConnection(asdab.e());
 
-	private bool am;
+	private bool am = true;
 
 	private int an = -1;
 protected override void Dispose(bool A_0)

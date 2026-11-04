@@ -695,7 +695,7 @@ protected override void Dispose(bool A_0)
 					num = 3;
 					continue;
 				case 19:
-					this.m_e.Text = asdaj.b(this.m_e.Text.Trim());
+					this.m_e.Text = OriginalText.Normalize(this.m_e.Text.Trim());
 					flag = !(text != "");
 					num = 7;
 					continue;
@@ -738,7 +738,7 @@ protected override void Dispose(bool A_0)
 				case 14:
 					return;
 				case 11:
-					this.m_g.Text = asdaj.b(this.m_g.Text.Trim());
+					this.m_g.Text = OriginalText.Normalize(this.m_g.Text.Trim());
 					flag = !(text != "");
 					num = 13;
 					continue;
