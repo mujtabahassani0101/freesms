@@ -774,7 +774,7 @@ internal static class OriginalWorkflowChecks
         Field<Control>(form,"p").Text="1420/07/31";
         Dialog(()=>Field<Button>(form,"f").PerformClick(),"تاریخ پرداخت اشتباه است",1);
         Require(Snapshot()==before,"Invalid payment date wrote student rows.");Field<Control>(form,"p").Text="1420/01/02";
-        Set(5,"payment","-1");Dialog(()=>Field<Button>(form,"f").PerformClick(),"ردیف 6 فهرست:",1);
+        Set(5,"payment","-1");Dialog(()=>Field<Button>(form,"f").PerformClick(),"ردیف 6 فهرست:",1,requiredText:"مقدار عددی خارج از محدودهٔ مجاز است.");
         Require(Snapshot()==before,"Invalid late payment input left a partial student workbook.");Set(5,"payment","0");
         Set(1,"code","60002010001");Reject("کد متعلم در فایل تکراری است");
         Require(Snapshot()==before,"Duplicate workbook code changed the bank.");Set(1,"code","60002020002");

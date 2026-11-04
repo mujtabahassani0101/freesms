@@ -1,0 +1,198 @@
+BEGIN bz_workflow_mark-workbook
+toolImportMark -> frmImportMark
+CONSTRUCT
+CLICK ad
+SQL 1E846049AB9113F7D191CDB90D8974CFC5A20D31D8AB57E09CB9420C3FC6C490
+   at System.Environment.get_StackTrace()
+   at OriginalNavigationCheck.TraceCommand(String sql) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalNavigationCheck.cs:line 22
+   at asdcb.a(SqlCommand A_0, SqlConnection A_1, SqlTransaction A_2, CommandType A_3, String A_4, SqlParameter[] A_5) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdcb.cs:line 87
+   at asdcb.b(SqlConnection A_0, CommandType A_1, String A_2, SqlParameter[] A_3) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdcb.cs:line 408
+   at asdcb.c(String A_0, CommandType A_1, String A_2, SqlParameter[] A_3) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdcb.cs:line 356
+   at asdv.b(Object A_0, EventArgs A_1) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdv.cs:line 434
+   at System.Windows.Forms.Form.OnLoad(EventArgs e)
+   at System.Windows.Forms.Form.OnCreateControl()
+   at System.Windows.Forms.Control.CreateControl(Boolean ignoreVisible)
+   at System.Windows.Forms.Control.CreateControl()
+   at System.Windows.Forms.Control.WmShowWindow(Message& m)
+   at System.Windows.Forms.Control.WndProc(Message& m)
+   at System.Windows.Forms.ScrollableControl.WndProc(Message& m)
+   at System.Windows.Forms.ContainerControl.WndProc(Message& m)
+   at System.Windows.Forms.Form.WmShowWindow(Message& m)
+   at System.Windows.Forms.Form.WndProc(Message& m)
+   at System.Windows.Forms.Control.ControlNativeWindow.OnMessage(Message& m)
+   at System.Windows.Forms.Control.ControlNativeWindow.WndProc(Message& m)
+   at System.Windows.Forms.NativeWindow.Callback(HWND hWnd, UInt32 msg, WPARAM wparam, LPARAM lparam)
+   at Windows.Win32.PInvoke.ShowWindow(HWND hWnd, SHOW_WINDOW_CMD nCmdShow)
+   at System.Windows.Forms.Control.SetVisibleCore(Boolean value)
+   at System.Windows.Forms.Form.SetVisibleCore(Boolean value)
+   at System.Windows.Forms.Application.ThreadContext.RunMessageLoopInner(msoloop reason, ApplicationContext context)
+   at System.Windows.Forms.Application.RunDialog(Form form)
+   at System.Windows.Forms.Form.ShowDialog(IWin32Window owner)
+   at System.Windows.Forms.Form.ShowDialog()
+   at asdb3.ad(Object A_0, EventArgs A_1) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdb3.cs:line 1873
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at OriginalNavigationCheck.<>c__DisplayClass3_1.<Worker>b__3(Object sender, EventArgs e) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalNavigationCheck.cs:line 81
+   at System.Windows.Forms.Timer.OnTick(EventArgs e)
+   at System.Windows.Forms.Timer.TimerNativeWindow.WndProc(Message& m)
+   at System.Windows.Forms.NativeWindow.Callback(HWND hWnd, UInt32 msg, WPARAM wparam, LPARAM lparam)
+   at Windows.Win32.PInvoke.DispatchMessage(MSG* lpMsg)
+   at System.Windows.Forms.Application.LightThreadContext.FPushMessageLoop(msoloop uReason)
+   at System.Windows.Forms.Application.LightThreadContext.RunMessageLoop(msoloop reason, Boolean fullModal)
+   at System.Windows.Forms.Application.ThreadContext.RunMessageLoopInner(msoloop reason, ApplicationContext context)
+   at System.Windows.Forms.Application.Run(ApplicationContext context)
+   at OriginalNavigationCheck.Worker(String route) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalNavigationCheck.cs:line 161
+   at OriginalProgram.Main(String[] args) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalProgram.cs:line 54
+SQL B88F84B3C16219E8E0F497590FD383A46305183675F0153AF935840A33100F20
+   at System.Environment.get_StackTrace()
+   at OriginalNavigationCheck.TraceCommand(String sql) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalNavigationCheck.cs:line 22
+   at asdcb.a(SqlCommand A_0, SqlConnection A_1, SqlTransaction A_2, CommandType A_3, String A_4, SqlParameter[] A_5) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdcb.cs:line 87
+   at asdcb.b(SqlConnection A_0, CommandType A_1, String A_2, SqlParameter[] A_3) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdcb.cs:line 408
+   at asdcb.c(String A_0, CommandType A_1, String A_2, SqlParameter[] A_3) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdcb.cs:line 356
+   at asdv.a() in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdv.cs:line 331
+   at asdv.b(Object A_0, EventArgs A_1) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdv.cs:line 461
+   at System.Windows.Forms.Form.OnLoad(EventArgs e)
+   at System.Windows.Forms.Form.OnCreateControl()
+   at System.Windows.Forms.Control.CreateControl(Boolean ignoreVisible)
+   at System.Windows.Forms.Control.CreateControl()
+   at System.Windows.Forms.Control.WmShowWindow(Message& m)
+   at System.Windows.Forms.Control.WndProc(Message& m)
+   at System.Windows.Forms.ScrollableControl.WndProc(Message& m)
+   at System.Windows.Forms.ContainerControl.WndProc(Message& m)
+   at System.Windows.Forms.Form.WmShowWindow(Message& m)
+   at System.Windows.Forms.Form.WndProc(Message& m)
+   at System.Windows.Forms.Control.ControlNativeWindow.OnMessage(Message& m)
+   at System.Windows.Forms.Control.ControlNativeWindow.WndProc(Message& m)
+   at System.Windows.Forms.NativeWindow.Callback(HWND hWnd, UInt32 msg, WPARAM wparam, LPARAM lparam)
+   at Windows.Win32.PInvoke.ShowWindow(HWND hWnd, SHOW_WINDOW_CMD nCmdShow)
+   at System.Windows.Forms.Control.SetVisibleCore(Boolean value)
+   at System.Windows.Forms.Form.SetVisibleCore(Boolean value)
+   at System.Windows.Forms.Application.ThreadContext.RunMessageLoopInner(msoloop reason, ApplicationContext context)
+   at System.Windows.Forms.Application.RunDialog(Form form)
+   at System.Windows.Forms.Form.ShowDialog(IWin32Window owner)
+   at System.Windows.Forms.Form.ShowDialog()
+   at asdb3.ad(Object A_0, EventArgs A_1) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdb3.cs:line 1873
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at OriginalNavigationCheck.<>c__DisplayClass3_1.<Worker>b__3(Object sender, EventArgs e) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalNavigationCheck.cs:line 81
+   at System.Windows.Forms.Timer.OnTick(EventArgs e)
+   at System.Windows.Forms.Timer.TimerNativeWindow.WndProc(Message& m)
+   at System.Windows.Forms.NativeWindow.Callback(HWND hWnd, UInt32 msg, WPARAM wparam, LPARAM lparam)
+   at Windows.Win32.PInvoke.DispatchMessage(MSG* lpMsg)
+   at System.Windows.Forms.Application.LightThreadContext.FPushMessageLoop(msoloop uReason)
+   at System.Windows.Forms.Application.LightThreadContext.RunMessageLoop(msoloop reason, Boolean fullModal)
+   at System.Windows.Forms.Application.ThreadContext.RunMessageLoopInner(msoloop reason, ApplicationContext context)
+   at System.Windows.Forms.Application.Run(ApplicationContext context)
+   at OriginalNavigationCheck.Worker(String route) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalNavigationCheck.cs:line 161
+   at OriginalProgram.Main(String[] args) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalProgram.cs:line 54
+PASS original XLS example loads through the actual native file chooser without an Office provider
+CAPTURE populated original form: gallery-mark-import.png (disposable fixture data)
+EXPECT dialog: فایل اکسل قابل خواندن نیست؛ فایل سالم و بدون گذرواژه را انتخاب کنید.
+OBSERVED dialog child texts: OK | فایل اکسل قابل خواندن نیست؛ فایل سالم و بدون گذرواژه را انتخاب کنید.
+RESPOND expected dialog, requested=1 actual=2:OK
+EXPECT dialog: ستون‌های لازم در فایل اکسل وجود ندارند:
+OBSERVED dialog child texts: OK | ستون‌های لازم در فایل اکسل وجود ندارند: codedars
+RESPOND expected dialog, requested=1 actual=2:OK
+EXPECT dialog: عنوان ستون تکراری یا رزروشده است: code
+OBSERVED dialog child texts: OK | عنوان ستون تکراری یا رزروشده است: code
+RESPOND expected dialog, requested=1 actual=2:OK
+EXPECT dialog: خانهٔ اکسل در ردیف 2 و ستون 3 خطا دارد.
+OBSERVED dialog child texts: OK | خانهٔ اکسل در ردیف 2 و ستون 3 خطا دارد.
+RESPOND expected dialog, requested=1 actual=2:OK
+SQL 773BF7C0A51FA9BB4F8CA172F4F57BCF3420B3EE2F4EE0FC619B82646818C2F2
+   at System.Environment.get_StackTrace()
+   at OriginalNavigationCheck.TraceCommand(String sql) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalNavigationCheck.cs:line 22
+   at asdcb.a(SqlCommand A_0, SqlConnection A_1, SqlTransaction A_2, CommandType A_3, String A_4, SqlParameter[] A_5) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdcb.cs:line 87
+   at asdcb.a(SqlConnection A_0, CommandType A_1, String A_2, SqlParameter[] A_3) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdcb.cs:line 570
+   at asdcb.a(String A_0, CommandType A_1, String A_2, SqlParameter[] A_3) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdcb.cs:line 518
+   at asdv.a(Object A_0, EventArgs A_1) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdv.cs:line 525
+   at System.Windows.Forms.ComboBox.OnSelectedIndexChanged(EventArgs e)
+   at Janus.Windows.EditControls.UIComboBox.OnSelectedIndexChanged(EventArgs e) in D:\a\freesms\freesms\dotnet\FreeSms.NativeControls\Editors.cs:line 149
+   at System.Windows.Forms.ComboBox.set_SelectedIndex(Int32 value)
+   at Janus.Windows.EditControls.UIComboBox.set_SelectedValue(Object value) in D:\a\freesms\freesms\dotnet\FreeSms.NativeControls\Editors.cs:line 199
+   at OriginalWorkflowChecks.WorkbookMarkSave(Form form, Database db, Action`1 log, Action load) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalWorkflowChecks.cs:line 841
+   at OriginalWorkflowChecks.WorkbookPreview(Form form, Database db, Action`1 log, Boolean students) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalWorkflowChecks.cs:line 755
+   at OriginalWorkflowChecks.Run(String scenario, Form form, Database db, Action`1 log) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalWorkflowChecks.cs:line 296
+   at OriginalNavigationCheck.<>c__DisplayClass3_1.<Worker>b__3(Object sender, EventArgs e) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalNavigationCheck.cs:line 96
+   at System.Windows.Forms.Timer.OnTick(EventArgs e)
+   at System.Windows.Forms.Timer.TimerNativeWindow.WndProc(Message& m)
+   at System.Windows.Forms.NativeWindow.Callback(HWND hWnd, UInt32 msg, WPARAM wparam, LPARAM lparam)
+   at Windows.Win32.PInvoke.DispatchMessage(MSG* lpMsg)
+   at System.Windows.Forms.Application.LightThreadContext.FPushMessageLoop(msoloop uReason)
+   at System.Windows.Forms.Application.LightThreadContext.RunMessageLoop(msoloop reason, Boolean fullModal)
+   at System.Windows.Forms.Application.ThreadContext.RunMessageLoopInner(msoloop reason, ApplicationContext context)
+   at System.Windows.Forms.Application.RunDialog(Form form)
+   at System.Windows.Forms.Form.ShowDialog(IWin32Window owner)
+   at System.Windows.Forms.Form.ShowDialog()
+   at asdb3.ad(Object A_0, EventArgs A_1) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\asdb3.cs:line 1873
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at OriginalNavigationCheck.<>c__DisplayClass3_1.<Worker>b__3(Object sender, EventArgs e) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalNavigationCheck.cs:line 81
+   at System.Windows.Forms.Timer.OnTick(EventArgs e)
+   at System.Windows.Forms.Timer.TimerNativeWindow.WndProc(Message& m)
+   at System.Windows.Forms.NativeWindow.Callback(HWND hWnd, UInt32 msg, WPARAM wparam, LPARAM lparam)
+   at Windows.Win32.PInvoke.DispatchMessage(MSG* lpMsg)
+   at System.Windows.Forms.Application.LightThreadContext.FPushMessageLoop(msoloop uReason)
+   at System.Windows.Forms.Application.LightThreadContext.RunMessageLoop(msoloop reason, Boolean fullModal)
+   at System.Windows.Forms.Application.ThreadContext.RunMessageLoopInner(msoloop reason, ApplicationContext context)
+   at System.Windows.Forms.Application.Run(ApplicationContext context)
+   at OriginalNavigationCheck.Worker(String route) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalNavigationCheck.cs:line 161
+   at OriginalProgram.Main(String[] args) in D:\a\freesms\freesms\dotnet\FreeSms.Original.Windows\OriginalProgram.cs:line 54
+EXPECT dialog: آيا از انتقال نمرات به  چهار و نيم ماهه مطمئن هستيد؟
+OBSERVED dialog child texts: &Yes | &No |  | آيا از انتقال نمرات به  چهار و نيم ماهه مطمئن هستيد؟
+RESPOND expected dialog, requested=7 actual=7:No
+EXPECT dialog: ردیف 2 فهرست: نمره وارد شده خارج از محدوده است
+OBSERVED dialog child texts: OK | ردیف 2 فهرست: نمره وارد شده خارج از محدوده است
+RESPOND expected dialog, requested=1 actual=2:OK
+EXPECT dialog: خطا در ثبت نمرات:
+EXPECT dialog: آيا از انتقال نمرات به  چهار و نيم ماهه مطمئن هستيد؟
+OBSERVED dialog child texts: &Yes | &No |  | آيا از انتقال نمرات به  چهار و نيم ماهه مطمئن هستيد؟
+RESPOND expected dialog, requested=6 actual=6:Yes
+OBSERVED dialog child texts: OK | خطا در ثبت نمرات:
+کد متعلم در سال انتخاب‌شده ثبت‌نام معتبر ندارد: 6000199
+RESPOND expected dialog, requested=1 actual=2:OK
+EXPECT dialog: خطا در ثبت نمرات:
+EXPECT dialog: آيا از انتقال نمرات به  چهار و نيم ماهه مطمئن هستيد؟
+OBSERVED dialog child texts: &Yes | &No |  | آيا از انتقال نمرات به  چهار و نيم ماهه مطمئن هستيد؟
+RESPOND expected dialog, requested=6 actual=6:Yes
+OBSERVED dialog child texts: OK | خطا در ثبت نمرات:
+کد متعلم و مضمون در فایل تکرار شده است؛ ردیف‌های تکراری را اصلاح کنید.
+RESPOND expected dialog, requested=1 actual=2:OK
+EXPECT dialog: خطا در ثبت نمرات:
+EXPECT dialog: آيا از انتقال نمرات به  چهار و نيم ماهه مطمئن هستيد؟
+OBSERVED dialog child texts: &Yes | &No |  | آيا از انتقال نمرات به  چهار و نيم ماهه مطمئن هستيد؟
+RESPOND expected dialog, requested=6 actual=6:Yes
+OBSERVED dialog child texts: OK | خطا در ثبت نمرات:
+مجوز ورود نمرات پایهٔ این متعلم را ندارید: 6000101
+RESPOND expected dialog, requested=1 actual=2:OK
+EXPECT dialog: خطا در ثبت نمرات:
+EXPECT dialog: آيا از انتقال نمرات به  چهار و نيم ماهه مطمئن هستيد؟
+OBSERVED dialog child texts: &Yes | &No |  | آيا از انتقال نمرات به  چهار و نيم ماهه مطمئن هستيد؟
+RESPOND expected dialog, requested=6 actual=6:Yes
+OBSERVED dialog child texts: OK | خطا در ثبت نمرات:
+native workbook late-row failure
+RESPOND expected dialog, requested=1 actual=2:OK
+EXPECT dialog: انجام شد
+EXPECT dialog: آيا از انتقال نمرات به  چهار و نيم ماهه مطمئن هستيد؟
+OBSERVED dialog child texts: &Yes | &No |  | آيا از انتقال نمرات به  چهار و نيم ماهه مطمئن هستيد؟
+RESPOND expected dialog, requested=6 actual=6:Yes
+OBSERVED dialog child texts: OK | انجام شد
+RESPOND expected dialog, requested=1 actual=2:OK
+EXPECT dialog: انجام شد
+EXPECT dialog: آيا از انتقال نمرات به  چهار و نيم ماهه مطمئن هستيد؟
+OBSERVED dialog child texts: &Yes | &No |  | آيا از انتقال نمرات به  چهار و نيم ماهه مطمئن هستيد؟
+RESPOND expected dialog, requested=6 actual=6:Yes
+OBSERVED dialog child texts: OK | انجام شد
+RESPOND expected dialog, requested=1 actual=2:OK
+PASS actual workbook Save confirmation No/Yes, bounds/unknown student/duplicate/grade rejection, late SQL rollback and retry, pending input, real SQL-lock UI heartbeat/close guard, fractional/zero/blank/hidden component semantics and repeated import with selected/annual invalidation and other-exam preservation
+PASS actual XLSX preview, repeat-load row isolation, file chooser Cancel, corrupt/missing-column rejection and previous preview/database preservation; import transaction assertions are recorded separately above
+SUCCESS original workflow actions and persisted effects

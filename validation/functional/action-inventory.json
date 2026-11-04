@@ -2955,8 +2955,15 @@
       "caption": "انتخاب فایل اکسل",
       "handler": "c",
       "targets": [],
-      "status": "unverified",
-      "evidence": []
+      "status": "verified-bounded",
+      "evidence": [
+        {
+          "run": 41804308541,
+          "source": "ab3e0d8fcec8663435c0c85f3f8f15cc21600ba9",
+          "log": "validation/functional/runs/41804308541/m_bv_workflow_student-workbook.log",
+          "assertions_and_limits": "Original XLS and XLSX native chooser Open/Cancel/rejection/repeat preview and Close. Student Save is excluded from this run."
+        }
+      ]
     },
     {
       "id": "asdb7.f",
@@ -2979,8 +2986,15 @@
       "caption": "بستن",
       "handler": "d",
       "targets": [],
-      "status": "unverified",
-      "evidence": []
+      "status": "verified-bounded",
+      "evidence": [
+        {
+          "run": 41804308541,
+          "source": "ab3e0d8fcec8663435c0c85f3f8f15cc21600ba9",
+          "log": "validation/functional/runs/41804308541/m_bv_workflow_student-workbook.log",
+          "assertions_and_limits": "Original XLS and XLSX native chooser Open/Cancel/rejection/repeat preview and Close. Student Save is excluded from this run."
+        }
+      ]
     },
     {
       "id": "asdb8.t",
@@ -3075,8 +3089,15 @@
       "caption": "ثبت",
       "handler": "b",
       "targets": [],
-      "status": "unverified",
-      "evidence": []
+      "status": "verified-bounded",
+      "evidence": [
+        {
+          "run": 41804308541,
+          "source": "ab3e0d8fcec8663435c0c85f3f8f15cc21600ba9",
+          "log": "validation/functional/runs/41804308541/m_ac_workflow_bulk-marks.log",
+          "assertions_and_limits": "Actual uniform fill/clear, Save/reopen/rollback/retry/SQL wait and unsaved-close controls. Remaining component modes and membership concurrency are excluded."
+        }
+      ]
     },
     {
       "id": "asdbd.m",
@@ -3087,8 +3108,15 @@
       "caption": "ثبت نمرات(F5)",
       "handler": "d",
       "targets": [],
-      "status": "unverified",
-      "evidence": []
+      "status": "verified-bounded",
+      "evidence": [
+        {
+          "run": 41804308541,
+          "source": "ab3e0d8fcec8663435c0c85f3f8f15cc21600ba9",
+          "log": "validation/functional/runs/41804308541/m_ac_workflow_bulk-marks.log",
+          "assertions_and_limits": "Actual uniform fill/clear, Save/reopen/rollback/retry/SQL wait and unsaved-close controls. Remaining component modes and membership concurrency are excluded."
+        }
+      ]
     },
     {
       "id": "asdbd.aa",
@@ -3099,8 +3127,15 @@
       "caption": "بستن",
       "handler": "e",
       "targets": [],
-      "status": "unverified",
-      "evidence": []
+      "status": "verified-bounded",
+      "evidence": [
+        {
+          "run": 41804308541,
+          "source": "ab3e0d8fcec8663435c0c85f3f8f15cc21600ba9",
+          "log": "validation/functional/runs/41804308541/m_ac_workflow_bulk-marks.log",
+          "assertions_and_limits": "Actual uniform fill/clear, Save/reopen/rollback/retry/SQL wait and unsaved-close controls. Remaining component modes and membership concurrency are excluded."
+        }
+      ]
     },
     {
       "id": "asdbf.m_c",
@@ -3793,8 +3828,15 @@
       "caption": "خالی کرد کل لیست نمایش",
       "handler": "c",
       "targets": [],
-      "status": "unverified",
-      "evidence": []
+      "status": "verified-bounded",
+      "evidence": [
+        {
+          "run": 41804308541,
+          "source": "ab3e0d8fcec8663435c0c85f3f8f15cc21600ba9",
+          "log": "validation/functional/runs/41804308541/m_ba_workflow_batch-print-list.log",
+          "assertions_and_limits": "Actual Add/duplicate/Remove/Clear/Close with current-user isolation. Report preview/export buttons are excluded."
+        }
+      ]
     },
     {
       "id": "asdbw.al",
@@ -3805,8 +3847,15 @@
       "caption": "حذف مورد انتخابی از لیست نمایش",
       "handler": "f",
       "targets": [],
-      "status": "unverified",
-      "evidence": []
+      "status": "verified-bounded",
+      "evidence": [
+        {
+          "run": 41804308541,
+          "source": "ab3e0d8fcec8663435c0c85f3f8f15cc21600ba9",
+          "log": "validation/functional/runs/41804308541/m_ba_workflow_batch-print-list.log",
+          "assertions_and_limits": "Actual Add/duplicate/Remove/Clear/Close with current-user isolation. Report preview/export buttons are excluded."
+        }
+      ]
     },
     {
       "id": "asdbw.am",
@@ -3817,8 +3866,15 @@
       "caption": "اضافه به لیست نمایش(+)",
       "handler": "g",
       "targets": [],
-      "status": "unverified",
-      "evidence": []
+      "status": "verified-bounded",
+      "evidence": [
+        {
+          "run": 41804308541,
+          "source": "ab3e0d8fcec8663435c0c85f3f8f15cc21600ba9",
+          "log": "validation/functional/runs/41804308541/m_ba_workflow_batch-print-list.log",
+          "assertions_and_limits": "Actual Add/duplicate/Remove/Clear/Close with current-user isolation. Report preview/export buttons are excluded."
+        }
+      ]
     },
     {
       "id": "asdbw.m_e",
@@ -3829,8 +3885,15 @@
       "caption": "بستن",
       "handler": "l",
       "targets": [],
-      "status": "unverified",
-      "evidence": []
+      "status": "verified-bounded",
+      "evidence": [
+        {
+          "run": 41804308541,
+          "source": "ab3e0d8fcec8663435c0c85f3f8f15cc21600ba9",
+          "log": "validation/functional/runs/41804308541/m_ba_workflow_batch-print-list.log",
+          "assertions_and_limits": "Actual Add/duplicate/Remove/Clear/Close with current-user isolation. Report preview/export buttons are excluded."
+        }
+      ]
     },
     {
       "id": "asdby.m_l",
@@ -5489,8 +5552,15 @@
       "caption": "انتخاب فایل اکسل",
       "handler": "d",
       "targets": [],
-      "status": "unverified",
-      "evidence": []
+      "status": "verified-bounded",
+      "evidence": [
+        {
+          "run": 41804308541,
+          "source": "ab3e0d8fcec8663435c0c85f3f8f15cc21600ba9",
+          "log": "validation/functional/runs/41804308541/bz_workflow_mark-workbook.log",
+          "assertions_and_limits": "Actual chooser and Save/Close; fraction/zero/blank semantics, validation/permissions, transaction rollback/retry and SQL-wait UI heartbeat."
+        }
+      ]
     },
     {
       "id": "asdv.m_e",
@@ -5501,8 +5571,15 @@
       "caption": "ثبت",
       "handler": "c",
       "targets": [],
-      "status": "unverified",
-      "evidence": []
+      "status": "verified-bounded",
+      "evidence": [
+        {
+          "run": 41804308541,
+          "source": "ab3e0d8fcec8663435c0c85f3f8f15cc21600ba9",
+          "log": "validation/functional/runs/41804308541/bz_workflow_mark-workbook.log",
+          "assertions_and_limits": "Actual chooser and Save/Close; fraction/zero/blank semantics, validation/permissions, transaction rollback/retry and SQL-wait UI heartbeat."
+        }
+      ]
     },
     {
       "id": "asdv.m_c",
@@ -5513,8 +5590,15 @@
       "caption": "بستن",
       "handler": "e",
       "targets": [],
-      "status": "unverified",
-      "evidence": []
+      "status": "verified-bounded",
+      "evidence": [
+        {
+          "run": 41804308541,
+          "source": "ab3e0d8fcec8663435c0c85f3f8f15cc21600ba9",
+          "log": "validation/functional/runs/41804308541/bz_workflow_mark-workbook.log",
+          "assertions_and_limits": "Actual chooser and Save/Close; fraction/zero/blank semantics, validation/permissions, transaction rollback/retry and SQL-wait UI heartbeat."
+        }
+      ]
     },
     {
       "id": "asdw.aa",
