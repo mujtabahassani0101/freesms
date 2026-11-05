@@ -623,8 +623,15 @@
       "caption": "ثبت",
       "handler": "c",
       "targets": [],
-      "status": "unverified",
-      "evidence": []
+      "status": "verified-bounded",
+      "evidence": [
+        {
+          "run": 41804308541,
+          "source": "ab3e0d8fcec8663435c0c85f3f8f15cc21600ba9",
+          "log": "validation/functional/runs/41804308541/b6_workflow_school.log",
+          "assertions_and_limits": "Actual school Save and reopen preserve four fields including quotes. Account/other school settings controls are excluded."
+        }
+      ]
     },
     {
       "id": "asdac.m_e",
@@ -2958,10 +2965,10 @@
       "status": "verified-bounded",
       "evidence": [
         {
-          "run": 41804308541,
-          "source": "ab3e0d8fcec8663435c0c85f3f8f15cc21600ba9",
-          "log": "validation/functional/runs/41804308541/m_bv_workflow_student-workbook.log",
-          "assertions_and_limits": "Original XLS and XLSX native chooser Open/Cancel/rejection/repeat preview and Close. Student Save is excluded from this run."
+          "run": 41818150464,
+          "source": "8b28642109d7a7852e8e4b42c05ed036a7ffaeb8",
+          "log": "validation/functional/runs/41818150464/m_bv_workflow_student-workbook.log",
+          "assertions_and_limits": "Actual XLS/XLSX chooser Open/Cancel/error/reload and student Save No/Yes/Close; exact original fees/payments, BigInt/quotes/phones/optional fields, kindergarten, grade/year class isolation, validation/permissions/duplicates, late student/payment SQL rollback/retry, real SQL-wait heartbeat/close guard and unrelated records. Large files, concurrent imports, live permission revocation and backup/restore of imported data remain separate cases."
         }
       ]
     },
@@ -2974,8 +2981,15 @@
       "caption": "ثبت",
       "handler": "b",
       "targets": [],
-      "status": "unverified",
-      "evidence": []
+      "status": "verified-bounded",
+      "evidence": [
+        {
+          "run": 41818150464,
+          "source": "8b28642109d7a7852e8e4b42c05ed036a7ffaeb8",
+          "log": "validation/functional/runs/41818150464/m_bv_workflow_student-workbook.log",
+          "assertions_and_limits": "Actual XLS/XLSX chooser Open/Cancel/error/reload and student Save No/Yes/Close; exact original fees/payments, BigInt/quotes/phones/optional fields, kindergarten, grade/year class isolation, validation/permissions/duplicates, late student/payment SQL rollback/retry, real SQL-wait heartbeat/close guard and unrelated records. Large files, concurrent imports, live permission revocation and backup/restore of imported data remain separate cases."
+        }
+      ]
     },
     {
       "id": "asdb7.m_d",
@@ -2989,10 +3003,10 @@
       "status": "verified-bounded",
       "evidence": [
         {
-          "run": 41804308541,
-          "source": "ab3e0d8fcec8663435c0c85f3f8f15cc21600ba9",
-          "log": "validation/functional/runs/41804308541/m_bv_workflow_student-workbook.log",
-          "assertions_and_limits": "Original XLS and XLSX native chooser Open/Cancel/rejection/repeat preview and Close. Student Save is excluded from this run."
+          "run": 41818150464,
+          "source": "8b28642109d7a7852e8e4b42c05ed036a7ffaeb8",
+          "log": "validation/functional/runs/41818150464/m_bv_workflow_student-workbook.log",
+          "assertions_and_limits": "Actual XLS/XLSX chooser Open/Cancel/error/reload and student Save No/Yes/Close; exact original fees/payments, BigInt/quotes/phones/optional fields, kindergarten, grade/year class isolation, validation/permissions/duplicates, late student/payment SQL rollback/retry, real SQL-wait heartbeat/close guard and unrelated records. Large files, concurrent imports, live permission revocation and backup/restore of imported data remain separate cases."
         }
       ]
     },
@@ -3254,8 +3268,15 @@
       "caption": "انصراف",
       "handler": "j",
       "targets": [],
-      "status": "unverified",
-      "evidence": []
+      "status": "verified-bounded",
+      "evidence": [
+        {
+          "run": 41804308541,
+          "source": "ab3e0d8fcec8663435c0c85f3f8f15cc21600ba9",
+          "log": "validation/functional/runs/41804308541/m_j_workflow_teacher.log",
+          "assertions_and_limits": "New/Edit/Save/Cancel/Delete No/Yes preserve quoted values and teacher credentials, clear stale new credentials and operate on exactly one row. Assignment dependencies and print/close are excluded."
+        }
+      ]
     },
     {
       "id": "asdbi.o",
@@ -3266,8 +3287,15 @@
       "caption": "تائيد",
       "handler": "l",
       "targets": [],
-      "status": "unverified",
-      "evidence": []
+      "status": "verified-bounded",
+      "evidence": [
+        {
+          "run": 41804308541,
+          "source": "ab3e0d8fcec8663435c0c85f3f8f15cc21600ba9",
+          "log": "validation/functional/runs/41804308541/m_j_workflow_teacher.log",
+          "assertions_and_limits": "New/Edit/Save/Cancel/Delete No/Yes preserve quoted values and teacher credentials, clear stale new credentials and operate on exactly one row. Assignment dependencies and print/close are excluded."
+        }
+      ]
     },
     {
       "id": "asdbi.s",
@@ -3302,8 +3330,15 @@
       "caption": "حذف",
       "handler": "i",
       "targets": [],
-      "status": "unverified",
-      "evidence": []
+      "status": "verified-bounded",
+      "evidence": [
+        {
+          "run": 41804308541,
+          "source": "ab3e0d8fcec8663435c0c85f3f8f15cc21600ba9",
+          "log": "validation/functional/runs/41804308541/m_j_workflow_teacher.log",
+          "assertions_and_limits": "New/Edit/Save/Cancel/Delete No/Yes preserve quoted values and teacher credentials, clear stale new credentials and operate on exactly one row. Assignment dependencies and print/close are excluded."
+        }
+      ]
     },
     {
       "id": "asdbi.m_d",
@@ -3314,8 +3349,15 @@
       "caption": "جديد",
       "handler": "m",
       "targets": [],
-      "status": "unverified",
-      "evidence": []
+      "status": "verified-bounded",
+      "evidence": [
+        {
+          "run": 41804308541,
+          "source": "ab3e0d8fcec8663435c0c85f3f8f15cc21600ba9",
+          "log": "validation/functional/runs/41804308541/m_j_workflow_teacher.log",
+          "assertions_and_limits": "New/Edit/Save/Cancel/Delete No/Yes preserve quoted values and teacher credentials, clear stale new credentials and operate on exactly one row. Assignment dependencies and print/close are excluded."
+        }
+      ]
     },
     {
       "id": "asdbi.m_e",
@@ -3326,8 +3368,15 @@
       "caption": "اصلاح",
       "handler": "k",
       "targets": [],
-      "status": "unverified",
-      "evidence": []
+      "status": "verified-bounded",
+      "evidence": [
+        {
+          "run": 41804308541,
+          "source": "ab3e0d8fcec8663435c0c85f3f8f15cc21600ba9",
+          "log": "validation/functional/runs/41804308541/m_j_workflow_teacher.log",
+          "assertions_and_limits": "New/Edit/Save/Cancel/Delete No/Yes preserve quoted values and teacher credentials, clear stale new credentials and operate on exactly one row. Assignment dependencies and print/close are excluded."
+        }
+      ]
     },
     {
       "id": "asdbi.m_h",
@@ -4012,8 +4061,15 @@
       "caption": "انصراف",
       "handler": "c",
       "targets": [],
-      "status": "unverified",
-      "evidence": []
+      "status": "verified-bounded",
+      "evidence": [
+        {
+          "run": 41804308541,
+          "source": "ab3e0d8fcec8663435c0c85f3f8f15cc21600ba9",
+          "log": "validation/functional/runs/41804308541/m_l_workflow_class.log",
+          "assertions_and_limits": "Original class CRUD/Cancel/Close, required fields, Persian fees, invalid fees/orders, duplicate title/order, occupied/teacher-linked deletion rejection, Delete No/Yes and unrelated preservation. Concurrency and year switch are excluded."
+        }
+      ]
     },
     {
       "id": "asdc.k",
@@ -4024,8 +4080,15 @@
       "caption": "تایید",
       "handler": "e",
       "targets": [],
-      "status": "unverified",
-      "evidence": []
+      "status": "verified-bounded",
+      "evidence": [
+        {
+          "run": 41804308541,
+          "source": "ab3e0d8fcec8663435c0c85f3f8f15cc21600ba9",
+          "log": "validation/functional/runs/41804308541/m_l_workflow_class.log",
+          "assertions_and_limits": "Original class CRUD/Cancel/Close, required fields, Persian fees, invalid fees/orders, duplicate title/order, occupied/teacher-linked deletion rejection, Delete No/Yes and unrelated preservation. Concurrency and year switch are excluded."
+        }
+      ]
     },
     {
       "id": "asdc.s",
@@ -4048,8 +4111,15 @@
       "caption": "حذف",
       "handler": "b",
       "targets": [],
-      "status": "unverified",
-      "evidence": []
+      "status": "verified-bounded",
+      "evidence": [
+        {
+          "run": 41804308541,
+          "source": "ab3e0d8fcec8663435c0c85f3f8f15cc21600ba9",
+          "log": "validation/functional/runs/41804308541/m_l_workflow_class.log",
+          "assertions_and_limits": "Original class CRUD/Cancel/Close, required fields, Persian fees, invalid fees/orders, duplicate title/order, occupied/teacher-linked deletion rejection, Delete No/Yes and unrelated preservation. Concurrency and year switch are excluded."
+        }
+      ]
     },
     {
       "id": "asdc.j",
@@ -4060,8 +4130,15 @@
       "caption": "خروج",
       "handler": "d",
       "targets": [],
-      "status": "unverified",
-      "evidence": []
+      "status": "verified-bounded",
+      "evidence": [
+        {
+          "run": 41804308541,
+          "source": "ab3e0d8fcec8663435c0c85f3f8f15cc21600ba9",
+          "log": "validation/functional/runs/41804308541/m_l_workflow_class.log",
+          "assertions_and_limits": "Original class CRUD/Cancel/Close, required fields, Persian fees, invalid fees/orders, duplicate title/order, occupied/teacher-linked deletion rejection, Delete No/Yes and unrelated preservation. Concurrency and year switch are excluded."
+        }
+      ]
     },
     {
       "id": "asdc.m_g",
@@ -4072,8 +4149,15 @@
       "caption": "جدید",
       "handler": "g",
       "targets": [],
-      "status": "unverified",
-      "evidence": []
+      "status": "verified-bounded",
+      "evidence": [
+        {
+          "run": 41804308541,
+          "source": "ab3e0d8fcec8663435c0c85f3f8f15cc21600ba9",
+          "log": "validation/functional/runs/41804308541/m_l_workflow_class.log",
+          "assertions_and_limits": "Original class CRUD/Cancel/Close, required fields, Persian fees, invalid fees/orders, duplicate title/order, occupied/teacher-linked deletion rejection, Delete No/Yes and unrelated preservation. Concurrency and year switch are excluded."
+        }
+      ]
     },
     {
       "id": "asdc.m_h",
@@ -4084,8 +4168,15 @@
       "caption": "اصلاح",
       "handler": "f",
       "targets": [],
-      "status": "unverified",
-      "evidence": []
+      "status": "verified-bounded",
+      "evidence": [
+        {
+          "run": 41804308541,
+          "source": "ab3e0d8fcec8663435c0c85f3f8f15cc21600ba9",
+          "log": "validation/functional/runs/41804308541/m_l_workflow_class.log",
+          "assertions_and_limits": "Original class CRUD/Cancel/Close, required fields, Persian fees, invalid fees/orders, duplicate title/order, occupied/teacher-linked deletion rejection, Delete No/Yes and unrelated preservation. Concurrency and year switch are excluded."
+        }
+      ]
     },
     {
       "id": "asdca.j",
@@ -4096,8 +4187,15 @@
       "caption": "خروج",
       "handler": "g",
       "targets": [],
-      "status": "unverified",
-      "evidence": []
+      "status": "verified-bounded",
+      "evidence": [
+        {
+          "run": 41804308541,
+          "source": "ab3e0d8fcec8663435c0c85f3f8f15cc21600ba9",
+          "log": "validation/functional/runs/41804308541/m_k_workflow_subject.log",
+          "assertions_and_limits": "Original subject required-name/quoted CRUD/Cancel/Close, duplicate title/code, grade/name search and Delete No/Yes. Component weights/types/history dependencies and SQL wait are excluded."
+        }
+      ]
     },
     {
       "id": "asdca.r",
@@ -4108,8 +4206,15 @@
       "caption": "انصراف",
       "handler": "d",
       "targets": [],
-      "status": "unverified",
-      "evidence": []
+      "status": "verified-bounded",
+      "evidence": [
+        {
+          "run": 41804308541,
+          "source": "ab3e0d8fcec8663435c0c85f3f8f15cc21600ba9",
+          "log": "validation/functional/runs/41804308541/m_k_workflow_subject.log",
+          "assertions_and_limits": "Original subject required-name/quoted CRUD/Cancel/Close, duplicate title/code, grade/name search and Delete No/Yes. Component weights/types/history dependencies and SQL wait are excluded."
+        }
+      ]
     },
     {
       "id": "asdca.s",
@@ -4120,8 +4225,15 @@
       "caption": "تائيد",
       "handler": "e",
       "targets": [],
-      "status": "unverified",
-      "evidence": []
+      "status": "verified-bounded",
+      "evidence": [
+        {
+          "run": 41804308541,
+          "source": "ab3e0d8fcec8663435c0c85f3f8f15cc21600ba9",
+          "log": "validation/functional/runs/41804308541/m_k_workflow_subject.log",
+          "assertions_and_limits": "Original subject required-name/quoted CRUD/Cancel/Close, duplicate title/code, grade/name search and Delete No/Yes. Component weights/types/history dependencies and SQL wait are excluded."
+        }
+      ]
     },
     {
       "id": "asdca.v",
@@ -4132,8 +4244,15 @@
       "caption": "حذف",
       "handler": "c",
       "targets": [],
-      "status": "unverified",
-      "evidence": []
+      "status": "verified-bounded",
+      "evidence": [
+        {
+          "run": 41804308541,
+          "source": "ab3e0d8fcec8663435c0c85f3f8f15cc21600ba9",
+          "log": "validation/functional/runs/41804308541/m_k_workflow_subject.log",
+          "assertions_and_limits": "Original subject required-name/quoted CRUD/Cancel/Close, duplicate title/code, grade/name search and Delete No/Yes. Component weights/types/history dependencies and SQL wait are excluded."
+        }
+      ]
     },
     {
       "id": "asdca.w",
@@ -4144,8 +4263,15 @@
       "caption": "جديد",
       "handler": "i",
       "targets": [],
-      "status": "unverified",
-      "evidence": []
+      "status": "verified-bounded",
+      "evidence": [
+        {
+          "run": 41804308541,
+          "source": "ab3e0d8fcec8663435c0c85f3f8f15cc21600ba9",
+          "log": "validation/functional/runs/41804308541/m_k_workflow_subject.log",
+          "assertions_and_limits": "Original subject required-name/quoted CRUD/Cancel/Close, duplicate title/code, grade/name search and Delete No/Yes. Component weights/types/history dependencies and SQL wait are excluded."
+        }
+      ]
     },
     {
       "id": "asdca.x",
@@ -4156,8 +4282,15 @@
       "caption": "اصلاح",
       "handler": "f",
       "targets": [],
-      "status": "unverified",
-      "evidence": []
+      "status": "verified-bounded",
+      "evidence": [
+        {
+          "run": 41804308541,
+          "source": "ab3e0d8fcec8663435c0c85f3f8f15cc21600ba9",
+          "log": "validation/functional/runs/41804308541/m_k_workflow_subject.log",
+          "assertions_and_limits": "Original subject required-name/quoted CRUD/Cancel/Close, duplicate title/code, grade/name search and Delete No/Yes. Component weights/types/history dependencies and SQL wait are excluded."
+        }
+      ]
     },
     {
       "id": "asdcc.m_g",
@@ -4444,8 +4577,15 @@
       "caption": "انصراف",
       "handler": "b",
       "targets": [],
-      "status": "unverified",
-      "evidence": []
+      "status": "verified-bounded",
+      "evidence": [
+        {
+          "run": 41804308541,
+          "source": "ab3e0d8fcec8663435c0c85f3f8f15cc21600ba9",
+          "log": "validation/functional/runs/41804308541/d8_workflow_discount.log",
+          "assertions_and_limits": "New, required-title rejection, quoted Persian Save/Edit/Cancel, Delete No/Yes and exact selected-row effects. Dependency restrictions and Close/print are excluded."
+        }
+      ]
     },
     {
       "id": "asdh.j",
@@ -4456,8 +4596,15 @@
       "caption": "تایید",
       "handler": "d",
       "targets": [],
-      "status": "unverified",
-      "evidence": []
+      "status": "verified-bounded",
+      "evidence": [
+        {
+          "run": 41804308541,
+          "source": "ab3e0d8fcec8663435c0c85f3f8f15cc21600ba9",
+          "log": "validation/functional/runs/41804308541/d8_workflow_discount.log",
+          "assertions_and_limits": "New, required-title rejection, quoted Persian Save/Edit/Cancel, Delete No/Yes and exact selected-row effects. Dependency restrictions and Close/print are excluded."
+        }
+      ]
     },
     {
       "id": "asdh.m_e",
@@ -4468,8 +4615,15 @@
       "caption": "حذف",
       "handler": "a",
       "targets": [],
-      "status": "unverified",
-      "evidence": []
+      "status": "verified-bounded",
+      "evidence": [
+        {
+          "run": 41804308541,
+          "source": "ab3e0d8fcec8663435c0c85f3f8f15cc21600ba9",
+          "log": "validation/functional/runs/41804308541/d8_workflow_discount.log",
+          "assertions_and_limits": "New, required-title rejection, quoted Persian Save/Edit/Cancel, Delete No/Yes and exact selected-row effects. Dependency restrictions and Close/print are excluded."
+        }
+      ]
     },
     {
       "id": "asdh.m_f",
@@ -4480,8 +4634,15 @@
       "caption": "جدید",
       "handler": "f",
       "targets": [],
-      "status": "unverified",
-      "evidence": []
+      "status": "verified-bounded",
+      "evidence": [
+        {
+          "run": 41804308541,
+          "source": "ab3e0d8fcec8663435c0c85f3f8f15cc21600ba9",
+          "log": "validation/functional/runs/41804308541/d8_workflow_discount.log",
+          "assertions_and_limits": "New, required-title rejection, quoted Persian Save/Edit/Cancel, Delete No/Yes and exact selected-row effects. Dependency restrictions and Close/print are excluded."
+        }
+      ]
     },
     {
       "id": "asdh.m_g",
@@ -4492,8 +4653,15 @@
       "caption": "اصلاح",
       "handler": "e",
       "targets": [],
-      "status": "unverified",
-      "evidence": []
+      "status": "verified-bounded",
+      "evidence": [
+        {
+          "run": 41804308541,
+          "source": "ab3e0d8fcec8663435c0c85f3f8f15cc21600ba9",
+          "log": "validation/functional/runs/41804308541/d8_workflow_discount.log",
+          "assertions_and_limits": "New, required-title rejection, quoted Persian Save/Edit/Cancel, Delete No/Yes and exact selected-row effects. Dependency restrictions and Close/print are excluded."
+        }
+      ]
     },
     {
       "id": "asdi.s",
@@ -4674,8 +4842,15 @@
       "caption": "انصراف",
       "handler": "h",
       "targets": [],
-      "status": "unverified",
-      "evidence": []
+      "status": "verified-bounded",
+      "evidence": [
+        {
+          "run": 41804308541,
+          "source": "ab3e0d8fcec8663435c0c85f3f8f15cc21600ba9",
+          "log": "validation/functional/runs/41804308541/m_bt_workflow_driver.log",
+          "assertions_and_limits": "New/Edit/Save/Cancel/Delete No/Yes preserve quoted values and selected identity. Assigned-driver dependencies and print/close are excluded."
+        }
+      ]
     },
     {
       "id": "asdl.m_k",
@@ -4686,8 +4861,15 @@
       "caption": "تائيد",
       "handler": "j",
       "targets": [],
-      "status": "unverified",
-      "evidence": []
+      "status": "verified-bounded",
+      "evidence": [
+        {
+          "run": 41804308541,
+          "source": "ab3e0d8fcec8663435c0c85f3f8f15cc21600ba9",
+          "log": "validation/functional/runs/41804308541/m_bt_workflow_driver.log",
+          "assertions_and_limits": "New/Edit/Save/Cancel/Delete No/Yes preserve quoted values and selected identity. Assigned-driver dependencies and print/close are excluded."
+        }
+      ]
     },
     {
       "id": "asdl.o",
@@ -4722,8 +4904,15 @@
       "caption": "حذف",
       "handler": "g",
       "targets": [],
-      "status": "unverified",
-      "evidence": []
+      "status": "verified-bounded",
+      "evidence": [
+        {
+          "run": 41804308541,
+          "source": "ab3e0d8fcec8663435c0c85f3f8f15cc21600ba9",
+          "log": "validation/functional/runs/41804308541/m_bt_workflow_driver.log",
+          "assertions_and_limits": "New/Edit/Save/Cancel/Delete No/Yes preserve quoted values and selected identity. Assigned-driver dependencies and print/close are excluded."
+        }
+      ]
     },
     {
       "id": "asdl.m_d",
@@ -4734,8 +4923,15 @@
       "caption": "جديد",
       "handler": "k",
       "targets": [],
-      "status": "unverified",
-      "evidence": []
+      "status": "verified-bounded",
+      "evidence": [
+        {
+          "run": 41804308541,
+          "source": "ab3e0d8fcec8663435c0c85f3f8f15cc21600ba9",
+          "log": "validation/functional/runs/41804308541/m_bt_workflow_driver.log",
+          "assertions_and_limits": "New/Edit/Save/Cancel/Delete No/Yes preserve quoted values and selected identity. Assigned-driver dependencies and print/close are excluded."
+        }
+      ]
     },
     {
       "id": "asdl.m_e",
@@ -4746,8 +4942,15 @@
       "caption": "اصلاح",
       "handler": "i",
       "targets": [],
-      "status": "unverified",
-      "evidence": []
+      "status": "verified-bounded",
+      "evidence": [
+        {
+          "run": 41804308541,
+          "source": "ab3e0d8fcec8663435c0c85f3f8f15cc21600ba9",
+          "log": "validation/functional/runs/41804308541/m_bt_workflow_driver.log",
+          "assertions_and_limits": "New/Edit/Save/Cancel/Delete No/Yes preserve quoted values and selected identity. Assigned-driver dependencies and print/close are excluded."
+        }
+      ]
     },
     {
       "id": "asdl.m_h",
