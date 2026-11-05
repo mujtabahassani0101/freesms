@@ -144,6 +144,39 @@ internal static class OriginalWorkflowChecks
         }
         db.Execute("DELETE FROM tmpStdforPrint WHERE xUser=1");
     }
+    internal static void PrepareYearTransitionFixture(Database db)
+    {
+        var source=new SchoolService(db,new Session(1421));source.SetYear(1421);
+        var target=new SchoolService(db,new Session(1422));target.SetYear(1422);
+        var used=new HashSet<int>(db.Query("SELECT sortRpt FROM tClass WHERE sortRpt IS NOT NULL").Select(row=>row.Int("sortRpt")));int order=30000;
+        int Class(SchoolService school,string name,int grade,int fee)
+        {
+            while(used.Contains(order))order++;Require(order<=32767,"No free transition fixture class order.");used.Add(order);
+            return school.SaveClass(new Record{["name"]=name,["xpaye"]=grade,["fee"]=fee,["shift"]=1,["sortRpt"]=order++});
+        }
+        int from=Class(source,"صنف مبدأ انتقال سال",1,20);
+        Class(source,"صنف دیگر مبدأ انتقال سال",1,30);
+        Class(target,"صنف مقصد انتقال سال",2,120);
+        int protectedClass=Class(target,"صنف محفوظ انتقال سال",2,300);
+        new EntityService(target).Save("discounts",new Record{["name"]="تخفیف انتقال سال آزمایشی",["comment"]="دادهٔ آزمایشی"});
+        int first=0;
+        for(int index=1;index<=4;index++)
+        {
+            int student=source.SaveStudent(new Record{["FName"]="شاگرد انتقال سال "+index,["LName"]="پدر",["PName"]="پدرکلان",["Code"]=6000300+index,["NumberAsas"]=6000300+index,["xPaye"]=1,["xClass"]=from,["Status"]=index==2?2:1,["Jens"]=index%2,["Fee1"]=20,["transport1"]=5,["shaghe"]=index!=2,["hazer"]=index==2,["mali"]=true,["dakhle"]=true,["uniform"]=true,["komakdarsi"]=true,["ketab"]=true,["transport"]=true,["robotic"]=true,["maghnae"]=true,["codeTakhfif"]=700+index,["Sort"]=10+index});
+            if(index==1)first=student;
+            if(index==4)InsertTransitionFixtureEnrollment(db,student,protectedClass,300);
+        }
+        int book=new EntityService(source).Save("books",new Record{["xPaye"]=1,["Name"]="مضمون محفوظ انتقال سال",["vahed"]=1,["timeWeek"]=1,["Type"]=1,["sort"]=30000,["SortOneEntry"]=30000,["codedars"]=6000301,["Vezarat"]=true});
+        int exam=Convert.ToInt32(db.Scalar("SELECT id FROM tExam WHERE xYear=1421 AND term=1"));
+        var mark=db.Call("sp_tMark_insertUpdate_FromXls_Af",new Record{["xuser"]=1,["code"]="6000301",["codedars"]=6000301,["Xtest"]=exam,["xYear"]=1421,["Mark"]=25});
+        Require(mark.Output.Text("err")=="","Source transition mark fixture was rejected.");
+        db.Call("sp_Procc",new Record{["Exam"]=exam});db.Call("sp_CalcMarkDoreh",new Record{["Exam"]=exam});
+        db.Call("sp_tPaymentStudent_insertFromXls",new Record{["xYear"]=1421,["xStudent"]=first,["PaynemtDate"]="1421/01/02",["dayOfWeek"]="روز آزمایشی",["Fee"]=5,["Exam"]=0,["uniform"]=0,["dakhle"]=0,["Date"]="1421/01/02-10:00:00",["xUser"]=1});
+    }
+    private static void InsertTransitionFixtureEnrollment(Database db,int student,int classroom,int fee)
+    {
+        db.Call("sp_tYear_Student_Insert",new Record{["xYear"]=1422,["xStudent"]=student,["xPaye"]=2,["xClass"]=classroom,["xTakhfif"]=0,["codeTakhfif"]=null,["Fee1"]=fee,["transport1"]=null,["shaghe"]=true,["hazer"]=true,["mali"]=true,["dakhle"]=false,["uniform"]=false,["komakdarsi"]=false,["ketab"]=false,["transport"]=false,["robotic"]=false,["maghnae"]=false});
+    }
     internal static void PrepareWorkbookStudentFixture(Database db)
     {
         var school=new SchoolService(db,new Session(1420));school.SetYear(1420);
@@ -293,6 +326,7 @@ internal static class OriginalWorkflowChecks
         else if (scenario == "mark-entry") MarkEntry(form,db,log);
         else if (scenario == "bulk-marks") BulkMarkEntry(form,db,log);
         else if (scenario == "batch-print-list") BatchPrintList(form,db,log);
+        else if (scenario == "new-year") NewYear(form,db,log);
         else if (scenario == "student-workbook" || scenario == "mark-workbook") WorkbookPreview(form,db,log,scenario=="student-workbook");
         else if (scenario == "attendance1" || scenario == "attendance2") Attendance(form,db,log);
         else throw new ArgumentException("Unknown workflow scenario: " + scenario);
@@ -687,6 +721,93 @@ internal static class OriginalWorkflowChecks
         }
         while(hit!=null && hit!=target)hit=hit.Parent;
         Require(hit==target,"Original control is covered or outside the form: "+target.Name);
+    }
+    private static void NewYear(Form form,Database db,Action<string> log)
+    {
+        int source=Convert.ToInt32(db.Scalar("SELECT id FROM tClass WHERE xYear=1421 AND name=N'صنف مبدأ انتقال سال'"));
+        int other=Convert.ToInt32(db.Scalar("SELECT id FROM tClass WHERE xYear=1421 AND name=N'صنف دیگر مبدأ انتقال سال'"));
+        int target=Convert.ToInt32(db.Scalar("SELECT id FROM tClass WHERE xYear=1422 AND name=N'صنف مقصد انتقال سال'"));
+        int protectedClass=Convert.ToInt32(db.Scalar("SELECT id FROM tClass WHERE xYear=1422 AND name=N'صنف محفوظ انتقال سال'"));
+        int first=Convert.ToInt32(db.Scalar("SELECT id FROM tStudent WHERE Code=6000301")),second=Convert.ToInt32(db.Scalar("SELECT id FROM tStudent WHERE Code=6000302"));
+        int discount=Convert.ToInt32(db.Scalar("SELECT id FROM tTakhfif WHERE name=N'تخفیف انتقال سال آزمایشی'"));
+        Field<UIComboBox>(form,"l").SelectedValue="1421";Field<UIComboBox>(form,"m_g").SelectedValue="1";Field<UIComboBox>(form,"n").SelectedValue=source.ToString();
+        Field<UIComboBox>(form,"m_e").SelectedValue="2";Field<UIComboBox>(form,"m_i").SelectedValue=target.ToString();
+        var grid=Field<GridEX>(form,"r");Require(grid.RowCount==3 && Field<GridEX>(form,"s").RowCount==0,"New-year lists mixed source/target classes or included an already-enrolled student.");
+        RequireReachable(form,Field<UIButton>(form,"m_d"));RequireReachable(form,grid);SaveGallery(form,"new-year");
+        string Snapshot()=>System.Text.Json.JsonSerializer.Serialize(new[]{db.Query("SELECT * FROM tYear_Student ORDER BY id"),db.Query("SELECT * FROM tStudent ORDER BY id"),db.Query("SELECT * FROM tMark ORDER BY id"),db.Query("SELECT * FROM tMarkDoreh ORDER BY xStudent,Xtest,typ"),db.Query("SELECT * FROM tPaymentStudent ORDER BY id"),db.Query("SELECT * FROM tExam ORDER BY id"),db.Query("SELECT * FROM tClass ORDER BY id")});
+        string Protected()=>System.Text.Json.JsonSerializer.Serialize(new[]{db.Query("SELECT * FROM tYear_Student WHERE NOT(xYear=1422 AND xStudent IN(@p0,@p1)) ORDER BY id",new object[]{first,second}),db.Query("SELECT * FROM tStudent ORDER BY id"),db.Query("SELECT * FROM tMark ORDER BY id"),db.Query("SELECT * FROM tMarkDoreh ORDER BY xStudent,Xtest,typ"),db.Query("SELECT * FROM tPaymentStudent ORDER BY id"),db.Query("SELECT * FROM tExam ORDER BY id"),db.Query("SELECT * FROM tClass ORDER BY id")});
+        string before=Snapshot(),keep=Protected();
+        Dialog(()=>Click(form,"m_d"),"شاگردی انتخاب نشده است",1);
+        void Selected(int student){Select(form,student,"r");grid.GetRow(grid.Row).Cells["Selector"].Value=true;}
+        Selected(first);Selected(second);
+        Select(form,second,"r");int secondRow=grid.Row;
+        grid.GetRow(secondRow).Cells["xTakhfif"].Value=discount;EditGridCell(grid,secondRow,"Fee1","۷۵");EditGridCell(grid,secondRow,"transport1","۲۰");
+        grid.GetRow(secondRow).Cells["dakhle"].Value=true;grid.GetRow(secondRow).Cells["transport"].Value=true;
+        string confirm="تعداد شاگردان انتخابی  : 2 نفر\n-  صنف سال جدید : "+Field<UIComboBox>(form,"m_i").SelectedItem.Text+"\nانتخاب شده آیا از انتقال مطمئن هستيد؟";
+        void Confirm()=>Dialog(()=>Click(form,"m_d"),confirm,6);
+        void Reject(string text)=>Dialog(Confirm,"خطا در انتقال شاگردان:",1,requiredText:text);
+        Dialog(()=>Click(form,"m_d"),confirm,7);Require(Snapshot()==before,"Declining new-year transfer wrote enrollments.");
+        foreach(string invalid in new[]{"-1","238609295"})
+        {
+            EditGridCell(grid,secondRow,"Fee1",invalid);
+            Dialog(()=>Click(form,"m_d"),"ردیف "+(secondRow+1)+" فهرست:",1,requiredText:"مقدار عددی خارج از محدودهٔ مجاز است.");
+            Require(Snapshot()==before,"Invalid late-row new-year fee wrote earlier students.");
+        }
+        EditGridCell(grid,secondRow,"Fee1","۷۵");EditGridCell(grid,secondRow,"transport1","-1");
+        Dialog(()=>Click(form,"m_d"),"ردیف "+(secondRow+1)+" فهرست:",1,requiredText:"مقدار عددی خارج از محدودهٔ مجاز است.");
+        Require(Snapshot()==before,"Negative new-year transport wrote enrollments.");EditGridCell(grid,secondRow,"transport1","۲۰");
+        string user=asdaj.l;asdaj.l="2";
+        try{Dialog(()=>Click(form,"m_d"),"فقط کاربر admin اجازهٔ انتقال سال را دارد.",1);Require(Snapshot()==before,"Nonadmin new-year Save wrote rows.");}
+        finally{asdaj.l=user;}
+        string grades=asdaj.n;asdaj.n="1";
+        try{Reject("صنف، پایه یا مجوز انتقال معتبر نیست.");Require(Snapshot()==before,"Forbidden target grade wrote rows.");}
+        finally{asdaj.n=grades;}
+        grid.GetRow(secondRow).Cells["xTakhfif"].Value=0;Reject("برای فیس متفاوت از فیس صنف، تخفیف را انتخاب کنید.");
+        Require(Snapshot()==before,"Late missing discount left an earlier student transferred.");grid.GetRow(secondRow).Cells["xTakhfif"].Value=discount;
+        db.Execute("UPDATE tClass SET fee=130 WHERE id=@p0",new object[]{target});
+        try{string changed=Snapshot();Reject("برای فیس متفاوت از فیس صنف، تخفیف را انتخاب کنید.");Require(Snapshot()==changed,"A changed target class fee allowed a stale undiscounted amount.");}
+        finally{db.Execute("UPDATE tClass SET fee=120 WHERE id=@p0",new object[]{target});}
+        db.Execute("UPDATE tClass SET xYear=1423 WHERE id=@p0",new object[]{target});
+        try{string changed=Snapshot();Reject("صنف مقصد با سال و پایه مطابقت ندارد.");Require(Snapshot()==changed,"A target class moved to another year allowed transfer.");}
+        finally{db.Execute("UPDATE tClass SET xYear=1422 WHERE id=@p0",new object[]{target});}
+        db.Execute("UPDATE tYear_Student SET xClass=@p0 WHERE xYear=1421 AND xStudent=@p1",new object[]{other,second});
+        try{string changed=Snapshot();Reject("فهرست شاگردان مبدأ تغییر کرده است");Require(Snapshot()==changed,"Stale source membership left a partial new-year batch.");}
+        finally{db.Execute("UPDATE tYear_Student SET xClass=@p0 WHERE xYear=1421 AND xStudent=@p1",new object[]{source,second});}
+        InsertTransitionFixtureEnrollment(db,second,protectedClass,300);
+        try{string changed=Snapshot();Reject("شاگرد قبلاً در سال مقصد ثبت‌نام شده است");Require(Snapshot()==changed,"Existing destination enrollment was overwritten or left another student transferred.");}
+        finally{db.Execute("DELETE FROM tYear_Student WHERE xYear=1422 AND xStudent=@p0",new object[]{second});}
+        db.Execute("CREATE TRIGGER native_new_year_fail ON dbo.tYear_Student AFTER INSERT AS IF EXISTS(SELECT 1 FROM inserted WHERE xYear=1422 AND xStudent="+second+") THROW 51000,'native new-year late student failure',1");
+        try{Reject("native new-year late student failure");Require(Snapshot()==before,"Late SQL new-year failure left an earlier enrollment or changed source data.");}
+        finally{db.Execute("DROP TRIGGER native_new_year_fail");}
+        Require(Convert.ToInt32(grid.GetRow(secondRow).Cells["Fee1"].Value)==75 && Equals(grid.GetRow(secondRow).Cells["Selector"].Value,true),"Failed new-year transfer discarded pending selection or fees.");
+        using(var connection=db.Open())
+        using(var transaction=connection.BeginTransaction())
+        using(var command=new Microsoft.Data.SqlClient.SqlCommand("UPDATE tClass SET fee=fee WHERE id=@id",connection,transaction))
+        {
+            command.Parameters.AddWithValue("@id",target);command.ExecuteNonQuery();bool released=false;
+            using var timer=new Timer{Interval=500};
+            timer.Tick+=(s,e)=>{timer.Stop();Require(!form.Enabled,"New-year transfer did not enter an asynchronous busy state.");form.Close();Require(form.Visible,"New-year transfer allowed closing before commit.");transaction.Rollback();released=true;};
+            timer.Start();Dialog(Confirm,"انجام شد",1);Require(released,"New-year UI heartbeat did not release the real SQL lock.");
+        }
+        var rows=db.Query("SELECT y.*,s.Code FROM tYear_Student y JOIN tStudent s ON s.id=y.xStudent WHERE y.xYear=1422 AND y.xStudent IN(@p0,@p1) ORDER BY s.Code",new object[]{first,second});
+        Require(rows.Count==2,"New-year Save did not transfer exactly the selected students.");
+        for(int i=0;i<2;i++)
+        {
+            var row=rows[i];int fee=i==0?120:75;
+            Require(row.Int("xPaye")==2 && row.Int("xClass")==target && row.Int("Status")==1 && row.Int("SumFee")==fee*9 && Enumerable.Range(1,9).All(month=>row.Int("Fee"+month)==fee),"New-year class/status or original nine-month tuition semantics changed.");
+            Require(row.Int("xTakhfif")== (i==0?0:discount) && row.Int("codeTakhfif")==701+i && row.Int("shaghe")== (i==0?1:0) && row.Int("hazer")== (i==0?0:1) && row.Int("mali")==1,"New-year discount/selected study flags changed.");
+            Require(row.Int("dakhle")==i && row.Int("transport")==i && row.Int("uniform")==0 && row.Int("komakdarsi")==0 && row.Int("ketab")==0 && row.Int("robotic")==0 && row.Int("maghnae")==0,"New-year flags were copied from old enrollment instead of using selected/reset flags.");
+            Require(i==0?row.Value("Sumtransport")==null && Enumerable.Range(1,9).All(month=>row.Value("transport"+month)==null):row.Int("Sumtransport")==180 && Enumerable.Range(1,9).All(month=>row.Int("transport"+month)==20),"New-year blank transport changed to zero or lost its exact nine-month amount.");
+            Require(row.Value("sort")==null || row.Int("sort")!=11+i,"New-year copied a source sort that the recovered procedure does not supply.");
+        }
+        Require(Protected()==keep,"New-year transition changed old-year students/fees/status/marks/calculations/payments, another class or an unselected/existing destination enrollment.");
+        Require(grid.RowCount==1 && Field<GridEX>(form,"s").RowCount==2,"Committed new-year transfer did not refresh both source and target lists.");
+        string after=Snapshot();Dialog(()=>Click(form,"m_d"),"شاگردی انتخاب نشده است",1);Require(Snapshot()==after,"Repeated new-year Save duplicated enrollments.");
+        Click(form,"t");
+        using var reopened=new asdbz();reopened.Show();
+        Field<UIComboBox>(reopened,"m_e").SelectedValue="2";Field<UIComboBox>(reopened,"m_i").SelectedValue=target.ToString();
+        Require(Field<GridEX>(reopened,"s").RowCount==2,"Reopening new-year transfer lost committed destination enrollments.");reopened.Close();
+        log("PASS actual new-year Save No/Yes, no-selection/admin/grade/negative/overflow/discount rejection, stale source and existing destination preservation, late SQL rollback/retry, pending selection, real SQL-lock heartbeat/close guard, exact original nine-month fee/null-transport/discount/flag semantics, source years/marks/calculations/payments and unselected students, repeat transfer and reopen");
     }
     private static void WorkbookPreview(Form form, Database db, Action<string> log, bool students)
     {

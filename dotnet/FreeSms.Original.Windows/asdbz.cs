@@ -1,5 +1,9 @@
 using System;
 using System.ComponentModel;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using FreeSms.Core;
 using System.Data;
 using Microsoft.Data.SqlClient;
 using System.Drawing;
@@ -12,6 +16,7 @@ using Janus.Windows.GridEX.EditControls;
 public class asdbz : Form
 {
 	public string __field_a = "";
+	private bool transferringYear;
 
 	private IContainer m_b = null;
 
@@ -62,6 +67,7 @@ public class asdbz : Form
 	public asdbz()
 	{
 		a();
+		FormClosing += (sender,args) => { if(transferringYear)args.Cancel=true; };
 	}
 
 	private void i(object A_0, EventArgs A_1)
@@ -513,302 +519,52 @@ public class asdbz : Form
 		b();
 	}
 
-	private void b(object A_0, EventArgs A_1)
-	{
-		int num3 = default;
-		int num2 = default;
-		SqlCommand sqlCommand = default;
-		SqlConnection sqlConnection = default;
-		while (true)
-		{
-			bool flag = this.m_i.SelectedIndex >= 0;
-			int num = 6;
-			while (true)
-			{
-				switch (num)
-				{
-				case 6:
-				{
-					if (!flag)
-					{
-						num = 24;
-						continue;
-					}
-					num3 = 0;
-					int num4 = 0;
-					num2 = 0;
-					num = 27;
-					continue;
-				}
-				case 33:
-					if (!flag)
-					{
-						num = 22;
-						continue;
-					}
-					goto case 45;
-				case 26:
-					flag = num3 != 0;
-					num = 13;
-					continue;
-				case 13:
-					if (!flag)
-					{
-						num = 20;
-						continue;
-					}
-					flag = MessageBox.Show("تعداد شاگردان انتخابی  : " + num3 + " نفر\n-  صنف سال جدید : " + this.m_i.SelectedItem.Text + "\nانتخاب شده آیا از انتقال مطمئن هستيد؟", "انتقال", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes;
-					num = 30;
-					continue;
-				case 10:
-				case 41:
-					sqlCommand.Parameters.AddWithValue("@Fee1", r.GetRow(num2).Cells["Fee1"].Value.ToString());
-					flag = !(r.GetRow(num2).Cells["transport1"].Value.ToString() == "");
-					num = 9;
-					continue;
-				case 9:
-					if (!flag)
-					{
-						num = 14;
-						continue;
-					}
-					sqlCommand.Parameters.AddWithValue("@transport1", r.GetRow(num2).Cells["transport1"].Value.ToString());
-					if (true)
-					{
-					}
-					num = 16;
-					continue;
-				case 5:
-					r.Row = num2;
-					r.CurrentColumn = r.GetRow(num2).Cells["fee1"].Column;
-					r.Select();
-					r.SelectCurrentCellText();
-					MessageBox.Show("مبلغ فیس را وارد کنید");
-					num = 0;
-					continue;
-				case 0:
-					return;
-				case 45:
-					num2++;
-					num = 3;
-					continue;
-				case 23:
-				case 27:
-					flag = num2 < r.RowCount;
-					num = 35;
-					continue;
-				case 35:
-					if (!flag)
-					{
-						num = 26;
-						continue;
-					}
-					flag = !(r.GetRow(num2).Cells["Selector"].Value.ToString() == "True");
-					num = 40;
-					continue;
-				case 25:
-					if (!flag)
-					{
-						num = 15;
-						continue;
-					}
-					goto case 19;
-				case 2:
-					sqlConnection.Close();
-					h();
-					g();
-					num = 29;
-					continue;
-				case 29:
-					return;
-				case 12:
-					try
-					{
-						int.Parse(r.GetRow(num2).Cells["transport1"].Value.ToString());
-					}
-					catch
-					{
-						r.Row = num2;
-						r.CurrentColumn = r.GetRow(num2).Cells["transport1"].Column;
-						r.Select();
-						r.SelectCurrentCellText();
-						MessageBox.Show("مبلغ ترانسپورت را فقط عدد وارد کنید");
-						return;
-					}
-					num = 36;
-					continue;
-				case 24:
-					MessageBox.Show("صنف سال جدید را انتخاب کنید");
-					this.m_i.Focus();
-					num = 11;
-					continue;
-				case 11:
-					return;
-				case 31:
-				{
-					int num4;
-					try
-					{
-						num4 = int.Parse(r.GetRow(num2).Cells["fee1"].Value.ToString());
-					}
-					catch
-					{
-						r.Row = num2;
-						r.CurrentColumn = r.GetRow(num2).Cells["fee1"].Column;
-						r.Select();
-						r.SelectCurrentCellText();
-						MessageBox.Show("مبلغ فیس را فقط عدد وارد کنید");
-						return;
-					}
-					flag = !(num4.ToString() != x.Text);
-					num = 25;
-					continue;
-				}
-				case 21:
-					r.Row = num2;
-					r.CurrentColumn = r.GetRow(num2).Cells["xTakhfif"].Column;
-					r.Select();
-					r.SelectCurrentCellText();
-					MessageBox.Show("مبلغ فیس این دانش آموز با فیس صنف  متفاوت هست\nباید برای این انش آموز نوع تخفیف را مشخص کنید");
-					num = 42;
-					continue;
-				case 42:
-					return;
-				case 14:
-					sqlCommand.Parameters.AddWithValue("@transport1", DBNull.Value);
-					num = 4;
-					continue;
-				case 44:
-					sqlCommand.Parameters.AddWithValue("@codeTakhfif", DBNull.Value);
-					num = 10;
-					continue;
-				case 39:
-					num = 12;
-					continue;
-				case 30:
-					if (flag)
-					{
-						sqlCommand = null;
-						sqlConnection = new SqlConnection(asdab.e());
-						sqlConnection.Open();
-						num2 = 0;
-						num = 18;
-					}
-					else
-					{
-						num = 38;
-					}
-					continue;
-				case 15:
-					flag = !(r.GetRow(num2).Cells["xTakhfif"].Value.ToString() == "0");
-					num = 32;
-					continue;
-				case 32:
-					num = ((!flag) ? 21 : 19);
-					continue;
-				case 19:
-					flag = !(r.GetRow(num2).Cells["transport1"].Value.ToString() != "");
-					num = 7;
-					continue;
-				case 7:
-					if (!flag)
-					{
-						num = 39;
-						continue;
-					}
-					goto case 36;
-				case 8:
-					num3++;
-					flag = !(r.GetRow(num2).Cells["fee1"].Value.ToString() == "");
-					num = 17;
-					continue;
-				case 17:
-					num = ((!flag) ? 5 : 31);
-					continue;
-				case 20:
-					MessageBox.Show("شاگردی انتخاب نشده است");
-					r.Focus();
-					num = 34;
-					continue;
-				case 34:
-					return;
-				case 38:
-					num = 28;
-					continue;
-				case 28:
-					return;
-				case 36:
-					num = 43;
-					continue;
-				case 4:
-				case 16:
-					sqlCommand.Parameters.AddWithValue("@shaghe", r.GetRow(num2).Cells["shaghe"].Value);
-					sqlCommand.Parameters.AddWithValue("@hazer", r.GetRow(num2).Cells["hazer"].Value);
-					sqlCommand.Parameters.AddWithValue("@mali", r.GetRow(num2).Cells["mali"].Value);
-					sqlCommand.Parameters.AddWithValue("@dakhle", r.GetRow(num2).Cells["dakhle"].Value);
-					sqlCommand.Parameters.AddWithValue("@uniform", r.GetRow(num2).Cells["uniform"].Value);
-					sqlCommand.Parameters.AddWithValue("@komakdarsi", r.GetRow(num2).Cells["komakdarsi"].Value);
-					sqlCommand.Parameters.AddWithValue("@ketab", r.GetRow(num2).Cells["ketab"].Value);
-					sqlCommand.Parameters.AddWithValue("@transport", r.GetRow(num2).Cells["transport"].Value);
-					sqlCommand.Parameters.AddWithValue("@robotic", r.GetRow(num2).Cells["robotic"].Value);
-					sqlCommand.Parameters.AddWithValue("@maghnae", r.GetRow(num2).Cells["maghnae"].Value);
-					sqlCommand.ExecuteNonQuery();
-					num = 45;
-					continue;
-				case 43:
-					num2++;
-					num = 23;
-					continue;
-				case 3:
-				case 18:
-					flag = num2 < r.RowCount;
-					num = 1;
-					continue;
-				case 1:
-					if (flag)
-					{
-						flag = !(r.GetRow(num2).Cells["Selector"].Value.ToString() == "True");
-						num = 33;
-					}
-					else
-					{
-						num = 2;
-					}
-					continue;
-				case 40:
-					if (!flag)
-					{
-						num = 8;
-						continue;
-					}
-					goto case 43;
-				case 22:
-					sqlCommand = new SqlCommand("sp_tYear_Student_Insert", sqlConnection);
-					sqlCommand.CommandType = CommandType.StoredProcedure;
-					sqlCommand.Parameters.AddWithValue("@xYear", v.Text);
-					sqlCommand.Parameters.AddWithValue("@xStudent", r.GetRow(num2).Cells["id"].Value.ToString());
-					sqlCommand.Parameters.AddWithValue("@xPaye", this.m_e.SelectedValue.ToString());
-					sqlCommand.Parameters.AddWithValue("@xClass", this.m_i.SelectedValue.ToString());
-					sqlCommand.Parameters.AddWithValue("@xTakhfif", r.GetRow(num2).Cells["xTakhfif"].Value.ToString());
-					flag = !(r.GetRow(num2).Cells["codeTakhfif"].Value.ToString() == "");
-					num = 37;
-					continue;
-				case 37:
-					if (flag)
-					{
-						sqlCommand.Parameters.AddWithValue("@codeTakhfif", r.GetRow(num2).Cells["codeTakhfif"].Value.ToString());
-						num = 41;
-					}
-					else
-					{
-						num = 44;
-					}
-					continue;
-				}
-				break;
-			}
-		}
-	}
+	private async void b(object A_0, EventArgs A_1)
+    {
+        if(transferringYear)return;
+        if(!r.TryEndEdit())return;
+        var entries=new List<YearTransitionEntry>();
+        int user,sourceYear,sourceGrade,sourceClass,targetYear,targetGrade,targetClass;int[] grades;
+        try
+        {
+            user=Values.Number(asdaj.l,1) ?? 0;
+            if(user!=1)throw new ValidationException("فقط کاربر admin اجازهٔ انتقال سال را دارد.");
+            if(this.m_i.SelectedIndex<0)throw new ValidationException("صنف سال جدید را انتخاب کنید");
+            sourceYear=Values.Number(l.SelectedValue,1000,9999) ?? throw new ValidationException("سال مبدأ را انتخاب کنید.");
+            sourceGrade=Values.Number(this.m_g.SelectedValue,1) ?? throw new ValidationException("پایهٔ مبدأ را انتخاب کنید.");
+            sourceClass=Values.Number(n.SelectedValue,1) ?? throw new ValidationException("صنف مبدأ را انتخاب کنید.");
+            targetYear=Values.Number(v.Text,1000,9999) ?? throw new ValidationException("سال مقصد معتبر نیست.");
+            targetGrade=Values.Number(this.m_e.SelectedValue,1) ?? throw new ValidationException("پایهٔ مقصد را انتخاب کنید.");
+            targetClass=Values.Number(this.m_i.SelectedValue,1) ?? throw new ValidationException("صنف مقصد را انتخاب کنید.");
+            grades=asdaj.n.Split(',').Where(value=>int.TryParse(value,out _)).Select(int.Parse).ToArray();
+            for(int index=0;index<r.RowCount;index++)
+            {
+                var row=r.GetRow(index);
+                if(!Equals(row.Cells["Selector"].Value,true))continue;
+                try
+                {
+                    var values=new Record();
+                    foreach(string name in YearTransitionEntry.FlagNames)values[name]=row.Cells[name].Value;
+                    foreach(string name in new[]{"Fee1","transport1","xTakhfif","codeTakhfif"})values[name]=row.Cells[name].Value;
+                    entries.Add(YearTransitionEntry.Create(Convert.ToInt32(row.Cells["id"].Value),values));
+                }
+                catch(ValidationException error)
+                {r.Row=index;throw new ValidationException("ردیف "+(index+1)+" فهرست: "+error.Message);}
+            }
+            if(entries.Count==0)throw new ValidationException("شاگردی انتخاب نشده است");
+        }
+        catch(Exception error){MessageBox.Show(error.Message);return;}
+        if(MessageBox.Show("تعداد شاگردان انتخابی  : "+entries.Count+" نفر\n-  صنف سال جدید : "+this.m_i.SelectedItem.Text+"\nانتخاب شده آیا از انتقال مطمئن هستيد؟","انتقال",MessageBoxButtons.YesNo,MessageBoxIcon.Exclamation)!=DialogResult.Yes)return;
+        bool enabled=Enabled,wait=UseWaitCursor;transferringYear=true;Enabled=false;UseWaitCursor=true;
+        try
+        {
+            var service=new YearTransitions(new Database(asdab.e()));
+            await Task.Run(()=>service.Transfer(user,sourceYear,sourceGrade,sourceClass,targetYear,targetGrade,targetClass,grades,entries));
+            h();g();MessageBox.Show("انجام شد");
+        }
+        catch(Exception error){MessageBox.Show("خطا در انتقال شاگردان:\n"+error.Message);}
+        finally{Enabled=enabled;UseWaitCursor=wait;transferringYear=false;}
+    }
 
 	private void a(object A_0, EventArgs A_1)
 	{

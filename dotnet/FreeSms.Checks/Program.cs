@@ -131,6 +131,7 @@ try
         finally { if (Directory.Exists(directory)) Directory.Delete(directory, true); }
     });
     WorkbookChecks.Verify(root, Check);
+    YearTransitionChecks.Verify(Check);
     if (args.Contains("--integration"))
     {
         var suffix = Guid.NewGuid().ToString("N")[..10];
