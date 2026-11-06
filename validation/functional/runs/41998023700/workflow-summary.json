@@ -1,0 +1,162 @@
+{
+  "id": 41998023700,
+  "head_sha": "03da6c759b80db85cffad361ef2cc26510f6c02a",
+  "status": "completed",
+  "conclusion": "failure",
+  "jobs": [
+    {
+      "name": "windows",
+      "status": "completed",
+      "conclusion": "success",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/checkout@v7.0.1",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/setup-dotnet@v6.0.0",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Verify native LocalDB and business workflows",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Verify original report calculations",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Upload Windows verification evidence",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/setup-dotnet@v6.0.0",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/checkout@v7.0.1",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "name": "Native .NET 10 original application",
+      "status": "completed",
+      "conclusion": "failure",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/checkout@v7.0.1",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/setup-dotnet@v6.0.0",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Build all recovered original Windows code",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Verify native controls, 7 RPX layouts, 98 migrated and 2 rebuilt reports",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Upload native component diagnostics before database workflows",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Exercise original report preview action with an isolated database",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Exercise original business buttons, native Excel previews, bulk marks, print lists and permissions",
+          "status": "completed",
+          "conclusion": "failure"
+        },
+        {
+          "name": "Upload populated workflow gallery",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Upload functional action diagnostics before remaining checks",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Verify the original forms and native controls",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Verify .NET 10 initialization and original login",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Verify main menu loading and responsiveness with an isolated database",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Upload original verification evidence",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Upload original application build",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Save selected review evidence when requested",
+          "status": "completed",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "Post Run actions/setup-dotnet@v6.0.0",
+          "status": "completed",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "Post Run actions/checkout@v7.0.1",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success"
+        }
+      ]
+    }
+  ]
+}

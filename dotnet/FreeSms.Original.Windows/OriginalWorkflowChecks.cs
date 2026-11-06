@@ -733,15 +733,19 @@ internal static class OriginalWorkflowChecks
         Field<UIComboBox>(form,"l").SelectedValue="1421";Field<UIComboBox>(form,"m_g").SelectedValue="1";Field<UIComboBox>(form,"n").SelectedValue=source.ToString();
         Field<UIComboBox>(form,"m_e").SelectedValue="2";Field<UIComboBox>(form,"m_i").SelectedValue=target.ToString();
         var grid=Field<GridEX>(form,"r");Require(grid.RowCount==3 && Field<GridEX>(form,"s").RowCount==0,"New-year lists mixed source/target classes or included an already-enrolled student.");
+        var nativeGrid=grid.Controls.OfType<DataGridView>().Single();
+        nativeGrid.DataError+=(sender,args)=>{diagnostic("FAILED new-year grid data conversion: "+args.Exception);args.ThrowException=true;};
         RequireReachable(form,Field<UIButton>(form,"m_d"));RequireReachable(form,grid);SaveGallery(form,"new-year");
         string Snapshot()=>System.Text.Json.JsonSerializer.Serialize(new[]{db.Query("SELECT * FROM tYear_Student ORDER BY id"),db.Query("SELECT * FROM tStudent ORDER BY id"),db.Query("SELECT * FROM tMark ORDER BY id"),db.Query("SELECT * FROM tMarkDoreh ORDER BY xStudent,Xtest,typ"),db.Query("SELECT * FROM tPaymentStudent ORDER BY id"),db.Query("SELECT * FROM tExam ORDER BY id"),db.Query("SELECT * FROM tClass ORDER BY id")});
         string Protected()=>System.Text.Json.JsonSerializer.Serialize(new[]{db.Query("SELECT * FROM tYear_Student WHERE NOT(xYear=1422 AND xStudent IN(@p0,@p1)) ORDER BY id",new object[]{first,second}),db.Query("SELECT * FROM tStudent ORDER BY id"),db.Query("SELECT * FROM tMark ORDER BY id"),db.Query("SELECT * FROM tMarkDoreh ORDER BY xStudent,Xtest,typ"),db.Query("SELECT * FROM tPaymentStudent ORDER BY id"),db.Query("SELECT * FROM tExam ORDER BY id"),db.Query("SELECT * FROM tClass ORDER BY id")});
         string before=Snapshot(),keep=Protected();
         Dialog(()=>Click(form,"m_d"),"شاگردی انتخاب نشده است",1);
         void Selected(int student){Select(form,student,"r");grid.GetRow(grid.Row).Cells["Selector"].Value=true;}
-        Selected(first);Selected(second);
+        Selected(first);Selected(second);log("NEW-YEAR selected both candidates");
         Select(form,second,"r");int secondRow=grid.Row;
-        grid.GetRow(secondRow).Cells["xTakhfif"].Value=discount;EditGridCell(grid,secondRow,"Fee1","۷۵");EditGridCell(grid,secondRow,"transport1","۲۰");
+        grid.GetRow(secondRow).Cells["xTakhfif"].Value=discount;log("NEW-YEAR selected discount");
+        EditGridCell(grid,secondRow,"Fee1","۷۵");log("NEW-YEAR Persian tuition committed to typed grid");
+        EditGridCell(grid,secondRow,"transport1","۲۰");log("NEW-YEAR Persian transport committed to typed grid");
         grid.GetRow(secondRow).Cells["dakhle"].Value=true;grid.GetRow(secondRow).Cells["transport"].Value=true;
         string confirm="تعداد شاگردان انتخابی  : 2 نفر\n-  صنف سال جدید : "+Field<UIComboBox>(form,"m_i").SelectedItem.Text+"\nانتخاب شده آیا از انتقال مطمئن هستيد؟";
         void Confirm()=>Dialog(()=>Click(form,"m_d"),confirm,6);
