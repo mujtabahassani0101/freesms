@@ -4037,8 +4037,15 @@
       "caption": "انتقال موارد انتخابی به صنف جدید",
       "handler": "b",
       "targets": [],
-      "status": "unverified",
-      "evidence": []
+      "status": "verified-bounded",
+      "evidence": [
+        {
+          "run": 42164493853,
+          "source": "23b8b21e6aabdba995bd7fe58446d629b5e26f98",
+          "log": "validation/functional/runs/42164493853/m_al_workflow_new-year.log",
+          "assertions_and_limits": "Actual new-year Save No/Yes and Close; empty selection, admin/grade/negative/nine-month-overflow/discount rejection, Persian typed amounts, changed fee/year, stale source and existing destination, late SQL rollback/retry, pending inputs, SQL-lock UI heartbeat/close guard, exact nine-month fees/null transport/flags, prior records and unselected students, repeat/reopen. Larger/concurrent clients, backups/restores, full filter/keyboard and clipped identity layout remain separate cases."
+        }
+      ]
     },
     {
       "id": "asdbz.t",
@@ -4049,8 +4056,15 @@
       "caption": "بستن",
       "handler": "h",
       "targets": [],
-      "status": "unverified",
-      "evidence": []
+      "status": "verified-bounded",
+      "evidence": [
+        {
+          "run": 42164493853,
+          "source": "23b8b21e6aabdba995bd7fe58446d629b5e26f98",
+          "log": "validation/functional/runs/42164493853/m_al_workflow_new-year.log",
+          "assertions_and_limits": "Actual new-year Save No/Yes and Close; empty selection, admin/grade/negative/nine-month-overflow/discount rejection, Persian typed amounts, changed fee/year, stale source and existing destination, late SQL rollback/retry, pending inputs, SQL-lock UI heartbeat/close guard, exact nine-month fees/null transport/flags, prior records and unselected students, repeat/reopen. Larger/concurrent clients, backups/restores, full filter/keyboard and clipped identity layout remain separate cases."
+        }
+      ]
     },
     {
       "id": "asdc.n",
