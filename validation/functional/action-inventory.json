@@ -4040,10 +4040,10 @@
       "status": "verified-bounded",
       "evidence": [
         {
-          "run": 42164493853,
-          "source": "23b8b21e6aabdba995bd7fe58446d629b5e26f98",
-          "log": "validation/functional/runs/42164493853/m_al_workflow_new-year.log",
-          "assertions_and_limits": "Actual new-year Save No/Yes and Close; empty selection, admin/grade/negative/nine-month-overflow/discount rejection, Persian typed amounts, changed fee/year, stale source and existing destination, late SQL rollback/retry, pending inputs, SQL-lock UI heartbeat/close guard, exact nine-month fees/null transport/flags, prior records and unselected students, repeat/reopen. Larger/concurrent clients, backups/restores, full filter/keyboard and clipped identity layout remain separate cases."
+          "run": 42342586651,
+          "source": "1af7b02e5ceef4bd6f50d24c6c7ab84b5edb8be1",
+          "log": "validation/functional/runs/42342586651/m_al_workflow_new-year.log",
+          "assertions_and_limits": "Actual new-year Save No/Yes and Close, with queued Space selecting native checkbox candidates. Prior validation/rollback/retry/SQL-wait/fee/null-transport/flag/protected-history assertions pass. Larger/concurrent clients, backups/restores, full filter/keyboard paths and clipped identity layout remain separate."
         }
       ]
     },
@@ -4059,10 +4059,10 @@
       "status": "verified-bounded",
       "evidence": [
         {
-          "run": 42164493853,
-          "source": "23b8b21e6aabdba995bd7fe58446d629b5e26f98",
-          "log": "validation/functional/runs/42164493853/m_al_workflow_new-year.log",
-          "assertions_and_limits": "Actual new-year Save No/Yes and Close; empty selection, admin/grade/negative/nine-month-overflow/discount rejection, Persian typed amounts, changed fee/year, stale source and existing destination, late SQL rollback/retry, pending inputs, SQL-lock UI heartbeat/close guard, exact nine-month fees/null transport/flags, prior records and unselected students, repeat/reopen. Larger/concurrent clients, backups/restores, full filter/keyboard and clipped identity layout remain separate cases."
+          "run": 42342586651,
+          "source": "1af7b02e5ceef4bd6f50d24c6c7ab84b5edb8be1",
+          "log": "validation/functional/runs/42342586651/m_al_workflow_new-year.log",
+          "assertions_and_limits": "Actual new-year Save No/Yes and Close, with queued Space selecting native checkbox candidates. Prior validation/rollback/retry/SQL-wait/fee/null-transport/flag/protected-history assertions pass. Larger/concurrent clients, backups/restores, full filter/keyboard paths and clipped identity layout remain separate."
         }
       ]
     },
@@ -4555,8 +4555,15 @@
       "caption": "ایجاد فایل",
       "handler": "d",
       "targets": [],
-      "status": "unverified",
-      "evidence": []
+      "status": "verified-bounded",
+      "evidence": [
+        {
+          "run": 42342586651,
+          "source": "1af7b02e5ceef4bd6f50d24c6c7ab84b5edb8be1",
+          "log": "validation/functional/runs/42342586651/by_workflow_mark-export.log",
+          "assertions_and_limits": "Actual Create/Close and queued Space selection of native checkbox class/subject cells; path/selection/grade/year/subject rejection, seven Sheet1 headers/blank marks, exact BigInt/literal text, sanitized-name collisions, real SQL-lock UI heartbeat/close guard, overwrite No/Yes, later file lock/rollback/retry and unchanged database state. Folder browser Open/Cancel, all22 selector instances, large/concurrent/crash-recovery paths and other exports remain separate."
+        }
+      ]
     },
     {
       "id": "asdg.m_e",
@@ -4567,8 +4574,15 @@
       "caption": "خروج",
       "handler": "e",
       "targets": [],
-      "status": "unverified",
-      "evidence": []
+      "status": "verified-bounded",
+      "evidence": [
+        {
+          "run": 42342586651,
+          "source": "1af7b02e5ceef4bd6f50d24c6c7ab84b5edb8be1",
+          "log": "validation/functional/runs/42342586651/by_workflow_mark-export.log",
+          "assertions_and_limits": "Actual Create/Close and queued Space selection of native checkbox class/subject cells; path/selection/grade/year/subject rejection, seven Sheet1 headers/blank marks, exact BigInt/literal text, sanitized-name collisions, real SQL-lock UI heartbeat/close guard, overwrite No/Yes, later file lock/rollback/retry and unchanged database state. Folder browser Open/Cancel, all22 selector instances, large/concurrent/crash-recovery paths and other exports remain separate."
+        }
+      ]
     },
     {
       "id": "asdh.i",

@@ -1,0 +1,1 @@
+SUCCESS: .NET 10 database initialized and the original login opened. Authentication was not bypassed.
