@@ -2,22 +2,23 @@ using System;
 using System.ComponentModel;
 using System.Data;
 using Microsoft.Data.SqlClient;
-using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Text;
-using System.Globalization;
-using System.Reflection;
-using System.Runtime.InteropServices;
-using System.Threading;
 using System.Windows.Forms;
 using Janus.Windows.EditControls;
 using Janus.Windows.GridEX;
 using Janus.Windows.GridEX.EditControls;
 using Janus.Windows.UI;
-using Microsoft.Office.Interop.Excel;
+using System.Collections.Generic;
+using System.Linq;
+using System.IO;
+using System.Threading.Tasks;
+using FreeSms.Core;
+using FreeSms.Reports;
 
 public class asdg : Form
 {
+    private bool exporting;
 	private Panel m_a;
 
 	private Panel m_b;
@@ -55,6 +56,7 @@ public class asdg : Form
 	public asdg()
 	{
 		d();
+        FormClosing += (sender,args) => { if(exporting)args.Cancel=true; };
 	}
 protected override void Dispose(bool A_0)
 	{
@@ -405,293 +407,56 @@ protected override void Dispose(bool A_0)
 		Close();
 	}
 
-	private void d(object A_0, EventArgs A_1)
-	{
-		int num3 = default;
-		Workbook workbook = default;
-		string text = default;
-		int num2 = default;
-		System.Data.DataTable dataTable = default;
-		int num4 = default;
-		Microsoft.Office.Interop.Excel.Application application = default;
-		Worksheet worksheet = default;
-		while (true)
-		{
-			bool flag = !(l.Text == "");
-			int num = 43;
-			while (true)
-			{
-				switch (num)
-				{
-				case 43:
-					if (!flag)
-					{
-						num = 2;
-						continue;
-					}
-					num3 = 0;
-					num = 26;
-					continue;
-				case 16:
-					workbook.SaveAs(l.Text + "\\" + j.GetRow(num3).Cells["name"].Value.ToString().Replace("/", "-").Replace("\\", "-") + "-" + i.SelectedItem.Text + ".xls", XlFileFormat.xlWorkbookNormal);
-					flag = workbook == null;
-					num = 36;
-					continue;
-				case 36:
-					if (!flag)
-					{
-						num = 34;
-						continue;
-					}
-					goto case 24;
-				case 40:
-					text += ",";
-					num = 20;
-					continue;
-				case 3:
-					num = 4;
-					continue;
-				case 28:
-				case 39:
-					flag = num2 < dataTable.Rows.Count;
-					num = 38;
-					continue;
-				case 38:
-					if (flag)
-					{
-						num4 = 0;
-						num = 7;
-					}
-					else
-					{
-						num = 16;
-					}
-					continue;
-				case 14:
-					try
-					{
-						Process.Start("explorer.exe", l.Text);
-					}
-					catch
-					{
-					}
-					if (true)
-					{
-					}
-					num = 22;
-					continue;
-				case 33:
-					n.Maximum = dataTable.Rows.Count;
-					num2 = 0;
-					num = 39;
-					continue;
-				case 20:
-					text += this.m_d.GetRow(num2).Cells["id"].Value.ToString();
-					num = 11;
-					continue;
-				case 26:
-				case 37:
-					flag = num3 < j.RowCount;
-					num = 41;
-					continue;
-				case 41:
-					if (!flag)
-					{
-						num = 27;
-						continue;
-					}
-					n.Minimum = 0;
-					n.Value = 1;
-					n.Step = 1;
-					flag = !(j.GetRow(num3).Cells[0].Value.ToString() != "True");
-					num = 44;
-					continue;
-				case 22:
-					return;
-				case 45:
-				{
-					if (!flag)
-					{
-						num = 13;
-						continue;
-					}
-					string text2 = "mark.xls";
-					object value = Missing.Value;
-					application = new ApplicationClass();
-					Workbooks workbooks = application.Workbooks;
-					string filename = System.Windows.Forms.Application.StartupPath + "\\" + text2;
-					CultureInfo currentCulture = new CultureInfo("en-US");
-					Thread.CurrentThread.CurrentCulture = currentCulture;
-					workbook = workbooks.Open(filename, value, value, value, value, value, value, value, value, value, value, value, value, value, value);
-					worksheet = (Worksheet)workbook.ActiveSheet;
-					num2 = 1;
-					num = 21;
-					continue;
-				}
-				case 2:
-					MessageBox.Show("مسیری برای ساختن فایل اکسل انتخاب نشده است");
-					m.Focus();
-					num = 29;
-					continue;
-				case 29:
-					return;
-				case 42:
-					flag = !(text != "");
-					num = 18;
-					continue;
-				case 18:
-					if (!flag)
-					{
-						num = 40;
-						continue;
-					}
-					goto case 20;
-				case 9:
-					if (!flag)
-					{
-						num = 42;
-						continue;
-					}
-					goto case 11;
-				case 5:
-				case 23:
-					flag = num2 < this.m_d.RowCount;
-					num = 46;
-					continue;
-				case 46:
-					if (flag)
-					{
-						flag = !(this.m_d.GetRow(num2).Cells[0].Value.ToString() == "True");
-						num = 9;
-					}
-					else
-					{
-						num = 17;
-					}
-					continue;
-				case 27:
-					MessageBox.Show("پایان");
-					num = 14;
-					continue;
-				case 24:
-					flag = application == null;
-					num = 0;
-					continue;
-				case 0:
-					if (!flag)
-					{
-						num = 10;
-						continue;
-					}
-					goto case 3;
-				case 13:
-					num = 8;
-					continue;
-				case 7:
-				case 15:
-					flag = num4 < dataTable.Columns.Count;
-					num = 19;
-					continue;
-				case 19:
-					if (!flag)
-					{
-						num = 31;
-						continue;
-					}
-					worksheet.Cells[num2 + 2, num4 + 1] = dataTable.Rows[num2][num4].ToString();
-					num4++;
-					num = 15;
-					continue;
-				case 17:
-					flag = !(text == "");
-					num = 12;
-					continue;
-				case 12:
-					if (flag)
-					{
-						SqlParameter[] a_ = new SqlParameter[3]
-						{
-							asdcb.a("@xbook", SqlDbType.VarChar, 200, text),
-							asdcb.a("@xclass", SqlDbType.Int, j.GetRow(num3).Cells["id"].Value.ToString()),
-							asdcb.a("@xyear", SqlDbType.Int, o.Text)
-						};
-						dataTable = asdcb.c(asdab.e(), CommandType.Text, "SELECT tYear_Student.sort AS ترتیب, tStudent.Code, tBook.codeDars, tStudent.FName AS نام, tStudent.LName AS [ولد/بنت], tBook.Name AS [مضمون]\r\n                                            FROM         tStudent inner join tYear_Student on tStudent.id=tYear_Student.xstudent CROSS JOIN tBook WHERE tYear_Student.xyear=@xyear and  (tYear_Student.xClass = @xclass)  AND tBook.id  in(select * from SplitNumber(@xbook))ORDER BY tBook.sort,tBook.id, tYear_Student.sort, tStudent.LName, tStudent.FName", a_);
-						flag = dataTable.Rows.Count != 0;
-						num = 45;
-					}
-					else
-					{
-						num = 25;
-					}
-					continue;
-				case 32:
-					num = 35;
-					continue;
-				case 10:
-					application.Quit();
-					Marshal.FinalReleaseComObject(application);
-					num = 3;
-					continue;
-				case 25:
-					MessageBox.Show(" هیچ درسی انتخاب نشده است");
-					num = 1;
-					continue;
-				case 1:
-					return;
-				case 11:
-					num2++;
-					num = 5;
-					continue;
-				case 31:
-					n.PerformStep();
-					num2++;
-					num = 28;
-					continue;
-				case 6:
-				case 21:
-					flag = num2 < dataTable.Columns.Count + 1;
-					num = 30;
-					continue;
-				case 30:
-					if (flag)
-					{
-						worksheet.Cells[1, num2] = dataTable.Columns[num2 - 1].ColumnName;
-						num2++;
-						num = 6;
-					}
-					else
-					{
-						num = 33;
-					}
-					continue;
-				case 4:
-				case 8:
-				case 35:
-					num3++;
-					num = 37;
-					continue;
-				case 34:
-					workbook.Close(true);
-					Marshal.FinalReleaseComObject(workbook);
-					num = 24;
-					continue;
-				case 44:
-					if (flag)
-					{
-						text = "";
-						num2 = 0;
-						num = 23;
-					}
-					else
-					{
-						num = 32;
-					}
-					continue;
-				}
-				break;
-			}
-		}
-	}
+	private async void d(object A_0, EventArgs A_1)
+    {
+        if(exporting)return;
+        int year,grade;int[] allowed,classes,books;string folder,gradeName;
+        try
+        {
+            if(!asdaj.a("3"))throw new ValidationException("شما مجوز ورود به این بخش را ندارید");
+            if(!j.TryEndEdit() || !this.m_d.TryEndEdit())return;
+            if(string.IsNullOrWhiteSpace(l.Text))throw new ValidationException("مسیری برای ساختن فایل اکسل انتخاب نشده است");
+            folder=Path.GetFullPath(l.Text.Trim());
+            if(!Directory.Exists(folder))throw new ValidationException("مسیری برای ساختن فایل اکسل انتخاب نشده است");
+            year=Values.Number(o.Text,1000,9999) ?? throw new ValidationException("سال معتبر نیست.");
+            grade=Values.Number(i.SelectedValue,1) ?? throw new ValidationException("پایه را انتخاب کنید.");
+            gradeName=i.SelectedItem.Text;
+            allowed=asdaj.n.Split(',').Where(value=>int.TryParse(value,out _)).Select(int.Parse).ToArray();
+            int[] Selected(GridEX grid)=>Enumerable.Range(0,grid.RowCount).Where(index=>Equals(grid.GetRow(index).Cells[0].Value,true)).Select(index=>Convert.ToInt32(grid.GetRow(index).Cells["id"].Value)).ToArray();
+            classes=Selected(j);books=Selected(this.m_d);
+            if(classes.Length==0)throw new ValidationException("هیچ صنفی انتخاب نشده است");
+            if(books.Length==0)throw new ValidationException("هیچ درسی انتخاب نشده است");
+        }
+        catch(Exception error){MessageBox.Show(error.Message);return;}
+        bool enabled=Enabled,wait=UseWaitCursor;exporting=true;Enabled=false;UseWaitCursor=true;
+        try
+        {
+            var files=await Task.Run(()=>
+            {
+                var sheets=new MarkEntryExport(new Database(asdab.e())).Read(year,grade,allowed,classes,books);
+                var names=new HashSet<string>(StringComparer.OrdinalIgnoreCase);var result=new List<WorkbookFile>();
+                foreach(var sheet in sheets)
+                {
+                    string name=MarkEntryWorkbook.FileName(sheet.ClassName,gradeName,sheet.ClassId);
+                    if(!names.Add(name))
+                    {
+                        name=Path.GetFileNameWithoutExtension(name)+"-"+sheet.ClassId+".xlsx";
+                        if(!names.Add(name))throw new IOException("نام فایل‌های خروجی تکراری است.");
+                    }
+                    string path=Path.Combine(folder,name);
+                    IReadOnlyList<IReadOnlyList<string>> rows=sheet.Rows.Select(row=>(IReadOnlyList<string>)new[]{row.Text("sort"),row.Text("Code"),row.Text("codeDars"),row.Text("FName"),row.Text("LName"),row.Text("Subject")}).ToArray();
+                    result.Add(new WorkbookFile(path,WorkbookFileBatch.Fingerprint(path),temp=>MarkEntryWorkbook.Write(temp,rows)));
+                }
+                return result;
+            });
+            if(files.Count==0){MessageBox.Show("موردی برای دریافت فایل وجود ندارد");return;}
+            if(files.Any(file=>file.PreviousHash!=null) && MessageBox.Show("فایل هم‌نام موجود است. جایگزین شود؟","",MessageBoxButtons.YesNo,MessageBoxIcon.Exclamation)!=DialogResult.Yes)return;
+            n.Minimum=0;n.Maximum=files.Count;n.Value=0;
+            await Task.Run(()=>WorkbookFileBatch.Save(files));n.Value=files.Count;MessageBox.Show("پایان");
+        }
+        catch(Exception error){MessageBox.Show("خطا در ساخت فایل اکسل:\n"+error.Message);}
+        finally{Enabled=enabled;UseWaitCursor=wait;exporting=false;}
+    }
 
 	private void c(object A_0, EventArgs A_1)
 	{

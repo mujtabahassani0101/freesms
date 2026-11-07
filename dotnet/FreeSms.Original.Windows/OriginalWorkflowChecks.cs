@@ -144,6 +144,24 @@ internal static class OriginalWorkflowChecks
         }
         db.Execute("DELETE FROM tmpStdforPrint WHERE xUser=1");
     }
+    internal static void PrepareMarkExportFixture(Database db)
+    {
+        var school=new SchoolService(db,new Session(1424));school.SetYear(1424);
+        var used=new HashSet<int>(db.Query("SELECT sortRpt FROM tClass WHERE sortRpt IS NOT NULL").Select(row=>row.Int("sortRpt")));int order=30000;
+        int Classroom(string name,int grade)
+        {
+            while(used.Contains(order))order++;Require(order<=32767,"No free mark-export fixture class order.");used.Add(order);
+            return school.SaveClass(new Record{["name"]=name,["xpaye"]=grade,["fee"]=0,["shift"]=1,["sortRpt"]=order++});
+        }
+        for(int index=1;index<=4;index++)
+        {
+            int grade=index==4?2:1;
+            int classroom=Classroom(index==1?"صنف/اکسل":index==2?"صنف\\اکسل":index==3?"صنف غیرمنتخب اکسل":"صنف پایهٔ دیگر اکسل",grade);
+            school.SaveStudent(new Record{["FName"]=index==1?"=1+2":"نام ' اکسل "+index,["LName"]="پدر ' اکسل",["PName"]="پدرکلان",["Code"]=6000400000L+index,["NumberAsas"]=6000400+index,["xPaye"]=grade,["xClass"]=classroom,["Status"]=1,["Jens"]=0,["Fee1"]=0,["Sort"]=index});
+        }
+        var entities=new EntityService(school);
+        for(int index=1;index<=3;index++)entities.Save("books",new Record{["xPaye"]=index==3?2:1,["Name"]="مضمون ' خروجی "+index,["vahed"]=1,["timeWeek"]=1,["Type"]=1,["sort"]=30000+index,["SortOneEntry"]=30000+index,["codedars"]=6000400+index,["Vezarat"]=true});
+    }
     internal static void PrepareYearTransitionFixture(Database db)
     {
         var source=new SchoolService(db,new Session(1421));source.SetYear(1421);
@@ -327,6 +345,7 @@ internal static class OriginalWorkflowChecks
         else if (scenario == "bulk-marks") BulkMarkEntry(form,db,log);
         else if (scenario == "batch-print-list") BatchPrintList(form,db,log);
         else if (scenario == "new-year") NewYear(form,db,log);
+        else if (scenario == "mark-export") MarkExport(form,db,log);
         else if (scenario == "student-workbook" || scenario == "mark-workbook") WorkbookPreview(form,db,log,scenario=="student-workbook");
         else if (scenario == "attendance1" || scenario == "attendance2") Attendance(form,db,log);
         else throw new ArgumentException("Unknown workflow scenario: " + scenario);
@@ -721,6 +740,77 @@ internal static class OriginalWorkflowChecks
         }
         while(hit!=null && hit!=target)hit=hit.Parent;
         Require(hit==target,"Original control is covered or outside the form: "+target.Name);
+    }
+    private static void MarkExport(Form form,Database db,Action<string> log)
+    {
+        int first=Convert.ToInt32(db.Scalar("SELECT id FROM tClass WHERE xYear=1424 AND name=@p0",new object[]{"صنف/اکسل"}));
+        int second=Convert.ToInt32(db.Scalar("SELECT id FROM tClass WHERE xYear=1424 AND name=@p0",new object[]{"صنف\\اکسل"}));
+        int book1=Convert.ToInt32(db.Scalar("SELECT id FROM tBook WHERE codeDars=6000401")),book2=Convert.ToInt32(db.Scalar("SELECT id FROM tBook WHERE codeDars=6000402"));
+        Field<UIComboBox>(form,"i").SelectedValue="1";
+        var classes=Field<GridEX>(form,"j");var books=Field<GridEX>(form,"m_d");
+        string snapshot=System.Text.Json.JsonSerializer.Serialize(new[]{db.Query("SELECT * FROM tStudent ORDER BY id"),db.Query("SELECT * FROM tYear_Student ORDER BY id"),db.Query("SELECT * FROM tMark ORDER BY id"),db.Query("SELECT * FROM tExam ORDER BY id")});
+        string directory=System.IO.Path.Combine(System.IO.Path.GetTempPath(),"FreeSMS ' اکسل "+Guid.NewGuid().ToString("N"));System.IO.Directory.CreateDirectory(directory);
+        var nativeClasses=classes.Controls.OfType<DataGridView>().Single();var nativeBooks=books.Controls.OfType<DataGridView>().Single();
+        nativeClasses.DataError+=(s,e)=>{diagnostic("FAILED export class grid: "+e.Exception);e.ThrowException=true;};
+        nativeBooks.DataError+=(s,e)=>{diagnostic("FAILED export subject grid: "+e.Exception);e.ThrowException=true;};
+        void Checked(GridEX grid,int id){for(int index=0;index<grid.RowCount;index++)if(Convert.ToInt32(grid.GetRow(index).Cells["id"].Value)==id){grid.GetRow(index).Cells[0].Value=true;return;}throw new Exception("Export fixture not found in actual selector.");}
+        void Save()=>Dialog(()=>Click(form,"g"),"پایان",1);
+        void Reject(string text)=>Dialog(()=>Click(form,"g"),"خطا در ساخت فایل اکسل:",1,requiredText:text);
+        string[] Files()=>System.IO.Directory.GetFiles(directory,"*.xlsx").OrderBy(path=>path,StringComparer.OrdinalIgnoreCase).ToArray();
+        string Hashes()=>string.Join("|",Files().Select(path=>System.IO.Path.GetFileName(path)+":"+FreeSms.Reports.WorkbookFileBatch.Fingerprint(path)));
+        try
+        {
+            Field<Control>(form,"l").Text="";Dialog(()=>Click(form,"g"),"مسیری برای ساختن فایل اکسل انتخاب نشده است",1);
+            Field<Control>(form,"l").Text=directory;Dialog(()=>Click(form,"g"),"هیچ صنفی انتخاب نشده است",1);
+            Checked(classes,first);Checked(classes,second);Dialog(()=>Click(form,"g"),"هیچ درسی انتخاب نشده است",1);
+            Checked(books,book1);Checked(books,book2);
+            RequireReachable(form,Field<UIButton>(form,"g"));SaveGallery(form,"mark-entry-export");
+            string grades=asdaj.n;asdaj.n="2";
+            try{Reject("سال، پایه یا مجوز دریافت فایل معتبر نیست.");Require(Files().Length==0,"Forbidden export grade wrote output.");}
+            finally{asdaj.n=grades;}
+            db.Execute("UPDATE tBook SET xPaye=2 WHERE id=@p0",new object[]{book2});
+            try{Reject("مضمون انتخاب‌شده با پایه مطابقت ندارد");Require(Files().Length==0,"Stale foreign-grade subject wrote output.");}
+            finally{db.Execute("UPDATE tBook SET xPaye=1 WHERE id=@p0",new object[]{book2});}
+            db.Execute("UPDATE tClass SET xYear=1425 WHERE id=@p0",new object[]{second});
+            try{Reject("صنف انتخاب‌شده با سال و پایه مطابقت ندارد");Require(Files().Length==0,"Stale class year left partial output.");}
+            finally{db.Execute("UPDATE tClass SET xYear=1424 WHERE id=@p0",new object[]{second});}
+            using(var connection=db.Open())
+            using(var transaction=connection.BeginTransaction())
+            using(var command=new Microsoft.Data.SqlClient.SqlCommand("UPDATE tClass SET fee=fee WHERE id=@id",connection,transaction))
+            {
+                command.Parameters.AddWithValue("@id",first);command.ExecuteNonQuery();bool released=false;
+                using var timer=new Timer{Interval=500};timer.Tick+=(s,e)=>{timer.Stop();Require(!form.Enabled,"Mark export did not enter its asynchronous state.");form.Close();Require(form.Visible,"Mark export allowed closing while reading its snapshot.");transaction.Rollback();released=true;};
+                timer.Start();Save();Require(released,"Mark export UI heartbeat did not release the real SQL lock.");
+            }
+            string[] files=Files();Require(files.Length==2 && files.Select(System.IO.Path.GetFileName).Distinct(StringComparer.OrdinalIgnoreCase).Count()==2,"Colliding sanitized class names lost an output workbook.");
+            var codes=new HashSet<string>();int rows=0;
+            foreach(string path in files)
+            {
+                var imported=ImportWorkbook.Read(path,WorkbookImportKind.Marks);Require(imported.Rows.Count==2,"Mark-entry file did not contain exactly two selected-subject rows.");
+                foreach(System.Data.DataRow row in imported.Rows)
+                {
+                    string code=Convert.ToString(row["code"]);codes.Add(code);rows++;
+                    Require(row.IsNull("mark") && new[]{"6000401","6000402"}.Contains(Convert.ToString(row["codedars"])),"Generated file filled a mark or exported a foreign subject.");
+                }
+                using var zip=System.IO.Compression.ZipFile.OpenRead(path);using var entry=zip.GetEntry("xl/worksheets/sheet1.xml").Open();var xml=System.Xml.Linq.XDocument.Load(entry);System.Xml.Linq.XNamespace ns="http://schemas.openxmlformats.org/spreadsheetml/2006/main";
+                Require(!xml.Descendants(ns+"f").Any(),"Formula-looking names became generated formulas.");
+                if(imported.Rows.Cast<System.Data.DataRow>().Any(row=>Convert.ToString(row["code"])=="6000400001"))Require(xml.Descendants(ns+"t").Any(node=>node.Value=="=1+2"),"Literal formula-looking student name changed.");
+            }
+            Require(rows==4 && codes.SetEquals(new[]{"6000400001","6000400002"}),"Export mixed unselected class/grade/student identities or truncated BigInt.");
+            string original=Hashes();Dialog(()=>Click(form,"g"),"فایل هم‌نام موجود است. جایگزین شود؟",7);Require(Hashes()==original,"Declining workbook overwrite changed previous files.");
+            void Overwrite()=>Dialog(()=>Click(form,"g"),"فایل هم‌نام موجود است. جایگزین شود؟",6);
+            Dialog(Overwrite,"پایان",1);Require(Hashes()==original,"Repeated workbook export changed unchanged data.");
+            int lastClass=Enumerable.Range(0,classes.RowCount).Where(index=>Equals(classes.GetRow(index).Cells[0].Value,true)).Select(index=>Convert.ToInt32(classes.GetRow(index).Cells["id"].Value)).Last();
+            string laterOutput=files.Single(path=>path.EndsWith("-"+lastClass+".xlsx",StringComparison.OrdinalIgnoreCase));
+            using(var locked=new System.IO.FileStream(laterOutput,System.IO.FileMode.Open,System.IO.FileAccess.Read,System.IO.FileShare.Read))
+                Dialog(Overwrite,"خطا در ساخت فایل اکسل:",1);
+            Require(Hashes()==original && !System.IO.Directory.GetFiles(directory).Any(path=>path.EndsWith(".tmp") || path.EndsWith(".bak")),"A locked later destination lost an earlier workbook or left staging artifacts.");
+            Dialog(Overwrite,"پایان",1);Require(Hashes()==original,"Retry after locked output changed its data.");
+            string after=System.Text.Json.JsonSerializer.Serialize(new[]{db.Query("SELECT * FROM tStudent ORDER BY id"),db.Query("SELECT * FROM tYear_Student ORDER BY id"),db.Query("SELECT * FROM tMark ORDER BY id"),db.Query("SELECT * FROM tExam ORDER BY id")});
+            Require(snapshot==after,"Mark-entry export changed students/enrolments/marks/calculation flags.");Click(form,"m_e");
+            log("PASS original mark-entry export buttons validate path/classes/subjects, enforce grade/year/subject snapshot, retain seven import headers/Sheet1/blank marks/full BigInt/quotes/formula-looking text, avoid sanitized-name collisions, keep UI responsive during SQL wait with close guard, respect overwrite No/Yes, recover locked destination/retry and preserve database state; folder chooser interaction is not covered");
+        }
+        finally{System.IO.Directory.Delete(directory,true);}
     }
     private static void NewYear(Form form,Database db,Action<string> log)
     {

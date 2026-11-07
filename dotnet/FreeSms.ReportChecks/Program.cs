@@ -179,4 +179,5 @@ try
     Check(sheet.Descendants(ns + "t").Any(t => t.Value == "نام") && !sheet.Descendants(ns + "f").Any(), "Excel export preserves Persian text without generated formulas");
 }
 finally { File.Delete(workbook); }
+MarkEntryWorkbookChecks.Verify(Check);
 Console.WriteLine("SUCCESS " + count);
