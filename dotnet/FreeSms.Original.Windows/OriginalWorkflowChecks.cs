@@ -803,7 +803,7 @@ internal static class OriginalWorkflowChecks
             int lastClass=Enumerable.Range(0,classes.RowCount).Where(index=>Equals(classes.GetRow(index).Cells[0].Value,true)).Select(index=>Convert.ToInt32(classes.GetRow(index).Cells["id"].Value)).Last();
             string laterOutput=files.Single(path=>path.EndsWith("-"+lastClass+".xlsx",StringComparison.OrdinalIgnoreCase));
             using(var locked=new System.IO.FileStream(laterOutput,System.IO.FileMode.Open,System.IO.FileAccess.Read,System.IO.FileShare.Read))
-                Dialog(Overwrite,"خطا در ساخت فایل اکسل:",1);
+                Dialog(Overwrite,"خطا در ساخت فایل اکسل:",1,requiredText:"");
             Require(Hashes()==original && !System.IO.Directory.GetFiles(directory).Any(path=>path.EndsWith(".tmp") || path.EndsWith(".bak")),"A locked later destination lost an earlier workbook or left staging artifacts.");
             Dialog(Overwrite,"پایان",1);Require(Hashes()==original,"Retry after locked output changed its data.");
             string after=System.Text.Json.JsonSerializer.Serialize(new[]{db.Query("SELECT * FROM tStudent ORDER BY id"),db.Query("SELECT * FROM tYear_Student ORDER BY id"),db.Query("SELECT * FROM tMark ORDER BY id"),db.Query("SELECT * FROM tExam ORDER BY id")});
