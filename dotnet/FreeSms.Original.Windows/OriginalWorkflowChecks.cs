@@ -504,6 +504,18 @@ internal static class OriginalWorkflowChecks
         ((TextBox)view.EditingControl).Text=value;
         Require(grid.TryEndEdit(),"Grid rejected a valid input: "+key);
     }
+    private static void ToggleGridSelector(GridEX grid,int row)
+    {
+        var view=grid.Controls.OfType<DataGridView>().Single();
+        Require(view.Columns[0] is DataGridViewCheckBoxColumn,"Recovered selector is not a native checkbox.");
+        view.CurrentCell=view.Rows[row].Cells[0];view.Focus();
+        bool previous=Equals(grid.GetRow(row).Cells[0].Value,true);
+        Require(PostMessage(view.Handle,0x0100,new IntPtr(0x20),new IntPtr(0x00390001)),"Could not queue selector Space key down.");
+        Require(PostMessage(view.Handle,0x0101,new IntPtr(0x20),new IntPtr(unchecked((int)0xC0390001))),"Could not queue selector Space key up.");
+        var elapsed=System.Diagnostics.Stopwatch.StartNew();
+        while(Equals(grid.GetRow(row).Cells[0].Value,true)==previous && elapsed.Elapsed<TimeSpan.FromSeconds(2)){Application.DoEvents();System.Threading.Thread.Sleep(10);}
+        Require(grid.TryEndEdit() && Equals(grid.GetRow(row).Cells[0].Value,true)!=previous,"Space did not toggle the recovered selector checkbox.");
+    }
     private static void Subject(Form form,Database db,Action<string> log)
     {
         int Count()=>Convert.ToInt32(db.Scalar("SELECT COUNT(*) FROM tBook"));
@@ -753,7 +765,7 @@ internal static class OriginalWorkflowChecks
         var nativeClasses=classes.Controls.OfType<DataGridView>().Single();var nativeBooks=books.Controls.OfType<DataGridView>().Single();
         nativeClasses.DataError+=(s,e)=>{diagnostic("FAILED export class grid: "+e.Exception);e.ThrowException=true;};
         nativeBooks.DataError+=(s,e)=>{diagnostic("FAILED export subject grid: "+e.Exception);e.ThrowException=true;};
-        void Checked(GridEX grid,int id){for(int index=0;index<grid.RowCount;index++)if(Convert.ToInt32(grid.GetRow(index).Cells["id"].Value)==id){grid.GetRow(index).Cells[0].Value=true;return;}throw new Exception("Export fixture not found in actual selector.");}
+        void Checked(GridEX grid,int id){for(int index=0;index<grid.RowCount;index++)if(Convert.ToInt32(grid.GetRow(index).Cells["id"].Value)==id){ToggleGridSelector(grid,index);return;}throw new Exception("Export fixture not found in actual selector.");}
         void Save()=>Dialog(()=>Click(form,"g"),"پایان",1);
         void Reject(string text)=>Dialog(()=>Click(form,"g"),"خطا در ساخت فایل اکسل:",1,requiredText:text);
         string[] Files()=>System.IO.Directory.GetFiles(directory,"*.xlsx").OrderBy(path=>path,StringComparer.OrdinalIgnoreCase).ToArray();
@@ -830,7 +842,7 @@ internal static class OriginalWorkflowChecks
         string Protected()=>System.Text.Json.JsonSerializer.Serialize(new[]{db.Query("SELECT * FROM tYear_Student WHERE NOT(xYear=1422 AND xStudent IN(@p0,@p1)) ORDER BY id",new object[]{first,second}),db.Query("SELECT * FROM tStudent ORDER BY id"),db.Query("SELECT * FROM tMark ORDER BY id"),db.Query("SELECT * FROM tMarkDoreh ORDER BY xStudent,Xtest,typ"),db.Query("SELECT * FROM tPaymentStudent ORDER BY id"),db.Query("SELECT * FROM tExam ORDER BY id"),db.Query("SELECT * FROM tClass ORDER BY id")});
         string before=Snapshot(),keep=Protected();
         Dialog(()=>Click(form,"m_d"),"شاگردی انتخاب نشده است",1);
-        void Selected(int student){Select(form,student,"r");grid.GetRow(grid.Row).Cells["Selector"].Value=true;}
+        void Selected(int student){Select(form,student,"r");ToggleGridSelector(grid,grid.Row);}
         Selected(first);Selected(second);log("NEW-YEAR selected both candidates");
         Select(form,second,"r");int secondRow=grid.Row;
         grid.GetRow(secondRow).Cells["xTakhfif"].Value=discount;log("NEW-YEAR selected discount");

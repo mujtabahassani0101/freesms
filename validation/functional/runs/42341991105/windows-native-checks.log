@@ -1,0 +1,42 @@
+PASS Persian and Arabic digits, zero, null and bounds
+PASS Attendance accepts Persian digits and calculates present days from all absence categories
+PASS Attendance rejects negative, fractional, overflowing and over-total counts
+PASS Individual mark components retain fractions, Persian digits, zero and original averaging
+PASS Individual marks reject malformed, nonfinite, out-of-range and invalid absence input
+PASS Annual manual marks preserve original M2 storage and empty versus zero semantics
+PASS BigInt identifiers preserve Persian digits and reject 64-bit overflow
+PASS Legacy version codec agrees with the Python fixture
+PASS SQL GO batches, comments and blank lines
+PASS All recovered forms and the school menu route
+PASS All SQL resource hashes verified
+PASS Native LocalDB uses Windows authentication and no application password
+PASS Seed copying preserves existing data and refuses incomplete databases
+PASS Recovered workbook fee allocation keeps full, discounted, zero, partial and large ninth-month remainder semantics
+PASS Student workbook input preserves BigInt, quotes, phones, kindergarten and optional identifiers
+PASS Workbook payment dates use valid Persian calendar dates, stable weekday text and reject malformed dates
+PASS Office-free OOXML student preview reads each row once, keeps quotes/leading zeros and skips only blank/no-class rows
+PASS Office-free OOXML mark preview keeps zero, fractions, empty values and the Sheet1 contract
+PASS Malformed Excel contracts, cell errors, duplicate/reserved/unnamed headers and missing Sheet1 reject before any preview is returned
+PASS Recovered binary XLS student/mark examples parse without ACE, Jet or Excel
+PASS Workbook mark input preserves Persian fractions/zero/blank and rejects overflow, nonfinite and invalid identifiers
+PASS New-year input preserves Persian amounts, null versus zero transport, nullable flags and immutable captured values
+PASS New-year amounts reject negatives, fractions and nine-month overflow before a batch can write
+PASS Database migrations reach the target version and are idempotent
+PASS School details round trip Persian text and apostrophes
+PASS Server-aborted transactions preserve the original SQL error and roll back prior changes
+PASS School year creates exactly three terms
+PASS Student registration, zero gender, totals, photo and filters
+PASS Student BigInt codes round trip and filter without Int32 truncation
+PASS Student update recalculates sums and retains the record identifier
+PASS Duplicate codes and enrolment numbers fail without partial inserts
+PASS Negative fees and incompatible class grades are rejected
+PASS An image failure rolls the student transaction back
+PASS Teacher assignments and reference protection
+PASS Reference entities save, edit and delete
+PASS A rejected student deletion rolls back prior enrolment and image deletes
+PASS Backup uses configured catalog and quoted Persian path; latest complete appended set restores exact values
+PASS Malformed backup is rejected before modifying live records
+PASS Failure opening input after preflight restores the safety copy and normal access
+PASS Structurally incompatible SQL backup is rejected by staged validation
+PASS Deleting a student removes their image and enrolment
+SUCCESS: 41 checks passed.

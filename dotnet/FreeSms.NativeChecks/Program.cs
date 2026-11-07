@@ -11,6 +11,8 @@ using Janus.Windows.GridEX;
 
 internal static class Program
 {
+    [System.Runtime.InteropServices.DllImport("user32.dll",SetLastError=true)]
+    private static extern bool PostMessage(IntPtr window,uint message,IntPtr wparam,IntPtr lparam);
     [STAThread]
     private static int Main(string[] args)
     {
@@ -46,6 +48,25 @@ internal static class Program
             Check(Convert.ToDecimal(table.Rows[1]["mark"]) == 91.5m, "typed mark edits update source data");
             grid.GetRow(0).Cells["selected"].Value = true;
             Check((bool)table.Rows[0]["selected"], "checkbox write-through");
+            using(var selectors=new GridEX{Dock=DockStyle.Fill})
+            {
+                window.Controls.Add(selectors);selectors.BringToFront();
+                selectors.DesignTimeLayout=new GridEXLayout{LayoutString="<GridEXLayoutData><RootTable><Columns><Column0 ID='Selector'><Key>Selector</Key><ActAsSelector>True</ActAsSelector><Width>40</Width></Column0><Column1 ID='id'><Key>id</Key><DataMember>id</DataMember></Column1></Columns></RootTable></GridEXLayoutData>"};
+                var identities=new DataTable();identities.Columns.Add("id",typeof(int));identities.Rows.Add(71);identities.Rows.Add(72);selectors.DataSource=identities;
+                var view=selectors.Controls.OfType<DataGridView>().Single();int errors=0;view.DataError+=(sender,e)=>{errors++;e.ThrowException=true;};Application.DoEvents();
+                Check(view.Columns[0] is DataGridViewCheckBoxColumn && view.Columns[0].HeaderText=="","recovered ActAsSelector columns render as native checkboxes with an empty caption");
+                void Toggle(int row)
+                {
+                    view.CurrentCell=view.Rows[row].Cells[0];view.Focus();bool old=Equals(selectors.GetRow(row).Cells[0].Value,true);
+                    Check(PostMessage(view.Handle,0x0100,new IntPtr(0x20),new IntPtr(0x00390001)) && PostMessage(view.Handle,0x0101,new IntPtr(0x20),new IntPtr(unchecked((int)0xC0390001))),"queue native Space key for selector row "+row);
+                    var elapsed=System.Diagnostics.Stopwatch.StartNew();
+                    while(Equals(selectors.GetRow(row).Cells[0].Value,true)==old && elapsed.Elapsed<TimeSpan.FromSeconds(2)){Application.DoEvents();System.Threading.Thread.Sleep(10);}
+                    Check(selectors.TryEndEdit() && Equals(selectors.GetRow(row).Cells[0].Value,true)!=old,"native Space toggles the selector without a text editor: row "+row);
+                }
+                Toggle(0);Toggle(1);Toggle(0);
+                using var bitmap=new Bitmap(selectors.Width,selectors.Height);selectors.DrawToBitmap(bitmap,new Rectangle(Point.Empty,bitmap.Size));bitmap.Save(Path.Combine(output,"original-selector-checkboxes.png"));
+                Check(!Equals(selectors.GetRow(0).Cells[0].Value,true) && Equals(selectors.GetRow(1).Cells[0].Value,true) && errors==0 && !identities.Columns.Contains("Selector") && identities.Rows.Cast<DataRow>().Select(row=>(int)row["id"]).SequenceEqual(new[]{71,72}),"unbound selector toggles preserve independent row states and underlying database identities without conversion errors");
+            }
             ((DataGridView)grid.Controls.OfType<DataGridView>().Single()).Sort(((DataGridView)grid.Controls.OfType<DataGridView>().Single()).Columns["mark"]!, System.ComponentModel.ListSortDirection.Descending);
             Check(Convert.ToInt32(grid.GetRow(0).Cells["id"].Value) == 42, "sorted row identity");
             using(var pair=new Panel{Dock=DockStyle.Fill})

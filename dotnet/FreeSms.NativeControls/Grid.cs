@@ -490,11 +490,11 @@ namespace Janus.Windows.GridEX
                         var column = new GridEXColumn
                         {
                             Key = key, DataMember = (string)node.Element("DataMember") ?? key,
-                            Caption = (string)node.Element("Caption") ?? key,
+                            Caption = (string)node.Element("Caption") ?? ((string)node.Element("ActAsSelector")=="True"?"":key),
                             Width = (int?)node.Element("Width") ?? 100,
                             Visible = !string.Equals((string)node.Element("Visible"), "False", StringComparison.OrdinalIgnoreCase),
                             Editable = !string.Equals((string)node.Element("EditType"), "NoEdit", StringComparison.OrdinalIgnoreCase),
-                            Type = (string)node.Element("ColumnType") == "CheckBox" ? ColumnType.CheckBox : ((string)node.Element("ColumnType") == "Image" || (string)node.Element("ColumnType") == "BoundImage") ? ColumnType.Image : ColumnType.Text,
+                            Type = (string)node.Element("ColumnType") == "CheckBox" || (string)node.Element("ActAsSelector")=="True" ? ColumnType.CheckBox : ((string)node.Element("ColumnType") == "Image" || (string)node.Element("ColumnType") == "BoundImage") ? ColumnType.Image : ColumnType.Text,
                             Aggregate = (string)node.Element("AggregateFunction"),
                             InputMask = (string)node.Element("InputMask"),
                             Selectable = !string.Equals((string)node.Element("Selectable"), "False", StringComparison.OrdinalIgnoreCase)
