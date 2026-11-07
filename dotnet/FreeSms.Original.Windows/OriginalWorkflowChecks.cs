@@ -144,6 +144,39 @@ internal static class OriginalWorkflowChecks
         }
         db.Execute("DELETE FROM tmpStdforPrint WHERE xUser=1");
     }
+    internal static void PrepareHistoryFixture(Database db)
+    {
+        var school=new SchoolService(db,new Session(1426));school.SetYear(1426);
+        var used=new HashSet<int>(db.Query("SELECT sortRpt FROM tClass WHERE sortRpt IS NOT NULL").Select(row=>row.Int("sortRpt")));int order=30000;
+        int Classroom(string name)
+        {
+            while(used.Contains(order))order++;Require(order<=32767,"No free history fixture class order.");used.Add(order);
+            return school.SaveClass(new Record{["name"]=name,["xpaye"]=12,["fee"]=0,["shift"]=1,["sortRpt"]=order++});
+        }
+        int classroom=Classroom("صنف نمرات گذشته"),other=Classroom("صنف محفوظ نمرات گذشته");
+        var entities=new EntityService(school);var books=new List<int>();
+        for(int index=1;index<=2;index++)
+        {
+            int book=entities.Save("books",new Record{["xPaye"]=12,["Name"]="مضمون سابقه "+index,["vahed"]=1,["timeWeek"]=1,["Type"]=1,["sort"]=30000+index,["SortOneEntry"]=30000+index,["codedars"]=6000500+index,["Vezarat"]=true});
+            db.Execute("UPDATE tBook SET showOneEntry=1 WHERE id=@p0",new object[]{book});books.Add(book);
+        }
+        int first=0;
+        for(int index=1;index<=3;index++)
+        {
+            int student=school.SaveStudent(new Record{["FName"]="شاگرد ' سابقه "+index,["LName"]="پدر ' محفوظ",["PName"]="پدرکلان",["Code"]=6000500+index,["NumberAsas"]=6000500+index,["xPaye"]=12,["xClass"]=index==3?other:classroom,["Status"]=1,["Jens"]=0,["Fee1"]=0,["Sort"]=index});
+            if(index==1)first=student;
+            foreach(int grade in new[]{10,11})
+            {
+                db.Call("sp_tMarkAgo_insertUpdate",new Record{["xStudent"]=student,["xPaye"]=grade,["xbook"]=books[0],["Mark"]=grade==10?10:30});
+                db.Call("sp_tMarkAgo_insertUpdate",new Record{["xStudent"]=student,["xPaye"]=grade,["xbook"]=books[1],["Mark"]=grade==10?20:40});
+                db.Execute("INSERT INTO tMarkAgo(xStudent,xPaye,typ,xbook,Mark,gClass) VALUES(@p0,@p1,5,-5,@p2,@p3)",new object[]{student,grade,grade==10?30:70,index});
+            }
+        }
+        int exam=Convert.ToInt32(db.Scalar("SELECT id FROM tExam WHERE xYear=1426 AND term=1"));
+        var mark=db.Call("sp_tMark_insertUpdate_FromXls_Af",new Record{["xuser"]=1,["code"]="6000501",["codedars"]=6000501,["Xtest"]=exam,["xYear"]=1426,["Mark"]=25});
+        Require(mark.Output.Text("err")=="","Current-year history fixture mark was rejected.");
+        db.Call("sp_Procc",new Record{["Exam"]=exam});db.Call("sp_CalcMarkDoreh",new Record{["Exam"]=exam});
+    }
     internal static void PrepareMarkExportFixture(Database db)
     {
         var school=new SchoolService(db,new Session(1424));school.SetYear(1424);
@@ -346,6 +379,7 @@ internal static class OriginalWorkflowChecks
         else if (scenario == "batch-print-list") BatchPrintList(form,db,log);
         else if (scenario == "new-year") NewYear(form,db,log);
         else if (scenario == "mark-export") MarkExport(form,db,log);
+        else if (scenario == "history-marks") HistoryEntry(form,db,log);
         else if (scenario == "student-workbook" || scenario == "mark-workbook") WorkbookPreview(form,db,log,scenario=="student-workbook");
         else if (scenario == "attendance1" || scenario == "attendance2") Attendance(form,db,log);
         else throw new ArgumentException("Unknown workflow scenario: " + scenario);
@@ -752,6 +786,85 @@ internal static class OriginalWorkflowChecks
         }
         while(hit!=null && hit!=target)hit=hit.Parent;
         Require(hit==target,"Original control is covered or outside the form: "+target.Name);
+    }
+    private static void HistoryEntry(Form form,Database db,Action<string> log)
+    {
+        int classroom=Convert.ToInt32(db.Scalar("SELECT id FROM tClass WHERE xYear=1426 AND name=N'صنف نمرات گذشته'"));
+        int otherClass=Convert.ToInt32(db.Scalar("SELECT id FROM tClass WHERE xYear=1426 AND name=N'صنف محفوظ نمرات گذشته'"));
+        int first=Convert.ToInt32(db.Scalar("SELECT id FROM tStudent WHERE Code=6000501")),peer=Convert.ToInt32(db.Scalar("SELECT id FROM tStudent WHERE Code=6000502"));
+        int book1=Convert.ToInt32(db.Scalar("SELECT id FROM tBook WHERE codeDars=6000501")),book2=Convert.ToInt32(db.Scalar("SELECT id FROM tBook WHERE codeDars=6000502"));
+        Field<UIComboBox>(form,"r").SelectedValue=classroom.ToString();
+        var grid=Field<GridEX>(form,"s");var students=Field<GridEX>(form,"m_i");
+        var native=grid.Controls.OfType<DataGridView>().Single();int errors=0;native.DataError+=(sender,e)=>{errors++;diagnostic("FAILED history grid conversion: "+e.Exception);e.ThrowException=true;};
+        string Snapshot()=>System.Text.Json.JsonSerializer.Serialize(new[]{db.Query("SELECT * FROM tMarkAgo ORDER BY id"),db.Query("SELECT * FROM tMark ORDER BY id"),db.Query("SELECT * FROM tMarkDoreh ORDER BY xStudent,Xtest,typ"),db.Query("SELECT * FROM tYear_Student ORDER BY id"),db.Query("SELECT * FROM tExam ORDER BY id"),db.Query("SELECT * FROM tBook ORDER BY id")});
+        string Protected(int grade)=>System.Text.Json.JsonSerializer.Serialize(new[]{db.Query("SELECT * FROM tMarkAgo WHERE xStudent<>@p0 OR xPaye<>@p1 ORDER BY id",new object[]{first,grade}),db.Query("SELECT * FROM tMark ORDER BY id"),db.Query("SELECT * FROM tMarkDoreh ORDER BY xStudent,Xtest,typ"),db.Query("SELECT * FROM tYear_Student ORDER BY id"),db.Query("SELECT * FROM tExam ORDER BY id"),db.Query("SELECT * FROM tBook ORDER BY id")});
+        int Row(int book){for(int index=0;index<grid.RowCount;index++)if(Convert.ToInt32(grid.GetRow(index).Cells["xbook"].Value)==book)return index;throw new Exception("History subject not loaded.");}
+        void Set(int book,string mark)=>EditGridCell(grid,Row(book),"m1",mark);
+        void Open(int grade)
+        {
+            Field<RadioButton>(form,grade==10?"ab":"aa").Checked=true;Click(form,"m_j");Select(form,first,"m_i");Click(form,"m_c");
+            Require(Field<Panel>(form,"m_k").Visible && grid.RowCount>=2 && Field<Label>(form,"y").Text==(grade==10?"نمرات صنف دهم":"نمرات صنف یازدهم"),"History editor mixed its selected grade or had no configured subjects.");
+        }
+        void Save()=>Dialog(()=>Click(form,"o"),"اطلاعات ذخیره شد . آیا مایل هستید نفر بعدی نمایش داده شود",7);
+        void Reject(string text)=>Dialog(()=>Click(form,"o"),"نمرات گذشته ذخیره نشد.",1,requiredText:text);
+        object Mark(int grade,int book)=>db.Scalar("SELECT Mark FROM tMarkAgo WHERE xStudent=@p0 AND xPaye=@p1 AND xbook=@p2 AND typ=1",new object[]{first,grade,book});
+        const string discard="تغییرات نمرات گذشته ثبت نشده است. بدون ثبت ادامه می‌دهید؟";
+        Open(10);Require(Convert.ToInt32(grid.GetRow(Row(book1)).Cells["m1"].Value)==10 && Field<TextBox>(form,"af").Text=="30","History editor did not reload original marks and aggregate.");
+        RequireReachable(form,Field<UIButton>(form,"o"));RequireReachable(form,grid);SaveGallery(form,"history-marks");
+        string before=Snapshot();
+        int row=Row(book1);native.CurrentCell=native.Rows[row].Cells["m1"];Require(native.BeginEdit(true),"History mark editor did not open.");((TextBox)native.EditingControl).Text="25.5";Click(form,"o");
+        Require(native.IsCurrentCellInEditMode && Snapshot()==before && Convert.ToInt32(grid.GetRow(row).Cells["m1"].Value)==10,"Fractional history input was rounded, cleared or saved.");
+        Click(form,"p");Require(!Field<Panel>(form,"m_k").Visible && Snapshot()==before,"History Cancel saved an invalid editor.");
+        Open(10);Set(book1,"۱۵");Set(book2,"101");
+        Dialog(()=>Click(form,"o"),"ردیف "+(Row(book2)+1)+":",1,requiredText:"مقدار عددی خارج از محدودهٔ مجاز است.");
+        Require(Snapshot()==before,"A late invalid history mark saved an earlier subject.");Set(book2,"۲۵");
+        Field<Control>(form,"ad").Text="-1";Dialog(()=>Click(form,"o"),"مقدار عددی خارج از محدودهٔ مجاز است.",1);
+        Require(Snapshot()==before,"A negative history rank wrote subject marks.");Field<Control>(form,"ad").Text="۲";
+        string grades=asdaj.n;asdaj.n="11";
+        try{Reject("سال، شاگرد، صنف یا مجوز نمرات گذشته معتبر نیست.");Require(Snapshot()==before,"A forbidden current grade wrote history.");}
+        finally{asdaj.n=grades;}
+        db.Execute("UPDATE tYear_Student SET xClass=@p0 WHERE xYear=1426 AND xStudent=@p1",new object[]{otherClass,first});
+        try{string changed=Snapshot();Reject("ثبت‌نام شاگرد یا صنف تغییر کرده است");Require(Snapshot()==changed,"Stale current-year membership allowed a partial history Save.");}
+        finally{db.Execute("UPDATE tYear_Student SET xClass=@p0 WHERE xYear=1426 AND xStudent=@p1",new object[]{classroom,first});}
+        db.Execute("UPDATE tBook SET showOneEntry=0 WHERE id=@p0",new object[]{book2});
+        try{string changed=Snapshot();Reject("فهرست مضامین تغییر کرده است");Require(Snapshot()==changed,"A changed subject set allowed partial history Save.");}
+        finally{db.Execute("UPDATE tBook SET showOneEntry=1 WHERE id=@p0",new object[]{book2});}
+        int duplicate=Convert.ToInt32(db.Scalar("INSERT INTO tMarkAgo(xStudent,xPaye,typ,xbook,Mark,gClass) OUTPUT INSERTED.id VALUES(@p0,10,5,-5,99,1)",new object[]{first}));
+        try{string changed=Snapshot();Reject("مجموع نمرات گذشته تکراری است");Require(Snapshot()==changed,"Duplicate history aggregates were silently rewritten.");}
+        finally{db.Execute("DELETE FROM tMarkAgo WHERE id=@p0",new object[]{duplicate});}
+        duplicate=Convert.ToInt32(db.Scalar("INSERT INTO tMarkAgo(xStudent,xPaye,typ,xbook,Mark) OUTPUT INSERTED.id VALUES(@p0,10,1,@p1,99)",new object[]{first,book2}));
+        try{string changed=Snapshot();Reject("سابقهٔ مضمون تکراری یا ناسازگار است");Require(Snapshot()==changed,"A duplicate late subject left earlier marks changed.");}
+        finally{db.Execute("DELETE FROM tMarkAgo WHERE id=@p0",new object[]{duplicate});}
+        db.Execute("CREATE TRIGGER native_history_failure ON dbo.tMarkAgo AFTER INSERT,UPDATE,DELETE AS IF EXISTS(SELECT 1 FROM inserted WHERE xStudent="+first+" AND xPaye=10 AND xbook="+book2+") THROW 51000,'native history late subject failure',1");
+        try{Reject("native history late subject failure");Require(Snapshot()==before,"A late SQL history failure did not roll back subjects and aggregate.");}
+        finally{db.Execute("DROP TRIGGER native_history_failure");}
+        Require(Convert.ToInt32(grid.GetRow(Row(book1)).Cells["m1"].Value)==15 && Convert.ToInt32(grid.GetRow(Row(book2)).Cells["m1"].Value)==25 && Field<TextBox>(form,"af").Text=="40","Failed history Save discarded pending marks or their integer sum.");
+        string keep=Protected(10);
+        using(var connection=db.Open())
+        using(var transaction=connection.BeginTransaction())
+        using(var command=new Microsoft.Data.SqlClient.SqlCommand("UPDATE tYear_Student SET Status=Status WHERE xYear=1426 AND xStudent=@id",connection,transaction))
+        {
+            command.Parameters.AddWithValue("@id",first);command.ExecuteNonQuery();bool released=false;
+            using var timer=new Timer{Interval=500};timer.Tick+=(sender,e)=>{timer.Stop();Require(!form.Enabled,"History Save did not enter an asynchronous busy state.");form.Close();Require(form.Visible,"History Save allowed Close during a transaction.");transaction.Rollback();released=true;};
+            timer.Start();Save();Require(released,"History UI heartbeat did not release a real SQL lock.");
+        }
+        Require(Convert.ToInt32(Mark(10,book1))==15 && Convert.ToInt32(Mark(10,book2))==25 && Convert.ToInt32(db.Scalar("SELECT Mark FROM tMarkAgo WHERE xStudent=@p0 AND xPaye=10 AND typ=5",new object[]{first}))==40 && Convert.ToInt32(db.Scalar("SELECT gClass FROM tMarkAgo WHERE xStudent=@p0 AND xPaye=10 AND typ=5",new object[]{first}))==2 && Protected(10)==keep,"History retry lost exact marks/sum/rank or changed another grade/student/current-year records.");
+        Open(10);Require(Field<TextBox>(form,"af").Text=="40" && Field<Control>(form,"ad").Text=="2","History reopen did not preserve the saved sum/rank.");
+        Set(book1,"18");Dialog(()=>Click(form,"m_m"),discard,7);Require(Convert.ToInt32(students.SelectedItems[0].GetRow().Cells["id"].Value)==first,"Declining unsaved history navigation changed the student.");
+        Dialog(()=>Select(form,peer,"m_i"),discard,7);Require(Convert.ToInt32(students.SelectedItems[0].GetRow().Cells["id"].Value)==first && Convert.ToInt32(grid.GetRow(Row(book1)).Cells["m1"].Value)==18,"Declining row selection lost pending history marks.");
+        Dialog(()=>Click(form,"m_d"),discard,7);Require(form.Visible,"Declining unsaved history Close closed the form.");
+        Click(form,"p");Require(Convert.ToInt32(Mark(10,book1))==15,"History Cancel persisted pending edits.");
+        Open(10);Click(form,"m_m");Require(Convert.ToInt32(students.SelectedItems[0].GetRow().Cells["id"].Value)==peer,"History Next failed to select the peer.");Click(form,"m_l");Require(Convert.ToInt32(students.SelectedItems[0].GetRow().Cells["id"].Value)==first,"History Previous failed to return to first student.");Click(form,"p");
+        Open(11);Set(book1,"۳۵");Set(book2,"۴۵");Field<Control>(form,"ad").Text="3";keep=Protected(11);Save();
+        Require(Convert.ToInt32(Mark(11,book1))==35 && Convert.ToInt32(Mark(11,book2))==45 && Convert.ToInt32(db.Scalar("SELECT Mark FROM tMarkAgo WHERE xStudent=@p0 AND xPaye=11 AND typ=5",new object[]{first}))==80 && Protected(11)==keep,"Grade11 Save changed grade10 or lost its exact sum.");
+        Open(10);Set(book1,"");Set(book2,"0");keep=Protected(10);Save();
+        Require(Mark(10,book1)==null && Mark(10,book2)!=null && Convert.ToInt32(Mark(10,book2))==0 && db.Scalar("SELECT id FROM tMarkAgo WHERE xStudent=@p0 AND xPaye=10 AND typ=5",new object[]{first})==null && Protected(10)==keep,"History clear did not preserve blank/zero distinction and delete only its zero aggregate.");
+        Open(10);string cleared=Snapshot();Save();Require(Snapshot()==cleared,"Repeated empty/zero history Save duplicated records.");
+        Field<Control>(form,"m_e").Text="'";Click(form,"m_j");Require(students.RowCount==2,"Quoted history filter lost literal matching names.");
+        Field<Control>(form,"m_e").Text="' AND 1=0 --";Click(form,"m_j");Require(students.RowCount==0 && !Field<UIButton>(form,"m_c").Enabled,"History name search executed punctuation or left empty-list entry enabled.");
+        Click(form,"m_c");Click(form,"m_m");Click(form,"m_l");Require(errors==0,"History grid reported a conversion error.");
+        Click(form,"m_d");
+        log("PASS actual grade10/11 history entry Save/Cancel/reload/clear/repeat, integer/Persian/blank/zero/rank validation, grade/current-enrollment/catalog/duplicate rejection, late SQL rollback/retry, pending input, real SQL-lock UI heartbeat/Close guard, protected peer/other-grade/current-year marks/calculations, unsaved navigation/selection/Close No, Previous/Next and quoted/empty search; reports/restore/hidden order editor remain separate");
     }
     private static void MarkExport(Form form,Database db,Action<string> log)
     {

@@ -132,6 +132,7 @@ try
     });
     WorkbookChecks.Verify(root, Check);
     YearTransitionChecks.Verify(Check);
+    HistoryMarksChecks.Verify(Check);
     if (args.Contains("--integration"))
     {
         var suffix = Guid.NewGuid().ToString("N")[..10];

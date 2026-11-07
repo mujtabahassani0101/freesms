@@ -1,5 +1,10 @@
 using System;
 using System.ComponentModel;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Globalization;
+using FreeSms.Core;
 using System.Data;
 using Microsoft.Data.SqlClient;
 using System.Drawing;
@@ -12,6 +17,10 @@ using Janus.Windows.UI;
 
 public class asdbh : Form
 {
+    private bool historyBusy,loadingHistory,historyDirty;
+    private int loadedClass,loadedHistoryGrade;
+    private readonly Dictionary<int,object> historyOrders=new Dictionary<int,object>();
+
 	private Panel m_a;
 
 	private Panel m_b;
@@ -80,21 +89,26 @@ public class asdbh : Form
 
 	private Container ah = null;
 
-	private SqlConnection ai = new SqlConnection(asdab.e());
 
 	private string aj;
 
 	private bool ak = false;
 
-	private string al = "1";
 
 	private int am = -1;
 
-	private bool an = true;
 
 	public asdbh()
 	{
 		f();
+        this.m_d.CausesValidation=false;p.CausesValidation=false;this.m_l.CausesValidation=false;this.m_m.CausesValidation=false;
+        ad.TextChanged+=(sender,args)=>{if(!loadingHistory && this.m_k.Visible)historyDirty=true;};
+        FormClosing+=(sender,args)=>
+        {
+            if(historyBusy){args.Cancel=true;return;}
+            if(!ConfirmHistoryDiscard()){args.Cancel=true;return;}
+            s.CancelEdit();
+        };
 	}
 protected override void Dispose(bool A_0)
 	{
@@ -623,266 +637,71 @@ protected override void Dispose(bool A_0)
 	}
 
 	private void e()
-	{
-		while (true)
-		{
-			string text = " where xPaye in(" + asdaj.n + ") and id in(SELECT DISTINCT xClass FROM tyear_student WHERE xYear=" + asdaj.__field_a + " and (xPaye = 12))";
-			DataTable dataSource = asdcb.c(asdab.e(), CommandType.Text, "select id,name from tClass " + text);
-			r.DataSource = dataSource;
-			r.DisplayMember = "Name";
-			r.ValueMember = "id";
-			bool flag = r.Items.Count <= 0;
-			int num = 0;
-			while (true)
-			{
-				switch (num)
-				{
-				case 0:
-					if (!flag)
-					{
-						num = 1;
-						continue;
-					}
-					return;
-				case 1:
-					r.SelectedIndex = 0;
-					if (true)
-					{
-					}
-					num = 2;
-					continue;
-				case 2:
-					return;
-				}
-				break;
-			}
-		}
-	}
+    {
+        if(historyBusy || loadingHistory)return;
+        loadingHistory=true;
+        try
+        {
+            r.DataSource=asdcb.c(asdab.e(),CommandType.Text,"SELECT c.id,c.name FROM tClass c WHERE c.xYear=@year AND c.xPaye=12 AND EXISTS(SELECT 1 FROM tYear_Student y WHERE y.xClass=c.id AND y.xYear=@year AND y.xPaye=12) ORDER BY c.sortRpt,c.id",new SqlParameter("@year",int.Parse(asdaj.__field_a)));
+            r.DisplayMember="name";r.ValueMember="id";
+            if(!HistoryGrades().Contains(12))r.DataSource=null;
+        }
+        finally{loadingHistory=false;}
+        d();
+    }
 
 	private void d()
-	{
-		DataTable dataTable = default;
-		while (true)
-		{
-			string text = "";
-			string text2 = "10";
-			bool flag = !aa.Checked;
-			int num = 21;
-			while (true)
-			{
-				switch (num)
-				{
-				case 21:
-					if (!flag)
-					{
-						num = 12;
-						continue;
-					}
-					goto case 5;
-				case 18:
-					flag = !(text != "");
-					num = 20;
-					continue;
-				case 20:
-					if (!flag)
-					{
-						num = 8;
-						continue;
-					}
-					goto case 0;
-				case 10:
-					text += " and ";
-					num = 3;
-					continue;
-				case 19:
-					this.m_e.Text = OriginalText.Normalize(this.m_e.Text.Trim());
-					flag = !(text != "");
-					num = 7;
-					continue;
-				case 7:
-					if (!flag)
-					{
-						num = 1;
-						continue;
-					}
-					goto case 16;
-				case 0:
-					dataTable = asdcb.c(asdab.e(), CommandType.Text, "SELECT     tmpstd.sort, tmpstd.id, tmpstd.Code, tmpstd.FName, tmpstd.LName, tmpstd.PName,tmpMark.Mark,tmpMark.gclass from\r\n                    (SELECT     tYear_Student.sort, tStudent.id, tStudent.Code, tStudent.FName, tStudent.LName, tStudent.PName, tStudent.NumberAsas\r\n                    FROM tStudent INNER JOIN\r\n                      tYear_Student ON tStudent.id = tYear_Student.xStudent\r\n                    WHERE   (tYear_Student.xYear = " + asdaj.__field_a + ") AND tYear_Student.xClass = " + r.SelectedValue.ToString() + text + ") tmpstd left outer join\r\n                    (SELECT     xStudent, mark,gClass\r\n                    FROM         tMarkAgo\r\n                    WHERE     (typ = 5) AND (xpaye = " + text2 + ")) tmpMark on tmpstd.id=tmpMark.xStudent", new SqlParameter("@FirstName", "%"+this.m_e.Text+"%"), new SqlParameter("@LastName", "%"+this.m_g.Text+"%"));
-					flag = dataTable.Rows.Count <= 0;
-					num = 17;
-					continue;
-				case 17:
-					if (!flag)
-					{
-						num = 2;
-						continue;
-					}
-					this.m_i.DataSource = null;
-					num = 14;
-					continue;
-				case 5:
-					flag = !(this.m_e.Text.Trim() != "");
-					num = 9;
-					continue;
-				case 9:
-					if (!flag)
-					{
-						num = 19;
-						continue;
-					}
-					goto IL_0382;
-				case 8:
-					text = " and " + text;
-					num = 0;
-					continue;
-				case 14:
-					return;
-				case 11:
-					this.m_g.Text = OriginalText.Normalize(this.m_g.Text.Trim());
-					flag = !(text != "");
-					num = 13;
-					continue;
-				case 13:
-					if (!flag)
-					{
-						num = 10;
-						continue;
-					}
-					goto case 3;
-				case 1:
-					text += " and ";
-					num = 16;
-					continue;
-				case 2:
-					this.m_i.DataSource = dataTable;
-					num = 15;
-					continue;
-				case 15:
-					return;
-				case 3:
-					text = text + " tStudent.LName Like @LastName";
-					num = 18;
-					continue;
-				case 16:
-					text = text + " tStudent.FName Like @FirstName";
-					num = 6;
-					continue;
-				case 6:
-					if (1 == 0)
-					{
-					}
-					goto IL_0382;
-				case 12:
-					text2 = "11";
-					num = 5;
-					continue;
-				case 4:
-					{
-						if (!flag)
-						{
-							num = 11;
-							continue;
-						}
-						goto case 18;
-					}
-					IL_0382:
-					flag = !(this.m_g.Text.Trim() != "");
-					num = 4;
-					continue;
-				}
-				break;
-			}
-		}
-	}
+    {
+        if(historyBusy || loadingHistory)return;
+        if(!ConfirmHistoryDiscard())
+        {
+            loadingHistory=true;
+            try{if(loadedClass>0)r.SelectedValue=loadedClass.ToString();ab.Checked=loadedHistoryGrade!=11;}
+            finally{loadingHistory=false;}return;
+        }
+        loadingHistory=true;
+        try
+        {
+            s.CancelEdit();this.m_k.Visible=false;historyDirty=false;aj=null;historyOrders.Clear();s.DataSource=null;
+            int year=Values.Number(asdaj.__field_a,1000,9999) ?? 0;
+            int classroom=Values.Number(r.SelectedValue,1) ?? 0;
+            if(classroom==0 || !HistoryGrades().Contains(12)){this.m_i.DataSource=null;return;}
+            this.m_i.DataSource=asdcb.c(asdab.e(),CommandType.Text,
+                "SELECT y.sort,s.id,s.Code,s.FName,s.LName,s.PName,h.Mark,h.gClass FROM tStudent s JOIN tYear_Student y ON y.xStudent=s.id JOIN tClass c ON c.id=y.xClass AND c.xYear=y.xYear AND c.xPaye=y.xPaye LEFT JOIN tMarkAgo h ON h.xStudent=s.id AND h.xPaye=@historic AND h.typ=5 WHERE y.xYear=@year AND y.xClass=@class AND y.xPaye=12 AND s.FName LIKE @first AND s.LName LIKE @last ORDER BY y.sort,s.id",
+                new SqlParameter("@historic",aa.Checked?11:10),new SqlParameter("@year",year),new SqlParameter("@class",classroom),new SqlParameter("@first","%"+OriginalText.Normalize(this.m_e.Text)+"%"),new SqlParameter("@last","%"+OriginalText.Normalize(this.m_g.Text)+"%"));
+        }
+        catch(Exception error){MessageBox.Show(error.Message);}
+        finally{loadingHistory=false;b();}
+    }
 
 	private void c()
-	{
-		DataTable dataTable2 = default;
-		DataTable dataTable = default;
-		while (true)
-		{
-			string text = "10";
-			bool flag = !aa.Checked;
-			int num = 1;
-			while (true)
-			{
-				switch (num)
-				{
-				case 1:
-					if (!flag)
-					{
-						num = 0;
-						continue;
-					}
-					goto case 9;
-				case 8:
-				case 10:
-				{
-					GridEXFormatCondition gridEXFormatCondition = new GridEXFormatCondition(s.RootTable.Columns["acp"], ConditionOperator.Equal, "1");
-					gridEXFormatCondition.FormatStyle.ForeColor = SystemColors.WindowText;
-					gridEXFormatCondition.FormatStyle.BackColor = Color.FromArgb(0, 200, 0);
-					s.RootTable.FormatConditions.Add(gridEXFormatCondition);
-					GridEXFormatCondition gridEXFormatCondition2 = new GridEXFormatCondition(s.RootTable.Columns["acp"], ConditionOperator.Equal, "-1");
-					gridEXFormatCondition2.FormatStyle.ForeColor = SystemColors.WindowText;
-					gridEXFormatCondition2.FormatStyle.BackColor = Color.FromArgb(250, 0, 150);
-					s.RootTable.FormatConditions.Add(gridEXFormatCondition2);
-					dataTable2 = asdcb.c(asdab.e(), CommandType.Text, "select  gClass,mark from tMarkAgo where  typ=5 and xpaye= " + text + " and xStudent= " + this.m_i.SelectedItems[0].GetRow().Cells["id"].Value.ToString());
-					flag = dataTable2.Rows.Count <= 0;
-					num = 5;
-					continue;
-				}
-				case 5:
-					if (!flag)
-					{
-						num = 7;
-						continue;
-					}
-					af.Text = "";
-					ad.Text = "";
-					num = 4;
-					continue;
-				case 9:
-					this.m_n.Text = this.m_i.SelectedItems[0].GetRow().Cells["FName"].Value.ToString() + " " + this.m_i.SelectedItems[0].GetRow().Cells["LName"].Value.ToString();
-					dataTable = asdcb.c(asdab.e(), CommandType.Text, "select  0 as acp,    tmpbok.xbook, tmpbok.book, tmpbok.SortOneEntry,tmpbok.sort,tmpmark.mark as M1\r\n                    \r\n                    from\r\n                    (SELECT     id as xbook, Name as book, SortOneEntry,sort\r\n                        FROM         tBook\r\n                      WHERE     (xPaye = 12) AND (showOneEntry = 1))tmpbok\r\n                        left outer join\r\n                       (SELECT     xStudent, xbook, mark         \r\n                        FROM         tMarkAgo where  typ=1 and xpaye= " + text + " and xStudent= " + this.m_i.SelectedItems[0].GetRow().Cells["id"].Value.ToString() + ")tmpmark on tmpbok.xbook=tmpmark.xbook order by tmpbok.sort,tmpbok.xbook");
-					flag = dataTable.Rows.Count <= 0;
-					num = 6;
-					continue;
-				case 6:
-					if (flag)
-					{
-						s.DataSource = null;
-						num = 8;
-					}
-					else
-					{
-						num = 3;
-					}
-					continue;
-				case 4:
-					if (1 == 0)
-					{
-					}
-					return;
-				case 0:
-					text = "11";
-					num = 9;
-					continue;
-				case 7:
-					af.Text = dataTable2.Rows[0]["mark"].ToString();
-					ad.Text = dataTable2.Rows[0]["gClass"].ToString();
-					num = 2;
-					continue;
-				case 2:
-					return;
-				case 3:
-					s.DataSource = dataTable;
-					num = 10;
-					continue;
-				}
-				break;
-			}
-		}
-	}
+    {
+        if(historyBusy || loadingHistory)return;
+        loadingHistory=true;
+        try
+        {
+            historyDirty=false;historyOrders.Clear();am=-1;ak=false;
+            if(this.m_i.RowCount==0 || this.m_i.Row<0 || this.m_i.SelectedItems.Count==0)
+            {aj=null;s.DataSource=null;af.Text="";ad.Text="0";return;}
+            var selected=this.m_i.SelectedItems[0].GetRow();
+            int student=Convert.ToInt32(selected.Cells["id"].Value);aj=student.ToString(CultureInfo.InvariantCulture);
+            loadedClass=Values.Number(r.SelectedValue,1) ?? 0;loadedHistoryGrade=aa.Checked?11:10;
+            this.m_n.Text=selected.Cells["FName"].Text+" "+selected.Cells["LName"].Text;
+            y.Text=loadedHistoryGrade==10?"نمرات صنف دهم":"نمرات صنف یازدهم";
+            var table=asdcb.c(asdab.e(),CommandType.Text,"SELECT 0 AS acp,b.id AS xbook,b.Name AS book,b.SortOneEntry,b.sort,h.Mark AS M1 FROM tBook b LEFT JOIN tMarkAgo h ON h.xbook=b.id AND h.xStudent=@student AND h.xPaye=@grade AND h.typ=1 WHERE b.xPaye=12 AND b.showOneEntry=1 ORDER BY b.sort,b.id",new SqlParameter("@student",student),new SqlParameter("@grade",loadedHistoryGrade));
+            s.DataSource=table;s.RootTable.FormatConditions.Clear();
+            foreach(DataRow row in table.Rows)historyOrders[Convert.ToInt32(row["xbook"])]=row["SortOneEntry"];
+            foreach(var state in new[]{("1",Color.FromArgb(0,200,0)),("-1",Color.FromArgb(250,0,150))})
+            {
+                var condition=new GridEXFormatCondition(s.RootTable.Columns["acp"],ConditionOperator.Equal,state.Item1);condition.FormatStyle.BackColor=state.Item2;s.RootTable.FormatConditions.Add(condition);
+            }
+            var total=asdcb.c(asdab.e(),CommandType.Text,"SELECT Mark,gClass FROM tMarkAgo WHERE xStudent=@student AND xPaye=@grade AND typ=5",new SqlParameter("@student",student),new SqlParameter("@grade",loadedHistoryGrade));
+            af.Text=total.Rows.Count==0?"":Convert.ToString(total.Rows[0]["Mark"],CultureInfo.InvariantCulture);
+            ad.Text=total.Rows.Count==0?"0":Convert.ToString(total.Rows[0]["gClass"],CultureInfo.InvariantCulture);
+        }
+        catch(Exception error){s.DataSource=null;MessageBox.Show(error.Message);}
+        finally{loadingHistory=false;b();}
+    }
 
 	private void n(object A_0, EventArgs A_1)
 	{
@@ -951,15 +770,15 @@ protected override void Dispose(bool A_0)
 	}
 
 	private void m(object A_0, EventArgs A_1)
-	{
-		this.m_k.Visible = false;
-		d();
-	}
+    {
+        if(historyBusy)return;
+        s.CancelEdit();historyDirty=false;this.m_k.Visible=false;d();
+    }
 
 	private void l(object A_0, EventArgs A_1)
-	{
-		Close();
-	}
+    {
+        Close();
+    }
 
 	private void k(object A_0, EventArgs A_1)
 	{
@@ -967,555 +786,47 @@ protected override void Dispose(bool A_0)
 	}
 
 	private void j(object A_0, EventArgs A_1)
-	{
-		while (true)
-		{
-			bool flag = this.m_i.RowCount <= 0;
-			int num = 6;
-			while (true)
-			{
-				switch (num)
-				{
-				case 6:
-					if (!flag)
-					{
-						num = 0;
-						continue;
-					}
-					return;
-				case 3:
-					y.Text = "نمرات صنف دهم";
-					num = 4;
-					continue;
-				case 0:
-					if (true)
-					{
-					}
-					this.m_k.Visible = true;
-					aj = this.m_i.SelectedItems[0].GetRow().Cells["id"].Value.ToString();
-					c();
-					s.Row = 0;
-					s.CurrentColumn = s.GetRow(0).Cells["m1"].Column;
-					s.Select();
-					s.SelectCurrentCellText();
-					flag = !ab.Checked;
-					num = 5;
-					continue;
-				case 5:
-					if (flag)
-					{
-						y.Text = "نمرات صنف یازدهم";
-						num = 2;
-					}
-					else
-					{
-						num = 3;
-					}
-					continue;
-				case 2:
-				case 4:
-					ad.Focus();
-					num = 1;
-					continue;
-				case 1:
-					return;
-				}
-				break;
-			}
-		}
-	}
+    {
+        if(historyBusy || !ConfirmHistoryDiscard() || this.m_i.RowCount==0)return;
+        c();
+        if(s.RowCount==0){MessageBox.Show("مضمونی برای ورود نمرات تعریف نشده است.");return;}
+        this.m_k.Visible=true;FocusHistoryEditor();
+    }
 
 	private void i(object A_0, EventArgs A_1)
-	{
-		if (true)
-		{
-		}
-		this.m_i.MoveNext();
-		aj = this.m_i.SelectedItems[0].GetRow().Cells["id"].Value.ToString();
-		c();
-		s.CurrentColumn = s.GetRow(0).Cells["m1"].Column;
-		s.Select();
-		s.SelectCurrentCellText();
-		ad.Focus();
-	}
+    {
+        MoveHistory(1);
+    }
 
 	private void b()
-	{
-		while (true)
-		{
-			bool flag = this.m_i.Row != 0;
-			int num = 2;
-			while (true)
-			{
-				switch (num)
-				{
-				case 2:
-					if (!flag)
-					{
-						num = 5;
-						continue;
-					}
-					this.m_l.Enabled = true;
-					num = 3;
-					continue;
-				case 6:
-					this.m_m.Enabled = false;
-					num = 4;
-					continue;
-				case 4:
-					return;
-				case 3:
-				case 7:
-					flag = this.m_i.Row != this.m_i.RecordCount - 1;
-					num = 0;
-					continue;
-				case 0:
-					if (!flag)
-					{
-						num = 6;
-						continue;
-					}
-					this.m_m.Enabled = true;
-					num = 1;
-					continue;
-				case 5:
-					this.m_l.Enabled = false;
-					num = 7;
-					continue;
-				case 1:
-					if (1 == 0)
-					{
-					}
-					return;
-				}
-				break;
-			}
-		}
-	}
+    {
+        this.m_l.Enabled=!historyBusy && this.m_i.RowCount>0 && this.m_i.Row>0;
+        this.m_m.Enabled=!historyBusy && this.m_i.RowCount>0 && this.m_i.Row>=0 && this.m_i.Row<this.m_i.RowCount-1;
+        this.m_c.Enabled=!historyBusy && this.m_i.RowCount>0;
+    }
 
 	private void h(object A_0, EventArgs A_1)
-	{
-		if (true)
-		{
-		}
-		this.m_i.MovePrevious();
-		aj = this.m_i.SelectedItems[0].GetRow().Cells["id"].Value.ToString();
-		c();
-		s.CurrentColumn = s.GetRow(0).Cells["m1"].Column;
-		s.Select();
-		s.SelectCurrentCellText();
-		ad.Focus();
-	}
+    {
+        MoveHistory(-1);
+    }
 
 	private void g(object A_0, EventArgs A_1)
-	{
-		SqlCommand sqlCommand = default;
-		int num6 = default;
-		string text = default;
-		float num4 = default;
-		int num2 = default;
-		int num3 = default;
-		string value2 = default;
-		int num5 = default;
-		while (true)
-		{
-			string value = "10";
-			bool flag = !aa.Checked;
-			int num = 19;
-			while (true)
-			{
-				int num9;
-				int num8;
-				switch (num)
-				{
-				case 19:
-					if (!flag)
-					{
-						num = 31;
-						continue;
-					}
-					goto case 25;
-				case 41:
-					num9 = 1;
-					goto IL_0ab1;
-				case 1:
-					num8 = 0;
-					goto IL_08b7;
-				case 17:
-					flag = ak;
-					num = 13;
-					continue;
-				case 13:
-					if (!flag)
-					{
-						num = 44;
-						continue;
-					}
-					goto case 14;
-				case 15:
-					num = 3;
-					continue;
-				case 3:
-					num9 = ((!(ad.Text != "")) ? 1 : 0);
-					goto IL_0ab1;
-				case 39:
-					num = 9;
-					continue;
-				case 9:
-					num8 = ((!(af.Text == "")) ? 1 : 0);
-					goto IL_08b7;
-				case 27:
-					sqlCommand = new SqlCommand("DELETE FROM tMarkAgo WHERE (xStudent = @xStudent) AND (xpaye = @xpaye) AND (xbook = @xbook)", ai);
-					sqlCommand.Parameters.AddWithValue("@xStudent", aj);
-					sqlCommand.Parameters.AddWithValue("@xpaye", value);
-					sqlCommand.Parameters.AddWithValue("@xbook", s.GetRow(num6).Cells["xbook"].Text.ToString());
-					sqlCommand.ExecuteNonQuery();
-					num = 22;
-					continue;
-				case 23:
-					i(this, null);
-					ad.Focus();
-					num = 12;
-					continue;
-				case 4:
-					return;
-				case 31:
-					value = "11";
-					num = 25;
-					continue;
-				case 38:
-					try
-					{
-						while (true)
-						{
-							IL_0377:
-							flag = !(s.GetRow(num6).Cells["m1"].Text != "");
-							num = 5;
-							while (true)
-							{
-								int num7;
-								switch (num)
-								{
-								case 5:
-									if (!flag)
-									{
-										num = 4;
-										continue;
-									}
-									text = null;
-									num = 1;
-									continue;
-								case 7:
-									num = 2;
-									continue;
-								case 2:
-									num7 = ((!(num4 < (float)num2)) ? 1 : 0);
-									goto IL_0501;
-								case 4:
-									num4 = float.Parse(s.GetRow(num6).Cells["m1"].Text.ToString());
-									num = 3;
-									continue;
-								case 3:
-									num = ((!(num4 > (float)num3)) ? 7 : 0);
-									continue;
-								case 0:
-									num7 = 0;
-									goto IL_0501;
-								case 9:
-									s.GetRow(num6).Cells["m1"].FormatStyle.BackColor = Color.Yellow;
-									s.GetRow(num6).BeginEdit();
-									s.GetRow(num6).Cells["acp"].Value = "-1";
-									s.GetRow(num6).EndEdit();
-									ak = true;
-									num = 8;
-									continue;
-								case 8:
-									goto end_IL_033e;
-								case 10:
-									if (flag)
-									{
-										text = num4.ToString();
-										num = 11;
-									}
-									else
-									{
-										num = 9;
-									}
-									continue;
-								case 1:
-								case 11:
-									num = 6;
-									continue;
-								case 6:
-									goto IL_0702;
-									IL_0501:
-									flag = (byte)num7 != 0;
-									num = 10;
-									continue;
-								}
-								goto IL_0377;
-								continue;
-								end_IL_033e:
-								break;
-							}
-							break;
-						}
-					}
-					catch
-					{
-						s.GetRow(num6).BeginEdit();
-						s.GetRow(num6).Cells["acp"].Value = "-1";
-						s.GetRow(num6).EndEdit();
-						ak = true;
-					}
-					goto case 8;
-				case 32:
-					sqlCommand.Parameters.AddWithValue("@Mark", DBNull.Value);
-					num = 5;
-					continue;
-				case 44:
-					flag = MessageBox.Show("اطلاعات ذخیره شد . آیا مایل هستید نفر بعدی نمایش داده شود", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes;
-					num = 43;
-					continue;
-				case 43:
-					num = ((!flag) ? 23 : 40);
-					continue;
-				case 10:
-					value2 = ad.Text;
-					num = 28;
-					continue;
-				case 6:
-					num = 46;
-					continue;
-				case 29:
-				case 46:
-					num = 8;
-					continue;
-				case 35:
-					sqlCommand = new SqlCommand("DELETE FROM tMarkAgo WHERE (xStudent = @xStudent) AND (xpaye = @xpaye) AND (typ =5)", ai);
-					sqlCommand.Parameters.AddWithValue("@xStudent", aj);
-					sqlCommand.Parameters.AddWithValue("@xpaye", value);
-					sqlCommand.ExecuteNonQuery();
-					num = 7;
-					continue;
-				case 16:
-					if (!flag)
-					{
-						num = 27;
-						continue;
-					}
-					s.GetRow(num6).BeginEdit();
-					s.GetRow(num6).Cells["acp"].Value = "1";
-					s.GetRow(num6).EndEdit();
-					sqlCommand = new SqlCommand("sp_tMarkAgo_insertUpdate", ai);
-					sqlCommand.CommandType = CommandType.StoredProcedure;
-					sqlCommand.Parameters.AddWithValue("@xStudent", aj);
-					sqlCommand.Parameters.AddWithValue("@xpaye", value);
-					sqlCommand.Parameters.AddWithValue("@xbook", s.GetRow(num6).Cells["xbook"].Text.ToString());
-					flag = text != null;
-					num = 0;
-					continue;
-				case 7:
-				case 21:
-					ai.Close();
-					flag = this.m_i.Row >= this.m_i.RowCount - 1;
-					num = 36;
-					continue;
-				case 36:
-					if (flag)
-					{
-						MessageBox.Show("اطلاعات ذخیره شد");
-						this.m_k.Visible = false;
-						d();
-						num = 4;
-					}
-					else
-					{
-						num = 17;
-					}
-					continue;
-				case 0:
-					if (flag)
-					{
-						sqlCommand.Parameters.AddWithValue("@Mark", text);
-						num = 26;
-					}
-					else
-					{
-						num = 32;
-					}
-					continue;
-				case 5:
-				case 26:
-				{
-					int num10 = sqlCommand.ExecuteNonQuery();
-					flag = num10 >= 1;
-					num = 24;
-					continue;
-				}
-				case 24:
-					if (flag)
-					{
-						al = "0";
-						num5++;
-						num = 29;
-					}
-					else
-					{
-						num = 6;
-					}
-					continue;
-				case 45:
-					if (!flag)
-					{
-						num = 35;
-						continue;
-					}
-					sqlCommand = new SqlCommand("if not exists(select id from tMarkAgo where xStudent=@xStudent and xPaye=@xPaye and  typ=5)\r\n\t                    INSERT INTO tMarkAgo\r\n\t                                          (xStudent, xPaye,typ, xbook, Mark,gClass)\r\n\t                    VALUES      (@xStudent, @xPaye,5, -5, @Mark , @gClass)\r\n                    else \r\n\t                    UPDATE    tMarkAgo\r\n\t                    SET  Mark =@Mark ,gClass=@gClass\r\n\t                    where xStudent=@xStudent and xPaye=@xPaye and  typ=5", ai);
-					value2 = "0";
-					num = 2;
-					continue;
-				case 25:
-				{
-					sqlCommand = null;
-					SqlConnection sqlConnection = new SqlConnection(asdab.e());
-					ak = false;
-					num2 = 0;
-					num = 18;
-					continue;
-				}
-				case 2:
-					num = ((ad.Text != "0") ? 15 : 41);
-					continue;
-				case 30:
-				case 33:
-					flag = num6 < s.RowCount;
-					num = 42;
-					continue;
-				case 42:
-					if (flag)
-					{
-						if (true)
-						{
-						}
-						text = "";
-						num = 38;
-					}
-					else
-					{
-						num = 34;
-					}
-					continue;
-				case 12:
-				case 40:
-					num = 14;
-					continue;
-				case 34:
-					s.Refresh();
-					a();
-					num = 20;
-					continue;
-				case 20:
-					num = ((af.Text == "0") ? 1 : 39);
-					continue;
-				case 14:
-					num = 37;
-					continue;
-				case 37:
-					return;
-				case 18:
-					try
-					{
-						num2 = int.Parse(v.Text);
-					}
-					catch
-					{
-					}
-					num3 = int.Parse(u.Text);
-					text = "";
-					num4 = 0f;
-					num5 = 0;
-					ai.Open();
-					num6 = 0;
-					num = 33;
-					continue;
-				case 8:
-				case 22:
-					num6++;
-					num = 30;
-					continue;
-				case 28:
-					sqlCommand.Parameters.AddWithValue("@xStudent", aj);
-					sqlCommand.Parameters.AddWithValue("@xpaye", value);
-					sqlCommand.Parameters.AddWithValue("@Mark", af.Text);
-					sqlCommand.Parameters.AddWithValue("@gClass", value2);
-					sqlCommand.ExecuteNonQuery();
-					num = 21;
-					continue;
-				case 11:
-					{
-						if (!flag)
-						{
-							num = 10;
-							continue;
-						}
-						goto case 28;
-					}
-					IL_0702:
-					flag = text != null;
-					num = 16;
-					continue;
-					IL_08b7:
-					flag = (byte)num8 != 0;
-					num = 45;
-					continue;
-					IL_0ab1:
-					flag = (byte)num9 != 0;
-					num = 11;
-					continue;
-				}
-				break;
-			}
-		}
-	}
+    {
+        SaveHistoryAsync();
+    }
 
 	private void f(object A_0, EventArgs A_1)
-	{
-		while (true)
-		{
-			if (true)
-			{
-			}
-			bool flag = this.m_i.RowCount <= 0;
-			int num = 2;
-			while (true)
-			{
-				switch (num)
-				{
-				case 2:
-					if (!flag)
-					{
-						num = 1;
-						continue;
-					}
-					return;
-				case 1:
-					b();
-					aj = this.m_i.SelectedItems[0].GetRow().Cells["id"].Value.ToString();
-					c();
-					s.Row = 0;
-					s.CurrentColumn = s.GetRow(0).Cells["m1"].Column;
-					s.Select();
-					s.SelectCurrentCellText();
-					num = 0;
-					continue;
-				case 0:
-					return;
-				}
-				break;
-			}
-		}
-	}
+    {
+        if(historyBusy || loadingHistory)return;
+        if(this.m_i.Row>=0 && this.m_i.SelectedItems.Count>0 && this.m_i.SelectedItems[0].GetRow().Cells["id"].Text==aj){b();return;}
+        if(!ConfirmHistoryDiscard())
+        {
+            loadingHistory=true;
+            try{for(int index=0;index<this.m_i.RowCount;index++)if(this.m_i.GetRow(index).Cells["id"].Text==aj){this.m_i.Row=index;break;}}
+            finally{loadingHistory=false;}return;
+        }
+        c();
+    }
 
 	private void e(object A_0, KeyEventArgs A_1)
 	{
@@ -1528,528 +839,49 @@ protected override void Dispose(bool A_0)
 	}
 
 	private void d(object A_0, KeyEventArgs A_1)
-	{
-		while (true)
-		{
-			if (true)
-			{
-			}
-			bool flag = A_1.KeyCode != Keys.F3;
-			int num = 1;
-			while (true)
-			{
-				switch (num)
-				{
-				case 1:
-					if (!flag)
-					{
-						num = 2;
-						continue;
-					}
-					goto case 0;
-				case 2:
-					d();
-					num = 0;
-					continue;
-				case 0:
-					this.m_g.Focus();
-					return;
-				}
-				break;
-			}
-		}
-	}
+    {
+        HistoryKeyDown(A_1);
+    }
 
 	private void c(object A_0, KeyEventArgs A_1)
-	{
-		while (true)
-		{
-			bool flag = A_1.KeyCode != Keys.F3;
-			int num = 0;
-			while (true)
-			{
-				switch (num)
-				{
-				case 0:
-					if (true)
-					{
-					}
-					if (!flag)
-					{
-						num = 2;
-						continue;
-					}
-					goto case 1;
-				case 2:
-					d();
-					num = 1;
-					continue;
-				case 1:
-					this.m_e.Focus();
-					return;
-				}
-				break;
-			}
-		}
-	}
+    {
+        HistoryKeyDown(A_1);
+    }
 
 	private void b(object A_0, KeyEventArgs A_1)
-	{
-		while (true)
-		{
-			bool flag = A_1.KeyCode != Keys.F2;
-			if (true)
-			{
-			}
-			int num = 10;
-			while (true)
-			{
-				int num2;
-				switch (num)
-				{
-				case 10:
-					num = ((!flag) ? 1 : 3);
-					continue;
-				case 2:
-					if (!flag)
-					{
-						num = 19;
-						continue;
-					}
-					flag = A_1.KeyCode != Keys.Escape;
-					num = 5;
-					continue;
-				case 7:
-					an = true;
-					s.Refresh();
-					g(this, null);
-					num = 21;
-					continue;
-				case 23:
-					num2 = 1;
-					goto IL_026b;
-				case 5:
-					if (!flag)
-					{
-						num = 24;
-						continue;
-					}
-					goto case 0;
-				case 3:
-					num = ((A_1.KeyCode == Keys.F3) ? 18 : 23);
-					continue;
-				case 20:
-					i(this, null);
-					num = 15;
-					continue;
-				case 0:
-				case 9:
-				case 15:
-				case 21:
-					num = 6;
-					continue;
-				case 6:
-					return;
-				case 16:
-					flag = A_1.KeyCode != Keys.F5;
-					num = 12;
-					continue;
-				case 12:
-					if (!flag)
-					{
-						num = 7;
-						continue;
-					}
-					flag = A_1.KeyCode != Keys.Next;
-					num = 14;
-					continue;
-				case 18:
-					num = 4;
-					continue;
-				case 4:
-					num2 = (this.m_k.Visible ? 1 : 0);
-					goto IL_026b;
-				case 24:
-					m(this, null);
-					num = 0;
-					continue;
-				case 19:
-					h(this, null);
-					num = 9;
-					continue;
-				case 13:
-					d();
-					num = 17;
-					continue;
-				case 1:
-					j(this, null);
-					num = 22;
-					continue;
-				case 8:
-					if (!flag)
-					{
-						num = 13;
-						continue;
-					}
-					goto case 17;
-				case 17:
-				case 22:
-					flag = !this.m_k.Visible;
-					num = 11;
-					continue;
-				case 11:
-					if (!flag)
-					{
-						num = 16;
-						continue;
-					}
-					return;
-				case 14:
-					{
-						if (flag)
-						{
-							flag = A_1.KeyCode != Keys.Prior;
-							num = 2;
-						}
-						else
-						{
-							num = 20;
-						}
-						continue;
-					}
-					IL_026b:
-					flag = (byte)num2 != 0;
-					num = 8;
-					continue;
-				}
-				break;
-			}
-		}
-	}
+    {
+        HistoryKeyDown(A_1);
+    }
 
 	private void a(object A_0, ColumnActionEventArgs A_1)
-	{
-		int num2 = default;
-		int num3 = default;
-		while (true)
-		{
-			bool flag = !(A_1.Column.Key == "SortOneEntry");
-			int num = 3;
-			while (true)
-			{
-				switch (num)
-				{
-				case 3:
-					if (!flag)
-					{
-						num = 1;
-						continue;
-					}
-					num2 = 0;
-					num = 5;
-					continue;
-				case 0:
-					try
-					{
-						while (true)
-						{
-							IL_008d:
-							int num4 = int.Parse(s.GetRow(s.Row).Cells["m1"].Text.ToString());
-							num = 6;
-							while (true)
-							{
-								int num5;
-								switch (num)
-								{
-								case 6:
-									num = ((num4 <= num3) ? 7 : 0);
-									continue;
-								case 0:
-									num5 = 0;
-									goto IL_0281;
-								case 8:
-									am = s.Row;
-									s.GetRow(s.Row).BeginEdit();
-									s.GetRow(s.Row).Cells["acp"].Value = "-1";
-									s.GetRow(s.Row).Cells["m1"].Value = num4;
-									s.GetRow(s.Row).EndEdit();
-									num = 5;
-									continue;
-								case 7:
-									num = 3;
-									continue;
-								case 3:
-									num5 = ((num4 >= num2) ? 1 : 0);
-									goto IL_0281;
-								case 4:
-									if (flag)
-									{
-										am = -1;
-										s.GetRow(s.Row).BeginEdit();
-										s.GetRow(s.Row).Cells["acp"].Value = "0";
-										s.GetRow(s.Row).Cells["m1"].Value = num4;
-										s.GetRow(s.Row).EndEdit();
-										num = 1;
-									}
-									else
-									{
-										num = 8;
-									}
-									continue;
-								case 1:
-								case 5:
-									num = 2;
-									continue;
-								case 2:
-									goto end_IL_0060;
-									IL_0281:
-									flag = (byte)num5 != 0;
-									num = 4;
-									continue;
-								}
-								goto IL_008d;
-								continue;
-								end_IL_0060:
-								break;
-							}
-							break;
-						}
-					}
-					catch
-					{
-						am = -1;
-						s.GetRow(s.Row).BeginEdit();
-						s.GetRow(s.Row).Cells["acp"].Value = "0";
-						s.GetRow(s.Row).Cells["m1"].Value = DBNull.Value;
-						s.GetRow(s.Row).EndEdit();
-					}
-					a();
-					num = 4;
-					continue;
-				case 4:
-					return;
-				case 1:
-					asdcb.d(asdab.e(), CommandType.Text, "update tbook set SortOneEntry=" + s.GetRow(s.Row).Cells["SortOneEntry"].Value.ToString() + " where id=" + s.GetRow(s.Row).Cells["xbook"].Value.ToString());
-					if (true)
-					{
-					}
-					num = 2;
-					continue;
-				case 2:
-					return;
-				case 5:
-					try
-					{
-						num2 = int.Parse(v.Text);
-					}
-					catch
-					{
-					}
-					num3 = int.Parse(u.Text);
-					num = 0;
-					continue;
-				}
-				break;
-			}
-		}
-	}
+    {
+        if(historyBusy || loadingHistory || s.Row<0)return;
+        if(A_1.Column.Key=="SortOneEntry"){SaveHistoryOrderAsync();return;}
+        if(A_1.Column.Key.Equals("m1",StringComparison.OrdinalIgnoreCase)){historyDirty=true;a();}
+    }
 
 	private void a()
-	{
-		bool flag = default;
-		int num4 = default;
-		int num5 = default;
-		int num7 = default;
-		int num3 = default;
-		while (true)
-		{
-			int num = 0;
-			int num2 = 0;
-			while (true)
-			{
-				switch (num2)
-				{
-				case 6:
-					try
-					{
-						while (true)
-						{
-							IL_0083:
-							flag = !(s.GetRow(num4).Cells["m1"].Text != "");
-							num2 = 6;
-							while (true)
-							{
-								int num6;
-								switch (num2)
-								{
-								case 6:
-									if (!flag)
-									{
-										num2 = 3;
-										continue;
-									}
-									goto case 1;
-								case 7:
-									s.GetRow(num4).Cells["m1"].FormatStyle.BackColor = Color.Yellow;
-									s.GetRow(num4).BeginEdit();
-									s.GetRow(num4).Cells["acp"].Value = "-1";
-									s.GetRow(num4).EndEdit();
-									ak = true;
-									num2 = 10;
-									continue;
-								case 10:
-									goto end_IL_004e;
-								case 2:
-									num2 = 9;
-									continue;
-								case 9:
-									num6 = ((num5 >= num) ? 1 : 0);
-									goto IL_0205;
-								case 3:
-									num5 = int.Parse(s.GetRow(num4).Cells["m1"].Text.ToString());
-									num2 = 0;
-									continue;
-								case 0:
-									num2 = ((num5 > num7) ? 8 : 2);
-									continue;
-								case 8:
-									num6 = 0;
-									goto IL_0205;
-								case 5:
-									if (flag)
-									{
-										string text = num5.ToString();
-										num3 += num5;
-										num2 = 1;
-									}
-									else
-									{
-										num2 = 7;
-									}
-									continue;
-								case 1:
-									num2 = 4;
-									continue;
-								case 4:
-									{
-										if (1 == 0)
-										{
-										}
-										goto IL_003a;
-									}
-									IL_0205:
-									flag = (byte)num6 != 0;
-									num2 = 5;
-									continue;
-								}
-								goto IL_0083;
-								continue;
-								end_IL_004e:
-								break;
-							}
-							break;
-						}
-					}
-					catch
-					{
-					}
-					goto case 1;
-				case 1:
-					num4++;
-					num2 = 2;
-					continue;
-				case 0:
-				{
-					try
-					{
-						num = int.Parse(v.Text);
-					}
-					catch
-					{
-					}
-					num7 = int.Parse(u.Text);
-					num3 = 0;
-					string text = "";
-					num4 = 0;
-					num2 = 5;
-					continue;
-				}
-				case 2:
-				case 5:
-					flag = num4 < s.RowCount;
-					num2 = 4;
-					continue;
-				case 4:
-					num2 = (flag ? 6 : 3);
-					continue;
-				case 3:
-					{
-						af.Text = num3.ToString();
-						return;
-					}
-					IL_003a:
-					num2 = 1;
-					continue;
-				}
-				break;
-			}
-		}
-	}
+    {
+        if(loadingHistory)return;
+        loadingHistory=true;var entries=new List<HistoryMark>();ak=false;am=-1;
+        try
+        {
+            for(int index=0;index<s.RowCount;index++)
+            {
+                var row=s.GetRow(index);
+                try{entries.Add(HistoryMark.Create(Convert.ToInt32(row.Cells["xbook"].Value),row.Cells["m1"].Value));row.Cells["acp"].Value=0;}
+                catch(ValidationException){ak=true;if(am<0)am=index;row.Cells["acp"].Value=-1;}
+            }
+            af.Text=ak?"":HistoryMark.Total(entries).ToString(CultureInfo.InvariantCulture);
+        }
+        finally{loadingHistory=false;}
+    }
 
 	private void d(object A_0, EventArgs A_1)
-	{
-		bool flag = default;
-		while (true)
-		{
-			if (true)
-			{
-			}
-			int num = 5;
-			while (true)
-			{
-				int num2;
-				switch (num)
-				{
-				case 5:
-					num = ((am < 0) ? 4 : 0);
-					continue;
-				case 0:
-					num = 3;
-					continue;
-				case 3:
-					num2 = ((s.Row == am) ? 1 : 0);
-					goto IL_00e6;
-				case 2:
-					s.Row = am;
-					MessageBox.Show("نمره وارد شده خارج از محدوده است");
-					s.CurrentColumn = s.GetRow(0).Cells["m1"].Column;
-					s.Select();
-					s.SelectCurrentCellText();
-					num = 1;
-					continue;
-				case 1:
-					return;
-				case 6:
-					if (!flag)
-					{
-						num = 2;
-						continue;
-					}
-					return;
-				case 4:
-					{
-						num2 = 1;
-						goto IL_00e6;
-					}
-					IL_00e6:
-					flag = (byte)num2 != 0;
-					num = 6;
-					continue;
-				}
-				break;
-			}
-		}
-	}
+    {
+        if(historyBusy || am<0 || am>=s.RowCount)return;
+        s.Row=am;MessageBox.Show("نمره وارد شده خارج از محدوده است");FocusHistoryEditor();
+    }
 
 	private void c(object A_0, EventArgs A_1)
 	{
@@ -2067,56 +899,94 @@ protected override void Dispose(bool A_0)
 	}
 
 	private void a(object A_0, KeyEventArgs A_1)
-	{
-		while (true)
-		{
-			bool flag = A_1.KeyCode != Keys.Return;
-			int num = 5;
-			while (true)
-			{
-				switch (num)
-				{
-				case 5:
-					if (!flag)
-					{
-						num = 4;
-						continue;
-					}
-					return;
-				case 3:
-					s.Focus();
-					s.CurrentColumn = s.GetRow(0).Cells["m1"].Column;
-					s.Select();
-					s.SelectCurrentCellText();
-					num = 2;
-					continue;
-				case 4:
-					if (true)
-					{
-					}
-					flag = an;
-					num = 1;
-					continue;
-				case 1:
-					if (flag)
-					{
-						an = false;
-						num = 0;
-					}
-					else
-					{
-						num = 3;
-					}
-					continue;
-				case 0:
-				case 2:
-					num = 6;
-					continue;
-				case 6:
-					return;
-				}
-				break;
-			}
-		}
-	}
+    {
+        if(A_1.KeyCode==Keys.Return){A_1.Handled=true;A_1.SuppressKeyPress=true;FocusHistoryEditor();}
+    }
+
+    private int[] HistoryGrades()=>asdaj.n.Split(',').Where(value=>int.TryParse(value,out _)).Select(int.Parse).ToArray();
+    private bool HasHistoryEdits()
+    {
+        var view=s.Controls.OfType<DataGridView>().Single();
+        return historyDirty || (this.m_k.Visible && view.IsCurrentCellInEditMode && view.EditingControl is TextBox editor && editor.Text!=Convert.ToString(view.CurrentCell.Value,CultureInfo.CurrentCulture));
+    }
+    private bool ConfirmHistoryDiscard()
+    {
+        if(loadingHistory || !HasHistoryEdits())return true;
+        if(MessageBox.Show("تغییرات نمرات گذشته ثبت نشده است. بدون ثبت ادامه می‌دهید؟","",MessageBoxButtons.YesNo,MessageBoxIcon.Exclamation)!=DialogResult.Yes)return false;
+        s.CancelEdit();historyDirty=false;return true;
+    }
+    private void FocusHistoryEditor()
+    {
+        if(s.RowCount==0)return;s.Row=Math.Max(0,s.Row);s.CurrentColumn=s.RootTable.Columns["m1"];s.Select();s.SelectCurrentCellText();
+    }
+    private void MoveHistory(int direction)
+    {
+        if(historyBusy || this.m_i.RowCount==0 || !ConfirmHistoryDiscard())return;
+        if(direction>0 && this.m_i.Row<this.m_i.RowCount-1)this.m_i.MoveNext();
+        else if(direction<0 && this.m_i.Row>0)this.m_i.MovePrevious();
+        c();FocusHistoryEditor();
+    }
+    private void HistoryKeyDown(KeyEventArgs key)
+    {
+        if(historyBusy)return;
+        if(key.KeyCode==Keys.F2)j(this,EventArgs.Empty);
+        else if(key.KeyCode==Keys.F3)k(this,EventArgs.Empty);
+        else if(key.KeyCode==Keys.F5 && this.m_k.Visible)SaveHistoryAsync();
+        else if(key.KeyCode==Keys.Escape && this.m_k.Visible)m(this,EventArgs.Empty);
+        else if(key.KeyCode==Keys.PageDown)MoveHistory(1);
+        else if(key.KeyCode==Keys.PageUp)MoveHistory(-1);
+        else return;
+        key.Handled=true;key.SuppressKeyPress=true;
+    }
+    private async void SaveHistoryAsync()
+    {
+        if(historyBusy || !this.m_k.Visible || !s.TryEndEdit())return;
+        var entries=new List<HistoryMark>();int year,classroom,student,grade,rank;int[] allowed;
+        try
+        {
+            if(!asdaj.a("3"))throw new ValidationException("شما مجوز ورود به این بخش را ندارید");
+            year=Values.Number(asdaj.__field_a,1000,9999) ?? 0;classroom=loadedClass;
+            student=Values.Number(aj,1) ?? throw new ValidationException("شاگردی انتخاب نشده است.");grade=loadedHistoryGrade;allowed=HistoryGrades();
+            rank=Values.Number(ad.Text,0,short.MaxValue) ?? 0;
+            for(int index=0;index<s.RowCount;index++)
+                try{var row=s.GetRow(index);entries.Add(HistoryMark.Create(Convert.ToInt32(row.Cells["xbook"].Value),row.Cells["m1"].Value));}
+                catch(ValidationException error){s.Row=index;throw new ValidationException("ردیف "+(index+1)+": "+error.Message);}
+            if(entries.Count==0)throw new ValidationException("مضمونی برای ورود نمرات تعریف نشده است.");
+        }
+        catch(Exception error){MessageBox.Show(error.Message);return;}
+        bool enabled=Enabled,wait=UseWaitCursor;historyBusy=true;Enabled=false;UseWaitCursor=true;bool saved=false;
+        try
+        {
+            var service=new HistoryMarks(new Database(asdab.e()));
+            int total=await Task.Run(()=>service.Save(year,classroom,student,grade,allowed,entries,rank));
+            af.Text=total.ToString(CultureInfo.InvariantCulture);historyDirty=false;saved=true;
+        }
+        catch(Exception error){MessageBox.Show("نمرات گذشته ذخیره نشد.\n"+error.Message);}
+        finally{Enabled=enabled;UseWaitCursor=wait;historyBusy=false;}
+        if(!saved)return;
+        if(this.m_i.Row<this.m_i.RowCount-1 && MessageBox.Show("اطلاعات ذخیره شد . آیا مایل هستید نفر بعدی نمایش داده شود","",MessageBoxButtons.YesNo,MessageBoxIcon.Question)==DialogResult.Yes){MoveHistory(1);return;}
+        if(this.m_i.Row>=this.m_i.RowCount-1)MessageBox.Show("اطلاعات ذخیره شد");
+        this.m_k.Visible=false;d();
+    }
+    private async void SaveHistoryOrderAsync()
+    {
+        int rowIndex=s.Row,book=Convert.ToInt32(s.GetRow(s.Row).Cells["xbook"].Value);object original=historyOrders.TryGetValue(book,out var old)?old:DBNull.Value;
+        bool enabled=Enabled,wait=UseWaitCursor;
+        try
+        {
+            if(!asdaj.a("3"))throw new ValidationException("شما مجوز ورود به این بخش را ندارید");
+            int order=Values.Number(s.GetRow(rowIndex).Cells["SortOneEntry"].Value,0,short.MaxValue) ?? throw new ValidationException("ترتیب مضمون خالی است.");
+            int[] allowed=HistoryGrades();historyBusy=true;Enabled=false;UseWaitCursor=true;
+            await Task.Run(()=>new HistoryMarks(new Database(asdab.e())).SetSubjectOrder(book,order,allowed));historyOrders[book]=order;
+        }
+        catch(Exception error)
+        {
+            loadingHistory=true;
+            try{if(rowIndex<s.RowCount)s.GetRow(rowIndex).Cells["SortOneEntry"].Value=original;}
+            finally{loadingHistory=false;}
+            MessageBox.Show("خطا در ترتیب مضمون:\n"+error.Message);
+        }
+        finally{Enabled=enabled;UseWaitCursor=wait;historyBusy=false;}
+    }
+
 }
